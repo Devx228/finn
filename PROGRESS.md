@@ -60,7 +60,7 @@ phase is in `docs/PHASES.md`. Deadline: **15 Nov 2026**.
 4. Phase 6: README/ARCHITECTURE/diagram/WRITEUP, secret scan, make repo public, phone test.
 - Gotcha: shell heredocs in this environment turn `\b` into a backspace byte inside Python
   regexes. Edit regex-heavy files with the Write/Edit tools or a script file; check with
-  `grep -c $'\b' file`.
+  `grep -c $'\x08' file`.
 
 ## How to run
 ```bash
