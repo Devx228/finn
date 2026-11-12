@@ -242,3 +242,25 @@ shows "Snapshot" from the bundled JSON; no horizontal scroll either way.
 annual reports, transcripts and structured results all from NSE — every source primary.
 Datacenter reachability (Render, GitHub runners) still to test; if blocked, live research on
 the deployed app needs the laptop or degrades honestly.
+
+## 2026-11-12 — NSE is the single data source (owner decision)
+
+**Decision:** NSE for filings, annual reports, transcripts and quarterly numbers. BSE and
+Screener dropped. The source layer sits behind an adapter interface so another source can be
+added later.
+
+**Terms (owner-verified):** NSE's terms of use prohibit systematic/automated data collection and
+republishing without permission, as Screener's do. The owner proceeds because the brief
+explicitly directs candidates to NSE/BSE filings and this is a personal, non-commercial
+evaluation prototype. Mandatory access rules, enforced in code where possible:
+1. Never bypass or work around a block, bot check or rate limit. If NSE refuses, stop and tell
+   the owner.
+2. Minimum footprint: one request at a time, ≥ 1 s apart, cache everything, never re-fetch a
+   document we already have.
+3. Fetch only what the app needs: portfolio and research companies, plus on-demand tickers.
+   No bulk crawling.
+4. Never re-host PDFs. Store extracted text for analysis; show short cited quotes and computed
+   numbers; link to the original document on NSE.
+5. Attribute NSE as the source in the UI.
+6. The writeup states what was accessed, how, and that production would use a licensed
+   exchange data feed (`docs/WRITEUP.md`).
