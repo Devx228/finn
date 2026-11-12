@@ -208,3 +208,37 @@ shows "Snapshot" from the bundled JSON; no horizontal scroll either way.
   picks an external pinger. Cold start (~1 min) is covered by the snapshot fallback meanwhile.
 - Owner's direction: priority is now core functionality. No further infrastructure work beyond
   what each gate needs; redeploy after each phase passes locally.
+
+## 2026-11-12 — Phase 1 source probes (spec §7.1–7.4 do not hold as written)
+
+**VERIFIED 2026-11-12, from the owner's laptop (plain requests, polite rate):**
+- **NSE symbol master** `nsearchives.nseindia.com/content/equities/EQUITY_L.csv`: 200, 2,635
+  rows; columns SYMBOL, NAME OF COMPANY, SERIES, DATE OF LISTING, PAID UP VALUE, MARKET LOT,
+  ISIN NUMBER, FACE VALUE.
+- **Yahoo via yfinance 1.8.0**: works for `.NS` and `^NSEI`; today's bar present.
+- **BSE announcements API** (`api.bseindia.com/.../AnnSubCategoryGetData/w`) and BSE scrip
+  list: **403 Access Denied** (CDN block). Not retried with browser-session tricks: that would
+  be bot-check circumvention (the coding agent's own guardrail refused it, correctly). BSE is
+  dropped as a source.
+- **NSE announcements API** (`www.nseindia.com/api/corporate-announcements`): 200 JSON to a
+  plain request, no cookies. RELIANCE, 120 days → 58 rows with `desc` (category), `attchmntText`
+  (subject), `attchmntFile` (PDF on nsearchives), `an_dt`, `sm_isin`, `hasXbrl`. Concall
+  transcripts are identifiable from `attchmntText`.
+- **NSE annual reports** (`/api/annual-reports`): PDF links per financial year.
+- **NSE financial results** (`/api/corporates-financial-results`, `/api/results-comparision`):
+  structured results filings (consolidated/standalone, audited, period) and line items as
+  numbers — a primary, exchange-sourced numeric spine. Freshness/coverage to be checked.
+- **NSE RSS** (`nsearchives.nseindia.com/content/RSS/Online_announcements.xml`): published
+  feed, ~1 day rolling window (1,103 items today) — good for incremental ingest, no backfill.
+- **NSE robots.txt**: `Allow: /`, only `/market-data-test` disallowed. NSE's terms-of-use page
+  timed out from the fetcher — PENDING (owner to open it in a browser).
+- **Screener.in terms** (screener.in/guides/terms/): licence for "personal, non-commercial
+  transitory viewing only"; may not "modify or copy the materials", use them "for any public
+  display (commercial or non-commercial)", or "mirror the materials on any other server".
+  robots.txt does not block company pages, but the terms forbid what §7.4 needs (store tables,
+  display them publicly). **Not scraped.**
+
+**Proposed change (awaiting owner):** NSE replaces BSE (§7.3) and Screener (§7.4). Filings,
+annual reports, transcripts and structured results all from NSE — every source primary.
+Datacenter reachability (Render, GitHub runners) still to test; if blocked, live research on
+the deployed app needs the laptop or degrades honestly.
