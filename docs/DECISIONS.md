@@ -264,3 +264,49 @@ evaluation prototype. Mandatory access rules, enforced in code where possible:
 5. Attribute NSE as the source in the UI.
 6. The writeup states what was accessed, how, and that production would use a licensed
    exchange data feed (`docs/WRITEUP.md`).
+
+## 2026-11-12 — Pre-Phase-1 probes (owner's four questions)
+
+All requests one at a time, ≥ 1.5 s apart, cached; ~20 NSE requests in total for all probes.
+
+**1. Depth of structured results.**
+- Two NSE endpoints together cover the full history: `corporates-financial-results` (XBRL XML,
+  up to Dec 2024) and `integrated-filing-results` (SEBI Integrated Filing, Mar 2025 →; HTML
+  rendering of the XBRL). The first endpoint simply stops at Dec 2024 — that is the format
+  change, not missing data.
+- Quarters available (consolidated / standalone): RELIANCE 54 / 80 (from 2005), INFY 60 / 80
+  (2005), PERSISTENT 57 / 56 (2010), NAVINFLUOR 23 / 70 (cons 2019, std 2007), CREDITACC
+  19 / 24 (2018), KAYNES 9 / 9 (listed 2022), HDFCBANK 23 / 80, BAJFINANCE 28 / 79; plus
+  6–7 integrated quarters each (Mar 2025 → Sep 2026).
+- Statements: verified in RELIANCE Mar-2024 XBRL and Sep-2026 integrated filing — **P&L,
+  balance sheet, cash flow and segments**, plus (integrated) the auditor-opinion declaration and
+  a notes block with ratios. BS and CF appear in half-year filings (Q2, Q4). Not yet verified for
+  older years; by regulation half-yearly balance sheets go back to ~2015 and half-yearly cash
+  flows to H1 FY20, so expected depth is ~10 years P&L, ~10 years BS, ~6–7 years CF — to be
+  measured per company in Phase 1.
+- Gap-fill from annual reports (only if a section needs years the structured data lacks, e.g.
+  CF before FY20): locate the three statements by text search (code), send those ~3–6 pages to
+  BULK once per annual report; each report gives two years. ≈ 2–3 local calls per company,
+  ≈ 40–60 calls for the full demo set, on Ollama (zero cost, ~10k-token prompts). Recommended:
+  skip unless the measured depth is short — Cash quality needs 3+ years, which CF already has.
+
+**2. Transcripts.** Two-year announcement history, transcripts identified from `attchmntText`:
+RELIANCE 9, INFY 12, PERSISTENT 9, KAYNES 10, CREDITACC 9, NAVINFLUOR 9 rows — 8 of the last
+8 quarters for all six. Spot-checked two that a "link/website" pattern flagged: both full-text
+transcripts (RELIANCE Q2 FY27: 29 pages, 16,623 words; NAVINFLUOR Q1 FY27: 17 pages, 8,319
+words). No link-only filings seen in this set.
+
+**3. Banks and NBFCs.** NSE flags format per filing (`bank`: N, B = bank, F = NBFC in older
+filings). HDFCBANK's integrated filing is the bank format: interest earned, operating profit
+before provisions, % gross/net NPA, CET1, deposits, segments, cash flow. BAJFINANCE's is the
+Ind AS format (revenue from operations, finance costs, total assets, cash flow, segments) with
+no NPA rows in the table. One alias map per format; never assume a row exists.
+
+**4. Datacentre access.** GitHub-hosted runner (IP 57.154.6.42): **200**, JSON, 0.46 s.
+Render (Singapore): **403 Access Denied** — not retried. Temporary probe workflow and endpoint
+removed after the run.
+- Consequences: the server never calls NSE. Laptop ingest as planned. The cloud
+  rules-only filings + alerts job on GitHub Actions is feasible. Live research uses the owner's
+  job-table design: the app inserts a job row; a worker claims it, runs the pipeline and writes
+  progress rows the UI polls; "queued — worker offline" when no worker heartbeat is recent.
+  The README will document running a worker locally for any ticker.

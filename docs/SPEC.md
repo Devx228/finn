@@ -179,7 +179,7 @@ Network rules:
 | Backend | One Python FastAPI service | yfinance, PDF tooling and the pipeline are Python; one home for all logic. |
 | Backend host | Render free web service (Docker) with an external keep-alive pinger. *[Changed 2026-11-12: zero spend. Cloud Run needs billing; Hugging Face Docker Spaces now need PRO; Koyeb needs a card. See DECISIONS.md.]* | Cold start is the main demo risk; keep-alive + snapshot fallback cover it. |
 | Database | Postgres (Neon free tier preferred — wakes on connect). **VERIFY**. | One store; JSONB for view-models; `tsvector` for page-level search. No vector DB. |
-| Scheduler | Ingest CLI on the owner's laptop (local Ollama is the BULK tier). GitHub Actions: CI, keep-alive, and — if BSE answers its runners — a rules-only filings + alerts job. *[Changed 2026-11-12.]* | Zero spend; model enrichment needs the local GPU. |
+| Scheduler | Ingest CLI on the owner's laptop (local Ollama is the BULK tier). GitHub Actions: CI, keep-alive, and a rules-only filings + alerts job (NSE answers GitHub runners, verified 2026-11-12). *[Changed 2026-11-12.]* | Zero spend; model enrichment needs the local GPU. |
 | Object storage | PDFs are not stored; keep URL + content hash + extracted page text in Postgres | Minimal footprint; text is what we need. |
 | LLM access | Provider-agnostic router with three tiers (section 6) | Free-tier limits move; no step may be tied to one vendor. |
 | Push channel | In-app inbox (P0), Web Push via VAPID (P1), Telegram bot (P2) | iOS only delivers web push to a home-screen-installed PWA, so in-app must stand alone. |
@@ -191,8 +191,8 @@ Network rules:
                              │                                      │
                       ingest CLI (Python)                    Next.js on Vercel
    Yahoo ─ prices ──►  ┌────────────────────┐              (UI + cached GET proxy
-   BSE/NSE ─ filings ─►│ fetch → parse →    │               + bundled snapshot)
-   Screener ─ links ──►│ classify → extract │                       │
+   NSE ─ filings ─────►│ fetch → parse →    │               + bundled snapshot)
+   NSE ─ XBRL results ►│ classify → extract │                       │
    AR / transcripts ──►│ → link → score →   │                       ▼
    Synthetic network ─►│ materialise views  │──► Postgres ◄── FastAPI (read API,
                        └─────────┬──────────┘   (raw + views)  live research job,
@@ -222,7 +222,7 @@ finn/
     pyproject.toml  Dockerfile
     finn/
       config.py  db.py  models.py
-      sources/   prices.py  bse.py  nse.py  screener.py  pdf.py  symbols.py
+      sources/   base.py  prices.py  nse.py  pdf.py  symbols.py
       llm/       router.py  cache.py  ledger.py  prompts/
       push/      classify_rules.py  classify_llm.py  bundle.py  results.py
                  mgmt_change.py  material_event.py  score.py  alerts.py  digest.py
@@ -290,9 +290,8 @@ General rules for every source: polite rate (≤ 1 request/second per host, jitt
 ### 7.1 Symbols and identity (`sources/symbols.py`)
 
 - NSE symbol master: the public equity list CSV on NSE archives (`EQUITY_L.csv`) → symbol, company name, ISIN. **VERIFY** URL.
-- BSE scrip code is required for the BSE announcements API. Resolve it via ISIN from BSE's scrip list, or parse it from the BSE link on the company's Screener page. Cache in `companies`.
-- Yahoo ticker = `{SYMBOL}.NS` (fallback `{BSE_CODE}.BO`).
-- `companies(id, nse_symbol, bse_code, isin, name, aliases[], sector, industry, is_financial, mcap_bucket, screener_url)`.
+- Yahoo ticker = `{SYMBOL}.NS`. *[Changed 2026-11-12: no BSE codes needed.]*
+- `companies(id, nse_symbol, isin, name, aliases[], sector, industry, is_financial, mcap_bucket)`.
 - `is_financial` (bank / NBFC / insurer) is derived from industry and switches the metric set everywhere.
 
 ### 7.2 Prices and volume (`sources/prices.py`)
@@ -302,33 +301,73 @@ General rules for every source: polite rate (≤ 1 request/second per host, jitt
 - `prices(company_id, date, open, high, low, close, adj_close, volume)`.
 - Derived per day: `ret_1d`, `abn_ret_1d = ret_1d − nifty_ret_1d`, `vol_multiple = volume / mean(volume, prior 20 sessions)`, 52-week high/low flags.
 
-### 7.3 Corporate announcements (`sources/bse.py`, `sources/nse.py`)
+### 7.3 Corporate announcements (`sources/nse.py`, behind `sources/base.py`)
 
-**Primary: BSE** (friendlier to non-browser clients than NSE).
-- Easiest path: the unofficial `bse` PyPI package (`BSE.announcements(scripcode=…, from_date=…, to_date=…)`), paginating with the returned row count. **VERIFY** current version and signature.
-- Underlying endpoint if calling directly: `https://api.bseindia.com/BseIndiaAPI/api/AnnSubCategoryGetData/w` with params `pageno, strCat=-1, strPrevDate, strToDate, strScrip, strSearch=P, strType=C, subcategory=-1`, and headers `Referer: https://www.bseindia.com/` plus a browser user-agent. **VERIFY** the date format by hitting it once.
-- Useful fields: `NEWSID`, `SCRIP_CD`, `NEWSSUB`, `HEADLINE`, `CATEGORYNAME`, `SUBCATNAME`, `ATTACHMENTNAME`, `NEWS_DT`, `DT_TM`, `CRITICALNEWS`. Attachment PDF: `https://www.bseindia.com/xml-data/corpfiling/AttachLive/{ATTACHMENTNAME}` (older items under `AttachHis`). **VERIFY**.
+*[Changed 2026-11-12: NSE is the single source. BSE's API returns 403 to our clients and was not
+worked around; Screener's terms forbid copying and public display. See DECISIONS.md.]*
 
-**Secondary: NSE** (`/api/corporate-announcements?index=equities&symbol=…&from_date=…&to_date=…`). Requires visiting the site first to obtain cookies, and commonly rejects datacentre IPs. Use it for NSE-only listings and when running locally; treat failure as normal.
+**Adapter interface.** `sources/base.py` defines `FilingsSource` (announcements for a symbol and
+date range; the incremental feed), `FundamentalsSource` (annual-report list, transcripts,
+structured results) and `DocumentFetcher` (download once by URL, return bytes + sha256). NSE is
+the only implementation; another exchange or a licensed feed can be added without touching
+callers.
 
-Storage: `filings(id, company_id, exchange, exch_id, ts_ist, headline, subject, exch_category, exch_subcategory, pdf_url, pdf_sha256, n_pages, text_pages jsonb, is_scanned, dup_of, bundle_id)`.
+**Access rules (owner decision, mandatory; DECISIONS.md 2026-11-12).** One request at a time, at
+least 1 s apart, shared by every NSE caller in the process. Every response cached; a document
+URL is never fetched twice. Only portfolio and research companies plus on-demand tickers. On a
+403, 429 or bot challenge: stop, record it, surface "source refused" — never retry around it.
+PDFs are not re-hosted: we keep extracted text and link to the NSE original. NSE is credited in
+the UI.
 
-PDF handling (`sources/pdf.py`): download once, hash, extract text per page with PyMuPDF. If the text layer is near-empty, mark `is_scanned` and defer to the VISION tier only if the item needs a deep read.
+Endpoints (verified 2026-11-12, plain requests, no cookies):
+- Announcements: `https://www.nseindia.com/api/corporate-announcements?index=equities&symbol=…&from_date=DD-MM-YYYY&to_date=DD-MM-YYYY`. Fields: `an_dt`, `desc` (exchange category), `attchmntText` (subject), `attchmntFile` (PDF on `nsearchives.nseindia.com`), `attFileSize`, `sm_isin`, `seq_id`, `hasXbrl`. A two-year range returns in one response.
+- Incremental feed: `https://nsearchives.nseindia.com/content/RSS/Online_announcements.xml` (rolling ~1 day, all companies; filter to our symbols).
+
+Reachability: answers the owner's laptop and GitHub-hosted runners; **refuses Render (403)**.
+So the server never calls NSE; ingest runs on the laptop, and the optional cloud alert job runs
+on GitHub Actions.
+
+Storage: `filings(id, company_id, exchange, exch_id, ts_ist, headline, subject, exch_category,
+pdf_url, pdf_sha256, n_pages, text_pages jsonb, is_scanned, dup_of, bundle_id)`.
+
+PDF handling (`sources/pdf.py`): download once, hash, extract text per page with PyMuPDF. If the
+text layer is near-empty, mark `is_scanned` and defer to the VISION tier only if the item needs
+a deep read.
 
 Backfill 120 days for every portfolio company on first run; thereafter incremental.
 
-### 7.4 Fundamentals (`sources/screener.py`)
+### 7.4 Fundamentals (`sources/nse.py`)
 
-The brief points to screener.in for annual-report and concall links. Fetch **one company page per company, cached for 24h**, at ≤ 1 request/second, no login, no bulk crawling. Note in the writeup that production would use the exchange filings and company IR sites directly, or a licensed feed.
+*[Changed 2026-11-12: Screener dropped; every number now comes from exchange filings.]*
 
-- Page: `https://www.screener.in/company/{SYMBOL}/consolidated/`; if its tables are empty, fall back to `/company/{SYMBOL}/` (standalone). **VERIFY** selectors.
-- From the documents section: annual report links (by year) and concall links (per period: transcript / presentation / recording). Take transcripts for the last 8 quarters and annual reports for the last 3 years.
-- From the financial tables (quarters, profit & loss, balance sheet, cash flow, ratios): the standardised reported numbers. These are a normalised mirror of the company's own reported financial statements — not commentary — and are used as the numeric spine. State this explicitly in the UI source chips ("Reported financials, via Screener") and the writeup. Where a results filing has been parsed directly, prefer the filing.
-- Row labels differ for financials (banks/NBFCs show interest and financing rows). Map labels through a small alias table; never assume a row exists.
+- **Structured results — the numeric spine, parsed by code, no model.**
+  - Up to Dec 2024: `/api/corporates-financial-results?index=equities&symbol=…&period=Quarterly`
+    lists every results filing (consolidated/standalone, audited, period, `bank` flag N/B/F)
+    with an `xbrl` XML link. Depth seen: 9–80 quarters (RELIANCE/INFY standalone from 2005;
+    KAYNES from listing in 2022).
+  - From Mar 2025 (SEBI Integrated Filing): `/api/integrated-filing-results?index=equities&symbol=…&type=Integrated Filing- Financials`
+    with an `ixbrl` link to an HTML rendering of the XBRL — label/value tables for P&L,
+    balance sheet, cash flow, segments, notes and the auditor-opinion declaration.
+  - Half-year filings (Q2, Q4) carry the balance sheet and cash flow; Q4 carries full-year
+    figures. Unit is stated in the filing ("Level of rounding": lakhs/crores/millions).
+- **Annual reports**: `/api/annual-reports?index=equities&symbol=…` → PDF per financial year.
+  Used for business/segment description, MD&A, auditor's report, contingent liabilities and
+  related-party notes (routed pages only), and to fill any year the structured data lacks.
+- **Transcripts**: announcements whose `attchmntText` names a transcript (category "Analysts/
+  Institutional Investor Meet/Con. Call Updates"). Coverage checked: 8 of the last 8 quarters
+  for RELIANCE, INFY, PERSISTENT, KAYNES, CREDITACC, NAVINFLUOR, all as full-text PDFs.
+- Banks (`bank=B`) file a bank format (interest earned, operating profit before provisions,
+  NPA %, CET1, deposits); NBFCs (`bank=F` in older filings) use the Ind AS format with
+  revenue from operations and finance costs. Map labels through an alias table per format;
+  never assume a row exists.
 
-Storage: `documents(id, company_id, kind[annual_report|transcript|results|presentation], period, url, sha256, n_pages, pages jsonb, fetched_at)`, `doc_pages(doc_id, page_no, text, tsv tsvector)`, `fin_quarterly(company_id, period_end, metric, value, unit, basis, source)`, `fin_annual(...)`.
+Storage: `documents(id, company_id, kind[annual_report|transcript|results|presentation], period,
+url, sha256, n_pages, pages jsonb, fetched_at)`, `doc_pages(doc_id, page_no, text, tsv
+tsvector)`, `fin_quarterly(company_id, period_end, metric, value, unit, basis, source_url)`,
+`fin_annual(...)`.
 
-Period notation everywhere: Indian fiscal year, April–March. `Q2 FY27` = July–September 2026. Store `period_end` dates; format for display.
+Period notation everywhere: Indian fiscal year, April–March. `Q2 FY27` = July–September 2026.
+Store `period_end` dates; format for display.
 
 ### 7.5 Network profiles
 
@@ -405,7 +444,7 @@ This is a real filtering win: five filings become one card.
 Goal: headline numbers from the **actual results filing**.
 
 1. Find the statement page(s): search page text for markers such as "Statement of … Financial Results", "Revenue from operations", "Profit before tax", "Quarter ended". Prefer the **consolidated** statement when both exist.
-2. Send only those pages to BULK (VISION if scanned) with a strict schema. The SEBI results format has columns for the current quarter, the preceding quarter and the corresponding quarter of the previous year — so **QoQ and YoY both come from this one document**.
+2. *[Changed 2026-11-12]* First read the filing's structured XBRL / integrated-filing table (code, no model). Only if it is missing or fails validation, send the located pages to BULK (VISION if scanned) with a strict schema. The SEBI results format has columns for the current quarter, the preceding quarter and the corresponding quarter of the previous year — so **QoQ and YoY both come from this one document**.
 3. Extract line items as reported: revenue from operations, other income, total expenses, finance costs, depreciation & amortisation, exceptional items, profit before tax, tax, profit after tax (and attributable to owners if shown), the unit (lakhs / crores / millions), basis (consolidated / standalone), audited/unaudited.
 4. Compute in code, normalised to ₹ crore:
    - **Revenue** = revenue from operations.
@@ -775,7 +814,7 @@ Repo, FastAPI hello, Next.js shell with three tabs, Postgres connected, both dep
 *Gate 0b (deployed):* the same on the deployed URLs. *[Changed 2026-11-12: split because accounts are created after 0a.]*
 
 **Phase 1 — data plumbing.**
-Symbols, prices, BSE filings with PDF text, fundamentals page parse + document links, LLM router + cache + ledger. `pick_portfolio.py` run and portfolio fixed. 120-day backfill.
+Symbols, prices, NSE filings with PDF text, NSE structured results + annual-report and transcript links, LLM router + cache + ledger. `pick_portfolio.py` run and portfolio fixed. 120-day backfill.
 *Gate:* `finn ingest all` fills the DB for 18 companies without manual steps; row counts printed.
 
 **Phase 2 — Push core.**
@@ -806,7 +845,7 @@ Standing rule: never trade a P0 gate for a P1 feature, and never leave something
 
 | Risk | Mitigation |
 |---|---|
-| Exchange / Yahoo / Screener block cloud IPs | Ingest runs in the scheduled job or locally and writes to the DB; serving never depends on them. For live research from the server, cache documents aggressively and show a clear "source unreachable — try again" state rather than failing silently. |
+| Exchange / Yahoo block cloud IPs (NSE refuses Render, verified) | Ingest runs in the scheduled job or locally and writes to the DB; serving never depends on them. For live research from the server, cache documents aggressively and show a clear "source unreachable — try again" state rather than failing silently. |
 | Free-tier quota exhausted mid-build | Multi-provider router; cache everything; pre-compute demo companies early (start Phase 4 caching the evening before). No paid fallback (zero spend). *[Changed 2026-11-12.]* |
 | Scanned results PDFs | VISION fallback; if it fails validation, show the card as "unverified" with the filing link rather than wrong numbers. |
 | Backend asleep when the grader opens the link | Keep-alive pings, Vercel cache, snapshot fallback, warm-up on load. |

@@ -36,6 +36,8 @@ and start the API with `CORS_ORIGINS=http://<lan-ip>:3000`. Refresh the snapshot
 `api/.venv/Scripts/finn export-snapshot`.
 
 ## Next steps
-1. Phase 1: symbols, prices, BSE filings + PDF text, Screener (after owner OKs its terms),
-   LLM router + cache + ledger, pick_portfolio.py, 120-day backfill. Gate: `finn ingest all`
+1. Phase 1 (NSE single source, access rules in DECISIONS.md): source adapters, symbols, prices,
+   NSE filings + PDF text, structured results (XBRL + integrated filing), AR + transcript links,
+   LLM router + cache + ledger, pick_portfolio.py, 120-day backfill. Probe results logged;
+   waiting on owner's go-ahead. Gate: `finn ingest all`
    fills the DB for 18 companies, row counts printed.
