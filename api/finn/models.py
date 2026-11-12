@@ -41,6 +41,7 @@ class BriefRow(BaseModel):
     filing_ids: list[int]
     bundled: int = 0
     card: dict[str, Any] | None = None  # results card etc.
+    network: dict[str, Any] | None = None  # who is this person / who can help (spec §9)
 
 
 class BuriedGroup(BaseModel):

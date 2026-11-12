@@ -1,0 +1,22 @@
+{
+ "id": 3,
+ "you": [],
+ "kind": "public_figure",
+ "name": "Noel N. Tata",
+ "paths": [],
+ "career": [],
+ "source": "Profile as disclosed in the company's exchange filing (SEBI requires a brief profile on appointment). Links go to NSE.",
+ "mentions": [
+  {
+   "ts": "2026-11-05T13:21:55+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/TITAN_05112026185140_SENNTata.pdf",
+   "role": "Non-Executive, Non-Independent Director and Vice-Chairman",
+   "event": "retirement",
+   "symbol": "TITAN",
+   "filing_id": 198,
+   "person_id": 3
+  }
+ ],
+ "education": [],
+ "synthetic": false
+}

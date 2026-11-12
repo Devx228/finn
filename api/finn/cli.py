@@ -205,6 +205,7 @@ def cmd_push(args: argparse.Namespace) -> int:
 
     from finn.llm.router import LLMUnavailable, Router
     from finn.llm.store import LLMStore
+    from finn.network import service as network_views
     from finn.push import brief, pipeline
     from finn.sources.http import SourceRefused
     from finn.sources.nse import NSE
@@ -227,7 +228,24 @@ def cmd_push(args: argparse.Namespace) -> int:
                 print(f"  model         skipped ({e}); undecided filings show as 'not yet classified'")
         print("  results cards", pipeline.compute_results_cards(conn, ids))
         now = datetime.now(ZoneInfo("Asia/Kolkata"))
+        print("  network      ", network_views.materialise(conn, now))
         print("  briefs       ", brief.materialise(conn, now))
+    return 0
+
+
+def cmd_network(args: argparse.Namespace) -> int:
+    """Seed the synthetic network (+ planted overlaps with executives in filings) and materialise
+    the network views. `--seed` wipes and reloads this tenant's synthetic contacts."""
+    from zoneinfo import ZoneInfo
+
+    from finn.network import service, store
+
+    with db.connection() as conn:
+        db.migrate(conn)
+        if args.seed:
+            print("  synthetic    ", store.load_synthetic(conn))
+            print("  overlaps     ", store.seed_overlaps(conn))
+        print("  views        ", service.materialise(conn, datetime.now(ZoneInfo("Asia/Kolkata"))))
     return 0
 
 
@@ -251,6 +269,11 @@ def main(argv: list[str] | None = None) -> int:
     push = sub.add_parser("push", help="classify, results cards, materialise briefs")
     push.add_argument("--no-llm", action="store_true", help="rules only (e.g. on a CI runner)")
     push.set_defaults(fn=cmd_push)
+    net = sub.add_parser("network", help="seed the synthetic network and materialise network views")
+    net.add_argument(
+        "--seed", action="store_true", help="reload synthetic contacts (destructive for tenant 1)"
+    )
+    net.set_defaults(fn=cmd_network)
     args = p.parse_args(argv)
     return args.fn(args)
 

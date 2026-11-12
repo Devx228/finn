@@ -2,6 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { NetworkSheet, NetworkStrip } from "@/components/Network";
 import { ResultsCard } from "@/components/ResultsCard";
 import { WhySheet } from "@/components/WhySheet";
 import { type Loaded, loadWithFallback } from "@/lib/api";
@@ -229,6 +230,17 @@ function Actions({ it, onWhy }: { it: BriefRow; onWhy: (r: BriefRow) => void }) 
   );
 }
 
+function NetworkFor({ it }: { it: BriefRow }) {
+  const [open, setOpen] = useState(false);
+  if (!it.network) return null;
+  return (
+    <>
+      <NetworkStrip net={it.network} onOpen={() => setOpen(true)} />
+      {open && <NetworkSheet net={it.network} company={it.company} onClose={() => setOpen(false)} />}
+    </>
+  );
+}
+
 function NowCard({ it, onWhy }: { it: BriefRow; onWhy: (r: BriefRow) => void }) {
   return (
     <article className="rounded-lg border border-line bg-surface px-3 py-3">
@@ -239,6 +251,7 @@ function NowCard({ it, onWhy }: { it: BriefRow; onWhy: (r: BriefRow) => void }) 
           <ResultsCard card={it.card} />
         </div>
       )}
+      <NetworkFor it={it} />
       <Actions it={it} onWhy={onWhy} />
     </article>
   );
@@ -261,6 +274,7 @@ function WorthRow({ it, onWhy, muted }: { it: BriefRow; onWhy: (r: BriefRow) => 
               <ResultsCard card={it.card} />
             </div>
           )}
+          <NetworkFor it={it} />
           <Actions it={it} onWhy={onWhy} />
         </>
       )}

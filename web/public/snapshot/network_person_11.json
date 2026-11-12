@@ -1,0 +1,134 @@
+{
+ "id": 11,
+ "you": [],
+ "kind": "public_figure",
+ "name": "Mr. Anant Talaulicar",
+ "paths": [
+  {
+   "via": {
+    "id": 87,
+    "name": "Nisha Mistry",
+    "warmth": 0.82,
+    "headline": "Director, EY India",
+    "how_known": "met-as-management",
+    "synthetic": true,
+    "warmth_why": "met-as-management, last spoke May 2026, 8 interactions in 24 months",
+    "last_contact": "2026-05-16",
+    "warmth_label": "strong"
+   },
+   "overlap": 0.51,
+   "evidence": [
+    "overlapped at Cummins Inc. Components Group, 2010–2014"
+   ],
+   "sentence": "You → Nisha Mistry (met-as-management, last spoke May 2026, 8 interactions in 24 months) → Mr. Anant Talaulicar: overlapped at Cummins Inc. Components Group, 2010–2014. Path: strong × medium.",
+   "strength": 0.418,
+   "overlap_label": "medium",
+   "strength_label": "strong"
+  },
+  {
+   "via": {
+    "id": 86,
+    "name": "Aarav Reddy",
+    "warmth": 0.7,
+    "headline": "Director, Jefferies India",
+    "how_known": "ex-colleague",
+    "synthetic": true,
+    "warmth_why": "ex-colleague, last spoke Feb 2026, 2 interactions in 24 months",
+    "last_contact": "2026-02-13",
+    "warmth_label": "strong"
+   },
+   "overlap": 0.4,
+   "evidence": [
+    "overlapped at Cummins Group in India, 2005–2008"
+   ],
+   "sentence": "You → Aarav Reddy (ex-colleague, last spoke Feb 2026, 2 interactions in 24 months) → Mr. Anant Talaulicar: overlapped at Cummins Group in India, 2005–2008. Path: strong × medium.",
+   "strength": 0.28,
+   "overlap_label": "medium",
+   "strength_label": "medium"
+  },
+  {
+   "via": {
+    "id": 71,
+    "name": "Rahul Varma",
+    "warmth": 0.47,
+    "headline": "Plant Head, Cummins Group in India",
+    "how_known": "met-as-management",
+    "synthetic": true,
+    "warmth_why": "met-as-management, last spoke Aug 2025, 0 interactions in 24 months",
+    "last_contact": "2025-08-23",
+    "warmth_label": "medium"
+   },
+   "overlap": 0.51,
+   "evidence": [
+    "overlapped at Cummins Group in India, 2004–2017",
+    "overlapped at Cummins Group in India, 2009–2017"
+   ],
+   "sentence": "You → Rahul Varma (met-as-management, last spoke Aug 2025, 0 interactions in 24 months) → Mr. Anant Talaulicar: overlapped at Cummins Group in India, 2004–2017. Path: medium × medium.",
+   "strength": 0.24,
+   "overlap_label": "medium",
+   "strength_label": "medium"
+  }
+ ],
+ "career": [
+  {
+   "org": "Tata Cummins Private Limited",
+   "span": "",
+   "title": "Managing Director, a 50:50 joint venture between Cummins Inc. and Tata Motors Limited",
+   "current": true
+  },
+  {
+   "org": "Cummins Group in India",
+   "span": "2004–2017",
+   "title": "Chairman and Managing Director",
+   "current": false
+  },
+  {
+   "org": "Cummins Group in India",
+   "span": "2009–2017",
+   "title": "Member of the global leadership team",
+   "current": false
+  },
+  {
+   "org": "Cummins Inc. Components Group",
+   "span": "2010–2014",
+   "title": "President",
+   "current": false
+  },
+  {
+   "org": "KPIT Technologies Limited",
+   "span": "2026–now",
+   "title": "Independent Director on the Board of KPIT US, a material unlisted subsidiary of the Company",
+   "current": true
+  }
+ ],
+ "source": "Profile as disclosed in the company's exchange filing (SEBI requires a brief profile on appointment). Links go to NSE.",
+ "mentions": [
+  {
+   "ts": "2026-10-28T07:58:05+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/KPITTECH_28102026132119_1_Outcome.pdf",
+   "role": "Independent Director on the Board of KPIT US, a material unlisted subsidiary of the Company",
+   "event": "appointment",
+   "symbol": "KPITTECH",
+   "filing_id": 40,
+   "person_id": 11
+  }
+ ],
+ "education": [
+  {
+   "year": null,
+   "degree": "Bachelor's degree in Mechanical Engineering",
+   "institution": "Mysore University"
+  },
+  {
+   "year": null,
+   "degree": "Master's degree",
+   "institution": "University of Michigan in Ann Arbor"
+  },
+  {
+   "year": null,
+   "degree": "MBA degree",
+   "institution": "Tulane University, USA"
+  }
+ ],
+ "synthetic": false
+}

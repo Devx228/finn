@@ -1,0 +1,99 @@
+{
+ "id": 7,
+ "you": [],
+ "kind": "public_figure",
+ "name": "Noel N. Tata",
+ "paths": [
+  {
+   "via": {
+    "id": 56,
+    "name": "Akash Gill",
+    "warmth": 0.75,
+    "headline": "Head of Supply Chain, Titan Company Limited",
+    "how_known": "met-as-management",
+    "synthetic": true,
+    "warmth_why": "met-as-management, last spoke Sep 2026, 10 interactions in 24 months",
+    "last_contact": "2026-09-11",
+    "warmth_label": "strong"
+   },
+   "overlap": 0.6,
+   "evidence": [
+    "overlapped at Trent Limited, 2012–2019"
+   ],
+   "sentence": "You → Akash Gill (met-as-management, last spoke Sep 2026, 10 interactions in 24 months) → Noel N. Tata: overlapped at Trent Limited, 2012–2019. Path: strong × medium.",
+   "strength": 0.45,
+   "overlap_label": "medium",
+   "strength_label": "strong"
+  },
+  {
+   "via": {
+    "id": 34,
+    "name": "Suresh Trivedi",
+    "warmth": 0.72,
+    "headline": "Chief Business Officer, Trent Limited",
+    "how_known": "industry-friend",
+    "synthetic": true,
+    "warmth_why": "industry-friend, last spoke Oct 2026, 6 interactions in 24 months",
+    "last_contact": "2026-10-15",
+    "warmth_label": "strong"
+   },
+   "overlap": 0.42,
+   "evidence": [
+    "overlapped at Trent Limited, 2017–now"
+   ],
+   "sentence": "You → Suresh Trivedi (industry-friend, last spoke Oct 2026, 6 interactions in 24 months) → Noel N. Tata: overlapped at Trent Limited, 2017–now. Path: strong × medium.",
+   "strength": 0.302,
+   "overlap_label": "medium",
+   "strength_label": "medium"
+  }
+ ],
+ "career": [
+  {
+   "org": "Trent Limited",
+   "span": "1997–now",
+   "title": "Chairman and Director",
+   "current": false
+  }
+ ],
+ "source": "Profile as disclosed in the company's exchange filing (SEBI requires a brief profile on appointment). Links go to NSE.",
+ "mentions": [
+  {
+   "ts": "2026-10-29T11:02:13+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163140_AppointmentofDirector.pdf",
+   "role": "Chairman and Director",
+   "event": "retirement",
+   "symbol": "TRENT",
+   "filing_id": 1175,
+   "person_id": 7
+  },
+  {
+   "ts": "2026-10-29T11:02:13+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163102_AppointmentofDirector.pdf",
+   "role": "Chairman and Director",
+   "event": "retirement",
+   "symbol": "TRENT",
+   "filing_id": 1174,
+   "person_id": 7
+  },
+  {
+   "ts": "2026-10-29T11:02:13+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163044_AppointmentofDirector.pdf",
+   "role": "Chairman and Director",
+   "event": "retirement",
+   "symbol": "TRENT",
+   "filing_id": 1173,
+   "person_id": 7
+  },
+  {
+   "ts": "2026-10-29T11:02:13+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163122_AppointmentofDirector.pdf",
+   "role": "Chairman and Director",
+   "event": "retirement",
+   "symbol": "TRENT",
+   "filing_id": 1172,
+   "person_id": 7
+  }
+ ],
+ "education": [],
+ "synthetic": false
+}

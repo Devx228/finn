@@ -1,0 +1,119 @@
+{
+ "who": [
+  {
+   "id": 42,
+   "why": "worked at peer Wipro as Head of Key Accounts (2025–now); personal, last spoke Oct 2026, 2 interactions in 24 months",
+   "name": "Suresh Hegde",
+   "rank": 0.716,
+   "warmth": 0.74,
+   "headline": "Head of Key Accounts, Wipro",
+   "how_known": "personal",
+   "relevance": 0.7,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "personal, last spoke Oct 2026, 2 interactions in 24 months",
+   "last_contact": "2026-10-15",
+   "warmth_label": "strong",
+   "what_theyd_know": "How Wipro runs sales today"
+  },
+  {
+   "id": 64,
+   "why": "worked at peer Infosys Limited as Regional Sales Head (2010–now); met-as-management, last spoke Mar 2026, 8 interactions in 24 months",
+   "name": "Saanvi Nair",
+   "rank": 0.643,
+   "warmth": 0.79,
+   "headline": "Regional Sales Head, Infosys Limited",
+   "how_known": "met-as-management",
+   "relevance": 0.56,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "met-as-management, last spoke Mar 2026, 8 interactions in 24 months",
+   "last_contact": "2026-03-16",
+   "warmth_label": "strong",
+   "what_theyd_know": "How Infosys Limited runs sales today"
+  },
+  {
+   "id": 53,
+   "why": "worked at peer Tata Consultancy Services as Head of Corporate Development (2013–now); introduced-by, last spoke Sep 2026, 4 interactions in 24 months",
+   "name": "Gaurav Qureshi",
+   "rank": 0.634,
+   "warmth": 0.64,
+   "headline": "Head of Corporate Development, Tata Consultancy Services",
+   "how_known": "introduced-by",
+   "relevance": 0.63,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "introduced-by, last spoke Sep 2026, 4 interactions in 24 months",
+   "last_contact": "2026-09-19",
+   "warmth_label": "medium",
+   "what_theyd_know": "How Tata Consultancy Services runs strategy today"
+  },
+  {
+   "id": 20,
+   "why": "worked at peer Wipro as Head of Compliance (2011–now); met-as-management, last spoke Sep 2026, 6 interactions in 24 months",
+   "name": "Riya Kamath",
+   "rank": 0.626,
+   "warmth": 0.62,
+   "headline": "Head of Compliance, Wipro",
+   "how_known": "met-as-management",
+   "relevance": 0.63,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "met-as-management, last spoke Sep 2026, 6 interactions in 24 months",
+   "last_contact": "2026-09-16",
+   "warmth_label": "medium",
+   "what_theyd_know": "How Wipro runs legal-compliance today"
+  },
+  {
+   "id": 75,
+   "why": "worked at peer Nagarro as Head of Investor Relations (2011–2016); industry-friend, last spoke Aug 2025, 0 interactions in 24 months",
+   "name": "Harpreet Pillai",
+   "rank": 0.203,
+   "warmth": 0.52,
+   "headline": "Head of Investor Relations, Nagarro",
+   "how_known": "industry-friend",
+   "relevance": 0.11,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "industry-friend, last spoke Aug 2025, 0 interactions in 24 months",
+   "last_contact": "2025-08-08",
+   "warmth_label": "medium",
+   "what_theyd_know": "How Nagarro runs IR up to 2016"
+  }
+ ],
+ "people": [
+  {
+   "id": 11,
+   "ts": "2026-10-28T07:58:05+00:00",
+   "you": [],
+   "best": {
+    "via": {
+     "id": 87,
+     "name": "Nisha Mistry",
+     "warmth": 0.82,
+     "headline": "Director, EY India",
+     "how_known": "met-as-management",
+     "synthetic": true,
+     "warmth_why": "met-as-management, last spoke May 2026, 8 interactions in 24 months",
+     "last_contact": "2026-05-16",
+     "warmth_label": "strong"
+    },
+    "overlap": 0.51,
+    "evidence": [
+     "overlapped at Cummins Inc. Components Group, 2010–2014"
+    ],
+    "sentence": "You → Nisha Mistry (met-as-management, last spoke May 2026, 8 interactions in 24 months) → Mr. Anant Talaulicar: overlapped at Cummins Inc. Components Group, 2010–2014. Path: strong × medium.",
+    "strength": 0.418,
+    "overlap_label": "medium",
+    "strength_label": "strong"
+   },
+   "name": "Mr. Anant Talaulicar",
+   "role": "Independent Director on the Board of KPIT US, a material unlisted subsidiary of the Company",
+   "event": "appointment",
+   "paths": 3,
+   "symbol": "KPITTECH"
+  }
+ ],
+ "symbol": "KPITTECH",
+ "company": "KPIT Technologies Limited"
+}

@@ -1,0 +1,134 @@
+{
+ "id": 12,
+ "you": [
+  "You were at ICICI Bank 2014–2017 while they were there"
+ ],
+ "kind": "public_figure",
+ "name": "Mr. Anup Bagchi",
+ "paths": [
+  {
+   "via": {
+    "id": 29,
+    "name": "Nikhil Gill",
+    "warmth": 0.84,
+    "headline": "Head of Compliance, ICICI Bank Limited",
+    "how_known": "personal",
+    "synthetic": true,
+    "warmth_why": "personal, last spoke Jul 2026, 9 interactions in 24 months",
+    "last_contact": "2026-07-05",
+    "warmth_label": "strong"
+   },
+   "overlap": 0.6,
+   "evidence": [
+    "overlapped at ICICI Bank Limited, 2014–now",
+    "overlapped at ICICI Bank Limited, 2017–2023"
+   ],
+   "sentence": "You → Nikhil Gill (personal, last spoke Jul 2026, 9 interactions in 24 months) → Mr. Anup Bagchi: overlapped at ICICI Bank Limited, 2014–now. Path: strong × medium.",
+   "strength": 0.504,
+   "overlap_label": "medium",
+   "strength_label": "strong"
+  },
+  {
+   "via": {
+    "id": 88,
+    "name": "Aditi D'Costa",
+    "warmth": 0.95,
+    "headline": "Director, HDFC Mutual Fund",
+    "how_known": "met-as-management",
+    "synthetic": true,
+    "warmth_why": "met-as-management, last spoke Oct 2026, 7 interactions in 24 months",
+    "last_contact": "2026-10-23",
+    "warmth_label": "strong"
+   },
+   "overlap": 0.41,
+   "evidence": [
+    "overlapped at ICICI Bank Limited, 2005–2008"
+   ],
+   "sentence": "You → Aditi D'Costa (met-as-management, last spoke Oct 2026, 7 interactions in 24 months) → Mr. Anup Bagchi: overlapped at ICICI Bank Limited, 2005–2008. Path: strong × medium.",
+   "strength": 0.389,
+   "overlap_label": "medium",
+   "strength_label": "strong"
+  },
+  {
+   "via": {
+    "id": 89,
+    "name": "Aditi Chopra",
+    "warmth": 0.57,
+    "headline": "Director, McKinsey & Company",
+    "how_known": "ex-colleague",
+    "synthetic": true,
+    "warmth_why": "ex-colleague, last spoke Jan 2026, 3 interactions in 24 months",
+    "last_contact": "2026-01-01",
+    "warmth_label": "medium"
+   },
+   "overlap": 0.42,
+   "evidence": [
+    "overlapped at ICICI Prudential Life Insurance, 2023–2026"
+   ],
+   "sentence": "You → Aditi Chopra (ex-colleague, last spoke Jan 2026, 3 interactions in 24 months) → Mr. Anup Bagchi: overlapped at ICICI Prudential Life Insurance, 2023–2026. Path: medium × medium.",
+   "strength": 0.239,
+   "overlap_label": "medium",
+   "strength_label": "medium"
+  }
+ ],
+ "career": [
+  {
+   "org": "ICICI Bank Limited",
+   "span": "1992–now",
+   "title": "various leadership positions including CEO & MD of ICICI Securities, Executive Director of ICICI Bank, and currently MD & CEO of ICICI Prudential Life Insurance",
+   "current": true
+  },
+  {
+   "org": "ICICI Bank Limited",
+   "span": "2017–2023",
+   "title": "Executive Director from 2017 to 2023, overseeing Retail, Business and Rural Banking, and subsequently Wholesale Banking",
+   "current": false
+  },
+  {
+   "org": "ICICI Prudential Life Insurance",
+   "span": "2023–now",
+   "title": "MD & CEO since June 2023",
+   "current": true
+  },
+  {
+   "org": "HDFC Bank Limited",
+   "span": "2026–now",
+   "title": "Additional Director, Managing Director & Chief Executive Officer",
+   "current": true
+  }
+ ],
+ "source": "Profile as disclosed in the company's exchange filing (SEBI requires a brief profile on appointment). Links go to NSE.",
+ "mentions": [
+  {
+   "ts": "2026-10-27T02:32:54+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK_27102026080232_SEIntimation_appt_of_AB.pdf",
+   "role": "MD & CEO",
+   "event": "appointment",
+   "symbol": "HDFCBANK",
+   "filing_id": 368,
+   "person_id": 12
+  },
+  {
+   "ts": "2026-10-01T12:53:52+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK3_01102026182319_SE_Intimation-_Anup_Bagchi.pdf",
+   "role": "Additional Director, Managing Director & Chief Executive Officer",
+   "event": "appointment",
+   "symbol": "HDFCBANK",
+   "filing_id": 383,
+   "person_id": 12
+  }
+ ],
+ "education": [
+  {
+   "year": null,
+   "degree": "Management degree",
+   "institution": "Indian Institute of Management, Bangalore"
+  },
+  {
+   "year": null,
+   "degree": "Engineering degree",
+   "institution": "Indian Institute of Technology, Kanpur"
+  }
+ ],
+ "synthetic": false
+}

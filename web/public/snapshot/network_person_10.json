@@ -1,0 +1,138 @@
+{
+ "id": 10,
+ "you": [],
+ "kind": "public_figure",
+ "name": "Kalpana Merchant",
+ "paths": [
+  {
+   "via": {
+    "id": 84,
+    "name": "Siddharth Gill",
+    "warmth": 0.81,
+    "headline": "Director, Jefferies India",
+    "how_known": "ex-colleague",
+    "synthetic": true,
+    "warmth_why": "ex-colleague, last spoke Sep 2026, 2 interactions in 24 months",
+    "last_contact": "2026-09-27",
+    "warmth_label": "strong"
+   },
+   "overlap": 0.51,
+   "evidence": [
+    "overlapped at AZB & Partners, 2005–2009"
+   ],
+   "sentence": "You → Siddharth Gill (ex-colleague, last spoke Sep 2026, 2 interactions in 24 months) → Kalpana Merchant: overlapped at AZB & Partners, 2005–2009. Path: strong × medium.",
+   "strength": 0.413,
+   "overlap_label": "medium",
+   "strength_label": "strong"
+  },
+  {
+   "via": {
+    "id": 85,
+    "name": "Riya Naidu",
+    "warmth": 0.65,
+    "headline": "Director, Jefferies India",
+    "how_known": "industry-friend",
+    "synthetic": true,
+    "warmth_why": "industry-friend, last spoke Nov 2025, 4 interactions in 24 months",
+    "last_contact": "2025-11-05",
+    "warmth_label": "medium"
+   },
+   "overlap": 0.46,
+   "evidence": [
+    "overlapped at Jerome Merchant + Partners, 2017–2021"
+   ],
+   "sentence": "You → Riya Naidu (industry-friend, last spoke Nov 2025, 4 interactions in 24 months) → Kalpana Merchant: overlapped at Jerome Merchant + Partners, 2017–2021. Path: medium × medium.",
+   "strength": 0.299,
+   "overlap_label": "medium",
+   "strength_label": "medium"
+  },
+  {
+   "via": {
+    "id": 34,
+    "name": "Suresh Trivedi",
+    "warmth": 0.72,
+    "headline": "Chief Business Officer, Trent Limited",
+    "how_known": "industry-friend",
+    "synthetic": true,
+    "warmth_why": "industry-friend, last spoke Oct 2026, 6 interactions in 24 months",
+    "last_contact": "2026-10-15",
+    "warmth_label": "strong"
+   },
+   "overlap": 0.01,
+   "evidence": [
+    "overlapped at Trent Limited, 2026–now"
+   ],
+   "sentence": "You → Suresh Trivedi (industry-friend, last spoke Oct 2026, 6 interactions in 24 months) → Kalpana Merchant: overlapped at Trent Limited, 2026–now. Path: strong × weak.",
+   "strength": 0.007,
+   "overlap_label": "weak",
+   "strength_label": "weak"
+  }
+ ],
+ "career": [
+  {
+   "org": "Kanga & Co.",
+   "span": "1985–2003",
+   "title": "Partner",
+   "current": false
+  },
+  {
+   "org": "AZB & Partners",
+   "span": "2003–2017",
+   "title": "Partner",
+   "current": false
+  },
+  {
+   "org": "Jerome Merchant + Partners",
+   "span": "2017–now",
+   "title": "Partner",
+   "current": true
+  },
+  {
+   "org": "Trent Limited",
+   "span": "2026–now",
+   "title": "Additional Director and Independent Director",
+   "current": true
+  }
+ ],
+ "source": "Profile as disclosed in the company's exchange filing (SEBI requires a brief profile on appointment). Links go to NSE.",
+ "mentions": [
+  {
+   "ts": "2026-10-29T11:02:13+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163122_AppointmentofDirector.pdf",
+   "role": "Additional Director and Independent Director",
+   "event": "appointment",
+   "symbol": "TRENT",
+   "filing_id": 1172,
+   "person_id": 10
+  },
+  {
+   "ts": "2026-10-29T11:02:13+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163140_AppointmentofDirector.pdf",
+   "role": "Additional Director and Independent Director",
+   "event": "appointment",
+   "symbol": "TRENT",
+   "filing_id": 1175,
+   "person_id": 10
+  },
+  {
+   "ts": "2026-10-29T11:02:13+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163102_AppointmentofDirector.pdf",
+   "role": "Additional Director and Independent Director",
+   "event": "appointment",
+   "symbol": "TRENT",
+   "filing_id": 1174,
+   "person_id": 10
+  },
+  {
+   "ts": "2026-10-29T11:02:13+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163044_AppointmentofDirector.pdf",
+   "role": "Additional Director and Independent Director",
+   "event": "appointment",
+   "symbol": "TRENT",
+   "filing_id": 1173,
+   "person_id": 10
+  }
+ ],
+ "education": [],
+ "synthetic": false
+}

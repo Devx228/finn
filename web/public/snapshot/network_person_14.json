@@ -1,0 +1,53 @@
+{
+ "id": 14,
+ "you": [],
+ "kind": "public_figure",
+ "name": "Mrs. Lily Vadera",
+ "paths": [],
+ "career": [
+  {
+   "org": "Reserve Bank of India (RBI)",
+   "span": "2017–2020",
+   "title": "Executive Director, in-charge of the Department of Regulation (DoR)",
+   "current": false
+  },
+  {
+   "org": "Reserve Bank of India (RBI)",
+   "span": "2017–2020",
+   "title": "Representative in various international forums such as Policy Development Group, Financial Stability Board, and G-20 sub-groups",
+   "current": false
+  },
+  {
+   "org": "Government of India",
+   "span": "2017–2020",
+   "title": "Member of the committee on SME financing set up by the Government",
+   "current": false
+  },
+  {
+   "org": "Reserve Bank of India (RBI)",
+   "span": "2017–2020",
+   "title": "Instrumental in putting in place a framework for a regulatory sandbox and played a significant role in the amalgamation of banks in stress",
+   "current": false
+  },
+  {
+   "org": "Ministry of Corporate Affairs (MCA)",
+   "span": "2017–2020",
+   "title": "Member of the Insolvency Law Committee set up by MCA",
+   "current": false
+  }
+ ],
+ "source": "Profile as disclosed in the company's exchange filing (SEBI requires a brief profile on appointment). Links go to NSE.",
+ "mentions": [
+  {
+   "ts": "2026-10-17T10:44:18+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK_17102026161248_Stockexchangeintimation_LV_KB.pdf",
+   "role": "Independent Director",
+   "event": "re-appointment",
+   "symbol": "HDFCBANK",
+   "filing_id": 375,
+   "person_id": 14
+  }
+ ],
+ "education": [],
+ "synthetic": false
+}

@@ -1,0 +1,68 @@
+{
+ "id": 6,
+ "you": [],
+ "kind": "public_figure",
+ "name": "Mr. Prithvi Vachani",
+ "paths": [
+  {
+   "via": {
+    "id": 82,
+    "name": "Shreya Gill",
+    "warmth": 0.62,
+    "headline": "Senior Vice President, Dixon Technologies (India) Limited",
+    "how_known": "met-as-management",
+    "synthetic": true,
+    "warmth_why": "met-as-management, last spoke Oct 2025, 3 interactions in 24 months",
+    "last_contact": "2025-10-25",
+    "warmth_label": "medium"
+   },
+   "overlap": 0.06,
+   "evidence": [
+    "overlapped at Dixon Technologies (India) Limited, 2026–now"
+   ],
+   "sentence": "You → Shreya Gill (met-as-management, last spoke Oct 2025, 3 interactions in 24 months) → Mr. Prithvi Vachani: overlapped at Dixon Technologies (India) Limited, 2026–now. Path: medium × weak.",
+   "strength": 0.037,
+   "overlap_label": "weak",
+   "strength_label": "weak"
+  }
+ ],
+ "career": [
+  {
+   "org": "Dixon Technologies (India) Limited",
+   "span": "",
+   "title": "Vice President",
+   "current": true
+  },
+  {
+   "org": "Dixon Technologies (India) Limited",
+   "span": "2026–now",
+   "title": "Additional Director in the capacity of Executive Director",
+   "current": false
+  }
+ ],
+ "source": "Profile as disclosed in the company's exchange filing (SEBI requires a brief profile on appointment). Links go to NSE.",
+ "mentions": [
+  {
+   "ts": "2026-10-30T10:40:12+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/DIXON_30102026160939_Outcome30102026.pdf",
+   "role": "Additional Director in the capacity of Executive Director",
+   "event": "appointment",
+   "symbol": "DIXON",
+   "filing_id": 738,
+   "person_id": 6
+  }
+ ],
+ "education": [
+  {
+   "year": 2017,
+   "degree": "",
+   "institution": "Bentley University"
+  },
+  {
+   "year": null,
+   "degree": "Master of Business Administration",
+   "institution": "London Business School"
+  }
+ ],
+ "synthetic": false
+}

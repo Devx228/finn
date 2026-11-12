@@ -51,6 +51,7 @@ export interface BriefRow {
   filing_ids: number[];
   bundled: number;
   card: ResultsCard | null;
+  network?: ItemNetwork | null;
 }
 
 export interface BuriedGroup {
@@ -68,4 +69,124 @@ export interface Brief {
   worth: BriefRow[];
   buried: BuriedGroup[];
   source_credit: string | null;
+}
+
+// ---- Network (api/finn/network/service.py) ----
+
+export interface Contact {
+  id: number;
+  name: string;
+  synthetic: boolean;
+  headline: string | null;
+  how_known: string | null;
+  last_contact: string | null;
+  warmth: number;
+  warmth_label: "strong" | "medium" | "weak";
+  warmth_why: string;
+}
+
+export interface Candidate extends Contact {
+  relevance: number;
+  rank: number;
+  why: string;
+  what_theyd_know: string;
+  compliance: string | null;
+}
+
+export interface PathView {
+  via: Contact;
+  overlap: number;
+  overlap_label: string;
+  strength: number;
+  strength_label: string;
+  evidence: string[];
+  sentence: string;
+}
+
+export interface Mention {
+  filing_id: number;
+  person_id: number;
+  role: string | null;
+  event: string | null;
+  url: string | null;
+  symbol: string;
+  ts: string;
+}
+
+export interface PersonView {
+  id: number;
+  name: string;
+  kind: string;
+  synthetic: boolean;
+  career: { org: string; title: string | null; span: string; current: boolean }[];
+  education: { institution: string; degree: string | null; year: number | null }[];
+  you: string[];
+  paths: PathView[];
+  mentions: Mention[];
+  source: string;
+  role?: string | null;
+  event?: string | null;
+}
+
+export interface ItemNetwork {
+  people: PersonView[];
+  call: Candidate[];
+  questions: string[];
+  points: number;
+}
+
+export interface Figure {
+  id: number;
+  name: string;
+  symbol: string;
+  role: string | null;
+  event: string | null;
+  ts: string;
+  paths: number;
+  best: PathView | null;
+  you: string[];
+}
+
+export interface KeepWarm extends Contact {
+  symbol: string;
+  org: string;
+  relation: string;
+  event: string;
+  event_label: string;
+  event_ts: string;
+  event_text: string;
+  url: string | null;
+  months_cold: number;
+}
+
+export interface ExpertiseRow {
+  theme: string;
+  count: number;
+  people: (Contact & { years: number; orgs: string[] })[];
+}
+
+export interface CoverageRow {
+  symbol: string;
+  name: string;
+  weight_pct: number;
+  direct: number;
+  adjacent: number;
+  best: Candidate | null;
+}
+
+export interface NetworkHome {
+  as_of: string;
+  contacts: number;
+  synthetic_note: string;
+  keep_warm: KeepWarm[];
+  figures: Figure[];
+  expertise: ExpertiseRow[];
+  coverage: CoverageRow[];
+}
+
+export interface CompanyNetwork {
+  symbol: string;
+  company: string;
+  who: Candidate[];
+  people: Figure[];
 }

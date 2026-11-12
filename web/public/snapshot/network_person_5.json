@@ -1,0 +1,29 @@
+{
+ "id": 5,
+ "you": [],
+ "kind": "public_figure",
+ "name": "Mr. Sanjay D’Souza",
+ "paths": [],
+ "career": [
+  {
+   "org": "HDFC Bank Limited",
+   "span": "?–now",
+   "title": "Group Head – Business Banking, Emerging & Micro Enterprises Group and a Senior Management Personnel of the Bank",
+   "current": false
+  }
+ ],
+ "source": "Profile as disclosed in the company's exchange filing (SEBI requires a brief profile on appointment). Links go to NSE.",
+ "mentions": [
+  {
+   "ts": "2026-10-31T16:46:44+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK3_31102026221631_SE_INTIMATION-_Sanjay_Dsouza.pdf",
+   "role": "Group Head – Business Banking, Emerging & Micro Enterprises Group and a Senior Management Personnel of the Bank",
+   "event": "cessation",
+   "symbol": "HDFCBANK",
+   "filing_id": 366,
+   "person_id": 5
+  }
+ ],
+ "education": [],
+ "synthetic": false
+}

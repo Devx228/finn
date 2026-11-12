@@ -1,0 +1,102 @@
+{
+ "id": 1,
+ "you": [],
+ "kind": "public_figure",
+ "name": "Mr. Noel Naval Tata",
+ "paths": [
+  {
+   "via": {
+    "id": 48,
+    "name": "Aarav Siddiqui",
+    "warmth": 0.71,
+    "headline": "IR Manager, Tata Steel Limited",
+    "how_known": "classmate",
+    "synthetic": true,
+    "warmth_why": "classmate, last spoke May 2026, 7 interactions in 24 months",
+    "last_contact": "2026-05-06",
+    "warmth_label": "strong"
+   },
+   "overlap": 0.51,
+   "evidence": [
+    "overlapped at Tata Steel Limited, 2022–now"
+   ],
+   "sentence": "You → Aarav Siddiqui (classmate, last spoke May 2026, 7 interactions in 24 months) → Mr. Noel Naval Tata: overlapped at Tata Steel Limited, 2022–now. Path: strong × medium.",
+   "strength": 0.362,
+   "overlap_label": "medium",
+   "strength_label": "strong"
+  },
+  {
+   "via": {
+    "id": 59,
+    "name": "Aditi Bhatia",
+    "warmth": 0.57,
+    "headline": "Head of FP&A, Tata Steel Limited",
+    "how_known": "classmate",
+    "synthetic": true,
+    "warmth_why": "classmate, last spoke May 2026, 7 interactions in 24 months",
+    "last_contact": "2026-05-03",
+    "warmth_label": "medium"
+   },
+   "overlap": 0.6,
+   "evidence": [
+    "overlapped at Tata Steel Limited, 2022–now"
+   ],
+   "sentence": "You → Aditi Bhatia (classmate, last spoke May 2026, 7 interactions in 24 months) → Mr. Noel Naval Tata: overlapped at Tata Steel Limited, 2022–now. Path: medium × medium.",
+   "strength": 0.342,
+   "overlap_label": "medium",
+   "strength_label": "strong"
+  },
+  {
+   "via": {
+    "id": 37,
+    "name": "Kabir Agarwal",
+    "warmth": 0.71,
+    "headline": "Managing Director, Tata Steel Limited",
+    "how_known": "met-as-management",
+    "synthetic": true,
+    "warmth_why": "met-as-management, last spoke Mar 2026, 10 interactions in 24 months",
+    "last_contact": "2026-03-31",
+    "warmth_label": "strong"
+   },
+   "overlap": 0.42,
+   "evidence": [
+    "overlapped at Tata Steel Limited, 2022–now"
+   ],
+   "sentence": "You → Kabir Agarwal (met-as-management, last spoke Mar 2026, 10 interactions in 24 months) → Mr. Noel Naval Tata: overlapped at Tata Steel Limited, 2022–now. Path: strong × medium.",
+   "strength": 0.298,
+   "overlap_label": "medium",
+   "strength_label": "medium"
+  }
+ ],
+ "career": [
+  {
+   "org": "Tata Steel Limited",
+   "span": "2022–now",
+   "title": "Non-Executive, Non-Independent Director and Vice Chairman of the Board",
+   "current": false
+  }
+ ],
+ "source": "Profile as disclosed in the company's exchange filing (SEBI requires a brief profile on appointment). Links go to NSE.",
+ "mentions": [
+  {
+   "ts": "2026-11-07T08:18:10+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_07112026134722_Outcome_of_BM.pdf",
+   "role": "Non-Executive, Non-Independent Director and Vice Chairman of the Board",
+   "event": "retirement",
+   "symbol": "TATASTEEL",
+   "filing_id": 141,
+   "person_id": 1
+  },
+  {
+   "ts": "2026-11-07T07:47:42+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_07112026131701_BOARDOUTCOME-NOV7.pdf",
+   "role": "Non-Executive, Non-Independent Director and Vice Chairman of the Board",
+   "event": "retirement",
+   "symbol": "TATASTEEL",
+   "filing_id": 145,
+   "person_id": 1
+  }
+ ],
+ "education": [],
+ "synthetic": false
+}

@@ -1,0 +1,68 @@
+{
+ "id": 2,
+ "you": [],
+ "kind": "public_figure",
+ "name": "Mr. V. N. Srivatsan",
+ "paths": [
+  {
+   "via": {
+    "id": 18,
+    "name": "Varun Bhatia",
+    "warmth": 0.38,
+    "headline": "Head of FP&A, HDFC Bank Limited",
+    "how_known": "met-as-management",
+    "synthetic": true,
+    "warmth_why": "met-as-management, last spoke May 2025, 0 interactions in 24 months",
+    "last_contact": "2025-05-17",
+    "warmth_label": "medium"
+   },
+   "overlap": 0.12,
+   "evidence": [
+    "overlapped at HDFC Bank Limited, 2026–now"
+   ],
+   "sentence": "You → Varun Bhatia (met-as-management, last spoke May 2025, 0 interactions in 24 months) → Mr. V. N. Srivatsan: overlapped at HDFC Bank Limited, 2026–now. Path: medium × weak.",
+   "strength": 0.046,
+   "overlap_label": "weak",
+   "strength_label": "weak"
+  }
+ ],
+ "career": [
+  {
+   "org": "ICICI Bank Limited",
+   "span": "",
+   "title": "Head – Compliance: Overseas Banking and Subsidiaries & Data Privacy Officer",
+   "current": true
+  },
+  {
+   "org": "HDFC Bank Limited",
+   "span": "2026–now",
+   "title": "Chief Compliance Officer",
+   "current": true
+  }
+ ],
+ "source": "Profile as disclosed in the company's exchange filing (SEBI requires a brief profile on appointment). Links go to NSE.",
+ "mentions": [
+  {
+   "ts": "2026-11-06T09:51:56+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK3_06112026152141_SE_Intimation-Srivatsan.pdf",
+   "role": "Chief Compliance Officer",
+   "event": "appointment",
+   "symbol": "HDFCBANK",
+   "filing_id": 365,
+   "person_id": 2
+  }
+ ],
+ "education": [
+  {
+   "year": null,
+   "degree": "Post Graduate degree in Business Administration",
+   "institution": "PSG College of Technology"
+  },
+  {
+   "year": null,
+   "degree": "Bachelor of Technology (B. Tech)",
+   "institution": "Sri Venkateshwara University"
+  }
+ ],
+ "synthetic": false
+}

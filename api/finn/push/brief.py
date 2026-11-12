@@ -89,6 +89,7 @@ class Item:
     reason: str | None
     kind: str = "filing"
     card: dict | None = None
+    network: dict | None = None
     components: dict = field(default_factory=dict)
     score: int = 0
 
@@ -241,6 +242,21 @@ def magnitude(it: Item) -> tuple[int, str | None]:
     return 0, None
 
 
+def attach_network(conn: Connection, items: list[Item]) -> None:
+    """Who can help / who is this person — from the investor's network (spec §9)."""
+    if not items:
+        return
+    try:
+        from finn.network.service import Net
+
+        net = Net(conn)
+    except Exception:  # network tables empty or missing: the brief still works without it
+        conn.rollback()
+        return
+    for it in items:
+        it.network = net.for_item(it.symbol, it.category, it.filing_ids, it.name)
+
+
 def score(conn: Connection, items: list[Item], now: datetime, window_h: int) -> None:
     port = portfolio(conn)
     since = min((i.ts for i in items), default=now)
@@ -255,12 +271,26 @@ def score(conn: Connection, items: list[Item], now: datetime, window_h: int) -> 
             "base": {"points": it.base, "why": it.reason},
             "magnitude": {"points": mag, "why": mag_why},
             "portfolio": {"points": min(10, round(weight * 1.2)), "why": f"{weight}% of portfolio"},
-            "network": {"points": 0, "why": "network layer arrives in Phase 3"},
+            "network": _network_component(it),
             "price_reaction": {"points": pr, "why": pr_info or None},
             "user_pref": {"points": 0, "why": None},
             "staleness": {"points": -stale, "why": f"{age_h:.0f} h old"},
         }
         it.score = sum(c["points"] for c in it.components.values())
+
+
+def _network_component(it: Item) -> dict:
+    n = it.network
+    if not n or not n.get("points"):
+        return {"points": 0, "why": "no one in your network is close to this"}
+    if n["people"] and n["people"][0]["you"]:
+        why = n["people"][0]["you"][0]
+    elif n["people"] and n["people"][0]["paths"]:
+        p = n["people"][0]["paths"][0]
+        why = f"you can reach {n['people'][0]['name']} through {p['via']['name']}"
+    else:
+        why = f"{n['call'][0]['name']} can give context"
+    return {"points": n["points"], "why": why}
 
 
 def tiers(items: list[Item]) -> dict[str, list[Item]]:
@@ -290,6 +320,7 @@ def _item_json(it: Item, tier: str) -> dict:
         "filing_ids": it.filing_ids,
         "bundled": len(it.filing_ids) - 1,
         "card": it.card,
+        "network": it.network,
     }
 
 
@@ -298,6 +329,7 @@ def build_brief(conn: Connection, window: str, now: datetime) -> dict:
     items = load_items(conn, now - timedelta(hours=hours))
     items = [i for i in items if i.ts <= now]
     attach_cards(conn, items)
+    attach_network(conn, items)
     score(conn, items, now, hours)
     t = tiers(items)
     groups: dict[str, list[Item]] = defaultdict(list)

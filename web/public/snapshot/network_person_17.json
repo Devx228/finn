@@ -1,0 +1,137 @@
+{
+ "id": 17,
+ "you": [],
+ "kind": "public_figure",
+ "name": "Ms. Shveta Arya",
+ "paths": [
+  {
+   "via": {
+    "id": 88,
+    "name": "Aditi D'Costa",
+    "warmth": 0.95,
+    "headline": "Director, HDFC Mutual Fund",
+    "how_known": "met-as-management",
+    "synthetic": true,
+    "warmth_why": "met-as-management, last spoke Oct 2026, 7 interactions in 24 months",
+    "last_contact": "2026-10-23",
+    "warmth_label": "strong"
+   },
+   "overlap": 0.25,
+   "evidence": [
+    "both studied at Indian Institute of Management, Ahmedabad (IIM A)"
+   ],
+   "sentence": "You → Aditi D'Costa (met-as-management, last spoke Oct 2026, 7 interactions in 24 months) → Ms. Shveta Arya: both studied at Indian Institute of Management, Ahmedabad (IIM A). Path: strong × weak.",
+   "strength": 0.237,
+   "overlap_label": "weak",
+   "strength_label": "medium"
+  },
+  {
+   "via": {
+    "id": 87,
+    "name": "Nisha Mistry",
+    "warmth": 0.82,
+    "headline": "Director, EY India",
+    "how_known": "met-as-management",
+    "synthetic": true,
+    "warmth_why": "met-as-management, last spoke May 2026, 8 interactions in 24 months",
+    "last_contact": "2026-05-16",
+    "warmth_label": "strong"
+   },
+   "overlap": 0.25,
+   "evidence": [
+    "both studied at Indian Institute of Management, Ahmedabad (IIM A)"
+   ],
+   "sentence": "You → Nisha Mistry (met-as-management, last spoke May 2026, 8 interactions in 24 months) → Ms. Shveta Arya: both studied at Indian Institute of Management, Ahmedabad (IIM A). Path: strong × weak.",
+   "strength": 0.205,
+   "overlap_label": "weak",
+   "strength_label": "medium"
+  },
+  {
+   "via": {
+    "id": 84,
+    "name": "Siddharth Gill",
+    "warmth": 0.81,
+    "headline": "Director, Jefferies India",
+    "how_known": "ex-colleague",
+    "synthetic": true,
+    "warmth_why": "ex-colleague, last spoke Sep 2026, 2 interactions in 24 months",
+    "last_contact": "2026-09-27",
+    "warmth_label": "strong"
+   },
+   "overlap": 0.25,
+   "evidence": [
+    "both studied at Indian Institute of Management, Ahmedabad (IIM A)"
+   ],
+   "sentence": "You → Siddharth Gill (ex-colleague, last spoke Sep 2026, 2 interactions in 24 months) → Ms. Shveta Arya: both studied at Indian Institute of Management, Ahmedabad (IIM A). Path: strong × weak.",
+   "strength": 0.203,
+   "overlap_label": "weak",
+   "strength_label": "medium"
+  }
+ ],
+ "career": [
+  {
+   "org": "Cummins Group in India",
+   "span": "",
+   "title": "Managing Director",
+   "current": true
+  },
+  {
+   "org": "Thomas Cook India",
+   "span": "",
+   "title": "Strategy and M&A",
+   "current": true
+  },
+  {
+   "org": "Kearney",
+   "span": "",
+   "title": "various roles",
+   "current": true
+  },
+  {
+   "org": "Infosys Limited",
+   "span": "",
+   "title": "various roles",
+   "current": true
+  },
+  {
+   "org": "Mahindra & Mahindra Limited",
+   "span": "2026–now",
+   "title": "Group Chief Strategy Officer of Mahindra Group, forming part of Senior Management of the Company",
+   "current": true
+  }
+ ],
+ "source": "Profile as disclosed in the company's exchange filing (SEBI requires a brief profile on appointment). Links go to NSE.",
+ "mentions": [
+  {
+   "ts": "2026-08-09T14:14:15+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/Pooja_09082026194350_SMPappointment9AugShveta.pdf",
+   "role": "Group Chief Strategy Officer of Mahindra Group, forming part of Senior Management of the Company",
+   "event": "appointment",
+   "symbol": "M&M",
+   "filing_id": 639,
+   "person_id": 17
+  },
+  {
+   "ts": "2026-08-09T14:09:39+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/Pooja_09082026193900_SMPappointment9AugShveta.pdf",
+   "role": "Group Chief Strategy Officer of Mahindra Group, forming part of Senior Management of the Company",
+   "event": "appointment",
+   "symbol": "M&M",
+   "filing_id": 640,
+   "person_id": 17
+  }
+ ],
+ "education": [
+  {
+   "year": null,
+   "degree": "Master of Business Administration (MBA)",
+   "institution": "Indian Institute of Management, Ahmedabad (IIM A)"
+  },
+  {
+   "year": null,
+   "degree": "Bachelor’s in Engineering (BE) in Information Technology",
+   "institution": "Delhi University"
+  }
+ ],
+ "synthetic": false
+}

@@ -1,0 +1,29 @@
+{
+ "id": 15,
+ "you": [],
+ "kind": "public_figure",
+ "name": "Mr. Kaizad Bharucha",
+ "paths": [],
+ "career": [
+  {
+   "org": "HDFC Bank Limited",
+   "span": "?–now",
+   "title": "Deputy Managing Director",
+   "current": false
+  }
+ ],
+ "source": "Profile as disclosed in the company's exchange filing (SEBI requires a brief profile on appointment). Links go to NSE.",
+ "mentions": [
+  {
+   "ts": "2026-10-17T10:44:18+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK_17102026161248_Stockexchangeintimation_LV_KB.pdf",
+   "role": "Deputy Managing Director, HDFC Bank",
+   "event": "cessation",
+   "symbol": "HDFCBANK",
+   "filing_id": 375,
+   "person_id": 15
+  }
+ ],
+ "education": [],
+ "synthetic": false
+}

@@ -1,0 +1,29 @@
+{
+ "id": 16,
+ "you": [],
+ "kind": "public_figure",
+ "name": "Ashiss Kumar Dash",
+ "paths": [],
+ "career": [
+  {
+   "org": "Infosys Limited",
+   "span": "",
+   "title": "global head of a diverse business portfolio comprising multiple industry verticals",
+   "current": true
+  }
+ ],
+ "source": "Profile as disclosed in the company's exchange filing (SEBI requires a brief profile on appointment). Links go to NSE.",
+ "mentions": [
+  {
+   "ts": "2026-07-23T11:13:21+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/Infosys_23072026164257_Outcome23072026V1_1.pdf",
+   "role": "Chief Executive Officer Designate",
+   "event": "appointment",
+   "symbol": "INFY",
+   "filing_id": 1092,
+   "person_id": 16
+  }
+ ],
+ "education": [],
+ "synthetic": false
+}

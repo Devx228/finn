@@ -1,0 +1,153 @@
+{
+ "who": [
+  {
+   "id": 29,
+   "why": "worked at peer ICICI Bank Limited as Head of Compliance (2014–now); personal, last spoke Jul 2026, 9 interactions in 24 months",
+   "name": "Nikhil Gill",
+   "rank": 0.707,
+   "warmth": 0.84,
+   "headline": "Head of Compliance, ICICI Bank Limited",
+   "how_known": "personal",
+   "relevance": 0.63,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "personal, last spoke Jul 2026, 9 interactions in 24 months",
+   "last_contact": "2026-07-05",
+   "warmth_label": "strong",
+   "what_theyd_know": "How ICICI Bank Limited runs legal-compliance today"
+  },
+  {
+   "id": 62,
+   "why": "worked at peer State Bank of India as Chief Business Officer (2024–now); introduced-by, last spoke Jan 2026, 0 interactions in 24 months",
+   "name": "Meera Khanna",
+   "rank": 0.568,
+   "warmth": 0.36,
+   "headline": "Chief Business Officer, State Bank of India",
+   "how_known": "introduced-by",
+   "relevance": 0.77,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "introduced-by, last spoke Jan 2026, 0 interactions in 24 months",
+   "last_contact": "2026-01-21",
+   "warmth_label": "medium",
+   "what_theyd_know": "How State Bank of India runs sales today"
+  },
+  {
+   "id": 18,
+   "why": "worked at HDFC Bank Limited as Head of FP&A (2011–now); met-as-management, last spoke May 2025, 0 interactions in 24 months",
+   "name": "Varun Bhatia",
+   "rank": 0.515,
+   "warmth": 0.38,
+   "headline": "Head of FP&A, HDFC Bank Limited",
+   "how_known": "met-as-management",
+   "relevance": 0.63,
+   "synthetic": true,
+   "compliance": "Current employee of HDFC Bank Limited — treat as a potential insider. Don't seek unpublished price-sensitive information; keep to public and industry context.",
+   "warmth_why": "met-as-management, last spoke May 2025, 0 interactions in 24 months",
+   "last_contact": "2025-05-17",
+   "warmth_label": "medium",
+   "what_theyd_know": "How HDFC Bank Limited runs finance today"
+  },
+  {
+   "id": 52,
+   "why": "worked at peer AU Small Finance Bank Limited as CHRO (2016–2019); ex-colleague, last spoke Jul 2026, 3 interactions in 24 months",
+   "name": "Aarav Agarwal",
+   "rank": 0.318,
+   "warmth": 0.8,
+   "headline": "CHRO, AU Small Finance Bank Limited",
+   "how_known": "ex-colleague",
+   "relevance": 0.17,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "ex-colleague, last spoke Jul 2026, 3 interactions in 24 months",
+   "last_contact": "2026-07-20",
+   "warmth_label": "strong",
+   "what_theyd_know": "How AU Small Finance Bank Limited runs HR up to 2019"
+  },
+  {
+   "id": 40,
+   "why": "worked at peer Reserve Bank of India (RBI) as President (2005–2012); introduced-by, last spoke Aug 2026, 9 interactions in 24 months",
+   "name": "Shreya Naidu",
+   "rank": 0.163,
+   "warmth": 0.84,
+   "headline": "President, Reserve Bank of India (RBI)",
+   "how_known": "introduced-by",
+   "relevance": 0.05,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "introduced-by, last spoke Aug 2026, 9 interactions in 24 months",
+   "last_contact": "2026-08-04",
+   "warmth_label": "strong",
+   "what_theyd_know": "How Reserve Bank of India (RBI) runs general-management up to 2012"
+  }
+ ],
+ "people": [
+  {
+   "id": 12,
+   "ts": "2026-10-27T02:32:54+00:00",
+   "you": [
+    "You were at ICICI Bank 2014–2017 while they were there"
+   ],
+   "best": {
+    "via": {
+     "id": 29,
+     "name": "Nikhil Gill",
+     "warmth": 0.84,
+     "headline": "Head of Compliance, ICICI Bank Limited",
+     "how_known": "personal",
+     "synthetic": true,
+     "warmth_why": "personal, last spoke Jul 2026, 9 interactions in 24 months",
+     "last_contact": "2026-07-05",
+     "warmth_label": "strong"
+    },
+    "overlap": 0.6,
+    "evidence": [
+     "overlapped at ICICI Bank Limited, 2014–now",
+     "overlapped at ICICI Bank Limited, 2017–2023"
+    ],
+    "sentence": "You → Nikhil Gill (personal, last spoke Jul 2026, 9 interactions in 24 months) → Mr. Anup Bagchi: overlapped at ICICI Bank Limited, 2014–now. Path: strong × medium.",
+    "strength": 0.504,
+    "overlap_label": "medium",
+    "strength_label": "strong"
+   },
+   "name": "Mr. Anup Bagchi",
+   "role": "MD & CEO",
+   "event": "appointment",
+   "paths": 3,
+   "symbol": "HDFCBANK"
+  },
+  {
+   "id": 2,
+   "ts": "2026-11-06T09:51:56+00:00",
+   "you": [],
+   "best": {
+    "via": {
+     "id": 18,
+     "name": "Varun Bhatia",
+     "warmth": 0.38,
+     "headline": "Head of FP&A, HDFC Bank Limited",
+     "how_known": "met-as-management",
+     "synthetic": true,
+     "warmth_why": "met-as-management, last spoke May 2025, 0 interactions in 24 months",
+     "last_contact": "2025-05-17",
+     "warmth_label": "medium"
+    },
+    "overlap": 0.12,
+    "evidence": [
+     "overlapped at HDFC Bank Limited, 2026–now"
+    ],
+    "sentence": "You → Varun Bhatia (met-as-management, last spoke May 2025, 0 interactions in 24 months) → Mr. V. N. Srivatsan: overlapped at HDFC Bank Limited, 2026–now. Path: medium × weak.",
+    "strength": 0.046,
+    "overlap_label": "weak",
+    "strength_label": "weak"
+   },
+   "name": "Mr. V. N. Srivatsan",
+   "role": "Chief Compliance Officer",
+   "event": "appointment",
+   "paths": 1,
+   "symbol": "HDFCBANK"
+  }
+ ],
+ "symbol": "HDFCBANK",
+ "company": "HDFC Bank Limited"
+}

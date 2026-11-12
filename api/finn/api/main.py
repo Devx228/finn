@@ -74,3 +74,29 @@ def get_brief(window: Window = "24h", as_of: date | None = None) -> Brief:
     if row is None:
         raise HTTPException(status_code=404, detail={"status": "not_materialised"})
     return Brief.model_validate(row[0])
+
+
+def _view(key: str) -> dict:
+    with db.connection() as conn:
+        row = conn.execute("SELECT body FROM views WHERE key = %s", (key,)).fetchone()
+    if row is None:
+        raise HTTPException(status_code=404, detail={"status": "not_materialised", "key": key})
+    return row[0]
+
+
+@app.get("/api/network")
+def get_network() -> dict:
+    """The People tab: keep-warm nudges, people in filings with paths, expertise map, coverage."""
+    return _view("network:home")
+
+
+@app.get("/api/network/company/{symbol}")
+def get_network_company(symbol: str) -> dict:
+    """Who should I call about this company (ranked, with why and a compliance flag)."""
+    return _view(f"network:company:{symbol.upper()}")
+
+
+@app.get("/api/network/person/{person_id}")
+def get_network_person(person_id: int) -> dict:
+    """Diligence on a person named in a filing: career as disclosed, overlaps, second-degree paths."""
+    return _view(f"network:person:{person_id}")

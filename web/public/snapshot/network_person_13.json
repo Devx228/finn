@@ -1,0 +1,38 @@
+{
+ "id": 13,
+ "you": [],
+ "kind": "public_figure",
+ "name": "Mr. Sashidhar Jagdishan",
+ "paths": [],
+ "career": [
+  {
+   "org": "HDFC Bank Limited",
+   "span": "?–now",
+   "title": "Managing Director & CEO",
+   "current": false
+  }
+ ],
+ "source": "Profile as disclosed in the company's exchange filing (SEBI requires a brief profile on appointment). Links go to NSE.",
+ "mentions": [
+  {
+   "ts": "2026-10-27T02:32:54+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK_27102026080232_SEIntimation_appt_of_AB.pdf",
+   "role": "MD & CEO",
+   "event": "resignation",
+   "symbol": "HDFCBANK",
+   "filing_id": 368,
+   "person_id": 13
+  },
+  {
+   "ts": "2026-10-01T12:53:52+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK3_01102026182319_SE_Intimation-_Anup_Bagchi.pdf",
+   "role": "Managing Director & Chief Executive Officer",
+   "event": "retirement",
+   "symbol": "HDFCBANK",
+   "filing_id": 383,
+   "person_id": 13
+  }
+ ],
+ "education": [],
+ "synthetic": false
+}
