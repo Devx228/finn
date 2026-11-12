@@ -377,3 +377,29 @@ removed after the run.
 - **Router smoke test:** qwen2.5:7b on Ollama 0.5.13 returned valid JSON but labelled a capacity
   commissioning "M&A" (should be capex). The local model will be chosen by measurement on a
   labelled set in Phase 2, and the rules stage will catch this pattern before any model sees it.
+
+## 2026-11-13 — Phase 2 decisions
+
+- **Local BULK model = qwen2.5:7b, chosen by measurement** (docs/evals.md): v2 prompt 59% on the
+  hard 54 vs qwen2.5:3b 44%, llama3.1:8b 28% (v1). Prompt v2 changes that mattered: batch 5
+  instead of 10 (small models dropped/renumbered items), text starting at the letter's "Sub:"
+  line instead of the letterhead, two few-shot examples.
+- **Rules take everything with a deterministic signal** (v3: 100% on the 76 labelled filings
+  they decide; 79% of all filings). Added after reading eval misses (disclosed): ESG ratings,
+  investor conferences, call recordings, monthly volumes, results releases, registrar address
+  changes, re-appointments, and a top-role change stated inside a "General Updates" letter (the
+  model had called HDFC Bank's MD & CEO disclosure "M&A").
+- **Results cards from XBRL, not PDFs:** zero model calls for numbers; validation = the filing's
+  own identities; QoQ/YoY only on the same basis; no % change against a loss base. Badge
+  "verified" means the filing's arithmetic holds; PDF cross-check is a separate gate step.
+- **Scoring weights** (spec §8.6) unchanged; magnitude for results = |PAT YoY| / 3 capped at 20;
+  price reaction = 2 points per 1% abnormal return vs NIFTY, or 3 × volume multiple when ≥ 2×,
+  capped at 10, on the first session that could react (same day if filed before 3 pm IST).
+- **Replay (`as_of`)** builds the brief live from stored data (no model calls) and never uses
+  prices after the as-of time. One price query per brief instead of per item: 8.5 s → 1–2 s
+  locally, 0.6 s on Render.
+- **Portfolio moved into the DB** (`holdings`, `research_set`) because the deployed API image
+  has no `data/` folder. `finn ingest holdings` loads it.
+- **Gap noted:** insider trades (PIT) and promoter pledges (SAST) are not in NSE's announcements
+  feed; only takeover-code declarations appear. Those two categories are thin until a source for
+  those disclosures is added.

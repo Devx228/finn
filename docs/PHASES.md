@@ -40,3 +40,24 @@ One entry per phase gate (spec §16), with the real output that showed it passin
 - LLM router: live call through local Ollama (qwen2.5:7b) → validated JSON, cached; second call a
   cache hit (52.5 s → 0.6 s); both in the `llm_calls` ledger at ₹0.
 - Tests: 17 offline Phase 1 tests + Phase 0 tests; ruff and mypy clean.
+
+## Phase 2 — Push core ✅ 2026-11-13
+- Gate: the 7-day brief on a phone shows correct tiers and ≥ 5 verified results cards whose
+  numbers match the filing PDFs.
+- **Window used:** 7 days replayed as of 31 Oct 2026, 21:00 IST (spec §8.8 "as of" control) —
+  most portfolio results were filed in late October, so the last 7 days held only one. Deep
+  link: `https://finn-tawny-nine.vercel.app/?w=7d&as_of=2026-10-31`.
+- Evidence (CDP-emulated 390×844 iPhone, public URLs, `scrollWidth` 390):
+  - Replay: "75 filings · 5 need you · 11 worth knowing · 39 buried", "Live · as of 31 Oct,
+    21:00 IST"; Now = results cards for DEEPAKNTR (85), SUNPHARMA (83), LT (75), VBL (74),
+    DIXON (74); HDFC Bank's MD & CEO change in Worth knowing. Replay served by Render in 0.6 s.
+  - API blocked (`*onrender.com*`): normal 7d view renders the exported snapshot ("Snapshot · as
+    of 12 Nov, 20:03 IST"); a replay shows "Replays are built live and the API isn't reachable".
+- **Numbers vs PDFs** (every printed figure found in the results PDF text, after OCR-digit repair,
+  under the filing's own unit, within rounding): DIXON (₹ cr), SUNPHARMA (₹ mn), LT (₹ cr), VBL
+  (₹ mn), KPITTECH (₹ mn) — 5 cards fully matched. HDFCBANK PAT matched by eye (`2O7OO.O3` =
+  ₹20,700.03 cr, OCR letter O). DEEPAKNTR's PDF is a scan (no text layer) and MARUTI's text layer
+  is garbled OCR: not text-verifiable; both still pass the filing's own XBRL identities.
+- Classifier: 1,199 filings — 947 by rules, 250 by qwen2.5:7b (53 calls, 65k in / 17.5k out
+  tokens, ₹0), 2 retried and placed. Eval in `docs/evals.md` (86.8% end to end).
+- Tests: API 32 (incl. 9 Phase 2), web 6; ruff, mypy, eslint, tsc clean; `next build` ok.

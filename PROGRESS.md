@@ -35,58 +35,26 @@ phase is in `docs/PHASES.md`. Deadline: **15 Nov 2026**.
 - **Phase 1 ✅ (2026-11-12)** — evidence in docs/PHASES.md. DB (Neon) holds 22 demo companies:
   prices, 1,199 filings (130 with PDF text), transcript + AR links, 540 XBRL filings / 72,803 facts,
   `coverage:<SYM>` views. Portfolio/research set in `data/portfolio.json`, `data/research_set.json`.
-- **Phase 2 (push core): IN PROGRESS (stopped mid-phase, 12 Nov, usage limit).** Done:
-  - `push/classify_rules.py`: 74% of filings decided by rules; eval 59/60 correct (pledge
-    declaration rule added after the eval; re-run eval to confirm 60/60).
-  - `data/eval/labelled.jsonl`: 114 filings labelled by the coding agent (6 excluded, see
-    `data/eval/excluded.json`); `push/evaluate.py`; results in `data/eval/classifier_results.json`.
-    v1 prompt: qwen2.5:7b 37%, llama3.1:8b 28% (10 invalid), qwen2.5:3b 33% — unusable.
-    v2 prompt (salient text from "Sub:", batch 5, few-shot) eval was running in the background;
-    log at scratchpad eval2.log (lost if session ended) — RE-RUN it (`push/evaluate.py`,
-    tiers EVAL_10/11) and pick the model by the numbers; record in docs/evals.md.
-  - Thin-subject PDF texts fetched (79). `filing_class` table holds rules decisions only so far.
-  - `push/results.py` + `pipeline.compute_results_cards`: 108 cards, all pass the filing's own
-    identities (Revenue/EBITDA/PBT/PAT; bank NII/PPOP; NBFC). TODO: cross-check 5 against
-    results PDFs; CGPOWER missing year-ago quarter; PIIND margin −1,524 bps (check other income).
-  - `push/brief.py`: bundling (results family 36 h), scoring §8.6 with components, tiers,
-    `materialise()`; portfolio now in DB (`holdings`, `research_set`; migration 0004;
-    `finn ingest holdings`). API `/api/brief?window=&as_of=` (replay) with new models.
-- **Phase 2 remaining:** run LLM stage on the 310 undecided (`pipeline.classify_llm_stage`)
-  with the chosen model; add a `finn push all` CLI (rules → thin texts → llm → cards →
-  materialise); rewrite web Today (Now cards incl. results grid, Worth rows, Buried groups,
-  "Why is this here?" sheet, window + as-of picker, NSE credit; update web/lib/types.ts);
-  run tests (pytest: phase0 test updated for new Brief shape — unverified); export snapshot;
-  push (deploys); gate = 7-day brief replayed as of 31 Oct 2026 with ≥ 5 verified results
-  cards matching the PDFs → docs/PHASES.md. Log decisions (eval numbers, as-of replay for the
-  gate, insider/pledging not in NSE announcements) in DECISIONS.md.
+- **Phase 2 ✅ (2026-11-13)** — evidence in docs/PHASES.md; eval in docs/evals.md. Run the push
+  side with `finn push` (rules → thin texts → qwen2.5:7b → results cards → briefs), then
+  `finn export-snapshot` and push to deploy. Replay deep link: `/?w=7d&as_of=2026-10-31`.
+- **Phase 3 (network + rich cards + alerts): next.**
 - Keep-alive workflow exists but is OFF (`API_URL` repo variable unset) — private-repo Actions
   minutes. Decide at Phase 6 when the repo goes public.
 
 ## Next steps (in order)
-1. (Phase 1 done.)
-2. Owner-approved: GitHub Actions job for new filings via RSS + rules-only classification +
-   alerts — build once the Phase 2 rules classifier exists. Needs a `DATABASE_URL` repo secret
-   (ask the owner to add it).
-3. Phase 2 plan (work in this order):
-   a. `push/classify_rules.py`: NSE `exch_category` + subject regex → reference category +
-      sub-type + base score; record `decided_by='rules'`. Start from the real distribution of
-      `exch_category` in `filings` (`SELECT exch_category, count(*) ... GROUP BY 1`).
-   b. `push/classify_llm.py`: undecided filings, 10 per BULK call, schema per spec §8.1
-      (one_line ≤ 18 words enforced in code). Use subject text first; fetch PDF text only if
-      the subject is too thin. Choose the local model by measurement: qwen2.5:7b vs 2–3 other
-      ≤ 6 GB models on a hand-labelled set (`data/eval/labelled.jsonl`, say the labeller).
-   c. `push/bundle.py` (results family within 36 h → one card; duplicates).
-   d. `push/results.py`: Revenue / EBITDA (PBT before exceptional + finance costs + D&A − other
-      income) / PBT / PAT, QoQ and YoY from `fin_facts`; validate (revenue + other income −
-      expenses ≈ PBT; unit sanity); badge verified/unverified. Banks: NII, PPOP, PBT, PAT.
-      Source link = the NSE results announcement; data = the XBRL.
-   e. `push/score.py` (spec §8.6, components stored for "Why is this here?"), tiers, Now cap 5.
-   f. Materialise `brief:<window>` views; API `/api/brief`; web Today: Now cards, Worth rows,
-      Buried groups, caught-up line, NSE credit.
-   g. Gate: 7-day brief on (emulated) phone with correct tiers and ≥ 5 verified results cards
-      whose numbers match the filing PDFs (cross-check 5 by reading the PDF text).
-4. Phase 3 network, Phase 4 pull (job table; laptop worker preferred, GitHub-runner worker as
-   fallback — design in DECISIONS), Phase 5 all P1, Phase 6 polish. Spec §16.
+1. Phase 3 (spec §16): synthetic network (`scripts/gen_network.py`, ~70 contacts, investor
+   persona, meetings) + `scripts/seed_overlaps.py` against real executives from filings;
+   entity resolution; link strength; who-can-help; second-degree paths; management-change card
+   (bio from the filing via BULK extraction) and material-event card with "Call {name}";
+   compliance flag; alerts (volume ×, price ±%, categories) with settings + in-app inbox.
+   Gate: a real management-change filing (HDFCBANK MD & CEO, or M&M appointment with bio) shows
+   the bio and a second-degree path; a material event shows "Call {name}"; changing a threshold
+   changes which alerts fire.
+2. GitHub Actions job (owner-approved): RSS → rules-only classify → alerts. Needs a
+   `DATABASE_URL` repo secret — ask the owner to add it.
+3. Phase 4 pull (job table; laptop worker preferred, GitHub-runner worker fallback), Phase 5
+   all P1, Phase 6 polish.
 
 ## How to run
 ```bash
