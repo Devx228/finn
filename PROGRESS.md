@@ -10,8 +10,7 @@ Authority order: `docs/brief.pdf` > owner's decisions in `docs/DECISIONS.md` > `
 - Log every non-trivial decision in `docs/DECISIONS.md`. Never commit secrets.
 
 ## Status
-- **Phase 0a (local skeleton): gate passed in emulation (2026-11-12); waiting for the owner's
-  real-phone check and review.** Evidence: emulated 390×844 iPhone, API up → "Live" badge;
+- **Phase 0a: PASSED (owner confirmed on their phone, 2026-11-12).** Evidence: emulated 390×844 iPhone, API up → "Live" badge;
   API stopped → "Snapshot" badge; scrollWidth 390 both times. API 5 tests, web 5 tests,
   ruff/mypy/eslint/tsc clean, `next build` ok, API Docker image runs against local Postgres.
 - Phase 0b (deploy): waiting on accounts (GitHub repo, Neon, Vercel, Render). Hugging Face
@@ -35,5 +34,7 @@ and start the API with `CORS_ORIGINS=http://<lan-ip>:3000`. Refresh the snapshot
 `api/.venv/Scripts/finn export-snapshot`.
 
 ## Next steps
-1. Owner reviews Gate 0a → creates accounts (GitHub repo, Neon, Vercel, Render) → Phase 0b.
+1. Phase 0b: config ready (render.yaml, keepalive.yml, /livez). Waiting on owner accounts:
+   GitHub repo (personal account), Neon (Singapore), Render, Vercel. Then push, set env vars,
+   deploy, run the gate on the public URLs.
 2. Phase 1 (data plumbing) only after the owner's go-ahead.
