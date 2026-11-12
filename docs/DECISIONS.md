@@ -438,3 +438,43 @@ rather than given a wrong label.
   (localStorage) — per-viewer settings, no account needed for the demo.
 - **Pull is a worker job, not on-demand from the hosted API**: NSE returns 403 to Render. The
   research page says this instead of faking a live run.
+
+## 2026-11-13 — Hosted model limits, measured (owner added Gemini + Groq keys)
+Measured with tiny calls (Groq: `x-ratelimit-*` headers; Gemini: burst until 429, quota from the
+error body). Daily caps on Gemini were not hit and are not reported by the API.
+
+| Provider · model | Measured | Notes |
+|---|---|---|
+| Groq · openai/gpt-oss-120b, gpt-oss-20b, qwen/qwen3.8-27b | 1,000 requests/day, **8,000 tokens/min** per model; 131k context | TPM is the binding limit: ~4 transcript-sized calls/min |
+| Gemini · gemini-3.5-flash-lite | **15 requests/min** (16 accepted in 27 s, then 429 `GenerateRequestsPerMinutePerProjectPerModel-FreeTier`, value 15) | stable |
+| Gemini · gemini-3-flash-preview | **5 requests/min** (429 quotaValue 5) | |
+| Gemini · gemini-3.8-flash | works, but 503 "high demand" on ~half of probes | the API's recommended model |
+| Gemini · gemini-3.1-pro-preview | 429 on first call (input-token quota 0) | **not on the free tier** |
+| Gemini · gemini-2.5-* | 404 "no longer available to new users" | |
+
+Router: throttle is now per provider:model (Gemini 3.5-flash-lite 14/min, 3-flash 5/min, Groq
+4/min); on 429/5xx it waits 20 s and retries the same model once before falling to the next.
+
+## 2026-11-13 — Promise Ledger rework; NSE refused the laptop; DB over HTTPS
+- **NSE refused us (403, Akamai "Access Denied") on the first transcript fetch from the laptop**,
+  2026-11-13 03:05 IST (`data/cache/SOURCE_REFUSED.json`). Per the access rules: stopped, no
+  retries, file left in place, owner told. Effect: ledgers read 4 of the last 8 calls (the 4 older
+  transcripts were never fetched). Not worked around (no other IP, no GitHub runner for this).
+- **This network resets Postgres on 5432** (TLS reset, even with direct TLS); Neon's HTTPS SQL
+  endpoint works. `scripts/neon_http.py` mirrors Neon → local `finn_mirror` over 443 and writes
+  views / cache / ledger rows back. Dev aid only; the product still uses the normal driver.
+- **Constant-currency guidance resolves against the company's own reported cc growth** (full year
+  from the Q4 call, YTD from Q1/H1/9M statements), quoted and cited, labelled "company-reported,
+  constant currency"; ₹ growth shown beside it as context. No more "not comparable".
+- **Filing-checkable metrics:** capex (cash-flow PPE purchases vs plan, pace-checked YTD), loan
+  growth (balance-sheet loans YoY; labelled — AUM includes off-book), credit cost (impairment ÷
+  average loans, annualised YTD), ROA, ROE. Cost-to-income and NIM not scored (definitions can't
+  be rebuilt from XBRL lines). Segment targets, open-ended aspirations and multi-year totals are
+  listed, never scored. Years without results are "pending".
+- **Extraction tier `EXTRACT`** = gemini-3-flash → gemini-3.5-flash-lite → gpt-oss-120b → local,
+  picked on the eval in docs/evals.md; rules first, model adds non-conflicting items, strict check.
+- **Second hero: CREDITACC** — six numeric FY27 targets, four checkable straight from filings
+  (loan growth, credit cost, ROA, ROE), two raised mid-year; all on track at H1. It resolves when
+  FY27 closes (or when the older calls with FY26 guidance can be read). KAYNES gives the only
+  rupee-checkable *resolved* pair today (FY26 growth ~50% guided vs 33.2% → missed; EBITDA margin
+  15.6% vs 15.8% → delivered).

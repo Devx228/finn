@@ -213,12 +213,17 @@ def test_router_repairs_invalid_json_then_caches(two_routes):
     assert [e["ok"] for e in st.ledger] == [False, True, True]
 
 
-def test_router_falls_back_on_429(two_routes):
+def test_router_retries_once_then_falls_back_on_429(two_routes):
     be = FakeBackend([rmod.RetryableError("429"), '{"label": "y"}'])
     got = rmod.Router(backend=be, store=MemStore(), sleep=lambda s: None).call(
         "BULK", "t", "v1", "s", "u", Out
     )
-    assert got.data.label == "y" and [c.model for c in be.calls] == ["a", "b"]
+    assert got.data.label == "y" and [c.model for c in be.calls] == ["a", "a"]  # waited, same model
+    be = FakeBackend([rmod.RetryableError("429"), rmod.RetryableError("429"), '{"label": "z"}'])
+    got = rmod.Router(backend=be, store=MemStore(), sleep=lambda s: None).call(
+        "BULK", "t", "v1", "s", "u2", Out
+    )
+    assert got.data.label == "z" and [c.model for c in be.calls] == ["a", "a", "b"]
 
 
 def test_router_skips_providers_without_keys(monkeypatch):

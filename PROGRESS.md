@@ -47,10 +47,19 @@ phase is in `docs/PHASES.md`. Deadline: **15 Nov 2026**.
   XBRL trajectory, guidance tracker from last 4 calls, verdicts, bull/bear, who-to-call. Built for
   INFY, KAYNES, CREDITACC, TRENT, PERSISTENT, DEEPAKNTR, HDFCBANK. Research screen done.
   Gate shortfall logged in docs/PHASES.md.
+- **Promise Ledger rework (2026-11-13)** — cc guidance resolved against company-reported cc growth,
+  filing-checked capex/loan growth/credit cost/ROA/ROE, chains end to end, ledger counts, hosted
+  extraction tier `EXTRACT` (eval in docs/evals.md). Scope status table: docs/STATUS.md.
+- **BLOCKERS (owner):** (1) `data/cache/SOURCE_REFUSED.json` — NSE 403'd the laptop on 13 Nov; no NSE
+  calls until the owner decides. (2) This Wi-Fi resets Postgres on 5432: use
+  `scripts/neon_http.py pull` → work on `DATABASE_URL=.../finn_mirror` → `push-views research:` etc.
 - Workflow after data changes: `finn push` → `finn research <syms>` → `finn export-snapshot` → commit
   → push (deploys).
 
 ## Next steps (in order)
+0. Owner's list of 13 Nov: (3) GitHub Actions research worker (needs a decision on NSE given the
+   refusal), (4) alert defaults vs NIFTY + "moved with no disclosure", (5) Ask bar build-or-remove,
+   (6) balance sheet / cash quality / red flags, writeup, diagram, secret scan.
 1. Pull depth: more resolvable claims for the hero (quarterly guidance like "Q3 margin", capex
    vs cash-flow capex from annual XBRL), business snapshot / segments from XBRL dims, balance
    sheet & cash quality sections (half-year balance sheets + annual cash flow are in fin_facts).

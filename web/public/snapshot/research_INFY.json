@@ -1,6 +1,6 @@
 {
  "name": "Infosys Limited",
- "as_of": "2026-11-13T00:06:02.176809+05:30",
+ "as_of": "2026-11-13T03:34:19.354585+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173824_SE_filing_Earnings_call_transcript.pdf",
@@ -35,33 +35,48 @@
   {
    "model": 0,
    "rules": 3,
-   "dropped": 0,
-   "model_name": "qwen2.5-7b-8k",
-   "selected_chars": 5050
-  },
-  {
-   "model": 0,
-   "rules": 2,
-   "dropped": 0,
-   "model_name": "qwen2.5-7b-8k",
-   "selected_chars": 4092
-  },
-  {
-   "model": 0,
-   "rules": 2,
    "dropped": 1,
-   "model_name": "qwen2.5-7b-8k",
-   "selected_chars": 4773
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 1
+   },
+   "selected_chars": 5541
   },
   {
    "model": 0,
    "rules": 2,
    "dropped": 0,
-   "model_name": "qwen2.5-7b-8k",
-   "selected_chars": 3389
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {},
+   "selected_chars": 4350
+  },
+  {
+   "model": 0,
+   "rules": 2,
+   "dropped": 0,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {},
+   "selected_chars": 4644
+  },
+  {
+   "model": 0,
+   "rules": 2,
+   "dropped": 0,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {},
+   "selected_chars": 3932
   }
  ],
  "format": "indas",
+ "ledger": {
+  "open": 2,
+  "missed": 0,
+  "resolved": 2,
+  "delivered": 2,
+  "calls_read": 4,
+  "calls_listed": 8,
+  "unverifiable": 0
+ },
  "symbol": "INFY",
  "network": [
   {
@@ -120,19 +135,26 @@
   "bull": [
    "Revenue +10.7% YoY in Q2 FY27",
    "PAT +6.3% YoY in Q2 FY27",
-   "Delivered FY26 operating margin: 20.9% within 20.0–22.0%"
+   "Delivered FY26 revenue growth: 3.1% within 3–3.5%",
+   "Delivered FY26 operating margin: 20.9% within 20–22%"
   ]
  },
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts on NSE. No news, broker notes or model knowledge.",
  "guidance": [
   {
    "label": "Revenue growth",
-   "story": "FY27 revenue growth: 1.5–3.5% → 1.5–3% → 1–2% — cut 2×.",
+   "story": "FY27 revenue growth: 1.5–3.5% → 1.5–3% → 1–2% (cut 2×) → company reported 1.9% (2Q YTD) → on track.",
    "actual": {
     "span": "2Q YTD",
     "unit": "%",
-    "basis": "reported ₹ growth, consolidated",
-    "value": 12.3,
+    "basis": "company-reported, constant currency",
+    "value": 1.9,
+    "source": {
+     "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173824_SE_filing_Earnings_call_transcript.pdf",
+     "call": "Q2 FY27 call",
+     "page": 27,
+     "quote": "H1 revenue growth was at 1.9% in constant currency terms and 2.1% in reported terms."
+    },
     "quarters": 2
    },
    "metric": "revenue_growth",
@@ -148,6 +170,7 @@
      "unit": "%",
      "label": "revenue growth",
      "quote": "Our revenue growth guidance for the financial year 2027 is 1.5% to 3.5% growth year-on-year in constant currency terms.",
+     "scope": "company",
      "change": "first given",
      "metric": "revenue_growth",
      "period": "FY27",
@@ -164,6 +187,7 @@
      "unit": "%",
      "label": "revenue growth",
      "quote": "With our Q1 results and a view for the rest of the financial year, we are changing our revenue growth guidance to 1.5% to 3% Y-on-Y growth in constant currency terms.",
+     "scope": "company",
      "change": "cut",
      "metric": "revenue_growth",
      "period": "FY27",
@@ -180,6 +204,7 @@
      "unit": "%",
      "label": "revenue growth",
      "quote": "Based on our Q2 performance and revised outlook for rest of the year, our revenue growth guidance is 1% to 2% YoY.in constant currency terms.",
+     "scope": "company",
      "change": "cut",
      "metric": "revenue_growth",
      "period": "FY27",
@@ -187,18 +212,23 @@
      "direction": "unclear"
     }
    ],
-   "verdict": "not comparable",
-   "verdict_why": "Guidance is in constant currency; filings report ₹ growth of 12.3% (2Q YTD), which includes currency moves and acquisitions",
+   "context": "Reported ₹ growth 12.3% (2Q YTD), which includes currency moves",
+   "verdict": "on track",
+   "resolved": false,
+   "verdict_why": "1.9% within 1–2%",
    "as_of_quarter": "2026-09-30"
   },
   {
    "label": "Operating margin",
-   "story": "FY27 operating margin: 20–22% → 20–22% → 20–22% — held. Filings show 21.0% (2Q YTD).",
+   "story": "FY27 operating margin: 20–22% → 20–22% → 20–22% (held) → filings show 21.0% (2Q YTD) → on track.",
    "actual": {
     "span": "2Q YTD",
     "unit": "%",
     "basis": "EBIT ÷ revenue from the filings",
     "value": 21.0,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1745058_23102026082117_WEB.xml"
+    },
     "quarters": 2
    },
    "metric": "operating_margin",
@@ -214,6 +244,7 @@
      "unit": "%",
      "label": "operating margin",
      "quote": "Our operating margin guidance for financial year '27 is 20% to 22%.",
+     "scope": "company",
      "change": "first given",
      "metric": "operating_margin",
      "period": "FY27",
@@ -230,6 +261,7 @@
      "unit": "%",
      "label": "operating margin",
      "quote": "Our operating margin guidance remains the same at 20% to 22% operating margin.",
+     "scope": "company",
      "change": "held",
      "metric": "operating_margin",
      "period": "FY27",
@@ -246,6 +278,7 @@
      "unit": "%",
      "label": "operating margin",
      "quote": "Our operating margin guidance remains at 20% to 22% for the year.",
+     "scope": "company",
      "change": "held",
      "metric": "operating_margin",
      "period": "FY27",
@@ -253,18 +286,26 @@
      "direction": "maintained"
     }
    ],
+   "context": null,
    "verdict": "on track",
-   "verdict_why": "21.0% within 20.0–22.0%",
+   "resolved": false,
+   "verdict_why": "21.0% within 20–22%",
    "as_of_quarter": "2026-09-30"
   },
   {
    "label": "Revenue growth",
-   "story": "FY26 revenue growth: 3–3.5%.",
+   "story": "FY26 revenue growth: 3–3.5% → company reported 3.1% (FY) → delivered.",
    "actual": {
     "span": "FY",
     "unit": "%",
-    "basis": "reported ₹ growth, consolidated",
-    "value": 9.6,
+    "basis": "company-reported, constant currency",
+    "value": 3.1,
+    "source": {
+     "url": "https://nsearchives.nseindia.com/corporate/Infosys_27042026203405_Transcript_April232026_Q4.pdf",
+     "call": "Q4 FY26 call",
+     "page": 26,
+     "quote": "We had a growth of 3.1% for the full year in constant currency terms."
+    },
     "quarters": 4
    },
    "metric": "revenue_growth",
@@ -280,6 +321,7 @@
      "unit": "%",
      "label": "revenue growth",
      "quote": "The new revenue growth guidance for this financial year is 3% to 3.5% growth in constant currency.",
+     "scope": "company",
      "change": "first given",
      "metric": "revenue_growth",
      "period": "FY26",
@@ -287,18 +329,23 @@
      "direction": "unclear"
     }
    ],
-   "verdict": "not comparable",
-   "verdict_why": "Guidance is in constant currency; filings report ₹ growth of 9.6% (FY), which includes currency moves and acquisitions",
+   "context": "Reported ₹ growth 9.6% (FY), which includes currency moves",
+   "verdict": "delivered",
+   "resolved": true,
+   "verdict_why": "3.1% within 3–3.5%",
    "as_of_quarter": "2026-09-30"
   },
   {
    "label": "Operating margin",
-   "story": "FY26 operating margin: 20–22%. Filings show 20.9% (FY).",
+   "story": "FY26 operating margin: 20–22% → filings show 20.9% (FY) → delivered.",
    "actual": {
     "span": "FY",
     "unit": "%",
     "basis": "EBIT ÷ revenue from the filings",
     "value": 20.9,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1658040_23042026090154_WEB.xml"
+    },
     "quarters": 4
    },
    "metric": "operating_margin",
@@ -314,6 +361,7 @@
      "unit": "%",
      "label": "operating margin",
      "quote": "Our operating margin guidance for the financial year remains the same at 20% to 22%.",
+     "scope": "company",
      "change": "first given",
      "metric": "operating_margin",
      "period": "FY26",
@@ -321,8 +369,10 @@
      "direction": "maintained"
     }
    ],
+   "context": null,
    "verdict": "delivered",
-   "verdict_why": "20.9% within 20.0–22.0%",
+   "resolved": true,
+   "verdict_why": "20.9% within 20–22%",
    "as_of_quarter": "2026-09-30"
   }
  ],

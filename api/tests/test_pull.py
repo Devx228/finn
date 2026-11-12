@@ -1,7 +1,9 @@
 """Pull side: guidance rules and promised-vs-delivered verdicts (no DB, no model)."""
 
-from finn.pull.guidance import rule_items
-from finn.pull.research import tracks, verdict
+from datetime import date
+
+from finn.pull.guidance import Item, doubt, rule_items, sentences
+from finn.pull.research import cc_reported, tracks, verdict
 
 
 def _items(*sentences: str, fy: int = 2027) -> list[dict]:
@@ -59,7 +61,34 @@ def _call(label, date, low, high):
     }
 
 
-def test_band_changes_are_computed_and_cc_is_not_compared_with_rupees():
+CC_CALLS = [
+    {
+        "qend": date(2026, 3, 31),
+        "label": "Q4 FY26 call",
+        "url": "q4",
+        "pages": [
+            "We had growth of 3.1% for the full year in constant currency terms. Momentum in Financial "
+            "Services continues with 3.9% year-on-year growth in constant currency terms."
+        ],
+    },
+    {
+        "qend": date(2026, 9, 30),
+        "label": "Q2 FY27 call",
+        "url": "q2",
+        "pages": [
+            "Our revenue growth for Q2 was 1.5% YoY and 1.2% sequentially in constant currency terms. "
+            "H1 revenue growth was at 1.9% in constant currency terms and 2.1% in reported terms."
+        ],
+    },
+]
+
+
+def test_cc_growth_is_read_from_the_companys_own_words():
+    got = {(r["fy"], r["quarters"]): (r["value"], r["url"]) for r in cc_reported(CC_CALLS, 4)}
+    assert got == {(2026, 4): (3.1, "q4"), (2027, 2): (1.9, "q2")}  # not the segment, not sequential
+
+
+def test_cc_guidance_chain_resolves_against_company_reported_cc():
     calls = [
         _call("Q4", "2026-04-27", 1.5, 3.5),
         _call("Q1", "2026-07-28", 1.5, 3.0),
@@ -67,6 +96,45 @@ def test_band_changes_are_computed_and_cc_is_not_compared_with_rupees():
     ]
     qs = [{"fy": 2027, "label": f"Q{i} FY27", "revenue": 110.0, "end": f"2026-0{3 * i}-30"} for i in (1, 2)]
     qs += [{"fy": 2026, "label": f"Q{i} FY26", "revenue": 100.0, "end": f"2025-0{3 * i}-30"} for i in (1, 2)]
-    (t,) = tracks(calls, qs, 4)
+    for q in qs:
+        q["xbrl"] = None
+    (t,) = tracks(calls, qs, 4, cc=cc_reported(CC_CALLS, 4))
     assert [p["change"] for p in t["points"]] == ["first given", "cut", "cut"]
-    assert t["verdict"] == "not comparable"
+    assert t["verdict"] == "on track" and t["actual"]["basis"] == "company-reported, constant currency"
+    assert t["actual"]["source"]["url"] == "q2" and t["story"].endswith("→ on track.")
+
+
+def test_sentence_over_a_page_break_keeps_its_subject():
+    pages = [
+        "We have committed a full year revenue of totally INR500 crores between both,",
+        "Kaynes Technology India Limited August 08, 2026 Page 14 of 19 INR450 to INR500 crores, which "
+        "is what we are targeting at this point in time.",
+    ]
+    (s,) = [s for _, s in sentences(pages) if "targeting" in s]
+    assert s.startswith("We have committed") and "Page 14" not in s and "Kaynes" not in s
+
+
+def test_segment_rupee_targets_and_open_ended_aspirations_are_not_company_guidance():
+    (seg,) = _items("We said we will be funding capex this year of about INR300 crores for the PCB business.")
+    assert seg["scope"] == "segment"
+    (asp,) = _items(
+        "We will optimize margins over a period of time and deliver our aspirational goals of 16 to 17%."
+    )
+    assert asp["period"] == "medium term"
+    assert not _items("But if we look at the year on year growth, on TCV it was just 4%, we expect more.")
+
+
+def test_strict_check_drops_a_mislabelled_model_item():
+    q = "We raised our profitability guidance for FY27, ROA of 5.2% to 5.8% versus 4% to 4.8% earlier."
+    bad = Item(metric="pat_growth", label="x", low=5.2, high=5.8, unit="%", confidence="high", quote=q)
+    assert doubt(bad) == "metric not named in the quote"
+    ok = Item(
+        metric="operating_margin",
+        label="x",
+        low=20,
+        high=22,
+        unit="%",
+        confidence="high",
+        quote="Our operating margin guidance for FY27 is 20% to 22%.",
+    )
+    assert doubt(ok) is None

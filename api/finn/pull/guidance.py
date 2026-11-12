@@ -15,7 +15,7 @@ from pydantic import BaseModel, Field
 
 from finn.llm.router import Router
 
-PROMPT_VERSION = "guidance-v2"
+PROMPT_VERSION = "guidance-v3"
 MAX_CHARS = 6000
 CUE = re.compile(
     r"guidance|guiding|guide[ds]? |we expect|we are expecting|we anticipate|outlook|target(?:ing)?|"
@@ -35,6 +35,7 @@ Metric = Literal[
     "capex",
     "aum_growth",
     "credit_cost",
+    "segment_revenue",
     "other",
 ]
 
@@ -47,6 +48,12 @@ class Item(BaseModel):
     high: float | None = None
     unit: str | None = Field(default=None, description="% or ₹ cr or bps etc.")
     direction: Literal["new", "raised", "lowered", "maintained", "unclear"] = "unclear"
+    scope: Literal["company", "segment"] = Field(
+        default="company", description="segment if the number is for one business/segment only"
+    )
+    by_management: bool = Field(default=True, description="false if an analyst said it")
+    future: bool = Field(default=True, description="false if it is a result already achieved")
+    confidence: Literal["high", "medium", "low"] = "medium"
     quote: str = Field(description="the exact sentence from the text, copied verbatim")
 
 
@@ -56,27 +63,87 @@ class Extraction(BaseModel):
 
 SYSTEM = (
     "You read excerpts from an Indian listed company's earnings-call transcript. Extract only "
-    "explicit forward-looking guidance given by MANAGEMENT on headline numbers: revenue or its "
-    "growth, operating/EBIT or EBITDA margin, profit growth, capex, AUM/loan growth, credit cost. "
-    "Ignore analysts' questions, past results, attrition, tax rate and anything not a target. "
+    "explicit forward-looking numeric guidance given by MANAGEMENT on headline numbers: revenue or "
+    "its growth, operating/EBIT or EBITDA margin, profit growth, capex, AUM/loan growth, credit "
+    "cost. A target for one business or segment uses metric segment_revenue (revenue) or keeps its "
+    "metric with scope 'segment'. Do NOT extract: analysts' questions or their paraphrases of "
+    "guidance, results already achieved, tax rate, headcount, dividends, impacts or bridges "
+    "('will impact margins by 60 bps'), market-size or broker estimates. "
     "For each item give metric, a short label, the period it covers, low and high (equal if a "
     "single number; numbers only, no % sign), unit, whether it is new/raised/lowered/maintained "
-    "versus before, and the exact sentence as quote (copy it verbatim from the text). "
+    "versus before, scope, by_management, future, your confidence that this is real forward "
+    "guidance, and the exact sentence as quote (copy it verbatim from the text). "
     'Return JSON {"items": [...]}. Return {"items": []} if there is none.'
 )
+
+# A model item must name its metric in its own quote (code check, not the model's word).
+METRIC_WORDS = {
+    "revenue_growth": r"revenue|growth|grow|top ?line|sales",
+    "revenue": r"revenue|sales|top ?line|turnover",
+    "segment_revenue": r"revenue|sales|top ?line|turnover",
+    "operating_margin": r"margin|ebit",
+    "ebitda_margin": r"ebitda|margin",
+    "pat_growth": (
+        r"(?:profit|\bpat\b|earnings)\W+(?:\w+\W+){0,2}grow"
+        r"|grow\w*\W+(?:\w+\W+){0,2}(?:profit|\bpat\b|earnings)"
+    ),
+    "capex": r"capex|capital expenditure|invest|spend",
+    "aum_growth": r"\baum\b|loan|book|disburs|advances|asset",
+    "credit_cost": r"credit cost|provision",
+}
+
+
+def _numbers(s: str) -> list[float]:
+    return [float(x.replace(",", "")) for x in re.findall(r"\d[\d,]*(?:\.\d+)?", s)]
+
+
+def doubt(it: Item) -> str | None:
+    """Why a model item is not trusted (None = keep). Precision over volume."""
+    q = it.quote
+    if not (it.by_management and it.future):
+        return "not forward-looking management guidance"
+    if it.confidence != "high":
+        return f"model confidence {it.confidence}"
+    if it.metric == "other" or it.metric not in METRIC_WORDS:
+        return "metric outside the tracked set"
+    if not re.search(METRIC_WORDS[it.metric], q, re.I):
+        return "metric not named in the quote"
+    nums = _numbers(q)
+    for v in [x for x in (it.low, it.high) if x is not None]:
+        if not any(abs(v - n) < 1e-6 or abs(v - n * 100) < 1e-6 for n in nums):
+            return f"{v:g} not in the quote"
+    return None
 
 
 def _norm(s: str) -> str:
     return re.sub(r"\s+", " ", s).strip().lower()
 
 
-def sentences(pages: list[str]) -> list[tuple[int, str]]:
-    out = []
+PAGE_HEAD = re.compile(r"^.{0,120}?Page \d+ of \d+\s*", re.I)
+
+
+def joined(pages: list[str]) -> tuple[str, list[tuple[int, int]]]:
+    """The transcript as one string (headers and page furniture removed) + (offset, page) starts."""
+    text, starts = "", []
     for i, p in enumerate(pages):
-        p = NOISE.sub(" ", p)
-        for s in re.split(r"(?<=[.!?])\s+", re.sub(r"\s+", " ", p)):
-            if 20 <= len(s) <= 600:
-                out.append((i + 1, s.strip()))
+        p = re.sub(r"\s+", " ", p).strip()
+        p = NOISE.sub(" ", PAGE_HEAD.sub("", p)).strip()
+        starts.append((len(text), i + 1))
+        text += p + " "
+    return text, starts
+
+
+def sentences(pages: list[str]) -> list[tuple[int, str]]:
+    """Sentences across the whole transcript (a sentence may run over a page break), each tagged
+    with the page it starts on. Running page headers are dropped so they don't split a sentence."""
+    text, starts = joined(pages)
+    out, pos = [], 0
+    for s in re.split(r"(?<=[.!?])\s+", text):
+        page = max(pg for off, pg in starts if off <= pos) if starts else 1
+        pos += len(s) + 1
+        s = s.strip()
+        if 20 <= len(s) <= 600:
+            out.append((page, s))
     return out
 
 
@@ -113,6 +180,8 @@ def locate(quote: str, chosen: list[tuple[int, str]], full_norm: str) -> int | N
 NUMSPAN = re.compile(
     r"(?:between\s+)?(?P<lo>-?\d+(?:\.\d+)?)\s*(?:%|percent|per cent)?\s*(?:to|-|–)\s*"
     r"(?P<hi>-?\d+(?:\.\d+)?)\s*(?P<u>%|percent|per cent|bps|basis points)"
+    r"|(?:rs\.?|₹|inr)\s*(?P<crlo>\d[\d,]*(?:\.\d+)?)\s*(?:to|-|–)\s*(?:rs\.?|₹|inr)?\s*"
+    r"(?P<crhi>\d[\d,]*(?:\.\d+)?)\s*(?P<crru>crores?|cr|billion|bn)\b"
     r"|(?:rs\.?|₹|inr)\s*(?P<cr>\d[\d,]*(?:\.\d+)?)\s*(?P<cru>crores?|cr|billion|bn)\b"
     r"|(?P<one>-?\d+(?:\.\d+)?)\s*(?P<ou>%|percent|per cent|bps|basis points)",
     re.I,
@@ -139,6 +208,9 @@ METRIC_KEYS: list[tuple[re.Pattern[str], str]] = [
         "revenue_growth",
     ),
 ]
+SEGMENT = re.compile(
+    r"segment|division|vertical|subsidiar|\bbusiness(?:es)?\b|\bboth\b|\bunit\b|\bplant\b", re.I
+)
 COMPANY_WIDE = re.compile(
     r"\b(our|overall|company|consolidated|revenue|top ?line|we|annual|business)\b[^,;]*$", re.I
 )
@@ -154,10 +226,19 @@ SKIP = re.compile(
     r"versus (the|our) guidance|"
     r"you('re| are) guiding|your guidance|you (have )?guided|you said|what you|per month|\bvs\.? |"
     r"\bgrew\b|in line with|within the|you had|you mentioned|that you|\bmiss|closer to|we may|"
-    r"may be|if we are able|in a bad year",
+    r"may be|if we are able|in a bad year|you have told|you told|you have said|\btcv\b|"
+    r"order (?:intake|inflow)|bookings|it was just|was just",
     re.I,
 )
 FY = re.compile(r"\b(?:FY|financial year|fiscal(?: year)?)\s?'?(?:20)?(\d{2})\b|\b20(\d{2})-(\d{2})\b", re.I)
+# No single year to hold it to: an aspiration, or a total over several years.
+OPEN_ENDED = re.compile(
+    r"over a period of time|aspiration|aspirational|aspire|medium[- ]term|long[- ]term|"
+    r"over the next (?:few|\d+|two|three|four|five) years|across these \w+ years|"
+    r"in the next (?:few|\d+|two|three|four|five) years|total (?:spend|capex|investment)|cumulative",
+    re.I,
+)
+MEDIUM_TERM = "medium term"
 
 
 def _fy(text: str, call_fy: int) -> str:
@@ -165,6 +246,8 @@ def _fy(text: str, call_fy: int) -> str:
     if m:
         y = int(m.group(1)) if m.group(1) else int(m.group(3))
         return f"FY{y:02d}"
+    if OPEN_ENDED.search(text):
+        return MEDIUM_TERM
     if re.search(r"next (fiscal |financial )?year", text, re.I):
         return f"FY{(call_fy + 1) % 100:02d}"
     return f"FY{call_fy % 100:02d}"
@@ -212,13 +295,14 @@ def rule_items(chosen: list[tuple[int, str]], call_fy: int) -> list[dict]:
             n = (seg[-1] if " from " in s[end : seg[0].start()].lower() else seg[0]) if seg else None
             if n is None:
                 continue
-            if n.group("cr"):
-                v = float(n.group("cr").replace(",", ""))
-                v *= 100 if n.group("cru").lower() in ("billion", "bn") else 1
-                lo = hi = v
+            if n.group("cr") or n.group("crlo"):
+                big = (n.group("cru") or n.group("crru")).lower() in ("billion", "bn")
+                vals = [n.group("cr")] if n.group("cr") else [n.group("crlo"), n.group("crhi")]
+                lo, hi = (float(x.replace(",", "")) * (100 if big else 1) for x in (vals[0], vals[-1]))
                 unit = "₹ cr"
                 if metric == "revenue_growth":
-                    metric = "revenue"
+                    # a ₹ figure for one business is not company revenue: never score it as such
+                    metric = "segment_revenue" if SEGMENT.search(s) else "revenue"
             elif n.group("lo"):
                 lo, hi = float(n.group("lo")), float(n.group("hi"))
                 unit = "bps" if n.group("u").lower().startswith("b") else "%"
@@ -246,53 +330,88 @@ def rule_items(chosen: list[tuple[int, str]], call_fy: int) -> list[dict]:
                     "direction": _direction(s.lower()),
                     "quote": s,
                     "page": page,
+                    "scope": "segment" if unit == "₹ cr" and SEGMENT.search(s) else "company",
                     "by": "rules",
                 }
             )
     return out
 
 
-def extract(router: Router | None, pages: list[str], call_fy: int) -> tuple[list[dict], dict]:
-    """Rules first; the BULK model adds what rules miss. Every kept quote is verbatim."""
+def extract(
+    router: Router | None,
+    pages: list[str],
+    call_fy: int,
+    tier: str = "EXTRACT",
+    strict: bool = True,
+    use_rules: bool = True,
+) -> tuple[list[dict], dict]:
+    """Rules first (positional, high precision: each metric keyword takes its own number); the
+    model adds what rules can't read (no keyword next to the number, segment scope, a sentence
+    that runs on) but never overrides a rule item from the same sentence. Every kept quote is
+    verbatim; with `strict`, any model item the confidence check doubts is dropped (reason
+    recorded)."""
     text, chosen = select(pages)
     if not text:
         return [], {"selected_chars": 0, "rules": 0, "model": 0, "dropped": 0}
-    items = rule_items(chosen, call_fy)
-    seen = {(i["metric"], i["low"], i["high"]) for i in items}
+    items: list[dict] = rule_items(chosen, call_fy) if use_rules else []
     n_rules, n_model, dropped, model = len(items), 0, 0, None
+    reasons: dict[str, int] = {}
+
+    def conflicts(m: Item) -> bool:
+        q = _norm(m.quote)
+        for r in items:
+            rq = _norm(r["quote"])
+            same_sentence = q in rq or rq in q
+            same_band = (r["low"], r["high"]) == (m.low, m.high) or m.high in (r["low"], r["high"])
+            if (same_sentence and (r["metric"] == m.metric or same_band)) or (
+                r["metric"] == m.metric and (r["low"], r["high"]) == (m.low, m.high)
+            ):
+                return True
+        return False
+
     if router is not None:
         try:
-            res = router.call("BULK", "extract_guidance", PROMPT_VERSION, SYSTEM, text, Extraction)
+            res = router.call(tier, "extract_guidance", PROMPT_VERSION, SYSTEM, text, Extraction)
             model = res.model
-            full = _norm(" ".join(NOISE.sub(" ", p) for p in pages))
+            full = _norm(joined(pages)[0])
             for it in res.data.items:  # type: ignore[attr-defined]
+                if it.metric == "revenue" and it.scope == "segment":
+                    it.metric = "segment_revenue"
+                if it.metric == "revenue" and (it.unit or "").strip() == "%":
+                    it.metric = "revenue_growth"
                 page = locate(it.quote, chosen, full)
-                if (
-                    page is None
-                    or (it.low is None and it.high is None)
-                    or SKIP.search(it.quote)
-                    or "?" in it.quote
-                ):
+                why = (
+                    "quote not verbatim"
+                    if page is None
+                    else "no number"
+                    if it.low is None and it.high is None
+                    else "skip pattern / question"
+                    if SKIP.search(it.quote) or "?" in it.quote
+                    else (doubt(it) if strict else None)
+                )
+                if why:
                     dropped += 1
+                    reasons[why] = reasons.get(why, 0) + 1
                     continue
-                key = (it.metric, it.low, it.high)
-                if key in seen or any(_norm(i["quote"]) == _norm(it.quote) for i in items):
-                    continue
-                seen.add(key)
+                if conflicts(it):
+                    continue  # a rule already read this sentence's number
                 d = it.model_dump()
-                if d["metric"] == "revenue" and d.get("unit") == "%":
-                    d["metric"] = "revenue_growth"
-                    if ("revenue_growth", it.low, it.high) in seen:
-                        continue
-                d["period"] = _fy(it.quote, call_fy) if FY.search(it.quote) else _fy(it.period or "", call_fy)
+                if d.get("unit") and re.search(r"cr|crore|inr|rs|₹", d["unit"], re.I):
+                    d["unit"] = "₹ cr"
+                d["period"] = (
+                    _fy(it.quote, call_fy)
+                    if FY.search(it.quote) or OPEN_ENDED.search(it.quote)
+                    else _fy(it.period or "", call_fy)
+                )
                 items.append({**d, "page": page or None, "by": "model"})
                 n_model += 1
         except Exception as e:  # model down: rules-only result is still correct, just thinner
-            model = f"unavailable: {e.__class__.__name__}"
+            model = f"unavailable: {e.__class__.__name__}: {str(e)[:160]}"
     return items, {
         "selected_chars": len(text),
         "rules": n_rules,
         "model": n_model,
         "dropped": dropped,
+        "drop_reasons": reasons,
         "model_name": model,
     }

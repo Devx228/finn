@@ -1,19 +1,19 @@
 {
  "name": "Deepak Nitrite Limited",
- "as_of": "2026-11-13T00:09:35.323548+05:30",
+ "as_of": "2026-11-13T03:34:21.234340+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/DEEPAKNTR_04112026111452_NSE-concall_transcript.pdf",
    "label": "Q2 FY27 call",
    "pages": 21,
-   "n_items": 0,
+   "n_items": 2,
    "filed_at": "2026-11-04T05:45:41+00:00"
   },
   {
    "url": "https://nsearchives.nseindia.com/corporate/DEEPAKNTR_11082026154707_NSETranscript.pdf",
    "label": "Q1 FY27 call",
    "pages": 21,
-   "n_items": 0,
+   "n_items": 2,
    "filed_at": "2026-08-11T10:17:34+00:00"
   },
   {
@@ -33,35 +33,53 @@
  ],
  "stats": [
   {
-   "model": 0,
+   "model": 2,
    "rules": 0,
-   "dropped": 1,
-   "model_name": "qwen2.5-7b-8k",
+   "dropped": 3,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "metric not named in the quote": 3
+   },
    "selected_chars": 2507
   },
   {
-   "model": 0,
+   "model": 2,
    "rules": 0,
    "dropped": 0,
-   "model_name": "qwen2.5-7b-8k",
-   "selected_chars": 1939
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {},
+   "selected_chars": 1516
+  },
+  {
+   "model": 0,
+   "rules": 0,
+   "dropped": 2,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "no number": 1,
+    "skip pattern / question": 1
+   },
+   "selected_chars": 2182
   },
   {
    "model": 0,
    "rules": 0,
    "dropped": 0,
-   "model_name": "qwen2.5-7b-8k",
-   "selected_chars": 2231
-  },
-  {
-   "model": 0,
-   "rules": 0,
-   "dropped": 0,
-   "model_name": "qwen2.5-7b-8k",
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {},
    "selected_chars": 1911
   }
  ],
  "format": "indas",
+ "ledger": {
+  "open": 2,
+  "missed": 0,
+  "resolved": 0,
+  "delivered": 0,
+  "calls_read": 4,
+  "calls_listed": 8,
+  "unverifiable": 1
+ },
  "symbol": "DEEPAKNTR",
  "network": [
   {
@@ -114,15 +132,150 @@
   }
  ],
  "signals": {
-  "bear": [],
+  "bear": [
+   "FY27 capex behind: ₹724 cr spent in 2Q (21% of the ₹3,500 cr plan)"
+  ],
   "bull": [
    "Revenue +61.8% YoY in Q2 FY27",
    "EBITDA margin 20.4% in Q2 FY27, up 970 bps YoY",
-   "PAT +234.8% YoY in Q2 FY27"
+   "PAT +234.8% YoY in Q2 FY27",
+   "medium term capex guidance raised 1×"
   ]
  },
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts on NSE. No news, broker notes or model knowledge.",
- "guidance": [],
+ "guidance": [
+  {
+   "label": "Operating margin",
+   "story": "FY28 operating margin: 14–15% → pending.",
+   "actual": null,
+   "metric": "operating_margin",
+   "period": "FY28",
+   "points": [
+    {
+     "by": "model",
+     "low": 14.0,
+     "url": "https://nsearchives.nseindia.com/corporate/DEEPAKNTR_04112026111452_NSE-concall_transcript.pdf",
+     "call": "Q2 FY27 call",
+     "high": 15.0,
+     "page": 11,
+     "unit": "%",
+     "label": "EBIT percentage",
+     "quote": "So just for clarification, we are estimating that in the next year, with all the assets that have been commissioned running at steady-state, we should be targeting something along the lines of about 14% to 15% EBIT.",
+     "scope": "company",
+     "change": "first given",
+     "future": true,
+     "metric": "operating_margin",
+     "period": "FY28",
+     "call_date": "2026-11-04",
+     "direction": "new",
+     "confidence": "high",
+     "by_management": true
+    }
+   ],
+   "context": null,
+   "verdict": "pending",
+   "resolved": false,
+   "verdict_why": "No FY28 results reported yet",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Capex",
+   "story": "FY27 capex: 3500 ₹ cr → filings show ₹724 cr (2Q YTD) → behind.",
+   "actual": {
+    "span": "2Q YTD",
+    "unit": "₹ cr",
+    "basis": "purchase of property, plant & equipment (cash flow)",
+    "value": 723.8,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1749364_29102026080541_WEB.xml"
+    },
+    "quarters": 2
+   },
+   "metric": "capex",
+   "period": "FY27",
+   "points": [
+    {
+     "by": "model",
+     "low": 3500.0,
+     "url": "https://nsearchives.nseindia.com/corporate/DEEPAKNTR_11082026154707_NSETranscript.pdf",
+     "call": "Q1 FY27 call",
+     "high": 3500.0,
+     "page": 16,
+     "unit": "₹ cr",
+     "label": "capex",
+     "quote": "Upadhyay mentioned that we'll be doing about INR 3,500 crore of capex during this year.",
+     "scope": "company",
+     "change": "first given",
+     "future": true,
+     "metric": "capex",
+     "period": "FY27",
+     "call_date": "2026-08-11",
+     "direction": "new",
+     "confidence": "high",
+     "by_management": true
+    }
+   ],
+   "context": null,
+   "verdict": "behind",
+   "resolved": false,
+   "verdict_why": "₹724 cr spent in 2Q (21% of the ₹3,500 cr plan)",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Capex",
+   "story": "medium term capex: 3200 ₹ cr → 11500 ₹ cr (raised once) → open-ended.",
+   "actual": null,
+   "metric": "capex",
+   "period": "medium term",
+   "points": [
+    {
+     "by": "model",
+     "low": 3200.0,
+     "url": "https://nsearchives.nseindia.com/corporate/DEEPAKNTR_11082026154707_NSETranscript.pdf",
+     "call": "Q1 FY27 call",
+     "high": 3200.0,
+     "page": 15,
+     "unit": "₹ cr",
+     "label": "total spend",
+     "quote": "So total spend will be around in the range of INR 3,200 crore.",
+     "scope": "company",
+     "change": "first given",
+     "future": true,
+     "metric": "capex",
+     "period": "medium term",
+     "call_date": "2026-08-11",
+     "direction": "new",
+     "confidence": "high",
+     "by_management": true
+    },
+    {
+     "by": "model",
+     "low": 11500.0,
+     "url": "https://nsearchives.nseindia.com/corporate/DEEPAKNTR_04112026111452_NSE-concall_transcript.pdf",
+     "call": "Q2 FY27 call",
+     "high": 11500.0,
+     "page": 16,
+     "unit": "₹ cr",
+     "label": "total capex across these four years",
+     "quote": "And the total capex across these four years, including whatever we've already incurred as of last year, all of it will be around INR 11,500 crore.",
+     "scope": "company",
+     "change": "raised",
+     "future": true,
+     "metric": "capex",
+     "period": "medium term",
+     "call_date": "2026-11-04",
+     "direction": "new",
+     "confidence": "high",
+     "by_management": true
+    }
+   ],
+   "context": null,
+   "verdict": "open-ended",
+   "resolved": false,
+   "verdict_why": "No year attached, so it never falls due; listed, not scored",
+   "as_of_quarter": "2026-09-30"
+  }
+ ],
  "industry": "Chemicals - Organic",
  "quarters": [
   {

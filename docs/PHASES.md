@@ -91,3 +91,15 @@ One entry per phase gate (spec §16), with the real output that showed it passin
 - Gate not fully met: INFY has 8 cited guidance points but only 2 resolved verdicts (≥ 8 asked);
   an unseen ticker cannot run live on the phone because Render can't reach NSE — it runs on the
   worker (`finn research SYM`) and the page says so.
+
+### Phase 4 — Promise Ledger rework (2026-11-13)
+Evidence (live API, `GET /api/research/INFY`, ledger block): `{"calls_listed": 8, "calls_read": 4,
+"resolved": 2, "delivered": 2, "missed": 0, "open": 2}`. Chains:
+- FY26 revenue growth: 3–3.5% → company reported 3.1% (FY, cc; Q4 FY26 call p.26) → delivered.
+- FY26 operating margin: 20–22% → filings 20.9% (FY) → delivered.
+- FY27 revenue growth: 1.5–3.5% → 1.5–3% → 1–2% (cut 2×) → company reported 1.9% (H1, cc) → on track.
+- FY27 operating margin: 20–22% (held ×3) → filings 21.0% (H1) → on track.
+All companies: **4 resolved** (INFY 2 delivered; KAYNES 1 delivered, 1 missed); CREDITACC 4
+filing-checked FY27 targets on track. Gate (≥ 8 resolved on the hero): **not met — 2**. Main
+cause: NSE refused the fetch of the 4 older transcripts (DECISIONS 2026-11-13). Eval: docs/evals.md
+"Guidance extraction: hosted vs local". Tests: API 50 passed; web 9 passed; build OK.

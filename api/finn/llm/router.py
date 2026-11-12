@@ -38,12 +38,24 @@ PROVIDERS: dict[str, dict[str, Any]] = {
 DEFAULT_TIERS = {
     "BULK": "ollama:qwen2.5-7b-8k",
     "REASON": "ollama:qwen2.5-7b-8k",
+    # Guidance extraction, ordered by the eval in docs/evals.md (2026-11-13). Providers without a
+    # key are skipped, so a keyless clone still runs on the local model.
+    "EXTRACT": "gemini:gemini-3-flash-preview,gemini:gemini-3.5-flash-lite,groq:openai/gpt-oss-120b,"
+    "ollama:qwen2.5-7b-8k",
     "VISION": "",
 }
 
-# Requests per minute per provider (free-tier figures from DECISIONS.md; override by env
-# LLM_RPM_<PROVIDER>). Ollama is local: no limit beyond the GPU.
-DEFAULT_RPM = {"ollama": 0, "groq": 30, "openrouter": 20, "gemini": 5}
+# Requests per minute, per provider or per provider:model (free-tier limits measured 2026-11-13,
+# DECISIONS.md; override by env LLM_RPM_<PROVIDER>). Gemini quotas are per model; Groq's binding
+# limit is 8,000 tokens/min, so ~4 transcript-sized calls a minute. Ollama is local: no limit.
+DEFAULT_RPM = {
+    "ollama": 0,
+    "groq": 4,
+    "openrouter": 20,
+    "gemini": 5,
+    "gemini:gemini-3.5-flash-lite": 14,
+    "gemini:gemini-3-flash-preview": 5,
+}
 
 
 @dataclass(frozen=True)
@@ -153,11 +165,13 @@ class Router:
         input_hash = hashlib.sha256(body.encode()).hexdigest()
         return hashlib.sha256(f"{tier}|{prompt_version}|{input_hash}".encode()).hexdigest()
 
-    def _throttle(self, provider: str) -> None:
-        rpm = int(os.environ.get(f"LLM_RPM_{provider.upper()}", DEFAULT_RPM.get(provider, 0)))
+    def _throttle(self, route: Route) -> None:
+        provider, key = route.provider, f"{route.provider}:{route.model}"
+        default = DEFAULT_RPM.get(key, DEFAULT_RPM.get(provider, 0))
+        rpm = int(os.environ.get(f"LLM_RPM_{provider.upper()}", default))
         if rpm <= 0:
             return
-        q = self._recent.setdefault(provider, deque())
+        q = self._recent.setdefault(key, deque())
         now = time.monotonic()
         while q and now - q[0] > 60:
             q.popleft()
@@ -196,16 +210,20 @@ class Router:
         errors = []
         for route in routes:
             messages = [{"role": "system", "content": system}, {"role": "user", "content": user}]
-            for _attempt in range(2):  # second pass = repair retry after invalid JSON
-                self._throttle(route.provider)
+            busy = 0
+            for _attempt in range(3):  # repair retry after invalid JSON; one backoff on 429/5xx
+                self._throttle(route)
                 t0 = time.monotonic()
                 try:
                     content, tin, tout = self.backend.chat(route, messages, schema, self.timeout)
                 except RetryableError as e:
                     self._log(tier, purpose, route, None, None, t0, False, str(e))
                     errors.append(str(e))
-                    self.sleep(5)
-                    break  # next provider
+                    busy += 1
+                    if busy > 1:
+                        break  # next provider
+                    self.sleep(20)
+                    continue
                 try:
                     data = out.model_validate(json.loads(_strip_fences(content)))
                 except (json.JSONDecodeError, ValidationError) as e:

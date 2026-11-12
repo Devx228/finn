@@ -1,6 +1,6 @@
 {
  "name": "CREDITACCESS GRAMEEN LIMITED",
- "as_of": "2026-11-13T00:09:22.914097+05:30",
+ "as_of": "2026-11-13T03:34:19.958307+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
@@ -35,33 +35,53 @@
   {
    "model": 0,
    "rules": 4,
-   "dropped": 0,
-   "model_name": "unavailable: LLMUnavailable",
-   "selected_chars": 4819
-  },
-  {
-   "model": 0,
-   "rules": 0,
-   "dropped": 1,
-   "model_name": "qwen2.5-7b-8k",
-   "selected_chars": 3821
-  },
-  {
-   "model": 0,
-   "rules": 6,
-   "dropped": 0,
-   "model_name": "qwen2.5-7b-8k",
-   "selected_chars": 4613
+   "dropped": 3,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 1,
+    "metric not named in the quote": 2
+   },
+   "selected_chars": 4632
   },
   {
    "model": 0,
    "rules": 0,
    "dropped": 2,
-   "model_name": "qwen2.5-7b-8k",
-   "selected_chars": 3808
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 2
+   },
+   "selected_chars": 3662
+  },
+  {
+   "model": 0,
+   "rules": 6,
+   "dropped": 0,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {},
+   "selected_chars": 4072
+  },
+  {
+   "model": 0,
+   "rules": 0,
+   "dropped": 1,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 1
+   },
+   "selected_chars": 3383
   }
  ],
  "format": "nbfc",
+ "ledger": {
+  "open": 4,
+  "missed": 0,
+  "resolved": 0,
+  "delivered": 0,
+  "calls_read": 4,
+  "calls_listed": 8,
+  "unverifiable": 2
+ },
  "symbol": "CREDITACC",
  "network": [
   {
@@ -126,8 +146,17 @@
  "guidance": [
   {
    "label": "AUM / loan growth",
-   "story": "FY27 aum / loan growth: 20–25% → 20–25% — held.",
-   "actual": null,
+   "story": "FY27 aum / loan growth: 20–25% → 20–25% (held) → filings show 21.5% (2Q YTD) → on track.",
+   "actual": {
+    "span": "2Q YTD",
+    "unit": "%",
+    "basis": "loans on the balance sheet, YoY to Sep 2026 (AUM also includes off-book loans)",
+    "value": 21.5,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_NBFC_INDAS_1744139_22102026061824_WEB.xml"
+    },
+    "quarters": 2
+   },
    "metric": "aum_growth",
    "period": "FY27",
    "points": [
@@ -141,6 +170,7 @@
      "unit": "%",
      "label": "aum growth",
      "quote": "For FY27, we are guiding an AUM growth of 20.0-25.0%, NIM of 12.8-13.2%, cost to income of 33.0-35.0%, credit cost of 3.0-4.0%, ROA of 4.0-4.8%, and an ROE of 16.0-20.0%.",
+     "scope": "company",
      "change": "first given",
      "metric": "aum_growth",
      "period": "FY27",
@@ -157,6 +187,7 @@
      "unit": "%",
      "label": "aum growth",
      "quote": "We retain our AUM growth guidance of 20% to 25%, supported by return to growth in Group Loan portfolio, coupled with continued momentum in Retail Finance.",
+     "scope": "company",
      "change": "held",
      "metric": "aum_growth",
      "period": "FY27",
@@ -164,13 +195,15 @@
      "direction": "maintained"
     }
    ],
-   "verdict": "unverifiable",
-   "verdict_why": "Not checkable from the results filings",
+   "context": null,
+   "verdict": "on track",
+   "resolved": false,
+   "verdict_why": "21.5% within 20–25%",
    "as_of_quarter": "2026-09-30"
   },
   {
    "label": "Net interest margin",
-   "story": "FY27 net interest margin: 12.8–13.2%.",
+   "story": "FY27 net interest margin: 12.8–13.2% → unverifiable.",
    "actual": null,
    "metric": "nim",
    "period": "FY27",
@@ -185,6 +218,7 @@
      "unit": "%",
      "label": "nim",
      "quote": "For FY27, we are guiding an AUM growth of 20.0-25.0%, NIM of 12.8-13.2%, cost to income of 33.0-35.0%, credit cost of 3.0-4.0%, ROA of 4.0-4.8%, and an ROE of 16.0-20.0%.",
+     "scope": "company",
      "change": "first given",
      "metric": "nim",
      "period": "FY27",
@@ -192,13 +226,15 @@
      "direction": "unclear"
     }
    ],
+   "context": null,
    "verdict": "unverifiable",
-   "verdict_why": "Not checkable from the results filings",
+   "resolved": false,
+   "verdict_why": "Not checkable from the filings",
    "as_of_quarter": "2026-09-30"
   },
   {
    "label": "Cost-to-income",
-   "story": "FY27 cost-to-income: 33–35%.",
+   "story": "FY27 cost-to-income: 33–35% → unverifiable.",
    "actual": null,
    "metric": "cost_to_income",
    "period": "FY27",
@@ -213,6 +249,7 @@
      "unit": "%",
      "label": "cost to income",
      "quote": "For FY27, we are guiding an AUM growth of 20.0-25.0%, NIM of 12.8-13.2%, cost to income of 33.0-35.0%, credit cost of 3.0-4.0%, ROA of 4.0-4.8%, and an ROE of 16.0-20.0%.",
+     "scope": "company",
      "change": "first given",
      "metric": "cost_to_income",
      "period": "FY27",
@@ -220,14 +257,25 @@
      "direction": "unclear"
     }
    ],
+   "context": null,
    "verdict": "unverifiable",
-   "verdict_why": "Not checkable from the results filings",
+   "resolved": false,
+   "verdict_why": "Not checkable from the filings",
    "as_of_quarter": "2026-09-30"
   },
   {
    "label": "Credit cost",
-   "story": "FY27 credit cost: 3–4% → 3–4% — held.",
-   "actual": null,
+   "story": "FY27 credit cost: 3–4% → 3–4% (held) → filings show 3.6% (2Q YTD annualised) → on track.",
+   "actual": {
+    "span": "2Q YTD annualised",
+    "unit": "%",
+    "basis": "impairment on financial instruments ÷ average loans",
+    "value": 3.6,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_NBFC_INDAS_1744139_22102026061824_WEB.xml"
+    },
+    "quarters": 2
+   },
    "metric": "credit_cost",
    "period": "FY27",
    "points": [
@@ -241,6 +289,7 @@
      "unit": "%",
      "label": "credit cost",
      "quote": "For FY27, we are guiding an AUM growth of 20.0-25.0%, NIM of 12.8-13.2%, cost to income of 33.0-35.0%, credit cost of 3.0-4.0%, ROA of 4.0-4.8%, and an ROE of 16.0-20.0%.",
+     "scope": "company",
      "change": "first given",
      "metric": "credit_cost",
      "period": "FY27",
@@ -257,6 +306,7 @@
      "unit": "%",
      "label": "credit cost",
      "quote": "We're maintaining our credit cost guidance of 3% to 4%, and it should comfortably cover for any volatility on account of evolving drought-related conditions in some operating geographies.",
+     "scope": "company",
      "change": "held",
      "metric": "credit_cost",
      "period": "FY27",
@@ -264,14 +314,25 @@
      "direction": "maintained"
     }
    ],
-   "verdict": "unverifiable",
-   "verdict_why": "Not checkable from the results filings",
+   "context": null,
+   "verdict": "on track",
+   "resolved": false,
+   "verdict_why": "3.6% within 3–4%",
    "as_of_quarter": "2026-09-30"
   },
   {
    "label": "Return on assets",
-   "story": "FY27 return on assets: 4–4.8% → 5.2–5.8% — raised once.",
-   "actual": null,
+   "story": "FY27 return on assets: 4–4.8% → 5.2–5.8% (raised once) → filings show 6.0% (2Q YTD annualised) → on track.",
+   "actual": {
+    "span": "2Q YTD annualised",
+    "unit": "%",
+    "basis": "profit ÷ average total assets",
+    "value": 6.0,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_NBFC_INDAS_1744139_22102026061824_WEB.xml"
+    },
+    "quarters": 2
+   },
    "metric": "roa",
    "period": "FY27",
    "points": [
@@ -285,6 +346,7 @@
      "unit": "%",
      "label": "roa",
      "quote": "For FY27, we are guiding an AUM growth of 20.0-25.0%, NIM of 12.8-13.2%, cost to income of 33.0-35.0%, credit cost of 3.0-4.0%, ROA of 4.0-4.8%, and an ROE of 16.0-20.0%.",
+     "scope": "company",
      "change": "first given",
      "metric": "roa",
      "period": "FY27",
@@ -301,6 +363,7 @@
      "unit": "%",
      "label": "roa",
      "quote": "We raised our profitability guidance for FY27, ROA of 5.2% to 5.8% versus 4% to 4.8% earlier and ROE of 21% to 24% versus 16% to 20% earlier.",
+     "scope": "company",
      "change": "raised",
      "metric": "roa",
      "period": "FY27",
@@ -308,14 +371,25 @@
      "direction": "raised"
     }
    ],
-   "verdict": "unverifiable",
-   "verdict_why": "Not checkable from the results filings",
+   "context": null,
+   "verdict": "on track",
+   "resolved": false,
+   "verdict_why": "6.0% within 5.2–5.8%",
    "as_of_quarter": "2026-09-30"
   },
   {
    "label": "Return on equity",
-   "story": "FY27 return on equity: 16–20% → 21–24% — raised once.",
-   "actual": null,
+   "story": "FY27 return on equity: 16–20% → 21–24% (raised once) → filings show 23.7% (2Q YTD annualised) → on track.",
+   "actual": {
+    "span": "2Q YTD annualised",
+    "unit": "%",
+    "basis": "profit ÷ average equity",
+    "value": 23.7,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_NBFC_INDAS_1744139_22102026061824_WEB.xml"
+    },
+    "quarters": 2
+   },
    "metric": "roe",
    "period": "FY27",
    "points": [
@@ -329,6 +403,7 @@
      "unit": "%",
      "label": "roe",
      "quote": "For FY27, we are guiding an AUM growth of 20.0-25.0%, NIM of 12.8-13.2%, cost to income of 33.0-35.0%, credit cost of 3.0-4.0%, ROA of 4.0-4.8%, and an ROE of 16.0-20.0%.",
+     "scope": "company",
      "change": "first given",
      "metric": "roe",
      "period": "FY27",
@@ -345,6 +420,7 @@
      "unit": "%",
      "label": "roe",
      "quote": "We raised our profitability guidance for FY27, ROA of 5.2% to 5.8% versus 4% to 4.8% earlier and ROE of 21% to 24% versus 16% to 20% earlier.",
+     "scope": "company",
      "change": "raised",
      "metric": "roe",
      "period": "FY27",
@@ -352,8 +428,10 @@
      "direction": "raised"
     }
    ],
-   "verdict": "unverifiable",
-   "verdict_why": "Not checkable from the results filings",
+   "context": null,
+   "verdict": "on track",
+   "resolved": false,
+   "verdict_why": "23.7% within 21–24%",
    "as_of_quarter": "2026-09-30"
   }
  ],

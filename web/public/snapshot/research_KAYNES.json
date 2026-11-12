@@ -1,12 +1,12 @@
 {
  "name": "Kaynes Technology India Limited",
- "as_of": "2026-11-13T00:06:08.353263+05:30",
+ "as_of": "2026-11-13T03:34:20.399205+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12082026164943_TranscriptoftheEarningAnnouncement.pdf",
    "label": "Q1 FY27 call",
    "pages": 20,
-   "n_items": 1,
+   "n_items": 2,
    "filed_at": "2026-08-12T11:19:59+00:00"
   },
   {
@@ -33,35 +33,54 @@
  ],
  "stats": [
   {
-   "model": 0,
+   "model": 1,
    "rules": 1,
    "dropped": 0,
-   "model_name": "qwen2.5-7b-8k",
-   "selected_chars": 2159
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {},
+   "selected_chars": 2209
   },
   {
    "model": 0,
    "rules": 0,
-   "dropped": 1,
-   "model_name": "qwen2.5-7b-8k",
-   "selected_chars": 3156
+   "dropped": 3,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 1,
+    "metric not named in the quote": 2
+   },
+   "selected_chars": 3056
   },
   {
    "model": 0,
    "rules": 1,
    "dropped": 0,
-   "model_name": "qwen2.5-7b-8k",
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {},
    "selected_chars": 1478
   },
   {
    "model": 0,
    "rules": 1,
-   "dropped": 1,
-   "model_name": "qwen2.5-7b-8k",
-   "selected_chars": 3114
+   "dropped": 2,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "15.5 not in the quote": 1,
+    "metric not named in the quote": 1
+   },
+   "selected_chars": 3068
   }
  ],
  "format": "indas",
+ "ledger": {
+  "open": 0,
+  "missed": 1,
+  "resolved": 2,
+  "delivered": 1,
+  "calls_read": 4,
+  "calls_listed": 7,
+  "unverifiable": 2
+ },
  "symbol": "KAYNES",
  "network": [
   {
@@ -117,18 +136,18 @@
   "bear": [
    "EBITDA margin 15.6% in Q1 FY27, down 120 bps YoY",
    "PAT -24.4% YoY in Q1 FY27",
-   "FY26 revenue growth missed: 33.2% vs 50.0–50.0%"
+   "FY26 revenue growth missed: 33.2% vs 50%"
   ],
   "bull": [
    "Revenue +40.5% YoY in Q1 FY27",
-   "Delivered FY26 ebitda margin: 15.8% within 15.6–15.6%"
+   "Delivered FY26 ebitda margin: 15.8% within 15.6%"
   ]
  },
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts on NSE. No news, broker notes or model knowledge.",
  "guidance": [
   {
    "label": "Capex",
-   "story": "FY27 capex: 300 ₹ cr.",
+   "story": "FY27 capex: 300 ₹ cr → unverifiable.",
    "actual": null,
    "metric": "capex",
    "period": "FY27",
@@ -143,6 +162,7 @@
      "unit": "₹ cr",
      "label": "capex",
      "quote": "We said we will be funding for this capex for this year is about INR300 crores for OSAT, INR300 crores for PCB, and about INR250 crores for EMS business.",
+     "scope": "segment",
      "change": "first given",
      "metric": "capex",
      "period": "FY27",
@@ -150,18 +170,57 @@
      "direction": "unclear"
     }
    ],
+   "context": null,
    "verdict": "unverifiable",
-   "verdict_why": "Not checkable from the results filings",
+   "resolved": false,
+   "verdict_why": "A target for one business; the filings report the company as a whole",
+   "as_of_quarter": "2026-06-30"
+  },
+  {
+   "label": "Segment revenue",
+   "story": "FY27 segment revenue: 450–500 ₹ cr → unverifiable.",
+   "actual": null,
+   "metric": "segment_revenue",
+   "period": "FY27",
+   "points": [
+    {
+     "by": "model",
+     "low": 450.0,
+     "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12082026164943_TranscriptoftheEarningAnnouncement.pdf",
+     "call": "Q1 FY27 call",
+     "high": 500.0,
+     "page": 14,
+     "unit": "₹ cr",
+     "label": "full year revenue between OSAT and PCB",
+     "quote": "As far as OSAT and PCB is concerned, we already told from third quarter the revenue starts in both the business, and we have committed a full year revenue of totally INR500 crores between both, INR450 to INR500 crores, which is what we are targeting at this point in time, we are on the target.",
+     "scope": "segment",
+     "change": "first given",
+     "future": true,
+     "metric": "segment_revenue",
+     "period": "FY27",
+     "call_date": "2026-08-12",
+     "direction": "maintained",
+     "confidence": "high",
+     "by_management": true
+    }
+   ],
+   "context": null,
+   "verdict": "unverifiable",
+   "resolved": false,
+   "verdict_why": "A target for one business; the filings report the company as a whole",
    "as_of_quarter": "2026-06-30"
   },
   {
    "label": "Revenue growth",
-   "story": "FY26 revenue growth: 50%. Filings show 33.2% (FY).",
+   "story": "FY26 revenue growth: 50% → filings show 33.2% (FY) → missed.",
    "actual": {
     "span": "FY",
     "unit": "%",
     "basis": "reported ₹ growth, consolidated",
     "value": 33.2,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1666785_13052026102614_WEB.xml"
+    },
     "quarters": 4
    },
    "metric": "revenue_growth",
@@ -177,6 +236,7 @@
      "unit": "%",
      "label": "revenue growth",
      "quote": "So as we go forward, we expect automotive to grow at the rate of growth of our company's growth rate, which will be anywhere around 50% plus/minus, you can take.",
+     "scope": "company",
      "change": "first given",
      "metric": "revenue_growth",
      "period": "FY26",
@@ -184,18 +244,23 @@
      "direction": "unclear"
     }
    ],
+   "context": null,
    "verdict": "missed",
-   "verdict_why": "33.2% vs 50.0–50.0%",
+   "resolved": true,
+   "verdict_why": "33.2% vs 50%",
    "as_of_quarter": "2026-06-30"
   },
   {
    "label": "EBITDA margin",
-   "story": "FY26 ebitda margin: 15.6%. Filings show 15.8% (FY).",
+   "story": "FY26 ebitda margin: 15.6% → filings show 15.8% (FY) → delivered.",
    "actual": {
     "span": "FY",
     "unit": "%",
     "basis": "EBITDA ÷ revenue from the filings",
     "value": 15.8,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1666785_13052026102614_WEB.xml"
+    },
     "quarters": 4
    },
    "metric": "ebitda_margin",
@@ -211,6 +276,7 @@
      "unit": "%",
      "label": "ebitda margin",
      "quote": "We are saying that looking at the first quarter, the EBITDA might exceed the guidance of 15.6%.",
+     "scope": "company",
      "change": "first given",
      "metric": "ebitda_margin",
      "period": "FY26",
@@ -218,8 +284,10 @@
      "direction": "unclear"
     }
    ],
+   "context": null,
    "verdict": "delivered",
-   "verdict_why": "15.8% within 15.6–15.6%",
+   "resolved": true,
+   "verdict_why": "15.8% within 15.6%",
    "as_of_quarter": "2026-06-30"
   }
  ],

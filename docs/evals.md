@@ -65,3 +65,52 @@ post-check that drops a one-liner naming a company absent from the filing. Re-ru
 model-decided filings: 24 answers rejected and retried; one-liners naming another demo company
 went from 5 to 1 (dropped by the post-check); 3 filings left unclassified rather than mislabelled.
 Category accuracy on the labelled set was not re-measured for v3.
+
+## Guidance extraction: hosted vs local (2026-11-13)
+
+**Gold set** (`data/eval/guidance_gold.json`), hand-listed by reading every forward-looking
+numeric sentence of two transcripts: Infosys Q4 FY26 call (large company, 46 pages: FY27 revenue
+growth 1.5–3.5% cc, FY27 operating margin 20–22%) and Kaynes Q1 FY27 call (small company, 20
+pages: FY27 capex ₹300 + 300 + 250 cr, FY27 OSAT+PCB revenue ₹450–500 cr — a segment target).
+4 claims and 14 listed distractors (analysts restating guidance, past actuals, tax rate, hiring,
+margin bridges, broker estimates, order book, prices). Small by design — two transcripts as asked
+— so a single miss moves recall by 25 points; read the per-claim results, not just the ratios.
+Runner: `finn.pull.eval_guidance.run([...])`.
+
+| System | Precision | Recall | Notes |
+|---|---|---|---|
+| Rules only (no model) | 1.00 (3/3) | 0.75 | misses the segment revenue target |
+| qwen2.5 7B (local) alone | 1.00 (2/2) | 0.50 | one quote not verbatim (dropped) |
+| gemini-3.5-flash-lite alone | 1.00 (3/3) | 0.75 | misses capex |
+| **gemini-3-flash-preview alone** | **1.00 (4/4)** | **1.00** | |
+| gpt-oss-120b (Groq) alone, raw | 0.83 (5/6) | 1.00 | called "INR180 crores, sorry" (Q1 spend) a capex target |
+| gpt-oss-120b alone + strict check | 1.00 (5/5) | 1.00 | the confidence check dropped it: metric not named in the quote |
+| Pipeline (rules first, model adds non-conflicting items, strict) with gemini-3-flash / 3.5-flash-lite / gpt-oss | 1.00 | 1.00 | |
+| Pipeline with local qwen | 1.00 | 0.75 | |
+
+Two bugs the eval found, both fixed before these numbers: (1) sentences were split per page, so a
+sentence running over a page break lost its subject ("…revenue of totally INR500 crores between
+both, | INR450 to INR500 crores, which is what we are targeting") — sentences now span pages and
+running headers are stripped; (2) rules read that ₹ figure as *company* revenue (which would have
+been "delivered" against ₹4,000 cr of revenue) — a ₹ revenue/capex figure in a sentence naming a
+business/segment is now `segment` scope and never scored against company totals.
+
+**Merge order, decided on production output, not the gold set:** a model-first merge (model's
+reading of a sentence replaces the rule's) scored the same on the gold set but, on CREDITACC, the
+model labelled "ROA of 5.2% to 5.8%" as profit growth and the rule-read ROA/ROE items for that
+sentence were lost. Rules are positional (each metric keyword takes its own number), so they now
+go first; a model item is added only if it doesn't conflict with a rule item in the same sentence
+(same metric or same number). Re-run on the final code: numbers above unchanged.
+
+**Further precision guards from reading every resolved track (6 companies):** analyst paraphrases
+("which you have told us"), TCV/bookings ("on TCV it was just 4%") → skipped; aspirations and
+multi-year totals ("over a period of time", "across these four years", "total spend") → period
+`medium term`, listed but never scored; a year with no results yet → `pending`; cost-to-income
+not scored (CREDITACC reports 34.1%; opex ÷ (income − finance cost) from XBRL gives ~29% — the
+company's definition can't be rebuilt, so a "beat" would be ours, not theirs).
+
+**Choice:** tier `EXTRACT` = gemini-3-flash-preview → gemini-3.5-flash-lite → gpt-oss-120b →
+local qwen2.5. Best by the numbers; Flash-Lite as first fallback (15 req/min vs 5); gpt-oss only
+behind the strict check; local model when no key. Every model item must also pass the strict
+check (management + forward-looking + high confidence + metric named in its own quote + the band's
+numbers present in the quote), and every quote must be verbatim in the transcript.

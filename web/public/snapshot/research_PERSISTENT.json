@@ -1,12 +1,12 @@
 {
  "name": "Persistent Systems Limited",
- "as_of": "2026-11-13T00:09:29.427250+05:30",
+ "as_of": "2026-11-13T03:34:20.778669+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_23102026204328_PSLTranscriptSubmissionOctober2026Sd.pdf",
    "label": "Q2 FY27 call",
    "pages": 26,
-   "n_items": 2,
+   "n_items": 1,
    "filed_at": "2026-10-23T15:13:45+00:00"
   },
   {
@@ -34,16 +34,18 @@
  "stats": [
   {
    "model": 0,
-   "rules": 2,
+   "rules": 1,
    "dropped": 0,
-   "model_name": "qwen2.5-7b-8k",
-   "selected_chars": 1588
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {},
+   "selected_chars": 1561
   },
   {
    "model": 0,
    "rules": 0,
    "dropped": 0,
-   "model_name": "qwen2.5-7b-8k",
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {},
    "selected_chars": 1275
   },
   {
@@ -56,11 +58,21 @@
    "model": 0,
    "rules": 0,
    "dropped": 0,
-   "model_name": "qwen2.5-7b-8k",
-   "selected_chars": 1202
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {},
+   "selected_chars": 1211
   }
  ],
  "format": "indas",
+ "ledger": {
+  "open": 0,
+  "missed": 0,
+  "resolved": 0,
+  "delivered": 0,
+  "calls_read": 4,
+  "calls_listed": 8,
+  "unverifiable": 1
+ },
  "symbol": "PERSISTENT",
  "network": [
   {
@@ -115,8 +127,7 @@
  "signals": {
   "bear": [
    "EBITDA margin 13.6% in Q2 FY27, down 550 bps YoY",
-   "PAT -25.5% YoY in Q2 FY27",
-   "FY27 operating margin behind: 11.7% vs 16.0–17.0%"
+   "PAT -25.5% YoY in Q2 FY27"
   ],
   "bull": [
    "Revenue +30.3% YoY in Q2 FY27"
@@ -125,51 +136,11 @@
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts on NSE. No news, broker notes or model knowledge.",
  "guidance": [
   {
-   "label": "Revenue growth",
-   "story": "FY27 revenue growth: 4%. Filings show 29.7% (2Q YTD).",
-   "actual": {
-    "span": "2Q YTD",
-    "unit": "%",
-    "basis": "reported ₹ growth, consolidated",
-    "value": 29.7,
-    "quarters": 2
-   },
-   "metric": "revenue_growth",
-   "period": "FY27",
-   "points": [
-    {
-     "by": "rules",
-     "low": 4.0,
-     "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_23102026204328_PSLTranscriptSubmissionOctober2026Sd.pdf",
-     "call": "Q2 FY27 call",
-     "high": 4.0,
-     "page": 23,
-     "unit": "%",
-     "label": "revenue growth",
-     "quote": "But if we look at the year on year growth, on TCV it was just 4%, which typically is in the range of 15 to 16%.",
-     "change": "first given",
-     "metric": "revenue_growth",
-     "period": "FY27",
-     "call_date": "2026-10-23",
-     "direction": "unclear"
-    }
-   ],
-   "verdict": "ahead",
-   "verdict_why": "29.7% vs 4.0–4.0%",
-   "as_of_quarter": "2026-09-30"
-  },
-  {
    "label": "Operating margin",
-   "story": "FY27 operating margin: 16–17%. Filings show 11.7% (2Q YTD).",
-   "actual": {
-    "span": "2Q YTD",
-    "unit": "%",
-    "basis": "EBIT ÷ revenue from the filings",
-    "value": 11.7,
-    "quarters": 2
-   },
+   "story": "medium term operating margin: 16–17% → open-ended.",
+   "actual": null,
    "metric": "operating_margin",
-   "period": "FY27",
+   "period": "medium term",
    "points": [
     {
      "by": "rules",
@@ -180,16 +151,19 @@
      "page": 22,
      "unit": "%",
      "label": "operating margin",
-     "quote": "Persistent Systems Limited So, we are reasonably assured in our minds about what we are signed up for, our ability to optimize margins over a period of time and deliver to our aspirational goals of 16 to 17% margins and the growth that we aspire.",
+     "quote": "So, we are reasonably assured in our minds about what we are signed up for, our ability to optimize margins over a period of time and deliver to our aspirational goals of 16 to 17% margins and the growth that we aspire.",
+     "scope": "company",
      "change": "first given",
      "metric": "operating_margin",
-     "period": "FY27",
+     "period": "medium term",
      "call_date": "2026-10-23",
      "direction": "unclear"
     }
    ],
-   "verdict": "behind",
-   "verdict_why": "11.7% vs 16.0–17.0%",
+   "context": null,
+   "verdict": "open-ended",
+   "resolved": false,
+   "verdict_why": "No year attached, so it never falls due; listed, not scored",
    "as_of_quarter": "2026-09-30"
   }
  ],

@@ -1,0 +1,39 @@
+{
+  "note": "Hand-listed 2026-11-13 by reading every forward-looking numeric sentence of each transcript (see docs/evals.md). Gold = numeric forward guidance by management on tracked metrics. A claim stated several times counts once; an item matches if metric, period and band match any accepted form.",
+  "docs": [
+    {
+      "doc_id": 209,
+      "symbol": "INFY",
+      "call": "Q4 FY26 call, 23 Apr 2026 (large company)",
+      "call_fy": 2027,
+      "claims": [
+        {"id": "infy-rev", "metrics": ["revenue_growth"], "period": "FY27", "bands": [[1.5, 3.5]],
+         "quote": "Our revenue growth guidance for the financial year 2027 is 1.5% to 3.5% growth year-on-year in constant currency terms.", "page": 4},
+        {"id": "infy-margin", "metrics": ["operating_margin"], "period": "FY27", "bands": [[20, 22]],
+         "quote": "Our operating margin guidance for financial year '27 is 20% to 22%.", "page": 4}
+      ],
+      "distractors": [
+        "analyst restating 1.5% to 3.5% (p5, p32)", "FY26 actuals 3.1% growth / 21% margin (p28, p46)",
+        "tax rate 29% to 30% (p29)", "20,000 freshers (p8, p29)", "acquisition margin impact 60-70 bps / 0.7% (p9, p31)",
+        "brokers' 200-225 bps contribution (p22)", "onsite mix 40-50 bps (p39, p46)"
+      ]
+    },
+    {
+      "doc_id": 37,
+      "symbol": "KAYNES",
+      "call": "Q1 FY27 call, 8 Aug 2026 (small company)",
+      "call_fy": 2027,
+      "claims": [
+        {"id": "kaynes-capex", "metrics": ["capex"], "period": "FY27", "bands": [[850, 850], [300, 300], [250, 250], [600, 600]],
+         "quote": "We said we will be funding for this capex for this year is about INR300 crores for OSAT, INR300 crores for PCB, and about INR250 crores for EMS business.", "page": 16},
+        {"id": "kaynes-osat-pcb-rev", "metrics": ["segment_revenue"], "period": "FY27", "bands": [[450, 500], [500, 500]],
+         "quote": "...we have committed a full year revenue of totally INR500 crores between both, INR450 to INR500 crores, which is what we are targeting at this point in time", "page": 15}
+      ],
+      "distractors": [
+        "FY26 capex 473 / 324 cr (p7)", "order book ~9,000 cr (p3, p19)", "Q1 revenue 946 cr, EBITDA 15.6% (p3)",
+        "component prices up 30-35%, 10-12% (p15)", "analyst's '30%-35% kind of a growth' (p14)",
+        "revenue growth '2x of the market growth' (non-numeric, p14)", "working-capital days (p6, p17)"
+      ]
+    }
+  ]
+}

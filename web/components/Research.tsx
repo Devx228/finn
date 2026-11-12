@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { CandidateRow } from "@/components/Network";
 import { type Loaded, loadWithFallback } from "@/lib/api";
 import { formatCr } from "@/lib/format";
-import type { GuidancePoint, GuidanceTrack, Quarter, Research, ResearchIndex } from "@/lib/types";
+import type { GuidancePoint, GuidanceTrack, Ledger, Quarter, Research, ResearchIndex } from "@/lib/types";
 
 const H = "mb-2 text-[12px] font-semibold uppercase tracking-wider text-ink-3";
 
@@ -16,7 +16,8 @@ const VERDICT: Record<string, { icon: string; cls: string }> = {
   ahead: { icon: "▲", cls: "text-up" },
   missed: { icon: "✕", cls: "text-down" },
   behind: { icon: "▼", cls: "text-down" },
-  "not comparable": { icon: "≠", cls: "text-ink-3" },
+  pending: { icon: "…", cls: "text-ink-3" },
+  "open-ended": { icon: "·", cls: "text-ink-3" },
   unverifiable: { icon: "·", cls: "text-ink-3" },
 };
 
@@ -92,7 +93,7 @@ export function ResearchView() {
           <p className="font-medium text-ink">No research view for {sym} yet.</p>
           <p className="mt-1 text-[13px]">
             The engine works on any NSE ticker with XBRL results and call transcripts: the worker runs{" "}
-            <code className="rounded bg-bg px-1">finn research {sym}</code>, which fetches the last four
+            <code className="rounded bg-bg px-1">finn research {sym}</code>, which fetches the last eight
             transcripts once (politely, cached) and builds this page. The hosted API can&apos;t reach NSE, so
             that step runs on the worker, not on demand from your phone.
           </p>
@@ -105,7 +106,7 @@ export function ResearchView() {
 
 function Body({ r }: { r: Research }) {
   const tracks = r.guidance;
-  const checkable = tracks.filter((t) => t.points.some((p) => p.unit === "%"));
+  const checkable = tracks.filter((t) => t.verdict !== "unverifiable" && t.verdict !== "open-ended");
   return (
     <div className="space-y-6">
       <div>
@@ -117,11 +118,12 @@ function Body({ r }: { r: Research }) {
 
       <section>
         <h2 className={H}>Promised vs delivered</h2>
+        {r.ledger && <LedgerLine l={r.ledger} />}
         {tracks.length === 0 ? (
           <p className="rounded-lg border border-line bg-surface px-3 py-3 text-[13px] text-ink-2">
             {r.calls.length === 0
               ? "No earnings-call transcripts filed recently, so there is no guidance to hold management to. The numbers below still come from the filings."
-              : "Management gave no explicit numeric guidance in the last four calls (we only count verbatim targets)."}
+              : `Management gave no explicit numeric guidance in the last ${r.calls.length} calls (we only count verbatim targets).`}
           </p>
         ) : (
           <div className="space-y-3">
@@ -202,12 +204,12 @@ function TrackCard({ t }: { t: GuidanceTrack }) {
   const v = VERDICT[t.verdict] ?? VERDICT.unverifiable;
   const pct = t.points.every((p) => p.unit === "%");
   const vals = t.points.flatMap((p) => [p.low, p.high]);
-  if (t.actual && t.actual.unit === "%" && t.verdict !== "not comparable") vals.push(t.actual.value);
+  if (t.actual && t.actual.unit === "%") vals.push(t.actual.value);
   const lo = Math.min(...vals);
   const hi = Math.max(...vals);
   const pad = Math.max(0.5, (hi - lo) * 0.15);
   const x = (n: number) => ((n - (lo - pad)) / (hi + pad - (lo - pad))) * 100;
-  const showActual = pct && t.actual && t.actual.unit === "%" && t.verdict !== "not comparable";
+  const showActual = pct && t.actual && t.actual.unit === "%";
   return (
     <article className="rounded-lg border border-line bg-surface px-3 py-3">
       <div className="flex items-baseline justify-between gap-2">
@@ -261,15 +263,68 @@ function TrackCard({ t }: { t: GuidanceTrack }) {
           </button>
         ))}
       </div>
-      {showActual && (
-        <p className="mt-1 flex items-center gap-1.5 text-[12px] text-ink-3">
-          <span className="inline-block h-3 w-0.5 bg-ink" aria-hidden /> filings: {t.actual!.value}% (
-          {t.actual!.span}, {t.actual!.basis})
-        </p>
-      )}
+      {t.actual && <Outcome t={t} marker={!!showActual} />}
+      {t.context && <p className="mt-1 text-[11px] text-ink-3">{t.context}</p>}
       {open !== null && <Quote p={t.points[open]} />}
       {open === null && <p className="mt-1 text-[11px] text-ink-3">Tap a call to see management&apos;s words.</p>}
     </article>
+  );
+}
+
+/** The end of the chain: what was actually reported, and where it is written down. */
+function Outcome({ t, marker }: { t: GuidanceTrack; marker: boolean }) {
+  const a = t.actual!;
+  const val = a.unit === "₹ cr" ? formatCr(a.value) : `${a.value}%`;
+  const src = a.source;
+  return (
+    <div className="mt-2 border-t border-line pt-2 text-[12px] leading-snug text-ink-2">
+      <p className="flex items-center gap-1.5">
+        {marker && <span className="inline-block h-3 w-0.5 shrink-0 bg-ink" aria-hidden />}
+        <span>
+          <span className="font-semibold text-ink">Outcome {val}</span> ({a.span}) · {a.basis}
+        </span>
+      </p>
+      {src?.quote ? (
+        <blockquote className="mt-1 border-l-2 border-line pl-3 text-ink-2">
+          “{src.quote}”
+          <footer className="mt-0.5 text-[11px] text-ink-3">
+            {src.call}
+            {src.page ? `, p. ${src.page}` : ""} ·{" "}
+            <a href={src.url} target="_blank" rel="noreferrer" className="underline">
+              transcript on NSE
+            </a>
+          </footer>
+        </blockquote>
+      ) : src?.xbrl ? (
+        <p className="mt-0.5 text-[11px] text-ink-3">
+          Computed from the{" "}
+          <a href={src.xbrl} target="_blank" rel="noreferrer" className="underline">
+            XBRL results filing on NSE
+          </a>
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+function LedgerLine({ l }: { l: Ledger }) {
+  return (
+    <p className="mb-2 text-[13px] leading-snug text-ink-2">
+      Read {l.calls_read} of the last {l.calls_listed} calls ·{" "}
+      <b className="tabular-nums text-ink">{l.resolved}</b> promise{l.resolved === 1 ? "" : "s"} resolved
+      {l.resolved > 0 && (
+        <>
+          {" "}
+          ({l.delivered} delivered, {l.missed} missed)
+        </>
+      )}{" "}
+      · {l.open} still open · {l.unverifiable} not checkable from filings
+      {l.resolved >= 4 && (
+        <span className="block text-[12px] text-ink-3">
+          Say–do: delivered {l.delivered} of {l.resolved} resolved numeric promises.
+        </span>
+      )}
+    </p>
   );
 }
 
@@ -293,13 +348,14 @@ function OtherTracks({ tracks }: { tracks: GuidanceTrack[] }) {
   return (
     <details className="rounded-lg border border-line bg-surface">
       <summary className="flex min-h-11 cursor-pointer items-center justify-between px-3 text-[14px]">
-        <span>Other guidance (not checkable from filings)</span>
+        <span>Guidance the filings can&apos;t check</span>
         <span className="text-ink-3">{tracks.length}</span>
       </summary>
       <ul className="divide-y divide-line border-t border-line px-3">
         {tracks.map((t) => (
           <li key={`${t.metric}-${t.period}`} className="py-2 text-[13px] text-ink-2">
             {t.story}
+            <span className="block text-[11px] text-ink-3">{t.verdict_why}</span>
           </li>
         ))}
       </ul>
