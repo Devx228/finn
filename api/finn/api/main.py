@@ -39,39 +39,6 @@ def livez() -> dict[str, str]:
     return {"status": "ok"}
 
 
-_last_probe = 0.0
-
-
-@app.get("/api/_probe/nse")
-def probe_nse() -> dict[str, object]:
-    """TEMPORARY (Phase 1 probe 4): one plain request from the Render host to a fixed NSE URL.
-    No user input reaches the URL; at most one call per 60 s. Removed after the probe."""
-    import time
-
-    import httpx
-
-    global _last_probe
-    if time.monotonic() - _last_probe < 60:
-        raise HTTPException(status_code=429, detail="one probe per minute")
-    _last_probe = time.monotonic()
-    url = (
-        "https://www.nseindia.com/api/corporate-announcements?index=equities&symbol=INFY"
-        "&from_date=01-11-2026&to_date=12-11-2026"
-    )
-    t0 = time.monotonic()
-    try:
-        r = httpx.get(url, headers={"User-Agent": "FINN-prototype/0.1"}, timeout=30)
-        return {
-            "status": r.status_code,
-            "bytes": len(r.content),
-            "seconds": round(time.monotonic() - t0, 2),
-            "content_type": r.headers.get("content-type"),
-            "head": r.text[:120],
-        }
-    except Exception as exc:
-        return {"error": type(exc).__name__, "detail": str(exc)[:200]}
-
-
 @app.get("/health", response_model=Health)
 def health() -> Health:
     db_state: Literal["ok", "down"] = "ok"
