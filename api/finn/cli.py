@@ -33,9 +33,7 @@ def placeholder_brief(window: str, as_of: datetime) -> Brief:
             company="—",
             headline="Placeholder — real filings arrive in Phase 2",
         ),
-        BriefItem(
-            id=f"p0-{window}-3", tier="buried", company="—", headline="Placeholder buried item"
-        ),
+        BriefItem(id=f"p0-{window}-3", tier="buried", company="—", headline="Placeholder buried item"),
     ]
     return Brief(
         window=window,  # type: ignore[arg-type]
@@ -100,7 +98,7 @@ COUNT_TABLES = (
 def cmd_counts(_: argparse.Namespace) -> int:
     with db.connection() as conn:
         for t in COUNT_TABLES:
-            n = conn.execute(f"SELECT count(*) FROM {t}").fetchone()[0]  # noqa: S608 (fixed list)
+            n = (conn.execute(f"SELECT count(*) FROM {t}").fetchone() or [0])[0]  # noqa: S608 (fixed list)
             print(f"  {t:12} {n:>9,}")
         print("  per company (demo set):")
         rows = conn.execute(
@@ -152,7 +150,7 @@ def cmd_ingest(args: argparse.Namespace) -> int:
         db.migrate(conn)
         run_id = conn.execute(
             "INSERT INTO ingest_runs (host) VALUES (%s) RETURNING id", (socket.gethostname(),)
-        ).fetchone()[0]
+        ).fetchone()[0]  # type: ignore[index]
         conn.commit()
         results: dict[str, object] = {}
         ok, err = True, None

@@ -175,9 +175,7 @@ class Router:
         out: type[T],
         cache_payload: Any | None = None,
     ) -> CallResult:
-        key = self.cache_key(
-            tier, prompt_version, cache_payload if cache_payload is not None else user
-        )
+        key = self.cache_key(tier, prompt_version, cache_payload if cache_payload is not None else user)
         if self.store is not None:
             hit = self.store.cache_get(key)
             if hit is not None:
@@ -189,9 +187,7 @@ class Router:
                     cache_hit=True,
                     ok=True,
                 )
-                return CallResult(
-                    out.model_validate(hit["response"]), hit["provider"], hit["model"], True
-                )
+                return CallResult(out.model_validate(hit["response"]), hit["provider"], hit["model"], True)
 
         routes = tier_routes(tier)
         if not routes:
@@ -226,9 +222,7 @@ class Router:
                     continue
                 self._log(tier, purpose, route, tin, tout, t0, True, None)
                 if self.store is not None:
-                    self.store.cache_put(
-                        key, tier, route.provider, route.model, data.model_dump(mode="json")
-                    )
+                    self.store.cache_put(key, tier, route.provider, route.model, data.model_dump(mode="json"))
                 return CallResult(data, route.provider, route.model, False)
         raise LLMUnavailable(f"tier {tier} failed on every provider: {errors}")
 

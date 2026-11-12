@@ -41,7 +41,7 @@ def company_ids(conn: Connection, symbols: list[str]) -> dict[str, int]:
     rows = conn.execute(
         "SELECT nse_symbol, id FROM companies WHERE nse_symbol = ANY(%s)", (symbols,)
     ).fetchall()
-    found = dict(rows)
+    found: dict[str, int] = dict(rows)
     missing = [s for s in symbols if s not in found]
     if missing:
         raise ValueError(f"not in NSE symbol master (run `finn ingest symbols`): {missing}")
@@ -162,9 +162,7 @@ def ingest_transcript_history(
 
 def fetch_filing_text(conn: Connection, nse: NSE, filing_id: int) -> bool:
     """Download a filing PDF once and store its page text. Returns False if none."""
-    row = conn.execute(
-        "SELECT pdf_url, text_fetched_at FROM filings WHERE id = %s", (filing_id,)
-    ).fetchone()
+    row = conn.execute("SELECT pdf_url, text_fetched_at FROM filings WHERE id = %s", (filing_id,)).fetchone()
     if row is None or not row[0] or row[1] is not None:
         return row is not None and row[1] is not None
     if not row[0].lower().endswith(".pdf"):
@@ -179,9 +177,7 @@ def fetch_filing_text(conn: Connection, nse: NSE, filing_id: int) -> bool:
     return True
 
 
-def ingest_deep_read_texts(
-    conn: Connection, nse: NSE, symbols: list[str], days: int = 120
-) -> dict[str, int]:
+def ingest_deep_read_texts(conn: Connection, nse: NSE, symbols: list[str], days: int = 120) -> dict[str, int]:
     """Fetch PDF text only for filings a later stage must read: management changes (bio and
     role are only in the PDF) and M&A / capex / litigation events. Everything else stays
     metadata-only until the classifier asks for it (minimal footprint)."""
@@ -234,9 +230,9 @@ def select_results(
         half_year = end.month in (3, 9)
         if not (end >= q_cut or (half_year and end >= y_cut)):
             continue
-        f = best.get((end, "consolidated")) or best.get((end, "standalone"))
-        if f:
-            chosen.append(f)
+        pick = best.get((end, "consolidated")) or best.get((end, "standalone"))
+        if pick:
+            chosen.append(pick)
     return chosen
 
 
@@ -255,29 +251,48 @@ def ingest_fundamentals(conn: Connection, nse: NSE, symbols: list[str]) -> dict[
         listing = nse.results_filings(s)
         fmt_flags = {f.fmt for f in listing if f.fmt}
         for f in select_results(listing):
-            done = conn.execute(
-                "SELECT parsed_at FROM fin_filings WHERE xbrl_url = %s", (f.xbrl_url,)
-            ).fetchone()
-            if done and done[0]:
-                counts["xbrl_already_parsed"] += 1
-                continue
-            counts["xbrl_parsed"] += _ingest_one_xbrl(conn, nse, cid, f)
+            # If the preferred basis is missing from NSE's archive, fall back to the other
+            # basis for the same period (stored with its own basis label).
+            other = "standalone" if f.basis == "consolidated" else "consolidated"
+            alt = max(
+                (x for x in listing if x.period_end == f.period_end and x.basis == other),
+                key=lambda x: x.filed_at or datetime.min.replace(tzinfo=UTC),
+                default=None,
+            )
+            for cand in [c for c in (f, alt) if c is not None]:
+                done = conn.execute(
+                    "SELECT parsed_at, parse_error FROM fin_filings WHERE xbrl_url = %s",
+                    (cand.xbrl_url,),
+                ).fetchone()
+                if done and done[0]:
+                    status = "missing" if (done[1] or "").startswith("HTTP 404") else "already"
+                else:
+                    status = _ingest_one_xbrl(conn, nse, cid, cand)
+                counts[f"xbrl_{status}"] += 1
+                if status != "missing":
+                    break
         fmt = "bank" if "B" in fmt_flags else ("nbfc" if "F" in fmt_flags else None)
         if fmt:
-            conn.execute(
-                "UPDATE companies SET fin_format=%s, is_financial=true WHERE id=%s", (fmt, cid)
-            )
+            conn.execute("UPDATE companies SET fin_format=%s, is_financial=true WHERE id=%s", (fmt, cid))
         conn.commit()
     return dict(counts)
 
 
-def _ingest_one_xbrl(conn: Connection, nse: NSE, company_id: int, f: ResultsFiling) -> int:
-    content = nse.fetch(f.xbrl_url)
+def _ingest_one_xbrl(conn: Connection, nse: NSE, company_id: int, f: ResultsFiling) -> str:
+    """Fetch + parse + store one XBRL. Returns 'parsed' | 'error' | 'missing'. A row is kept
+    for every outcome so the same URL is never requested again."""
+    from finn.sources.http import NotFound
+
+    p, err = None, None
     try:
-        p = parse_xbrl(content)
-        err = None
-    except Exception as e:  # keep the row so we never refetch; record why
-        p, err = None, f"{type(e).__name__}: {e}"[:300]
+        content = nse.fetch(f.xbrl_url)
+    except NotFound:
+        err = "HTTP 404 (listed by NSE, missing from its archive)"
+    if err is None:
+        try:
+            p = parse_xbrl(content)
+        except Exception as e:  # keep the row so we never refetch; record why
+            err = f"{type(e).__name__}: {e}"[:300]
     row = conn.execute(
         "INSERT INTO fin_filings (company_id, source, basis, fmt, period_start, period_end, "
         "audited, filed_at, xbrl_url, rounding, n_facts, parsed_at, parse_error) "
@@ -300,12 +315,11 @@ def _ingest_one_xbrl(conn: Connection, nse: NSE, company_id: int, f: ResultsFili
         ),
     ).fetchone()
     assert row is not None
+    conn.commit()
     if p is None:
-        return 0
+        return "missing" if err and err.startswith("HTTP 404") else "error"
     if p.fmt in ("bank", "nbfc") and f.fmt is None:
-        conn.execute(
-            "UPDATE companies SET fin_format=%s, is_financial=true WHERE id=%s", (p.fmt, company_id)
-        )
+        conn.execute("UPDATE companies SET fin_format=%s, is_financial=true WHERE id=%s", (p.fmt, company_id))
     conn.execute("DELETE FROM fin_facts WHERE fin_filing_id = %s", (row[0],))
     with conn.cursor() as cur:
         cur.executemany(
@@ -316,7 +330,8 @@ def _ingest_one_xbrl(conn: Connection, nse: NSE, company_id: int, f: ResultsFili
                 for x in p.facts
             ],
         )
-    return 1
+    conn.commit()
+    return "parsed"
 
 
 # -- coverage (what a report can be based on) --------------------------------
@@ -333,14 +348,14 @@ def coverage(conn: Connection, company_id: int) -> dict:
         SELECT count(DISTINCT ff.period_end) FILTER (WHERE x.concept = 'Assets'),
                count(DISTINCT ff.period_end) FILTER (
                    WHERE x.concept = 'CashFlowsFromUsedInOperatingActivities'
-                     AND date_part('month', ff.period_end) = 3)
+                     AND x.period_end - x.period_start >= 360)
         FROM fin_filings ff JOIN fin_facts x ON x.fin_filing_id = ff.id
         WHERE ff.company_id = %s AND x.dims = ''
           AND x.concept IN ('Assets', 'CashFlowsFromUsedInOperatingActivities')
         """,
         (company_id,),
     ).fetchone()
-    docs = dict(
+    docs: dict[str, int] = dict(
         conn.execute(
             "SELECT kind, count(*) FROM documents WHERE company_id = %s GROUP BY kind",
             (company_id,),

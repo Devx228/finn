@@ -44,9 +44,7 @@ class ParsedXBRL:
             return "nbfc"
         return "indas"
 
-    def get(
-        self, concept: str, period_end: date, period_start: date | None = None
-    ) -> Decimal | None:
+    def get(self, concept: str, period_end: date, period_start: date | None = None) -> Decimal | None:
         for f in self.facts:
             if (
                 f.concept == concept
@@ -70,8 +68,8 @@ def parse_xbrl(content: bytes) -> ParsedXBRL:
     root = ET.fromstring(content)
 
     entry = ""
-    for ref in root.iter(f"{LINK}schemaRef"):
-        entry = ref.get(f"{XLINK}href", "")
+    for sref in root.iter(f"{LINK}schemaRef"):
+        entry = sref.get(f"{XLINK}href", "")
 
     contexts: dict[str, tuple[date | None, date, str]] = {}
     for ctx in root.iter(f"{XBRLI}context"):
@@ -102,15 +100,15 @@ def parse_xbrl(content: bytes) -> ParsedXBRL:
     meta: dict[str, str] = {}
     raw: list[tuple[str, str, str, str | None]] = []  # concept, context id, text, unit id
     for el in root:
-        ref = el.get("contextRef")
-        if ref is None or ref not in contexts:
+        cref = el.get("contextRef")
+        if cref is None or cref not in contexts:
             continue
         name = _local(el.tag)
         text = (el.text or "").strip()
         if el.get("unitRef") is not None:
             if text and el.get("{http://www.w3.org/2001/XMLSchema-instance}nil") != "true":
-                raw.append((name, ref, text, el.get("unitRef")))
-        elif text and not contexts[ref][2] and name not in meta:
+                raw.append((name, cref, text, el.get("unitRef")))
+        elif text and not contexts[cref][2] and name not in meta:
             meta[name] = text[:2000]
 
     # NSE quirk (verified 2026-11-12): year-to-date contexts ("Four*") are declared with the
@@ -118,17 +116,17 @@ def parse_xbrl(content: bytes) -> ParsedXBRL:
     # stated start of financial year so a quarter and a YTD figure never share one period key.
     fy_start = _date(meta.get("DateOfStartOfFinancialYear"))
     if fy_start:
-        for cid, (start, end, dims) in list(contexts.items()):
-            if cid.startswith("Four") and start is not None and start != fy_start:
-                contexts[cid] = (fy_start, end, dims)
+        for cid, (c_start, c_end, c_dims) in list(contexts.items()):
+            if cid.startswith("Four") and c_start is not None and c_start != fy_start:
+                contexts[cid] = (fy_start, c_end, c_dims)
 
     facts: dict[tuple, Fact] = {}
-    for name, ref, text, unit_id in raw:
+    for name, cref, text, unit_id in raw:
         try:
-            val = Decimal(text)
+            num = Decimal(text)
         except InvalidOperation:
             continue
-        start, end, dims = contexts[ref]
-        f = Fact(name, dims, start, end, val, units.get(unit_id or ""))
-        facts.setdefault((name, dims, start, end), f)  # Q1: quarter == YTD; keep one
+        p_start, p_end, p_dims = contexts[cref]
+        f = Fact(name, p_dims, p_start, p_end, num, units.get(unit_id or ""))
+        facts.setdefault((name, p_dims, p_start, p_end), f)  # Q1: quarter == YTD; keep one
     return ParsedXBRL(facts=list(facts.values()), meta=meta, entry_point=entry)

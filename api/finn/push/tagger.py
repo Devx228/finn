@@ -15,9 +15,7 @@ KMP_ROLE = re.compile(
     r"|key managerial|kmp|chairman|chairperson)\b",
     re.I,
 )
-CHANGE = re.compile(
-    r"\b(appoint|resign|cessation|re-?designat|retire|step(ped|s)? down|demise)", re.I
-)
+CHANGE = re.compile(r"\b(appoint|resign|cessation|re-?designat|retire|step(ped|s)? down|demise)", re.I)
 MNA = re.compile(
     r"\b(acqui(re|sition)|merger|amalgamat|demerger|scheme of arrangement|joint venture"
     r"|stake sale|divest|disinvest)",
@@ -61,6 +59,4 @@ def tag(a: Announcement) -> str:
 def is_kmp_change(a: Announcement) -> bool:
     """CEO / CFO / MD-level change (not independent-director rotation)."""
     text = f"{a.category or ''} {a.subject or ''}"
-    return (
-        tag(a) == "management_change" and bool(KMP_ROLE.search(text)) and bool(CHANGE.search(text))
-    )
+    return tag(a) == "management_change" and bool(KMP_ROLE.search(text)) and bool(CHANGE.search(text))

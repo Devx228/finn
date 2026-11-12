@@ -353,3 +353,27 @@ removed after the run.
   is verified from PDF text after ingest, before Phase 3 relies on it.
 - **Tests never touch Neon:** `tests/conftest.py` points DATABASE_URL at TEST_DATABASE_URL
   (default local docker Postgres); DB tests skip if it is down.
+
+## 2026-11-12 — Phase 1 results and what they changed
+
+- **Measured fundamentals depth** (per company in `coverage:<SYMBOL>`): NSE publishes XBRL for
+  results only from mid-2018; earlier quarters have an HTML results page
+  (`resultDetailedDataLink`) instead. Balance sheet and cash flow appear in XBRL only from ~2022
+  (9 half-year balance sheets, 3–4 annual cash flows). Against the spec's needs — Trajectory 5–10
+  years (we have ~8 FY of P&L), Cash quality 3+ years (we have 3–4) — this is enough, so per the
+  owner's rule the annual-report gap-fill is **skipped**. Pre-2018 HTML pages remain an option
+  for a 10-year trajectory; not fetched.
+- **Fiscal years are read from the filings, not assumed April–March:** VBL reports on a calendar
+  year. Annual figures are identified by period length (≥ 360 days), and display labels must use
+  each company's own year end.
+- **404s:** NSE lists 3 XBRL files its archive doesn't have (e.g. an HDFCBANK 2021 bank XBRL). A
+  404 is not a refusal: the row is recorded with the error (never requested again) and the other
+  basis for that period is tried.
+- **Management changes verified from PDF text** (not the generic category label): real top-level
+  changes in the portfolio — HDFCBANK (new MD & CEO, Anup Bagchi, "in place of" the incumbent)
+  and ULTRACEMCO (MD completing his term 31 Dec 2026); research set — INFY (CEO Designate). M&M
+  filed an appointment with a full bio (ex-MD, Cummins India). TITAN (independent director) and
+  DIXON (MD re-appointment) are correctly routine. Spec's "≥ 2 real management changes" is met.
+- **Router smoke test:** qwen2.5:7b on Ollama 0.5.13 returned valid JSON but labelled a capacity
+  commissioning "M&A" (should be capex). The local model will be chosen by measurement on a
+  labelled set in Phase 2, and the rules stage will catch this pattern before any model sees it.

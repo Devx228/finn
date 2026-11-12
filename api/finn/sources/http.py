@@ -32,6 +32,10 @@ class SourceRefused(RuntimeError):
     """The source declined our request. Stop; do not work around it."""
 
 
+class NotFound(RuntimeError):
+    """HTTP 404: the source lists a document its archive doesn't have. Not a refusal."""
+
+
 @dataclass
 class Fetched:
     url: str
@@ -155,6 +159,8 @@ class PoliteClient:
                     self.refused_marker.write_text(json.dumps(note, indent=1), encoding="utf-8")
                     raise SourceRefused(f"{self.name} refused {full}: HTTP {r.status_code}")
                 if not transient and r is not None:
+                    if r.status_code == 404:
+                        raise NotFound(f"{self.name}: HTTP 404 for {full}")
                     if r.status_code != 200:
                         raise RuntimeError(f"{self.name}: HTTP {r.status_code} for {full}")
                     f = Fetched(full, r.content, r.status_code, False, datetime.now(UTC))

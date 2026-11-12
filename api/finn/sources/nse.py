@@ -71,9 +71,7 @@ class NSE:
         ts = _dt(x.get("an_dt") or x.get("sort_date"), ("%d-%b-%Y %H:%M:%S", "%Y-%m-%d %H:%M:%S"))
         if ts is None or not x.get("symbol"):
             return None
-        exch_id = (
-            str(x.get("seq_id") or "") or f"{x['symbol']}|{x.get('an_dt')}|{x.get('attchmntFile')}"
-        )
+        exch_id = str(x.get("seq_id") or "") or f"{x['symbol']}|{x.get('an_dt')}|{x.get('attchmntFile')}"
         return Announcement(
             exch_id=exch_id,
             symbol=x["symbol"],
@@ -140,7 +138,7 @@ class NSE:
             params={"index": "equities", "symbol": symbol, "period": "Quarterly"},
             ttl_s=LISTING_TTL,
         ).json()
-        for x in old if isinstance(old, list) else []:
+        for x in old if isinstance(old, list) else []:  # type: ignore[union-attr]
             end = _d(x.get("toDate"))
             if not end or not x.get("xbrl") or not str(x["xbrl"]).endswith(".xml"):
                 continue
@@ -148,9 +146,7 @@ class NSE:
                 ResultsFiling(
                     source="nse_cfr",
                     symbol=symbol,
-                    basis="consolidated"
-                    if x.get("consolidated") == "Consolidated"
-                    else "standalone",
+                    basis="consolidated" if x.get("consolidated") == "Consolidated" else "standalone",
                     fmt=x.get("bank") or None,
                     period_start=_d(x.get("fromDate")),
                     period_end=end,
@@ -164,7 +160,7 @@ class NSE:
             params={"index": "equities", "symbol": symbol, "type": "Integrated Filing- Financials"},
             ttl_s=LISTING_TTL,
         ).json()
-        rows = new.get("data", []) if isinstance(new, dict) else (new or [])
+        rows: list = new.get("data", []) if isinstance(new, dict) else (new if isinstance(new, list) else [])
         for x in rows:
             end = _d((x.get("qe_Date") or "").title())
             if not end or not x.get("xbrl"):
@@ -173,9 +169,7 @@ class NSE:
                 ResultsFiling(
                     source="nse_integrated",
                     symbol=symbol,
-                    basis="consolidated"
-                    if x.get("consolidated") == "Consolidated"
-                    else "standalone",
+                    basis="consolidated" if x.get("consolidated") == "Consolidated" else "standalone",
                     fmt=None,  # read from the XBRL itself
                     period_start=None,
                     period_end=end,
