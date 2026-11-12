@@ -100,6 +100,30 @@ ROUTINE = _rx(
     r"|book closure|transfer of shares to iepf|iepf|change in (registered )?address)"
 )
 
+RESULTS_PR = _rx(
+    r"\b(q[1-4]\s?(fy)?\s?'?\d{2}|h[12]\s?fy\s?\d{2}).{0,60}\b(results|revenue|profit"
+    r"|performance)|\b(results|earnings) (presentation|update|release)|analyst presentation"
+    r"|\b(revenue|profit)\b.{0,40}\b(q[1-4]|h[12])\s?fy\s?'?\d{2}"
+)
+ESG = _rx(r"\besg\b")
+ADDRESS = _rx(
+    r"\b(change|shifting) (in|of) (the )?(corporate |registered )?(office )?address"
+    r"|address of (the )?(corporate |registered )?office|shifting of (the )?corporate office"
+)
+RECORDING_CALL = _rx(r"\b(audio|video) recording")
+CONFERENCE = _rx(r"\binvestor (conference|meet|day)|analyst (meet|day)|non[- ]deal roadshow")
+VOLUMES = _rx(r"\b(production|sales|despatch|dispatch) (volume|numbers|update)|monthly (business|sales)")
+
+
+def _salient_head(text: str | None, n: int = 400) -> str:
+    """The letter's subject line (first ~400 chars from 'Sub:'), or '' if there is no text."""
+    if not text:
+        return ""
+    t = re.sub(r"\s+", " ", text)
+    m = re.search(r"\b(Sub(ject)?\s*[:.\-]|Re\s*:|Ref\s*:)", t, re.I)
+    return t[m.start() : m.start() + n] if m else ""
+
+
 # Exchange category → (category, sub_type, base, reason) for unambiguous cases.
 DIRECT: dict[str, tuple[str, str | None, int, str]] = {
     "copy of newspaper publication": ("unclassified", "newspaper_copy", 2, "newspaper copy"),
@@ -273,18 +297,38 @@ def classify(exch_category: str | None, subject: str | None, text: str | None = 
     if cat == "action(s) taken or orders passed":
         return Classified("litigation", None, 34, "regulatory / tax action or order")
 
-    if cat.startswith("press release"):
-        if RESULTS.search(subj):
-            return Classified("results", "press_release", 30, "results press release")
-        return None
-
-    if cat in LLM_CATEGORIES or not cat:
-        # Patterns that are reliable even inside generic "Updates".
-        if ROUTINE.search(subj):
+    if cat.startswith("press release") or cat in LLM_CATEGORIES or not cat:
+        # Patterns that are reliable even inside generic "Updates" / press releases. The subject
+        # is checked first; the letter's subject line (salient text) only when the subject is
+        # boilerplate.
+        head = f"{subj} {_salient_head(text)}"
+        if RESULTS.search(subj) or RESULTS_PR.search(subj):
+            return Classified("results", "press_release", 30, "results press release / deck")
+        # A top-role change stated in the letter itself, even when filed as "General Updates".
+        letter = _salient_head(text, 1200)
+        if REAPPOINT.search(f"{subj} {letter[:400]}") and not re.search(r"resign|cessation", letter, re.I):
+            return Classified("management_change", "re_appointment", 10, "re-appointment")
+        if TOP_ROLE.search(letter) and re.search(
+            r"\b(resign|cessation|appoint|retire|step(ped|s)? down|not to seek|conveyed|succe(ed|ssion))",
+            letter,
+            re.I,
+        ):
+            return Classified(
+                "management_change", "kmp_change", 58, "CEO/CFO/MD-level change stated in the letter"
+            )
+        if ESG.search(head):
+            return Classified("unclassified", "esg", 3, "ESG rating or report")
+        if ROUTINE.search(head) or ADDRESS.search(head):
             return Classified("unclassified", "routine", 2, "routine compliance")
-        if CAPEX.search(subj):
+        if TRANSCRIPT.search(subj) or RECORDING_CALL.search(head):
+            return Classified("earnings_call", "recording", 6, "call recording / transcript")
+        if CONFERENCE.search(subj):
+            return Classified("investor_meetings", None, 6, "investor conference / meeting")
+        if VOLUMES.search(subj):
+            return Classified("press_release", "business_update", 25, "monthly production / sales")
+        if CAPEX.search(head):
             return Classified("capex", None, 42, "capacity / plant update")
-        if SUBSIDIARY_ROUTINE.search(subj):
+        if SUBSIDIARY_ROUTINE.search(head):
             return Classified("M&A", "routine_subsidiary_infusion", 20, "routine subsidiary step")
         return None
 

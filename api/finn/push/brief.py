@@ -10,10 +10,12 @@ import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 
 from psycopg import Connection
 from psycopg.types.json import Jsonb
 
+IST = ZoneInfo("Asia/Kolkata")
 NOW_MIN, WORTH_MIN, NOW_CAP = 70, 40, 5
 WINDOWS = {"24h": 24, "3d": 72, "7d": 168, "30d": 720}
 RESULTS_FAMILY_HOURS = 36
@@ -34,6 +36,8 @@ SUBTYPE_LABEL = {
     "re_appointment": "Re-appointments",
     "routine_subsidiary_infusion": "Routine subsidiary steps",
     "smp_change": "Senior-management changes",
+    "pending": "Not yet classified",
+    "esg": "ESG ratings",
 }
 CATEGORY_LABEL = {
     "results": "Results",
@@ -100,10 +104,11 @@ def load_items(conn: Connection, since: datetime) -> list[Item]:
     port = portfolio(conn)
     rows = conn.execute(
         """
-        SELECT f.id, f.company_id, c.nse_symbol, c.name, f.ts_ist, k.category, k.sub_type, k.base,
-               f.subject, f.pdf_url, coalesce(k.one_line, ''), k.reason
+        SELECT f.id, f.company_id, c.nse_symbol, c.name, f.ts_ist, coalesce(k.category, 'unclassified'),
+               CASE WHEN k.filing_id IS NULL THEN 'pending' ELSE k.sub_type END, coalesce(k.base, 0),
+               f.subject, f.pdf_url, coalesce(k.one_line, ''), coalesce(k.reason, 'not yet classified')
         FROM filings f JOIN companies c ON c.id = f.company_id
-        JOIN filing_class k ON k.filing_id = f.id
+        LEFT JOIN filing_class k ON k.filing_id = f.id
         WHERE c.nse_symbol = ANY(%s) AND f.ts_ist >= %s AND f.dup_of IS NULL
         ORDER BY f.ts_ist
         """,
@@ -156,43 +161,66 @@ def bundle_results(items: list[Item]) -> list[Item]:
 
 
 def attach_cards(conn: Connection, items: list[Item]) -> None:
-    for it in items:
-        if it.category == "results" and it.sub_type == "results_filing":
-            row = conn.execute(
-                "SELECT card FROM results_cards WHERE company_id = %s AND period_end < %s::date "
-                "AND period_end >= %s::date - 75 ORDER BY (basis = 'consolidated') DESC, period_end DESC "
-                "LIMIT 1",
-                (it.company_id, it.ts, it.ts),
-            ).fetchone()
-            if row:
-                it.kind, it.card = "results", row[0]
-                it.headline = f"{row[0]['period_label']} results: {row[0]['take']}"
+    want = [i for i in items if i.category == "results" and i.sub_type == "results_filing"]
+    if not want:
+        return
+    rows = conn.execute(
+        "SELECT company_id, period_end, basis, card FROM results_cards WHERE company_id = ANY(%s)",
+        (sorted({i.company_id for i in want}),),
+    ).fetchall()
+    for it in want:
+        filed = it.ts.astimezone(IST).date()
+        cands = [r for r in rows if r[0] == it.company_id and filed - timedelta(days=75) <= r[1] < filed]
+        if not cands:
+            continue
+        best = max(cands, key=lambda r: (r[1], r[2] == "consolidated"))
+        it.kind, it.card = "results", best[3]
+        it.headline = f"{best[3]['period_label']} results: {best[3]['take']}"
 
 
-def price_reaction(conn: Connection, company_id: int, ts: datetime) -> tuple[int, dict]:
-    """Abnormal return and volume multiple on the first session at/after the filing."""
-    row = conn.execute(
-        """
-        WITH p AS (
-          SELECT date, close, volume,
-                 lag(close) OVER (ORDER BY date) AS prev_close,
-                 avg(volume) OVER (ORDER BY date ROWS BETWEEN 20 PRECEDING AND 1 PRECEDING) AS avg20
-          FROM prices WHERE company_id = %s),
-        n AS (
-          SELECT date, close / lag(close) OVER (ORDER BY date) - 1 AS r
-          FROM prices WHERE company_id = (SELECT id FROM companies WHERE nse_symbol = '^NSEI'))
-        SELECT p.date, p.close / p.prev_close - 1, n.r, p.volume / nullif(p.avg20, 0)
-        FROM p JOIN n USING (date)
-        WHERE p.date >= (%s AT TIME ZONE 'Asia/Kolkata')::date + CASE
-              WHEN extract(hour FROM %s AT TIME ZONE 'Asia/Kolkata') >= 15 THEN 1 ELSE 0 END
-        ORDER BY p.date LIMIT 1
-        """,
-        (company_id, ts, ts),
-    ).fetchone()
-    if not row or row[1] is None or row[2] is None:
+class PriceBook:
+    """Daily bars for the brief's companies and NIFTY, loaded in one query (a replay builds a
+    brief live, so per-item queries are too slow)."""
+
+    def __init__(self, conn: Connection, company_ids: list[int], since: datetime) -> None:
+        rows = conn.execute(
+            "SELECT p.company_id, p.date, p.close, p.volume FROM prices p "
+            "WHERE (p.company_id = ANY(%s) OR p.company_id = "
+            "(SELECT id FROM companies WHERE nse_symbol = '^NSEI')) "
+            "AND p.date >= %s::date - 45 ORDER BY p.company_id, p.date",
+            (company_ids, since),
+        ).fetchall()
+        nifty = conn.execute("SELECT id FROM companies WHERE nse_symbol = '^NSEI'").fetchone()
+        self.nifty_id = nifty[0] if nifty else None
+        self.bars: dict[int, list[tuple]] = defaultdict(list)
+        for cid, d, close, vol in rows:
+            self.bars[cid].append((d, close, vol))
+
+    def session_after(self, cid: int, ts: datetime, now: datetime) -> tuple | None:
+        """(date, return, volume multiple) for the first session that could react to a filing at
+        `ts` (same day if before 3 pm IST, else next day), never later than `now`."""
+        local = ts.astimezone(IST)
+        first = local.date() + timedelta(days=1 if local.hour >= 15 else 0)
+        bars = self.bars.get(cid, [])
+        for i, (d, close, vol) in enumerate(bars):
+            if d < first:
+                continue
+            if d > now.astimezone(IST).date() or i == 0 or close is None or bars[i - 1][1] is None:
+                return None
+            prior = [b[2] for b in bars[max(0, i - 20) : i] if b[2]]
+            vm = (vol / (sum(prior) / len(prior))) if prior and vol else None
+            return d, float(close / bars[i - 1][1] - 1), vm
+        return None
+
+
+def price_reaction(book: PriceBook, company_id: int, ts: datetime, now: datetime) -> tuple[int, dict]:
+    """Abnormal return (vs NIFTY) and volume multiple on the first session after the filing."""
+    s = book.session_after(company_id, ts, now)
+    n = book.session_after(book.nifty_id, ts, now) if book.nifty_id else None
+    if s is None or n is None or s[0] != n[0]:
         return 0, {}
-    d, r, nr, vm = row
-    abn = float(r - nr)
+    d, r, vm = s
+    abn = r - n[1]
     pts = min(10, round(abs(abn) * 100 * 2))
     if vm is not None and float(vm) >= 2:
         pts = max(pts, min(10, round(float(vm) * 3)))
@@ -215,10 +243,12 @@ def magnitude(it: Item) -> tuple[int, str | None]:
 
 def score(conn: Connection, items: list[Item], now: datetime, window_h: int) -> None:
     port = portfolio(conn)
+    since = min((i.ts for i in items), default=now)
+    book = PriceBook(conn, sorted({i.company_id for i in items}), since)
     for it in items:
         mag, mag_why = magnitude(it)
         weight = port.get(it.symbol, {}).get("weight_pct") or 0
-        pr, pr_info = price_reaction(conn, it.company_id, it.ts)
+        pr, pr_info = price_reaction(book, it.company_id, it.ts, now)
         age_h = max(0.0, (now - it.ts).total_seconds() / 3600)
         stale = round(min(10, age_h / window_h * 10))
         it.components = {

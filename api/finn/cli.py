@@ -199,6 +199,37 @@ def cmd_ingest(args: argparse.Namespace) -> int:
     return 0 if ok else 1
 
 
+def cmd_push(args: argparse.Namespace) -> int:
+    """Push pipeline: rules → thin-subject texts → model → results cards → materialise briefs."""
+    from zoneinfo import ZoneInfo
+
+    from finn.llm.router import LLMUnavailable, Router
+    from finn.llm.store import LLMStore
+    from finn.push import brief, pipeline
+    from finn.sources.http import SourceRefused
+    from finn.sources.nse import NSE
+
+    with db.connection() as conn:
+        db.migrate(conn)
+        ids = list(ingest.company_ids(conn, ingest.demo_symbols()).values())
+        print("  rules        ", pipeline.classify_rules_stage(conn, ids))
+        try:
+            print("  thin texts   ", pipeline.fetch_thin_texts(conn, NSE(), ids))
+            print("  rules (text) ", pipeline.classify_rules_stage(conn, ids))
+        except SourceRefused as e:
+            print(f"!! STOPPED: {e}. Access rule: do not retry; tell the owner.")
+            return 1
+        if not args.no_llm:
+            try:
+                print("  model        ", pipeline.classify_llm_stage(conn, Router(store=LLMStore()), ids))
+            except LLMUnavailable as e:
+                print(f"  model         skipped ({e}); undecided filings show as 'not yet classified'")
+        print("  results cards", pipeline.compute_results_cards(conn, ids))
+        now = datetime.now(ZoneInfo("Asia/Kolkata"))
+        print("  briefs       ", brief.materialise(conn, now))
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="finn")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -216,6 +247,9 @@ def main(argv: list[str] | None = None) -> int:
     ing.add_argument("--symbols", default="", help="comma-separated; default = demo set")
     ing.add_argument("--days", type=int, default=120)
     ing.set_defaults(fn=cmd_ingest)
+    push = sub.add_parser("push", help="classify, results cards, materialise briefs")
+    push.add_argument("--no-llm", action="store_true", help="rules only (e.g. on a CI runner)")
+    push.set_defaults(fn=cmd_push)
     args = p.parse_args(argv)
     return args.fn(args)
 

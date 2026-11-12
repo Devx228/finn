@@ -1,0 +1,13 @@
+{
+ "transcripts": 9,
+ "annual_reports": 8,
+ "balance_sheets": 9,
+ "results_filings": {
+  "consolidated": {
+   "n": 24,
+   "to": "2026-09-30",
+   "from": "2019-03-31"
+  }
+ },
+ "annual_cash_flows": 4
+}

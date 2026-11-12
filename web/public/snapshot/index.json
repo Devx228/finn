@@ -1,18 +1,106 @@
 {
  "brief:24h": {
   "file": "brief_24h.json",
-  "as_of": "2026-11-12T09:07:04.519642+00:00"
+  "as_of": "2026-11-12T14:33:07.724975+00:00"
  },
  "brief:30d": {
   "file": "brief_30d.json",
-  "as_of": "2026-11-12T09:07:04.519642+00:00"
+  "as_of": "2026-11-12T14:33:07.724975+00:00"
  },
  "brief:3d": {
   "file": "brief_3d.json",
-  "as_of": "2026-11-12T09:07:04.519642+00:00"
+  "as_of": "2026-11-12T14:33:07.724975+00:00"
  },
  "brief:7d": {
   "file": "brief_7d.json",
-  "as_of": "2026-11-12T09:07:04.519642+00:00"
+  "as_of": "2026-11-12T14:33:07.724975+00:00"
+ },
+ "coverage:AUBANK": {
+  "file": "coverage_AUBANK.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:BAJFINANCE": {
+  "file": "coverage_BAJFINANCE.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:BHARTIARTL": {
+  "file": "coverage_BHARTIARTL.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:CGPOWER": {
+  "file": "coverage_CGPOWER.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:CREDITACC": {
+  "file": "coverage_CREDITACC.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:DEEPAKNTR": {
+  "file": "coverage_DEEPAKNTR.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:DIXON": {
+  "file": "coverage_DIXON.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:HDFCBANK": {
+  "file": "coverage_HDFCBANK.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:INFY": {
+  "file": "coverage_INFY.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:KAYNES": {
+  "file": "coverage_KAYNES.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:KPITTECH": {
+  "file": "coverage_KPITTECH.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:LT": {
+  "file": "coverage_LT.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:M&M": {
+  "file": "coverage_M&M.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:MARUTI": {
+  "file": "coverage_MARUTI.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:PERSISTENT": {
+  "file": "coverage_PERSISTENT.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:PIIND": {
+  "file": "coverage_PIIND.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:SUNPHARMA": {
+  "file": "coverage_SUNPHARMA.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:TATASTEEL": {
+  "file": "coverage_TATASTEEL.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:TITAN": {
+  "file": "coverage_TITAN.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:TRENT": {
+  "file": "coverage_TRENT.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:ULTRACEMCO": {
+  "file": "coverage_ULTRACEMCO.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
+ },
+ "coverage:VBL": {
+  "file": "coverage_VBL.json",
+  "as_of": "2026-11-12T12:39:54.960724+00:00"
  }
 }

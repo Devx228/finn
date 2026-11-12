@@ -1,31 +1,697 @@
 {
- "as_of": "2026-11-12T09:07:04.519642Z",
- "items": [
+ "now": [],
+ "as_of": "2026-11-12T20:03:07.724975+05:30",
+ "worth": [],
+ "buried": [
   {
-   "id": "p0-24h-1",
-   "tier": "now",
-   "company": "—",
-   "headline": "Wiring check: this row came from Postgres via the API"
+   "count": 9,
+   "items": [
+    {
+     "id": "f858",
+     "ts": "2026-11-12T06:27:20+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 14,
+     "symbol": "MARUTI",
+     "bundled": 0,
+     "company": "Maruti Suzuki India Limited",
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/MARUTIASHISH_12112026115520_Investor_Meeting_17_18_19Nov2026.pdf",
+     "category": "investor_meetings",
+     "headline": "Schedule of meet",
+     "sub_type": null,
+     "components": {
+      "base": {
+       "why": "investor / analyst meeting schedule",
+       "points": 6
+      },
+      "network": {
+       "why": "network layer arrives in Phase 3",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "6.3% of portfolio",
+       "points": 8
+      },
+      "staleness": {
+       "why": "8 h old",
+       "points": -3
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": {
+        "session": "2026-11-12",
+        "volume_multiple": 1.3,
+        "abnormal_return_pct": -1.4
+       },
+       "points": 3
+      }
+     },
+     "filing_ids": [
+      858
+     ],
+     "category_label": "Investor meetings"
+    },
+    {
+     "id": "f363",
+     "ts": "2026-11-12T08:57:53+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 14,
+     "symbol": "HDFCBANK",
+     "bundled": 0,
+     "company": "HDFC Bank Limited",
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/HDFCBANK3_12112026142725_Analystmeetintimation12112026.pdf",
+     "category": "investor_meetings",
+     "headline": "Schedule of meet",
+     "sub_type": null,
+     "components": {
+      "base": {
+       "why": "investor / analyst meeting schedule",
+       "points": 6
+      },
+      "network": {
+       "why": "network layer arrives in Phase 3",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "7.6% of portfolio",
+       "points": 9
+      },
+      "staleness": {
+       "why": "6 h old",
+       "points": -2
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": {
+        "session": "2026-11-12",
+        "volume_multiple": 1.0,
+        "abnormal_return_pct": 0.5
+       },
+       "points": 1
+      }
+     },
+     "filing_ids": [
+      363
+     ],
+     "category_label": "Investor meetings"
+    },
+    {
+     "id": "f137",
+     "ts": "2026-11-12T11:23:41+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 14,
+     "symbol": "TATASTEEL",
+     "bundled": 0,
+     "company": "Tata Steel Limited",
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_12112026165318_BSENSE_Signed.pdf",
+     "category": "investor_meetings",
+     "headline": "Intimation of Schedule of Analyst / Institutional Investor Meeting under the Securities and Exchange Board of India (Listing Obligations and Disclosure Requirem",
+     "sub_type": null,
+     "components": {
+      "base": {
+       "why": "investor / analyst meeting schedule",
+       "points": 6
+      },
+      "network": {
+       "why": "network layer arrives in Phase 3",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "7.5% of portfolio",
+       "points": 9
+      },
+      "staleness": {
+       "why": "3 h old",
+       "points": -1
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": null,
+       "points": 0
+      }
+     },
+     "filing_ids": [
+      137
+     ],
+     "category_label": "Investor meetings"
+    },
+    {
+     "id": "f512",
+     "ts": "2026-11-12T07:23:36+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 12,
+     "symbol": "CGPOWER",
+     "bundled": 0,
+     "company": "CG Power and Industrial Solutions Limited",
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/CGPOWER_12112026125253_CGIPL_IntimationofAnalystcall_27112026.pdf",
+     "category": "investor_meetings",
+     "headline": "Schedule of meet",
+     "sub_type": null,
+     "components": {
+      "base": {
+       "why": "investor / analyst meeting schedule",
+       "points": 6
+      },
+      "network": {
+       "why": "network layer arrives in Phase 3",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "6.8% of portfolio",
+       "points": 8
+      },
+      "staleness": {
+       "why": "7 h old",
+       "points": -3
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": {
+        "session": "2026-11-12",
+        "volume_multiple": 0.5,
+        "abnormal_return_pct": -0.3
+       },
+       "points": 1
+      }
+     },
+     "filing_ids": [
+      512
+     ],
+     "category_label": "Investor meetings"
+    },
+    {
+     "id": "f565",
+     "ts": "2026-11-12T12:00:41+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 12,
+     "symbol": "M&M",
+     "bundled": 0,
+     "company": "Mahindra & Mahindra Limited",
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/AmitDodani_12112026173022_ConclusionofAnalystMeet12112026.pdf",
+     "category": "investor_meetings",
+     "headline": "Participation in Investor Meeting",
+     "sub_type": null,
+     "components": {
+      "base": {
+       "why": "investor / analyst meeting schedule",
+       "points": 6
+      },
+      "network": {
+       "why": "network layer arrives in Phase 3",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "6.1% of portfolio",
+       "points": 7
+      },
+      "staleness": {
+       "why": "3 h old",
+       "points": -1
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": null,
+       "points": 0
+      }
+     },
+     "filing_ids": [
+      565
+     ],
+     "category_label": "Investor meetings"
+    },
+    {
+     "id": "f192",
+     "ts": "2026-11-12T10:00:00+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 11,
+     "symbol": "TITAN",
+     "bundled": 0,
+     "company": "Titan Company Limited",
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/TITAN_12112026152942_SEintimation_12_Nov_26.pdf",
+     "category": "investor_meetings",
+     "headline": "Schedule of Analyst / Institutional Investor Meeting",
+     "sub_type": null,
+     "components": {
+      "base": {
+       "why": "investor / analyst meeting schedule",
+       "points": 6
+      },
+      "network": {
+       "why": "network layer arrives in Phase 3",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "6.2% of portfolio",
+       "points": 7
+      },
+      "staleness": {
+       "why": "5 h old",
+       "points": -2
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": null,
+       "points": 0
+      }
+     },
+     "filing_ids": [
+      192
+     ],
+     "category_label": "Investor meetings"
+    },
+    {
+     "id": "f467",
+     "ts": "2026-11-11T15:25:29+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 7,
+     "symbol": "AUBANK",
+     "bundled": 0,
+     "company": "AU Small Finance Bank Limited",
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/AUBANK_11112026205434_Investor_Meet_Intimation.pdf",
+     "category": "investor_meetings",
+     "headline": "Schedule of meet",
+     "sub_type": null,
+     "components": {
+      "base": {
+       "why": "investor / analyst meeting schedule",
+       "points": 6
+      },
+      "network": {
+       "why": "network layer arrives in Phase 3",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "4.3% of portfolio",
+       "points": 5
+      },
+      "staleness": {
+       "why": "23 h old",
+       "points": -10
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": {
+        "session": "2026-11-12",
+        "volume_multiple": 1.3,
+        "abnormal_return_pct": 2.8
+       },
+       "points": 6
+      }
+     },
+     "filing_ids": [
+      467
+     ],
+     "category_label": "Investor meetings"
+    },
+    {
+     "id": "f31",
+     "ts": "2026-11-12T10:50:13+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 7,
+     "symbol": "KPITTECH",
+     "bundled": 0,
+     "company": "KPIT Technologies Limited",
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/KPITTECH_12112026161901_KPIT_Investor_Conference_Avendus_and_JM_Financials_S.pdf",
+     "category": "investor_meetings",
+     "headline": "Schedule of meet",
+     "sub_type": null,
+     "components": {
+      "base": {
+       "why": "investor / analyst meeting schedule",
+       "points": 6
+      },
+      "network": {
+       "why": "network layer arrives in Phase 3",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "2.9% of portfolio",
+       "points": 3
+      },
+      "staleness": {
+       "why": "4 h old",
+       "points": -2
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": null,
+       "points": 0
+      }
+     },
+     "filing_ids": [
+      31
+     ],
+     "category_label": "Investor meetings"
+    },
+    {
+     "id": "f32",
+     "ts": "2026-11-12T10:50:13+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 7,
+     "symbol": "KPITTECH",
+     "bundled": 0,
+     "company": "KPIT Technologies Limited",
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/KPITTECH_12112026161655_KPIT_Investor_Conference_Avendus_and_JM_Financials_S.pdf",
+     "category": "investor_meetings",
+     "headline": "Schedule of Investors/Analyst Conference to be held on Monday, November 16, 2026",
+     "sub_type": null,
+     "components": {
+      "base": {
+       "why": "investor / analyst meeting schedule",
+       "points": 6
+      },
+      "network": {
+       "why": "network layer arrives in Phase 3",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "2.9% of portfolio",
+       "points": 3
+      },
+      "staleness": {
+       "why": "4 h old",
+       "points": -2
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": null,
+       "points": 0
+      }
+     },
+     "filing_ids": [
+      32
+     ],
+     "category_label": "Investor meetings"
+    }
+   ],
+   "label": "Investor meetings"
   },
   {
-   "id": "p0-24h-2",
-   "tier": "worth",
-   "company": "—",
-   "headline": "Placeholder — real filings arrive in Phase 2"
+   "count": 2,
+   "items": [
+    {
+     "id": "f663",
+     "ts": "2026-11-12T12:06:21+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 38,
+     "symbol": "BHARTIARTL",
+     "bundled": 0,
+     "company": "Bharti Airtel Limited",
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/BHARTIARTL_12112026172851_Airtel_Stx_Intimation.pdf",
+     "category": "earnings_call",
+     "headline": "Transcript",
+     "sub_type": "transcript",
+     "components": {
+      "base": {
+       "why": "earnings-call transcript",
+       "points": 32
+      },
+      "network": {
+       "why": "network layer arrives in Phase 3",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "6.1% of portfolio",
+       "points": 7
+      },
+      "staleness": {
+       "why": "2 h old",
+       "points": -1
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": null,
+       "points": 0
+      }
+     },
+     "filing_ids": [
+      663
+     ],
+     "category_label": "Earnings calls"
+    },
+    {
+     "id": "f1004",
+     "ts": "2026-11-12T05:03:31+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 35,
+     "symbol": "PIIND",
+     "bundled": 0,
+     "company": "PI Industries Limited",
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/PIIND_12112026103314_Transcript_intimation.pdf",
+     "category": "earnings_call",
+     "headline": "Transcript of the Earnings Conference Call pertaining to the Unaudited Financial Results for the quarter and half year ended September 30, 2026",
+     "sub_type": "transcript",
+     "components": {
+      "base": {
+       "why": "earnings-call transcript",
+       "points": 32
+      },
+      "network": {
+       "why": "network layer arrives in Phase 3",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "3.2% of portfolio",
+       "points": 4
+      },
+      "staleness": {
+       "why": "9 h old",
+       "points": -4
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": {
+        "session": "2026-11-12",
+        "volume_multiple": 1.1,
+        "abnormal_return_pct": -1.4
+       },
+       "points": 3
+      }
+     },
+     "filing_ids": [
+      1004
+     ],
+     "category_label": "Earnings calls"
+    }
+   ],
+   "label": "Earnings calls"
   },
   {
-   "id": "p0-24h-3",
-   "tier": "buried",
-   "company": "—",
-   "headline": "Placeholder buried item"
+   "count": 1,
+   "items": [
+    {
+     "id": "f566",
+     "ts": "2026-11-12T11:43:06+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 30,
+     "symbol": "M&M",
+     "bundled": 0,
+     "company": "Mahindra & Mahindra Limited",
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/AmitDodani_12112026171250_MonthlyReportOct2026.pdf",
+     "category": "results",
+     "headline": "Mahindra & Mahindra reports October 2026 production, sales and export figures",
+     "sub_type": null,
+     "components": {
+      "base": {
+       "why": "model (qwen2.5:7b): Mahindra & Mahindra reports October 2026 production, sales and export figures",
+       "points": 24
+      },
+      "network": {
+       "why": "network layer arrives in Phase 3",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "6.1% of portfolio",
+       "points": 7
+      },
+      "staleness": {
+       "why": "3 h old",
+       "points": -1
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": null,
+       "points": 0
+      }
+     },
+     "filing_ids": [
+      566
+     ],
+     "category_label": "Results"
+    }
+   ],
+   "label": "Results"
+  },
+  {
+   "count": 1,
+   "items": [
+    {
+     "id": "f362",
+     "ts": "2026-11-12T12:03:25+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 18,
+     "symbol": "HDFCBANK",
+     "bundled": 0,
+     "company": "HDFC Bank Limited",
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/HDFCBANK3_12112026173223_SE_Intimation-_VSR.pdf",
+     "category": "management_change",
+     "headline": "Approval from the Reserve Bank of India for re-appointment of Mr. V. Srinivasa Rangan asthe Whole-time Director (designated as Executive Director) of HDFC Bank ",
+     "sub_type": "re_appointment",
+     "components": {
+      "base": {
+       "why": "re-appointment",
+       "points": 10
+      },
+      "network": {
+       "why": "network layer arrives in Phase 3",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "7.6% of portfolio",
+       "points": 9
+      },
+      "staleness": {
+       "why": "2 h old",
+       "points": -1
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": null,
+       "points": 0
+      }
+     },
+     "filing_ids": [
+      362
+     ],
+     "category_label": "Management change"
+    }
+   ],
+   "label": "Re-appointments"
   }
  ],
  "counts": {
-  "now": 1,
-  "worth": 1,
-  "buried": 1,
-  "filings": 3
+  "now": 0,
+  "worth": 0,
+  "buried": 13,
+  "filings": 13
  },
  "window": "24h",
- "placeholder": true
+ "placeholder": false,
+ "source_credit": "Filings: NSE. Prices: Yahoo Finance. Portfolio weights are synthetic."
 }

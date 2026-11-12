@@ -49,4 +49,13 @@ describe("formatAsOf", () => {
   it("renders in IST", () => {
     expect(formatAsOf("2026-11-12T09:30:00Z")).toBe("12 Nov, 15:00 IST");
   });
+  it("formats crore and percent the Indian way", async () => {
+    const { formatCr, formatPct } = await import("./format");
+    expect(formatCr(21793.6)).toBe("₹21,794 cr");
+    expect(formatCr(529.5)).toBe("₹529.5 cr");
+    expect(formatCr(178_500)).toBe("₹1.79 lakh cr");
+    expect(formatPct(12.34)).toEqual({ text: "▲ 12.3%", dir: "up" });
+    expect(formatPct(-4)).toEqual({ text: "▼ 4.0%", dir: "down" });
+    expect(formatPct(null).text).toBe("—");
+  });
 });
