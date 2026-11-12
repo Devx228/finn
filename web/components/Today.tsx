@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { NetworkSheet, NetworkStrip } from "@/components/Network";
@@ -223,8 +224,11 @@ function Actions({ it, onWhy }: { it: BriefRow; onWhy: (r: BriefRow) => void }) 
           Filing on NSE
         </a>
       )}
+      <Link href={`/research?s=${encodeURIComponent(it.symbol)}`} className="flex min-h-11 items-center text-ink-2">
+        Research
+      </Link>
       {it.bundled > 0 && (
-        <span className="flex min-h-11 items-center text-ink-3">+{it.bundled} related filings</span>
+        <span className="flex min-h-11 items-center text-ink-3">+{it.bundled} related</span>
       )}
     </div>
   );

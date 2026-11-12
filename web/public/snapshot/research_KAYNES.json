@@ -1,0 +1,433 @@
+{
+ "name": "Kaynes Technology India Limited",
+ "as_of": "2026-11-13T00:06:08.353263+05:30",
+ "calls": [
+  {
+   "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12082026164943_TranscriptoftheEarningAnnouncement.pdf",
+   "label": "Q1 FY27 call",
+   "pages": 20,
+   "n_items": 1,
+   "filed_at": "2026-08-12T11:19:59+00:00"
+  },
+  {
+   "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12022026212332_EaningscallTranscriptQ32026Signed.pdf",
+   "label": "Q3 FY26 call",
+   "pages": 19,
+   "n_items": 0,
+   "filed_at": "2026-02-12T15:55:28+00:00"
+  },
+  {
+   "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_08112025175717_EarningscalltranscriptQ22026Signed.pdf",
+   "label": "Q2 FY26 call",
+   "pages": 19,
+   "n_items": 1,
+   "filed_at": "2025-11-08T12:28:02+00:00"
+  },
+  {
+   "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_05082025165345_SEintimationtranscriptSigned.pdf",
+   "label": "Q1 FY26 call",
+   "pages": 19,
+   "n_items": 1,
+   "filed_at": "2025-08-05T11:24:59+00:00"
+  }
+ ],
+ "stats": [
+  {
+   "model": 0,
+   "rules": 1,
+   "dropped": 0,
+   "model_name": "qwen2.5-7b-8k",
+   "selected_chars": 2159
+  },
+  {
+   "model": 0,
+   "rules": 0,
+   "dropped": 1,
+   "model_name": "qwen2.5-7b-8k",
+   "selected_chars": 3156
+  },
+  {
+   "model": 0,
+   "rules": 1,
+   "dropped": 0,
+   "model_name": "qwen2.5-7b-8k",
+   "selected_chars": 1478
+  },
+  {
+   "model": 0,
+   "rules": 1,
+   "dropped": 1,
+   "model_name": "qwen2.5-7b-8k",
+   "selected_chars": 3114
+  }
+ ],
+ "format": "indas",
+ "symbol": "KAYNES",
+ "network": [
+  {
+   "id": 77,
+   "why": "worked at Kaynes Technology India Limited as Chief Risk Officer (2017–now); classmate, last spoke Jul 2026, 6 interactions in 24 months",
+   "name": "Ananya Pillai",
+   "rank": 0.77,
+   "warmth": 0.77,
+   "headline": "Chief Risk Officer, Kaynes Technology India Limited",
+   "how_known": "classmate",
+   "relevance": 0.77,
+   "synthetic": true,
+   "compliance": "Current employee of Kaynes Technology India Limited — treat as a potential insider. Don't seek unpublished price-sensitive information; keep to public and industry context.",
+   "warmth_why": "classmate, last spoke Jul 2026, 6 interactions in 24 months",
+   "last_contact": "2026-07-13",
+   "warmth_label": "strong",
+   "what_theyd_know": "How Kaynes Technology India Limited runs treasury-credit today"
+  },
+  {
+   "id": 22,
+   "why": "worked at peer CG Power and Industrial Solutions Limited as Treasurer (2019–now); classmate, last spoke Mar 2026, 7 interactions in 24 months",
+   "name": "Diya Agarwal",
+   "rank": 0.671,
+   "warmth": 0.63,
+   "headline": "Treasurer, CG Power and Industrial Solutions Limited",
+   "how_known": "classmate",
+   "relevance": 0.7,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "classmate, last spoke Mar 2026, 7 interactions in 24 months",
+   "last_contact": "2026-03-09",
+   "warmth_label": "medium",
+   "what_theyd_know": "How CG Power and Industrial Solutions Limited runs treasury-credit today"
+  },
+  {
+   "id": 82,
+   "why": "worked at peer Dixon Technologies (India) Limited as Senior Vice President (2026–now); met-as-management, last spoke Oct 2025, 3 interactions in 24 months",
+   "name": "Shreya Gill",
+   "rank": 0.667,
+   "warmth": 0.62,
+   "headline": "Senior Vice President, Dixon Technologies (India) Limited",
+   "how_known": "met-as-management",
+   "relevance": 0.7,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "met-as-management, last spoke Oct 2025, 3 interactions in 24 months",
+   "last_contact": "2025-10-25",
+   "warmth_label": "medium",
+   "what_theyd_know": "How Dixon Technologies (India) Limited runs general-management today"
+  }
+ ],
+ "signals": {
+  "bear": [
+   "EBITDA margin 15.6% in Q1 FY27, down 120 bps YoY",
+   "PAT -24.4% YoY in Q1 FY27",
+   "FY26 revenue growth missed: 33.2% vs 50.0–50.0%"
+  ],
+  "bull": [
+   "Revenue +40.5% YoY in Q1 FY27",
+   "Delivered FY26 ebitda margin: 15.8% within 15.6–15.6%"
+  ]
+ },
+ "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts on NSE. No news, broker notes or model knowledge.",
+ "guidance": [
+  {
+   "label": "Capex",
+   "story": "FY27 capex: 300 ₹ cr.",
+   "actual": null,
+   "metric": "capex",
+   "period": "FY27",
+   "points": [
+    {
+     "by": "rules",
+     "low": 300.0,
+     "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12082026164943_TranscriptoftheEarningAnnouncement.pdf",
+     "call": "Q1 FY27 call",
+     "high": 300.0,
+     "page": 16,
+     "unit": "₹ cr",
+     "label": "capex",
+     "quote": "We said we will be funding for this capex for this year is about INR300 crores for OSAT, INR300 crores for PCB, and about INR250 crores for EMS business.",
+     "change": "first given",
+     "metric": "capex",
+     "period": "FY27",
+     "call_date": "2026-08-12",
+     "direction": "unclear"
+    }
+   ],
+   "verdict": "unverifiable",
+   "verdict_why": "Not checkable from the results filings",
+   "as_of_quarter": "2026-06-30"
+  },
+  {
+   "label": "Revenue growth",
+   "story": "FY26 revenue growth: 50%. Filings show 33.2% (FY).",
+   "actual": {
+    "span": "FY",
+    "unit": "%",
+    "basis": "reported ₹ growth, consolidated",
+    "value": 33.2,
+    "quarters": 4
+   },
+   "metric": "revenue_growth",
+   "period": "FY26",
+   "points": [
+    {
+     "by": "rules",
+     "low": 50.0,
+     "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_08112025175717_EarningscalltranscriptQ22026Signed.pdf",
+     "call": "Q2 FY26 call",
+     "high": 50.0,
+     "page": 15,
+     "unit": "%",
+     "label": "revenue growth",
+     "quote": "So as we go forward, we expect automotive to grow at the rate of growth of our company's growth rate, which will be anywhere around 50% plus/minus, you can take.",
+     "change": "first given",
+     "metric": "revenue_growth",
+     "period": "FY26",
+     "call_date": "2025-11-08",
+     "direction": "unclear"
+    }
+   ],
+   "verdict": "missed",
+   "verdict_why": "33.2% vs 50.0–50.0%",
+   "as_of_quarter": "2026-06-30"
+  },
+  {
+   "label": "EBITDA margin",
+   "story": "FY26 ebitda margin: 15.6%. Filings show 15.8% (FY).",
+   "actual": {
+    "span": "FY",
+    "unit": "%",
+    "basis": "EBITDA ÷ revenue from the filings",
+    "value": 15.8,
+    "quarters": 4
+   },
+   "metric": "ebitda_margin",
+   "period": "FY26",
+   "points": [
+    {
+     "by": "rules",
+     "low": 15.6,
+     "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_05082025165345_SEintimationtranscriptSigned.pdf",
+     "call": "Q1 FY26 call",
+     "high": 15.6,
+     "page": 13,
+     "unit": "%",
+     "label": "ebitda margin",
+     "quote": "We are saying that looking at the first quarter, the EBITDA might exceed the guidance of 15.6%.",
+     "change": "first given",
+     "metric": "ebitda_margin",
+     "period": "FY26",
+     "call_date": "2025-08-05",
+     "direction": "unclear"
+    }
+   ],
+   "verdict": "delivered",
+   "verdict_why": "15.8% within 15.6–15.6%",
+   "as_of_quarter": "2026-06-30"
+  }
+ ],
+ "industry": null,
+ "quarters": [
+  {
+   "fy": 2024,
+   "end": "2023-09-30",
+   "nii": null,
+   "pat": 32.3,
+   "ebit": 42.3,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_98345_972640_31102023071044.xml",
+   "basis": "consolidated",
+   "label": "Q2 FY24",
+   "ebitda": 48.8,
+   "pat_yoy": null,
+   "revenue": 360.8,
+   "pat_margin": 9.0,
+   "ebit_margin": 11.7,
+   "revenue_yoy": null,
+   "ebitda_margin": 13.5
+  },
+  {
+   "fy": 2024,
+   "end": "2023-12-31",
+   "nii": null,
+   "pat": 45.2,
+   "ebit": 63.9,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_101788_1039481_30012024070053.xml",
+   "basis": "consolidated",
+   "label": "Q3 FY24",
+   "ebitda": 69.9,
+   "pat_yoy": null,
+   "revenue": 509.3,
+   "pat_margin": 8.9,
+   "ebit_margin": 12.5,
+   "revenue_yoy": null,
+   "ebitda_margin": 13.7
+  },
+  {
+   "fy": 2024,
+   "end": "2024-03-31",
+   "nii": null,
+   "pat": 81.1,
+   "ebit": 87.9,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_106155_1127397_16052024081744.xml",
+   "basis": "consolidated",
+   "label": "Q4 FY24",
+   "ebitda": 95.2,
+   "pat_yoy": 27.7,
+   "revenue": 637.3,
+   "pat_margin": 12.7,
+   "ebit_margin": 13.8,
+   "revenue_yoy": -2.5,
+   "ebitda_margin": 14.9
+  },
+  {
+   "fy": 2025,
+   "end": "2024-06-30",
+   "nii": null,
+   "pat": 50.8,
+   "ebit": 58.5,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_109603_1203976_26072024074038.xml",
+   "basis": "consolidated",
+   "label": "Q1 FY25",
+   "ebitda": 66.9,
+   "pat_yoy": 106.5,
+   "revenue": 504.0,
+   "pat_margin": 10.1,
+   "ebit_margin": 11.6,
+   "revenue_yoy": 69.6,
+   "ebitda_margin": 13.3
+  },
+  {
+   "fy": 2025,
+   "end": "2024-09-30",
+   "nii": null,
+   "pat": 60.2,
+   "ebit": 73.5,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_113853_1292840_29102024055805.xml",
+   "basis": "consolidated",
+   "label": "Q2 FY25",
+   "ebitda": 82.1,
+   "pat_yoy": 86.4,
+   "revenue": 572.1,
+   "pat_margin": 10.5,
+   "ebit_margin": 12.9,
+   "revenue_yoy": 58.6,
+   "ebitda_margin": 14.4
+  },
+  {
+   "fy": 2025,
+   "end": "2024-12-31",
+   "nii": null,
+   "pat": 66.5,
+   "ebit": 83.2,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_117898_1363553_28012025062830.xml",
+   "basis": "consolidated",
+   "label": "Q3 FY25",
+   "ebitda": 94.0,
+   "pat_yoy": 47.1,
+   "revenue": 661.2,
+   "pat_margin": 10.1,
+   "ebit_margin": 12.6,
+   "revenue_yoy": 29.8,
+   "ebitda_margin": 14.2
+  },
+  {
+   "fy": 2025,
+   "end": "2025-03-31",
+   "nii": null,
+   "pat": 116.2,
+   "ebit": 150.9,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1441102_16052025040930_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q4 FY25",
+   "ebitda": 167.9,
+   "pat_yoy": 43.3,
+   "revenue": 984.5,
+   "pat_margin": 11.8,
+   "ebit_margin": 15.3,
+   "revenue_yoy": 54.5,
+   "ebitda_margin": 17.1
+  },
+  {
+   "fy": 2026,
+   "end": "2025-06-30",
+   "nii": null,
+   "pat": 74.6,
+   "ebit": 97.4,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1498497_30072025074123_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q1 FY26",
+   "ebitda": 113.0,
+   "pat_yoy": 46.9,
+   "revenue": 673.5,
+   "pat_margin": 11.1,
+   "ebit_margin": 14.5,
+   "revenue_yoy": 33.6,
+   "ebitda_margin": 16.8
+  },
+  {
+   "fy": 2026,
+   "end": "2025-09-30",
+   "nii": null,
+   "pat": 121.4,
+   "ebit": 131.4,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1565317_04112025101148_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q2 FY26",
+   "ebitda": 148.0,
+   "pat_yoy": 101.7,
+   "revenue": 906.2,
+   "pat_margin": 13.4,
+   "ebit_margin": 14.5,
+   "revenue_yoy": 58.4,
+   "ebitda_margin": 16.3
+  },
+  {
+   "fy": 2026,
+   "end": "2025-12-31",
+   "nii": null,
+   "pat": 76.6,
+   "ebit": 98.9,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1619561_05022026075049_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q3 FY26",
+   "ebitda": 119.3,
+   "pat_yoy": 15.2,
+   "revenue": 804.0,
+   "pat_margin": 9.5,
+   "ebit_margin": 12.3,
+   "revenue_yoy": 21.6,
+   "ebitda_margin": 14.8
+  },
+  {
+   "fy": 2026,
+   "end": "2026-03-31",
+   "nii": null,
+   "pat": 91.2,
+   "ebit": 139.3,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1666785_13052026102614_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q4 FY26",
+   "ebitda": 193.7,
+   "pat_yoy": -21.5,
+   "revenue": 1242.6,
+   "pat_margin": 7.3,
+   "ebit_margin": 11.2,
+   "revenue_yoy": 26.2,
+   "ebitda_margin": 15.6
+  },
+  {
+   "fy": 2027,
+   "end": "2026-06-30",
+   "nii": null,
+   "pat": 56.4,
+   "ebit": 110.6,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1710119_07082026070207_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q1 FY27",
+   "ebitda": 147.6,
+   "pat_yoy": -24.4,
+   "revenue": 946.0,
+   "pat_margin": 6.0,
+   "ebit_margin": 11.7,
+   "revenue_yoy": 40.5,
+   "ebitda_margin": 15.6
+  }
+ ]
+}

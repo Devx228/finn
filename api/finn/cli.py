@@ -249,6 +249,29 @@ def cmd_network(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_research(args: argparse.Namespace) -> int:
+    """Pull: build the research view for any NSE symbols (fetches missing transcripts politely)."""
+    from finn.llm.router import Router
+    from finn.llm.store import LLMStore
+    from finn.pull import research
+    from finn.sources.http import SourceRefused
+    from finn.sources.nse import NSE
+
+    syms = [s.strip().upper() for s in args.symbols.split(",") if s.strip()]
+    router = None if args.no_llm else Router(store=LLMStore())
+    with db.connection() as conn:
+        db.migrate(conn)
+        for sym in syms:
+            try:
+                print(f"  {sym:<12}", research.materialise(conn, sym, router, NSE()))
+            except SourceRefused as e:
+                print(f"!! STOPPED: {e}. Access rule: do not retry; tell the owner.")
+                return 1
+            except ValueError as e:
+                print(f"  {sym:<12} skipped: {e}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="finn")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -274,6 +297,10 @@ def main(argv: list[str] | None = None) -> int:
         "--seed", action="store_true", help="reload synthetic contacts (destructive for tenant 1)"
     )
     net.set_defaults(fn=cmd_network)
+    rs = sub.add_parser("research", help="build research views (pull) for symbols")
+    rs.add_argument("symbols", help="comma-separated NSE symbols")
+    rs.add_argument("--no-llm", action="store_true", help="rules-only guidance extraction")
+    rs.set_defaults(fn=cmd_research)
     args = p.parse_args(argv)
     return args.fn(args)
 

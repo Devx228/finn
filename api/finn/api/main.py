@@ -100,3 +100,15 @@ def get_network_company(symbol: str) -> dict:
 def get_network_person(person_id: int) -> dict:
     """Diligence on a person named in a filing: career as disclosed, overlaps, second-degree paths."""
     return _view(f"network:person:{person_id}")
+
+
+@app.get("/api/research/{symbol}")
+def get_research(symbol: str) -> dict:
+    """Pull: the research view (numbers from XBRL, guidance verbatim from transcripts)."""
+    return _view(f"research:{symbol.upper()}")
+
+
+@app.get("/api/research")
+def list_research() -> dict:
+    """Companies with a research view."""
+    return _view("research:index")

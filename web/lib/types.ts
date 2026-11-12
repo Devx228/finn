@@ -190,3 +190,67 @@ export interface CompanyNetwork {
   who: Candidate[];
   people: Figure[];
 }
+
+// ---- Research / pull (api/finn/pull/research.py) ----
+
+export interface Quarter {
+  end: string;
+  label: string;
+  fy: number;
+  basis: string;
+  revenue: number | null;
+  ebitda: number | null;
+  ebit: number | null;
+  pat: number | null;
+  nii: number | null;
+  ebitda_margin: number | null;
+  ebit_margin: number | null;
+  pat_margin: number | null;
+  revenue_yoy: number | null;
+  pat_yoy: number | null;
+  xbrl: string;
+}
+
+export interface GuidancePoint {
+  metric: string;
+  period: string;
+  low: number;
+  high: number;
+  unit: string | null;
+  quote: string;
+  page: number | null;
+  by: "rules" | "model";
+  call: string;
+  call_date: string;
+  url: string;
+  change: "first given" | "raised" | "cut" | "held" | "narrowed";
+}
+
+export interface GuidanceTrack {
+  metric: string;
+  label: string;
+  period: string;
+  points: GuidancePoint[];
+  actual: { value: number; unit: string; span: string; quarters: number; basis: string } | null;
+  verdict: string;
+  verdict_why: string;
+  story: string;
+}
+
+export interface Research {
+  symbol: string;
+  name: string;
+  industry: string | null;
+  format: "indas" | "bank" | "nbfc";
+  as_of: string;
+  quarters: Quarter[];
+  guidance: GuidanceTrack[];
+  calls: { label: string; filed_at: string; url: string; pages: number; n_items: number }[];
+  signals: { bull: string[]; bear: string[] };
+  sources: string;
+  network: Candidate[];
+}
+
+export interface ResearchIndex {
+  companies: { symbol: string; name: string; tracks: number; calls: number }[];
+}

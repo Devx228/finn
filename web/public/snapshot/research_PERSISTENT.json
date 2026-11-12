@@ -1,0 +1,403 @@
+{
+ "name": "Persistent Systems Limited",
+ "as_of": "2026-11-13T00:09:29.427250+05:30",
+ "calls": [
+  {
+   "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_23102026204328_PSLTranscriptSubmissionOctober2026Sd.pdf",
+   "label": "Q2 FY27 call",
+   "pages": 26,
+   "n_items": 2,
+   "filed_at": "2026-10-23T15:13:45+00:00"
+  },
+  {
+   "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_03072026121301_PSLInvestorCallTranscriptSubmissionSd.pdf",
+   "label": "Q1 FY27 call",
+   "pages": 29,
+   "n_items": 0,
+   "filed_at": "2026-07-03T06:43:28+00:00"
+  },
+  {
+   "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_28042026165400_PSLTranscriptSubmissionApril282026Sd.pdf",
+   "label": "Q4 FY26 call",
+   "pages": 1,
+   "n_items": 0,
+   "filed_at": "2026-04-28T11:24:21+00:00"
+  },
+  {
+   "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_27012026213814_PSLSubmissionoftheTranscriptforQ3FY26Sd.pdf",
+   "label": "Q3 FY26 call",
+   "pages": 28,
+   "n_items": 0,
+   "filed_at": "2026-01-27T16:08:34+00:00"
+  }
+ ],
+ "stats": [
+  {
+   "model": 0,
+   "rules": 2,
+   "dropped": 0,
+   "model_name": "qwen2.5-7b-8k",
+   "selected_chars": 1588
+  },
+  {
+   "model": 0,
+   "rules": 0,
+   "dropped": 0,
+   "model_name": "qwen2.5-7b-8k",
+   "selected_chars": 1275
+  },
+  {
+   "model": 0,
+   "rules": 0,
+   "dropped": 0,
+   "selected_chars": 0
+  },
+  {
+   "model": 0,
+   "rules": 0,
+   "dropped": 0,
+   "model_name": "qwen2.5-7b-8k",
+   "selected_chars": 1202
+  }
+ ],
+ "format": "indas",
+ "symbol": "PERSISTENT",
+ "network": [
+  {
+   "id": 42,
+   "why": "worked at peer Wipro as Head of Key Accounts (2025–now); personal, last spoke Oct 2026, 2 interactions in 24 months",
+   "name": "Suresh Hegde",
+   "rank": 0.716,
+   "warmth": 0.74,
+   "headline": "Head of Key Accounts, Wipro",
+   "how_known": "personal",
+   "relevance": 0.7,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "personal, last spoke Oct 2026, 2 interactions in 24 months",
+   "last_contact": "2026-10-15",
+   "warmth_label": "strong",
+   "what_theyd_know": "How Wipro runs sales today"
+  },
+  {
+   "id": 64,
+   "why": "worked at peer Infosys Limited as Regional Sales Head (2010–now); met-as-management, last spoke Mar 2026, 8 interactions in 24 months",
+   "name": "Saanvi Nair",
+   "rank": 0.643,
+   "warmth": 0.79,
+   "headline": "Regional Sales Head, Infosys Limited",
+   "how_known": "met-as-management",
+   "relevance": 0.56,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "met-as-management, last spoke Mar 2026, 8 interactions in 24 months",
+   "last_contact": "2026-03-16",
+   "warmth_label": "strong",
+   "what_theyd_know": "How Infosys Limited runs sales today"
+  },
+  {
+   "id": 53,
+   "why": "worked at peer Tata Consultancy Services as Head of Corporate Development (2013–now); introduced-by, last spoke Sep 2026, 4 interactions in 24 months",
+   "name": "Gaurav Qureshi",
+   "rank": 0.634,
+   "warmth": 0.64,
+   "headline": "Head of Corporate Development, Tata Consultancy Services",
+   "how_known": "introduced-by",
+   "relevance": 0.63,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "introduced-by, last spoke Sep 2026, 4 interactions in 24 months",
+   "last_contact": "2026-09-19",
+   "warmth_label": "medium",
+   "what_theyd_know": "How Tata Consultancy Services runs strategy today"
+  }
+ ],
+ "signals": {
+  "bear": [
+   "EBITDA margin 13.6% in Q2 FY27, down 550 bps YoY",
+   "PAT -25.5% YoY in Q2 FY27",
+   "FY27 operating margin behind: 11.7% vs 16.0–17.0%"
+  ],
+  "bull": [
+   "Revenue +30.3% YoY in Q2 FY27"
+  ]
+ },
+ "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts on NSE. No news, broker notes or model knowledge.",
+ "guidance": [
+  {
+   "label": "Revenue growth",
+   "story": "FY27 revenue growth: 4%. Filings show 29.7% (2Q YTD).",
+   "actual": {
+    "span": "2Q YTD",
+    "unit": "%",
+    "basis": "reported ₹ growth, consolidated",
+    "value": 29.7,
+    "quarters": 2
+   },
+   "metric": "revenue_growth",
+   "period": "FY27",
+   "points": [
+    {
+     "by": "rules",
+     "low": 4.0,
+     "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_23102026204328_PSLTranscriptSubmissionOctober2026Sd.pdf",
+     "call": "Q2 FY27 call",
+     "high": 4.0,
+     "page": 23,
+     "unit": "%",
+     "label": "revenue growth",
+     "quote": "But if we look at the year on year growth, on TCV it was just 4%, which typically is in the range of 15 to 16%.",
+     "change": "first given",
+     "metric": "revenue_growth",
+     "period": "FY27",
+     "call_date": "2026-10-23",
+     "direction": "unclear"
+    }
+   ],
+   "verdict": "ahead",
+   "verdict_why": "29.7% vs 4.0–4.0%",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Operating margin",
+   "story": "FY27 operating margin: 16–17%. Filings show 11.7% (2Q YTD).",
+   "actual": {
+    "span": "2Q YTD",
+    "unit": "%",
+    "basis": "EBIT ÷ revenue from the filings",
+    "value": 11.7,
+    "quarters": 2
+   },
+   "metric": "operating_margin",
+   "period": "FY27",
+   "points": [
+    {
+     "by": "rules",
+     "low": 16.0,
+     "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_23102026204328_PSLTranscriptSubmissionOctober2026Sd.pdf",
+     "call": "Q2 FY27 call",
+     "high": 17.0,
+     "page": 22,
+     "unit": "%",
+     "label": "operating margin",
+     "quote": "Persistent Systems Limited So, we are reasonably assured in our minds about what we are signed up for, our ability to optimize margins over a period of time and deliver to our aspirational goals of 16 to 17% margins and the growth that we aspire.",
+     "change": "first given",
+     "metric": "operating_margin",
+     "period": "FY27",
+     "call_date": "2026-10-23",
+     "direction": "unclear"
+    }
+   ],
+   "verdict": "behind",
+   "verdict_why": "11.7% vs 16.0–17.0%",
+   "as_of_quarter": "2026-09-30"
+  }
+ ],
+ "industry": "Computers - Software",
+ "quarters": [
+  {
+   "fy": 2024,
+   "end": "2023-12-31",
+   "nii": null,
+   "pat": 286.1,
+   "ebit": 363.1,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_101255_1032305_20012024065251.xml",
+   "basis": "consolidated",
+   "label": "Q3 FY24",
+   "ebitda": 441.8,
+   "pat_yoy": null,
+   "revenue": 2498.2,
+   "pat_margin": 11.5,
+   "ebit_margin": 14.5,
+   "revenue_yoy": null,
+   "ebitda_margin": 17.7
+  },
+  {
+   "fy": 2024,
+   "end": "2024-03-31",
+   "nii": null,
+   "pat": 315.3,
+   "ebit": 374.4,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_104625_1105391_21042024091823.xml",
+   "basis": "consolidated",
+   "label": "Q4 FY24",
+   "ebitda": 454.4,
+   "pat_yoy": 25.4,
+   "revenue": 2590.5,
+   "pat_margin": 12.2,
+   "ebit_margin": 14.5,
+   "revenue_yoy": 14.9,
+   "ebitda_margin": 17.5
+  },
+  {
+   "fy": 2025,
+   "end": "2024-06-30",
+   "nii": null,
+   "pat": 306.4,
+   "ebit": 384.0,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_109094_1192346_18072024055557.xml",
+   "basis": "consolidated",
+   "label": "Q1 FY25",
+   "ebitda": 455.2,
+   "pat_yoy": 33.9,
+   "revenue": 2737.2,
+   "pat_margin": 11.2,
+   "ebit_margin": 14.0,
+   "revenue_yoy": 17.9,
+   "ebitda_margin": 16.6
+  },
+  {
+   "fy": 2025,
+   "end": "2024-09-30",
+   "nii": null,
+   "pat": 325.0,
+   "ebit": 406.2,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_113051_1285423_22102024083840.xml",
+   "basis": "consolidated",
+   "label": "Q2 FY25",
+   "ebitda": 480.7,
+   "pat_yoy": 23.4,
+   "revenue": 2897.2,
+   "pat_margin": 11.2,
+   "ebit_margin": 14.0,
+   "revenue_yoy": 20.1,
+   "ebitda_margin": 16.6
+  },
+  {
+   "fy": 2025,
+   "end": "2024-12-31",
+   "nii": null,
+   "pat": 373.0,
+   "ebit": 455.7,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_117508_1357475_22012025090715.xml",
+   "basis": "consolidated",
+   "label": "Q3 FY25",
+   "ebitda": 537.8,
+   "pat_yoy": 30.4,
+   "revenue": 3062.3,
+   "pat_margin": 12.2,
+   "ebit_margin": 14.9,
+   "revenue_yoy": 22.6,
+   "ebitda_margin": 17.6
+  },
+  {
+   "fy": 2025,
+   "end": "2025-03-31",
+   "nii": null,
+   "pat": 395.8,
+   "ebit": 505.3,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1424280_24042025083216_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q4 FY25",
+   "ebitda": 584.4,
+   "pat_yoy": 25.5,
+   "revenue": 3242.1,
+   "pat_margin": 12.2,
+   "ebit_margin": 15.6,
+   "revenue_yoy": 25.2,
+   "ebitda_margin": 18.0
+  },
+  {
+   "fy": 2026,
+   "end": "2025-06-30",
+   "nii": null,
+   "pat": 424.9,
+   "ebit": 517.8,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1491776_23072025083000_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q1 FY26",
+   "ebitda": 611.6,
+   "pat_yoy": 38.7,
+   "revenue": 3333.6,
+   "pat_margin": 12.7,
+   "ebit_margin": 15.5,
+   "revenue_yoy": 21.8,
+   "ebitda_margin": 18.3
+  },
+  {
+   "fy": 2026,
+   "end": "2025-09-30",
+   "nii": null,
+   "pat": 471.5,
+   "ebit": 583.0,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1548199_14102025081605_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q2 FY26",
+   "ebitda": 683.1,
+   "pat_yoy": 45.1,
+   "revenue": 3580.7,
+   "pat_margin": 13.2,
+   "ebit_margin": 16.3,
+   "revenue_yoy": 23.6,
+   "ebitda_margin": 19.1
+  },
+  {
+   "fy": 2026,
+   "end": "2025-12-31",
+   "nii": null,
+   "pat": 439.5,
+   "ebit": 632.5,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1606226_20012026071106_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q3 FY26",
+   "ebitda": 733.1,
+   "pat_yoy": 17.8,
+   "revenue": 3778.2,
+   "pat_margin": 11.6,
+   "ebit_margin": 16.7,
+   "revenue_yoy": 23.4,
+   "ebitda_margin": 19.4
+  },
+  {
+   "fy": 2026,
+   "end": "2026-03-31",
+   "nii": null,
+   "pat": 529.3,
+   "ebit": 659.2,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1656685_21042026071318_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q4 FY26",
+   "ebitda": 767.7,
+   "pat_yoy": 33.7,
+   "revenue": 4055.9,
+   "pat_margin": 13.0,
+   "ebit_margin": 16.3,
+   "revenue_yoy": 25.1,
+   "ebitda_margin": 18.9
+  },
+  {
+   "fy": 2027,
+   "end": "2026-06-30",
+   "nii": null,
+   "pat": 483.0,
+   "ebit": 581.6,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1706739_02082026064511_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q1 FY27",
+   "ebitda": 696.9,
+   "pat_yoy": 13.7,
+   "revenue": 4303.2,
+   "pat_margin": 11.2,
+   "ebit_margin": 13.5,
+   "revenue_yoy": 29.1,
+   "ebitda_margin": 16.2
+  },
+  {
+   "fy": 2027,
+   "end": "2026-09-30",
+   "nii": null,
+   "pat": 351.5,
+   "ebit": 466.8,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1739401_15102026080919_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q2 FY27",
+   "ebitda": 633.5,
+   "pat_yoy": -25.5,
+   "revenue": 4663.9,
+   "pat_margin": 7.5,
+   "ebit_margin": 10.0,
+   "revenue_yoy": 30.3,
+   "ebitda_margin": 13.6
+  }
+ ]
+}

@@ -1,11 +1,10 @@
-export default function Research() {
+import { Suspense } from "react";
+import { ResearchView } from "@/components/Research";
+
+export default function ResearchPage() {
   return (
-    <div>
-      <h1 className="mb-2 text-[22px] font-semibold tracking-tight">Research</h1>
-      <p className="text-[15px] text-ink-2">
-        Research on any NSE company, grounded in its annual reports and earnings-call
-        transcripts. Not available in this build yet.
-      </p>
-    </div>
+    <Suspense fallback={<p className="text-[14px] text-ink-3">Loading research…</p>}>
+      <ResearchView />
+    </Suspense>
   );
 }

@@ -1,0 +1,46 @@
+{
+ "companies": [
+  {
+   "name": "CREDITACCESS GRAMEEN LIMITED",
+   "calls": 4,
+   "symbol": "CREDITACC",
+   "tracks": 6
+  },
+  {
+   "name": "Deepak Nitrite Limited",
+   "calls": 4,
+   "symbol": "DEEPAKNTR",
+   "tracks": 0
+  },
+  {
+   "name": "HDFC Bank Limited",
+   "calls": 4,
+   "symbol": "HDFCBANK",
+   "tracks": 0
+  },
+  {
+   "name": "Infosys Limited",
+   "calls": 4,
+   "symbol": "INFY",
+   "tracks": 4
+  },
+  {
+   "name": "Kaynes Technology India Limited",
+   "calls": 4,
+   "symbol": "KAYNES",
+   "tracks": 3
+  },
+  {
+   "name": "Persistent Systems Limited",
+   "calls": 4,
+   "symbol": "PERSISTENT",
+   "tracks": 2
+  },
+  {
+   "name": "Trent Limited",
+   "calls": 0,
+   "symbol": "TRENT",
+   "tracks": 0
+  }
+ ]
+}

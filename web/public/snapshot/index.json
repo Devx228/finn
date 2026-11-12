@@ -262,5 +262,37 @@
  "network:person:9": {
   "file": "network_person_9.json",
   "as_of": "2026-11-12T18:02:04.012644+00:00"
+ },
+ "research:CREDITACC": {
+  "file": "research_CREDITACC.json",
+  "as_of": "2026-11-12T18:36:09.346045+00:00"
+ },
+ "research:DEEPAKNTR": {
+  "file": "research_DEEPAKNTR.json",
+  "as_of": "2026-11-12T18:39:30.437485+00:00"
+ },
+ "research:HDFCBANK": {
+  "file": "research_HDFCBANK.json",
+  "as_of": "2026-11-12T18:39:36.430301+00:00"
+ },
+ "research:INFY": {
+  "file": "research_INFY.json",
+  "as_of": "2026-11-12T18:35:56.510684+00:00"
+ },
+ "research:KAYNES": {
+  "file": "research_KAYNES.json",
+  "as_of": "2026-11-12T18:36:03.306368+00:00"
+ },
+ "research:PERSISTENT": {
+  "file": "research_PERSISTENT.json",
+  "as_of": "2026-11-12T18:39:25.665389+00:00"
+ },
+ "research:TRENT": {
+  "file": "research_TRENT.json",
+  "as_of": "2026-11-12T18:39:42.169821+00:00"
+ },
+ "research:index": {
+  "file": "research_index.json",
+  "as_of": "2026-11-12T18:39:42.169821+00:00"
  }
 }
