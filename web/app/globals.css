@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+/* Near-monochrome surface; colour only carries meaning (spec §11.4):
+   accent = "needs you", up/down strictly for direction, caution = amber/unverified/stale. */
+:root {
+  --bg: #fbfaf8;
+  --surface: #ffffff;
+  --ink: #16161a;
+  --ink-2: #55555e;
+  --ink-3: #8a8a93;
+  --line: #e7e5e1;
+  --accent: #1f4fd1;
+  --up: #157a3c;
+  --down: #b42318;
+  --caution: #a15c00;
+  --caution-bg: #fff4e0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f0f12;
+    --surface: #17171b;
+    --ink: #ececef;
+    --ink-2: #a9a9b2;
+    --ink-3: #74747d;
+    --line: #2a2a30;
+    --accent: #7ea0ff;
+    --up: #4cc38a;
+    --down: #ff7a6b;
+    --caution: #f0b44c;
+    --caution-bg: #2b2210;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-up: var(--up);
+  --color-down: var(--down);
+  --color-caution: var(--caution);
+  --color-caution-bg: var(--caution-bg);
+  --font-sans: var(--font-text);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-text), system-ui, sans-serif;
+  /* Every number is tabular. */
+  font-variant-numeric: tabular-nums;
+  -webkit-tap-highlight-color: transparent;
+}

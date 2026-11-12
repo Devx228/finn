@@ -130,3 +130,31 @@ documents that reach a deep read.
 Local model: candidates measured in Phase 1 (qwen2.5:7b already installed, plus 2–3 others
 from the Ollama library that fit 6 GB), chosen on JSON validity, accuracy on real filings,
 VRAM and tokens/s.
+
+## 2026-11-12 — docs/SPEC.md edited to match approved changes
+
+Seven edits, each marked inline with *[Changed 2026-11-12 …]*: §4.1 cross-reference (headline
+tagger), §5.1 backend host (Render), §5.1 scheduler (laptop ingest), §6.1 REASON tier (no paid
+fallback), §8.5 category names, §16 Phase 0 split into 0a/0b, §17 no paid credit.
+
+## 2026-11-12 — Phase 0a implementation choices
+
+- **View-models in one table.** `views(key, body jsonb, as_of)`; keys like `brief:24h`. The API
+  read path is a single `SELECT`; the ingest is the only writer. Snapshot export dumps the same
+  rows to `web/public/snapshot/<key>.json`, so live and snapshot share one shape by construction.
+  Alternative considered: one table per view type — deferred until a view needs querying by
+  column (Phase 2 `brief_items` will be a real table; the brief view is materialised from it).
+- **Plain SQL migrations** applied by `finn migrate` (also on container start), not Alembic:
+  fewer moving parts; the schema is written by hand anyway.
+- **Snapshot fallback in the client**, with a 4 s timeout (`NEXT_PUBLIC_API_TIMEOUT_MS`). Unit
+  tested for: live success, HTTP error, timeout, both failing.
+- **Next.js 16.4 (cacheComponents on).** Two rules it enforces that shaped the code: no
+  synchronous `setState` inside effects (load results are tagged by window; "loading" is
+  derived), and no clock reads during prerender (today's date uses `useSyncExternalStore` with
+  a `null` server snapshot).
+- **Phone-width check without a phone in the loop:** headless Chrome has a ~500 px minimum
+  window, so plain `--window-size=390` screenshots crop. Evidence uses Chrome DevTools
+  Protocol device emulation (390×844, mobile, touch, iPhone UA) and reports `scrollWidth` to
+  prove no horizontal scroll.
+- **Line endings:** `.gitattributes` forces LF (the owner's git uses autocrlf; the Dockerfile
+  and future shell scripts run on Linux).

@@ -1,0 +1,31 @@
+{
+ "as_of": "2026-11-12T09:07:04.519642Z",
+ "items": [
+  {
+   "id": "p0-24h-1",
+   "tier": "now",
+   "company": "—",
+   "headline": "Wiring check: this row came from Postgres via the API"
+  },
+  {
+   "id": "p0-24h-2",
+   "tier": "worth",
+   "company": "—",
+   "headline": "Placeholder — real filings arrive in Phase 2"
+  },
+  {
+   "id": "p0-24h-3",
+   "tier": "buried",
+   "company": "—",
+   "headline": "Placeholder buried item"
+  }
+ ],
+ "counts": {
+  "now": 1,
+  "worth": 1,
+  "buried": 1,
+  "filings": 3
+ },
+ "window": "24h",
+ "placeholder": true
+}

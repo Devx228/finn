@@ -120,7 +120,7 @@ Design principles the whole build follows:
 Do not hardcode from memory. Build `scripts/pick_portfolio.py`:
 
 1. Start from the candidate pool below (**VERIFY** each symbol against the NSE symbol master; drop any that fail).
-2. For each candidate, pull the last 90 days of filings and tag them with the rules classifier (section 7.2).
+2. For each candidate, pull the last 90 days of filings and tag them with a minimal headline tagger (the full rules classifier of section 8.1 is built in Phase 2). *[Changed 2026-11-12: was a wrong reference to 7.2; see DECISIONS.md.]*
 3. Score "demo richness": has a results filing in the last 30 days; has a real management change (CFO / MD / CEO / KMP) in 90 days; has a real M&A, large capex, or litigation filing in 90 days.
 4. Choose 18 names maximising sector and size diversity subject to: ≥ 2 companies with a real management change, ≥ 3 with a real material event, ≥ 12 with a recent results filing, ≥ 1 bank, ≥ 1 NBFC, ≥ 2 small/mid caps.
 5. Write the choice and the reasons to `data/portfolio.json` and `docs/DECISIONS.md`.
@@ -177,9 +177,9 @@ Network rules:
 |---|---|---|
 | Frontend | Next.js (App Router) + TypeScript + Tailwind, PWA, on Vercel | Fast to ship, plain URL on a phone, installable, edge-cached reads. |
 | Backend | One Python FastAPI service | yfinance, PDF tooling and the pipeline are Python; one home for all logic. |
-| Backend host | In order of preference: Cloud Run (needs a billing account; scale-to-zero, seconds to cold start) → Hugging Face Spaces (Docker) → Render free with an external keep-alive pinger. **VERIFY** current free tiers. | Cold start is the main demo risk; pick the host with the shortest one available. |
+| Backend host | Render free web service (Docker) with an external keep-alive pinger. *[Changed 2026-11-12: zero spend. Cloud Run needs billing; Hugging Face Docker Spaces now need PRO; Koyeb needs a card. See DECISIONS.md.]* | Cold start is the main demo risk; keep-alive + snapshot fallback cover it. |
 | Database | Postgres (Neon free tier preferred — wakes on connect). **VERIFY**. | One store; JSONB for view-models; `tsvector` for page-level search. No vector DB. |
-| Scheduler | GitHub Actions cron running the ingest CLI | Free, visible in the repo, separate from the serving path. |
+| Scheduler | Ingest CLI on the owner's laptop (local Ollama is the BULK tier). GitHub Actions: CI, keep-alive, and — if BSE answers its runners — a rules-only filings + alerts job. *[Changed 2026-11-12.]* | Zero spend; model enrichment needs the local GPU. |
 | Object storage | PDFs are not stored; keep URL + content hash + extracted page text in Postgres | Minimal footprint; text is what we need. |
 | LLM access | Provider-agnostic router with three tiers (section 6) | Free-tier limits move; no step may be tied to one vendor. |
 | Push channel | In-app inbox (P0), Web Push via VAPID (P1), Telegram bot (P2) | iOS only delivers web push to a home-screen-installed PWA, so in-app must stand alone. |
@@ -254,7 +254,7 @@ Configure by environment; never hardcode a model in business logic.
 |---|---|---|---|
 | `RULES` | ~80% of filing classification, all arithmetic, all scoring, all network ranking | No model | — |
 | `BULK` | Ambiguous-filing classification (batched), transcript claim extraction, executive-bio extraction, results-table extraction, annual-report section extraction | Cheap, large context, accepts PDF or long text, JSON output | A "Flash-Lite"-class model on a free tier |
-| `REASON` | Promise Ledger resolution, narrative-vs-numbers verdicts, bull/bear, ask-agent planning | Strongest available; low call volume | The best free-tier "Flash"-class model, or a paid frontier model for a few cents if a key exists |
+| `REASON` | Promise Ledger resolution, narrative-vs-numbers verdicts, bull/bear, ask-agent planning | Strongest available; low call volume | The best free-tier "Flash"-class model. *[Changed 2026-11-12: no paid fallback.]* |
 | `VISION` | Scanned results PDFs only | Reads images/PDF pages | Same provider as BULK if multimodal |
 
 Free-tier facts to plan around (all **VERIFY** — providers no longer publish stable tables; read the live quota in each provider's console):
@@ -430,7 +430,7 @@ Insight to exploit: under the listing regulations, an appointment disclosure inc
 
 ### 8.5 Material-event card (`push/material_event.py`)
 
-For `m_and_a`, `capex_expansion`, `litigation_regulatory` (and large `fund_raise` / `order_win`):
+For `M&A`, `capex`, `litigation` (and large `fund_raise` / `order_win`): *[Changed 2026-11-12: use the reference's category names.]*
 
 1. Deep-read extraction (BULK): what, counterparty, amount, timeline, funding, and **size relative to the company** computed in code (amount ÷ trailing revenue or market cap). Relative size drives materiality — a ₹200 cr capex is noise for one company and a bet-the-firm move for another.
 2. Pick the best person via the who-to-call engine (section 9.4), with **function fit** by event type: capex → operations / projects / finance; litigation → legal / compliance / the regulator's domain; M&A → strategy / someone who worked at the target or counterparty.
@@ -771,7 +771,8 @@ This is an order of work with gates, not a schedule. Deploy in Phase 0 and keep 
 
 **Phase 0 — skeleton and deploy.**
 Repo, FastAPI hello, Next.js shell with three tabs, Postgres connected, both deployed, CI green, snapshot fallback wired with dummy JSON.
-*Gate:* the deployed URL opens on a phone and shows data from the API, and from the snapshot when the API is stopped.
+*Gate 0a (local):* the app opens on a phone over Wi-Fi and shows data from the API, and from the snapshot when the API is stopped.
+*Gate 0b (deployed):* the same on the deployed URLs. *[Changed 2026-11-12: split because accounts are created after 0a.]*
 
 **Phase 1 — data plumbing.**
 Symbols, prices, BSE filings with PDF text, fundamentals page parse + document links, LLM router + cache + ledger. `pick_portfolio.py` run and portfolio fixed. 120-day backfill.
@@ -806,7 +807,7 @@ Standing rule: never trade a P0 gate for a P1 feature, and never leave something
 | Risk | Mitigation |
 |---|---|
 | Exchange / Yahoo / Screener block cloud IPs | Ingest runs in the scheduled job or locally and writes to the DB; serving never depends on them. For live research from the server, cache documents aggressively and show a clear "source unreachable — try again" state rather than failing silently. |
-| Free-tier quota exhausted mid-build | Multi-provider router; cache everything; pre-compute demo companies early (start Phase 4 caching the evening before); keep a few rupees of paid credit as a last resort for REASON calls only. |
+| Free-tier quota exhausted mid-build | Multi-provider router; cache everything; pre-compute demo companies early (start Phase 4 caching the evening before). No paid fallback (zero spend). *[Changed 2026-11-12.]* |
 | Scanned results PDFs | VISION fallback; if it fails validation, show the card as "unverified" with the filing link rather than wrong numbers. |
 | Backend asleep when the grader opens the link | Keep-alive pings, Vercel cache, snapshot fallback, warm-up on load. |
 | Database paused for inactivity | Keep-alive query on a schedule; snapshot fallback. |
