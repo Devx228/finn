@@ -56,3 +56,12 @@ categories are caught by rules wherever a deterministic signal exists, and model
 are badged as such in "Why is this here?". To try next, in order: a hosted model on the hard
 remainder only (~20% of filings) once a Gemini key exists; a held-out labelled set; per-class
 precision/recall of the *Now* tier.
+
+### Misalignment guard (2026-11-13)
+
+Batches of five sometimes produced an answer for the wrong filing. Prompt v3 adds a per-filing
+`ref` the model must echo (mismatches rejected and retried), company-grouped batches, and a
+post-check that drops a one-liner naming a company absent from the filing. Re-run of all 252
+model-decided filings: 24 answers rejected and retried; one-liners naming another demo company
+went from 5 to 1 (dropped by the post-check); 3 filings left unclassified rather than mislabelled.
+Category accuracy on the labelled set was not re-measured for v3.

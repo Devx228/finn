@@ -14,7 +14,7 @@ from pydantic import BaseModel, Field
 
 from finn.push.classify_rules import CATEGORIES, Classified
 
-PROMPT_VERSION = "classify_batch-v2"
+PROMPT_VERSION = "classify_batch-v3"
 BATCH = 5
 ONE_LINE_WORDS = 18
 TEXT_CHARS = 1500
@@ -67,6 +67,7 @@ def thin_subject(subject: str | None) -> bool:
 
 class Item(BaseModel):
     idx: int
+    ref: str = Field(max_length=8)
     category: Category
     sub_type: str | None = Field(default=None, max_length=40)
     materiality: int = Field(ge=0, le=100)
@@ -95,16 +96,18 @@ SYSTEM = (
     "with its number, at most 18 words, without repeating the company name or the word 'filing'. "
     "Use only the text given; if something is not stated, leave it out. Return JSON "
     '{"items": [...]} with exactly one item per input filing, in input order, where idx is the '
-    "number in square brackets.\n\nExample input:\n[0] category: General Updates\n"
+    "number in square brackets and ref is copied exactly from that filing. Describe only that "
+    "filing; never mix details between filings.\n\nExample input:\n[0] ref: a1b2\n"
+    "category: General Updates\n"
     "subject: X Limited has informed the Exchange about General Updates\n"
     "text: Sub: Intimation under Regulation 30 - The Board approved setting up a plant with "
     "capacity of 240 KTA at an investment of Rs 2,500 crore.\n"
-    "[1] category: Updates\nsubject: X Limited has informed the Exchange regarding 'Change in "
+    "[1] ref: c3d4\ncategory: Updates\nsubject: X Limited has informed the Exchange regarding 'Change in "
     "address of Registrar and Share Transfer Agent'.\n"
-    'Example output: {"items": [{"idx": 0, "category": "capex", "sub_type": null, '
+    'Example output: {"items": [{"idx": 0, "ref": "a1b2", "category": "capex", "sub_type": null, '
     '"materiality": 70, "one_line": "Board approves 240 KTA plant, Rs 2,500 crore investment", '
     '"people": [], "orgs": [], "amounts": ["Rs 2,500 crore"], "needs_deep_read": true}, '
-    '{"idx": 1, "category": "unclassified", "sub_type": "admin", "materiality": 2, '
+    '{"idx": 1, "ref": "c3d4", "category": "unclassified", "sub_type": "admin", "materiality": 2, '
     '"one_line": "Registrar and transfer agent changed its office address", "people": [], '
     '"orgs": [], "amounts": [], "needs_deep_read": false}]}'
 )
@@ -115,7 +118,8 @@ def render_batch(rows: list[dict]) -> str:
     for i, r in enumerate(rows):
         text = salient(r.get("text"))[:TEXT_CHARS].strip()
         parts.append(
-            f"[{i}] category: {r.get('exch_category') or '-'}\n"
+            f"[{i}] ref: {r.get('ref') or '-'}\n"
+            f"category: {r.get('exch_category') or '-'}\n"
             f"subject: {(r.get('subject') or '-')[:400]}\n" + (f"text: {text}\n" if text else "")
         )
     return "\n".join(parts)
@@ -131,3 +135,10 @@ def to_classified(item: Item, model: str) -> Classified:
     return Classified(
         item.category, item.sub_type, base, f"model ({model}): {clip_words(item.one_line)}", decided_by="llm"
     )
+
+
+def ref_for(filing_id: int) -> str:
+    """Short per-filing token the model must echo, so a misaligned answer is rejected."""
+    import hashlib
+
+    return hashlib.sha256(f"finn-{filing_id}".encode()).hexdigest()[:4]

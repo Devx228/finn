@@ -77,7 +77,7 @@ def undecided(conn: Connection, company_ids: list[int]) -> list[tuple]:
     return conn.execute(
         "SELECT f.id, f.exch_category, f.subject, f.text_pages FROM filings f "
         "LEFT JOIN filing_class k ON k.filing_id = f.id "
-        "WHERE f.company_id = ANY(%s) AND k.filing_id IS NULL ORDER BY f.ts_ist DESC",
+        "WHERE f.company_id = ANY(%s) AND k.filing_id IS NULL ORDER BY f.company_id, f.ts_ist DESC",
         (company_ids,),
     ).fetchall()
 
@@ -191,6 +191,48 @@ def compute_results_cards(conn: Connection, company_ids: list[int]) -> dict[str,
     return {"results_cards": n, "verified": verified}
 
 
+def names_other_company(one_line: str, own_id: int, source_text: str, names: dict[int, str]) -> str | None:
+    """A company (from `names`) that the one-liner mentions but the filing itself does not —
+    i.e. a detail the model pulled from elsewhere. Returns that company's name, else None."""
+    import re
+
+    low, src = one_line.lower(), source_text.lower()
+    for cid, name in names.items():
+        key = re.split(r"\s+", name.replace("&", "and"))[0].lower()
+        if cid == own_id or len(key) <= 3:
+            continue
+        if re.search(rf"\b{re.escape(key)}\b", low) and not re.search(rf"\b{re.escape(key)}\b", src):
+            return name
+    return None
+
+
+def drop_foreign_one_liners(conn: Connection) -> dict[str, int]:
+    """Post-check every model one-liner; drop those naming a company absent from the filing."""
+    names: dict[int, str] = dict(
+        conn.execute(
+            "SELECT id, name FROM companies WHERE kind = 'equity' AND id IN "
+            "(SELECT DISTINCT company_id FROM filings)"
+        ).fetchall()
+    )
+    rows = conn.execute(
+        "SELECT k.filing_id, f.company_id, k.one_line, coalesce(f.subject, ''), f.text_pages "
+        "FROM filing_class k JOIN filings f ON f.id = k.filing_id "
+        "WHERE k.decided_by = 'llm' AND k.one_line IS NOT NULL"
+    ).fetchall()
+    dropped = 0
+    for fid, cid, ol, subj, pages in rows:
+        src = subj + " " + (" ".join(pages[:2]) if pages else "")
+        other = names_other_company(ol, cid, src, names)
+        if other:
+            conn.execute(
+                "UPDATE filing_class SET one_line = NULL, reason = reason || %s WHERE filing_id = %s",
+                (f" [one-liner dropped: named {other}, not in the filing]", fid),
+            )
+            dropped += 1
+    conn.commit()
+    return {"one_liners_dropped": dropped}
+
+
 def classify_llm_stage(
     conn: Connection, router: Router, company_ids: list[int], limit: int | None = None
 ) -> dict[str, int]:
@@ -199,8 +241,13 @@ def classify_llm_stage(
     for i in range(0, len(rows), cl.BATCH):
         batch = rows[i : i + cl.BATCH]
         payload = [
-            {"exch_category": cat, "subject": subj, "text": (_text(pages) if cl.thin_subject(subj) else None)}
-            for _fid, cat, subj, pages in batch
+            {
+                "ref": cl.ref_for(fid),
+                "exch_category": cat,
+                "subject": subj,
+                "text": (_text(pages) if cl.thin_subject(subj) else None),
+            }
+            for fid, cat, subj, pages in batch
         ]
         res = router.call(
             "BULK",
@@ -214,8 +261,8 @@ def classify_llm_stage(
         by_idx = {it.idx: it for it in res.data.items}  # type: ignore[attr-defined]
         for j, (fid, *_rest) in enumerate(batch):
             it = by_idx.get(j)
-            if it is None:
-                counts["missing_in_output"] += 1
+            if it is None or it.ref != cl.ref_for(fid):
+                counts["missing_or_misaligned"] += 1  # left undecided; retried in another batch
                 continue
             _store(
                 conn,

@@ -222,6 +222,7 @@ def cmd_push(args: argparse.Namespace) -> int:
         if not args.no_llm:
             try:
                 print("  model        ", pipeline.classify_llm_stage(conn, Router(store=LLMStore()), ids))
+                print("  post-check   ", pipeline.drop_foreign_one_liners(conn))
             except LLMUnavailable as e:
                 print(f"  model         skipped ({e}); undecided filings show as 'not yet classified'")
         print("  results cards", pipeline.compute_results_cards(conn, ids))

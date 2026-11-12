@@ -403,3 +403,22 @@ removed after the run.
 - **Gap noted:** insider trades (PIT) and promoter pledges (SAST) are not in NSE's announcements
   feed; only takeover-code declarations appear. Those two categories are thin until a source for
   those disclosures is added.
+
+## 2026-11-13 — Model one-liners attached to the wrong filing: found and fixed
+
+While building Phase 3 I read the management-change list and found model one-liners describing a
+*different* company's filing (DEEPAKNTR's filing summarised as an AU Small Finance Bank
+re-appointment; a Sun Pharma filing as a Maruti price increase). Cause: in a batch of five, the
+small model sometimes misaligns items. Measured: 5 of 252 one-liners named another demo company
+(the true rate is higher — swaps with non-demo content are invisible to that check).
+
+Fix (prompt `classify_batch-v3`):
+1. Each filing in a batch carries a short `ref` (hash of the filing id) the model must echo; an
+   answer whose ref doesn't match is rejected and the filing retried in another batch. 24 of 252
+   answers were rejected across the re-run.
+2. Batches are grouped by company, so a residual swap cannot cross companies.
+3. Post-check: a one-liner that names a company absent from the filing's own subject/text is
+   dropped (the cleaned exchange subject is shown instead) and the reason records why.
+Result after re-classifying all 252: 1 one-liner named another company (dropped by the
+post-check); 3 filings stayed misaligned on every retry and are shown as "not yet classified"
+rather than given a wrong label.
