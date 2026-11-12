@@ -1,0 +1,235 @@
+"""Push pipeline: classify → bundle → results cards → score → materialise the brief."""
+
+from __future__ import annotations
+
+from collections import Counter
+
+from psycopg import Connection
+from psycopg.types.json import Jsonb
+
+from finn.ingest import fetch_filing_text
+from finn.llm.router import Router
+from finn.push import classify_llm as cl
+from finn.push.classify_rules import Classified, classify
+from finn.sources.nse import NSE
+
+
+def _text(pages) -> str | None:
+    return " ".join(pages[:2]) if pages else None
+
+
+def _store(
+    conn: Connection,
+    fid: int,
+    c: Classified,
+    *,
+    materiality=None,
+    one_line=None,
+    entities=None,
+    needs_deep_read=False,
+    model=None,
+    prompt_version=None,
+) -> None:
+    conn.execute(
+        "INSERT INTO filing_class (filing_id, category, sub_type, base, materiality, one_line, "
+        "entities, needs_deep_read, decided_by, model, prompt_version, reason) "
+        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT (filing_id) DO UPDATE SET "
+        "category=EXCLUDED.category, sub_type=EXCLUDED.sub_type, base=EXCLUDED.base, "
+        "materiality=EXCLUDED.materiality, one_line=EXCLUDED.one_line, entities=EXCLUDED.entities, "
+        "needs_deep_read=EXCLUDED.needs_deep_read, decided_by=EXCLUDED.decided_by, "
+        "model=EXCLUDED.model, prompt_version=EXCLUDED.prompt_version, reason=EXCLUDED.reason, "
+        "classified_at=now()",
+        (
+            fid,
+            c.category,
+            c.sub_type,
+            c.base,
+            materiality,
+            one_line,
+            Jsonb(entities or {}),
+            needs_deep_read,
+            c.decided_by,
+            model,
+            prompt_version,
+            c.reason,
+        ),
+    )
+
+
+def classify_rules_stage(conn: Connection, company_ids: list[int]) -> dict[str, int]:
+    rows = conn.execute(
+        "SELECT f.id, f.exch_category, f.subject, f.text_pages FROM filings f "
+        "LEFT JOIN filing_class k ON k.filing_id = f.id "
+        "WHERE f.company_id = ANY(%s) AND (k.filing_id IS NULL OR k.decided_by = 'rules')",
+        (company_ids,),
+    ).fetchall()
+    n = 0
+    for fid, cat, subj, pages in rows:
+        c = classify(cat, subj, _text(pages))
+        if c is not None:
+            _store(conn, fid, c)
+            n += 1
+    conn.commit()
+    return {"rules_decided": n, "considered": len(rows)}
+
+
+def undecided(conn: Connection, company_ids: list[int]) -> list[tuple]:
+    return conn.execute(
+        "SELECT f.id, f.exch_category, f.subject, f.text_pages FROM filings f "
+        "LEFT JOIN filing_class k ON k.filing_id = f.id "
+        "WHERE f.company_id = ANY(%s) AND k.filing_id IS NULL ORDER BY f.ts_ist DESC",
+        (company_ids,),
+    ).fetchall()
+
+
+def fetch_thin_texts(conn: Connection, nse: NSE, company_ids: list[int]) -> dict[str, int]:
+    """Download PDF text only for undecided filings whose subject says nothing."""
+    n = 0
+    for fid, _cat, subj, pages in undecided(conn, company_ids):
+        if pages is None and cl.thin_subject(subj):
+            n += fetch_filing_text(conn, nse, fid)
+    return {"thin_texts_fetched": n}
+
+
+def _quarter_facts(conn: Connection, company_id: int) -> tuple[dict, int]:
+    """{(period_end, basis): Period} for quarter-length plain facts; plus FY start month."""
+    from finn.push.results import Period
+
+    rows = conn.execute(
+        """
+        SELECT ff.period_end, ff.basis, ff.xbrl_url, ff.audited, x.concept, x.value
+        FROM fin_filings ff JOIN fin_facts x ON x.fin_filing_id = ff.id
+        WHERE ff.company_id = %s AND ff.parse_error IS NULL AND x.dims = '' AND x.unit = 'INR'
+          AND x.period_end = ff.period_end AND x.period_start IS NOT NULL
+          AND x.period_end - x.period_start < 100
+        """,
+        (company_id,),
+    ).fetchall()
+    out: dict = {}
+    for end, basis, url, audited, concept, value in rows:
+        p = out.setdefault((end, basis), Period(end, basis, {}, url, audited))
+        p.facts[concept] = value
+    fy = conn.execute(
+        """
+        SELECT date_part('month', x.period_start)::int, count(*) FROM fin_filings ff
+        JOIN fin_facts x ON x.fin_filing_id = ff.id
+        WHERE ff.company_id = %s AND x.period_end - x.period_start >= 360 GROUP BY 1 ORDER BY 2 DESC LIMIT 1
+        """,
+        (company_id,),
+    ).fetchone()
+    return out, (fy[0] if fy else 4)
+
+
+def _shift(d, months: int):
+    import calendar
+    from datetime import date
+
+    y, m = divmod(d.month - 1 + months, 12)
+    y, m = d.year + y, m + 1
+    return date(y, m, calendar.monthrange(y, m)[1])
+
+
+def compute_results_cards(conn: Connection, company_ids: list[int]) -> dict[str, int]:
+    from finn.push.results import build, fiscal_label
+
+    n = verified = 0
+    for cid in company_ids:
+        sym, name, fmt = conn.execute(  # type: ignore[misc]
+            "SELECT nse_symbol, name, coalesce(fin_format, 'indas') FROM companies WHERE id=%s", (cid,)
+        ).fetchone()
+        periods, fy_start = _quarter_facts(conn, cid)
+        for (end, basis), cur in periods.items():
+            if end < _shift(max(e for e, _ in periods), -12):  # cards for the last ~5 quarters
+                continue
+            # Prefer consolidated for the card; standalone only where consolidated is absent.
+            if basis == "standalone" and (end, "consolidated") in periods:
+                continue
+
+            def find(e, b=basis, ps=periods):
+                other = "standalone" if b == "consolidated" else "consolidated"
+                return ps.get((e, b)) or ps.get((e, other))
+
+            card = build(fmt, cur, find(_shift(end, -3)), find(_shift(end, -12)))
+            ann = conn.execute(
+                "SELECT f.pdf_url, f.ts_ist FROM filings f JOIN filing_class k ON k.filing_id = f.id "
+                "WHERE f.company_id = %s AND k.category = 'results' AND k.sub_type = 'results_filing' "
+                "AND f.ts_ist::date BETWEEN %s AND %s + 75 ORDER BY f.ts_ist LIMIT 1",
+                (cid, end, end),
+            ).fetchone()
+            body = {
+                "symbol": sym,
+                "name": name,
+                "period_end": str(end),
+                "period_label": fiscal_label(end, fy_start),
+                "basis": basis,
+                "format": fmt,
+                "audited": cur.audited,
+                "unit": "₹ cr",
+                "rows": card.rows,
+                "margins": card.margins,
+                "take": card.take,
+                "verified": card.verified,
+                "issues": card.issues,
+                "basis_note": card.basis_note,
+                "sources": {
+                    "xbrl": cur.xbrl_url,
+                    "filing": ann[0] if ann else None,
+                    "filed_at": ann[1].isoformat() if ann else None,
+                    "credit": "Source: NSE filings (XBRL)",
+                },
+            }
+            conn.execute(
+                "INSERT INTO results_cards (company_id, period_end, basis, card, verified, issues) "
+                "VALUES (%s,%s,%s,%s,%s,%s) ON CONFLICT (company_id, period_end, basis) DO UPDATE "
+                "SET card=EXCLUDED.card, verified=EXCLUDED.verified, issues=EXCLUDED.issues, "
+                "computed_at=now()",
+                (cid, end, basis, Jsonb(body), card.verified, card.issues),
+            )
+            n += 1
+            verified += card.verified
+    conn.commit()
+    return {"results_cards": n, "verified": verified}
+
+
+def classify_llm_stage(
+    conn: Connection, router: Router, company_ids: list[int], limit: int | None = None
+) -> dict[str, int]:
+    rows = undecided(conn, company_ids)[:limit]
+    counts: Counter = Counter()
+    for i in range(0, len(rows), cl.BATCH):
+        batch = rows[i : i + cl.BATCH]
+        payload = [
+            {"exch_category": cat, "subject": subj, "text": (_text(pages) if cl.thin_subject(subj) else None)}
+            for _fid, cat, subj, pages in batch
+        ]
+        res = router.call(
+            "BULK",
+            "classify_batch",
+            cl.PROMPT_VERSION,
+            cl.SYSTEM,
+            cl.render_batch(payload),
+            cl.Batch,
+            cache_payload=payload,
+        )
+        by_idx = {it.idx: it for it in res.data.items}  # type: ignore[attr-defined]
+        for j, (fid, *_rest) in enumerate(batch):
+            it = by_idx.get(j)
+            if it is None:
+                counts["missing_in_output"] += 1
+                continue
+            _store(
+                conn,
+                fid,
+                cl.to_classified(it, res.model),
+                materiality=it.materiality,
+                one_line=cl.clip_words(it.one_line),
+                entities={"people": it.people, "orgs": it.orgs, "amounts": it.amounts},
+                needs_deep_read=it.needs_deep_read,
+                model=f"{res.provider}:{res.model}",
+                prompt_version=cl.PROMPT_VERSION,
+            )
+            counts["llm_decided"] += 1
+        counts["calls"] += 0 if res.cache_hit else 1
+        counts["cache_hits"] += 1 if res.cache_hit else 0
+        conn.commit()
+    return dict(counts)

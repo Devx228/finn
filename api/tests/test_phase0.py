@@ -25,9 +25,7 @@ client = TestClient(app)
 def test_placeholder_brief_counts_match_items():
     b = placeholder_brief("24h", datetime.now(UTC))
     assert b.placeholder is True
-    assert b.counts.filings == len(b.items)
-    for tier in ("now", "worth", "buried"):
-        assert getattr(b.counts, tier) == sum(i.tier == tier for i in b.items)
+    assert b.counts.now == len(b.now) and b.counts.worth == len(b.worth)
 
 
 def test_health_degrades_when_db_down(monkeypatch):

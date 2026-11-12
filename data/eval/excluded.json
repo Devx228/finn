@@ -1,0 +1,10 @@
+{
+ "excluded": {
+  "1163": "press release text not fetched; title only says 'Press Release'",
+  "637": "letterhead only in first pages",
+  "616": "text not fetched",
+  "523": "scanned PDF, no text layer",
+  "219": "title 'press release dated 0', text not fetched",
+  "256": "title only 'Press Release', text not fetched"
+ }
+}

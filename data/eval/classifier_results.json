@@ -1,0 +1,707 @@
+{
+ "rules": {
+  "labelled": 114,
+  "rules_decided": 60,
+  "rules_correct": 59,
+  "rules_accuracy": 0.983,
+  "misses": [
+   [
+    30,
+    "pledging",
+    "insider_trading",
+    "Deepak C Mehta\u00a0has Submitted to the Exchange a copy of Disclosure under Regulation 31(4) o"
+   ]
+  ]
+ },
+ "ollama:qwen2.5:7b": {
+  "route": "ollama:qwen2.5:7b",
+  "n": 54,
+  "correct": 20,
+  "accuracy": 0.37,
+  "invalid_outputs": 0,
+  "seconds": 279.9,
+  "sec_per_filing": 5.18,
+  "misses": [
+   [
+    1049,
+    "press_release",
+    null,
+    "Infosys Limited has informed the Exchange regarding 'Winners of Qorus-Infosys Fi"
+   ],
+   [
+    911,
+    "litigation",
+    "press_release",
+    "Maruti Suzuki India Limited has informed the Exchange about Intimation under Reg"
+   ],
+   [
+    24,
+    "capex",
+    "investor_meetings",
+    "Deepak Nitrite Limited has informed the Exchange about General Updates"
+   ],
+   [
+    675,
+    "unclassified",
+    "press_release",
+    "Bharti Airtel Limited has informed the Exchange regarding 'Updates'."
+   ],
+   [
+    394,
+    "unclassified",
+    "results",
+    "HDFC Bank Limited has informed the Exchange about General Updates"
+   ],
+   [
+    1072,
+    "investor_meetings",
+    null,
+    "Infosys Limited has informed the Exchange regarding 'Investor Conference'."
+   ],
+   [
+    1085,
+    "press_release",
+    null,
+    "Infosys Limited has informed the Exchange regarding 'HDFC Bank Transforms Wealth"
+   ],
+   [
+    23,
+    "results",
+    null,
+    "Deepak Nitrite Limited has informed the Exchange about General Updates -Q1 FY 20"
+   ],
+   [
+    614,
+    "unclassified",
+    null,
+    "Intimation Under Regulation 30 Of the SEBI (Listing Obligations and Disclosure R"
+   ],
+   [
+    814,
+    "M&A",
+    "unclassified",
+    "Larsen & Toubro Limited has informed the Exchange about General Updates"
+   ],
+   [
+    1078,
+    "press_release",
+    "results",
+    "Infosys Limited has informed the Exchange regarding 'Infosys Aster Positioned as"
+   ],
+   [
+    398,
+    "unclassified",
+    "credit_rating",
+    "HDFC Bank Limited has informed the Exchange about General Updates"
+   ],
+   [
+    726,
+    "fund_raise",
+    "unclassified",
+    "Bharti Airtel Limited has informed the Exchange regarding 'Update on conversion "
+   ],
+   [
+    662,
+    "unclassified",
+    "insider_trading",
+    "Mahindra & Mahindra Limited has informed the Exchange regarding ''Transfer of Eq"
+   ],
+   [
+    266,
+    "press_release",
+    "results",
+    "UltraTech Cement Limited has informed the Exchange regarding 'UltraTech becomes "
+   ],
+   [
+    915,
+    "press_release",
+    "M&A",
+    "Maruti Suzuki India Limited has informed the Exchange about Advance intimation r"
+   ],
+   [
+    703,
+    "management_change",
+    "M&A",
+    "Bharti Airtel Limited has informed the Exchange regarding an update."
+   ],
+   [
+    33,
+    "unclassified",
+    "M&A",
+    "KPIT Technologies Limited has informed the Exchange regarding 'change in the add"
+   ],
+   [
+    1039,
+    "unclassified",
+    "M&A",
+    "PI Industries Limited has informed the Exchange about General Updates regarding "
+   ],
+   [
+    718,
+    "results",
+    "M&A",
+    "Bharti Airtel Limited has informed the Exchange regarding 'Bharti Airtel Limited"
+   ],
+   [
+    396,
+    "management_change",
+    "M&A",
+    "HDFC Bank Limited has informed the Exchange regarding Disclosure under Regulatio"
+   ],
+   [
+    876,
+    "press_release",
+    null,
+    "Maruti Suzuki India Limited has informed the Exchange about Maruti Suzuki Produc"
+   ],
+   [
+    965,
+    "M&A",
+    null,
+    "Persistent Systems Limited has informed the Exchange regarding a press release d"
+   ],
+   [
+    847,
+    "results",
+    null,
+    "Larsen & Toubro Limited has informed the Exchange about General Updates"
+   ],
+   [
+    1052,
+    "investor_meetings",
+    "press_release",
+    "Infosys Limited has informed the Exchange regarding ' Investor Conference'."
+   ],
+   [
+    1139,
+    "fund_raise",
+    "press_release",
+    "CREDITACCESS GRAMEEN LIMITED has informed the Exchange about General Updates"
+   ],
+   [
+    5,
+    "earnings_call",
+    "press_release",
+    "Deepak Nitrite Limited has informed the Exchange about General Updates"
+   ],
+   [
+    1000,
+    "results",
+    "press_release",
+    "Persistent Systems Limited has informed the Exchange regarding a press release d"
+   ],
+   [
+    19,
+    "capex",
+    "press_release",
+    "Deepak Nitrite Limited has informed the Exchange about General Updates"
+   ],
+   [
+    409,
+    "litigation",
+    "press_release",
+    "HDFC Bank Limited has informed the Exchange regarding conclusion of internal rev"
+   ],
+   [
+    1068,
+    "capex",
+    "press_release",
+    "Infosys Limited has informed the Exchange regarding 'Infosys Announces Expansion"
+   ],
+   [
+    1089,
+    "litigation",
+    "press_release",
+    "Infosys Limited has informed the Exchange regarding 'Disclosure Under Regulation"
+   ],
+   [
+    980,
+    "unclassified",
+    "press_release",
+    "Persistent Systems Limited has informed the Exchange about General Updates"
+   ],
+   [
+    559,
+    "results",
+    null,
+    "CG Power and Industrial Solutions Limited has informed the Exchange regarding a "
+   ]
+  ]
+ },
+ "ollama:llama3.1:8b": {
+  "route": "ollama:llama3.1:8b",
+  "n": 54,
+  "correct": 15,
+  "accuracy": 0.278,
+  "invalid_outputs": 10,
+  "seconds": 382.9,
+  "sec_per_filing": 7.09,
+  "misses": [
+   [
+    1049,
+    "press_release",
+    null,
+    "Infosys Limited has informed the Exchange regarding 'Winners of Qorus-Infosys Fi"
+   ],
+   [
+    911,
+    "litigation",
+    "press_release",
+    "Maruti Suzuki India Limited has informed the Exchange about Intimation under Reg"
+   ],
+   [
+    24,
+    "capex",
+    "investor_meetings",
+    "Deepak Nitrite Limited has informed the Exchange about General Updates"
+   ],
+   [
+    675,
+    "unclassified",
+    "press_release",
+    "Bharti Airtel Limited has informed the Exchange regarding 'Updates'."
+   ],
+   [
+    394,
+    "unclassified",
+    "results",
+    "HDFC Bank Limited has informed the Exchange about General Updates"
+   ],
+   [
+    1072,
+    "investor_meetings",
+    null,
+    "Infosys Limited has informed the Exchange regarding 'Investor Conference'."
+   ],
+   [
+    1085,
+    "press_release",
+    null,
+    "Infosys Limited has informed the Exchange regarding 'HDFC Bank Transforms Wealth"
+   ],
+   [
+    23,
+    "results",
+    null,
+    "Deepak Nitrite Limited has informed the Exchange about General Updates -Q1 FY 20"
+   ],
+   [
+    614,
+    "unclassified",
+    null,
+    "Intimation Under Regulation 30 Of the SEBI (Listing Obligations and Disclosure R"
+   ],
+   [
+    865,
+    "earnings_call",
+    "results",
+    "Maruti Suzuki India Limited has informed the Exchange about Audio Recording of t"
+   ],
+   [
+    814,
+    "M&A",
+    "pledging",
+    "Larsen & Toubro Limited has informed the Exchange about General Updates"
+   ],
+   [
+    393,
+    "fund_raise",
+    "unclassified",
+    "HDFC Bank Limited has informed the Exchange about General Updates"
+   ],
+   [
+    398,
+    "unclassified",
+    "credit_rating",
+    "HDFC Bank Limited has informed the Exchange about General Updates"
+   ],
+   [
+    558,
+    "results",
+    "press_release",
+    "CG Power and Industrial Solutions Limited has informed the Exchange regarding a "
+   ],
+   [
+    726,
+    "fund_raise",
+    "dividend",
+    "Bharti Airtel Limited has informed the Exchange regarding 'Update on conversion "
+   ],
+   [
+    243,
+    "unclassified",
+    "postal_ballot",
+    "UltraTech Cement Limited has informed the Exchange regarding 'Change in Corporat"
+   ],
+   [
+    662,
+    "unclassified",
+    "bonus_split",
+    "Mahindra & Mahindra Limited has informed the Exchange regarding ''Transfer of Eq"
+   ],
+   [
+    266,
+    "press_release",
+    "capex",
+    "UltraTech Cement Limited has informed the Exchange regarding 'UltraTech becomes "
+   ],
+   [
+    703,
+    "management_change",
+    "investor_meetings",
+    "Bharti Airtel Limited has informed the Exchange regarding an update."
+   ],
+   [
+    334,
+    "M&A",
+    "capex",
+    "Investment and Borrowing Committee of the Board of Directors at its meeting held"
+   ],
+   [
+    991,
+    "M&A",
+    "press_release",
+    "Persistent Systems Limited has informed the Exchange regarding a press release d"
+   ],
+   [
+    33,
+    "unclassified",
+    "results",
+    "KPIT Technologies Limited has informed the Exchange regarding 'change in the add"
+   ],
+   [
+    1039,
+    "unclassified",
+    "management_change",
+    "PI Industries Limited has informed the Exchange about General Updates regarding "
+   ],
+   [
+    396,
+    "management_change",
+    "press_release",
+    "HDFC Bank Limited has informed the Exchange regarding Disclosure under Regulatio"
+   ],
+   [
+    876,
+    "press_release",
+    null,
+    "Maruti Suzuki India Limited has informed the Exchange about Maruti Suzuki Produc"
+   ],
+   [
+    965,
+    "M&A",
+    null,
+    "Persistent Systems Limited has informed the Exchange regarding a press release d"
+   ],
+   [
+    "batch",
+    "tier EVAL_1 failed on every provider: ['APITimeoutError from ollama']"
+   ],
+   [
+    847,
+    "results",
+    null,
+    "Larsen & Toubro Limited has informed the Exchange about General Updates"
+   ],
+   [
+    1052,
+    "investor_meetings",
+    null,
+    "Infosys Limited has informed the Exchange regarding ' Investor Conference'."
+   ],
+   [
+    1139,
+    "fund_raise",
+    null,
+    "CREDITACCESS GRAMEEN LIMITED has informed the Exchange about General Updates"
+   ],
+   [
+    1051,
+    "press_release",
+    null,
+    "Infosys Limited has informed the Exchange regarding 'Canada s UNI Financial Coop"
+   ],
+   [
+    5,
+    "earnings_call",
+    null,
+    "Deepak Nitrite Limited has informed the Exchange about General Updates"
+   ],
+   [
+    1000,
+    "results",
+    null,
+    "Persistent Systems Limited has informed the Exchange regarding a press release d"
+   ],
+   [
+    19,
+    "capex",
+    null,
+    "Deepak Nitrite Limited has informed the Exchange about General Updates"
+   ],
+   [
+    409,
+    "litigation",
+    null,
+    "HDFC Bank Limited has informed the Exchange regarding conclusion of internal rev"
+   ],
+   [
+    1068,
+    "capex",
+    null,
+    "Infosys Limited has informed the Exchange regarding 'Infosys Announces Expansion"
+   ],
+   [
+    1089,
+    "litigation",
+    null,
+    "Infosys Limited has informed the Exchange regarding 'Disclosure Under Regulation"
+   ],
+   [
+    1197,
+    "results",
+    "unclassified",
+    "Trent Limited has submitted to the Exchange about Outcome of Board Meeting held "
+   ],
+   [
+    481,
+    "unclassified",
+    "results",
+    "Pursuant to the SEBI (Listing Obligations and Disclosure Requirements) Regulatio"
+   ],
+   [
+    559,
+    "results",
+    "press_release",
+    "CG Power and Industrial Solutions Limited has informed the Exchange regarding a "
+   ]
+  ]
+ },
+ "ollama:qwen2.5:3b": {
+  "route": "ollama:qwen2.5:3b",
+  "n": 54,
+  "correct": 18,
+  "accuracy": 0.333,
+  "invalid_outputs": 0,
+  "seconds": 77.9,
+  "sec_per_filing": 1.44,
+  "misses": [
+   [
+    1049,
+    "press_release",
+    null,
+    "Infosys Limited has informed the Exchange regarding 'Winners of Qorus-Infosys Fi"
+   ],
+   [
+    911,
+    "litigation",
+    "press_release",
+    "Maruti Suzuki India Limited has informed the Exchange about Intimation under Reg"
+   ],
+   [
+    24,
+    "capex",
+    "press_release",
+    "Deepak Nitrite Limited has informed the Exchange about General Updates"
+   ],
+   [
+    675,
+    "unclassified",
+    "press_release",
+    "Bharti Airtel Limited has informed the Exchange regarding 'Updates'."
+   ],
+   [
+    394,
+    "unclassified",
+    "press_release",
+    "HDFC Bank Limited has informed the Exchange about General Updates"
+   ],
+   [
+    1072,
+    "investor_meetings",
+    "press_release",
+    "Infosys Limited has informed the Exchange regarding 'Investor Conference'."
+   ],
+   [
+    23,
+    "results",
+    "press_release",
+    "Deepak Nitrite Limited has informed the Exchange about General Updates -Q1 FY 20"
+   ],
+   [
+    614,
+    "unclassified",
+    "press_release",
+    "Intimation Under Regulation 30 Of the SEBI (Listing Obligations and Disclosure R"
+   ],
+   [
+    803,
+    "results",
+    "press_release",
+    "Larsen & Toubro Limited has informed the Exchange regarding 'Analyst Presentatio"
+   ],
+   [
+    865,
+    "earnings_call",
+    "press_release",
+    "Maruti Suzuki India Limited has informed the Exchange about Audio Recording of t"
+   ],
+   [
+    814,
+    "M&A",
+    "unclassified",
+    "Larsen & Toubro Limited has informed the Exchange about General Updates"
+   ],
+   [
+    393,
+    "fund_raise",
+    "unclassified",
+    "HDFC Bank Limited has informed the Exchange about General Updates"
+   ],
+   [
+    558,
+    "results",
+    "press_release",
+    "CG Power and Industrial Solutions Limited has informed the Exchange regarding a "
+   ],
+   [
+    726,
+    "fund_raise",
+    "unclassified",
+    "Bharti Airtel Limited has informed the Exchange regarding 'Update on conversion "
+   ],
+   [
+    314,
+    "fund_raise",
+    "unclassified",
+    "UltraTech Cement Limited has informed the Exchange regarding 'Prior intimation r"
+   ],
+   [
+    266,
+    "press_release",
+    "unclassified",
+    "UltraTech Cement Limited has informed the Exchange regarding 'UltraTech becomes "
+   ],
+   [
+    915,
+    "press_release",
+    "M&A",
+    "Maruti Suzuki India Limited has informed the Exchange about Advance intimation r"
+   ],
+   [
+    703,
+    "management_change",
+    "M&A",
+    "Bharti Airtel Limited has informed the Exchange regarding an update."
+   ],
+   [
+    33,
+    "unclassified",
+    "M&A",
+    "KPIT Technologies Limited has informed the Exchange regarding 'change in the add"
+   ],
+   [
+    1039,
+    "unclassified",
+    "M&A",
+    "PI Industries Limited has informed the Exchange about General Updates regarding "
+   ],
+   [
+    718,
+    "results",
+    "M&A",
+    "Bharti Airtel Limited has informed the Exchange regarding 'Bharti Airtel Limited"
+   ],
+   [
+    396,
+    "management_change",
+    null,
+    "HDFC Bank Limited has informed the Exchange regarding Disclosure under Regulatio"
+   ],
+   [
+    876,
+    "press_release",
+    null,
+    "Maruti Suzuki India Limited has informed the Exchange about Maruti Suzuki Produc"
+   ],
+   [
+    965,
+    "M&A",
+    null,
+    "Persistent Systems Limited has informed the Exchange regarding a press release d"
+   ],
+   [
+    847,
+    "results",
+    null,
+    "Larsen & Toubro Limited has informed the Exchange about General Updates"
+   ],
+   [
+    1052,
+    "investor_meetings",
+    "press_release",
+    "Infosys Limited has informed the Exchange regarding ' Investor Conference'."
+   ],
+   [
+    1139,
+    "fund_raise",
+    "press_release",
+    "CREDITACCESS GRAMEEN LIMITED has informed the Exchange about General Updates"
+   ],
+   [
+    5,
+    "earnings_call",
+    "press_release",
+    "Deepak Nitrite Limited has informed the Exchange about General Updates"
+   ],
+   [
+    1000,
+    "results",
+    "press_release",
+    "Persistent Systems Limited has informed the Exchange regarding a press release d"
+   ],
+   [
+    19,
+    "capex",
+    "press_release",
+    "Deepak Nitrite Limited has informed the Exchange about General Updates"
+   ],
+   [
+    409,
+    "litigation",
+    null,
+    "HDFC Bank Limited has informed the Exchange regarding conclusion of internal rev"
+   ],
+   [
+    1068,
+    "capex",
+    null,
+    "Infosys Limited has informed the Exchange regarding 'Infosys Announces Expansion"
+   ],
+   [
+    1089,
+    "litigation",
+    null,
+    "Infosys Limited has informed the Exchange regarding 'Disclosure Under Regulation"
+   ],
+   [
+    1197,
+    "results",
+    "management_change",
+    "Trent Limited has submitted to the Exchange about Outcome of Board Meeting held "
+   ],
+   [
+    980,
+    "unclassified",
+    "press_release",
+    "Persistent Systems Limited has informed the Exchange about General Updates"
+   ],
+   [
+    559,
+    "results",
+    null,
+    "CG Power and Industrial Solutions Limited has informed the Exchange regarding a "
+   ]
+  ]
+ }
+}

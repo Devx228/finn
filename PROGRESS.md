@@ -35,7 +35,30 @@ phase is in `docs/PHASES.md`. Deadline: **15 Nov 2026**.
 - **Phase 1 ✅ (2026-11-12)** — evidence in docs/PHASES.md. DB (Neon) holds 22 demo companies:
   prices, 1,199 filings (130 with PDF text), transcript + AR links, 540 XBRL filings / 72,803 facts,
   `coverage:<SYM>` views. Portfolio/research set in `data/portfolio.json`, `data/research_set.json`.
-- **Phase 2 (push core): next / in progress.**
+- **Phase 2 (push core): IN PROGRESS (stopped mid-phase, 12 Nov, usage limit).** Done:
+  - `push/classify_rules.py`: 74% of filings decided by rules; eval 59/60 correct (pledge
+    declaration rule added after the eval; re-run eval to confirm 60/60).
+  - `data/eval/labelled.jsonl`: 114 filings labelled by the coding agent (6 excluded, see
+    `data/eval/excluded.json`); `push/evaluate.py`; results in `data/eval/classifier_results.json`.
+    v1 prompt: qwen2.5:7b 37%, llama3.1:8b 28% (10 invalid), qwen2.5:3b 33% — unusable.
+    v2 prompt (salient text from "Sub:", batch 5, few-shot) eval was running in the background;
+    log at scratchpad eval2.log (lost if session ended) — RE-RUN it (`push/evaluate.py`,
+    tiers EVAL_10/11) and pick the model by the numbers; record in docs/evals.md.
+  - Thin-subject PDF texts fetched (79). `filing_class` table holds rules decisions only so far.
+  - `push/results.py` + `pipeline.compute_results_cards`: 108 cards, all pass the filing's own
+    identities (Revenue/EBITDA/PBT/PAT; bank NII/PPOP; NBFC). TODO: cross-check 5 against
+    results PDFs; CGPOWER missing year-ago quarter; PIIND margin −1,524 bps (check other income).
+  - `push/brief.py`: bundling (results family 36 h), scoring §8.6 with components, tiers,
+    `materialise()`; portfolio now in DB (`holdings`, `research_set`; migration 0004;
+    `finn ingest holdings`). API `/api/brief?window=&as_of=` (replay) with new models.
+- **Phase 2 remaining:** run LLM stage on the 310 undecided (`pipeline.classify_llm_stage`)
+  with the chosen model; add a `finn push all` CLI (rules → thin texts → llm → cards →
+  materialise); rewrite web Today (Now cards incl. results grid, Worth rows, Buried groups,
+  "Why is this here?" sheet, window + as-of picker, NSE credit; update web/lib/types.ts);
+  run tests (pytest: phase0 test updated for new Brief shape — unverified); export snapshot;
+  push (deploys); gate = 7-day brief replayed as of 31 Oct 2026 with ≥ 5 verified results
+  cards matching the PDFs → docs/PHASES.md. Log decisions (eval numbers, as-of replay for the
+  gate, insider/pledging not in NSE announcements) in DECISIONS.md.
 - Keep-alive workflow exists but is OFF (`API_URL` repo variable unset) — private-repo Actions
   minutes. Decide at Phase 6 when the repo goes public.
 

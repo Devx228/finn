@@ -12,35 +12,39 @@ from psycopg.types.json import Jsonb
 
 from finn import db, ingest
 from finn.config import REPO_ROOT
-from finn.models import Brief, BriefCounts, BriefItem
+from finn.models import Brief, BriefCounts, BriefRow, Tier
 
 SNAPSHOT_DIR = REPO_ROOT / "web" / "public" / "snapshot"
 WINDOWS = ("24h", "3d", "7d", "30d")
 
 
 def placeholder_brief(window: str, as_of: datetime) -> Brief:
-    """Wiring-test content for Phase 0. Clearly labelled; contains no market data at all."""
-    items = [
-        BriefItem(
-            id=f"p0-{window}-1",
-            tier="now",
+    """Wiring-test content (Phase 0, still used by tests). Contains no market data at all."""
+
+    def row(i: int, tier: Tier, headline: str) -> BriefRow:
+        return BriefRow(
+            id=f"p0-{window}-{i}",
+            tier=tier,
+            symbol="—",
             company="—",
-            headline="Wiring check: this row came from Postgres via the API",
-        ),
-        BriefItem(
-            id=f"p0-{window}-2",
-            tier="worth",
-            company="—",
-            headline="Placeholder — real filings arrive in Phase 2",
-        ),
-        BriefItem(id=f"p0-{window}-3", tier="buried", company="—", headline="Placeholder buried item"),
-    ]
+            ts=as_of,  # type: ignore[arg-type]
+            category="unclassified",
+            category_label="Placeholder",
+            kind="filing",
+            headline=headline,
+            score=0,
+            components={},
+            filing_ids=[],
+        )
+
     return Brief(
         window=window,  # type: ignore[arg-type]
         as_of=as_of,
         placeholder=True,
         counts=BriefCounts(filings=3, now=1, worth=1, buried=1),
-        items=items,
+        now=[row(1, "now", "Wiring check: this row came from Postgres via the API")],
+        worth=[row(2, "worth", "Placeholder")],
+        buried=[],
     )
 
 
@@ -139,6 +143,7 @@ def cmd_ingest(args: argparse.Namespace) -> int:
     nse = NSE()
     steps = {
         "symbols": lambda c: ingest.ingest_symbols(c, nse),
+        "holdings": lambda c: ingest.ingest_holdings(c),
         "prices": lambda c: ingest.ingest_prices(c, syms),
         "filings": lambda c: ingest.ingest_filings(c, nse, syms, days=args.days),
         "transcripts": lambda c: ingest.ingest_transcript_history(c, nse, syms),
@@ -206,7 +211,7 @@ def main(argv: list[str] | None = None) -> int:
     ing = sub.add_parser("ingest")
     ing.add_argument(
         "step",
-        choices=["symbols", "prices", "filings", "transcripts", "fundamentals", "texts", "all"],
+        choices=["symbols", "holdings", "prices", "filings", "transcripts", "fundamentals", "texts", "all"],
     )
     ing.add_argument("--symbols", default="", help="comma-separated; default = demo set")
     ing.add_argument("--days", type=int, default=120)

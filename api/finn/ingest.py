@@ -48,6 +48,26 @@ def company_ids(conn: Connection, symbols: list[str]) -> dict[str, int]:
     return found
 
 
+def ingest_holdings(conn: Connection) -> dict[str, int]:
+    """Load data/portfolio.json and data/research_set.json into the DB (replaces previous)."""
+    port = json.loads((DATA / "portfolio.json").read_text(encoding="utf-8"))["companies"]
+    research = json.loads((DATA / "research_set.json").read_text(encoding="utf-8"))["companies"]
+    ids = company_ids(conn, [h["symbol"] for h in port] + [r["symbol"] for r in research])
+    conn.execute("DELETE FROM holdings")
+    conn.execute("DELETE FROM research_set")
+    for h in port:
+        conn.execute(
+            "INSERT INTO holdings (company_id, weight_pct, entry_date, theme, size) VALUES (%s,%s,%s,%s,%s)",
+            (ids[h["symbol"]], h["weight_pct"], h.get("entry_date"), h.get("theme"), h.get("size")),
+        )
+    for r in research:
+        conn.execute(
+            "INSERT INTO research_set (company_id, role) VALUES (%s, %s)", (ids[r["symbol"]], r.get("role"))
+        )
+    conn.commit()
+    return {"holdings": len(port), "research_set": len(research)}
+
+
 # -- symbols -----------------------------------------------------------------
 def ingest_symbols(conn: Connection, nse: NSE) -> dict[str, int]:
     syms = nse.symbols()

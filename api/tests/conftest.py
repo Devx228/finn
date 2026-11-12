@@ -3,6 +3,4 @@ docker Postgres); if that isn't reachable they skip."""
 
 import os
 
-os.environ["DATABASE_URL"] = os.environ.get(
-    "TEST_DATABASE_URL", "postgresql://finn:finn@localhost:5432/finn"
-)
+os.environ["DATABASE_URL"] = os.environ.get("TEST_DATABASE_URL", "postgresql://finn:finn@localhost:5432/finn")

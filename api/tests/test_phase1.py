@@ -40,30 +40,52 @@ def test_xbrl_segments_are_dimensioned_not_plain():
     assert len({f.dims for f in per_segment}) >= 5  # RELIANCE reports 5+ segments
     # The plain total stays a plain fact and is not confused with any one segment.
     total = p.get("SegmentRevenueFromOperations", date(2024, 3, 31), date(2024, 1, 1))
-    assert total is not None and all(f.value < total for f in per_segment
-                                     if f.concept == "SegmentRevenueFromOperations")
+    assert total is not None and all(
+        f.value < total for f in per_segment if f.concept == "SegmentRevenueFromOperations"
+    )
 
 
 # -- results selection ---------------------------------------------------------
 def _rf(end: date, basis: str, filed: int = 1) -> ResultsFiling:
-    return ResultsFiling("nse_cfr", "X", basis, "N", None, end, False,
-                         datetime(2020, 1, filed, tzinfo=UTC), f"u/{end}/{basis}/{filed}.xml")
+    return ResultsFiling(
+        "nse_cfr",
+        "X",
+        basis,
+        "N",
+        None,
+        end,
+        False,
+        datetime(2020, 1, filed, tzinfo=UTC),
+        f"u/{end}/{basis}/{filed}.xml",
+    )
 
 
 def test_select_prefers_consolidated_and_falls_back_labelled():
-    fs = [_rf(date(2026, 6, 30), "consolidated"), _rf(date(2026, 6, 30), "standalone"),
-          _rf(date(2026, 3, 31), "standalone")]
+    fs = [
+        _rf(date(2026, 6, 30), "consolidated"),
+        _rf(date(2026, 6, 30), "standalone"),
+        _rf(date(2026, 3, 31), "standalone"),
+    ]
     got = select_results(fs, today=date(2026, 11, 12))
     assert [(f.period_end, f.basis) for f in got] == [
-        (date(2026, 3, 31), "standalone"), (date(2026, 6, 30), "consolidated")]
+        (date(2026, 3, 31), "standalone"),
+        (date(2026, 6, 30), "consolidated"),
+    ]
 
 
 def test_select_keeps_recent_quarters_and_old_half_years_only():
     # today 12 Nov 2026: quarters from ~Nov 2022, half-years (Mar/Sep) from ~Oct 2016.
-    ends = [date(2016, 9, 30), date(2017, 3, 31), date(2017, 6, 30), date(2022, 6, 30),
-            date(2023, 6, 30), date(2026, 6, 30)]
-    got = {f.period_end for f in select_results([_rf(e, "consolidated") for e in ends],
-                                                today=date(2026, 11, 12))}
+    ends = [
+        date(2016, 9, 30),
+        date(2017, 3, 31),
+        date(2017, 6, 30),
+        date(2022, 6, 30),
+        date(2023, 6, 30),
+        date(2026, 6, 30),
+    ]
+    got = {
+        f.period_end for f in select_results([_rf(e, "consolidated") for e in ends], today=date(2026, 11, 12))
+    }
     assert got == {date(2017, 3, 31), date(2023, 6, 30), date(2026, 6, 30)}
 
 
@@ -99,16 +121,20 @@ def test_kmp_change_needs_a_top_role():
 
 # -- polite client -------------------------------------------------------------
 def _client(tmp_path, handler, sleeps):
-    return PoliteClient("T", min_interval=1.2, cache_dir=tmp_path / "c",
-                        refused_marker=tmp_path / "REFUSED.json",
-                        transport=httpx.MockTransport(handler), sleep=sleeps.append)
+    return PoliteClient(
+        "T",
+        min_interval=1.2,
+        cache_dir=tmp_path / "c",
+        refused_marker=tmp_path / "REFUSED.json",
+        transport=httpx.MockTransport(handler),
+        sleep=sleeps.append,
+    )
 
 
 def test_polite_client_caches_and_spaces_requests(tmp_path):
     hits = []
     sleeps: list[float] = []
-    c = _client(tmp_path, lambda r: (hits.append(str(r.url)), httpx.Response(200, content=b"ok"))[1],
-                sleeps)
+    c = _client(tmp_path, lambda r: (hits.append(str(r.url)), httpx.Response(200, content=b"ok"))[1], sleeps)
     c.get("https://x/a")
     c.get("https://x/b")
     assert c.get("https://x/a").from_cache  # never fetched twice
@@ -128,8 +154,13 @@ def test_polite_client_stops_on_refusal_and_stays_stopped(tmp_path):
 
 
 def test_polite_client_detects_access_denied_page_with_200(tmp_path):
-    c = _client(tmp_path, lambda r: httpx.Response(
-        200, headers={"content-type": "text/html"}, text="<html>Access Denied</html>"), [])
+    c = _client(
+        tmp_path,
+        lambda r: httpx.Response(
+            200, headers={"content-type": "text/html"}, text="<html>Access Denied</html>"
+        ),
+        [],
+    )
     with pytest.raises(SourceRefused):
         c.get("https://x/a")
 
@@ -185,7 +216,8 @@ def test_router_repairs_invalid_json_then_caches(two_routes):
 def test_router_falls_back_on_429(two_routes):
     be = FakeBackend([rmod.RetryableError("429"), '{"label": "y"}'])
     got = rmod.Router(backend=be, store=MemStore(), sleep=lambda s: None).call(
-        "BULK", "t", "v1", "s", "u", Out)
+        "BULK", "t", "v1", "s", "u", Out
+    )
     assert got.data.label == "y" and [c.model for c in be.calls] == ["a", "b"]
 
 
@@ -193,5 +225,4 @@ def test_router_skips_providers_without_keys(monkeypatch):
     monkeypatch.setenv("LLM_TIER_REASON", "groq:some-model")
     monkeypatch.setattr(rmod, "provider_available", lambda p: p == "ollama")
     with pytest.raises(rmod.LLMUnavailable):
-        rmod.Router(backend=FakeBackend([]), sleep=lambda s: None).call(
-            "REASON", "t", "v1", "s", "u", Out)
+        rmod.Router(backend=FakeBackend([]), sleep=lambda s: None).call("REASON", "t", "v1", "s", "u", Out)
