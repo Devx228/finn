@@ -1,0 +1,30 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# originals kept at the root by the owner; the tracked copies live in docs/
+/1. ENAM_*.pdf
+/2. ENAM_*.pdf
+/finn-master-plan.md
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+
+# node / next
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# data caches (raw downloads are never committed)
+data/cache/
+data/raw/
+*.log

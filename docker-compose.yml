@@ -1,0 +1,19 @@
+# Local Postgres for development. Production swaps DATABASE_URL to a hosted free Postgres.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: finn
+      POSTGRES_PASSWORD: finn
+      POSTGRES_DB: finn
+    ports:
+      - "5432:5432"
+    volumes:
+      - finn_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U finn -d finn"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+volumes:
+  finn_pg:
