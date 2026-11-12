@@ -193,3 +193,18 @@ Neon wakes only for real use (sub-second resume).
 - Alternatives: no keep-alive (every first visit pays Render's ~1 min cold start); keep-alive
   on `/health` (exhausts Neon compute). Chosen: `/livez`.
 - Render budget: one always-on free service ≈ 720–744 of 750 free instance hours/month.
+
+## 2026-11-12 — Gate 0b passed; deployment frozen at "good enough"
+
+Web: https://finn-tawny-nine.vercel.app (Vercel Hobby, root `web`). API:
+https://finn-api-mxni.onrender.com (Render free, Docker, Blueprint). DB: Neon free, Postgres 18;
+local Postgres and CI moved to 18 to match. Evidence (CDP-emulated 390×844 iPhone): live page
+shows "Live" from Neon via Render; with `*onrender.com*` blocked in the browser, the same page
+shows "Snapshot" from the bundled JSON; no horizontal scroll either way.
+
+- Repo is **private** for now (Devx228/finn). GitHub's free plan gives private repos 2,000
+  Actions minutes/month, and a 10-minute keep-alive bills ~4,300 (each run rounds up to a
+  minute). The keep-alive stays off (`API_URL` unset) until the repo is public or the owner
+  picks an external pinger. Cold start (~1 min) is covered by the snapshot fallback meanwhile.
+- Owner's direction: priority is now core functionality. No further infrastructure work beyond
+  what each gate needs; redeploy after each phase passes locally.

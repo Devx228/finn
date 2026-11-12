@@ -13,8 +13,10 @@ Authority order: `docs/brief.pdf` > owner's decisions in `docs/DECISIONS.md` > `
 - **Phase 0a: PASSED (owner confirmed on their phone, 2026-11-12).** Evidence: emulated 390×844 iPhone, API up → "Live" badge;
   API stopped → "Snapshot" badge; scrollWidth 390 both times. API 5 tests, web 5 tests,
   ruff/mypy/eslint/tsc clean, `next build` ok, API Docker image runs against local Postgres.
-- Phase 0b (deploy): waiting on accounts (GitHub repo, Neon, Vercel, Render). Hugging Face
-  Spaces, Koyeb and Cerebras are ruled out (paid plan or card) — see DECISIONS.md.
+- **Phase 0b: PASSED (2026-11-12).** Web https://finn-tawny-nine.vercel.app · API
+  https://finn-api-mxni.onrender.com · Neon Postgres 18 · repo github.com/Devx228/finn (private).
+  Keep-alive off until repo is public. Redeploy = push to main (Render + Vercel auto-deploy).
+- **Phase 1 (data plumbing): in progress.**
 
 ## How to run locally
 ```bash
@@ -34,7 +36,6 @@ and start the API with `CORS_ORIGINS=http://<lan-ip>:3000`. Refresh the snapshot
 `api/.venv/Scripts/finn export-snapshot`.
 
 ## Next steps
-1. Phase 0b: config ready (render.yaml, keepalive.yml, /livez). Waiting on owner accounts:
-   GitHub repo (personal account), Neon (Singapore), Render, Vercel. Then push, set env vars,
-   deploy, run the gate on the public URLs.
-2. Phase 1 (data plumbing) only after the owner's go-ahead.
+1. Phase 1: symbols, prices, BSE filings + PDF text, Screener (after owner OKs its terms),
+   LLM router + cache + ledger, pick_portfolio.py, 120-day backfill. Gate: `finn ingest all`
+   fills the DB for 18 companies, row counts printed.
