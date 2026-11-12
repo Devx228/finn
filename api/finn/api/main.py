@@ -31,6 +31,14 @@ app.add_middleware(
 )
 
 
+@app.get("/livez")
+def livez() -> dict[str, str]:
+    """Process liveness only — never touches the DB. The scheduled keep-alive pings this so the
+    web service stays warm without keeping the free-tier Postgres awake (it has a monthly
+    compute-hour budget and scales to zero when idle)."""
+    return {"status": "ok"}
+
+
 @app.get("/health", response_model=Health)
 def health() -> Health:
     db_state: Literal["ok", "down"] = "ok"

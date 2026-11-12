@@ -158,3 +158,38 @@ fallback), §8.5 category names, §16 Phase 0 split into 0a/0b, §17 no paid cre
   prove no horizontal scroll.
 - **Line endings:** `.gitattributes` forces LF (the owner's git uses autocrlf; the Dockerfile
   and future shell scripts run on Linux).
+
+## 2026-11-12 — Gate 0a passed on the owner's phone
+
+Owner opened `http://<laptop-lan-ip>:3000` on their phone over Wi-Fi and confirmed it works
+(Live badge from the API; snapshot fallback shown in emulation with the API stopped).
+
+## 2026-11-12 — Phase 0b preparation (before accounts exist)
+
+**VERIFIED 2026-11-12 (official docs):**
+- **Render Blueprint** (render.com/docs/blueprint-spec): `type: web`, `runtime: docker`,
+  `plan: free` (0.1 CPU, 512 MB), `region: singapore` valid (cannot be changed after
+  creation), `dockerContext` / `dockerfilePath` relative to repo root, `healthCheckPath`.
+  `autoDeploy` is deprecated → `autoDeployTrigger: commit`. `envVars … sync: false` not
+  confirmed from the fetched text; if the Blueprint rejects it, the two secrets are set in the
+  dashboard instead.
+- **Vercel Hobby** (vercel.com/docs/plans/hobby, /limits): no card; "restricts users to
+  non-commercial, personal use only" — a personal job-application prototype is within that;
+  flagged to the owner. 100 GB fast data transfer, 1M function invocations, 100
+  deployments/day, 300 s max function duration. Hobby cannot connect to repos owned by a
+  GitHub organisation → the repo lives under the owner's personal account.
+- **Neon Free** (neon.com/docs/introduction/plans, /regions): no monthly cost, no card stated
+  for the database; 1 GB storage per project (20 GB total), **100 CU-hours/project/month**,
+  scale to zero after 5 min (cannot disable), 5 GB egress/month. Singapore
+  (`aws-ap-southeast-1`) available on Free. Chosen region: Singapore, next to Render's
+  Singapore region.
+
+**Decision: keep-alive must not wake the database.** A keep-alive every 10 min that touched
+Postgres would keep Neon's compute awake almost continuously (~0.25 CU × 720 h ≈ 180 CU-h,
+above the 100 CU-h cap, after which Neon suspends compute for the rest of the month). Added
+`GET /livez` (process only, never opens a DB connection; tested) for the keep-alive and as
+Render's health check. `/health` still checks the DB and is what the web app calls on load, so
+Neon wakes only for real use (sub-second resume).
+- Alternatives: no keep-alive (every first visit pays Render's ~1 min cold start); keep-alive
+  on `/health` (exhausts Neon compute). Chosen: `/livez`.
+- Render budget: one always-on free service ≈ 720–744 of 750 free instance hours/month.

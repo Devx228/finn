@@ -40,6 +40,15 @@ def test_health_degrades_when_db_down(monkeypatch):
     assert r.json()["db"] == "down" and r.json()["status"] == "degraded"
 
 
+def test_livez_never_touches_db(monkeypatch):
+    def boom():
+        raise AssertionError("livez must not open a DB connection")
+
+    monkeypatch.setattr(db, "connection", boom)
+    r = client.get("/livez")
+    assert r.status_code == 200 and r.json() == {"status": "ok"}
+
+
 def test_brief_rejects_unknown_window():
     assert client.get("/api/brief?window=2h").status_code == 422
 

@@ -1,0 +1,16 @@
+# Keeps the free Render web service from spinning down (it sleeps after 15 min idle and takes
+# ~1 min to wake). Pings /livez, which does not touch Postgres, so Neon still scales to zero.
+# One always-on free service uses ~720-744 of Render's 750 free instance hours a month.
+name: keepalive
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    if: ${{ vars.API_URL != '' }}
+    steps:
+      - name: Ping API
+        run: curl -fsS --max-time 90 --retry 2 "${{ vars.API_URL }}/livez"
