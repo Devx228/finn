@@ -61,3 +61,33 @@ One entry per phase gate (spec §16), with the real output that showed it passin
 - Classifier: 1,199 filings — 947 by rules, 250 by qwen2.5:7b (53 calls, 65k in / 17.5k out
   tokens, ₹0), 2 retried and placed. Eval in `docs/evals.md` (86.8% end to end).
 - Tests: API 32 (incl. 9 Phase 2), web 6; ruff, mypy, eslint, tsc clean; `next build` ok.
+
+## Phase 3 — Network + alerts ✅ 2026-11-13
+- Gate: a real management-change filing shows the bio and a second-degree path; a material event
+  shows "Call {name}"; changing a threshold changes which alerts fire.
+- Evidence (local web on the exported snapshot, 500 px headless Chrome):
+  - HDFCBANK MD & CEO filing (ids 383/368): card strip reads "You were at ICICI Bank 2014–2017
+    while Anup Bagchi was there"; the sheet shows his career as disclosed in the filing (ICICI Bank
+    1992–, ED 2017–2023, ICICI Prudential Life MD & CEO 2023–) and three paths, top: "You → Nikhil
+    Gill (personal, 9 interactions in 24 months) → Anup Bagchi: overlapped at ICICI Bank" (strong
+    × medium). Network adds +10 to the score; it is in Now in the 3 Oct replay.
+  - Material events: TATASTEEL M&A → "Call Kabir Agarwal"; DIXON management change → "you can
+    reach Prithvi Vachani through Shreya Gill"; current employees carry the insider flag.
+  - Alerts over 30 days: 2×/±4% → 101 (40 volume, 18 price, 43 filings); 3×/±6% → 65 (17, 5, 43);
+    1.5×/±2% → 241. Python and TypeScript evaluators agree on a shared fixture (tests both sides).
+- Data: 64 synthetic contacts + 8 planted overlaps with executives named in filings, 40 meetings,
+  17 public figures from 13 filings. Tests: API 46, web 9; ruff, mypy, eslint, tsc clean.
+
+## Phase 4 — Pull (partial, 2026-11-13)
+- Built: `finn research SYM` for any NSE ticker with XBRL results + call transcripts — 12 quarters
+  of numbers from XBRL; guidance from the last 4 earnings calls (rules, then qwen2.5 7B; every quote
+  verified verbatim in the transcript, page kept); band changes computed (raised/held/cut);
+  verdicts against filings; computed bull/bear; who-to-call from the network.
+- INFY (hero): FY27 revenue-growth guidance 1.5–3.5% → 1.5–3% → 1–2% (cut twice); FY27 operating
+  margin 20–22% held, filings 21.0% (2Q YTD) → on track; FY26 margin delivered (20.9%). Revenue
+  guidance is constant-currency, so it is marked "not comparable" with reported ₹ growth rather
+  than scored. CREDITACC: ROA 4–4.8% → 5.2–5.8% and ROE 16–20% → 21–24% raised. TRENT: no
+  transcripts → honest empty state.
+- Gate not fully met: INFY has 8 cited guidance points but only 2 resolved verdicts (≥ 8 asked);
+  an unseen ticker cannot run live on the phone because Render can't reach NSE — it runs on the
+  worker (`finn research SYM`) and the page says so.

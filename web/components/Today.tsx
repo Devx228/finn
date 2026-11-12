@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { AlertsStrip } from "@/components/Alerts";
 import { NetworkSheet, NetworkStrip } from "@/components/Network";
 import { ResultsCard } from "@/components/ResultsCard";
 import { WhySheet } from "@/components/WhySheet";
@@ -94,6 +95,7 @@ export function Today() {
         )}
       </header>
 
+      {!asOf && <AlertsStrip />}
       {current === null && <p className="text-[14px] text-ink-3">Loading brief…</p>}
       {current && "error" in current && (
         <p className="text-[14px] text-down">

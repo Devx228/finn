@@ -38,55 +38,29 @@ phase is in `docs/PHASES.md`. Deadline: **15 Nov 2026**.
 - **Phase 2 ✅ (2026-11-13)** — evidence in docs/PHASES.md; eval in docs/evals.md. Run the push
   side with `finn push` (rules → thin texts → qwen2.5:7b → results cards → briefs), then
   `finn export-snapshot` and push to deploy. Replay deep link: `/?w=7d&as_of=2026-10-31`.
-- **Phase 3 (network + rich cards + alerts): IN PROGRESS — paused 13 Nov at owner's request.**
-  Done (committed, not yet gated):
-  - `ops/Modelfile.qwen2.5-7b-8k` + default tiers now `ollama:qwen2.5-7b-8k` (Ollama's default
-    2,048-token context was truncating some prompts). Recreate on a new machine with
-    `ollama create qwen2.5-7b-8k -f ops/Modelfile.qwen2.5-7b-8k`.
-  - Classifier v3 guard (ref echo, company-grouped batches, foreign-company post-check) — all
-    filings re-classified; see DECISIONS 2026-11-13.
-  - Migration 0005 (orgs, persons, employments, educations, relationships, meetings, expertise,
-    org_relations, person_mentions; tenant_id on network tables) — applied to Neon.
-  - `network/extract.py` (appointment profile extraction, every name/org verified against the
-    filing text), `network/resolve.py` (org/person resolution per spec §7.6),
-    `network/public_figures.py` (`seed_company_orgs`, `targets`, `extract_all`),
-    `network/synthetic.py` (deterministic 64 contacts, investor persona, 40 meetings; notes are the
-    investor's own views, never quotes from real executives; PIIND + AUBANK deliberately
-    uncovered), `network/store.py` (`load_synthetic`, `seed_overlaps`, `load_people`),
-    `network/graph.py` (warmth, overlap, paths, who-to-call, compliance flag — spec formulas).
-  - Extraction so far: 12 filings → 11 public figures (DB). 50 management-change filings remain
-    (`public_figures.targets`). ~67 s each locally.
-  Not done yet (next session, in order):
-  1. Finish extraction — priority filing ids first: 383, 368, 375 (HDFCBANK MD & CEO), 1092
-     (INFY CEO Designate), 640, 639, 635, 637 (M&M appointments), then the rest. Run in the
-     foreground in chunks of ≤ 8 (`extract_all(..., limit=8)`); background jobs get killed when
-     memory is low. Consider loosening `extract.appears()` (27 items dropped in the first 12 —
-     check whether abbreviations like "HDFC" vs "HDFC Bank Limited" are being rejected).
-  2. `store.load_synthetic(conn)` then `store.seed_overlaps(conn)`; add a `finn network seed`
-     CLI command; unit tests for graph.py (warmth, overlap, paths, who, compliance flag).
-  3. API: `/api/items/{id}/who`, `/api/network/who?company=&theme=`, `/api/network/paths?person_id=`;
-     mgmt-change card (bio from `person_mentions` + employments, best path) and material-event
-     card ("Call {name}", 3 questions — BULK with pseudonymised attributes) in `push/brief.py`;
-     "Who can help?" bottom sheet in web; synthetic label on every contact.
-  4. Alerts: `alert_rules` / `alerts_fired` tables, volume ×/price ±%/category rules, idempotent
-     evaluation, settings screen with "would have fired N times", in-app inbox.
-  5. Gate (spec §16 Phase 3) → docs/PHASES.md; commit; push (deploys).
-- Keep-alive workflow exists but is OFF (`API_URL` repo variable unset) — private-repo Actions
-  minutes. Decide at Phase 6 when the repo goes public.
+- **Phase 3 ✅ (2026-11-13)** — network in the brief (bio from filing, second-degree paths, "you
+  overlapped" with the investor's own CV, who-to-call with insider flag, worth-asking questions),
+  People tab (new faces, reasons to reconnect, who-to-call by company, expertise map, coverage),
+  alerts (volume ×, ±%, vs NIFTY, categories; client-side with "would have fired N times").
+  `finn network [--seed]` materialises network views; `finn push` now also does network + alerts.
+- **Phase 4 partial** — `finn research SYM[,SYM]` builds `research:<SYM>` (+ `research:index`):
+  XBRL trajectory, guidance tracker from last 4 calls, verdicts, bull/bear, who-to-call. Built for
+  INFY, KAYNES, CREDITACC, TRENT, PERSISTENT, DEEPAKNTR, HDFCBANK. Research screen done.
+  Gate shortfall logged in docs/PHASES.md.
+- Workflow after data changes: `finn push` → `finn research <syms>` → `finn export-snapshot` → commit
+  → push (deploys).
 
 ## Next steps (in order)
-1. Phase 3 (spec §16): synthetic network (`scripts/gen_network.py`, ~70 contacts, investor
-   persona, meetings) + `scripts/seed_overlaps.py` against real executives from filings;
-   entity resolution; link strength; who-can-help; second-degree paths; management-change card
-   (bio from the filing via BULK extraction) and material-event card with "Call {name}";
-   compliance flag; alerts (volume ×, price ±%, categories) with settings + in-app inbox.
-   Gate: a real management-change filing (HDFCBANK MD & CEO, or M&M appointment with bio) shows
-   the bio and a second-degree path; a material event shows "Call {name}"; changing a threshold
-   changes which alerts fire.
-2. GitHub Actions job (owner-approved): RSS → rules-only classify → alerts. Needs a
-   `DATABASE_URL` repo secret — ask the owner to add it.
-3. Phase 4 pull (job table; laptop worker preferred, GitHub-runner worker fallback), Phase 5
-   all P1, Phase 6 polish.
+1. Pull depth: more resolvable claims for the hero (quarterly guidance like "Q3 margin", capex
+   vs cash-flow capex from annual XBRL), business snapshot / segments from XBRL dims, balance
+   sheet & cash quality sections (half-year balance sheets + annual cash flow are in fin_facts).
+2. Ask bar (currently disabled with an honest label) — or remove it before submission.
+3. Remaining 50 management-change extractions (`public_figures.extract_all(..., limit=8)`), then
+   `finn network --seed` (re-plants overlaps) and `finn push`.
+4. Phase 6: README/ARCHITECTURE/diagram/WRITEUP, secret scan, make repo public, phone test.
+- Gotcha: shell heredocs in this environment turn `\b` into a backspace byte inside Python
+  regexes. Edit regex-heavy files with the Write/Edit tools or a script file; check with
+  `grep -c $'\b' file`.
 
 ## How to run
 ```bash

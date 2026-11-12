@@ -422,3 +422,19 @@ Fix (prompt `classify_batch-v3`):
 Result after re-classifying all 252: 1 one-liner named another company (dropped by the
 post-check); 3 filings stayed misaligned on every retry and are shown as "not yet classified"
 rather than given a wrong label.
+
+## 2026-11-13 — Network in the brief, pull engine, alerts
+- **Network scoring stays code.** Warmth × overlap (paths) and relevance × warmth (who to call)
+  per spec §9; the investor's own CV is compared too ("You were at ICICI Bank while they were
+  there") because a first-degree overlap beats any path. Network points feed the brief score.
+- **Guidance: rules first, model second.** qwen2.5 7B alone found 1 of 2 Infosys guidance items;
+  rules over pre-selected sentences (management only, cue word + number) catch the common
+  phrasings, pair each metric keyword with its nearest number (multi-metric sentences), and skip
+  questions, analyst paraphrases, outcomes ("ended at… against guidance") and segment growth. The
+  model adds what rules miss; any item whose quote isn't verbatim in the transcript is dropped.
+- **Constant-currency guidance is not scored against ₹ growth.** Shown as "not comparable".
+- **Alerts evaluated client-side** over a materialised input view (90 sessions + material
+  filings), mirrored in Python with a shared test fixture. Rules live in the browser
+  (localStorage) — per-viewer settings, no account needed for the demo.
+- **Pull is a worker job, not on-demand from the hosted API**: NSE returns 403 to Render. The
+  research page says this instead of faking a live run.

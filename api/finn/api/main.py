@@ -112,3 +112,10 @@ def get_research(symbol: str) -> dict:
 def list_research() -> dict:
     """Companies with a research view."""
     return _view("research:index")
+
+
+@app.get("/api/alerts/inputs")
+def get_alert_inputs() -> dict:
+    """EOD bars + material filings for the holdings; rules are evaluated client-side (and in
+    finn.push.alerts.evaluate, the same logic) so threshold changes apply instantly."""
+    return _view("alerts:inputs")

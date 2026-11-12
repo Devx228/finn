@@ -206,7 +206,7 @@ def cmd_push(args: argparse.Namespace) -> int:
     from finn.llm.router import LLMUnavailable, Router
     from finn.llm.store import LLMStore
     from finn.network import service as network_views
-    from finn.push import brief, pipeline
+    from finn.push import alerts, brief, pipeline
     from finn.sources.http import SourceRefused
     from finn.sources.nse import NSE
 
@@ -229,6 +229,7 @@ def cmd_push(args: argparse.Namespace) -> int:
         print("  results cards", pipeline.compute_results_cards(conn, ids))
         now = datetime.now(ZoneInfo("Asia/Kolkata"))
         print("  network      ", network_views.materialise(conn, now))
+        print("  alerts       ", alerts.materialise(conn, now))
         print("  briefs       ", brief.materialise(conn, now))
     return 0
 
