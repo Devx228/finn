@@ -1,7 +1,7 @@
-# Local Postgres for development. Production swaps DATABASE_URL to a hosted free Postgres.
+# Local Postgres for development (same major version as production: 18). Production swaps DATABASE_URL to a hosted free Postgres.
 services:
   db:
-    image: postgres:16-alpine
+    image: postgres:18-alpine
     environment:
       POSTGRES_USER: finn
       POSTGRES_PASSWORD: finn
@@ -9,7 +9,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - finn_pg:/var/lib/postgresql/data
+      - finn_pg:/var/lib/postgresql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U finn -d finn"]
       interval: 2s
