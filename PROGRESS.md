@@ -38,7 +38,39 @@ phase is in `docs/PHASES.md`. Deadline: **15 Nov 2026**.
 - **Phase 2 ✅ (2026-11-13)** — evidence in docs/PHASES.md; eval in docs/evals.md. Run the push
   side with `finn push` (rules → thin texts → qwen2.5:7b → results cards → briefs), then
   `finn export-snapshot` and push to deploy. Replay deep link: `/?w=7d&as_of=2026-10-31`.
-- **Phase 3 (network + rich cards + alerts): next.**
+- **Phase 3 (network + rich cards + alerts): IN PROGRESS — paused 13 Nov at owner's request.**
+  Done (committed, not yet gated):
+  - `ops/Modelfile.qwen2.5-7b-8k` + default tiers now `ollama:qwen2.5-7b-8k` (Ollama's default
+    2,048-token context was truncating some prompts). Recreate on a new machine with
+    `ollama create qwen2.5-7b-8k -f ops/Modelfile.qwen2.5-7b-8k`.
+  - Classifier v3 guard (ref echo, company-grouped batches, foreign-company post-check) — all
+    filings re-classified; see DECISIONS 2026-11-13.
+  - Migration 0005 (orgs, persons, employments, educations, relationships, meetings, expertise,
+    org_relations, person_mentions; tenant_id on network tables) — applied to Neon.
+  - `network/extract.py` (appointment profile extraction, every name/org verified against the
+    filing text), `network/resolve.py` (org/person resolution per spec §7.6),
+    `network/public_figures.py` (`seed_company_orgs`, `targets`, `extract_all`),
+    `network/synthetic.py` (deterministic 64 contacts, investor persona, 40 meetings; notes are the
+    investor's own views, never quotes from real executives; PIIND + AUBANK deliberately
+    uncovered), `network/store.py` (`load_synthetic`, `seed_overlaps`, `load_people`),
+    `network/graph.py` (warmth, overlap, paths, who-to-call, compliance flag — spec formulas).
+  - Extraction so far: 12 filings → 11 public figures (DB). 50 management-change filings remain
+    (`public_figures.targets`). ~67 s each locally.
+  Not done yet (next session, in order):
+  1. Finish extraction — priority filing ids first: 383, 368, 375 (HDFCBANK MD & CEO), 1092
+     (INFY CEO Designate), 640, 639, 635, 637 (M&M appointments), then the rest. Run in the
+     foreground in chunks of ≤ 8 (`extract_all(..., limit=8)`); background jobs get killed when
+     memory is low. Consider loosening `extract.appears()` (27 items dropped in the first 12 —
+     check whether abbreviations like "HDFC" vs "HDFC Bank Limited" are being rejected).
+  2. `store.load_synthetic(conn)` then `store.seed_overlaps(conn)`; add a `finn network seed`
+     CLI command; unit tests for graph.py (warmth, overlap, paths, who, compliance flag).
+  3. API: `/api/items/{id}/who`, `/api/network/who?company=&theme=`, `/api/network/paths?person_id=`;
+     mgmt-change card (bio from `person_mentions` + employments, best path) and material-event
+     card ("Call {name}", 3 questions — BULK with pseudonymised attributes) in `push/brief.py`;
+     "Who can help?" bottom sheet in web; synthetic label on every contact.
+  4. Alerts: `alert_rules` / `alerts_fired` tables, volume ×/price ±%/category rules, idempotent
+     evaluation, settings screen with "would have fired N times", in-app inbox.
+  5. Gate (spec §16 Phase 3) → docs/PHASES.md; commit; push (deploys).
 - Keep-alive workflow exists but is OFF (`API_URL` repo variable unset) — private-repo Actions
   minutes. Decide at Phase 6 when the repo goes public.
 

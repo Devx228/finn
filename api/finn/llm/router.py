@@ -36,8 +36,8 @@ PROVIDERS: dict[str, dict[str, Any]] = {
 
 # Local default for every tier: the app runs with no keys at all.
 DEFAULT_TIERS = {
-    "BULK": "ollama:qwen2.5:7b",
-    "REASON": "ollama:qwen2.5:7b",
+    "BULK": "ollama:qwen2.5-7b-8k",
+    "REASON": "ollama:qwen2.5-7b-8k",
     "VISION": "",
 }
 
