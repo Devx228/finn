@@ -310,3 +310,46 @@ removed after the run.
   job-table design: the app inserts a job row; a worker claims it, runs the pipeline and writes
   progress rows the UI polls; "queued — worker offline" when no worker heartbeat is recent.
   The README will document running a worker locally for any ticker.
+
+## 2026-11-12 — Phase 1 build decisions
+
+- **Owner direction (Phase 4 scope, recorded now):** GitHub-runner research worker approved as
+  the *fallback* to the laptop worker (one job table, either may claim; laptop preferred when
+  its heartbeat is recent). Fine-grained token scoped to this repo, Actions-dispatch only,
+  stored as a Render secret. Abuse protection: symbol validated against the NSE master, cached
+  report returned if present, one job per symbol, 1–2 concurrent runs, per-IP and per-day rate
+  limits. UI shows runner start-up honestly. Owner to be told when hosted model keys are needed.
+- **Polite client** (`sources/http.py`): process-wide lock, ≥ 1.2 s between NSE requests,
+  disk cache keyed by URL (documents forever, listings 6 h, symbol master 7 days), one retry
+  only for timeouts/5xx. Any 401/403/429 or "Access Denied"/captcha page raises
+  `SourceRefused`, writes `data/cache/SOURCE_REFUSED.json`, and every later run refuses to call
+  until a person deletes the marker. Tested.
+- **XBRL is the numeric spine; integrated filings also ship XBRL XML**, so one parser covers
+  2005 → today. Every numeric fact is stored as reported (`fin_facts`: concept, dims, period,
+  value in absolute INR); metrics are computed from facts in code per format later.
+- **NSE XBRL quirk (verified on RELIANCE Q4 FY24):** year-to-date contexts (`Four*`) are declared
+  with the quarter's dates but carry YTD values (FY24 revenue ₹9,14,472 cr vs Q4 ₹2,40,715 cr;
+  cash flow appears only in YTD). The parser re-dates `Four*` contexts from the filing's own
+  `DateOfStartOfFinancialYear`. Pinned by a fixture test.
+- **Which XBRL filings are fetched (minimal footprint):** every quarter in the last 16 (QoQ, YoY,
+  guidance checks) plus every Mar/Sep half-year end in the last 10 years (balance sheet, cash
+  flow, full year). Per period: consolidated if filed, else standalone; `basis` stored per row so
+  a series switch is always labelled, never silently spliced. Latest revision wins.
+- **Filing PDFs fetched lazily.** All announcements are stored as metadata (category, subject,
+  NSE PDF link). PDF text is fetched only for filings a later stage must read (management change,
+  M&A, capex, litigation), via `finn ingest texts`. Results PDFs (4–8 MB each) are not needed:
+  the numbers come from XBRL.
+- **Portfolio picked by `scripts/pick_portfolio.py`** from real filings (40 NSE requests, one per
+  candidate, same 120-day window the ingest reuses from cache): DEEPAKNTR, KPITTECH, SUNPHARMA,
+  TATASTEEL, TITAN, ULTRACEMCO, VBL, HDFCBANK, BAJFINANCE, AUBANK, CGPOWER, M&M, BHARTIARTL,
+  DIXON, LT, MARUTI, PERSISTENT, PIIND — 10 themes, 2 banks, 1 NBFC, 6 small/mid caps (size
+  buckets approximate: ≥ ₹1 lakh cr large, ≥ ₹30k cr mid). Weights and entry dates synthetic
+  (seeded). Research set: INFY (guidance hero), KAYNES (mid-cap capex), CREDITACC (NBFC), TRENT
+  (0 transcripts in 120 days — degradation demo; a large cap, not the small cap the spec asked
+  for).
+- **Caveat on the picker's evidence:** the minimal tagger reads NSE's generic category text
+  ("Resignation of Director/KMP/SMP"), so its "KMP change" count includes non-executive
+  directors (e.g. Noel Tata retiring from Tata Steel / Titan). Which changes are CEO/CFO/MD level
+  is verified from PDF text after ingest, before Phase 3 relies on it.
+- **Tests never touch Neon:** `tests/conftest.py` points DATABASE_URL at TEST_DATABASE_URL
+  (default local docker Postgres); DB tests skip if it is down.

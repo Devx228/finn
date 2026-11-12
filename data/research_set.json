@@ -1,0 +1,21 @@
+{
+ "as_of": "2026-11-12",
+ "companies": [
+  {
+   "symbol": "INFY",
+   "role": "hero: publishes revenue-growth and margin guidance bands"
+  },
+  {
+   "symbol": "KAYNES",
+   "role": "mid-cap with capacity / capex guidance"
+  },
+  {
+   "symbol": "CREDITACC",
+   "role": "financial (NBFC): no EBITDA, different statement rows"
+  },
+  {
+   "symbol": "TRENT",
+   "role": "fewest concall transcripts in pool (0 in 120 days) \u2014 degradation demo"
+  }
+ ]
+}

@@ -1,0 +1,723 @@
+[
+ {
+  "symbol": "HDFCBANK",
+  "name": "HDFC Bank Limited",
+  "theme": "Banks",
+  "industry": "Banks",
+  "filings_120d": 56,
+  "results_30d": true,
+  "kmp_changes_90d": [
+   "12 Nov: HDFC Bank Limited has informed the Exchange about Approval from the Reserve Bank of India for re-appointment o"
+  ],
+  "material_90d": [],
+  "transcripts_120d": 2,
+  "mcap_cr": 1253565,
+  "size": "large",
+  "why": [
+   "bank (financials metric set)"
+  ],
+  "weight_pct": 7.6,
+  "entry_date": "2024-01-25"
+ },
+ {
+  "symbol": "ICICIBANK",
+  "name": "ICICI Bank Limited",
+  "theme": "Banks",
+  "industry": "Banks",
+  "filings_120d": 89,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [],
+  "transcripts_120d": 3,
+  "mcap_cr": 1141755,
+  "size": "large"
+ },
+ {
+  "symbol": "AUBANK",
+  "name": "AU Small Finance Bank Limited",
+  "theme": "Banks",
+  "industry": null,
+  "filings_120d": 45,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [
+   "09 Sep [M&A]: We hereby inform that AU Small Finance Bank ( AU SFB ) has received RBI s letter dated September 8, 2026 accor"
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 73394,
+  "size": "mid",
+  "why": [
+   "small/mid cap for size diversity"
+  ],
+  "weight_pct": 4.3,
+  "entry_date": "2025-02-07"
+ },
+ {
+  "symbol": "IDFCFIRSTB",
+  "name": "IDFC First Bank Limited",
+  "theme": "Banks",
+  "industry": null,
+  "filings_120d": 51,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [],
+  "transcripts_120d": 3,
+  "mcap_cr": 69829,
+  "size": "mid"
+ },
+ {
+  "symbol": "BAJFINANCE",
+  "name": "Bajaj Finance Limited",
+  "theme": "NBFC / rural lending",
+  "industry": "Finance",
+  "filings_120d": 49,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [],
+  "transcripts_120d": 2,
+  "mcap_cr": 693965,
+  "size": "large",
+  "why": [
+   "NBFC (rural lending theme)"
+  ],
+  "weight_pct": 6.7,
+  "entry_date": "2023-12-25"
+ },
+ {
+  "symbol": "CHOLAFIN",
+  "name": "Cholamandalam Investment and Finance Company Limited",
+  "theme": "NBFC / rural lending",
+  "industry": "Finance",
+  "filings_120d": 33,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [],
+  "transcripts_120d": 2,
+  "mcap_cr": 159708,
+  "size": "large"
+ },
+ {
+  "symbol": "CREDITACC",
+  "name": "CREDITACCESS GRAMEEN LIMITED",
+  "theme": "NBFC / rural lending",
+  "industry": null,
+  "filings_120d": 46,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [],
+  "transcripts_120d": 2,
+  "mcap_cr": 17634,
+  "size": "small"
+ },
+ {
+  "symbol": "M&MFIN",
+  "name": "Mahindra & Mahindra Financial Services Limited",
+  "theme": "NBFC / rural lending",
+  "industry": "Finance",
+  "filings_120d": 49,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [],
+  "transcripts_120d": 2,
+  "mcap_cr": 39764,
+  "size": "mid"
+ },
+ {
+  "symbol": "INFY",
+  "name": "Infosys Limited",
+  "theme": "IT services",
+  "industry": "Computers - Software",
+  "filings_120d": 51,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [],
+  "transcripts_120d": 2,
+  "mcap_cr": 466279,
+  "size": "large"
+ },
+ {
+  "symbol": "HCLTECH",
+  "name": "HCL Technologies Limited",
+  "theme": "IT services",
+  "industry": "Computers - Software",
+  "filings_120d": 68,
+  "results_30d": false,
+  "kmp_changes_90d": [],
+  "material_90d": [
+   "26 Oct [M&A]: Update   Completion of acquisition of Robotic Process Automation d.o.o. ( Robotiq.ai\")",
+   "28 Sep [M&A]: HCL Technologies Limited has informed the Exchange regarding a press release dated September 28, 2026, titled ",
+   "28 Sep [M&A]: HCL Technologies Limited has informed the Exchange about Acquisition"
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 373731,
+  "size": "large"
+ },
+ {
+  "symbol": "PERSISTENT",
+  "name": "Persistent Systems Limited",
+  "theme": "IT services",
+  "industry": "Computers - Software",
+  "filings_120d": 87,
+  "results_30d": false,
+  "kmp_changes_90d": [
+   "09 Oct: Persistent Systems Limited has informed the Exchange about Resignation of Director/KMP/SMP",
+   "19 Sep: Persistent Systems Limited has informed the Exchange about Resignation of Director/KMP/SMP"
+  ],
+  "material_90d": [],
+  "transcripts_120d": 1,
+  "mcap_cr": 99472,
+  "size": "mid",
+  "why": [
+   "rich recent filing activity"
+  ],
+  "weight_pct": 4.1,
+  "entry_date": "2026-02-02"
+ },
+ {
+  "symbol": "KPITTECH",
+  "name": "KPIT Technologies Limited",
+  "theme": "IT services",
+  "industry": null,
+  "filings_120d": 51,
+  "results_30d": true,
+  "kmp_changes_90d": [
+   "28 Oct: KPIT Technologies Limited has informed the Exchange regarding Appointment of Independent Director, Mr. Anant T"
+  ],
+  "material_90d": [
+   "28 Oct [M&A]: KPIT Technologies Limited has informed the Exchange that the Board of Directors of the Company approved the pr",
+   "27 Aug [litigation]: Disclosure under Regulation 30 of SEBI LODR - adjudication order from the Office of the Collector of Stamps"
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 15192,
+  "size": "small",
+  "why": [
+   "real CEO/CFO/MD-level change in the last 90 days"
+  ],
+  "weight_pct": 2.9,
+  "entry_date": "2025-12-02"
+ },
+ {
+  "symbol": "SRF",
+  "name": "SRF Limited",
+  "theme": "Specialty chemicals",
+  "industry": "Textiles - Synthetic",
+  "filings_120d": 30,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [
+   "05 Nov [litigation]: SRF Limited has informed the Exchange about Action(s) taken or orders passed",
+   "01 Oct [litigation]: SRF Limited has informed the Exchange about Pendency of Litigation(s)/dispute(s) or the outcome impacting the ",
+   "24 Sep [M&A]: KAMA Realty (Delhi) Limited has submitted to the Exchange a copy of Disclosures under Regulation 10(6)-Report ",
+   "15 Sep [M&A]: KAMA Realty (Delhi) Limited has Submitted to the Exchange a copy of Disclosure under Regulation 10 (5) of the "
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 73417,
+  "size": "mid"
+ },
+ {
+  "symbol": "AARTIIND",
+  "name": "Aarti Industries Limited",
+  "theme": "Specialty chemicals",
+  "industry": "Chemicals - Speciality",
+  "filings_120d": 45,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [],
+  "transcripts_120d": 2,
+  "mcap_cr": 17553,
+  "size": "small"
+ },
+ {
+  "symbol": "DEEPAKNTR",
+  "name": "Deepak Nitrite Limited",
+  "theme": "Specialty chemicals",
+  "industry": "Chemicals - Organic",
+  "filings_120d": 30,
+  "results_30d": true,
+  "kmp_changes_90d": [
+   "21 Aug: Deepak Nitrite Limited has informed the Exchange about Resignation of Director/KMP/SMP",
+   "21 Aug: Deepak Nitrite Limited has informed the Exchange about Resignation of Director/KMP/SMP",
+   "21 Aug: Deepak Nitrite Limited has informed the Exchange about Resignation of Director/KMP/SMP"
+  ],
+  "material_90d": [
+   "25 Aug [litigation]: Deepak Nitrite Limited has informed the Exchange about Action(s) taken or orders passed"
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 22167,
+  "size": "small",
+  "why": [
+   "real CEO/CFO/MD-level change in the last 90 days"
+  ],
+  "weight_pct": 2.6,
+  "entry_date": "2024-03-15"
+ },
+ {
+  "symbol": "PIIND",
+  "name": "PI Industries Limited",
+  "theme": "Specialty chemicals",
+  "industry": "Pesticides And Agrochemicals",
+  "filings_120d": 41,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [
+   "19 Oct [M&A]: PI Industries Limited has informed the Exchange about Update on Incorporation of a Wholly Owned Subsidiary of "
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 26400,
+  "size": "small",
+  "why": [
+   "rich recent filing activity"
+  ],
+  "weight_pct": 3.2,
+  "entry_date": "2025-06-18"
+ },
+ {
+  "symbol": "NAVINFLUOR",
+  "name": "Navin Fluorine International Limited",
+  "theme": "Specialty chemicals",
+  "industry": "Chemicals - Inorganic",
+  "filings_120d": 45,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [],
+  "transcripts_120d": 2,
+  "mcap_cr": 51172,
+  "size": "mid"
+ },
+ {
+  "symbol": "DIXON",
+  "name": "Dixon Technologies (India) Limited",
+  "theme": "Semiconductors / electronics",
+  "industry": null,
+  "filings_120d": 64,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [
+   "07 Oct [M&A]: Dixon Technologies (India) Limited has informed the Exchange about Joint Venture Agreement executed between Di",
+   "30 Sep [M&A]: Dixon Technologies (India) Limited has informed the Exchange about Execution of Intellectual Property License ",
+   "21 Sep [M&A]: Dixon Technologies (India) Limited has informed the Exchange about Acquisition"
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 79473,
+  "size": "mid",
+  "why": [
+   "rich recent filing activity"
+  ],
+  "weight_pct": 4.8,
+  "entry_date": "2025-09-13"
+ },
+ {
+  "symbol": "KAYNES",
+  "name": "Kaynes Technology India Limited",
+  "theme": "Semiconductors / electronics",
+  "industry": null,
+  "filings_120d": 27,
+  "results_30d": false,
+  "kmp_changes_90d": [],
+  "material_90d": [
+   "02 Nov [M&A]: Kaynes Technology India Limited has informed the Exchange about Incorporation of wholly owned subsidiary"
+  ],
+  "transcripts_120d": 1,
+  "mcap_cr": 23420,
+  "size": "small"
+ },
+ {
+  "symbol": "CGPOWER",
+  "name": "CG Power and Industrial Solutions Limited",
+  "theme": "Semiconductors / electronics",
+  "industry": null,
+  "filings_120d": 53,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [
+   "05 Nov [litigation]: CG Power and Industrial Solutions Limited has informed the Exchange about Action(s) taken or orders passed",
+   "20 Aug [M&A]: CGPOWER: CG Power and Industrial Solutions Limited has informed the Exchange about Update on the Acquisition o",
+   "17 Aug [M&A]: CGPOWER: CG Power and Industrial Solutions Limited has informed the Exchange about Execution of Definitive Agr"
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 129466,
+  "size": "large",
+  "why": [
+   "covers theme: Semiconductors / electronics"
+  ],
+  "weight_pct": 6.8,
+  "entry_date": "2026-07-29"
+ },
+ {
+  "symbol": "TATAELXSI",
+  "name": "Tata Elxsi Limited",
+  "theme": "Semiconductors / electronics",
+  "industry": "Computers - Software",
+  "filings_120d": 24,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [],
+  "transcripts_120d": 2,
+  "mcap_cr": 24063,
+  "size": "small"
+ },
+ {
+  "symbol": "HINDUNILVR",
+  "name": "Hindustan Unilever Limited",
+  "theme": "Consumer",
+  "industry": "Diversified",
+  "filings_120d": 33,
+  "results_30d": false,
+  "kmp_changes_90d": [],
+  "material_90d": [],
+  "transcripts_120d": 2,
+  "mcap_cr": 463809,
+  "size": "large"
+ },
+ {
+  "symbol": "TITAN",
+  "name": "Titan Company Limited",
+  "theme": "Consumer",
+  "industry": "Gems Jewellery And Watches",
+  "filings_120d": 50,
+  "results_30d": true,
+  "kmp_changes_90d": [
+   "05 Nov: Titan Company Limited has informed the Exchange about Retirement of Mr. Noel N. Tata as Director and Vice-Chai"
+  ],
+  "material_90d": [
+   "28 Oct [M&A]: Titan Company Limited has informed the Exchange about the Company has incorporated Titan Company Canada Inc. a"
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 436726,
+  "size": "large",
+  "why": [
+   "real M&A / capex / litigation filing in the last 90 days"
+  ],
+  "weight_pct": 6.2,
+  "entry_date": "2025-08-30"
+ },
+ {
+  "symbol": "TRENT",
+  "name": "Trent Limited",
+  "theme": "Consumer",
+  "industry": "Miscellaneous",
+  "filings_120d": 31,
+  "results_30d": false,
+  "kmp_changes_90d": [
+   "29 Oct: Trent Limited has informed the Exchange about Retirement of Mr. Noel N Tata as the Chairman",
+   "19 Oct: Trent Limited has informed the Exchange about Resignation of Director/KMP/SMP"
+  ],
+  "material_90d": [
+   "23 Oct [M&A]: Trent Limited has informed the Exchange about Nahar Retail Trading Services Limited ( Nahar ), a wholly owned "
+  ],
+  "transcripts_120d": 0,
+  "mcap_cr": 169568,
+  "size": "large"
+ },
+ {
+  "symbol": "DMART",
+  "name": "Avenue Supermarts Limited",
+  "theme": "Consumer",
+  "industry": null,
+  "filings_120d": 54,
+  "results_30d": false,
+  "kmp_changes_90d": [],
+  "material_90d": [
+   "27 Oct [litigation]: Avenue Supermarts Limited has informed the Exchange about Action(s) initiated or orders passed",
+   "26 Aug [litigation]: Avenue Supermarts Limited has informed the Exchange about Action(s) taken or orders passed"
+  ],
+  "transcripts_120d": 1,
+  "mcap_cr": 225308,
+  "size": "large"
+ },
+ {
+  "symbol": "VBL",
+  "name": "Varun Beverages Limited",
+  "theme": "Consumer",
+  "industry": null,
+  "filings_120d": 38,
+  "results_30d": true,
+  "kmp_changes_90d": [
+   "24 Sep: Varun Beverages Limited has informed the Exchange about Resignation of Director/KMP/SMP",
+   "25 Aug: The Board of Directors at their meeting held today inter-alia approved: (i) to incorporate a wholly-owned subs"
+  ],
+  "material_90d": [
+   "30 Sep [litigation]: Update on the Disclosure under Regulation 30 of the SEBI (Listing Obligations and Disclosure Requirements) Reg",
+   "17 Aug [M&A]: In continuation to our earlier disclosure dated July 2, 2026 wherein we had informed that the Board of Directo"
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 147139,
+  "size": "large",
+  "why": [
+   "real M&A / capex / litigation filing in the last 90 days"
+  ],
+  "weight_pct": 5.8,
+  "entry_date": "2024-04-07"
+ },
+ {
+  "symbol": "SUNPHARMA",
+  "name": "Sun Pharmaceutical Industries Limited",
+  "theme": "Pharma / healthcare",
+  "industry": "Pharmaceuticals",
+  "filings_120d": 55,
+  "results_30d": true,
+  "kmp_changes_90d": [
+   "12 Oct: Sun Pharmaceutical Industries Limited has informed the Exchange about Resignation of Director/KMP/SMP"
+  ],
+  "material_90d": [
+   "17 Aug [litigation]: Update on Lipitor Antitrust Litigation"
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 452275,
+  "size": "large",
+  "why": [
+   "real CEO/CFO/MD-level change in the last 90 days"
+  ],
+  "weight_pct": 6.5,
+  "entry_date": "2024-09-27"
+ },
+ {
+  "symbol": "DIVISLAB",
+  "name": "Divi's Laboratories Limited",
+  "theme": "Pharma / healthcare",
+  "industry": "Pharmaceuticals",
+  "filings_120d": 15,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [],
+  "transcripts_120d": 1,
+  "mcap_cr": 304891,
+  "size": "large"
+ },
+ {
+  "symbol": "APOLLOHOSP",
+  "name": "Apollo Hospitals Enterprise Limited",
+  "theme": "Pharma / healthcare",
+  "industry": "Miscellaneous",
+  "filings_120d": 25,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [],
+  "transcripts_120d": 2,
+  "mcap_cr": 122433,
+  "size": "large"
+ },
+ {
+  "symbol": "LT",
+  "name": "Larsen & Toubro Limited",
+  "theme": "Industrials / infra",
+  "industry": "Engineering",
+  "filings_120d": 63,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [
+   "01 Sep [M&A]: Larsen & Toubro Limited has informed the Exchange about Scheme of Arrangement"
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 572259,
+  "size": "large",
+  "why": [
+   "rich recent filing activity"
+  ],
+  "weight_pct": 5.6,
+  "entry_date": "2023-11-29"
+ },
+ {
+  "symbol": "POLYCAB",
+  "name": "Polycab India Limited",
+  "theme": "Industrials / infra",
+  "industry": null,
+  "filings_120d": 50,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [
+   "30 Oct [litigation]: Polycab India Limited has informed the Exchange about the order passed by NCLAT setting aside the order of NCL",
+   "28 Oct [litigation]: Polycab India Limited has informed the Exchange on the update of NCLAT order dated October 27, 2026",
+   "16 Oct [litigation]: Polycab India Limited has informed the Exchange about Corporate Insolvency Resolution Process",
+   "14 Oct [litigation]: Polycab India Limited has informed the Exchange that Hon''ble NCLAT has granted the request for early listing ",
+   "09 Oct [litigation]: Polycab India Limited has informed the Exchange about Corporate Insolvency Resolution Process",
+   "08 Oct [litigation]: Polycab India Limited has informed the Exchange about Corporate Insolvency Resolution Process",
+   "08 Oct [litigation]: Polycab India Limited has informed the Exchange about Corporate Insolvency Resolution Process",
+   "07 Oct [litigation]: Polycab India Limited has informed the Exchange about intimation of NCLT order"
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 121770,
+  "size": "large"
+ },
+ {
+  "symbol": "ULTRACEMCO",
+  "name": "UltraTech Cement Limited",
+  "theme": "Industrials / infra",
+  "industry": "Cement And Cement Products",
+  "filings_120d": 82,
+  "results_30d": true,
+  "kmp_changes_90d": [
+   "19 Oct: UltraTech Cement Limited has informed the Exchange about Resignation of Director/KMP/SMP",
+   "19 Oct: UltraTech Cement Limited has informed the Exchange about Resignation of Director/KMP/SMP",
+   "19 Oct: UltraTech Cement Limited has informed the Exchange regarding relinquishment of position as Non-Executive Vice "
+  ],
+  "material_90d": [
+   "23 Sep [capex]: UltraTech Cement Limited has informed the Exchange regarding 'Company Update: Commissioning of cement capacity",
+   "21 Aug [M&A]: UltraTech Cement Limited has informed the Exchange about Incorporation of UHG Holdings IFSC Private Limited."
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 362788,
+  "size": "large",
+  "why": [
+   "real M&A / capex / litigation filing in the last 90 days"
+  ],
+  "weight_pct": 7.1,
+  "entry_date": "2024-07-28"
+ },
+ {
+  "symbol": "SUZLON",
+  "name": "Suzlon Energy Limited",
+  "theme": "Industrials / infra",
+  "industry": "Electrical Equipment",
+  "filings_120d": 40,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [],
+  "transcripts_120d": 2,
+  "mcap_cr": 53419,
+  "size": "mid"
+ },
+ {
+  "symbol": "RELIANCE",
+  "name": "Reliance Industries Limited",
+  "theme": "Energy / conglomerate / telecom",
+  "industry": "Refineries",
+  "filings_120d": 58,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [
+   "29 Oct [M&A]: Disclosure under Regulation 30 of the Securities and Exchange Board of India (Listing Obligations and Disclosu",
+   "07 Oct [litigation]: Disclosure under Regulation 30 of the Securities and Exchange Board of India (Listing Obligations and Disclosu",
+   "05 Sep [M&A]: Roptonal Limited (Roptonal), a step-down subsidiary of the Company, stands dissolved with effect from August 1"
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 1812945,
+  "size": "large"
+ },
+ {
+  "symbol": "BHARTIARTL",
+  "name": "Bharti Airtel Limited",
+  "theme": "Energy / conglomerate / telecom",
+  "industry": "Telecommunication - Services",
+  "filings_120d": 68,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [
+   "06 Nov [litigation]: Bharti Airtel Limited has informed the Exchange about Action(s) taken or orders passed",
+   "04 Nov [litigation]: Bharti Airtel Limited has informed the Exchange about Action(s) taken or orders passed",
+   "30 Oct [litigation]: Bharti Airtel Limited has informed the Exchange about Action(s) taken or orders passed",
+   "29 Oct [litigation]: Bharti Airtel Limited has informed the Exchange about Action(s) taken or orders passed",
+   "14 Oct [litigation]: Bharti Airtel Limited has informed the Exchange about Action(s) taken or orders passed",
+   "01 Oct [litigation]: Bharti Airtel Limited has informed the Exchange about Action(s) taken or orders passed",
+   "29 Sep [litigation]: Bharti Airtel Limited has informed the Exchange about Action(s) taken or orders passed",
+   "21 Sep [litigation]: Bharti Airtel Limited has informed the Exchange about Action(s) taken or orders passed",
+   "18 Sep [litigation]: Bharti Airtel Limited has informed the Exchange about Action(s) taken or orders passed",
+   "18 Sep [litigation]: Bharti Airtel Limited has informed the Exchange about Action(s) taken or orders passed",
+   "10 Sep [litigation]: Bharti Airtel Limited has informed the Exchange about Action(s) taken or orders passed",
+   "31 Aug [litigation]: Bharti Airtel Limited has informed the Exchange about Action(s) taken or orders passed",
+   "25 Aug [litigation]: Bharti Airtel Limited has informed the Exchange about Action(s) taken or orders passed"
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 1308379,
+  "size": "large",
+  "why": [
+   "rich recent filing activity"
+  ],
+  "weight_pct": 6.1,
+  "entry_date": "2024-11-15"
+ },
+ {
+  "symbol": "TATASTEEL",
+  "name": "Tata Steel Limited",
+  "theme": "Energy / conglomerate / telecom",
+  "industry": "Steel And Steel Products",
+  "filings_120d": 55,
+  "results_30d": true,
+  "kmp_changes_90d": [
+   "07 Nov: Tata Steel Limited has informed the Exchange regarding retirement of Mr. Noel Naval Tata as the Non-Executive,",
+   "07 Nov: Tata Steel Limited has informed the Exchange about Retirement of Mr. Noel Naval Tata as the Non-Executive, Non"
+  ],
+  "material_90d": [
+   "07 Nov [M&A]: Tata Steel Limited has informed the Exchange about acquisition of 38,222 equity shares of face value &#8377;10",
+   "03 Nov [M&A]: Tata Steel Limited has informed the Exchange about  Effective Date  of the Scheme of Amalgamation amongst Tata",
+   "03 Nov [M&A]: Tata Steel Limited has informed the Exchange about  Effective Date  of the Scheme of Amalgamation amongst Tata",
+   "15 Oct [M&A]: Tata Steel Limited has informed the Exchange about receipt of certified true copy of the Order of the Hon ble ",
+   "01 Oct [M&A]: Tata Steel Limited has informed the Exchange about Pronouncement of Order by the Hon ble National Company Law ",
+   "01 Oct [M&A]: Tata Steel Limited has informed the Exchange about Pronouncement of Order by the Hon ble National Company Law ",
+   "29 Sep [M&A]: Tata Steel Limited has informed the Exchange about acquisition of equity shares in T Steel Holdings Pte. Ltd",
+   "29 Sep [litigation]: Tata Steel Limited has informed the Exchange about disclosure under Regulation(s) 30 read with 51 of the Secur",
+   "18 Sep [litigation]: Tata Steel Limited has informed the Exchange about disclosure under Regulations 30 read with 51 of the Securit",
+   "31 Aug [M&A]: Tata Steel Limited has informed the Exchange about divestment of entire stake held in Jamshedpur Football and ",
+   "27 Aug [M&A]: Tata Steel Limited has informed the Exchange about acquisition of equity stake in T Steel Holdings Pte. Ltd",
+   "26 Aug [litigation]: Tata Steel Limited has informed the Exchange about disclosure under Regulation 30 read with Regulation 51 of t",
+   "26 Aug [litigation]: Tata Steel Limited has informed the Exchange about disclosure under Regulations 30 and 51 of Securities and Ex",
+   "25 Aug [litigation]: Tata Steel Limited has informed the Exchange about disclosure under Regulation 30 and 51 of the Securities and",
+   "20 Aug [M&A]: Tata Steel Limited has informed the Exchange about acquisition of equity stake in TM International Logistics L",
+   "14 Aug [M&A]: Tata Steel Limited has informed the Exchange about divestment of entire stake held in Jamshedpur Football and ",
+   "14 Aug [M&A]: Tata Steel Limited has informed the Exchange regarding outcome of the Meeting of Committee of Directors - Dive"
+  ],
+  "transcripts_120d": 1,
+  "mcap_cr": 234471,
+  "size": "large",
+  "why": [
+   "real M&A / capex / litigation filing in the last 90 days"
+  ],
+  "weight_pct": 7.5,
+  "entry_date": "2026-04-14"
+ },
+ {
+  "symbol": "MARUTI",
+  "name": "Maruti Suzuki India Limited",
+  "theme": "Autos",
+  "industry": "Automobiles - 4 Wheelers",
+  "filings_120d": 59,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [
+   "27 Oct [M&A]: Maruti Suzuki India Limited has informed the Exchange about Incorporation of Wholly Owned Subsidiary",
+   "15 Oct [litigation]: Maruti Suzuki India Limited has informed the Exchange about Action(s) taken or orders passed",
+   "30 Sep [litigation]: Maruti Suzuki India Limited has informed the Exchange about Action(s) taken or orders passed"
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 409478,
+  "size": "large",
+  "why": [
+   "rich recent filing activity"
+  ],
+  "weight_pct": 6.3,
+  "entry_date": "2024-03-28"
+ },
+ {
+  "symbol": "M&M",
+  "name": "Mahindra & Mahindra Limited",
+  "theme": "Autos",
+  "industry": "Automobiles - 4 Wheelers",
+  "filings_120d": 98,
+  "results_30d": true,
+  "kmp_changes_90d": [],
+  "material_90d": [
+   "06 Nov [M&A]: Mahindra & Mahindra Limited has informed the Exchange about Acquisition"
+  ],
+  "transcripts_120d": 2,
+  "mcap_cr": 408139,
+  "size": "large",
+  "why": [
+   "covers theme: Autos"
+  ],
+  "weight_pct": 6.1,
+  "entry_date": "2026-04-25"
+ },
+ {
+  "symbol": "EICHERMOT",
+  "name": "Eicher Motors Limited",
+  "theme": "Autos",
+  "industry": "Automobiles - 4 Wheelers",
+  "filings_120d": 41,
+  "results_30d": false,
+  "kmp_changes_90d": [],
+  "material_90d": [],
+  "transcripts_120d": 1,
+  "mcap_cr": 207236,
+  "size": "large"
+ }
+]
