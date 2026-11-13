@@ -131,3 +131,27 @@ re-run under the stricter rules: resolved KAYNES 5→3, POLYCAB 4→0, CREDITACC
 The one miss: Sun Pharma ILUMYA US approval, hosted-model base 39 vs expected ≥ 40 (it still
 shows in Worth knowing). `python -m finn.push.evaluate` reports both; expected ranges are set from
 judgment about the filing, not from the scorer's output.
+
+## Guidance extraction, 26 hand-listed claims + 25 negatives (2026-11-13)
+Gold (`data/eval/guidance_gold.json`, for the owner to check): 8 transcripts — CreditAccess ×3
+(May 2025, May 2026, Oct 2026), Kaynes ×3, Infosys ×1, Polycab ×1 — 26 numeric guidance claims by
+management, each with its quote and page, and 25 **negatives**: sentences that must never become a
+scored claim, of the kinds that fooled earlier versions (achievements/results 8, share-of-revenue
+targets 5, segment figures 4, long-term bands with no year 3, multi-year totals 3, restated old
+goals 2). Three CreditAccess claims say "retain/maintain/expect" without naming the year; the gold
+accepts FY27 or "no year stated" for them (the extractor never assigns a year the quote doesn't name).
+
+| Config | Precision, all kept | Precision, items held to a year | Recall | Negatives held |
+|---|---|---|---|---|
+| Rules only | 0.85 (22/26) | 22/22 | 0.85 | 25/25 |
+| Hosted model alone, raw | 0.55 | — | 0.42 | 24/25 (scored "₹4,800 cr capex to FY28-29" as FY28) |
+| Hosted model alone, strict | 0.69 | — | 0.35 | 25/25 |
+| **Shipped: rules + model + strict** | **0.79 (23/29)** | **23/23** | **0.88** | **25/25** |
+
+All 6 "wrong" items in the shipped config are open items (no year / medium term: Kaynes "40–50%
+on its own", Polycab "15–20%" derived growth, Polycab/Kaynes multi-year capex): listed, never
+scored. Missed (3): CreditAccess "We expect a NIM of 14.4% to 14.7% as against 12.8% to 13.2%"
+(the "as against" skip), Kaynes "cross the operational EBITDA of 15% this year" (no "margin"
+word), Polycab FY25 capex "₹10 billion to ₹12 billion … during this year" (the sentence opens with
+the Q3 actual). Engine frozen (owner, 2026-11-13): these stay documented, not fixed.
+The earlier "precision 1.0 on 4 claims" is superseded by this set.

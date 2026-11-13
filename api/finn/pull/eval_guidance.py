@@ -21,7 +21,9 @@ GOLD = REPO_ROOT / "data" / "eval" / "guidance_gold.json"
 
 
 def _match(item: dict, claim: dict) -> bool:
-    if item["metric"] not in claim["metrics"] or item.get("period") != claim["period"]:
+    if item["metric"] not in claim["metrics"] or item.get("period") not in claim.get(
+        "periods", [claim["period"]]
+    ):
         return False
     lo, hi = item.get("low"), item.get("high")
     return any(
@@ -38,6 +40,33 @@ def score(items: list[dict], claims: list[dict]) -> dict:
         if not any(_match(i, c) for c in claims)
     ]
     return {"kept": len(items), "correct": tp, "found": sorted(found), "wrong": wrong}
+
+
+def _n(t: str) -> str:
+    return " ".join(gd._norm(t).split())
+
+
+def negatives(items: list[dict], negs: list[dict]) -> list[dict]:
+    """A negative is violated when an item drawn from that sentence would be scored: it names a
+    fiscal year and isn't marked as one business's figure."""
+    out = []
+    for ng in negs:
+        key = _n(ng["quote"])[:60]
+        hits = [
+            i
+            for i in items
+            if (key in _n(i["quote"]) or _n(i["quote"])[:60] in _n(ng["quote"]))
+            and str(i.get("period", "")).startswith("FY")
+            and i.get("scope") != "segment"
+        ]
+        out.append(
+            {
+                **ng,
+                "violated": bool(hits),
+                "by": [f"{i['metric']} {i['period']} {i['low']}-{i['high']}" for i in hits],
+            }
+        )
+    return out
 
 
 def run(models: list[str]) -> dict:
@@ -64,12 +93,23 @@ def run(models: list[str]) -> dict:
             tier = f"EVALG{models.index(route)}"
             os.environ[f"LLM_TIER_{tier}"] = route
             router = Router(store=LLMStore())
-        tot: dict = {"kept": 0, "correct": 0, "gold": 0, "found": [], "wrong": [], "drop_reasons": {}}
+        tot: dict = {
+            "kept": 0,
+            "correct": 0,
+            "gold": 0,
+            "found": [],
+            "wrong": [],
+            "drop_reasons": {},
+            "negatives": [],
+        }
         for d in gold["docs"]:
             items, st = gd.extract(
                 router, docs[d["doc_id"]], d["call_fy"], tier=tier, strict=strict, use_rules=rules
             )
             s = score(items, d["claims"])
+            tot["negatives"] += [
+                {**x, "symbol": d["symbol"]} for x in negatives(items, d.get("negatives", []))
+            ]
             tot["kept"] += s["kept"]
             tot["correct"] += s["correct"]
             tot["gold"] += len(d["claims"])
@@ -81,9 +121,18 @@ def run(models: list[str]) -> dict:
                 tot["error"] = st["model_name"]
         tot["precision"] = round(tot["correct"] / tot["kept"], 2) if tot["kept"] else None
         tot["recall"] = round(len(tot["found"]) / tot["gold"], 2)
+        ok = [x for x in tot["negatives"] if not x["violated"]]
+        tot["negatives_held"] = f"{len(ok)}/{len(tot['negatives'])}"
+        kinds: dict[str, list[int]] = {}
+        for x in tot["negatives"]:
+            k = kinds.setdefault(x["kind"], [0, 0])
+            k[0] += not x["violated"]
+            k[1] += 1
+        tot["negatives_by_kind"] = {k: f"{a}/{b}" for k, (a, b) in kinds.items()}
         out[name] = tot
         print(
             f"{name:55s} P={tot['precision']} R={tot['recall']} kept={tot['kept']} "
+            f"negatives held={tot['negatives_held']} "
             f"{'ERR ' + tot['error'] if 'error' in tot else ''}",
             flush=True,
         )

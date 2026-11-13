@@ -1,5 +1,5 @@
 {
-  "note": "Hand-listed 2026-11-13 by reading every forward-looking numeric sentence of each transcript (see docs/evals.md). Gold = numeric forward guidance by management on tracked metrics. A claim stated several times counts once; an item matches if metric, period and band match any accepted form.",
+  "note": "Hand-listed 2026-11-13 by reading every forward-looking numeric sentence of each transcript (see docs/evals.md). Gold = numeric forward guidance by management on tracked metrics. A claim stated several times counts once; an item matches if metric, period and band match any accepted form. 2026-11-13: +6 transcripts (CreditAccess ×3, Kaynes ×2, Polycab) with 22 claims and 25 negatives (statements that must never become a scored claim: achievements/results, restated old goals, segment figures, share-of-revenue targets, long-term bands with no year, multi-year totals). Claims with 'periods' accept either form; the extractor declines to assign a year the quote doesn't name.",
   "docs": [
     {
       "doc_id": 209,
@@ -7,15 +7,45 @@
       "call": "Q4 FY26 call, 23 Apr 2026 (large company)",
       "call_fy": 2027,
       "claims": [
-        {"id": "infy-rev", "metrics": ["revenue_growth"], "period": "FY27", "bands": [[1.5, 3.5]],
-         "quote": "Our revenue growth guidance for the financial year 2027 is 1.5% to 3.5% growth year-on-year in constant currency terms.", "page": 4},
-        {"id": "infy-margin", "metrics": ["operating_margin"], "period": "FY27", "bands": [[20, 22]],
-         "quote": "Our operating margin guidance for financial year '27 is 20% to 22%.", "page": 4}
+        {
+          "id": "infy-rev",
+          "metrics": [
+            "revenue_growth"
+          ],
+          "period": "FY27",
+          "bands": [
+            [
+              1.5,
+              3.5
+            ]
+          ],
+          "quote": "Our revenue growth guidance for the financial year 2027 is 1.5% to 3.5% growth year-on-year in constant currency terms.",
+          "page": 4
+        },
+        {
+          "id": "infy-margin",
+          "metrics": [
+            "operating_margin"
+          ],
+          "period": "FY27",
+          "bands": [
+            [
+              20,
+              22
+            ]
+          ],
+          "quote": "Our operating margin guidance for financial year '27 is 20% to 22%.",
+          "page": 4
+        }
       ],
       "distractors": [
-        "analyst restating 1.5% to 3.5% (p5, p32)", "FY26 actuals 3.1% growth / 21% margin (p28, p46)",
-        "tax rate 29% to 30% (p29)", "20,000 freshers (p8, p29)", "acquisition margin impact 60-70 bps / 0.7% (p9, p31)",
-        "brokers' 200-225 bps contribution (p22)", "onsite mix 40-50 bps (p39, p46)"
+        "analyst restating 1.5% to 3.5% (p5, p32)",
+        "FY26 actuals 3.1% growth / 21% margin (p28, p46)",
+        "tax rate 29% to 30% (p29)",
+        "20,000 freshers (p8, p29)",
+        "acquisition margin impact 60-70 bps / 0.7% (p9, p31)",
+        "brokers' 200-225 bps contribution (p22)",
+        "onsite mix 40-50 bps (p39, p46)"
       ]
     },
     {
@@ -24,15 +54,658 @@
       "call": "Q1 FY27 call, 8 Aug 2026 (small company)",
       "call_fy": 2027,
       "claims": [
-        {"id": "kaynes-capex", "metrics": ["capex"], "period": "FY27", "bands": [[850, 850], [300, 300], [250, 250], [600, 600]],
-         "quote": "We said we will be funding for this capex for this year is about INR300 crores for OSAT, INR300 crores for PCB, and about INR250 crores for EMS business.", "page": 16},
-        {"id": "kaynes-osat-pcb-rev", "metrics": ["segment_revenue"], "period": "FY27", "bands": [[450, 500], [500, 500]],
-         "quote": "...we have committed a full year revenue of totally INR500 crores between both, INR450 to INR500 crores, which is what we are targeting at this point in time", "page": 15}
+        {
+          "id": "kaynes-capex",
+          "metrics": [
+            "capex"
+          ],
+          "period": "FY27",
+          "bands": [
+            [
+              850,
+              850
+            ],
+            [
+              300,
+              300
+            ],
+            [
+              250,
+              250
+            ],
+            [
+              600,
+              600
+            ]
+          ],
+          "quote": "We said we will be funding for this capex for this year is about INR300 crores for OSAT, INR300 crores for PCB, and about INR250 crores for EMS business.",
+          "page": 16
+        },
+        {
+          "id": "kaynes-osat-pcb-rev",
+          "metrics": [
+            "segment_revenue"
+          ],
+          "period": "FY27",
+          "bands": [
+            [
+              450,
+              500
+            ],
+            [
+              500,
+              500
+            ]
+          ],
+          "quote": "...we have committed a full year revenue of totally INR500 crores between both, INR450 to INR500 crores, which is what we are targeting at this point in time",
+          "page": 15
+        }
       ],
       "distractors": [
-        "FY26 capex 473 / 324 cr (p7)", "order book ~9,000 cr (p3, p19)", "Q1 revenue 946 cr, EBITDA 15.6% (p3)",
-        "component prices up 30-35%, 10-12% (p15)", "analyst's '30%-35% kind of a growth' (p14)",
-        "revenue growth '2x of the market growth' (non-numeric, p14)", "working-capital days (p6, p17)"
+        "FY26 capex 473 / 324 cr (p7)",
+        "order book ~9,000 cr (p3, p19)",
+        "Q1 revenue 946 cr, EBITDA 15.6% (p3)",
+        "component prices up 30-35%, 10-12% (p15)",
+        "analyst's '30%-35% kind of a growth' (p14)",
+        "revenue growth '2x of the market growth' (non-numeric, p14)",
+        "working-capital days (p6, p17)"
+      ]
+    },
+    {
+      "doc_id": 966,
+      "symbol": "CREDITACC",
+      "call": "Q4 FY25 call, 16 May 2025",
+      "call_fy": 2026,
+      "claims": [
+        {
+          "id": "cag-26-aum",
+          "metrics": [
+            "aum_growth",
+            "revenue_growth"
+          ],
+          "period": "FY26",
+          "periods": [
+            "FY26"
+          ],
+          "bands": [
+            [
+              14,
+              18
+            ]
+          ],
+          "quote": "we are aiming for an AUM growth of 14% to 18% … NIM of 12.6% to 12.8%, … in FY26.",
+          "page": 5
+        },
+        {
+          "id": "cag-26-nim",
+          "metrics": [
+            "nim"
+          ],
+          "period": "FY26",
+          "periods": [
+            "FY26"
+          ],
+          "bands": [
+            [
+              12.6,
+              12.8
+            ]
+          ],
+          "quote": "NIM of 12.6% to 12.8%, … in FY26.",
+          "page": 5
+        },
+        {
+          "id": "cag-26-cc",
+          "metrics": [
+            "credit_cost"
+          ],
+          "period": "FY26",
+          "periods": [
+            "FY26"
+          ],
+          "bands": [
+            [
+              5.5,
+              6
+            ]
+          ],
+          "quote": "Credit cost of 5.5% to 6%, … in FY26.",
+          "page": 5
+        },
+        {
+          "id": "cag-26-roa",
+          "metrics": [
+            "roa"
+          ],
+          "period": "FY26",
+          "periods": [
+            "FY26"
+          ],
+          "bands": [
+            [
+              2.9,
+              3.4
+            ]
+          ],
+          "quote": "ROA of 2.9% to 3.4%, … in FY26.",
+          "page": 5
+        },
+        {
+          "id": "cag-26-roe",
+          "metrics": [
+            "roe"
+          ],
+          "period": "FY26",
+          "periods": [
+            "FY26"
+          ],
+          "bands": [
+            [
+              11.8,
+              13.3
+            ]
+          ],
+          "quote": "ROE of 11.8% to 13.3% in FY26.",
+          "page": 5
+        }
+      ],
+      "negatives": [
+        {
+          "kind": "restated_old_goal",
+          "quote": "The revised FY25 growth guidance of 7-8% issued in January 2025 was impacted by incremental stress emerging from Karnataka.",
+          "page": 3
+        },
+        {
+          "kind": "achievement",
+          "quote": "NIM remained healthy at 12.7% for Q4 FY25 while 12.9% for F25, in line with our revised guidance.",
+          "page": 4
+        },
+        {
+          "kind": "achievement",
+          "quote": "Amid the multiple headwinds faced in FY25, we delivered ROA of 1.9% and ROE of 7.7%.",
+          "page": 4
+        },
+        {
+          "kind": "segment",
+          "quote": "our microfinance growth would remain range-bound between 8-14% even for FY27-28 also",
+          "page": 18
+        },
+        {
+          "kind": "share_of_revenue",
+          "quote": "roughly by FY28, we will have anywhere between 12% to 15% of non-microfinance loans.",
+          "page": 19
+        }
+      ]
+    },
+    {
+      "doc_id": 229,
+      "symbol": "CREDITACC",
+      "call": "Q4 FY26 call, 13 May 2026",
+      "call_fy": 2027,
+      "claims": [
+        {
+          "id": "cag-27-aum",
+          "metrics": [
+            "aum_growth",
+            "revenue_growth"
+          ],
+          "period": "FY27",
+          "periods": [
+            "FY27"
+          ],
+          "bands": [
+            [
+              20,
+              25
+            ]
+          ],
+          "quote": "For FY27, we are guiding an AUM growth of 20.0-25.0%",
+          "page": 6
+        },
+        {
+          "id": "cag-27-nim",
+          "metrics": [
+            "nim"
+          ],
+          "period": "FY27",
+          "periods": [
+            "FY27"
+          ],
+          "bands": [
+            [
+              12.8,
+              13.2
+            ]
+          ],
+          "quote": "NIM of 12.8-13.2%",
+          "page": 6
+        },
+        {
+          "id": "cag-27-ci",
+          "metrics": [
+            "cost_to_income"
+          ],
+          "period": "FY27",
+          "periods": [
+            "FY27"
+          ],
+          "bands": [
+            [
+              33,
+              35
+            ]
+          ],
+          "quote": "cost to income of 33.0-35.0%",
+          "page": 6
+        },
+        {
+          "id": "cag-27-cc",
+          "metrics": [
+            "credit_cost"
+          ],
+          "period": "FY27",
+          "periods": [
+            "FY27"
+          ],
+          "bands": [
+            [
+              3,
+              4
+            ]
+          ],
+          "quote": "credit cost of 3.0-4.0%",
+          "page": 6
+        },
+        {
+          "id": "cag-27-roa",
+          "metrics": [
+            "roa"
+          ],
+          "period": "FY27",
+          "periods": [
+            "FY27"
+          ],
+          "bands": [
+            [
+              4,
+              4.8
+            ]
+          ],
+          "quote": "ROA of 4.0-4.8%",
+          "page": 6
+        },
+        {
+          "id": "cag-27-roe",
+          "metrics": [
+            "roe"
+          ],
+          "period": "FY27",
+          "periods": [
+            "FY27"
+          ],
+          "bands": [
+            [
+              16,
+              20
+            ]
+          ],
+          "quote": "an ROE of 16.0-20.0%",
+          "page": 6
+        }
+      ],
+      "negatives": [
+        {
+          "kind": "achievement",
+          "quote": "The AUM grew 14.0% YoY and 11.4% QoQ, in line with the annual growth guidance, despite 7.6% write-offs made in FY26.",
+          "page": 3
+        },
+        {
+          "kind": "restated_old_goal",
+          "quote": "our credit cost ended at 6.74% as against the guidance of 5.5% to 6.0%.",
+          "page": 4
+        },
+        {
+          "kind": "multi_year",
+          "quote": "FY17 to FY26, we have compounded AUM at 28.6% per annum, disbursement at 24.7% and PAT at 29.7%.",
+          "page": 5
+        },
+        {
+          "kind": "segment",
+          "quote": "So that is why the net growth in MFI will be 12%.",
+          "page": 15
+        }
+      ]
+    },
+    {
+      "doc_id": 38,
+      "symbol": "CREDITACC",
+      "call": "Q2 FY27 call, 26 Oct 2026",
+      "call_fy": 2027,
+      "claims": [
+        {
+          "id": "cag-27-roa-up",
+          "metrics": [
+            "roa"
+          ],
+          "period": "FY27",
+          "periods": [
+            "FY27"
+          ],
+          "bands": [
+            [
+              5.2,
+              5.8
+            ]
+          ],
+          "quote": "We raised our profitability guidance for FY27, ROA of 5.2% to 5.8%",
+          "page": 5
+        },
+        {
+          "id": "cag-27-roe-up",
+          "metrics": [
+            "roe"
+          ],
+          "period": "FY27",
+          "periods": [
+            "FY27"
+          ],
+          "bands": [
+            [
+              21,
+              24
+            ]
+          ],
+          "quote": "ROE of 21% to 24% versus 16% to 20% earlier.",
+          "page": 5
+        },
+        {
+          "id": "cag-27-nim-up",
+          "metrics": [
+            "nim"
+          ],
+          "period": "FY27",
+          "periods": [
+            "FY27",
+            "no year stated"
+          ],
+          "bands": [
+            [
+              14.4,
+              14.7
+            ]
+          ],
+          "quote": "We expect a NIM of 14.4% to 14.7% as against 12.8% to 13.2% guided earlier",
+          "page": 5,
+          "note": "no year in the sentence; management means FY27"
+        },
+        {
+          "id": "cag-27-aum-ret",
+          "metrics": [
+            "aum_growth",
+            "revenue_growth"
+          ],
+          "period": "FY27",
+          "periods": [
+            "FY27",
+            "no year stated"
+          ],
+          "bands": [
+            [
+              20,
+              25
+            ]
+          ],
+          "quote": "We retain our AUM growth guidance of 20% to 25%",
+          "page": 5,
+          "note": "no year in the sentence"
+        },
+        {
+          "id": "cag-27-cc-ret",
+          "metrics": [
+            "credit_cost"
+          ],
+          "period": "FY27",
+          "periods": [
+            "FY27",
+            "no year stated"
+          ],
+          "bands": [
+            [
+              3,
+              4
+            ]
+          ],
+          "quote": "We're maintaining our credit cost guidance of 3% to 4%",
+          "page": 5,
+          "note": "no year in the sentence"
+        }
+      ],
+      "negatives": [
+        {
+          "kind": "achievement",
+          "quote": "Our annualized H1 FY27 credit cost of 3.43% includes normative credit cost of 2.98% and 0.45% of macroprudential buffer, which is well within our guided range.",
+          "page": 4
+        },
+        {
+          "kind": "long_term_no_year",
+          "quote": "achieve our targeted ROA of 4.5% to 5% on a steady-state basis.",
+          "page": 7
+        },
+        {
+          "kind": "segment",
+          "quote": "Microfinance, as we said in our strategic plan, could be range bound in the range of anywhere between 10% to 12%.",
+          "page": 15
+        },
+        {
+          "kind": "share_of_revenue",
+          "quote": "Retail Finance AUM grew to INR 7,200 Crore, now 23.3% of the total AUM, up from 20.6% in Q1 FY27.",
+          "page": 4
+        }
+      ]
+    },
+    {
+      "doc_id": 969,
+      "symbol": "KAYNES",
+      "call": "Q2 FY25 call, 5 Nov 2024",
+      "call_fy": 2025,
+      "claims": [
+        {
+          "id": "kay-25-rev",
+          "metrics": [
+            "revenue"
+          ],
+          "period": "FY25",
+          "periods": [
+            "FY25"
+          ],
+          "bands": [
+            [
+              3000,
+              3000
+            ]
+          ],
+          "quote": "we plan to execute revenues in excess of about INR3,000 crores in FY25.",
+          "page": 5
+        },
+        {
+          "id": "kay-25-mgn",
+          "metrics": [
+            "ebitda_margin",
+            "operating_margin"
+          ],
+          "period": "FY25",
+          "periods": [
+            "FY25"
+          ],
+          "bands": [
+            [
+              15,
+              15
+            ]
+          ],
+          "quote": "we believe we will cross the operational EBITDA of 15% this year.",
+          "page": 3
+        }
+      ],
+      "negatives": [
+        {
+          "kind": "achievement",
+          "quote": "we have been able to achieve a revenue of INR10,661 million* during the half-year FY25, which represents a strong growth of 64% year-on-year.",
+          "page": 3
+        },
+        {
+          "kind": "share_of_revenue",
+          "quote": "So, you can see that export again coming back about 20% next year.",
+          "page": 14
+        }
+      ]
+    },
+    {
+      "doc_id": 970,
+      "symbol": "KAYNES",
+      "call": "Q3 FY25 call, 1 Feb 2025",
+      "call_fy": 2025,
+      "claims": [
+        {
+          "id": "kay-25-gr",
+          "metrics": [
+            "revenue_growth"
+          ],
+          "period": "FY25",
+          "periods": [
+            "FY25"
+          ],
+          "bands": [
+            [
+              55,
+              55
+            ]
+          ],
+          "quote": "the annual operating revenue growth would exceed 55% on year-on-year basis … for year FY '25.",
+          "page": 3
+        },
+        {
+          "id": "kay-25-rev2",
+          "metrics": [
+            "revenue"
+          ],
+          "period": "FY25",
+          "periods": [
+            "FY25"
+          ],
+          "bands": [
+            [
+              2800,
+              2900
+            ]
+          ],
+          "quote": "So revenue guidance will be somewhere between INR2,800 crores and INR2,900 crores.",
+          "page": 10,
+          "note": "the year is in the next sentence ('for the year')"
+        },
+        {
+          "id": "kay-25-mgn2",
+          "metrics": [
+            "ebitda_margin",
+            "operating_margin"
+          ],
+          "period": "FY25",
+          "periods": [
+            "FY25"
+          ],
+          "bands": [
+            [
+              15,
+              15
+            ]
+          ],
+          "quote": "And the margins will be 15% plus for the year.",
+          "page": 10
+        }
+      ],
+      "negatives": [
+        {
+          "kind": "achievement",
+          "quote": "we have been able to achieve an operating revenue of INR17,373 million during the first 3 quarters of the year FY '25, which represents a strong growth of 49% year-on-year.",
+          "page": 3
+        },
+        {
+          "kind": "share_of_revenue",
+          "quote": "next year for FY '26, you can expect 20%, 25% of business being export.",
+          "page": 10
+        },
+        {
+          "kind": "multi_year",
+          "quote": "almost INR4,800 crores of capex is likely to be coming up till about FY '28- '29",
+          "page": 8
+        },
+        {
+          "kind": "long_term_no_year",
+          "quote": "Yes, that's the target, 15% minimum, 15% is the standard margin that we talked about.",
+          "page": 14
+        }
+      ]
+    },
+    {
+      "doc_id": 1052,
+      "symbol": "POLYCAB",
+      "call": "Q3 FY25 call, 29 Jan 2025",
+      "call_fy": 2025,
+      "claims": [
+        {
+          "id": "pol-25-capex",
+          "metrics": [
+            "capex"
+          ],
+          "period": "FY25",
+          "periods": [
+            "FY25"
+          ],
+          "bands": [
+            [
+              1000,
+              1200
+            ],
+            [
+              10,
+              12
+            ]
+          ],
+          "quote": "in line with our guidance of doing ₹ 10 billion to ₹ 12 billion of capex during this year.",
+          "page": 5
+        }
+      ],
+      "negatives": [
+        {
+          "kind": "achievement",
+          "quote": "we have achieved our first-ever 5-year guidance of reaching ₹ 200 billion top-line by FY26, ahead of the committed timeline.",
+          "page": 3
+        },
+        {
+          "kind": "achievement",
+          "quote": "Our calendar year 2024 top-line stands at ₹ 210 billion, a 5% overachievement",
+          "page": 3
+        },
+        {
+          "kind": "share_of_revenue",
+          "quote": "Our next target is to grow the share of international business to north of 10% of the overall Company's revenue.",
+          "page": 7
+        },
+        {
+          "kind": "long_term_no_year",
+          "quote": "But as of now, the guidance will be to deliver 11% to 13% of EBITDA margins in the long term.",
+          "page": 18
+        },
+        {
+          "kind": "multi_year",
+          "quote": "we are going to do capex of ₹ 6,000 crores to ₹ 8,000 crores, something which we did over the past 10 years.",
+          "page": 14
+        },
+        {
+          "kind": "segment",
+          "quote": "This growth will be a profitable one, with a goal to achieve EBITDA margins of 8% to 10% by FY30 within the segment.",
+          "page": 8
+        }
       ]
     }
   ]
