@@ -433,7 +433,7 @@ def fact_lines_stage(
         for j, (fid, cat, _subj, pages, _one, why) in enumerate(batch):
             it = by_idx.get(j)
             line = cl.clip_words(it.one_line) if it is not None and it.ref == cl.ref_for(fid) else None
-            if line and sv.says_nothing(line, cat):
+            if line and (sv.says_nothing(line, cat) or not sv.grounded(line, " ".join(pages or []))):
                 line = None
             if line is None and pages:
                 line = sv.verbatim_fact(" ".join(pages), sv.OPSTOP)
@@ -552,6 +552,8 @@ def management_lines_stage(
     """Every management-change card says who, what role, joining or leaving, from when: built from
     the people the filing names (no model) when they were extracted, else written by the hosted
     model from the filing text. A line that doesn't state a change is never used."""
+    from finn.push import severity as sv
+
     rows = conn.execute(
         "SELECT f.id, f.exch_category, f.subject, f.text_pages, k.one_line FROM filings f "
         "JOIN filing_class k ON k.filing_id = f.id WHERE f.company_id = ANY(%s) AND f.dup_of IS NULL "
@@ -610,6 +612,8 @@ def management_lines_stage(
         for j, (fid, _cat, _subj, _pages, fallback) in enumerate(batch):
             it = by_idx.get(j)
             line = cl.clip_words(it.one_line) if it is not None and it.ref == cl.ref_for(fid) else None
+            if line and not sv.grounded(line, " ".join(_pages or [])):
+                line = None
             if not (line and MGMT_FACT.search(line)) and fallback:
                 line = fallback  # the people the filing names, without a date it doesn't state
                 counts["from_people_undated"] += 1
@@ -669,10 +673,31 @@ def label_lines_stage(
         for j, (fid, cat, _s, _p) in enumerate(batch):
             it = by_idx.get(j)
             line = cl.clip_words(it.one_line) if it is not None and it.ref == cl.ref_for(fid) else None
-            if line and not sv.says_nothing(line, cat):
+            if line and not sv.says_nothing(line, cat) and sv.grounded(line, " ".join(_p or [])):
                 conn.execute("UPDATE filing_class SET one_line = %s WHERE filing_id = %s", (line, fid))
                 counts["lines"] += 1
             else:
                 counts["nothing_useful"] += 1
         conn.commit()
     return dict(counts)
+
+
+def ground_check_stage(conn: Connection, company_ids: list[int], days: int = 30) -> dict[str, int]:
+    """Re-check every stored one-line summary against its filing's text: a period or number the
+    filing doesn't contain means the line can't be trusted; it is cleared (and rewritten next run)."""
+    from finn.push import severity as sv
+
+    n = 0
+    for fid, line, pages, subj in conn.execute(
+        "SELECT f.id, k.one_line, f.text_pages, coalesce(f.subject, '') FROM filings f "
+        "JOIN filing_class k ON k.filing_id = f.id "
+        "WHERE f.company_id = ANY(%s) AND f.ts_ist >= now() - make_interval(days => %s) "
+        "AND k.one_line IS NOT NULL",
+        (company_ids, days),
+    ).fetchall():
+        # no text read: the line can only be as good as the subject it was written from
+        if not sv.grounded(line, " ".join(pages) if pages else subj):
+            conn.execute("UPDATE filing_class SET one_line = NULL WHERE filing_id = %s", (fid,))
+            n += 1
+    conn.commit()
+    return {"cleared": n}

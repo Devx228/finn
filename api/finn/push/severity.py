@@ -240,3 +240,36 @@ def verbatim_fact(text: str, pattern: re.Pattern[str], words: int = 28) -> str |
     sent = t[a : b + 1 if b > 0 else len(t)].strip()
     ws = sent.split()
     return sent if len(ws) <= words else " ".join(ws[:words]).rstrip(",;:") + "…"
+
+
+TOKEN = re.compile(
+    r"\b(?:Q[1-4]|H[12]|FY\s?'?\d{2}(?:-\d{2})?)\b|\d[\d,]*(?:\.\d+)?",
+    re.I,
+)
+
+
+def grounded(line: str, text: str) -> bool:
+    """Every period label (Q2, H1, FY27) and number in a model-written line must appear in the
+    filing's own text; otherwise the line may be wrong ('Q3' for a Q2 filing) and is not used."""
+    t = re.sub(r"[\s,]+", " ", text or "").lower()
+    t_nocomma = t.replace(",", "")
+    for m in TOKEN.finditer(line):
+        tok = m.group(0).lower().replace(" ", "").replace("'", "")
+        if tok.isdigit() and len(tok) <= 2 and int(tok) <= 31:
+            continue  # small numbers (days, counts) are too common to check meaningfully
+        plain = tok.replace(",", "")
+        if tok.startswith(("q", "h")):
+            if not re.search(rf"\b{tok}\b|\b{'quarter' if tok[0] == 'q' else 'half'}", t):
+                return False
+            if tok[0] == "q" and not re.search(rf"\b{tok}\b", t):
+                # 'Q2' may be written as 'second quarter' / 'quarter ended September'
+                ordinal = {"q1": "first", "q2": "second", "q3": "third", "q4": "fourth"}[tok]
+                if ordinal not in t:
+                    return False
+        elif tok.startswith("fy"):
+            yy = re.sub(r"\D", "", tok)[:2]
+            if not re.search(rf"fy\s?'?{yy}|20{yy}|{int(yy) - 1:02d}-{yy}", t):
+                return False
+        elif plain not in t_nocomma.replace(" ", " "):
+            return False
+    return True

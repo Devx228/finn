@@ -1,14 +1,14 @@
 {
  "note": "Free tiers (Gemini, Groq) and a local model (Ollama): actual cost is zero. Paid-rate equivalents use each provider's published price, verified on the date shown.",
- "as_of": "2026-11-13T21:50:14.117699+05:30",
+ "as_of": "2026-11-13T22:25:37.725689+05:30",
  "totals": {
-  "cache_hits": 1285,
-  "model_calls": 1784,
-  "input_tokens": 474929,
-  "output_tokens": 143724,
-  "cache_hit_rate": 72.0,
-  "list_price_usd": 0.1168,
-  "unpriced_calls": 1373,
+  "cache_hits": 1290,
+  "model_calls": 1803,
+  "input_tokens": 497708,
+  "output_tokens": 150081,
+  "cache_hit_rate": 71.5,
+  "list_price_usd": 0.1371,
+  "unpriced_calls": 1382,
   "actual_cost_inr": 0
  },
  "filings": {
@@ -18,16 +18,16 @@
  },
  "by_model": [
   {
-   "calls": 1277,
+   "calls": 1295,
    "model": "gemini-3.5-flash-lite",
-   "failed": 26,
+   "failed": 30,
    "provider": "gemini",
-   "cache_hits": 1106,
-   "input_tokens": 165514,
-   "priced_calls": 77,
-   "output_tokens": 57056,
-   "avg_latency_ms": 3154,
-   "list_price_usd": 0.1087107
+   "cache_hits": 1111,
+   "input_tokens": 186136,
+   "priced_calls": 86,
+   "output_tokens": 62331,
+   "avg_latency_ms": 3195,
+   "list_price_usd": 0.1280848
   },
   {
    "calls": 158,
@@ -66,16 +66,16 @@
    "list_price_usd": null
   },
   {
-   "calls": 44,
+   "calls": 45,
    "model": "openai/gpt-oss-120b",
    "failed": 0,
    "provider": "groq",
    "cache_hits": 33,
-   "input_tokens": 20174,
-   "priced_calls": 6,
-   "output_tokens": 17291,
-   "avg_latency_ms": 4434,
-   "list_price_usd": 0.0080826
+   "input_tokens": 22331,
+   "priced_calls": 7,
+   "output_tokens": 18373,
+   "avg_latency_ms": 4327,
+   "list_price_usd": 0.00905535
   },
   {
    "calls": 17,
@@ -131,9 +131,9 @@
    "cache_hits": 11
   },
   {
-   "calls": 48,
+   "calls": 58,
    "purpose": "fact_line",
-   "cache_hits": 15
+   "cache_hits": 18
   },
   {
    "calls": 43,
@@ -141,9 +141,9 @@
    "cache_hits": 18
   },
   {
-   "calls": 35,
+   "calls": 37,
    "purpose": "mgmt_line",
-   "cache_hits": 14
+   "cache_hits": 16
   },
   {
    "calls": 18,
@@ -151,7 +151,7 @@
    "cache_hits": 0
   },
   {
-   "calls": 4,
+   "calls": 11,
    "purpose": "label_line",
    "cache_hits": 0
   },
@@ -191,7 +191,7 @@
    ]
   },
   "reference_model": "gemini:gemini-3.5-flash-lite",
-  "hosted_calls_usd": 0.2179,
+  "hosted_calls_usd": 0.2382,
   "local_calls_if_hosted_usd": 0.2517
  },
  "documents_read": {

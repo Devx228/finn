@@ -101,3 +101,66 @@ Phone over Wi-Fi: build web with `NEXT_PUBLIC_API_BASE=http://<lan-ip>:8000`, st
 - Bash heredocs here can mangle backslashes; use the Write/Edit tools for regex-heavy files.
 - yfinance 1.8 works for `.NS` and `^NSEI`. selectolax ≥ 1.0: use `selectolax.lexbor`.
 - NSE XBRL: `Four*` (YTD) contexts carry the quarter's dates; parser re-dates them.
+
+---
+
+## Checkpoint 2026-11-13 (late night): paused at the owner's request
+
+### Done and pushed (live API on Render serves it; Neon updated over HTTPS)
+- **NSE**: refusal was the campus Wi-Fi address; works from the phone hotspot and from GitHub
+  runners. Stop file cleared by the owner (reason in DECISIONS.md). NSE from the laptop: hotspot only.
+- **Item 4, live research jobs**: queue + GitHub runner + limits + progress UI; gate passed (POLYCAB).
+- **Promise Ledger**: stricter scoring (year must be named in the quote, etc.); hero = CREDITACC
+  (5 resolved), KAYNES second; two verdicts per chain (first vs final guidance, management's
+  qualifiers); verbal steers; scoreboard + merged "outlook" timelines; Who can help on the ledger;
+  'not reviewed' line on unreviewed reports. Screens: `docs/hero_first.png`, `docs/hero_full.png`.
+- **Ranking fix**: event filings scored from their text (finn/push/severity.py); hosted-model fact
+  lines; re-score table `docs/ranking_rescore.md`; regression rows in `data/eval/labelled.jsonl`.
+- **Annual reports** (7 ledger companies, fetched on the hotspot) → Business snapshot: segment-mix
+  "What it does" line, company's own words below only when they describe the whole company.
+- **20-claim eval**: `data/eval/guidance_gold.json` (26 claims, 25 negatives); results in
+  docs/evals.md (shipped P 0.79 / 23 of 23 year-held, R 0.88, negatives 25/25). 3 recall misses
+  documented, not fixed (engine frozen).
+- **Three fixes (owner, latest)**:
+  1. Filing-bio careers: spans only as the filing states them (org + year in one sentence; else
+     "years not stated"; open spans close at the next employer; never "now"); synthetic persona
+     ICICI Bank 2014–2019 so the Anup Bagchi overlap is real (2017–2019). All 17 dossiers re-checked.
+  2. Management-change headlines: who / role / joining or leaving / date; events confirmed from
+     the filing text, never overridden; no exchange label as a headline anywhere ("Not read yet: …"
+     or "Nothing beyond the exchange's label: …", both buried).
+  3. Business snapshot leads with facts (segment mix); HDFC Bank's product sentence dropped.
+- STATUS.md updated with network-feature status + screenshots in `docs/screens/status_*.png`.
+
+### Done locally, NOT yet committed (commit first when resuming)
+- Grounding check: every model-written one-line must have its periods/numbers in the filing text
+  (or subject when no text): `severity.grounded`, `pipeline.ground_check_stage` (wired into
+  `finn push`), test in `api/tests/test_severity.py`. Found by the screenshot review: Persistent
+  cards said "Q3" for Q2 filings. Already pushed to Neon (filing_class + brief/alerts/network views)
+  and exported to the snapshot; only the code commit is missing.
+- `scripts/phone_shot.mjs`: linear-time text lookup (was quadratic and hung on the 30-day page).
+- `docs/screens/before/`: the pre-design-pass screenshot set (10 screens × dark/light) was being
+  re-taken when paused; contact sheets `_sheet_dark.png`, `_sheet_light.png`. Check all 20 exist;
+  re-run the loop in this file's history if not (06 = tap "Ananya Pillai" inside the CG Power card).
+
+### Next, in the owner's order
+1. Send the owner the before screenshots (dark + light).
+2. **Command bar** (frontend item 2): rules-first routing (ticker/company → Research; "who knows …"
+   → people), hosted model only for the rest, choosing among existing tools and returning typed,
+   cited blocks; ≤2 sentences of free text; rate-limited; 4 verified example chips.
+   **Needs `GEMINI_API_KEY` as a Render secret — ask the owner when starting.** Stop after it.
+3. Then (moved up): note resurfacing on a Push card; drafted opener on keep-warm; "Who can help?"
+   on each research section.
+4. Then: real notifications (web push), first-run card, pre-call card, filter audit, design pass
+   (owner's lists in the conversation of 13 Nov).
+
+### Environment notes for resuming
+- Campus Wi-Fi blocks Postgres 5432 and NSE. Work against the local copy
+  `postgresql://finn:finn@localhost:5432/finn_mirror` (a full dump of Neon taken on the hotspot);
+  write back with `scripts/neon_http.py` (allowlisted: views, llm_cache/llm_calls, documents,
+  research_set, filing_class). On the hotspot, direct Neon works and NSE may be fetched (laptop).
+- Local servers used for screenshots: API `uvicorn finn.api.main:app --port 8000` with
+  `DATABASE_URL=…finn_mirror CORS_ORIGINS=http://localhost:3006`; web built with
+  `NEXT_PUBLIC_API_BASE=http://localhost:8000` and `next start -p 3006`.
+- Still needing the hotspot: text of 4 non-PDF/unfetched filings (UltraTech ×3 resignations,
+  rumour clarifications at Sun Pharma ×2 and AU Bank) — they show "Not read yet" and are buried.
+- Known data flaws, shown honestly: CreditAccess and Persistent have no "company's words" sentence.

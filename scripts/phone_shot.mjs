@@ -41,8 +41,16 @@ await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-color-sch
 await send("Page.navigate", { url });
 await sleep(6000);
 const find = (text) => `(() => {
-  const all = [...document.querySelectorAll('body *')].filter(e => e.offsetParent !== null && (e.innerText||'').toLowerCase().includes(${JSON.stringify(text)}.toLowerCase()));
-  all.sort((a, b) => (a.innerText||'').length - (b.innerText||'').length);
+  const want = ${JSON.stringify(text)}.toLowerCase();
+  const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  let n;
+  while ((n = w.nextNode())) {
+    const el = n.parentElement;
+    if (el && el.offsetParent !== null && n.nodeValue.toLowerCase().includes(want)) return el;
+  }
+  // text split across nodes: fall back to the smallest element whose text contains it
+  const all = [...document.querySelectorAll('h1,h2,h3,h4,p,span,button,a,li,div')].filter(e => e.offsetParent !== null && e.childElementCount < 6 && (e.textContent||'').toLowerCase().includes(want));
+  all.sort((x, y) => (x.textContent||'').length - (y.textContent||'').length);
   return all[0] || null;
 })()`;
 for (const s of steps) {

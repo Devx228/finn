@@ -91,7 +91,7 @@
      "points": 8
     },
     "staleness": {
-     "why": "152 h old",
+     "why": "153 h old",
      "points": -9
     },
     "user_pref": {
@@ -284,7 +284,7 @@
    "category_label": "Results"
   }
  ],
- "as_of": "2026-11-13T21:50:13.260133+05:30",
+ "as_of": "2026-11-13T22:25:36.927846+05:30",
  "worth": [
   {
    "id": "f418",
@@ -404,7 +404,7 @@
    "card": null,
    "kind": "filing",
    "tier": "worth",
-   "score": 50,
+   "score": 64,
    "symbol": "TATASTEEL",
    "bundled": 0,
    "company": "Tata Steel Limited",
@@ -469,12 +469,12 @@
    },
    "pdf_url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_07112026154336_NSEBSE_CPDPL.pdf",
    "category": "M&A",
-   "headline": "Acquires 38,222 shares, raising stake in CPDPL to 57.5% after OCRPS conversion",
+   "headline": "Acquisition of 38,222 equity shares of face value ₹10/- each in Creative Port Development Private Limited ( CPDPL ) due to conversion of 25,10,830 Optionally Co",
    "sub_type": null,
    "components": {
     "base": {
-     "why": "acquisition · rated by groq:openai/gpt-oss-120b",
-     "points": 36
+     "why": "needs model: acquisition",
+     "points": 50
     },
     "network": {
      "why": "Kabir Agarwal can give context",
@@ -489,7 +489,7 @@
      "points": 9
     },
     "staleness": {
-     "why": "150 h old",
+     "why": "151 h old",
      "points": -9
     },
     "user_pref": {
@@ -509,6 +509,118 @@
     140
    ],
    "category_label": "M&A"
+  },
+  {
+   "id": "f419",
+   "ts": "2026-11-10T07:28:49+00:00",
+   "card": null,
+   "kind": "filing",
+   "tier": "worth",
+   "score": 63,
+   "symbol": "BAJFINANCE",
+   "bundled": 0,
+   "company": "Bajaj Finance Limited",
+   "network": {
+    "call": [
+     {
+      "id": 63,
+      "why": "worked at peer Cholamandalam Investment and Finance as Chief Risk Officer (2016–now); classmate, last spoke Mar 2026, 5 interactions in 24 months",
+      "name": "Diya Dutta",
+      "rank": 0.728,
+      "warmth": 0.67,
+      "headline": "Chief Risk Officer, Cholamandalam Investment and Finance",
+      "how_known": "classmate",
+      "relevance": 0.77,
+      "synthetic": true,
+      "compliance": null,
+      "warmth_why": "classmate, last spoke Mar 2026, 5 interactions in 24 months",
+      "last_contact": "2026-03-23",
+      "warmth_label": "strong",
+      "what_theyd_know": "How Cholamandalam Investment and Finance runs treasury-credit today"
+     },
+     {
+      "id": 74,
+      "why": "worked at peer CREDITACCESS GRAMEEN LIMITED as Head of Compliance (2014–now); industry-friend, last spoke Sep 2025, 0 interactions in 24 months",
+      "name": "Zoya Chatterjee",
+      "rank": 0.371,
+      "warmth": 0.36,
+      "headline": "Head of Compliance, CREDITACCESS GRAMEEN LIMITED",
+      "how_known": "industry-friend",
+      "relevance": 0.38,
+      "synthetic": true,
+      "compliance": null,
+      "warmth_why": "industry-friend, last spoke Sep 2025, 0 interactions in 24 months",
+      "last_contact": "2025-09-03",
+      "warmth_label": "medium",
+      "what_theyd_know": "How CREDITACCESS GRAMEEN LIMITED runs legal-compliance today"
+     },
+     {
+      "id": 19,
+      "why": "worked at peer CREDITACCESS GRAMEEN LIMITED as Head of Investor Relations (2017–2019); industry-friend, last spoke Jun 2025, 0 interactions in 24 months",
+      "name": "Radhika Saxena",
+      "rank": 0.201,
+      "warmth": 0.51,
+      "headline": "Head of Investor Relations, CREDITACCESS GRAMEEN LIMITED",
+      "how_known": "industry-friend",
+      "relevance": 0.11,
+      "synthetic": true,
+      "compliance": null,
+      "warmth_why": "industry-friend, last spoke Jun 2025, 0 interactions in 24 months",
+      "last_contact": "2025-06-16",
+      "warmth_label": "medium",
+      "what_theyd_know": "How CREDITACCESS GRAMEEN LIMITED runs IR up to 2019"
+     }
+    ],
+    "people": [],
+    "points": 7,
+    "questions": [
+     "Why raise now — growth, balance-sheet repair or regulatory capital?",
+     "Who are the likely buyers and at what discount?",
+     "Does this change the dividend or capex plans?"
+    ]
+   },
+   "pdf_url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_10112026125828_BFL_Reg_30__Allotment_of_warrants_Final_1.pdf",
+   "category": "fund_raise",
+   "headline": "Allotment of 5,74,25,740 securities pursuant to Preferential Issue at its meeting held on November 10, 2026",
+   "sub_type": "equity_raise",
+   "components": {
+    "base": {
+     "why": "needs model: equity issue",
+     "points": 52
+    },
+    "network": {
+     "why": "Diya Dutta can give context",
+     "points": 7
+    },
+    "magnitude": {
+     "why": null,
+     "points": 0
+    },
+    "portfolio": {
+     "why": "6.7% of portfolio",
+     "points": 8
+    },
+    "staleness": {
+     "why": "81 h old",
+     "points": -5
+    },
+    "user_pref": {
+     "why": null,
+     "points": 0
+    },
+    "price_reaction": {
+     "why": {
+      "session": "2026-11-11",
+      "volume_multiple": 1.0,
+      "abnormal_return_pct": 0.5
+     },
+     "points": 1
+    }
+   },
+   "filing_ids": [
+    419
+   ],
+   "category_label": "Fund raise"
   },
   {
    "id": "f421",
@@ -601,7 +713,7 @@
      "points": 8
     },
     "staleness": {
-     "why": "149 h old",
+     "why": "150 h old",
      "points": -9
     },
     "user_pref": {
@@ -840,118 +952,6 @@
    "category_label": "Management change"
   },
   {
-   "id": "f419",
-   "ts": "2026-11-10T07:28:49+00:00",
-   "card": null,
-   "kind": "filing",
-   "tier": "worth",
-   "score": 44,
-   "symbol": "BAJFINANCE",
-   "bundled": 0,
-   "company": "Bajaj Finance Limited",
-   "network": {
-    "call": [
-     {
-      "id": 63,
-      "why": "worked at peer Cholamandalam Investment and Finance as Chief Risk Officer (2016–now); classmate, last spoke Mar 2026, 5 interactions in 24 months",
-      "name": "Diya Dutta",
-      "rank": 0.728,
-      "warmth": 0.67,
-      "headline": "Chief Risk Officer, Cholamandalam Investment and Finance",
-      "how_known": "classmate",
-      "relevance": 0.77,
-      "synthetic": true,
-      "compliance": null,
-      "warmth_why": "classmate, last spoke Mar 2026, 5 interactions in 24 months",
-      "last_contact": "2026-03-23",
-      "warmth_label": "strong",
-      "what_theyd_know": "How Cholamandalam Investment and Finance runs treasury-credit today"
-     },
-     {
-      "id": 74,
-      "why": "worked at peer CREDITACCESS GRAMEEN LIMITED as Head of Compliance (2014–now); industry-friend, last spoke Sep 2025, 0 interactions in 24 months",
-      "name": "Zoya Chatterjee",
-      "rank": 0.371,
-      "warmth": 0.36,
-      "headline": "Head of Compliance, CREDITACCESS GRAMEEN LIMITED",
-      "how_known": "industry-friend",
-      "relevance": 0.38,
-      "synthetic": true,
-      "compliance": null,
-      "warmth_why": "industry-friend, last spoke Sep 2025, 0 interactions in 24 months",
-      "last_contact": "2025-09-03",
-      "warmth_label": "medium",
-      "what_theyd_know": "How CREDITACCESS GRAMEEN LIMITED runs legal-compliance today"
-     },
-     {
-      "id": 19,
-      "why": "worked at peer CREDITACCESS GRAMEEN LIMITED as Head of Investor Relations (2017–2019); industry-friend, last spoke Jun 2025, 0 interactions in 24 months",
-      "name": "Radhika Saxena",
-      "rank": 0.201,
-      "warmth": 0.51,
-      "headline": "Head of Investor Relations, CREDITACCESS GRAMEEN LIMITED",
-      "how_known": "industry-friend",
-      "relevance": 0.11,
-      "synthetic": true,
-      "compliance": null,
-      "warmth_why": "industry-friend, last spoke Jun 2025, 0 interactions in 24 months",
-      "last_contact": "2025-06-16",
-      "warmth_label": "medium",
-      "what_theyd_know": "How CREDITACCESS GRAMEEN LIMITED runs IR up to 2019"
-     }
-    ],
-    "people": [],
-    "points": 7,
-    "questions": [
-     "Why raise now — growth, balance-sheet repair or regulatory capital?",
-     "Who are the likely buyers and at what discount?",
-     "Does this change the dividend or capex plans?"
-    ]
-   },
-   "pdf_url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_10112026125828_BFL_Reg_30__Allotment_of_warrants_Final_1.pdf",
-   "category": "fund_raise",
-   "headline": "Allots 5,74,25,740 warrants to promoter at Rs 1,010 each",
-   "sub_type": "equity_raise",
-   "components": {
-    "base": {
-     "why": "equity issue · rated by groq:openai/gpt-oss-120b",
-     "points": 33
-    },
-    "network": {
-     "why": "Diya Dutta can give context",
-     "points": 7
-    },
-    "magnitude": {
-     "why": null,
-     "points": 0
-    },
-    "portfolio": {
-     "why": "6.7% of portfolio",
-     "points": 8
-    },
-    "staleness": {
-     "why": "81 h old",
-     "points": -5
-    },
-    "user_pref": {
-     "why": null,
-     "points": 0
-    },
-    "price_reaction": {
-     "why": {
-      "session": "2026-11-11",
-      "volume_multiple": 1.0,
-      "abnormal_return_pct": 0.5
-     },
-     "points": 1
-    }
-   },
-   "filing_ids": [
-    419
-   ],
-   "category_label": "Fund raise"
-  },
-  {
    "id": "f859",
    "ts": "2026-11-10T06:26:00+00:00",
    "card": null,
@@ -1096,7 +1096,7 @@
      "points": 7
     },
     "staleness": {
-     "why": "107 h old",
+     "why": "108 h old",
      "points": -6
     },
     "user_pref": {
@@ -1317,7 +1317,7 @@
        "points": 5
       },
       "staleness": {
-       "why": "49 h old",
+       "why": "50 h old",
        "points": -3
       },
       "user_pref": {
@@ -1371,7 +1371,7 @@
        "points": 9
       },
       "staleness": {
-       "why": "31 h old",
+       "why": "32 h old",
        "points": -2
       },
       "user_pref": {
@@ -1479,7 +1479,7 @@
        "points": 8
       },
       "staleness": {
-       "why": "33 h old",
+       "why": "34 h old",
        "points": -2
       },
       "user_pref": {
@@ -1533,7 +1533,7 @@
        "points": 9
       },
       "staleness": {
-       "why": "29 h old",
+       "why": "30 h old",
        "points": -2
       },
       "user_pref": {
@@ -1583,7 +1583,7 @@
        "points": 7
       },
       "staleness": {
-       "why": "51 h old",
+       "why": "52 h old",
        "points": -3
       },
       "user_pref": {
@@ -1637,7 +1637,7 @@
        "points": 7
       },
       "staleness": {
-       "why": "30 h old",
+       "why": "31 h old",
        "points": -2
       },
       "user_pref": {
@@ -1687,7 +1687,7 @@
        "points": 7
       },
       "staleness": {
-       "why": "28 h old",
+       "why": "29 h old",
        "points": -2
       },
       "user_pref": {
@@ -1897,7 +1897,7 @@
        "points": 7
       },
       "staleness": {
-       "why": "55 h old",
+       "why": "56 h old",
        "points": -3
       },
       "user_pref": {
@@ -1951,7 +1951,7 @@
        "points": 4
       },
       "staleness": {
-       "why": "35 h old",
+       "why": "36 h old",
        "points": -2
       },
       "user_pref": {
@@ -2005,7 +2005,7 @@
        "points": 7
       },
       "staleness": {
-       "why": "28 h old",
+       "why": "29 h old",
        "points": -2
       },
       "user_pref": {
@@ -2388,7 +2388,7 @@
        "points": 9
       },
       "staleness": {
-       "why": "152 h old",
+       "why": "153 h old",
        "points": -9
       },
       "user_pref": {
@@ -2506,7 +2506,7 @@
        "points": 9
       },
       "staleness": {
-       "why": "28 h old",
+       "why": "29 h old",
        "points": -2
       },
       "user_pref": {
@@ -2622,7 +2622,7 @@
        "points": 9
       },
       "staleness": {
-       "why": "167 h old",
+       "why": "168 h old",
        "points": -10
       },
       "user_pref": {
@@ -2682,7 +2682,7 @@
        "points": 5
       },
       "staleness": {
-       "why": "147 h old",
+       "why": "148 h old",
        "points": -9
       },
       "user_pref": {

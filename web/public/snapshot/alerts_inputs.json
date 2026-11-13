@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-13T21:50:13.260133+05:30",
+ "as_of": "2026-11-13T22:25:36.927846+05:30",
  "nifty": [
   [
    "2026-07-06",
@@ -463,12 +463,28 @@
    "headline": "QIP committee approves opening of issue and fixes floor price at Rs 992.25 per share"
   },
   {
+   "id": 419,
+   "ts": "2026-11-10T07:28:49+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_10112026125828_BFL_Reg_30__Allotment_of_warrants_Final_1.pdf",
+   "symbol": "BAJFINANCE",
+   "category": "fund_raise",
+   "headline": "Allotment of 5,74,25,740 securities pursuant to Preferential Issue at its meeting held on November 10, 2026"
+  },
+  {
    "id": 421,
    "ts": "2026-11-07T11:11:29+00:00",
    "url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_07112026162848_Half_yearly_communication_Signed.pdf",
    "symbol": "BAJFINANCE",
    "category": "results",
    "headline": "Half Yearly Report for FY2026-27 released"
+  },
+  {
+   "id": 140,
+   "ts": "2026-11-07T10:15:33+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_07112026154336_NSEBSE_CPDPL.pdf",
+   "symbol": "TATASTEEL",
+   "category": "M&A",
+   "headline": "Acquisition of 38,222 equity shares of face value ₹10/- each in Creative Port Development Private Limited ( CPDPL ) due to conversion of 25,10,830 Optionally Co"
   },
   {
    "id": 513,
@@ -492,7 +508,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_07112026132017_BSENSEPRANDIR.pdf",
    "symbol": "TATASTEEL",
    "category": "results",
-   "headline": "Q2FY27 EBITDA of Rs 10,665 crores, H1FY27 EBITDA of Rs 20,035 crores"
+   "headline": "A press release dated November 07, 2026, titled 'Tata Steel reports Consolidated EBITDA of Rs 10,665 crores for the quarter and Rs 20,035 crores for the half ye"
   },
   {
    "id": 146,
@@ -604,7 +620,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/VBL_30102026120438_PressRelease.pdf",
    "symbol": "VBL",
    "category": "results",
-   "headline": "Q3 & 9M CY2026 financial results: 33.2% YoY revenue growth to Rs. 66,075.6 million"
+   "headline": "Press Release"
   },
   {
    "id": 332,
@@ -628,7 +644,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/KPITTECH_28102026125528_1_Outcome.pdf",
    "symbol": "KPITTECH",
    "category": "results",
-   "headline": "Q2 and H1 2026 results approved; independent director appointed"
+   "headline": "Approved un-audited standalone and consolidated financial results for the quarter and half year ended September 30, 2026"
   },
   {
    "id": 44,
@@ -687,6 +703,14 @@
    "headline": "The financial results for the period ended September 30, 2026"
   },
   {
+   "id": 525,
+   "ts": "2026-10-23T08:57:28+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/CGPOWER_23102026142708_OutcomeoftheBoardMeeting23102026.pdf",
+   "symbol": "CGPOWER",
+   "category": "capex",
+   "headline": "Board approved standalone and consolidated financial results for the quarter and half year ended September 30, 2026"
+  },
+  {
    "id": 526,
    "ts": "2026-10-23T08:56:10+00:00",
    "url": "https://nsearchives.nseindia.com/corporate/CGPOWER_23102026142554_OutcomeoftheBoardMeeting23102026.pdf",
@@ -700,7 +724,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_21102026192219_PersistentSEOutcomeQIPissueopeningOct212026V3signed.pdf",
    "symbol": "PERSISTENT",
    "category": "results",
-   "headline": "Board approves audited financial statements for Q3 and H1 FY27"
+   "headline": "Issue of Securities"
   },
   {
    "id": 432,
@@ -772,7 +796,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_16102026105516_PersistentSystemsStExchangeOutcomeOctober162026Signed.pdf",
    "symbol": "PERSISTENT",
    "category": "results",
-   "headline": "Board approves audited financial statements for Q3 and H1 FY27"
+   "headline": "Issue of Securities"
   },
   {
    "id": 933,
@@ -780,7 +804,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_15102026165133_PSLSubmissionofFinancialsSeptember2026signed.pdf",
    "symbol": "PERSISTENT",
    "category": "results",
-   "headline": "Board approves audited financial statements for Q3 and H1 FY27"
+   "headline": "Audited financial statements for quarter and half year ended September 30, 2026 available online"
   },
   {
    "id": 936,
@@ -788,7 +812,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_15102026155331_PSLBMOutcomeOctober152026159signed.pdf",
    "symbol": "PERSISTENT",
    "category": "results",
-   "headline": "Board approves audited financial statements for Q3 and H1 FY27"
+   "headline": "Board approves audited financial results for the quarter and half year ended September 30, 2026"
   },
   {
    "id": 593,

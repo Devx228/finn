@@ -81,3 +81,10 @@ def test_management_headline_confirms_events_from_the_text():
     assert pp.verify_mention("Mr. Sashidhar Jagdishan", "resignation", None, text) == (None, None)
     line = pp.mgmt_line([("Mr. Anup Bagchi", "MD & CEO", ev, d)])
     assert line == "Anup Bagchi appointed MD & CEO from 27 Oct 2026"
+
+
+def test_model_lines_must_be_grounded_in_the_filing():
+    text = "approved the audited financial results for the quarter and half year ended September 30, 2026 (Q2 FY27)"
+    assert sv.grounded("Board approves results for Q2 FY27", text)
+    assert not sv.grounded("Board approves audited financial statements for Q3 and H1 FY27", text)
+    assert not sv.grounded("Revenue of Rs 4,800 crore", "Revenue of Rs 3,000 crore")

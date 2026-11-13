@@ -1,27 +1,27 @@
 {
  "alerts:inputs": {
   "file": "alerts_inputs.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "brief:24h": {
   "file": "brief_24h.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "brief:30d": {
   "file": "brief_30d.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "brief:3d": {
   "file": "brief_3d.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "brief:7d": {
   "file": "brief_7d.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "cost:summary": {
   "file": "cost_summary.json",
-  "as_of": "2026-11-13T16:20:14.069306+00:00"
+  "as_of": "2026-11-13T16:55:37.705019+00:00"
  },
  "coverage:AUBANK": {
   "file": "coverage_AUBANK.json",
@@ -113,163 +113,163 @@
  },
  "network:company:AUBANK": {
   "file": "network_company_AUBANK.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:BAJFINANCE": {
   "file": "network_company_BAJFINANCE.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:BHARTIARTL": {
   "file": "network_company_BHARTIARTL.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:CGPOWER": {
   "file": "network_company_CGPOWER.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:CREDITACC": {
   "file": "network_company_CREDITACC.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:DEEPAKNTR": {
   "file": "network_company_DEEPAKNTR.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:DIXON": {
   "file": "network_company_DIXON.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:HDFCBANK": {
   "file": "network_company_HDFCBANK.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:INFY": {
   "file": "network_company_INFY.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:KAYNES": {
   "file": "network_company_KAYNES.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:KPITTECH": {
   "file": "network_company_KPITTECH.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:LT": {
   "file": "network_company_LT.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:M&M": {
   "file": "network_company_M&M.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:MARUTI": {
   "file": "network_company_MARUTI.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:PERSISTENT": {
   "file": "network_company_PERSISTENT.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:PIIND": {
   "file": "network_company_PIIND.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:SUNPHARMA": {
   "file": "network_company_SUNPHARMA.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:TATASTEEL": {
   "file": "network_company_TATASTEEL.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:TITAN": {
   "file": "network_company_TITAN.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:TRENT": {
   "file": "network_company_TRENT.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:ULTRACEMCO": {
   "file": "network_company_ULTRACEMCO.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:company:VBL": {
   "file": "network_company_VBL.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:home": {
   "file": "network_home.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:1": {
   "file": "network_person_1.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:10": {
   "file": "network_person_10.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:11": {
   "file": "network_person_11.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:12": {
   "file": "network_person_12.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:13": {
   "file": "network_person_13.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:14": {
   "file": "network_person_14.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:15": {
   "file": "network_person_15.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:16": {
   "file": "network_person_16.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:17": {
   "file": "network_person_17.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:2": {
   "file": "network_person_2.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:3": {
   "file": "network_person_3.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:4": {
   "file": "network_person_4.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:5": {
   "file": "network_person_5.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:6": {
   "file": "network_person_6.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:7": {
   "file": "network_person_7.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:8": {
   "file": "network_person_8.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "network:person:9": {
   "file": "network_person_9.json",
-  "as_of": "2026-11-13T16:20:13.260133+00:00"
+  "as_of": "2026-11-13T16:55:36.927846+00:00"
  },
  "research:CREDITACC": {
   "file": "research_CREDITACC.json",

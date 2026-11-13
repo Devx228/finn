@@ -226,6 +226,7 @@ def cmd_push(args: argparse.Namespace) -> int:
                 print("  model        ", pipeline.classify_llm_stage(conn, Router(store=LLMStore()), ids))
                 print("  post-check   ", pipeline.drop_foreign_one_liners(conn))
                 print("  severity     ", pipeline.severity_stage(conn, ids))
+                print("  grounding    ", pipeline.ground_check_stage(conn, ids))
                 print("  fact lines   ", pipeline.fact_lines_stage(conn, Router(store=LLMStore()), ids))
                 print("  mgmt lines   ", pipeline.management_lines_stage(conn, Router(store=LLMStore()), ids))
                 print("  label lines  ", pipeline.label_lines_stage(conn, Router(store=LLMStore()), ids))
