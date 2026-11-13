@@ -439,5 +439,10 @@
    "headline": "Div",
    "url": null
   }
- ]
+ ],
+ "disclosures": {
+  "AAA": [
+   "2026-11-10"
+  ]
+ }
 }

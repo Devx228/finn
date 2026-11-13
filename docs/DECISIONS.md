@@ -547,3 +547,17 @@ Router: throttle is now per provider:model (Gemini 3.5-flash-lite 14/min, 3-flas
   marginal miss", and so do we now.
 - "unverifiable" renamed "not scored"; open items show their due year; the hero is read from
   `data/research_set.json` (role "hero: …"), not from code. No more companies, no more IR fetching.
+
+## 2026-11-13 (late) — Alert defaults chosen by measurement; "moved with no disclosure"
+Grid over the last 30 days, 18 holdings (volume × {2, 2.5, 3, 4}, move {3–7%}, absolute vs
+relative to NIFTY): the old defaults (2×, ±4%, absolute, results included) fired **101**.
+Results filings were 28 of the 43 filing alerts — they reach the brief every quarter anyway — so
+they are opt-in now. New defaults: **moves relative to NIFTY, volume ≥ 4×, |move| ≥ 6%, material
+categories (M&A, management change, litigation, fund raise, capex, rating)**; a stock's volume and
+price alerts on one day are one alert; identical filing lines collapse. Result: **24 in 30 days,
+8 in the last 7** (14 filings, 7 price, 3 volume) — about six a week. A market alert is marked
+**"moved with no disclosure"** when the company made no *material* filing that session or in the
+two sessions before (trading sessions, not calendar days — a Monday move answers Friday's
+results): 3 in 30 days, all CG Power (5–6 Nov falls; its closure-order stay was disclosed 7 Nov).
+Saved rules use a new storage key so old defaults don't linger. Python and TypeScript evaluators
+share one fixture and four identical tests.

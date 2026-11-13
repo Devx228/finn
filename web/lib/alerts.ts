@@ -18,6 +18,8 @@ export interface AlertInputs {
   nifty: Bar[];
   companies: { symbol: string; name: string; bars: Bar[] }[];
   filings: { id: number; symbol: string; ts: string; category: string; headline: string; url: string | null }[];
+  /** every filing date per holding, any category (a move with none nearby is unexplained) */
+  disclosures?: Record<string, string[]>;
   credit: string;
 }
 
@@ -28,7 +30,10 @@ export interface Alert {
   value: number | null;
   text: string;
   url?: string | null;
+  no_disclosure?: boolean;
 }
+
+const DISCLOSURE_LOOKBACK_DAYS = 2;
 
 const round1 = (x: number) => Math.round(x * 10) / 10;
 const signed = (x: number) => `${x >= 0 ? "+" : "-"}${Math.abs(x).toFixed(1)}`;
@@ -53,6 +58,7 @@ export function evaluate(data: AlertInputs, rules: AlertRules): Alert[] {
   if (!days.length) return out;
   const last = days.reduce((a, b) => (a > b ? a : b));
   const cutoff = minusDays(last, rules.days);
+  const disc = data.disclosures;
   for (const c of data.companies) {
     const bars = c.bars;
     for (let i = 20; i < bars.length; i++) {
@@ -63,20 +69,36 @@ export function evaluate(data: AlertInputs, rules: AlertRules): Alert[] {
       const vx = avg ? vol / avg : 0;
       const r = (close / prev - 1) * 100;
       const rel = rules.vs_nifty ? r - (nret.get(d) ?? 0) * 100 : r;
-      if (vx >= rules.volume_x) {
-        out.push({ kind: "volume", symbol: c.symbol, date: d, value: round1(vx),
-          text: `Volume ${vx.toFixed(1)}× its 20-day average (${signed(r)}%)` });
+      const hitV = vx >= rules.volume_x;
+      const hitP = Math.abs(rel) >= rules.move_pct;
+      if (!hitV && !hitP) continue;
+      const parts: string[] = [];
+      if (hitP) {
+        parts.push(`${r > 0 ? "Up" : "Down"} ${Math.abs(r).toFixed(1)}% in a day` +
+          (rules.vs_nifty ? ` (${signed(rel)}% vs NIFTY)` : ""));
       }
-      if (Math.abs(rel) >= rules.move_pct) {
-        out.push({ kind: "price", symbol: c.symbol, date: d, value: round1(r),
-          text: `${r > 0 ? "Up" : "Down"} ${Math.abs(r).toFixed(1)}% in a day` +
-            (rules.vs_nifty ? ` (${signed(rel)}% vs NIFTY)` : "") });
+      if (hitV) {
+        parts.push(parts.length ? `volume ${vx.toFixed(1)}× its 20-day average`
+          : `Volume ${vx.toFixed(1)}× its 20-day average (${signed(r)}%)`);
       }
+      const text = parts.length === 2 ? parts.join(" on ") : parts[0];
+      let quiet: boolean | null = null;
+      if (disc) {
+        // two sessions before (a Monday move answers Friday's filing) and the day itself
+        const lo = bars[Math.max(0, i - DISCLOSURE_LOOKBACK_DAYS)][0];
+        quiet = !(disc[c.symbol] ?? []).some((x) => lo <= x && x <= d);
+      }
+      out.push({ kind: hitP ? "price" : "volume", symbol: c.symbol, date: d,
+        value: hitP ? round1(r) : round1(vx),
+        text: text + (quiet ? " — moved with no disclosure" : ""), no_disclosure: !!quiet });
     }
   }
   const cats = new Set(rules.categories);
+  const seen = new Set<string>();
   for (const f of data.filings) {
-    if (cats.has(f.category) && f.ts.slice(0, 10) >= cutoff) {
+    const key = `${f.symbol}|${f.ts.slice(0, 10)}|${f.headline}`;
+    if (cats.has(f.category) && f.ts.slice(0, 10) >= cutoff && !seen.has(key)) {
+      seen.add(key);
       out.push({ kind: "filing", symbol: f.symbol, date: f.ts.slice(0, 10), value: null,
         text: `${data.category_labels[f.category] ?? f.category}: ${f.headline}`, url: f.url });
     }

@@ -5,7 +5,7 @@ import { type Alert, type AlertInputs, type AlertRules, evaluate } from "@/lib/a
 import { loadWithFallback } from "@/lib/api";
 import { formatWhen } from "@/lib/format";
 
-const KEY = "finn.alertRules.v1";
+const KEY = "finn.alertRules.v2"; // v2: defaults re-chosen by measurement (13 Nov)
 const CATS = ["results", "M&A", "management_change", "litigation", "fund_raise", "capex", "credit_rating",
   "insider_trading", "pledging", "dividend"];
 const KIND_ICON: Record<Alert["kind"], string> = { volume: "▮▮", price: "↕", filing: "▤" };
@@ -176,7 +176,14 @@ function AlertsSheet({
                         {a.text}
                       </a>
                     ) : (
-                      <span className="text-ink-2">{a.text}</span>
+                      <span className="text-ink-2">
+                        {a.text.replace(" — moved with no disclosure", "")}
+                        {a.no_disclosure && (
+                          <span className="ml-1 whitespace-nowrap rounded border border-caution px-1 text-[11px] text-caution">
+                            no disclosure
+                          </span>
+                        )}
+                      </span>
                     )}
                   </li>
                 ))}

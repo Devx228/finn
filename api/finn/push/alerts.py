@@ -16,13 +16,17 @@ from psycopg.types.json import Jsonb
 
 from finn.push.brief import CATEGORY_LABEL, clean_subject
 
+# Defaults chosen by measurement (13 Nov, 18 holdings, last 30 days; docs/DECISIONS.md): moves
+# relative to NIFTY, volume ≥ 4× and |move| ≥ 6% fire ~14 market alerts; material filings without
+# routine results ~14 — about six a week in all. Results are in the brief anyway; opt in to alert.
 DEFAULT_RULES = {
-    "volume_x": 2.0,
-    "move_pct": 4.0,
-    "vs_nifty": False,
-    "categories": ["results", "M&A", "management_change", "litigation", "fund_raise", "capex"],
+    "volume_x": 4.0,
+    "move_pct": 6.0,
+    "vs_nifty": True,
+    "categories": ["M&A", "management_change", "litigation", "fund_raise", "capex", "credit_rating"],
     "days": 30,
 }
+DISCLOSURE_LOOKBACK_DAYS = 2  # trading sessions
 SESSIONS = 90
 
 
@@ -66,8 +70,24 @@ def inputs(conn: Connection, now: datetime) -> dict:
             }
             for fid, sym, ts, cat, subj, url in filings
         ],
+        # every filing date per holding (any category): a move with none nearby is unexplained
+        "disclosures": _disclosures(conn, [h[0] for h in hold], now),
         "credit": "Prices: Yahoo Finance (end of day). Filings: NSE.",
     }
+
+
+def _disclosures(conn: Connection, ids: list[int], now: datetime) -> dict[str, list[str]]:
+    """Dates of *material* filings per holding (any category, same materiality cut as the alert
+    feed). Routine notices (trading window, newspaper copies) don't explain a price move."""
+    out: dict[str, list[str]] = {}
+    for sym, d in conn.execute(
+        "SELECT DISTINCT c.nse_symbol, (f.ts_ist AT TIME ZONE 'Asia/Kolkata')::date FROM filings f "
+        "JOIN filing_class k ON k.filing_id = f.id JOIN companies c ON c.id = f.company_id "
+        "WHERE f.company_id = ANY(%s) AND f.ts_ist >= %s::date - 140 AND coalesce(k.base, 0) >= 40",
+        (ids, now.date()),
+    ).fetchall():
+        out.setdefault(sym, []).append(str(d))
+    return out
 
 
 def evaluate(data: dict, rules: dict) -> list[dict]:
@@ -80,6 +100,7 @@ def evaluate(data: dict, rules: dict) -> list[dict]:
     if last_day is None:
         return out
     cutoff = date.fromordinal(date.fromisoformat(last_day).toordinal() - rules["days"]).isoformat()
+    disc = data.get("disclosures")
     for c in data["companies"]:
         bars = c["bars"]
         for i in range(20, len(bars)):
@@ -91,34 +112,45 @@ def evaluate(data: dict, rules: dict) -> list[dict]:
             vx = vol / avg if avg else 0
             r = (close / prev - 1) * 100
             rel = r - nret.get(d, 0) * 100 if rules.get("vs_nifty") else r
-            if vx >= rules["volume_x"]:
-                out.append(
-                    {
-                        "kind": "volume",
-                        "symbol": c["symbol"],
-                        "date": d,
-                        "value": round(vx, 1),
-                        "move_pct": round(r, 1),
-                        "text": f"Volume {vx:.1f}× its 20-day average ({r:+.1f}%)",
-                    }
+            hit_v, hit_p = vx >= rules["volume_x"], abs(rel) >= rules["move_pct"]
+            if not (hit_v or hit_p):
+                continue
+            parts = []
+            if hit_p:
+                parts.append(
+                    f"{'Up' if r > 0 else 'Down'} {abs(r):.1f}% in a day"
+                    + (f" ({rel:+.1f}% vs NIFTY)" if rules.get("vs_nifty") else "")
                 )
-            if abs(rel) >= rules["move_pct"]:
-                txt = f"{'Up' if r > 0 else 'Down'} {abs(r):.1f}% in a day" + (
-                    f" ({rel:+.1f}% vs NIFTY)" if rules.get("vs_nifty") else ""
+            if hit_v:
+                parts.append(
+                    f"volume {vx:.1f}× its 20-day average"
+                    if parts
+                    else f"Volume {vx:.1f}× its 20-day average ({r:+.1f}%)"
                 )
-                out.append(
-                    {
-                        "kind": "price",
-                        "symbol": c["symbol"],
-                        "date": d,
-                        "value": round(r, 1),
-                        "move_pct": round(r, 1),
-                        "text": txt,
-                    }
-                )
+            text = " on ".join(parts) if len(parts) == 2 else parts[0]
+            quiet = None
+            if disc is not None:
+                # the two sessions before this one, and the day itself (results often land after
+                # the close, and a Monday move answers Friday's filing)
+                lo = bars[max(0, i - DISCLOSURE_LOOKBACK_DAYS)][0]
+                quiet = not any(lo <= x <= d for x in disc.get(c["symbol"], []))
+            out.append(
+                {
+                    "kind": "price" if hit_p else "volume",
+                    "symbol": c["symbol"],
+                    "date": d,
+                    "value": round(r, 1) if hit_p else round(vx, 1),
+                    "move_pct": round(r, 1),
+                    "text": text + (" — moved with no disclosure" if quiet else ""),
+                    "no_disclosure": bool(quiet),
+                }
+            )
     cats = set(rules["categories"])
+    seen: set[tuple] = set()
     for f in data["filings"]:
-        if f["category"] in cats and f["ts"][:10] >= cutoff:
+        key = (f["symbol"], f["ts"][:10], f["headline"])
+        if f["category"] in cats and f["ts"][:10] >= cutoff and key not in seen:
+            seen.add(key)
             out.append(
                 {
                     "kind": "filing",
