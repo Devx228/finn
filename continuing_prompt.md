@@ -81,11 +81,78 @@ Take the first unfinished item in **`docs/HANDOFF.md` → "Next steps"**. At the
 
 **Stop after each numbered item**, show the screenshot, and wait for the owner's go.
 
-## 6. The prompt (if you want to paste one)
+## 6. The prompt (paste this into a new agent)
 
-> Continue FINN. Read `continuing_prompt.md` and every file it lists, in order, before touching
-> code. Run `bash scripts/verify.sh` and confirm it is green. Then work on the first unfinished
-> item in `docs/HANDOFF.md` "Next steps", following the rules in `CLAUDE.md` (engine frozen,
-> additive changes only, never invent data, never rewrite working files). After the item: run
-> `scripts/verify.sh`, take a 390 px screenshot, log the decision in `docs/DECISIONS.md`, update
-> `docs/STATUS.md`, append a checkpoint to `PROGRESS.md`, commit and push, then stop and show me.
+> You are continuing **FINN**, a mobile-first investor agent for the ENAM build challenge
+> (submission deadline 15 Nov 2026). The repository is in the current directory. A lot of careful
+> work exists and is live (web on Vercel, API on Render, Postgres on Neon). Your job is to move it
+> forward **without degrading anything that already works**.
+>
+> **1. Read first, in this order, before touching code:** `continuing_prompt.md` (this file),
+> `CLAUDE.md` (binding rules, code map, environments, checks, gotchas), the newest checkpoints at
+> the bottom of `PROGRESS.md`, `docs/HANDOFF.md` (ordered next steps, decisions, known gaps, demo
+> route), `docs/STATUS.md`, the last five dated sections of `docs/DECISIONS.md`, and
+> `web/AGENTS.md` (this Next.js version has breaking changes). Look at
+> `docs/screens/before/_sheet_dark.png` and `_sheet_light.png` to see the current UI.
+>
+> **2. Prove the baseline:** run `bash scripts/verify.sh`. It must end with
+> "OK: all checks green" (85 API tests, 14 web tests, lint, types, build, no tracked secrets).
+> `git status` must be clean. If either fails, stop and report; do not fix unrelated code.
+>
+> **3. Rules you must follow:**
+> - The engine is frozen: no new data sources, companies, scoring, extraction or ledger rules,
+>   and no new research sections. Work is frontend and product glue on top of existing data.
+> - Additive changes only: new components, props, endpoints and files. Do not rename, move,
+>   reformat, refactor or "clean up" existing files. If a task needs an existing behaviour
+>   changed, keep the change minimal and run the tests that cover it. The files listed in
+>   `continuing_prompt.md` §4 hold dense, test-pinned logic: change them only if the task is
+>   about them.
+> - Never invent data. Every number, quote, date and name on screen comes from stored data with
+>   its source, or is hidden or labelled ("not scored", "not read yet"). Model-written text must
+>   pass `severity.grounded`; model calls return structured output that code checks.
+> - Never print or commit secrets. Zero spend: free tiers only. Do not fetch from NSE unless the
+>   owner says the laptop is on the phone hotspot (campus Wi-Fi is refused); never delete
+>   `data/cache/SOURCE_REFUSED.json` or `IR_REFUSED_*.json`.
+> - Bash heredocs on this machine mangle `` and other backslashes: write regex-heavy code with
+>   the file Edit/Write tools, and check for `chr(8)` afterwards.
+>
+> **4. What to build, in order** (details in `docs/HANDOFF.md` "Next steps"; items 1–5 are done):
+> - **Step 6, compact summary on Research:** a top block a busy investor reads in 20 seconds:
+>   what changed (latest results line), what management promised (the ledger's one-line count and
+>   the most important resolved verdict), what to investigate (from the existing ledger
+>   questions), who to call (the existing Who-can-help top contact), and coverage (calls read,
+>   reviewed or not). Built only from fields already in the research view; chains stay collapsed
+>   below it.
+> - **Step 7, command bar** (owner approved; `GEMINI_API_KEY` is set on Render): one input
+>   docked above the tab bar on every screen. Rules route first: an NSE symbol or a company name
+>   opens Research; "who knows / who do I know at …" opens the People search (existing
+>   `web/lib/whoKnows.ts`). Only when rules can't route, a new API endpoint calls the hosted
+>   model, which may only choose among existing tools (brief, filings, research section,
+>   who-can-help, paths, price stats) and returns typed blocks that the app renders with existing
+>   components. At most two sentences of free text; every block cites its source; research
+>   answers use stored report data only, never the model's knowledge. Rate-limit it per client
+>   and per day (follow the pattern in `api/finn/jobs.py`). Add four example chips, each verified
+>   to work on live data.
+> - **Step 8:** web push (permission asked only on a tap, a "Send test alert" button, a one-line
+>   iPhone note about Add to Home Screen, tapping opens the card; if web push is unreliable,
+>   propose a free alternative before building it); then the first-run card ("three things to
+>   try", dismissible, reachable from settings); the pre-call card (a reviewed-ledger holding with
+>   results or a call in the next 7 days: date, promises falling due with range and run-rate,
+>   three cited questions, Who can help; use the "as of" replay date if none is upcoming); the
+>   filter audit (buried filings followed within two sessions by a move beyond the alert
+>   threshold, and Now items followed by no move, with "a price move doesn't prove the filing
+>   caused it"); then the design pass (owner's list in HANDOFF.md, with before/after screenshots
+>   against `docs/screens/before/`).
+> - **Step 9:** run four more never-researched tickers (including a small cap and a financial)
+>   through the live job queue and report failures honestly.
+> - Small known follow-ups: CreditAccess's business snapshot says "single segment" twice; on
+>   cards the first person to call can be a current employee (rank former employees first, as the
+>   Research sheet already does).
+>
+> **5. After each step:** run `bash scripts/verify.sh`; take a 390 px phone screenshot of what
+> changed (`node scripts/phone_shot.mjs <url> <out.png> '<steps json>' dark|light`, saved under
+> `docs/screens/`); add a dated entry to `docs/DECISIONS.md`; update `docs/STATUS.md` and the
+> "Done" line in `docs/HANDOFF.md`; append a checkpoint to `PROGRESS.md`; commit with a clear
+> message and push. Data changes go to Neon through `scripts/neon_http.py` (allowlisted
+> write-back) when working on Wi-Fi. Then **stop, show the owner the screenshot, and wait** before
+> the next step.

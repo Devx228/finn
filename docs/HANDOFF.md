@@ -24,9 +24,7 @@
 - Before-design-pass screenshots: `docs/screens/before/` (10 screens × dark/light, plus contact
   sheets `_sheet_dark.png`, `_sheet_light.png`).
 - Owner secrets already set: Render `GITHUB_DISPATCH_TOKEN`; GitHub Actions `DATABASE_URL`,
-  `GEMINI_API_KEY`, `GROQ_API_KEY`. **Not yet set:** `GEMINI_API_KEY` on Render (needed only if a
-  feature calls a model from the API at request time, e.g. the command bar's model fallback).
-
+  `GEMINI_API_KEY`, `GROQ_API_KEY`. **Set on 14 Nov:** `GEMINI_API_KEY` on Render (the command bar's model fallback can call Gemini from the API).
 ## Next steps (owner's list, with the external critic's review of 14 Nov folded in)
 
 **Done on 14 Nov:** 1 (submission package), 2 (event-to-action in the Who-can-help sheet + keep-warm
@@ -81,7 +79,7 @@ result, two verdicts) → research an uncached ticker (job progress) → cost le
 caching, ₹0 actual).
 
 ### Open decisions for the owner
-- Command bar vs the critic's "don't build a chat": proceed with the tool-routed design, or skip.
+- ~~Command bar vs the critic's "don't build a chat"~~ **Decided 14 Nov: build it** as the tool-routed design (typed, cited blocks; not a chat). The owner added `GEMINI_API_KEY` on Render.
 - Commit `docs/screens/before/` (≈20 PNGs) or keep them out of the repo.
 - License choice.
 
