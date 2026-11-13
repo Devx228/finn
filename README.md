@@ -16,16 +16,32 @@ Built for the ENAM Holdings Founding AI Engineer build challenge.
 
 **Live:** https://finn-tawny-nine.vercel.app (API: https://finn-api-mxni.onrender.com/health)
 
-### Three things to try on your phone
-1. **Research → KAYNES.** Eight earnings calls read. FY25 revenue guided above ₹3,000 cr, cut
-   to ₹2,800–2,900 cr, delivered ₹2,722 cr (missed); FY26 growth guided "around 50%", the
-   company reported 33% (missed); EBITDA margin beat both years. Tap any call for the
-   management quote with page and link.
-2. **Research → CREDITACC.** A lender's guidance chain: FY26 loan growth guided 18–20%, cut to
-   14–18%, company-reported 14.0% (delivered); ROA and ROE missed on the company's own figures,
-   with our figures from the filings shown beside them as a cross-check.
-3. **Today**, window *30d*: the HDFC Bank MD & CEO change — bio from the company's own filing,
-   and the note that you (the investor) overlapped with him at ICICI Bank.
+### A 3-minute walk through (on your phone)
+1. **Today → 7d.** Two items in *Now*: CG Power's High Court stay of a pollution-board order that
+   had shut its Waluj plant (read from the filing's text, not its generic exchange label; the
+   closure order itself is #2 in the 30-day brief) and Tata Steel's results card.
+   Routine filings are counted and buried, each one still openable.
+2. **Today → 30d → HDFC Bank, "Anup Bagchi appointed MD & CEO".** Open *Your network*: his career
+   exactly as the bank's filing states it ("years not stated" where it gives none), the overlap
+   with you at ICICI Bank 2017–2019, and three second-degree paths with evidence.
+3. **A results card** (e.g. Titan Q2 FY27): revenue, EBITDA, PBT and PAT with QoQ / YoY, computed
+   from the company's XBRL filing, EBITDA definition shown.
+4. **Research → CREDITACC (the hero ledger).** The scoreboard first: FY26 AUM growth — *missed the
+   preliminary 18–20% outlook, met the lowered 14–18%, at the very bottom of the range*; the
+   timeline shows the cut (16 May 2025) and an analyst's "lower end of the bracket?" answered
+   "Yes" by management (28 Oct 2025). ROA and ROE missed even after the cut. Every step opens the
+   transcript at that page.
+5. **Research → type a ticker FINN has never seen** (e.g. one not in the chips). A job starts on
+   the owner's laptop or a GitHub Actions runner; the steps show live; the report arrives in a few
+   minutes, marked "Generated automatically; not reviewed".
+6. **Under the hood** (link on Today): about 1,800 model calls, over 70% answered from cache, ₹0 actual cost; 79% of
+   filings decided by rules with no model; what the same work would cost at paid list prices.
+
+<p>
+<img src="docs/hero_first.png" width="230" alt="CreditAccess Promise Ledger scoreboard">
+<img src="docs/screens/status_mgmt_change_paths.png" width="230" alt="HDFC Bank management change: dossier and second-degree paths">
+<img src="docs/screens/status_research_help.png" width="230" alt="Who can help sheet">
+</p>
 
 ## What makes it trustworthy
 - **Primary sources only.** Exchange filings and XBRL results, earnings-call transcripts (NSE or
@@ -98,12 +114,23 @@ scripts/            portfolio picker; Neon-over-HTTPS mirror for networks that b
 
 ## Status
 Scope against the spec is tracked item by item in [docs/STATUS.md](docs/STATUS.md); gate evidence
-per phase in [docs/PHASES.md](docs/PHASES.md); model choices and their measurements in
-[docs/evals.md](docs/evals.md). Not built yet: live research from the phone (job queue), the Ask
-bar, balance-sheet / cash-quality / red-flag research sections, the cost-ledger screen.
+per phase in [docs/PHASES.md](docs/PHASES.md); measured quality in [docs/evals.md](docs/evals.md);
+every decision, dated, in [docs/DECISIONS.md](docs/DECISIONS.md).
+
+Built: Today (ranking from filing text, results / management-change / material-event cards,
+alerts with tunable rules), the Promise Ledger on 8 reviewed companies plus live research for any
+ticker, the network layer (dossiers, paths, who to call, coverage, keep-warm, "who knows" search),
+the cost ledger. Tests: 85 API, 14 web (`bash scripts/verify.sh`).
+
+**Deliberate cuts** (thin but working beats broad but broken): no free-text chat; no balance-sheet,
+cash-quality or red-flag sections; notifications are in-app (no web push yet); no login (one
+investor); the network is synthetic and labelled so. Next steps: [docs/HANDOFF.md](docs/HANDOFF.md).
 
 ## Data use
 Exchange data is used for a personal, non-commercial evaluation prototype, at minimal footprint
 (one request at a time, cached, never re-fetched, demo companies only), with every document linked
 back to its source and never re-hosted. A production deployment would use a licensed data feed.
 See [docs/ARCHITECTURE.md § Data access](docs/ARCHITECTURE.md#data-access-what-actually-happened).
+
+## License
+MIT — see [LICENSE](LICENSE).

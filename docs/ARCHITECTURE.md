@@ -55,11 +55,16 @@ For each company: the last 8 earnings calls (one per quarter; a copy with text b
    verbatim in the transcript, it passes a strict check (management, forward-looking, high
    confidence, metric named in its own quote, the band's numbers present in the quote), and it
    doesn't conflict with a rule item from the same sentence.
-4. **Periods.** An explicit year wins (`"FY25-26"` = FY26); multi-year targets (CAGR, "over five
-   years", totals) and aspirations become *open-ended*; a capex figure with no year is a project,
-   not a year's plan.
-5. **Chains.** Points per (metric, year) across calls; *raised / cut / held / narrowed* computed
-   by comparing bands, not by reading adjectives. Units never mix in a chain.
+4. **Periods: the quote must name the year.** A claim is held to a year only if its own quote (or
+   the continuation sentence quoted with it) names it ("FY26", "this year", "the financial year");
+   otherwise it is listed as *no year stated* and never scored. `"FY25-26"` = FY26; multi-year
+   targets, CAGRs and long-term bands are *open-ended*. Achievements, figures that "stand at",
+   share-of-revenue targets and restated old goals are never guidance.
+5. **Chains.** Points per (metric, year) across calls; *raised / cut / held* computed by comparing
+   bands, not by reading adjectives. Management's own qualifier is kept ("preliminary outlook").
+   A **verbal steer** (an analyst states a range, management's reply explicitly confirms or rejects
+   it) is attached with both lines quoted and no invented number. Chains stated in the same
+   sentences (e.g. AUM growth, ROA and ROE) are shown as one timeline.
 6. **Actuals — the company's own figure first.** `finn/pull/reported.py` reads, from later calls,
    management sentences that state a result for a tracked metric and a period: the period marker
    nearest the number decides (*"for FY26"*, *"for the year"* in a Q4 call, *"H1"* in a Q2 call —
@@ -70,9 +75,13 @@ For each company: the last 8 earnings calls (one per quarter; a copy with text b
    operating margin and capex it is shown beside the company's as a cross-check and never decides.
    No reliable actual → *not scored*; the year still running → *open*. Constant-currency guidance
    is only ever compared with a constant-currency figure the company reported.
-7. **Verdict.** Code compares the actual with the last band: *delivered / beat / missed* when the
-   year is complete, *on track / ahead / behind* year-to-date. Tolerance is rounding only
-   (±0.05 pt). The say–do line appears only with ≥ 4 resolved claims and always shows its count.
+7. **Two verdicts.** Code compares the actual with the **first** guidance for that year and with the
+   **last** before the result: "Missed preliminary 18–20% outlook · met the lowered 14–18%, at the
+   very bottom of the range". *Beat* = clearly above the band; *delivered* = within it or meeting a
+   floor; a promise met only after a cut is labelled so, never a plain "delivered". Guided and
+   actual more than 30% apart → *not scored* unless the quote names that exact year. The ledger
+   line counts both ("none met as first given · 1 met only after a cut · 4 missed, 2 of them even
+   after a cut"); the say–do line needs ≥ 4 resolved claims.
 
 Nothing in this pipeline is per-company: the same vocabulary, rules and checks run for every
 ticker, and every rule that exists was added because a reviewed claim on some company was wrong
@@ -141,6 +150,11 @@ naming variants tried per file.
 Each transcript records where it came from (`NSE` / `company IR site` / `downloaded by hand` for
 files the owner places in `data/manual/`), and the citation links to that original URL.
 
+**What the refusal was.** On 13 Nov the exact URL NSE had refused was requested once more from a
+phone hotspot with the same client: HTTP 200, the PDF. The refusals came from the campus network's
+address, not the client. NSE fetching resumed from the laptop on the hotspot only, and NSE also
+serves GitHub Actions runners, which run live research jobs.
+
 **The database over port 443.** The same network resets Postgres connections on port 5432 (TLS
 reset even with direct TLS). Neon's HTTPS SQL endpoint works, so `scripts/neon_http.py` mirrors
 the tables to a local Postgres for the pipelines and writes results back. Write-back is
@@ -160,18 +174,32 @@ URL without touching existing text; any other table is refused, and the target i
   browser.
 
 ## 7. Quality
-- **Tests:** 54 API tests (classification rules, XBRL quirks, router fallback, network scoring,
-  guidance rules, reported outcomes, ledger resolution, IR fetcher rules) and 9 web tests
-  (including the alert evaluator on a fixture shared with Python). CI runs lint, types, tests and
-  the production build on every push.
-- **Evals** (docs/evals.md): classifier on 114 labelled filings (86.8% end to end); guidance
-  extraction on a hand-listed gold set (precision / recall per model, with the failure cases).
-- **Review over volume:** every resolved claim on every ledger was read by hand; wrong ones were
-  removed by adding a general rule, never by special-casing a company.
+- **Tests:** 85 API tests (classification rules, text-based severity, grounding of model-written
+  lines, XBRL quirks, router fallback, job queue and limits, network scoring and filing-bio spans,
+  guidance rules and the live-run regression cases, reported outcomes, two-verdict chains, verbal
+  steers) and 14 web tests (including the alert evaluator on a fixture shared with Python and the
+  "who knows" search). `bash scripts/verify.sh` runs all of it plus the production build and a
+  tracked-secrets check; CI runs the same on every push.
+- **Evals** (docs/evals.md): classifier on 124 labelled filings (rules 85/85; 13 of 14 ranking
+  regressions inside their expected range); guidance extraction on 26 hand-listed claims and 25
+  negatives over 8 transcripts (shipped pipeline: precision 23/23 on claims held to a year,
+  recall 0.88, negatives 25/25).
+- **Review over volume:** every resolved claim on every reviewed ledger was read against its quote;
+  wrong ones were removed by adding a general rule (and a regression test), never by special-casing
+  a company. The first unreviewed live report (POLYCAB) produced four wrong verdicts; the rules
+  that caught them now apply to every ledger, and live reports carry "not reviewed".
 
-## 8. Known limits
-- Live research for a new ticker needs the worker (the job queue is next); NSE access is paused.
-- Some guided metrics can't be scored without the company's own figure (e.g. CreditAccess's FY26
-  credit cost); they show as *not scored*, with our estimate as a cross-check.
-- Balance sheet, cash quality and red-flag research sections, the Ask bar and the cost-ledger
-  screen are not built yet (docs/STATUS.md).
+## 8. Live research for any ticker
+The app writes a job (`POST /api/research/jobs`): the symbol is checked against NSE's list, a cached
+report is returned as-is, one job runs per symbol, at most two at a time, with per-connection and
+per-day limits. The owner's laptop worker claims it if online; otherwise the API starts a GitHub
+Actions run for that job id. Each step reports progress, and runner start-up is shown as measured.
+A refusal from NSE is recorded permanently for that origin. Gate: POLYCAB, never researched,
+requested with the laptop offline, report in 2 min 46 s.
+
+## 9. Known limits
+- Some guided metrics can't be scored without the company's own figure; they show as *not scored*,
+  with our estimate as a cross-check. Three extraction misses are documented in docs/evals.md.
+- Six filings are "Not read yet" (their text needs a fetch from a network NSE accepts).
+- Balance sheet, cash quality and red-flag research sections are deliberately not built;
+  notifications are in-app only (no web push yet). See docs/STATUS.md and docs/HANDOFF.md.

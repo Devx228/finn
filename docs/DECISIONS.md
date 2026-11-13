@@ -692,3 +692,14 @@ ratings varied between runs before caching (Bajaj QIP launch 18 vs 51; Sun Pharm
 answers are cached now, so they are stable, but the model's rating is a judgment, not a measurement.
 Labelled set +10 rows (124); 4 existing rows gained expected ranges; L&T #795 relabelled
 worth→buried (a ₹1,000–2,500 cr order is under 1% of L&T's revenue).
+
+## 2026-11-14 — Submission package (critic's review, step 1)
+- README, ARCHITECTURE and WRITEUP brought in line with the built app: live research and the cost
+  screen are built (no longer "not built"); test counts 85 API / 14 web; ARCHITECTURE §3 states the
+  current ledger rules (year must be named, two verdicts, steers), §8 live research, §9 known limits;
+  the NSE refusal outcome (campus address) recorded in §5.
+- README: a 3-minute walk-through matching the live screens, three screenshots, deliberate cuts,
+  licence. `docs/WRITEUP.md`: the 682-word covering note (data-access notes kept below it).
+- LICENSE: MIT (owner's choice).
+- Secret scan across the full git history (`scripts/secret_scan_history.py`, patterns for Google,
+  Groq, GitHub, Neon, Postgres URLs with passwords, private keys): 0 hits in 45 commits.
