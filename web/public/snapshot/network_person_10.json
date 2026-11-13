@@ -6,48 +6,6 @@
  "paths": [
   {
    "via": {
-    "id": 84,
-    "name": "Siddharth Gill",
-    "warmth": 0.81,
-    "headline": "Director, Jefferies India",
-    "how_known": "ex-colleague",
-    "synthetic": true,
-    "warmth_why": "ex-colleague, last spoke Sep 2026, 2 interactions in 24 months",
-    "last_contact": "2026-09-27",
-    "warmth_label": "strong"
-   },
-   "overlap": 0.51,
-   "evidence": [
-    "overlapped at AZB & Partners, 2005–2009"
-   ],
-   "sentence": "You → Siddharth Gill (ex-colleague, last spoke Sep 2026, 2 interactions in 24 months) → Kalpana Merchant: overlapped at AZB & Partners, 2005–2009. Path: strong × medium.",
-   "strength": 0.413,
-   "overlap_label": "medium",
-   "strength_label": "strong"
-  },
-  {
-   "via": {
-    "id": 85,
-    "name": "Riya Naidu",
-    "warmth": 0.65,
-    "headline": "Director, Jefferies India",
-    "how_known": "industry-friend",
-    "synthetic": true,
-    "warmth_why": "industry-friend, last spoke Nov 2025, 4 interactions in 24 months",
-    "last_contact": "2025-11-05",
-    "warmth_label": "medium"
-   },
-   "overlap": 0.46,
-   "evidence": [
-    "overlapped at Jerome Merchant + Partners, 2017–2021"
-   ],
-   "sentence": "You → Riya Naidu (industry-friend, last spoke Nov 2025, 4 interactions in 24 months) → Kalpana Merchant: overlapped at Jerome Merchant + Partners, 2017–2021. Path: medium × medium.",
-   "strength": 0.299,
-   "overlap_label": "medium",
-   "strength_label": "medium"
-  },
-  {
-   "via": {
     "id": 34,
     "name": "Suresh Trivedi",
     "warmth": 0.72,
@@ -71,25 +29,25 @@
  "career": [
   {
    "org": "Kanga & Co.",
-   "span": "1985–2003",
+   "span": "years not stated",
    "title": "Partner",
    "current": false
   },
   {
    "org": "AZB & Partners",
-   "span": "2003–2017",
+   "span": "years not stated",
    "title": "Partner",
    "current": false
   },
   {
    "org": "Jerome Merchant + Partners",
-   "span": "2017–now",
+   "span": "years not stated",
    "title": "Partner",
-   "current": true
+   "current": false
   },
   {
    "org": "Trent Limited",
-   "span": "2026–now",
+   "span": "from 2026",
    "title": "Additional Director and Independent Director",
    "current": true
   }

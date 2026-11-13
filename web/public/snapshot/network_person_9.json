@@ -6,27 +6,6 @@
  "paths": [
   {
    "via": {
-    "id": 83,
-    "name": "Aditya Saxena",
-    "warmth": 0.68,
-    "headline": "Director, Motilal Oswal",
-    "how_known": "industry-friend",
-    "synthetic": true,
-    "warmth_why": "industry-friend, last spoke Feb 2026, 4 interactions in 24 months",
-    "last_contact": "2026-02-27",
-    "warmth_label": "strong"
-   },
-   "overlap": 0.51,
-   "evidence": [
-    "overlapped at Aditya Birla Group, 2005–2009"
-   ],
-   "sentence": "You → Aditya Saxena (industry-friend, last spoke Feb 2026, 4 interactions in 24 months) → Rajiv Dube: overlapped at Aditya Birla Group, 2005–2009. Path: strong × medium.",
-   "strength": 0.347,
-   "overlap_label": "medium",
-   "strength_label": "strong"
-  },
-  {
-   "via": {
     "id": 34,
     "name": "Suresh Trivedi",
     "warmth": 0.72,
@@ -50,19 +29,19 @@
  "career": [
   {
    "org": "Tata Motors",
-   "span": "1986–2005",
+   "span": "years not stated",
    "title": "President of its car business",
    "current": false
   },
   {
    "org": "Aditya Birla Group",
-   "span": "2005–2014",
+   "span": "years not stated",
    "title": "Executive Director on the group board",
    "current": false
   },
   {
    "org": "Trent Limited",
-   "span": "2026–now",
+   "span": "from 2026",
    "title": "Additional Director (Non-Executive, Non-Independent)",
    "current": true
   }

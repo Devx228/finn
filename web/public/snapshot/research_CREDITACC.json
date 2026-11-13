@@ -91,7 +91,7 @@
   ]
  },
  "name": "CREDITACCESS GRAMEEN LIMITED",
- "as_of": "2026-11-13T21:02:22.230871+05:30",
+ "as_of": "2026-11-13T21:49:10.288962+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
@@ -1099,6 +1099,7 @@
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
  "business": {
   "note": "Files as a single segment (its results filing says so).",
+  "what": "Reports a single business segment",
   "year": null,
   "about": {
    "note": "No sentence in the FY2026 annual report's opening pages says plainly what the company does.",

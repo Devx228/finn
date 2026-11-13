@@ -1,14 +1,14 @@
 {
  "note": "Free tiers (Gemini, Groq) and a local model (Ollama): actual cost is zero. Paid-rate equivalents use each provider's published price, verified on the date shown.",
- "as_of": "2026-11-13T21:02:39.379449+05:30",
+ "as_of": "2026-11-13T21:50:14.117699+05:30",
  "totals": {
-  "cache_hits": 1152,
-  "model_calls": 1606,
-  "input_tokens": 421102,
-  "output_tokens": 123258,
-  "cache_hit_rate": 71.7,
-  "list_price_usd": 0.0617,
-  "unpriced_calls": 1233,
+  "cache_hits": 1285,
+  "model_calls": 1784,
+  "input_tokens": 474929,
+  "output_tokens": 143724,
+  "cache_hit_rate": 72.0,
+  "list_price_usd": 0.1168,
+  "unpriced_calls": 1373,
   "actual_cost_inr": 0
  },
  "filings": {
@@ -18,25 +18,25 @@
  },
  "by_model": [
   {
-   "calls": 1113,
+   "calls": 1277,
    "model": "gemini-3.5-flash-lite",
-   "failed": 16,
+   "failed": 26,
    "provider": "gemini",
-   "cache_hits": 984,
-   "input_tokens": 116072,
-   "priced_calls": 45,
-   "output_tokens": 42651,
-   "avg_latency_ms": 2918,
-   "list_price_usd": 0.0578656
+   "cache_hits": 1106,
+   "input_tokens": 165514,
+   "priced_calls": 77,
+   "output_tokens": 57056,
+   "avg_latency_ms": 3154,
+   "list_price_usd": 0.1087107
   },
   {
-   "calls": 155,
+   "calls": 158,
    "model": "qwen2.5-7b-8k",
    "failed": 5,
    "provider": "ollama",
-   "cache_hits": 95,
+   "cache_hits": 98,
    "input_tokens": 75618,
-   "priced_calls": 155,
+   "priced_calls": 158,
    "output_tokens": 11549,
    "avg_latency_ms": 33429,
    "list_price_usd": 0.0
@@ -66,16 +66,16 @@
    "list_price_usd": null
   },
   {
-   "calls": 33,
+   "calls": 44,
    "model": "openai/gpt-oss-120b",
    "failed": 0,
    "provider": "groq",
-   "cache_hits": 25,
-   "input_tokens": 15789,
-   "priced_calls": 3,
-   "output_tokens": 11230,
-   "avg_latency_ms": 4228,
-   "list_price_usd": 0.00378825
+   "cache_hits": 33,
+   "input_tokens": 20174,
+   "priced_calls": 6,
+   "output_tokens": 17291,
+   "avg_latency_ms": 4434,
+   "list_price_usd": 0.0080826
   },
   {
    "calls": 17,
@@ -116,9 +116,9 @@
  ],
  "by_purpose": [
   {
-   "calls": 1344,
+   "calls": 1465,
    "purpose": "extract_guidance",
-   "cache_hits": 1119
+   "cache_hits": 1226
   },
   {
    "calls": 110,
@@ -131,18 +131,28 @@
    "cache_hits": 11
   },
   {
-   "calls": 42,
+   "calls": 48,
    "purpose": "fact_line",
-   "cache_hits": 9
+   "cache_hits": 15
   },
   {
-   "calls": 31,
+   "calls": 43,
    "purpose": "about_pick",
-   "cache_hits": 12
+   "cache_hits": 18
+  },
+  {
+   "calls": 35,
+   "purpose": "mgmt_line",
+   "cache_hits": 14
   },
   {
    "calls": 18,
    "purpose": "extract_appointment",
+   "cache_hits": 0
+  },
+  {
+   "calls": 4,
+   "purpose": "label_line",
    "cache_hits": 0
   },
   {
@@ -181,7 +191,7 @@
    ]
   },
   "reference_model": "gemini:gemini-3.5-flash-lite",
-  "hosted_calls_usd": 0.1628,
+  "hosted_calls_usd": 0.2179,
   "local_calls_if_hosted_usd": 0.2517
  },
  "documents_read": {

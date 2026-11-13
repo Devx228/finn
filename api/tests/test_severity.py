@@ -65,3 +65,19 @@ def test_empty_summaries_are_recognised():
     ]:
         assert sv.says_nothing(line), line
     assert not sv.says_nothing("Pollution board orders Waluj plant shut")
+
+
+def test_management_headline_confirms_events_from_the_text():
+    from finn.push import pipeline as pp
+
+    text = (
+        "Mr. Sashidhar Jagdishan has vacated the office as the MD & CEO of the Bank from the close of business "
+        "hours on October 26, 2026 on account of completion of his tenure and Mr. Anup Bagchi has been appointed "
+        "as MD & CEO of the Bank w.e.f. October 27, 2026."
+    )
+    ev, d = pp.verify_mention("Mr. Anup Bagchi", "appointment", None, text)
+    assert ev == "appointment" and str(d) == "2026-10-27"
+    # an extracted 'resignation' the filing never states is not trusted
+    assert pp.verify_mention("Mr. Sashidhar Jagdishan", "resignation", None, text) == (None, None)
+    line = pp.mgmt_line([("Mr. Anup Bagchi", "MD & CEO", ev, d)])
+    assert line == "Anup Bagchi appointed MD & CEO from 27 Oct 2026"

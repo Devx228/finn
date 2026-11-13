@@ -1051,6 +1051,7 @@ def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None,
 
     biz = business.snapshot(conn, cid, industry, fy_start)
     biz["about"] = business.about(conn, cid, router)
+    biz["what"] = business.mix_line(biz)
     calls, stats, docs = [], [], []
     listed = tr.pick(conn, cid, n_calls)
     for d in tr.ensure_text(conn, nse, cid, n_calls):

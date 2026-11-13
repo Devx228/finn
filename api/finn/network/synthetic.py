@@ -280,8 +280,10 @@ def investor() -> dict:
         "alma_maters": [("IIM Ahmedabad", "MBA", 2008, 2010), ("IIT Bombay", "B.Tech", 2004, 2008)],
         "employers": [
             ("Kotak Institutional Equities", "Research Analyst", _ym(2010, 6), _ym(2014, 3)),
-            ("ICICI Bank", "Credit Analyst", _ym(2014, 4), _ym(2017, 9)),
-            ("HDFC Mutual Fund", "Fund Manager", _ym(2017, 10), None),
+            # 2014–2019: overlaps Anup Bagchi's stated ICICI Bank ED years (2017–2023) by more than a
+            # year whatever month in 2017 he started (the filing gives only the year)
+            ("ICICI Bank", "Credit Analyst", _ym(2014, 4), _ym(2019, 6)),
+            ("HDFC Mutual Fund", "Fund Manager", _ym(2019, 7), None),
         ],
         "city": "Mumbai",
         "covers": ["banking", "rural lending", "specialty chemicals", "IT services"],

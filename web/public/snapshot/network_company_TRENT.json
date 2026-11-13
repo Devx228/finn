@@ -83,65 +83,65 @@
  ],
  "people": [
   {
-   "id": 10,
-   "ts": "2026-10-29T11:02:13+00:00",
-   "you": [],
-   "best": {
-    "via": {
-     "id": 84,
-     "name": "Siddharth Gill",
-     "warmth": 0.81,
-     "headline": "Director, Jefferies India",
-     "how_known": "ex-colleague",
-     "synthetic": true,
-     "warmth_why": "ex-colleague, last spoke Sep 2026, 2 interactions in 24 months",
-     "last_contact": "2026-09-27",
-     "warmth_label": "strong"
-    },
-    "overlap": 0.51,
-    "evidence": [
-     "overlapped at AZB & Partners, 2005–2009"
-    ],
-    "sentence": "You → Siddharth Gill (ex-colleague, last spoke Sep 2026, 2 interactions in 24 months) → Kalpana Merchant: overlapped at AZB & Partners, 2005–2009. Path: strong × medium.",
-    "strength": 0.413,
-    "overlap_label": "medium",
-    "strength_label": "strong"
-   },
-   "name": "Kalpana Merchant",
-   "role": "Additional Director and Independent Director",
-   "event": "appointment",
-   "paths": 3,
-   "symbol": "TRENT"
-  },
-  {
    "id": 9,
    "ts": "2026-10-29T11:02:13+00:00",
    "you": [],
    "best": {
     "via": {
-     "id": 83,
-     "name": "Aditya Saxena",
-     "warmth": 0.68,
-     "headline": "Director, Motilal Oswal",
+     "id": 34,
+     "name": "Suresh Trivedi",
+     "warmth": 0.72,
+     "headline": "Chief Business Officer, Trent Limited",
      "how_known": "industry-friend",
      "synthetic": true,
-     "warmth_why": "industry-friend, last spoke Feb 2026, 4 interactions in 24 months",
-     "last_contact": "2026-02-27",
+     "warmth_why": "industry-friend, last spoke Oct 2026, 6 interactions in 24 months",
+     "last_contact": "2026-10-15",
      "warmth_label": "strong"
     },
-    "overlap": 0.51,
+    "overlap": 0.01,
     "evidence": [
-     "overlapped at Aditya Birla Group, 2005–2009"
+     "overlapped at Trent Limited, 2026–now"
     ],
-    "sentence": "You → Aditya Saxena (industry-friend, last spoke Feb 2026, 4 interactions in 24 months) → Rajiv Dube: overlapped at Aditya Birla Group, 2005–2009. Path: strong × medium.",
-    "strength": 0.347,
-    "overlap_label": "medium",
-    "strength_label": "strong"
+    "sentence": "You → Suresh Trivedi (industry-friend, last spoke Oct 2026, 6 interactions in 24 months) → Rajiv Dube: overlapped at Trent Limited, 2026–now. Path: strong × weak.",
+    "strength": 0.007,
+    "overlap_label": "weak",
+    "strength_label": "weak"
    },
    "name": "Rajiv Dube",
    "role": "Additional Director (Non-Executive, Non-Independent)",
    "event": "appointment",
-   "paths": 2,
+   "paths": 1,
+   "symbol": "TRENT"
+  },
+  {
+   "id": 10,
+   "ts": "2026-10-29T11:02:13+00:00",
+   "you": [],
+   "best": {
+    "via": {
+     "id": 34,
+     "name": "Suresh Trivedi",
+     "warmth": 0.72,
+     "headline": "Chief Business Officer, Trent Limited",
+     "how_known": "industry-friend",
+     "synthetic": true,
+     "warmth_why": "industry-friend, last spoke Oct 2026, 6 interactions in 24 months",
+     "last_contact": "2026-10-15",
+     "warmth_label": "strong"
+    },
+    "overlap": 0.01,
+    "evidence": [
+     "overlapped at Trent Limited, 2026–now"
+    ],
+    "sentence": "You → Suresh Trivedi (industry-friend, last spoke Oct 2026, 6 interactions in 24 months) → Kalpana Merchant: overlapped at Trent Limited, 2026–now. Path: strong × weak.",
+    "strength": 0.007,
+    "overlap_label": "weak",
+    "strength_label": "weak"
+   },
+   "name": "Kalpana Merchant",
+   "role": "Additional Director and Independent Director",
+   "event": "appointment",
+   "paths": 1,
    "symbol": "TRENT"
   },
   {

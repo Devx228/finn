@@ -29,13 +29,13 @@
  "career": [
   {
    "org": "ICICI Bank Limited",
-   "span": "",
+   "span": "years not stated",
    "title": "Head – Compliance: Overseas Banking and Subsidiaries & Data Privacy Officer",
-   "current": true
+   "current": false
   },
   {
    "org": "HDFC Bank Limited",
-   "span": "2026–now",
+   "span": "from 2026",
    "title": "Chief Compliance Officer",
    "current": true
   }

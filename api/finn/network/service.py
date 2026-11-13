@@ -15,7 +15,7 @@ from psycopg import Connection
 from psycopg.types.json import Jsonb
 
 from finn.network import synthetic as syn
-from finn.network.graph import TODAY, Person, label, overlap, paths, warmth, who
+from finn.network.graph import TODAY, Emp, Person, label, overlap, paths, warmth, who
 from finn.network.resolve import norm_org
 from finn.network.store import load_people
 from finn.push.brief import clean_subject
@@ -109,10 +109,130 @@ def _contact_json(p: Person) -> dict:
 
 def _career_json(p: Person) -> list[dict]:
     emps = sorted(p.emps, key=lambda e: e.start or date(1900, 1, 1))
+    if p.is_synthetic:
+        return [
+            {"org": e.org, "title": e.title, "span": _fmt_span(e.start, e.end), "current": e.end is None}
+            for e in emps
+        ]
+    # a real person's record says only what the filing says: an end the filing doesn't give is never shown
     return [
-        {"org": e.org, "title": e.title, "span": _fmt_span(e.start, e.end), "current": e.end is None}
+        {
+            "org": e.org,
+            "title": e.title,
+            "span": (
+                f"from {e.start.year} (term to {e.end.year})"
+                if e.start and e.end and e.end > TODAY
+                else f"{e.start.year}–{e.end.year}"
+                if e.start and e.end
+                else f"from {e.start.year}"
+                if e.start
+                else "years not stated"
+            ),
+            "current": e.end is None and not e.open_unknown,
+        }
         for e in emps
     ]
+
+
+GENERIC_ORG_WORDS = {
+    "limited",
+    "ltd",
+    "ltd.",
+    "private",
+    "pvt",
+    "pvt.",
+    "the",
+    "of",
+    "and",
+    "&",
+    "india",
+    "inc",
+    "inc.",
+}
+
+
+def _org_phrase(org: str) -> str:
+    """The words a bio would use for this employer: its first two distinctive words ('ICICI Bank',
+    'ICICI Prudential'); one word if that's all there is."""
+    words = [w for w in org.replace(",", " ").split() if w.lower() not in GENERIC_ORG_WORDS]
+    return " ".join(words[:2]).lower()
+
+
+def clean_public_careers(
+    conn: Connection, people: dict[int, Person], mentions: dict[int, list[dict]]
+) -> dict:
+    """Careers of real people come from what their filing states, nothing more.
+    1. A bio span is kept only if one sentence of the filing names that employer and that year
+       ("A member of the ICICI Group since 1992" does not put someone at ICICI Bank in 1992).
+    2. An open span closes when the person joins their next stated employer; with no later employer
+       its end is unknown: shown "from <year>" and never counted as overlap.
+    The role at the filing company itself (the appointment) is kept as filed."""
+    import dataclasses
+    import re
+
+    pub = {pid: p for pid, p in people.items() if not p.is_synthetic and p.kind != "contact"}
+    fids = sorted({m["filing_id"] for pid in pub for m in mentions.get(pid, [])})
+    texts: dict[int, str] = {}
+    own_orgs: dict[int, set[int]] = {}
+    if fids:
+        for fid, pages, oid in conn.execute(
+            "SELECT f.id, f.text_pages, o.id FROM filings f LEFT JOIN orgs o ON o.company_id = f.company_id "
+            "WHERE f.id = ANY(%s)",
+            (fids,),
+        ).fetchall():
+            texts[fid] = re.sub(r"\s+", " ", " ".join(pages or []))
+            if oid:
+                own_orgs.setdefault(fid, set()).add(oid)
+    counts = {"dropped": 0, "closed": 0, "open_unknown": 0, "years_not_stated": 0}
+    for pid, p in pub.items():
+        ms = mentions.get(pid, [])
+        text = " ".join(texts.get(m["filing_id"], "") for m in ms)
+        current = set().union(*(own_orgs.get(m["filing_id"], set()) for m in ms)) if ms else set()
+        # don't break a sentence at an abbreviation ("Cummins Inc. Components Group from 2010")
+        guarded = re.sub(r"\b(Inc|Ltd|Co|Pvt|Corp|Mr|Ms|Mrs|Dr|No|St)\.", r"\1", text)
+        sentences = re.split(r"(?<=[.;])\s+", guarded) if text else []
+        kept = []
+        for e in p.emps:
+            if e.org_id in current or not sentences or e.start is None:
+                kept.append(e)
+                continue
+            phrase = _org_phrase(e.org)
+            years = {str(e.start.year)} | ({str(e.end.year)} if e.end else set())
+            # whole words only: "bank" must not match "banking"
+            words = [
+                re.compile(rf"(?<![a-z0-9]){re.escape(w.strip('.'))}(?![a-z0-9])") for w in phrase.split()
+            ]
+            if any(all(w.search(s.lower()) for w in words) and any(y in s for y in years) for s in sentences):
+                kept.append(e)
+            elif any(all(w.search(s.lower()) for w in words) for s in sentences):
+                # the filing names the employer but not when: keep it, with no years
+                kept.append(dataclasses.replace(e, start=None, end=None))
+                counts["years_not_stated"] += 1
+            else:
+                counts["dropped"] += 1
+        uniq: dict[tuple, Emp] = {}
+        for e in kept:  # the same span extracted twice is one span
+            uniq.setdefault((e.org_id, e.start, e.end, (e.title or "")[:40]), e)
+        kept = sorted(uniq.values(), key=lambda e: e.start or date(1900, 1, 1))
+        for i, e in enumerate(kept):
+            if e.end is not None or e.org_id in current:
+                continue
+            nxt = next(
+                (
+                    x
+                    for x in kept[i + 1 :]
+                    if x.start and e.start and x.start > e.start and x.org_id != e.org_id
+                ),
+                None,
+            )
+            if nxt is not None:
+                e.end = nxt.start
+                counts["closed"] += 1
+            else:
+                e.open_unknown = True
+                counts["open_unknown"] += 1
+        p.emps = kept
+    return counts
 
 
 @dataclass
@@ -157,6 +277,7 @@ class Net:
             }
             self.mentions[pid].append(m)
             self.filing_people[fid].append(m)
+        clean_public_careers(conn, self.people, self.mentions)
         inv = syn.investor()
         self.you = [(o, s, e) for o, _, s, e in inv["employers"]]
         self.you_edu = [(i, d, ey) for i, d, _, ey in inv["alma_maters"]]
@@ -191,10 +312,10 @@ class Net:
             for t in target.emps:
                 if norm_org(t.org) != norm_org(org) and not norm_org(t.org).startswith(norm_org(org)):
                     continue
-                if t.start is None:
+                if t.start is None or t.open_unknown:
                     continue
                 a, b = max(s, t.start), min(e or TODAY, t.end or TODAY)
-                if a < b:
+                if (b - a).days >= 365:  # a year or more: months in a filing are often unstated
                     spans.append((a, b))
             if spans:
                 a, b = min(x[0] for x in spans), max(x[1] for x in spans)

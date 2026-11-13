@@ -6,6 +6,18 @@
  "paths": [],
  "career": [
   {
+   "org": "Government of India",
+   "span": "years not stated",
+   "title": "Member of the committee on SME financing set up by the Government",
+   "current": false
+  },
+  {
+   "org": "Ministry of Corporate Affairs (MCA)",
+   "span": "years not stated",
+   "title": "Member of the Insolvency Law Committee set up by MCA",
+   "current": false
+  },
+  {
    "org": "Reserve Bank of India (RBI)",
    "span": "2017–2020",
    "title": "Executive Director, in-charge of the Department of Regulation (DoR)",
@@ -18,21 +30,9 @@
    "current": false
   },
   {
-   "org": "Government of India",
-   "span": "2017–2020",
-   "title": "Member of the committee on SME financing set up by the Government",
-   "current": false
-  },
-  {
    "org": "Reserve Bank of India (RBI)",
    "span": "2017–2020",
    "title": "Instrumental in putting in place a framework for a regulatory sandbox and played a significant role in the amalgamation of banks in stress",
-   "current": false
-  },
-  {
-   "org": "Ministry of Corporate Affairs (MCA)",
-   "span": "2017–2020",
-   "title": "Member of the Insolvency Law Committee set up by MCA",
    "current": false
   }
  ],

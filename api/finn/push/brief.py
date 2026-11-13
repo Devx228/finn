@@ -109,7 +109,7 @@ def load_items(conn: Connection, since: datetime) -> list[Item]:
         SELECT f.id, f.company_id, c.nse_symbol, c.name, f.ts_ist, coalesce(k.category, 'unclassified'),
                CASE WHEN k.filing_id IS NULL THEN 'pending' ELSE k.sub_type END, coalesce(k.base, 0),
                f.subject, f.pdf_url, coalesce(k.one_line, ''), coalesce(k.reason, 'not yet classified'),
-               f.exch_category
+               f.exch_category, f.text_pages IS NOT NULL
         FROM filings f JOIN companies c ON c.id = f.company_id
         LEFT JOIN filing_class k ON k.filing_id = f.id
         WHERE c.nse_symbol = ANY(%s) AND f.ts_ist >= %s AND f.dup_of IS NULL
@@ -120,17 +120,20 @@ def load_items(conn: Connection, since: datetime) -> list[Item]:
     items = []
     from finn.push import severity as sv
 
-    for fid, cid, sym, name, ts, cat, st, base, subj, url, one_line, reason, exch in rows:
+    for fid, cid, sym, name, ts, cat, st, base, subj, url, one_line, reason, exch, has_text in rows:
         # the headline is the fact from the filing; an event filing whose only "summary" is the
         # exchange's label or "press release on <date>" has nothing to say and is buried
         if sv.says_nothing(one_line, exch):
             one_line = ""
-        vacant = (
-            cat in sv.EVENT
-            and (st or "") not in sv.ROUTINE_SUBTYPES
-            and not one_line
-            and sv.says_nothing(clean_subject(subj), exch)
-        )
+        if not one_line and sv.says_nothing(clean_subject(subj), exch) and st != "results_filing":
+            # nothing read yet that says more than the exchange's label: say so plainly, and bury it
+            one_line = (
+                f"Nothing beyond the exchange's label: {exch or 'filing'}"
+                if has_text
+                else f"Not read yet: {exch or 'filing'}"
+            )
+            st = st or "unread"
+        vacant = one_line.startswith(("Not read yet: ", "Nothing beyond the exchange's label: "))
         items.append(
             Item(
                 f"f{fid}",

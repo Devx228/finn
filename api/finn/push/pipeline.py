@@ -252,7 +252,7 @@ def classify_llm_stage(
                 "subject": subj,
                 "text": (_text(pages) if cl.thin_subject(subj) else None),
             }
-            for fid, cat, subj, pages in batch
+            for fid, cat, subj, pages, _fallback in batch
         ]
         res = router.call(
             "BULK",
@@ -453,5 +453,226 @@ def fact_lines_stage(
                 )
                 counts["results_release"] += 1
             counts["lines" if line else "nothing_useful"] += 1
+        conn.commit()
+    return dict(counts)
+
+
+# -- management-change headlines: who, what role, joining or leaving, from when ---------------------
+MGMT_VERB = {
+    "appointment": "appointed",
+    "re-appointment": "re-appointed",
+    "re-designation": "re-designated",
+    "resignation": "resigns as",
+    "cessation": "ceases to be",
+    "retirement": "retires as",
+}
+MGMT_FACT = re.compile(
+    r"\b(appoint\w*|re-?appoint\w*|resign\w*|retire\w*|steps? down|cease\w*|cessation|joins|leaves|"
+    r"designat\w*|superannuat\w*|elevat\w*|names?|succeed\w*|takes? over|assum\w*|vacat\w*|in place of)\b",
+    re.I,
+)
+HONORIFIC = re.compile(r"^(?:mr|ms|mrs|dr|shri|smt)\.?\s+", re.I)
+
+
+def _short_role(role: str | None) -> str:
+    r = re.split(r" - | – |\(|;", role or "")[0]
+    r = re.sub(r"\s+(?:of|in|on) the (?:board|company|bank)\b.*$", "", r, flags=re.I).strip(" ,")
+    words = r.split()
+    return " ".join(words[:9]) + ("…" if len(words) > 9 else "")
+
+
+def _when(d) -> str:
+    return f" from {d.day} {d:%b %Y}" if d else ""
+
+
+EVENT_WORDS = [
+    ("retirement", re.compile(r"retire|complet\w*(?: of)? (?:his|her) (?:tenure|term)|superannuat", re.I)),
+    ("resignation", re.compile(r"resign", re.I)),
+    ("cessation", re.compile(r"cease|cessation", re.I)),
+    ("re-appointment", re.compile(r"re-?appoint", re.I)),
+    ("appointment", re.compile(r"\bappoint", re.I)),
+]
+BOILER_REASON = re.compile(
+    r"(?:reason for change\s*)?viz\.?,?\s*appointment,?\s*re-?\s*appointment,?\s*"
+    r"resignation,?\s*removal,?\s*death\s*or\s*otherwise",
+    re.I,
+)
+DATE_PHRASE = re.compile(
+    r"(?:w\.?e\.?f\.?|with effect from|effective(?: from)?|close of business hours (?:of|on)|from)\s+"
+    r"(\d{1,2}(?:st|nd|rd|th)?\s+[A-Z][a-z]+,?\s+\d{4}|[A-Z][a-z]+\s+\d{1,2},?\s+\d{4})",
+)
+
+
+def _parse_day(s: str):
+    from datetime import datetime as dt
+
+    s = re.sub(r"(\d)(st|nd|rd|th)", r"", s).replace(",", "")
+    for f in ("%d %B %Y", "%B %d %Y", "%d %b %Y", "%b %d %Y"):
+        try:
+            return dt.strptime(s, f).date()
+        except ValueError:
+            continue
+    return None
+
+
+def verify_mention(name: str, event: str, eff, text: str) -> tuple[str | None, object]:
+    """Confirm, never override: the extracted event stands only if the filing says it right after
+    the person's name ("Mr. Anup Bagchi is appointed as MD & CEO w.e.f. October 27, 2026"); the date
+    is the one stated there. Unconfirmed → (None, None): the person is left out of the line."""
+    rx = dict(EVENT_WORDS).get(event)
+    if rx is None:
+        return None, None
+    text = BOILER_REASON.sub(" ", text)  # the SEBI table header lists every possible reason
+    surname = HONORIFIC.sub("", name).split()[-1]
+    for m in re.finditer(rf"\b{re.escape(surname)}\b", text):
+        after = text[m.end() : m.end() + 160]
+        # stop at the next person's honorific: their event isn't this person's
+        after = re.split(r"\b(?:Mr|Ms|Mrs|Dr)\.?\s", after)[0]
+        if rx.search(after):
+            d = DATE_PHRASE.search(after)
+            return event, eff or (_parse_day(d.group(1)) if d else None)
+    return None, None
+
+
+def mgmt_line(mentions: list[tuple]) -> str | None:
+    """'Anup Bagchi appointed MD & CEO from 27 Oct 2026; Sashidhar Jagdishan retires as MD & CEO'."""
+    parts, seen = [], set()
+    for name, role, event, eff in mentions:
+        key = (name, event)
+        if key in seen or event not in MGMT_VERB:
+            continue
+        seen.add(key)
+        parts.append(f"{HONORIFIC.sub('', name.strip())} {MGMT_VERB[event]} {_short_role(role)}{_when(eff)}")
+    return "; ".join(parts[:2]) or None
+
+
+def management_lines_stage(
+    conn: Connection, router: Router, company_ids: list[int], days: int = 30
+) -> dict[str, int]:
+    """Every management-change card says who, what role, joining or leaving, from when: built from
+    the people the filing names (no model) when they were extracted, else written by the hosted
+    model from the filing text. A line that doesn't state a change is never used."""
+    rows = conn.execute(
+        "SELECT f.id, f.exch_category, f.subject, f.text_pages, k.one_line FROM filings f "
+        "JOIN filing_class k ON k.filing_id = f.id WHERE f.company_id = ANY(%s) AND f.dup_of IS NULL "
+        "AND f.ts_ist >= now() - make_interval(days => %s) AND k.category = 'management_change' "
+        "ORDER BY f.ts_ist",
+        (company_ids, days),
+    ).fetchall()
+    counts: Counter = Counter()
+    todo = []
+    for fid, cat, subj, pages, one in rows:
+        ms = conn.execute(
+            "SELECT p.full_name, m.role, m.event, m.effective_date FROM person_mentions m "
+            "JOIN persons p ON p.id = m.person_id WHERE m.filing_id = %s",
+            (fid,),
+        ).fetchall()
+        if ms and pages:
+            text = re.sub(r"\s+", " ", " ".join(pages))
+            ms = [(n, r, *verify_mention(n, e, d, text)) for n, r, e, d in ms]
+        # built from the named people only when every one has a stated date; else read the text
+        line = mgmt_line(ms) if ms and all(m[3] for m in ms) else None
+        if line:
+            conn.execute("UPDATE filing_class SET one_line = %s WHERE filing_id = %s", (line, fid))
+            counts["from_people"] += 1
+        elif one and MGMT_FACT.search(one) and not cl.THIN.search(one):
+            counts["kept"] += 1
+        elif pages:
+            todo.append((fid, cat, subj, pages, mgmt_line(ms) if ms else None))
+        else:
+            counts["no_text"] += 1
+    conn.commit()
+    for i in range(0, len(todo), cl.BATCH):
+        batch = todo[i : i + cl.BATCH]
+        payload = [
+            {
+                "ref": cl.ref_for(fid),
+                "exch_category": cat,
+                "subject": f"{subj} [one line: who, what role, joining or leaving, and from what date]",
+                "text": _window(" ".join(pages), "appointment resignation cessation retirement"),
+            }
+            for fid, cat, subj, pages, _fallback in batch
+        ]
+        try:
+            res = router.call(
+                "EXTRACT",
+                "mgmt_line",
+                cl.PROMPT_VERSION,
+                cl.SYSTEM,
+                cl.render_batch(payload),
+                cl.Batch,
+                cache_payload=payload,
+            )
+            by_idx = {it.idx: it for it in res.data.items}  # type: ignore[attr-defined]
+        except Exception:
+            by_idx = {}
+            counts["model_errors"] += 1
+        for j, (fid, _cat, _subj, _pages, fallback) in enumerate(batch):
+            it = by_idx.get(j)
+            line = cl.clip_words(it.one_line) if it is not None and it.ref == cl.ref_for(fid) else None
+            if not (line and MGMT_FACT.search(line)) and fallback:
+                line = fallback  # the people the filing names, without a date it doesn't state
+                counts["from_people_undated"] += 1
+            if line:
+                line = HONORIFIC.sub("", line)
+            if line and MGMT_FACT.search(line):
+                conn.execute("UPDATE filing_class SET one_line = %s WHERE filing_id = %s", (line, fid))
+                counts["from_model"] += 1
+            else:
+                conn.execute("UPDATE filing_class SET one_line = NULL WHERE filing_id = %s", (fid,))
+                counts["nothing_useful"] += 1
+        conn.commit()
+    return dict(counts)
+
+
+def label_lines_stage(
+    conn: Connection, router: Router, company_ids: list[int], days: int = 30
+) -> dict[str, int]:
+    """Any filing (every category but the results cards) whose headline would be the exchange's
+    label or an empty phrase gets a one-line fact from its own text, by the hosted model."""
+    from finn.push import severity as sv
+    from finn.push.brief import clean_subject
+
+    rows = conn.execute(
+        "SELECT f.id, f.exch_category, f.subject, f.text_pages, k.one_line FROM filings f "
+        "JOIN filing_class k ON k.filing_id = f.id WHERE f.company_id = ANY(%s) AND f.dup_of IS NULL "
+        "AND f.ts_ist >= now() - make_interval(days => %s) AND f.text_pages IS NOT NULL "
+        "AND NOT (k.category = 'results' AND coalesce(k.sub_type, '') = 'results_filing') ORDER BY f.ts_ist",
+        (company_ids, days),
+    ).fetchall()
+    todo = [
+        (fid, cat, subj, pages)
+        for fid, cat, subj, pages, one in rows
+        if sv.says_nothing(one or clean_subject(subj), cat)
+    ]
+    counts: Counter = Counter()
+    for i in range(0, len(todo), cl.BATCH):
+        batch = todo[i : i + cl.BATCH]
+        payload = [
+            {"ref": cl.ref_for(fid), "exch_category": cat, "subject": subj, "text": _text(pages)}
+            for fid, cat, subj, pages in batch
+        ]
+        try:
+            res = router.call(
+                "EXTRACT",
+                "label_line",
+                cl.PROMPT_VERSION,
+                cl.SYSTEM,
+                cl.render_batch(payload),
+                cl.Batch,
+                cache_payload=payload,
+            )
+            by_idx = {it.idx: it for it in res.data.items}  # type: ignore[attr-defined]
+        except Exception:
+            by_idx = {}
+            counts["model_errors"] += 1
+        for j, (fid, cat, _s, _p) in enumerate(batch):
+            it = by_idx.get(j)
+            line = cl.clip_words(it.one_line) if it is not None and it.ref == cl.ref_for(fid) else None
+            if line and not sv.says_nothing(line, cat):
+                conn.execute("UPDATE filing_class SET one_line = %s WHERE filing_id = %s", (line, fid))
+                counts["lines"] += 1
+            else:
+                counts["nothing_useful"] += 1
         conn.commit()
     return dict(counts)

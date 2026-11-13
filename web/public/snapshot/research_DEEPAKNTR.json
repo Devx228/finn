@@ -87,7 +87,7 @@
   "questions": []
  },
  "name": "Deepak Nitrite Limited",
- "as_of": "2026-11-13T21:02:34.579514+05:30",
+ "as_of": "2026-11-13T21:49:24.379237+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/DEEPAKNTR_04112026111452_NSE-concall_transcript.pdf",
@@ -278,6 +278,7 @@
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
  "business": {
   "note": null,
+  "what": "FY26 revenue by segment: 68% Phenolics, 32% Advanced Intermediates",
   "year": "FY26",
   "about": {
    "by": "first describing sentence, verbatim",

@@ -86,7 +86,7 @@
    "id": 12,
    "ts": "2026-10-27T02:32:54+00:00",
    "you": [
-    "You were at ICICI Bank 2014–2017 while they were there"
+    "You were at ICICI Bank 2017–2019 while they were there"
    ],
    "best": {
     "via": {
@@ -102,10 +102,9 @@
     },
     "overlap": 0.6,
     "evidence": [
-     "overlapped at ICICI Bank Limited, 2014–now",
      "overlapped at ICICI Bank Limited, 2017–2023"
     ],
-    "sentence": "You → Nikhil Gill (personal, last spoke Jul 2026, 9 interactions in 24 months) → Mr. Anup Bagchi: overlapped at ICICI Bank Limited, 2014–now. Path: strong × medium.",
+    "sentence": "You → Nikhil Gill (personal, last spoke Jul 2026, 9 interactions in 24 months) → Mr. Anup Bagchi: overlapped at ICICI Bank Limited, 2017–2023. Path: strong × medium.",
     "strength": 0.504,
     "overlap_label": "medium",
     "strength_label": "strong"

@@ -145,12 +145,13 @@ BUSINESS_NOUN = re.compile(
 NOT_BUSINESS = re.compile(
     r"employer|employee|workplace|culture|great place|csr\b|award|certified|recogni[sz]ed", re.I
 )
-ABOUT_PROMPT = "about-v1"
+ABOUT_PROMPT = "about-v2"
 ABOUT_SYSTEM = (
-    "You pick, from numbered sentences taken from a company's annual report, the one or two that best "
-    "say what the company does: its business, products or services, and customers. Prefer plain "
-    'description over slogans, awards or numbers about the year. Return JSON {"ids": [...]} with one '
-    'or two ids from the list, in reading order. If none describes the business, return {"ids": []}.'
+    "You pick, from numbered sentences taken from a company's annual report, the one that best says "
+    "what the WHOLE company does: its businesses, products or services and customers. Reject sentences "
+    "about a single product, segment or business line (e.g. 'one of the largest mortgage lenders'), "
+    "slogans, awards, rankings without the business, and sentences that need context ('in this space'). "
+    'Return JSON {"ids": [k]} with one id, or {"ids": []} if none describes the whole company.'
 )
 
 
@@ -243,3 +244,20 @@ def about(conn: Connection, cid: int, router=None) -> dict:
         if router is not None and pick != [0]
         else "first describing sentence, verbatim",
     }
+
+
+def mix_line(biz: dict) -> str | None:
+    """'What it does' as a fact from the results filings: the segment mix by revenue share."""
+    segs = [x for x in biz.get("segments") or [] if x.get("share") is not None]
+    if segs:
+        segs = sorted(segs, key=lambda x: -x["share"])
+        shown = segs[:4]
+        rest = round(100 - sum(x["share"] for x in shown))
+        parts = [f"{round(x['share'])}% {x['name']}" for x in shown] + (
+            [f"{rest}% other"] if len(segs) > 4 and rest > 0 else []
+        )
+        return f"{biz.get('year') or ''} revenue by segment: {', '.join(parts)}".strip()
+    if biz.get("single_segment"):
+        ind = biz.get("industry")
+        return f"{ind}: reports a single business segment" if ind else "Reports a single business segment"
+    return None

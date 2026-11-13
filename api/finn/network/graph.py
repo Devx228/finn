@@ -33,6 +33,9 @@ class Emp:
     seniority: int | None
     start: date | None
     end: date | None  # None = current
+    # a filing bio gave a start but no end and no later employer: when they left is unknown, so the
+    # span is shown "from <year>" and never used as evidence of overlap
+    open_unknown: bool = False
 
 
 @dataclass
@@ -85,7 +88,7 @@ def overlap(a: Person, b: Person, large_orgs: set[int] | None = None) -> tuple[f
     best, ev = 0.0, []
     for x in a.emps:
         for y in b.emps:
-            if x.org_id != y.org_id or not x.start or not y.start:
+            if x.org_id != y.org_id or not x.start or not y.start or x.open_unknown or y.open_unknown:
                 continue
             start = max(x.start, y.start)
             end = min(x.end or TODAY, y.end or TODAY)

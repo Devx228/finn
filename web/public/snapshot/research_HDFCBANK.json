@@ -87,7 +87,7 @@
   "questions": []
  },
  "name": "HDFC Bank Limited",
- "as_of": "2026-11-13T21:02:36.108750+05:30",
+ "as_of": "2026-11-13T21:49:26.336855+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK_23102026224657_SEintimationTranscriptofearningscall17oct2026.pdf",
@@ -225,13 +225,11 @@
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
  "business": {
   "note": null,
+  "what": "FY26 revenue by segment: 42% Retail Banking, 24% Wholesale Banking, 15% Insurance Business, 11% Treasury, 8% other",
   "year": "FY26",
   "about": {
-   "by": "first describing sentence, verbatim",
-   "url": "https://nsearchives.nseindia.com/annual_reports/AR_29735_HDFCBANK_2025_2026_A_12667766_11072026001055.pdf",
-   "page": 59,
-   "text": "HDFC Bank is one of the Largest Retail Mortgage lenders in the Country supporting the Retail Home buyers and MSMEs in buying Homes for personal use and Commercial properties for their business use.",
-   "period": "FY2026"
+   "note": "No sentence in the FY2026 annual report's opening pages says plainly what the company does.",
+   "text": null
   },
   "basis": "consolidated",
   "source": {

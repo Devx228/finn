@@ -1,7 +1,7 @@
 {
  "id": 12,
  "you": [
-  "You were at ICICI Bank 2014–2017 while they were there"
+  "You were at ICICI Bank 2017–2019 while they were there"
  ],
  "kind": "public_figure",
  "name": "Mr. Anup Bagchi",
@@ -20,32 +20,10 @@
    },
    "overlap": 0.6,
    "evidence": [
-    "overlapped at ICICI Bank Limited, 2014–now",
     "overlapped at ICICI Bank Limited, 2017–2023"
    ],
-   "sentence": "You → Nikhil Gill (personal, last spoke Jul 2026, 9 interactions in 24 months) → Mr. Anup Bagchi: overlapped at ICICI Bank Limited, 2014–now. Path: strong × medium.",
+   "sentence": "You → Nikhil Gill (personal, last spoke Jul 2026, 9 interactions in 24 months) → Mr. Anup Bagchi: overlapped at ICICI Bank Limited, 2017–2023. Path: strong × medium.",
    "strength": 0.504,
-   "overlap_label": "medium",
-   "strength_label": "strong"
-  },
-  {
-   "via": {
-    "id": 88,
-    "name": "Aditi D'Costa",
-    "warmth": 0.95,
-    "headline": "Director, HDFC Mutual Fund",
-    "how_known": "met-as-management",
-    "synthetic": true,
-    "warmth_why": "met-as-management, last spoke Oct 2026, 7 interactions in 24 months",
-    "last_contact": "2026-10-23",
-    "warmth_label": "strong"
-   },
-   "overlap": 0.41,
-   "evidence": [
-    "overlapped at ICICI Bank Limited, 2005–2008"
-   ],
-   "sentence": "You → Aditi D'Costa (met-as-management, last spoke Oct 2026, 7 interactions in 24 months) → Mr. Anup Bagchi: overlapped at ICICI Bank Limited, 2005–2008. Path: strong × medium.",
-   "strength": 0.389,
    "overlap_label": "medium",
    "strength_label": "strong"
   },
@@ -69,14 +47,35 @@
    "strength": 0.239,
    "overlap_label": "medium",
    "strength_label": "medium"
+  },
+  {
+   "via": {
+    "id": 62,
+    "name": "Meera Khanna",
+    "warmth": 0.36,
+    "headline": "Chief Business Officer, State Bank of India",
+    "how_known": "introduced-by",
+    "synthetic": true,
+    "warmth_why": "introduced-by, last spoke Jan 2026, 0 interactions in 24 months",
+    "last_contact": "2026-01-21",
+    "warmth_label": "medium"
+   },
+   "overlap": 0.51,
+   "evidence": [
+    "overlapped at ICICI Bank Limited, 2018–2023"
+   ],
+   "sentence": "You → Meera Khanna (introduced-by, last spoke Jan 2026, 0 interactions in 24 months) → Mr. Anup Bagchi: overlapped at ICICI Bank Limited, 2018–2023. Path: medium × medium.",
+   "strength": 0.184,
+   "overlap_label": "medium",
+   "strength_label": "medium"
   }
  ],
  "career": [
   {
    "org": "ICICI Bank Limited",
-   "span": "1992–now",
+   "span": "years not stated",
    "title": "various leadership positions including CEO & MD of ICICI Securities, Executive Director of ICICI Bank, and currently MD & CEO of ICICI Prudential Life Insurance",
-   "current": true
+   "current": false
   },
   {
    "org": "ICICI Bank Limited",
@@ -86,13 +85,13 @@
   },
   {
    "org": "ICICI Prudential Life Insurance",
-   "span": "2023–now",
+   "span": "2023–2026",
    "title": "MD & CEO since June 2023",
-   "current": true
+   "current": false
   },
   {
    "org": "HDFC Bank Limited",
-   "span": "2026–now",
+   "span": "from 2026",
    "title": "Additional Director, Managing Director & Chief Executive Officer",
    "current": true
   }

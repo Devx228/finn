@@ -91,7 +91,7 @@
      "points": 8
     },
     "staleness": {
-     "why": "150 h old",
+     "why": "152 h old",
      "points": -9
     },
     "user_pref": {
@@ -258,7 +258,7 @@
      "points": 9
     },
     "staleness": {
-     "why": "151 h old",
+     "why": "153 h old",
      "points": -9
     },
     "user_pref": {
@@ -284,7 +284,7 @@
    "category_label": "Results"
   }
  ],
- "as_of": "2026-11-13T19:37:14.967295+05:30",
+ "as_of": "2026-11-13T21:50:13.260133+05:30",
  "worth": [
   {
    "id": "f418",
@@ -377,7 +377,7 @@
      "points": 8
     },
     "staleness": {
-     "why": "50 h old",
+     "why": "53 h old",
      "points": -3
     },
     "user_pref": {
@@ -489,7 +489,7 @@
      "points": 9
     },
     "staleness": {
-     "why": "148 h old",
+     "why": "150 h old",
      "points": -9
     },
     "user_pref": {
@@ -601,7 +601,7 @@
      "points": 8
     },
     "staleness": {
-     "why": "147 h old",
+     "why": "149 h old",
      "points": -9
     },
     "user_pref": {
@@ -759,7 +759,7 @@
       "career": [
        {
         "org": "Tata Steel Limited",
-        "span": "2022–now",
+        "span": "from 2022 (term to 2026)",
         "title": "Non-Executive, Non-Independent Director and Vice Chairman of the Board",
         "current": false
        }
@@ -798,7 +798,7 @@
    },
    "pdf_url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_07112026131701_BOARDOUTCOME-NOV7.pdf",
    "category": "management_change",
-   "headline": "Retirement of Mr. Noel Naval Tata as the Non-Executive, Non-Independent Director and Vice Chairman of the Board",
+   "headline": "Noel Naval Tata retires as Non-Executive, Non-Independent Director and Vice Chairman on November 11, 2026",
    "sub_type": "independent_director_rotation",
    "components": {
     "base": {
@@ -818,7 +818,7 @@
      "points": 9
     },
     "staleness": {
-     "why": "150 h old",
+     "why": "153 h old",
      "points": -9
     },
     "user_pref": {
@@ -930,7 +930,7 @@
      "points": 8
     },
     "staleness": {
-     "why": "79 h old",
+     "why": "81 h old",
      "points": -5
     },
     "user_pref": {
@@ -1042,7 +1042,7 @@
      "points": 8
     },
     "staleness": {
-     "why": "80 h old",
+     "why": "82 h old",
      "points": -5
     },
     "user_pref": {
@@ -1096,7 +1096,7 @@
      "points": 7
     },
     "staleness": {
-     "why": "105 h old",
+     "why": "107 h old",
      "points": -6
     },
     "user_pref": {
@@ -1150,7 +1150,7 @@
      "points": 7
     },
     "staleness": {
-     "why": "49 h old",
+     "why": "51 h old",
      "points": -3
     },
     "user_pref": {
@@ -1189,8 +1189,8 @@
      "network": null,
      "pdf_url": "https://nsearchives.nseindia.com/corporate/AmitDodani_11112026145521_UpcomingAnalystMeet16112026.pdf",
      "category": "investor_meetings",
-     "headline": "Schedule of meet",
-     "sub_type": null,
+     "headline": "Not read yet: Analysts/Institutional Investor Meet/Con. Call Updates",
+     "sub_type": "unread",
      "components": {
       "base": {
        "why": "investor / analyst meeting schedule",
@@ -1209,7 +1209,7 @@
        "points": 7
       },
       "staleness": {
-       "why": "53 h old",
+       "why": "55 h old",
        "points": -3
       },
       "user_pref": {
@@ -1243,8 +1243,8 @@
      "network": null,
      "pdf_url": "https://nsearchives.nseindia.com/corporate/MARUTIASHISH_12112026115520_Investor_Meeting_17_18_19Nov2026.pdf",
      "category": "investor_meetings",
-     "headline": "Schedule of meet",
-     "sub_type": null,
+     "headline": "Not read yet: Analysts/Institutional Investor Meet/Con. Call Updates",
+     "sub_type": "unread",
      "components": {
       "base": {
        "why": "investor / analyst meeting schedule",
@@ -1263,7 +1263,7 @@
        "points": 8
       },
       "staleness": {
-       "why": "32 h old",
+       "why": "34 h old",
        "points": -2
       },
       "user_pref": {
@@ -1297,8 +1297,8 @@
      "network": null,
      "pdf_url": "https://nsearchives.nseindia.com/corporate/AUBANK_11112026205434_Investor_Meet_Intimation.pdf",
      "category": "investor_meetings",
-     "headline": "Schedule of meet",
-     "sub_type": null,
+     "headline": "Not read yet: Analysts/Institutional Investor Meet/Con. Call Updates",
+     "sub_type": "unread",
      "components": {
       "base": {
        "why": "investor / analyst meeting schedule",
@@ -1317,7 +1317,7 @@
        "points": 5
       },
       "staleness": {
-       "why": "47 h old",
+       "why": "49 h old",
        "points": -3
       },
       "user_pref": {
@@ -1351,8 +1351,8 @@
      "network": null,
      "pdf_url": "https://nsearchives.nseindia.com/corporate/HDFCBANK3_12112026142725_Analystmeetintimation12112026.pdf",
      "category": "investor_meetings",
-     "headline": "Schedule of meet",
-     "sub_type": null,
+     "headline": "Not read yet: Analysts/Institutional Investor Meet/Con. Call Updates",
+     "sub_type": "unread",
      "components": {
       "base": {
        "why": "investor / analyst meeting schedule",
@@ -1371,7 +1371,7 @@
        "points": 9
       },
       "staleness": {
-       "why": "29 h old",
+       "why": "31 h old",
        "points": -2
       },
       "user_pref": {
@@ -1405,8 +1405,8 @@
      "network": null,
      "pdf_url": "https://nsearchives.nseindia.com/corporate/ULTRACEMCO1_11112026170757_Investormeetintimation11112026.pdf",
      "category": "investor_meetings",
-     "headline": "Schedule of meet",
-     "sub_type": null,
+     "headline": "Not read yet: Analysts/Institutional Investor Meet/Con. Call Updates",
+     "sub_type": "unread",
      "components": {
       "base": {
        "why": "investor / analyst meeting schedule",
@@ -1425,7 +1425,7 @@
        "points": 9
       },
       "staleness": {
-       "why": "50 h old",
+       "why": "53 h old",
        "points": -3
       },
       "user_pref": {
@@ -1459,8 +1459,8 @@
      "network": null,
      "pdf_url": "https://nsearchives.nseindia.com/corporate/CGPOWER_12112026125253_CGIPL_IntimationofAnalystcall_27112026.pdf",
      "category": "investor_meetings",
-     "headline": "Schedule of meet",
-     "sub_type": null,
+     "headline": "Not read yet: Analysts/Institutional Investor Meet/Con. Call Updates",
+     "sub_type": "unread",
      "components": {
       "base": {
        "why": "investor / analyst meeting schedule",
@@ -1479,7 +1479,7 @@
        "points": 8
       },
       "staleness": {
-       "why": "31 h old",
+       "why": "33 h old",
        "points": -2
       },
       "user_pref": {
@@ -1533,7 +1533,7 @@
        "points": 9
       },
       "staleness": {
-       "why": "27 h old",
+       "why": "29 h old",
        "points": -2
       },
       "user_pref": {
@@ -1563,8 +1563,8 @@
      "network": null,
      "pdf_url": "https://nsearchives.nseindia.com/corporate/BHARTIARTL_11112026183310_BhartiAirtelSTXIntimation.pdf",
      "category": "investor_meetings",
-     "headline": "Schedule of meet",
-     "sub_type": null,
+     "headline": "Not read yet: Analysts/Institutional Investor Meet/Con. Call Updates",
+     "sub_type": "unread",
      "components": {
       "base": {
        "why": "investor / analyst meeting schedule",
@@ -1583,7 +1583,7 @@
        "points": 7
       },
       "staleness": {
-       "why": "49 h old",
+       "why": "51 h old",
        "points": -3
       },
       "user_pref": {
@@ -1637,7 +1637,7 @@
        "points": 7
       },
       "staleness": {
-       "why": "28 h old",
+       "why": "30 h old",
        "points": -2
       },
       "user_pref": {
@@ -1687,7 +1687,7 @@
        "points": 7
       },
       "staleness": {
-       "why": "26 h old",
+       "why": "28 h old",
        "points": -2
       },
       "user_pref": {
@@ -1717,8 +1717,8 @@
      "network": null,
      "pdf_url": "https://nsearchives.nseindia.com/corporate/TITAN_09112026145809_SEintimation_9_Nov_26.pdf",
      "category": "investor_meetings",
-     "headline": "Schedule of meet",
-     "sub_type": null,
+     "headline": "Not read yet: Analysts/Institutional Investor Meet/Con. Call Updates",
+     "sub_type": "unread",
      "components": {
       "base": {
        "why": "investor / analyst meeting schedule",
@@ -1737,7 +1737,7 @@
        "points": 7
       },
       "staleness": {
-       "why": "101 h old",
+       "why": "103 h old",
        "points": -6
       },
       "user_pref": {
@@ -1771,8 +1771,8 @@
      "network": null,
      "pdf_url": "https://nsearchives.nseindia.com/corporate/KPITTECH_12112026161901_KPIT_Investor_Conference_Avendus_and_JM_Financials_S.pdf",
      "category": "investor_meetings",
-     "headline": "Schedule of meet",
-     "sub_type": null,
+     "headline": "Not read yet: Analysts/Institutional Investor Meet/Con. Call Updates",
+     "sub_type": "unread",
      "components": {
       "base": {
        "why": "investor / analyst meeting schedule",
@@ -1791,7 +1791,7 @@
        "points": 3
       },
       "staleness": {
-       "why": "27 h old",
+       "why": "30 h old",
        "points": -2
       },
       "user_pref": {
@@ -1841,7 +1841,7 @@
        "points": 3
       },
       "staleness": {
-       "why": "27 h old",
+       "why": "30 h old",
        "points": -2
       },
       "user_pref": {
@@ -1897,7 +1897,7 @@
        "points": 7
       },
       "staleness": {
-       "why": "53 h old",
+       "why": "55 h old",
        "points": -3
       },
       "user_pref": {
@@ -1951,7 +1951,7 @@
        "points": 4
       },
       "staleness": {
-       "why": "33 h old",
+       "why": "35 h old",
        "points": -2
       },
       "user_pref": {
@@ -1985,7 +1985,7 @@
      "network": null,
      "pdf_url": "https://nsearchives.nseindia.com/corporate/BHARTIARTL_12112026172851_Airtel_Stx_Intimation.pdf",
      "category": "earnings_call",
-     "headline": "Transcript",
+     "headline": "Not read yet: Analysts/Institutional Investor Meet/Con. Call Updates",
      "sub_type": "transcript",
      "components": {
       "base": {
@@ -2005,7 +2005,7 @@
        "points": 7
       },
       "staleness": {
-       "why": "26 h old",
+       "why": "28 h old",
        "points": -2
       },
       "user_pref": {
@@ -2061,7 +2061,7 @@
        "points": 7
       },
       "staleness": {
-       "why": "26 h old",
+       "why": "29 h old",
        "points": -2
       },
       "user_pref": {
@@ -2091,7 +2091,7 @@
      "network": null,
      "pdf_url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_10112026121523_BFL_Reg_30_Outcome_PricingofPIpostVRFinal.pdf",
      "category": "unclassified",
-     "headline": "Outcome of PI 2026 - Special Committee Meeting held on November 10, 2026",
+     "headline": "Not read yet: Committee Meeting Updates",
      "sub_type": "committee_meeting",
      "components": {
       "base": {
@@ -2111,7 +2111,7 @@
        "points": 8
       },
       "staleness": {
-       "why": "79 h old",
+       "why": "82 h old",
        "points": -5
       },
       "user_pref": {
@@ -2165,7 +2165,7 @@
        "points": 7
       },
       "staleness": {
-       "why": "101 h old",
+       "why": "103 h old",
        "points": -6
       },
       "user_pref": {
@@ -2329,7 +2329,7 @@
         "career": [
          {
           "org": "Tata Steel Limited",
-          "span": "2022–now",
+          "span": "from 2022 (term to 2026)",
           "title": "Non-Executive, Non-Independent Director and Vice Chairman of the Board",
           "current": false
          }
@@ -2368,7 +2368,7 @@
      },
      "pdf_url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_07112026134722_Outcome_of_BM.pdf",
      "category": "management_change",
-     "headline": "Noel Naval Tata retires as Non-Executive Director of Tata Steel",
+     "headline": "Noel Naval Tata retires as Non-Executive, Non-Independent Director and Vice Chairman on November 11, 2026",
      "sub_type": null,
      "components": {
       "base": {
@@ -2388,7 +2388,7 @@
        "points": 9
       },
       "staleness": {
-       "why": "150 h old",
+       "why": "152 h old",
        "points": -9
       },
       "user_pref": {
@@ -2486,7 +2486,7 @@
      },
      "pdf_url": "https://nsearchives.nseindia.com/corporate/HDFCBANK3_12112026173223_SE_Intimation-_VSR.pdf",
      "category": "management_change",
-     "headline": "Approval from the Reserve Bank of India for re-appointment of Mr. V. Srinivasa Rangan asthe Whole-time Director (designated as Executive Director) of HDFC Bank ",
+     "headline": "RBI approves re-appointment of V. Srinivasa Rangan as Executive Director for one year from November 23, 2026",
      "sub_type": "re_appointment",
      "components": {
       "base": {
@@ -2506,7 +2506,7 @@
        "points": 9
       },
       "staleness": {
-       "why": "26 h old",
+       "why": "28 h old",
        "points": -2
       },
       "user_pref": {
@@ -2562,7 +2562,7 @@
        "points": 9
       },
       "staleness": {
-       "why": "101 h old",
+       "why": "104 h old",
        "points": -6
       },
       "user_pref": {
@@ -2602,8 +2602,8 @@
      "network": null,
      "pdf_url": "https://nsearchives.nseindia.com/corporate/HDFCBANK_06112026222722_SEIntimation_PBResults_06112026.pdf",
      "category": "postal_ballot",
-     "headline": "Voting results",
-     "sub_type": null,
+     "headline": "Not read yet: Shareholders meeting",
+     "sub_type": "unread",
      "components": {
       "base": {
        "why": "postal ballot",
@@ -2622,7 +2622,7 @@
        "points": 9
       },
       "staleness": {
-       "why": "165 h old",
+       "why": "167 h old",
        "points": -10
       },
       "user_pref": {
@@ -2662,7 +2662,7 @@
      "network": null,
      "pdf_url": "https://nsearchives.nseindia.com/corporate/AUBANK_07112026182532_20261107_ESOP_Allotment_Intimation.pdf",
      "category": "unclassified",
-     "headline": "Allotment of 186955  Shares",
+     "headline": "Not read yet: ESOP/ESOS/ESPS",
      "sub_type": "esop",
      "components": {
       "base": {
@@ -2682,7 +2682,7 @@
        "points": 5
       },
       "staleness": {
-       "why": "145 h old",
+       "why": "147 h old",
        "points": -9
       },
       "user_pref": {

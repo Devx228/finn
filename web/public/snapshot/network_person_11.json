@@ -72,9 +72,9 @@
  "career": [
   {
    "org": "Tata Cummins Private Limited",
-   "span": "",
+   "span": "years not stated",
    "title": "Managing Director, a 50:50 joint venture between Cummins Inc. and Tata Motors Limited",
-   "current": true
+   "current": false
   },
   {
    "org": "Cummins Group in India",
@@ -96,7 +96,7 @@
   },
   {
    "org": "KPIT Technologies Limited",
-   "span": "2026–now",
+   "span": "from 2026",
    "title": "Independent Director on the Board of KPIT US, a material unlisted subsidiary of the Company",
    "current": true
   }

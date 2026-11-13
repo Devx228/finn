@@ -89,7 +89,7 @@
   ]
  },
  "name": "Larsen & Toubro Limited",
- "as_of": "2026-11-13T21:02:30.654628+05:30",
+ "as_of": "2026-11-13T21:49:19.776807+05:30",
  "calls": [
   {
    "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q2FY27%20Earnings%20Call%20Transcript.pdf",
@@ -507,6 +507,7 @@
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
  "business": {
   "note": null,
+  "what": "FY26 revenue by segment: 47% Infrastructure Projects, 19% Energy Projects, 19% IT & Technology Services, 6% Financial Services, 10% other",
   "year": "FY26",
   "about": {
    "by": "picked by model, verbatim",
