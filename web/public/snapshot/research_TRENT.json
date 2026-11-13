@@ -1,15 +1,19 @@
 {
  "name": "Trent Limited",
- "as_of": "2026-11-13T17:30:24.369578+05:30",
+ "as_of": "2026-11-13T18:01:02.300315+05:30",
  "calls": [],
  "stats": [],
  "format": "indas",
  "ledger": {
   "open": 0,
   "missed": 0,
+  "pattern": null,
   "resolved": 0,
   "delivered": 0,
+  "met_final": 0,
+  "met_first": 0,
   "calls_read": 0,
+  "first_known": 0,
   "calls_listed": 0,
   "unverifiable": 0
  },

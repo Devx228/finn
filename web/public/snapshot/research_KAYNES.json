@@ -1,6 +1,6 @@
 {
  "name": "Kaynes Technology India Limited",
- "as_of": "2026-11-13T17:29:04.307503+05:30",
+ "as_of": "2026-11-13T18:00:12.413444+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12082026164943_TranscriptoftheEarningAnnouncement.pdf",
@@ -145,9 +145,13 @@
  "ledger": {
   "open": 2,
   "missed": 2,
+  "pattern": "Of 3 resolved promises, 1 met the guidance as first given and 2 missed even the final guidance (1 after a cut).",
   "resolved": 3,
   "delivered": 1,
+  "met_final": 1,
+  "met_first": 1,
   "calls_read": 8,
+  "first_known": 3,
   "calls_listed": 8,
   "unverifiable": 4
  },
@@ -226,6 +230,7 @@
  "guidance": [
   {
    "label": "Capex",
+   "moved": null,
    "story": "FY27 capex: 300 ₹ cr → not scored.",
    "actual": null,
    "metric": "capex",
@@ -241,6 +246,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12082026164943_TranscriptoftheEarningAnnouncement.pdf",
      "call": "Q1 FY27 call",
      "high": 300.0,
+     "noun": "guidance",
      "page": 16,
      "unit": "₹ cr",
      "label": "capex",
@@ -251,20 +257,28 @@
      "period": "FY27",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Muthukumar",
      "call_date": "2026-08-12",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "not scored",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
-   "as_of_quarter": "2026-06-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-06-30",
+   "verdict_first": null,
+   "verdict_label": "not scored",
+   "first_is_revision": false
   },
   {
    "label": "Segment revenue",
+   "moved": null,
    "story": "FY27 segment revenue: 450–500 ₹ cr → not scored.",
    "actual": null,
    "metric": "segment_revenue",
@@ -276,6 +290,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12082026164943_TranscriptoftheEarningAnnouncement.pdf",
      "call": "Q1 FY27 call",
      "high": 500.0,
+     "noun": "target",
      "page": 14,
      "unit": "₹ cr",
      "label": "OSAT and PCB full year revenue",
@@ -286,22 +301,30 @@
      "metric": "segment_revenue",
      "period": "FY27",
      "source": "NSE",
+     "speaker": "Muthukumar",
      "call_date": "2026-08-12",
      "direction": "maintained",
+     "qualifier": null,
      "confidence": "high",
      "by_management": true
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "not scored",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
-   "as_of_quarter": "2026-06-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-06-30",
+   "verdict_first": null,
+   "verdict_label": "not scored",
+   "first_is_revision": false
   },
   {
    "label": "Revenue growth",
+   "moved": null,
    "story": "FY25 revenue growth: 55% → filings show 50.8% (FY) → missed.",
    "actual": {
     "span": "FY",
@@ -326,6 +349,7 @@
      "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
      "call": "Q3 FY25 call",
      "high": 55.0,
+     "noun": "guidance",
      "page": 3,
      "unit": "%",
      "label": "revenue growth",
@@ -336,20 +360,28 @@
      "period": "FY25",
      "prefix": false,
      "source": "company IR site",
+     "speaker": "Ramesh Kannan",
      "call_date": "2025-02-01",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "missed",
    "resolved": true,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "50.8% vs 55%",
-   "as_of_quarter": "2026-06-30"
+   "verdict_line": "Missed 55%+ guidance",
+   "as_of_quarter": "2026-06-30",
+   "verdict_first": "missed",
+   "verdict_label": "missed",
+   "first_is_revision": false
   },
   {
    "label": "EBITDA margin",
+   "moved": null,
    "story": "FY25 ebitda margin: 15% → filings show 15.1% (FY) → delivered.",
    "actual": {
     "span": "FY",
@@ -374,6 +406,7 @@
      "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
      "call": "Q3 FY25 call",
      "high": 15.0,
+     "noun": "guidance",
      "page": 10,
      "unit": "%",
      "label": "operating margin",
@@ -384,20 +417,28 @@
      "period": "FY25",
      "prefix": false,
      "source": "company IR site",
+     "speaker": "Jairam Sampath",
      "call_date": "2025-02-01",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "delivered",
    "resolved": true,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "15.1% vs at least 15%",
-   "as_of_quarter": "2026-06-30"
+   "verdict_line": "Met 15%+ guidance",
+   "as_of_quarter": "2026-06-30",
+   "verdict_first": "delivered",
+   "verdict_label": "delivered",
+   "first_is_revision": false
   },
   {
    "label": "Revenue",
+   "moved": "lowered",
    "story": "FY25 revenue: 3000 ₹ cr → 2800–2900 ₹ cr (cut once) → filings show ₹2,722 cr (FY) → missed.",
    "actual": {
     "span": "FY",
@@ -422,6 +463,7 @@
      "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%205.11.2024.pdf",
      "call": "Q2 FY25 call",
      "high": 3000.0,
+     "noun": "plan",
      "page": 5,
      "unit": "₹ cr",
      "label": "revenue",
@@ -432,8 +474,10 @@
      "period": "FY25",
      "prefix": false,
      "source": "company IR site",
+     "speaker": "Jairam Sampath",
      "call_date": "2024-11-05",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     },
     {
      "by": "rules",
@@ -445,6 +489,7 @@
      "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
      "call": "Q3 FY25 call",
      "high": 2900.0,
+     "noun": "guidance",
      "page": 10,
      "unit": "₹ cr",
      "label": "revenue",
@@ -455,20 +500,28 @@
      "period": "FY25",
      "prefix": false,
      "source": "company IR site",
+     "speaker": "Jairam Sampath",
      "call_date": "2025-02-01",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "missed",
    "resolved": true,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "₹2,722 cr vs ₹2,800–2,900 cr guided",
-   "as_of_quarter": "2026-06-30"
+   "verdict_line": "Missed ₹3,000 cr+ plan · missed the lowered ₹2,800–2,900 cr",
+   "as_of_quarter": "2026-06-30",
+   "verdict_first": "missed",
+   "verdict_label": "missed after cut",
+   "first_is_revision": false
   },
   {
    "label": "Revenue growth",
+   "moved": null,
    "story": "no year stated revenue growth: 40–50% → 50% (raised once) → open-ended.",
    "actual": null,
    "metric": "revenue_growth",
@@ -484,6 +537,7 @@
      "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
      "call": "Q3 FY25 call",
      "high": 50.0,
+     "noun": "target",
      "page": 19,
      "unit": "%",
      "label": "revenue growth",
@@ -494,8 +548,10 @@
      "period": "no year stated",
      "prefix": false,
      "source": "company IR site",
+     "speaker": "Jairam Sampath",
      "call_date": "2025-02-01",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     },
     {
      "by": "rules",
@@ -507,6 +563,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_08112025175717_EarningscalltranscriptQ22026Signed.pdf",
      "call": "Q2 FY26 call",
      "high": 50.0,
+     "noun": "guidance",
      "page": 15,
      "unit": "%",
      "label": "revenue growth",
@@ -517,20 +574,28 @@
      "period": "no year stated",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Jairam Sampath",
      "call_date": "2025-11-08",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "The quote names no year, so it can't be held to one; listed, not scored",
-   "as_of_quarter": "2026-06-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-06-30",
+   "verdict_first": null,
+   "verdict_label": "open-ended",
+   "first_is_revision": false
   },
   {
    "label": "EBITDA margin",
+   "moved": null,
    "story": "no year stated ebitda margin: 15% → 15.6% (raised once) → open-ended.",
    "actual": null,
    "metric": "ebitda_margin",
@@ -542,6 +607,7 @@
      "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
      "call": "Q3 FY25 call",
      "high": 15.0,
+     "noun": "target",
      "page": 14,
      "unit": "%",
      "label": "margin",
@@ -552,8 +618,10 @@
      "metric": "ebitda_margin",
      "period": "no year stated",
      "source": "company IR site",
+     "speaker": null,
      "call_date": "2025-02-01",
      "direction": "maintained",
+     "qualifier": null,
      "confidence": "high",
      "by_management": true
     },
@@ -567,6 +635,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_05082025165345_SEintimationtranscriptSigned.pdf",
      "call": "Q1 FY26 call",
      "high": 15.6,
+     "noun": "guidance",
      "page": 13,
      "unit": "%",
      "label": "ebitda margin",
@@ -577,20 +646,28 @@
      "period": "no year stated",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Jairam Sampath",
      "call_date": "2025-08-05",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "The quote names no year, so it can't be held to one; listed, not scored",
-   "as_of_quarter": "2026-06-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-06-30",
+   "verdict_first": null,
+   "verdict_label": "open-ended",
+   "first_is_revision": false
   },
   {
    "label": "Capex",
+   "moved": null,
    "story": "medium term capex: 1400 ₹ cr → 3400 ₹ cr → 3400 ₹ cr → 3700 ₹ cr → 1400 ₹ cr (cut once) → not scored.",
    "actual": null,
    "metric": "capex",
@@ -602,6 +679,7 @@
      "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
      "call": "Q3 FY25 call",
      "high": 1400.0,
+     "noun": "guidance",
      "page": 8,
      "unit": "₹ cr",
      "label": "total capex",
@@ -612,8 +690,10 @@
      "metric": "capex",
      "period": "medium term",
      "source": "company IR site",
+     "speaker": "Jairam Sampath",
      "call_date": "2025-02-01",
      "direction": "new",
+     "qualifier": null,
      "confidence": "high",
      "by_management": true
     },
@@ -627,6 +707,7 @@
      "url": "https://www.kaynestechnology.co.in/doc/Regulation-46-of-sebi-lodr-regulation/Earnings%20Call%20Transcript%2016.05.2025.pdf",
      "call": "Q4 FY25 call",
      "high": 3400.0,
+     "noun": "guidance",
      "page": 8,
      "unit": "₹ cr",
      "label": "capex",
@@ -637,8 +718,10 @@
      "period": "medium term",
      "prefix": false,
      "source": "company IR site",
+     "speaker": "Jairam Sampath",
      "call_date": "2025-05-16",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     },
     {
      "by": "model",
@@ -646,6 +729,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_05082025165345_SEintimationtranscriptSigned.pdf",
      "call": "Q1 FY26 call",
      "high": 3400.0,
+     "noun": "guidance",
      "page": 10,
      "unit": "₹ cr",
      "label": "total capex",
@@ -656,8 +740,10 @@
      "metric": "capex",
      "period": "medium term",
      "source": "NSE",
+     "speaker": "Jairam Sampath",
      "call_date": "2025-08-05",
      "direction": "unclear",
+     "qualifier": null,
      "confidence": "high",
      "by_management": true
     },
@@ -667,6 +753,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_08112025175717_EarningscalltranscriptQ22026Signed.pdf",
      "call": "Q2 FY26 call",
      "high": 3700.0,
+     "noun": "guidance",
      "page": 12,
      "unit": "₹ cr",
      "label": "capex",
@@ -677,8 +764,10 @@
      "metric": "capex",
      "period": "medium term",
      "source": "NSE",
+     "speaker": "Jairam Sampath",
      "call_date": "2025-11-08",
      "direction": "new",
+     "qualifier": null,
      "confidence": "high",
      "by_management": true
     },
@@ -692,6 +781,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12022026212332_EaningscallTranscriptQ32026Signed.pdf",
      "call": "Q3 FY26 call",
      "high": 1400.0,
+     "noun": "guidance",
      "page": 14,
      "unit": "₹ cr",
      "label": "capex",
@@ -702,20 +792,28 @@
      "period": "medium term",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Jairam Sampath",
      "call_date": "2026-02-12",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "not scored",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
-   "as_of_quarter": "2026-06-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-06-30",
+   "verdict_first": null,
+   "verdict_label": "not scored",
+   "first_is_revision": false
   },
   {
    "label": "Segment revenue",
+   "moved": null,
    "story": "medium term segment revenue: 25000 ₹ cr → not scored.",
    "actual": null,
    "metric": "segment_revenue",
@@ -727,6 +825,7 @@
      "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/IntimationEarningsCallTranscriptQ4_2026.pdf",
      "call": "Q4 FY26 call",
      "high": 25000.0,
+     "noun": "outlook",
      "page": 4,
      "unit": "₹ cr",
      "label": "OSAT revenue visibility",
@@ -737,19 +836,26 @@
      "metric": "segment_revenue",
      "period": "medium term",
      "source": "company IR site",
+     "speaker": "Ramesh Kunhikannan",
      "call_date": "2026-05-14",
      "direction": "new",
+     "qualifier": null,
      "confidence": "high",
      "by_management": true
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "not scored",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
-   "as_of_quarter": "2026-06-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-06-30",
+   "verdict_first": null,
+   "verdict_label": "not scored",
+   "first_is_revision": false
   }
  ],
  "industry": null,

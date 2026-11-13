@@ -227,6 +227,28 @@ export interface GuidancePoint {
   call_date: string;
   url: string;
   change: "first given" | "raised" | "cut" | "held" | "narrowed";
+  speaker?: string | null;
+  qualifier?: string | null;
+  noun?: string;
+  reiterates?: boolean;
+}
+
+/** An analyst's number that management explicitly confirmed or rejected; both lines verbatim. */
+export interface Steer {
+  metric: string | null;
+  low: number;
+  high: number;
+  analyst: string;
+  analyst_quote: string;
+  speaker: string;
+  reply_quote: string;
+  stance: "confirmed" | "rejected";
+  position: string | null;
+  page: number;
+  reply_page: number;
+  call: string;
+  call_date: string;
+  url: string;
 }
 
 export interface GuidanceTrack {
@@ -246,6 +268,11 @@ export interface GuidanceTrack {
   run_rate?: string | null;
   context?: string | null;
   verdict: string;
+  verdict_label?: string;
+  verdict_first?: string | null;
+  verdict_line?: string | null;
+  moved?: "lowered" | "raised" | null;
+  steers?: Steer[];
   verdict_why: string;
   resolved?: boolean;
   story: string;
@@ -317,6 +344,10 @@ export interface Ledger {
   missed: number;
   open: number;
   unverifiable: number;
+  met_final?: number;
+  met_first?: number;
+  first_known?: number;
+  pattern?: string | null;
 }
 
 export interface Research {

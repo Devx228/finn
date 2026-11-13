@@ -1,25 +1,14 @@
 {
  "as_of": "2026-11-13",
+ "note": "Companies whose ledgers the owner and FINN have checked by hand. Anything else shows 'Generated automatically; not reviewed.' Hero gate: >= 4 resolved promises, every one checked against its quote by FINN and by the owner (DECISIONS.md 2026-11-13).",
  "companies": [
-  {
-   "symbol": "INFY",
-   "role": "guidance cuts and constant-currency handling (read 4 of 8 calls)",
-   "hero": false
-  },
-  {
-   "symbol": "KAYNES",
-   "role": "hero: rupee revenue, growth and EBITDA-margin guidance checkable from filings",
-   "hero": true
-  },
-  {
-   "symbol": "CREDITACC",
-   "role": "second: lender (NBFC) — loan growth, ROA, ROE, credit cost",
-   "hero": false
-  },
-  {
-   "symbol": "TRENT",
-   "role": "no recent earnings-call transcripts — degradation demo",
-   "hero": false
-  }
+  {"symbol": "CREDITACC", "role": "hero: lender (NBFC); a preliminary outlook cut before the year began, then a verbal steer to the lower end; AUM growth, ROA, ROE from the company's own figures", "hero": true},
+  {"symbol": "KAYNES", "role": "second: rupee revenue, growth and EBITDA-margin guidance checkable from filings", "hero": false},
+  {"symbol": "INFY", "role": "guidance cuts and constant-currency handling (read 4 of 8 calls)", "hero": false},
+  {"symbol": "LT", "role": "conglomerate: company-wide vs segment guidance (reviewed: FY26 growth on L&T's own 12%)", "hero": false},
+  {"symbol": "PERSISTENT", "role": "long-dated targets shown open with their due year", "hero": false},
+  {"symbol": "DEEPAKNTR", "role": "few numeric promises: open-ended only", "hero": false},
+  {"symbol": "HDFCBANK", "role": "no numeric guidance in the calls read", "hero": false},
+  {"symbol": "TRENT", "role": "no recent earnings-call transcripts — degradation demo", "hero": false}
  ]
 }

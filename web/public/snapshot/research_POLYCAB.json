@@ -1,6 +1,6 @@
 {
  "name": "Polycab India Limited",
- "as_of": "2026-11-13T17:30:38.310650+05:30",
+ "as_of": "2026-11-13T18:01:15.692543+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_19102026163912_Intimation_of_Earnings_Call_Transcript.pdf",
@@ -155,9 +155,13 @@
  "ledger": {
   "open": 6,
   "missed": 0,
+  "pattern": null,
   "resolved": 0,
   "delivered": 0,
+  "met_final": 0,
+  "met_first": 0,
   "calls_read": 8,
+  "first_known": 0,
   "calls_listed": 8,
   "unverifiable": 4
  },
@@ -184,6 +188,7 @@
  "guidance": [
   {
    "label": "Revenue growth",
+   "moved": null,
    "story": "FY30 revenue growth: 1.5–2 x → not scored.",
    "actual": null,
    "metric": "revenue_growth",
@@ -195,6 +200,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_22012026193636_Intimation_of_Earnings_Call_Transcript.pdf",
      "call": "Q3 FY26 call",
      "high": 2.0,
+     "noun": "guidance",
      "page": 7,
      "unit": "x",
      "label": "industry growth",
@@ -205,22 +211,30 @@
      "metric": "revenue_growth",
      "period": "FY30",
      "source": "NSE",
+     "speaker": "Shashank Yagnick",
      "call_date": "2026-01-22",
      "direction": "maintained",
+     "qualifier": null,
      "confidence": "high",
      "by_management": true
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "not scored",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "not scored",
+   "first_is_revision": false
   },
   {
    "label": "EBITDA margin",
+   "moved": null,
    "story": "FY30 ebitda margin: 8–10% → 8–10% (held) → not scored.",
    "actual": null,
    "metric": "ebitda_margin",
@@ -236,6 +250,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_25072025164059_Intimation_of_Earnings_Call_Transcript.pdf",
      "call": "Q1 FY26 call",
      "high": 10.0,
+     "noun": "guidance",
      "page": 6,
      "unit": "%",
      "label": "ebitda margin",
@@ -246,8 +261,10 @@
      "period": "FY30",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Chirayu Upadhyaya",
      "call_date": "2025-07-25",
-     "direction": "maintained"
+     "direction": "maintained",
+     "qualifier": null
     },
     {
      "by": "rules",
@@ -259,6 +276,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_22012026193636_Intimation_of_Earnings_Call_Transcript.pdf",
      "call": "Q3 FY26 call",
      "high": 10.0,
+     "noun": "guidance",
      "page": 7,
      "unit": "%",
      "label": "ebitda margin",
@@ -269,20 +287,28 @@
      "period": "FY30",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Shashank Yagnick",
      "call_date": "2026-01-22",
-     "direction": "maintained"
+     "direction": "maintained",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "not scored",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "not scored",
+   "first_is_revision": false
   },
   {
    "label": "Capex",
+   "moved": null,
    "story": "FY30 capex: 410 ₹ cr → pending.",
    "actual": null,
    "metric": "capex",
@@ -298,6 +324,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_25072025164059_Intimation_of_Earnings_Call_Transcript.pdf",
      "call": "Q1 FY26 call",
      "high": 409.99999999999994,
+     "noun": "guidance",
      "page": 5,
      "unit": "₹ cr",
      "label": "capex",
@@ -308,20 +335,28 @@
      "period": "FY30",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Chirayu Upadhyaya",
      "call_date": "2025-07-25",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "pending",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "Falls due with FY30 results, not reported yet",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "pending",
+   "first_is_revision": false
   },
   {
    "label": "Capex",
+   "moved": null,
    "story": "FY27 capex: 1500 ₹ cr → pending.",
    "actual": null,
    "metric": "capex",
@@ -337,6 +372,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_08052026185934_Intimation_of_Earnings_Call_Transcript.pdf",
      "call": "Q4 FY26 call",
      "high": 1500.0,
+     "noun": "guidance",
      "page": 14,
      "unit": "₹ cr",
      "label": "capex",
@@ -347,20 +383,28 @@
      "period": "FY27",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Shashank Yagnick",
      "call_date": "2026-05-08",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "pending",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "The company hasn't stated a year-to-date capex; our estimate from the filings is ₹598 cr (2Q YTD) (cross-check only)",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "pending",
+   "first_is_revision": false
   },
   {
    "label": "Capex",
+   "moved": null,
    "story": "FY26 capex: 1200 ₹ cr → 340 ₹ cr (cut once) → not scored.",
    "actual": null,
    "metric": "capex",
@@ -376,6 +420,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_28102025211243_SEintimationearningscall17102025.pdf",
      "call": "Q2 FY26 call",
      "high": 1200.0,
+     "noun": "guidance",
      "page": 8,
      "unit": "₹ cr",
      "label": "capex",
@@ -386,8 +431,10 @@
      "period": "FY26",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Chirayu Upadhyaya",
      "call_date": "2025-10-28",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     },
     {
      "by": "rules",
@@ -399,6 +446,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_22012026193636_Intimation_of_Earnings_Call_Transcript.pdf",
      "call": "Q3 FY26 call",
      "high": 340.0,
+     "noun": "guidance",
      "page": 5,
      "unit": "₹ cr",
      "label": "capex",
@@ -409,10 +457,13 @@
      "period": "FY26",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Shashank Yagnick",
      "call_date": "2026-01-22",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "not scored",
    "resolved": false,
@@ -428,10 +479,15 @@
     "quarters": 4
    },
    "verdict_why": "The company didn't state this figure in the calls read; our estimate from the filings is ₹1,480 cr (FY) (cross-check only, not scored)",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "not scored",
+   "first_is_revision": false
   },
   {
    "label": "Capex",
+   "moved": null,
    "story": "FY25 capex: 130 ₹ cr → not scored.",
    "actual": null,
    "metric": "capex",
@@ -447,6 +503,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_14052025172938_SIGNED_Intimation_of_Earnings_Call_Transcript-combined.pdf",
      "call": "Q4 FY25 call",
      "high": 130.0,
+     "noun": "guidance",
      "page": 5,
      "unit": "₹ cr",
      "label": "capex",
@@ -457,10 +514,13 @@
      "period": "FY25",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Chirayu Upadhyaya",
      "call_date": "2025-05-14",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "not scored",
    "resolved": false,
@@ -476,10 +536,15 @@
     "quarters": 4
    },
    "verdict_why": "The company didn't state this figure in the calls read; our estimate from the filings is ₹970 cr (FY) (cross-check only, not scored)",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "not scored",
+   "first_is_revision": false
   },
   {
    "label": "Revenue growth",
+   "moved": null,
    "story": "no year stated revenue growth: 15–20% → 18% → 1.5 x (cut once) → open-ended.",
    "actual": null,
    "metric": "revenue_growth",
@@ -495,6 +560,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_29012025215542_EarningsTranscript29012025.pdf",
      "call": "Q3 FY25 call",
      "high": 20.0,
+     "noun": "guidance",
      "page": 11,
      "unit": "%",
      "label": "revenue growth",
@@ -505,8 +571,10 @@
      "period": "no year stated",
      "prefix": false,
      "source": "NSE",
+     "speaker": null,
      "call_date": "2025-01-29",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     },
     {
      "by": "rules",
@@ -518,6 +586,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_08052026185934_Intimation_of_Earnings_Call_Transcript.pdf",
      "call": "Q4 FY26 call",
      "high": 18.0,
+     "noun": "guidance",
      "page": 13,
      "unit": "%",
      "label": "revenue growth",
@@ -528,8 +597,10 @@
      "period": "no year stated",
      "prefix": false,
      "source": "NSE",
+     "speaker": null,
      "call_date": "2026-05-08",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     },
     {
      "by": "model",
@@ -537,6 +608,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_20072026120857_Intimation_of_Earnings_Call_Transcript.pdf",
      "call": "Q1 FY27 call",
      "high": 1.5,
+     "noun": "guidance",
      "page": 9,
      "unit": "x",
      "label": "market growth",
@@ -547,22 +619,30 @@
      "metric": "revenue_growth",
      "period": "no year stated",
      "source": "NSE",
+     "speaker": "Shashank Yagnick",
      "call_date": "2026-07-20",
      "direction": "maintained",
+     "qualifier": null,
      "confidence": "high",
      "by_management": true
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "The quote names no year, so it can't be held to one; listed, not scored",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "open-ended",
+   "first_is_revision": false
   },
   {
    "label": "EBITDA margin",
+   "moved": null,
    "story": "no year stated ebitda margin: 11–13% → open-ended.",
    "actual": null,
    "metric": "ebitda_margin",
@@ -578,6 +658,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_14052025172938_SIGNED_Intimation_of_Earnings_Call_Transcript-combined.pdf",
      "call": "Q4 FY25 call",
      "high": 13.0,
+     "noun": "guidance",
      "page": 13,
      "unit": "%",
      "label": "operating margin",
@@ -588,8 +669,63 @@
      "period": "no year stated",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Chirayu Upadhyaya",
      "call_date": "2025-05-14",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
+    }
+   ],
+   "steers": [
+    {
+     "low": 11.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_19102026163912_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q2 FY27 call",
+     "high": 13.0,
+     "page": 10,
+     "unit": "%",
+     "metric": null,
+     "stance": "confirmed",
+     "analyst": "Umang Mehta",
+     "speaker": "Aditya Nathany",
+     "position": null,
+     "call_date": "2026-10-19",
+     "reply_page": 11,
+     "reply_quote": "Yes.",
+     "analyst_quote": "Now, I understand 11% to 13% is your long-term guidance."
+    },
+    {
+     "low": 11.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_19102026163912_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q2 FY27 call",
+     "high": 13.0,
+     "page": 16,
+     "unit": "%",
+     "metric": null,
+     "stance": "rejected",
+     "analyst": "Ashish Jain",
+     "speaker": "Aditya Nathany",
+     "position": null,
+     "call_date": "2026-10-19",
+     "reply_page": 16,
+     "reply_quote": "No, Ashish, as I alluded in my previous comments, we are not taking any initiatives as of now in terms of competition, per se.",
+     "analyst_quote": "But long-term, we are still holding 11% to 13% range guidance."
+    },
+    {
+     "low": 11.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_14052025172938_SIGNED_Intimation_of_Earnings_Call_Transcript-combined.pdf",
+     "call": "Q4 FY25 call",
+     "high": 13.0,
+     "page": 11,
+     "unit": "%",
+     "metric": "ebitda_margin",
+     "stance": "confirmed",
+     "analyst": "Achal Lohade",
+     "speaker": "Chirayu Upadhyaya",
+     "position": null,
+     "call_date": "2025-05-14",
+     "reply_page": 11,
+     "reply_quote": "Yes.",
+     "analyst_quote": "Polycab India Limited May 07, 2025 Chirayu Upadhyaya: Our guidance, as a part of Project Spring, is on EBITDA and we’ve given the guidance that over the near to mid-term we expect the EBITDA margins in the cables and wires business to be consistently in the 11% to 13% range."
     }
    ],
    "context": null,
@@ -598,10 +734,15 @@
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "The quote names no year, so it can't be held to one; listed, not scored",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "open-ended",
+   "first_is_revision": false
   },
   {
    "label": "EBITDA margin",
+   "moved": null,
    "story": "medium term ebitda margin: 11–13% → 10% → 11–13% → 11–13% (cut once) → open-ended.",
    "actual": null,
    "metric": "ebitda_margin",
@@ -617,6 +758,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_25072025164059_Intimation_of_Earnings_Call_Transcript.pdf",
      "call": "Q1 FY26 call",
      "high": 13.0,
+     "noun": "guidance",
      "page": 11,
      "unit": "%",
      "label": "ebitda margin",
@@ -627,8 +769,10 @@
      "period": "medium term",
      "prefix": true,
      "source": "NSE",
+     "speaker": "Chirayu Upadhyaya",
      "call_date": "2025-07-25",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     },
     {
      "by": "rules",
@@ -640,6 +784,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_28102025211243_SEintimationearningscall17102025.pdf",
      "call": "Q2 FY26 call",
      "high": 10.0,
+     "noun": "guidance",
      "page": 7,
      "unit": "%",
      "label": "operating margin",
@@ -650,8 +795,10 @@
      "period": "medium term",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Chirayu Upadhyaya",
      "call_date": "2025-10-28",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     },
     {
      "by": "rules",
@@ -663,6 +810,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_08052026185934_Intimation_of_Earnings_Call_Transcript.pdf",
      "call": "Q4 FY26 call",
      "high": 13.0,
+     "noun": "guidance",
      "page": 13,
      "unit": "%",
      "label": "ebitda margin",
@@ -673,8 +821,10 @@
      "period": "medium term",
      "prefix": true,
      "source": "NSE",
+     "speaker": "Shashank Yagnick",
      "call_date": "2026-05-08",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     },
     {
      "by": "rules",
@@ -686,6 +836,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_20072026120857_Intimation_of_Earnings_Call_Transcript.pdf",
      "call": "Q1 FY27 call",
      "high": 13.0,
+     "noun": "guidance",
      "page": 5,
      "unit": "%",
      "label": "operating margin",
@@ -696,20 +847,28 @@
      "period": "medium term",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Shashank Yagnick",
      "call_date": "2026-07-20",
-     "direction": "maintained"
+     "direction": "maintained",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "open-ended",
+   "first_is_revision": false
   },
   {
    "label": "Capex",
+   "moved": null,
    "story": "medium term capex: 6000 ₹ cr → 4100 ₹ cr → 6000–8000 ₹ cr → 320 ₹ cr (cut 2×) → open-ended.",
    "actual": null,
    "metric": "capex",
@@ -725,6 +884,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_29012025215542_EarningsTranscript29012025.pdf",
      "call": "Q3 FY25 call",
      "high": 6000.0,
+     "noun": "guidance",
      "page": 11,
      "unit": "₹ cr",
      "label": "capex",
@@ -735,8 +895,10 @@
      "period": "medium term",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Chirayu Upadhyaya",
      "call_date": "2025-01-29",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     },
     {
      "by": "rules",
@@ -748,6 +910,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_14052025172938_SIGNED_Intimation_of_Earnings_Call_Transcript-combined.pdf",
      "call": "Q4 FY25 call",
      "high": 4100.0,
+     "noun": "guidance",
      "page": 8,
      "unit": "₹ cr",
      "label": "capex",
@@ -758,8 +921,10 @@
      "period": "medium term",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Chirayu Upadhyaya",
      "call_date": "2025-05-14",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     },
     {
      "by": "model",
@@ -767,6 +932,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_25072025164059_Intimation_of_Earnings_Call_Transcript.pdf",
      "call": "Q1 FY26 call",
      "high": 8000.0,
+     "noun": "guidance",
      "page": 8,
      "unit": "₹ cr",
      "label": "Project Spring capex",
@@ -777,8 +943,10 @@
      "metric": "capex",
      "period": "medium term",
      "source": "NSE",
+     "speaker": null,
      "call_date": "2025-07-25",
      "direction": "maintained",
+     "qualifier": null,
      "confidence": "high",
      "by_management": true
     },
@@ -792,6 +960,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_20072026120857_Intimation_of_Earnings_Call_Transcript.pdf",
      "call": "Q1 FY27 call",
      "high": 320.0,
+     "noun": "guidance",
      "page": 5,
      "unit": "₹ cr",
      "label": "capex",
@@ -802,17 +971,24 @@
      "period": "medium term",
      "prefix": false,
      "source": "NSE",
+     "speaker": "Shashank Yagnick",
      "call_date": "2026-07-20",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "open-ended",
+   "first_is_revision": false
   }
  ],
  "industry": null,

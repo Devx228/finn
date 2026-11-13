@@ -635,3 +635,28 @@ of 15.6%" with no year; FY25 margin is now "delivered" (a 15%-plus floor met), n
 no longer meets the hero gate (≥ 5); CREDITACC (5) does. Hero choice left to the owner.
 CREDITACC, INFY, LT unchanged in count. Regression cases: data/eval/guidance_negatives.json and
 tests in api/tests/test_pull.py.
+
+## 2026-11-13 (night) — Hero = CreditAccess; two verdicts per chain; verbal steers
+- **Hero: CREDITACC; KAYNES second** (owner). Gate: ≥ 4 resolved promises, each checked against its
+  quote by FINN and the owner; a wrong verdict is the failure, not a low count.
+  `data/research_set.json` now lists all eight reviewed ledger companies.
+- **Two verdicts per chain**: against the FIRST guidance for that year and the LAST before the
+  result, in one line with management's own qualifier ("Missed preliminary 18–20% outlook · met the
+  lowered 14–18%, at the very bottom of the range"). A promise met only after a cut shows "met after
+  cut", never plain "delivered". If the first statement read is itself a revision ("revise …
+  upward"), the original is in a call not read: it is said, and not scored as original.
+  Say–do reports both ("met final guidance 1 of 5 · met original guidance 0 of 5"), and a one-line
+  pattern is generated from those counts only.
+- **Verbal steers**: an analyst states a number or range, management's reply opens by explicitly
+  confirming or rejecting it → recorded with both lines verbatim, attached to the chain carrying
+  that exact range (skipped if it fits more than one metric). No number is invented
+  (CREDITACC 28 Oct 2025: "Yes, we should assume at the lower end of the bracket.").
+  A yearless "we retain our guidance of X" with exactly an open chain's range reiterates that chain.
+- Floor words count only beside the point's own number ("15% plus" in a neighbouring sentence no
+  longer turns "₹2,800–2,900 cr" into a floor).
+- Hero page: each chain is a timeline (date, speaker, call and page, the qualifier, the quote around
+  that step's own number, what changed, steers, result, both verdicts); every step opens the PDF
+  at that page.
+- Data fetched on the hotspot (no refusals): the 7 ledger companies' FY2026 annual reports (7
+  requests, ~101 MB) and the text of 39 event filings from the last 30 days that had never been read
+  (needed for the ranking fix). A full copy of Neon is in the local Docker DB for work on Wi-Fi.

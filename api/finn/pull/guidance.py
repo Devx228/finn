@@ -578,3 +578,108 @@ def extract(
         "drop_reasons": reasons,
         "model_name": model,
     }
+
+
+# -- qualifiers, speakers and verbal steers ----------------------------------------------------
+# Words management used to hedge a number. Shown with it, never dropped ("preliminary 18–20% outlook").
+QUALIFIER = re.compile(
+    r"\b(preliminary|provisional|indicative|tentative|initial|early|aspirational|conservative|"
+    r"broad|rough)\b",
+    re.I,
+)
+NOUN = re.compile(r"\b(outlook|guidance|target|projection|estimate|plan|aspiration)\b", re.I)
+
+
+def qualifier(quote: str) -> str | None:
+    m = QUALIFIER.search(quote)
+    return m.group(1).lower() if m else None
+
+
+def noun(quote: str) -> str:
+    m = NOUN.search(quote)
+    return m.group(1).lower() if m else "guidance"
+
+
+def speakers(ss: list[tuple[int, str]]) -> list[str]:
+    """Per sentence: the name of whoever is speaking ("" before the first tag)."""
+    out, current = [], ""
+    for _, s in ss:
+        m = SPEAKER.match(s)
+        if m:
+            current = m.group(1).strip()
+        out.append(current)
+    return out
+
+
+CONFIRM = re.compile(
+    r"^(?:yes|yeah|yep|right|correct|that'?s (?:right|correct|fair)|absolutely|exactly|true|"
+    r"fair to assume|you can assume|that is right)\b",
+    re.I,
+)
+REJECT = re.compile(r"^(?:no|not really|not necessarily|i (?:would|wouldn't) not)\b", re.I)
+END = re.compile(r"\b(lower|upper|higher|top|bottom)\s+end\b", re.I)
+RANGE_PCT = re.compile(r"(\d+(?:\.\d+)?)\s*%?\s*(?:to|-|–)\s*(\d+(?:\.\d+)?)\s*%")
+
+
+def steers(pages: list[str]) -> list[dict]:
+    """An analyst states a number or range for a tracked metric, and management's reply opens by
+    explicitly confirming or rejecting it. Both lines are kept verbatim; no number is invented:
+    the steer carries the analyst's range and management's words ("lower end of the bracket")."""
+    ss = sentences(pages)
+    mgmt = management_only(ss)
+    who = speakers(ss)
+    out = []
+    for i, (page, s) in enumerate(ss):
+        if mgmt[i]:
+            continue
+        ps: list[dict] = [p for p in pairs(s) if p["low"] is not None]
+        if not ps and re.search(r"guidance|guided|growth|margin", s, re.I):
+            # "the guidance slide reflected a growth guidance of almost 14% to 18%": no metric word
+            # of its own; the range is matched to the one chain that carries it (metric None)
+            ps = [
+                {"metric": None, "low": float(m.group(1)), "high": float(m.group(2)), "unit": "%"}
+                for m in RANGE_PCT.finditer(s)
+            ]
+        if not ps:
+            continue
+        # the next management turn: first sentence after the speaker changes to management
+        j = i + 1
+        while j < len(ss) and not mgmt[j]:
+            j += 1
+        if j >= len(ss) or j - i > 4:
+            continue
+        reply = SPEAKER.sub("", ss[j][1], count=1).strip()
+        stance = "confirmed" if CONFIRM.search(reply) else "rejected" if REJECT.search(reply) else None
+        if stance is None:
+            continue
+        end = END.search(reply)
+        for p in ps:
+            out.append(
+                {
+                    "metric": p["metric"],
+                    "low": p["low"],
+                    "high": p["high"],
+                    "unit": p.get("unit"),
+                    "analyst": who[i],
+                    "analyst_quote": SPEAKER.sub("", s, count=1).strip(),
+                    "speaker": who[j],
+                    "reply_quote": reply,
+                    "stance": stance,
+                    "position": f"{end.group(1).lower()} end" if end else None,
+                    "page": page,
+                    "reply_page": ss[j][0],
+                }
+            )
+    return out
+
+
+def annotate(items: list[dict], pages: list[str]) -> list[dict]:
+    """Add who said it and any qualifier they used to each extracted item."""
+    ss = sentences(pages)
+    who = speakers(ss)
+    idx = {_norm(s)[:60]: who[k] for k, (_, s) in enumerate(ss)}
+    for it in items:
+        it["speaker"] = idx.get(_norm(it["quote"])[:60]) or None
+        it["qualifier"] = qualifier(it["quote"])
+        it["noun"] = noun(it["quote"])
+    return items

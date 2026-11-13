@@ -263,3 +263,80 @@ def test_year_named_in_the_continuation_applies_to_the_sentence_it_continues():
     ]
     got = {i["metric"]: i["period"] for i in gd.rule_items(ss, 2026)}
     assert got.get("aum_growth", got.get("revenue_growth")) == "FY26", got
+
+
+STEER_PAGES = [
+    "Moderator: The next question is from the line of Shreepal Doshi from Equirus. Please go ahead. "
+    "Shreepal Doshi: Got it, sir. And sir, just on the growth front, I mean, I think the last quarter, the "
+    "guidance slide reflected a growth guidance of almost 14% to 18%. "
+    "So, is it fair to assume that it will be at the lower end of the bracket? "
+    "Ganesh Narayanan: Yes, we should assume at the lower end of the bracket. "
+    "Moderator: The next question is from the line of Asha Rao from Elara. Please go ahead. "
+    "Asha Rao: Should we model margins of 20% to 22% for next year? Ganesh Narayanan: We have not given any "
+    "guidance for next year yet."
+]
+
+
+def test_analyst_range_confirmed_by_management_is_a_steer():
+    from finn.pull import guidance as gd
+
+    st = gd.steers(STEER_PAGES)
+    assert len(st) == 1, st  # the second reply neither confirms nor rejects: no steer
+    s = st[0]
+    assert (s["metric"], s["low"], s["high"], s["stance"], s["position"]) == (
+        None,
+        14.0,
+        18.0,
+        "confirmed",
+        "lower end",
+    )
+    assert s["analyst"] == "Shreepal Doshi" and s["speaker"] == "Ganesh Narayanan"
+    assert "lower end of the bracket" in s["reply_quote"] and "14% to 18%" in s["analyst_quote"]
+    # the analyst's sentence is still never extracted as management guidance
+    assert gd.rule_items([(1, x) for _, x in gd.select(STEER_PAGES)[1]], 2026) == []
+
+
+def test_two_verdicts_and_preliminary_qualifier():
+    from finn.pull import research as r
+
+    first = {
+        "low": 18,
+        "high": 20,
+        "quote": "The preliminary outlook for FY26 projects healthy 18%-20% AUM growth",
+        "qualifier": "preliminary",
+        "noun": "outlook",
+    }
+    last = {
+        "low": 14,
+        "high": 18,
+        "quote": "we are aiming for an AUM growth of 14% to 18%",
+        "noun": "guidance",
+    }
+    act = {"value": 14.0, "quarters": 4}
+    v1 = r._judge(act, first, "aum_growth", False)[0]
+    v2 = r._judge(act, last, "aum_growth", False)[0]
+    assert (v1, v2) == ("missed", "delivered")
+    assert r._line(first, v1, last, v2, act, True) == (
+        "Missed preliminary 18–20% outlook · met the lowered 14–18%, at the very bottom of the range"
+    )
+    trk = [
+        {"resolved": True, "verdict": "delivered", "verdict_first": "missed", "moved": "lowered"},
+        {"resolved": True, "verdict": "missed", "verdict_first": "missed", "moved": "lowered"},
+    ]
+    assert r.pattern(trk) == (
+        "Of 2 resolved promises, 0 met the guidance as first given, 1 more was met only after a cut "
+        "and 1 missed even the final guidance (1 after a cut)."
+    )
+
+
+def test_floor_word_must_sit_by_its_own_number_and_revision_first_is_flagged():
+    from finn.pull import research as r
+
+    q = (
+        "So revenue guidance will be somewhere between INR2,800 crores and INR2,900 crores. "
+        "And the margins will be 15% plus for the year."
+    )
+    assert not r.is_floor({"quote": q, "low": 2800.0})
+    assert r.is_floor({"quote": q, "low": 15.0})
+    assert r.REVISED.search("enabled us to revise our revenue guidance for FY'26 upward to 3% to 3.5%")
+    assert not r.REVISED.search("Our revenue growth guidance for the financial year 2027 is 1.5% to 3.5%")

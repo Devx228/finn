@@ -375,6 +375,112 @@ def _capex_verdict(act: dict, plan: float) -> tuple[str, str]:
     )
 
 
+MET = ("delivered", "beat")
+# The first statement read already says it is a revision: the original is in a call not read.
+REVISED = re.compile(r"\brevis|\bupward|\bdownward|\braise[ds]?\b|\bchanging our\b|\bnarrow", re.I)
+
+
+def is_floor(p: dict) -> bool:
+    """A floor word next to this point's own number ("in excess of ₹3,000 cr", "15% plus"), not
+    anywhere in a quote that may carry a neighbouring sentence."""
+    q = p.get("quote", "")
+    lo = p["low"]
+    forms = [f"{lo:,.0f}", f"{lo:.0f}", f"{lo:g}"] if lo == int(lo) else [f"{lo:g}"]
+    idx = next((q.find(x) for x in forms if x in q), -1)
+    win = q if idx < 0 else q[max(0, idx - 45) : idx + 25]
+    return bool(FLOOR.search(win))
+
+
+VERB = {"delivered": "met", "beat": "beat", "missed": "missed"}
+REITERATE = re.compile(r"\b(?:retain|maintain|reiterat|reaffirm|stick to|stay with|remain)", re.I)
+
+
+def _rev_verdict(a: float, p: dict) -> tuple[str, str]:
+    lo, hi = p["low"], p["high"]
+    floor = is_floor(p)
+    band = f"₹{lo:,.0f} cr" if lo == hi else f"₹{lo:,.0f}–{hi:,.0f} cr"
+    v = "missed" if a < lo * 0.98 else "delivered" if floor or a <= hi * 1.02 else "beat"
+    return v, f"₹{a:,.0f} cr vs {band} guided"
+
+
+def _judge(act: dict, p: dict, metric: str, lower: bool) -> tuple[str, str]:
+    """The verdict of a full-year actual against one guidance point."""
+    if metric == "capex":
+        return _capex_verdict(act, p["high"])
+    if metric == "revenue" and p.get("unit") == "₹ cr":
+        return _rev_verdict(act["value"], p)
+    return verdict(act, p["low"], p["high"], True, lower, is_floor(p))
+
+
+def _bandtxt(p: dict) -> str:
+    rupees = p.get("unit") == "₹ cr"
+    f = (lambda x: f"₹{x:,.0f} cr") if rupees else (lambda x: f"{x:g}%")
+    if is_floor(p):
+        return f"{f(p['low'])}+"
+    if p["low"] == p["high"]:
+        return f(p["low"])
+    return f"₹{p['low']:,.0f}–{p['high']:,.0f} cr" if rupees else f"{p['low']:g}–{p['high']:g}%"
+
+
+def _position(a: float, p: dict) -> str | None:
+    lo, hi = p["low"], p["high"]
+    tol = 0.05 if p.get("unit") != "₹ cr" else 0.005 * lo
+    if is_floor(p) or lo == hi or not (lo - tol <= a <= hi + tol):
+        return None
+    if abs(a - lo) <= tol:
+        return "at the very bottom of the range"
+    if abs(a - hi) <= tol:
+        return "at the very top of the range"
+    frac = (a - lo) / (hi - lo)
+    return "in the lower half of the range" if frac < 0.5 else "in the upper half of the range"
+
+
+def _line(first: dict, v1: str, last: dict, v2: str, act: dict, two: bool) -> str:
+    """One line, in management's own qualifiers: 'Missed preliminary 18–20% outlook · met the
+    lowered 14–18%, at the very bottom of the range'."""
+    pos = _position(act["value"], last) if v2 == "delivered" else None
+    q1 = f"{first['qualifier']} " if first.get("qualifier") else ""
+    head = f"{VERB[v1]} {q1}{_bandtxt(first)} {first.get('noun') or 'guidance'}"
+    if not two:
+        return (head + (f", {pos}" if pos else "")).capitalize()
+    mid1, mid2 = (first["low"] + first["high"]) / 2, (last["low"] + last["high"]) / 2
+    moved = "lowered" if mid2 < mid1 else "raised" if mid2 > mid1 else "restated"
+    q2 = f"{last['qualifier']} " if last.get("qualifier") else ""
+    tail = f"{VERB[v2]} the {moved} {q2}{_bandtxt(last)}" + (f", {pos}" if pos else "")
+    out = f"{head} · {tail}"
+    return out[0].upper() + out[1:]
+
+
+def pattern(trks: list[dict]) -> str | None:
+    """The ledger's one-line summary, from the computed counts only."""
+    res = [t for t in trks if t["resolved"]]
+    if not res:
+        return None
+    n = len(res)
+    first_met = sum(t.get("verdict_first") in MET for t in res)
+    final_met = sum(t["verdict"] in MET for t in res)
+    cut_then_met = sum(
+        t["verdict"] in MET and t.get("moved") == "lowered" and t.get("verdict_first") not in MET for t in res
+    )
+    missed_after_cut = sum(t["verdict"] == "missed" and t.get("moved") == "lowered" for t in res)
+    missed = sum(t["verdict"] == "missed" for t in res)
+    raised_beaten = sum(t["verdict"] == "beat" and t.get("moved") == "raised" for t in res)
+    unknown = sum(bool(t.get("first_is_revision")) for t in res)
+    known = f" (the original is in a call not read for {unknown})" if unknown else ""
+    parts = [
+        f"Of {n} resolved promise{'s' if n != 1 else ''}, {first_met} met the guidance as first given{known}"
+    ]
+    if cut_then_met:
+        parts.append(f"{cut_then_met} more {'was' if cut_then_met == 1 else 'were'} met only after a cut")
+    if raised_beaten:
+        parts.append(f"{raised_beaten} beat guidance that had been raised")
+    if missed:
+        extra = f" ({missed_after_cut} after a cut)" if missed_after_cut else ""
+        parts.append(f"{missed} missed even the final guidance{extra}")
+    out = ", ".join(parts[:-1]) + (" and " if len(parts) > 1 else "") + parts[-1] + "."
+    return out if final_met or missed else out
+
+
 def _already_passed(qs: list[dict], metric: str, last: dict) -> float | None:
     """For a revenue level target: trailing-four-quarter revenue reported before the call that
     stated it. If that already met the target, the 'guidance' restates a goal already reached."""
@@ -449,6 +555,49 @@ def tracks(
                     "source": c.get("source", "NSE"),
                 }
             )
+    # A yearless "we retain our guidance of X" with exactly the band an open chain already carries
+    # reiterates that chain (no new number, no guessed year).
+    for (metric, period), pts in list(series.items()):
+        if period != gd.NO_YEAR:
+            continue
+        keep = []
+        for pt in pts:
+            hosts = [
+                k
+                for k, v in series.items()
+                if k[0] == metric
+                and k[1].startswith("FY")
+                and v
+                and v[-1]["call_date"] < pt["call_date"]
+                and (v[-1]["low"], v[-1]["high"]) == (pt["low"], pt["high"])
+            ]
+            if REITERATE.search(pt["quote"]) and len(hosts) == 1:
+                series[hosts[0]].append({**pt, "period": hosts[0][1], "reiterates": True})
+            else:
+                keep.append(pt)
+        if keep:
+            series[(metric, period)] = keep
+        else:
+            del series[(metric, period)]
+    # Verbal steers: an analyst's range that management explicitly confirmed or rejected, attached
+    # to the chain carrying that range at the time.
+    steer_map: dict[tuple[str, str], list[dict]] = defaultdict(list)
+    for c in calls:
+        for st in c.get("steers") or []:
+            m = "aum_growth" if lender and st["metric"] == "revenue_growth" else st["metric"]
+            day = c["filed_at"][:10]
+            hosts = [
+                k
+                for k, v in series.items()
+                if (m is None or k[0] == m)
+                and any(p["call_date"] <= day and (p["low"], p["high"]) == (st["low"], st["high"]) for p in v)
+            ]
+            if not hosts or len({k[0] for k in hosts}) > 1:
+                continue  # no chain carries that range, or it fits more than one metric: don't guess
+            fy_now = f"FY{_fy_of(date.fromisoformat(day), fy_start) % 100:02d}"
+            host = fy_now if any(k[1] == fy_now for k in hosts) else None
+            key = next((k for k in hosts if k[1] == host), hosts[0])
+            steer_map[key].append({**st, "call": c["label"], "call_date": day, "url": c["url"]})
     latest_q = max((q["end"] for q in qs), default=None)
     last_fy_rev = None
     full = [q for q in qs if q["revenue"] is not None]
@@ -548,7 +697,7 @@ def tracks(
                 v, why = _capex_verdict(act, last["high"])
             elif metric == "revenue" and last["unit"] == "₹ cr":
                 a, lo, hi = act["value"], last["low"], last["high"]
-                floor = bool(FLOOR.search(last["quote"]))
+                floor = is_floor(last)
                 band = f"₹{lo:,.0f} cr" if lo == hi else f"₹{lo:,.0f}–{hi:,.0f} cr"
                 v = "missed" if a < lo * 0.98 else "delivered" if floor or a <= hi * 1.02 else "beat"
                 why = f"₹{a:,.0f} cr vs {band} guided"
@@ -562,7 +711,7 @@ def tracks(
                     last["high"],
                     act["quarters"] == 4,
                     lower,
-                    bool(FLOOR.search(last["quote"])),
+                    is_floor(last),
                 )
             # guided and actual far apart: probably a different scope or definition, unless the
             # quote itself names this exact fiscal year
@@ -577,6 +726,31 @@ def tracks(
                         "probably not the same measure, so not scored"
                     ),
                 )
+        first = pts[0]
+        two = (first["low"], first["high"]) != (last["low"], last["high"])
+        v_first, line, moved = None, None, None
+        first_is_revision = bool(REVISED.search(first["quote"]))
+        if act is not None and v in ("delivered", "beat", "missed"):
+            v_first = _judge(act, first, metric, lower)[0] if two else v
+            if v_first in VERB:
+                line = _line(first, v_first, last, v, act, two)
+            if first_is_revision:
+                # we never saw the original: don't score against it, and say so
+                v_first = None
+                line = (
+                    line or why
+                ) + " · the first statement read is itself a revision; the original is in a call not read"
+            mid1, mid2 = (first["low"] + first["high"]) / 2, (last["low"] + last["high"]) / 2
+            moved = "lowered" if mid2 < mid1 - 1e-9 else "raised" if mid2 > mid1 + 1e-9 else None
+        label = v
+        if v in MET and moved == "lowered" and v_first not in MET:
+            label = "met after cut"
+        elif v == "missed" and moved == "lowered":
+            label = "missed after cut"
+        elif v == "beat" and moved == "raised":
+            label = "beat raised"
+        elif v in MET and first_is_revision:
+            label = "met revised"
         if act and "source" not in act:
             act["source"] = {"xbrl": next((q["xbrl"] for q in reversed(qs) if q["fy"] == fy), None)}
         if cross and "source" not in cross:
@@ -599,6 +773,12 @@ def tracks(
                 "run_rate": rr,
                 "context": context,
                 "verdict": v,
+                "verdict_label": label,
+                "verdict_first": v_first,
+                "verdict_line": line,
+                "moved": moved,
+                "first_is_revision": first_is_revision,
+                "steers": steer_map.get((metric, period), []),
                 "verdict_why": why,
                 "resolved": v in ("delivered", "missed", "beat"),
                 "story": _story(METRIC_LABEL.get(metric, metric), period, pts, cuts, raises, v, act),
@@ -707,6 +887,8 @@ def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None,
         # default period for "this year": the fiscal year the call falls in (a Q4 call in April
         # guides the new year, which is also the year April falls in)
         items, st = gd.extract(router, d["pages"], _fy_of(filed.date(), fy_start))
+        items = gd.annotate(items, d["pages"])
+        call_steers = gd.steers(d["pages"])
         stats.append(st)
         qend = _quarter_before(filed.date())
         docs.append({**d, "qend": qend, "label": fiscal_label(qend, fy_start) + " call"})
@@ -718,6 +900,7 @@ def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None,
                 "source": d.get("source") or "NSE",
                 "pages": len(d["pages"]),
                 "items": items,
+                "steers": call_steers,
             }
         )
     said = reported_mod.outcomes(docs, fy_start, fiscal_label)
@@ -732,7 +915,10 @@ def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None,
         "quarters": qs[-12:],
         "business": biz,
         "guidance": trks,
-        "calls": [{k: v for k, v in c.items() if k != "items"} | {"n_items": len(c["items"])} for c in calls],
+        "calls": [
+            {k: v for k, v in c.items() if k not in ("items", "steers")} | {"n_items": len(c["items"])}
+            for c in calls
+        ],
         "signals": signals(qs, trks, fmt),
         "ledger": {
             "calls_listed": len(listed),
@@ -744,6 +930,10 @@ def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None,
                 t["verdict"] in ("on track", "ahead", "behind", "pending", "open-ended") for t in trks
             ),
             "unverifiable": sum(t["verdict"] == NOT_SCORED for t in trks),
+            "met_final": sum(t["verdict"] in MET for t in resolved),
+            "met_first": sum(t.get("verdict_first") in MET for t in resolved),
+            "first_known": sum(not t.get("first_is_revision") for t in resolved),
+            "pattern": pattern(trks),
         },
         "stats": stats,
         "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its "

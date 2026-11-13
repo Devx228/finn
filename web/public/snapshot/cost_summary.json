@@ -1,14 +1,14 @@
 {
  "note": "Free tiers (Gemini, Groq) and a local model (Ollama): actual cost is zero. Paid-rate equivalents use each provider's published price, verified on the date shown.",
- "as_of": "2026-11-13T17:30:42.282610+05:30",
+ "as_of": "2026-11-13T18:01:53.665914+05:30",
  "totals": {
-  "cache_hits": 812,
-  "model_calls": 1213,
+  "cache_hits": 996,
+  "model_calls": 1397,
   "input_tokens": 365385,
   "output_tokens": 108247,
-  "cache_hit_rate": 66.9,
+  "cache_hit_rate": 71.3,
   "list_price_usd": 0.0179,
-  "unpriced_calls": 881,
+  "unpriced_calls": 1065,
   "actual_cost_inr": 0
  },
  "filings": {
@@ -18,11 +18,11 @@
  },
  "by_model": [
   {
-   "calls": 727,
+   "calls": 911,
    "model": "gemini-3.5-flash-lite",
    "failed": 4,
    "provider": "gemini",
-   "cache_hits": 647,
+   "cache_hits": 831,
    "input_tokens": 70357,
    "priced_calls": 8,
    "output_tokens": 32163,
@@ -116,9 +116,9 @@
  ],
  "by_purpose": [
   {
-   "calls": 1025,
+   "calls": 1209,
    "purpose": "extract_guidance",
-   "cache_hits": 800
+   "cache_hits": 984
   },
   {
    "calls": 109,
@@ -175,7 +175,7 @@
   "local_calls_if_hosted_usd": 0.2505
  },
  "documents_read": {
-  "NSE": 32,
+  "NSE": 39,
   "company IR site": 16
  }
 }

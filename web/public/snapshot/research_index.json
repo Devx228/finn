@@ -2,21 +2,21 @@
  "companies": [
   {
    "hero": true,
+   "name": "CREDITACCESS GRAMEEN LIMITED",
+   "role": "hero: lender (NBFC); a preliminary outlook cut before the year began, then a verbal steer to the lower end; AUM growth, ROA, ROE from the company's own figures",
+   "calls": 8,
+   "symbol": "CREDITACC",
+   "tracks": 17,
+   "resolved": 5
+  },
+  {
+   "hero": false,
    "name": "Kaynes Technology India Limited",
-   "role": "hero: rupee revenue, growth and EBITDA-margin guidance checkable from filings",
+   "role": "second: rupee revenue, growth and EBITDA-margin guidance checkable from filings",
    "calls": 8,
    "symbol": "KAYNES",
    "tracks": 9,
    "resolved": 3
-  },
-  {
-   "hero": false,
-   "name": "CREDITACCESS GRAMEEN LIMITED",
-   "role": "second: lender (NBFC) — loan growth, ROA, ROE, credit cost",
-   "calls": 8,
-   "symbol": "CREDITACC",
-   "tracks": 19,
-   "resolved": 5
   },
   {
    "hero": false,
@@ -30,7 +30,7 @@
   {
    "hero": false,
    "name": "Larsen & Toubro Limited",
-   "role": null,
+   "role": "conglomerate: company-wide vs segment guidance (reviewed: FY26 growth on L&T's own 12%)",
    "calls": 5,
    "symbol": "LT",
    "tracks": 9,
@@ -39,7 +39,7 @@
   {
    "hero": false,
    "name": "Deepak Nitrite Limited",
-   "role": null,
+   "role": "few numeric promises: open-ended only",
    "calls": 4,
    "symbol": "DEEPAKNTR",
    "tracks": 1,
@@ -48,7 +48,7 @@
   {
    "hero": false,
    "name": "HDFC Bank Limited",
-   "role": null,
+   "role": "no numeric guidance in the calls read",
    "calls": 4,
    "symbol": "HDFCBANK",
    "tracks": 0,
@@ -57,7 +57,7 @@
   {
    "hero": false,
    "name": "Persistent Systems Limited",
-   "role": null,
+   "role": "long-dated targets shown open with their due year",
    "calls": 7,
    "symbol": "PERSISTENT",
    "tracks": 3,

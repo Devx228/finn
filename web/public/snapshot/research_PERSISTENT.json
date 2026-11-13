@@ -1,6 +1,6 @@
 {
  "name": "Persistent Systems Limited",
- "as_of": "2026-11-13T17:30:02.446280+05:30",
+ "as_of": "2026-11-13T18:00:42.571837+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_23102026204328_PSLTranscriptSubmissionOctober2026Sd.pdf",
@@ -123,9 +123,13 @@
  "ledger": {
   "open": 3,
   "missed": 0,
+  "pattern": null,
   "resolved": 0,
   "delivered": 0,
+  "met_final": 0,
+  "met_first": 0,
   "calls_read": 7,
+  "first_known": 0,
   "calls_listed": 8,
   "unverifiable": 0
  },
@@ -231,6 +235,7 @@
  "guidance": [
   {
    "label": "Revenue",
+   "moved": null,
    "story": "FY31 revenue: 5 $ billion → pending.",
    "actual": null,
    "metric": "revenue",
@@ -242,6 +247,7 @@
      "url": "https://www.persistent.com/wp-content/uploads/2025/01/Analyst-Call-Transcript-Q3-FY25.pdf",
      "call": "Q3 FY25 call",
      "high": 5.0,
+     "noun": "aspiration",
      "page": 20,
      "unit": "$ billion",
      "label": "revenue",
@@ -252,22 +258,30 @@
      "metric": "revenue",
      "period": "FY31",
      "source": "company IR site",
+     "speaker": "Sandeep Kalra",
      "call_date": "2025-01-22",
      "direction": "new",
+     "qualifier": null,
      "confidence": "high",
      "by_management": true
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "pending",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "Falls due with FY31 results, not reported yet",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "pending",
+   "first_is_revision": false
   },
   {
    "label": "Revenue growth",
+   "moved": null,
    "story": "medium term revenue growth: 19–20% → open-ended.",
    "actual": null,
    "metric": "revenue_growth",
@@ -283,6 +297,7 @@
      "url": "https://www.persistent.com/wp-content/uploads/2025/07/analyst-call-transcript-q1fy26.pdf",
      "call": "Q1 FY26 call",
      "high": 20.0,
+     "noun": "guidance",
      "page": 30,
      "unit": "%",
      "label": "revenue growth",
@@ -293,20 +308,28 @@
      "period": "medium term",
      "prefix": false,
      "source": "company IR site",
+     "speaker": "Sandeep Kalra",
      "call_date": "2025-07-23",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "open-ended",
+   "first_is_revision": false
   },
   {
    "label": "Operating margin",
+   "moved": null,
    "story": "medium term operating margin: 16–17% → open-ended.",
    "actual": null,
    "metric": "operating_margin",
@@ -322,6 +345,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_23102026204328_PSLTranscriptSubmissionOctober2026Sd.pdf",
      "call": "Q2 FY27 call",
      "high": 17.0,
+     "noun": "guidance",
      "page": 22,
      "unit": "%",
      "label": "operating margin",
@@ -332,17 +356,24 @@
      "period": "medium term",
      "prefix": true,
      "source": "NSE",
+     "speaker": "Sandeep Kalra",
      "call_date": "2026-10-23",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": "aspirational"
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "open-ended",
+   "first_is_revision": false
   }
  ],
  "industry": "Computers - Software",
@@ -554,6 +585,6 @@
  ],
  "provenance": {
   "live": false,
-  "reviewed": false
+  "reviewed": true
  }
 }

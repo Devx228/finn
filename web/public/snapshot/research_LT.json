@@ -1,6 +1,6 @@
 {
  "name": "Larsen & Toubro Limited",
- "as_of": "2026-11-13T17:29:49.591889+05:30",
+ "as_of": "2026-11-13T18:00:31.748619+05:30",
  "calls": [
   {
    "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q2FY27%20Earnings%20Call%20Transcript.pdf",
@@ -100,9 +100,13 @@
  "ledger": {
   "open": 3,
   "missed": 1,
+  "pattern": "Of 1 resolved promise, 0 met the guidance as first given and 1 missed even the final guidance.",
   "resolved": 1,
   "delivered": 0,
+  "met_final": 0,
+  "met_first": 0,
   "calls_read": 5,
+  "first_known": 1,
   "calls_listed": 8,
   "unverifiable": 5
  },
@@ -241,6 +245,7 @@
  "guidance": [
   {
    "label": "Revenue growth",
+   "moved": null,
    "story": "FY27 revenue growth: 10–12% → 10–12% → 10–12% (held) → filings show 11.4% (2Q YTD) → on track.",
    "actual": {
     "span": "2Q YTD",
@@ -265,6 +270,7 @@
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
      "call": "Q4 FY26 call",
      "high": 12.0,
+     "noun": "guidance",
      "page": 13,
      "unit": "%",
      "label": "revenue growth",
@@ -275,8 +281,10 @@
      "period": "FY27",
      "prefix": false,
      "source": "company IR site",
+     "speaker": "Ramakrishnan",
      "call_date": "2026-05-07",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     },
     {
      "by": "rules",
@@ -288,6 +296,7 @@
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q1%20FY27%20Earnings%20Call%20Transcript.pdf",
      "call": "Q1 FY27 call",
      "high": 12.0,
+     "noun": "guidance",
      "page": 11,
      "unit": "%",
      "label": "revenue growth",
@@ -298,8 +307,10 @@
      "period": "FY27",
      "prefix": true,
      "source": "company IR site",
+     "speaker": "Ramakrishnan",
      "call_date": "2026-07-28",
-     "direction": "maintained"
+     "direction": "maintained",
+     "qualifier": null
     },
     {
      "by": "rules",
@@ -311,6 +322,7 @@
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q2FY27%20Earnings%20Call%20Transcript.pdf",
      "call": "Q2 FY27 call",
      "high": 12.0,
+     "noun": "guidance",
      "page": 9,
      "unit": "%",
      "label": "revenue growth",
@@ -321,20 +333,28 @@
      "period": "FY27",
      "prefix": false,
      "source": "company IR site",
+     "speaker": null,
      "call_date": "2026-10-27",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "on track",
    "resolved": false,
    "run_rate": "Needs +8.8% to +12.5% YoY in the remaining 2 quarters (so far +11.4%)",
    "cross_check": null,
    "verdict_why": "11.4% within 10–12%",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "on track",
+   "first_is_revision": false
   },
   {
    "label": "Revenue growth",
+   "moved": null,
    "story": "FY26 revenue growth: 15% → company reported 12.0% (FY) → missed.",
    "actual": {
     "span": "FY",
@@ -363,6 +383,7 @@
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q2FY26%20Earnings%20Call%20Transcript%20.pdf",
      "call": "Q2 FY26 call",
      "high": 15.0,
+     "noun": "guidance",
      "page": 10,
      "unit": "%",
      "label": "revenue growth",
@@ -373,10 +394,13 @@
      "period": "FY26",
      "prefix": false,
      "source": "company IR site",
+     "speaker": "Ramakrishnan",
      "call_date": "2025-10-29",
-     "direction": "maintained"
+     "direction": "maintained",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "missed",
    "resolved": true,
@@ -392,10 +416,15 @@
     "quarters": 4
    },
    "verdict_why": "12.0% vs 15%",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": "Missed 15% guidance",
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": "missed",
+   "verdict_label": "missed",
+   "first_is_revision": false
   },
   {
    "label": "EBITDA margin",
+   "moved": null,
    "story": "FY26 ebitda margin: 8.5% → 8.5% → 7.8% (cut once) → not scored.",
    "actual": null,
    "metric": "ebitda_margin",
@@ -411,6 +440,7 @@
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2025AnalysttransL&T%20Q4FY25%20Earnings%20Call%20Transcript.pdf",
      "call": "Q4 FY25 call",
      "high": 8.5,
+     "noun": "target",
      "page": 23,
      "unit": "%",
      "label": "operating margin",
@@ -421,8 +451,10 @@
      "period": "FY26",
      "prefix": false,
      "source": "company IR site",
+     "speaker": "Ramakrishnan",
      "call_date": "2025-05-08",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     },
     {
      "by": "rules",
@@ -434,6 +466,7 @@
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q2FY26%20Earnings%20Call%20Transcript%20.pdf",
      "call": "Q2 FY26 call",
      "high": 8.5,
+     "noun": "target",
      "page": 10,
      "unit": "%",
      "label": "ebitda margin",
@@ -444,8 +477,10 @@
      "period": "FY26",
      "prefix": false,
      "source": "company IR site",
+     "speaker": "Ramakrishnan",
      "call_date": "2025-10-29",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     },
     {
      "by": "rules",
@@ -457,6 +492,7 @@
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
      "call": "Q4 FY26 call",
      "high": 7.8,
+     "noun": "guidance",
      "page": 13,
      "unit": "%",
      "label": "operating margin",
@@ -467,20 +503,28 @@
      "period": "FY26",
      "prefix": false,
      "source": "company IR site",
+     "speaker": "Ramakrishnan",
      "call_date": "2026-05-07",
-     "direction": "maintained"
+     "direction": "maintained",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "not scored",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "not scored",
+   "first_is_revision": false
   },
   {
    "label": "Revenue growth",
+   "moved": null,
    "story": "medium term revenue growth: 13–15% → open-ended.",
    "actual": null,
    "metric": "revenue_growth",
@@ -496,6 +540,7 @@
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
      "call": "Q4 FY26 call",
      "high": 15.0,
+     "noun": "guidance",
      "page": 12,
      "unit": "%",
      "label": "revenue growth",
@@ -506,20 +551,28 @@
      "period": "medium term",
      "prefix": true,
      "source": "company IR site",
+     "speaker": "Ramakrishnan",
      "call_date": "2026-05-07",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "open-ended",
+   "first_is_revision": false
   },
   {
    "label": "Operating margin",
+   "moved": null,
    "story": "medium term operating margin: 16–17% → open-ended.",
    "actual": null,
    "metric": "operating_margin",
@@ -535,6 +588,7 @@
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
      "call": "Q4 FY26 call",
      "high": 17.0,
+     "noun": "guidance",
      "page": 12,
      "unit": "%",
      "label": "operating margin",
@@ -545,20 +599,28 @@
      "period": "medium term",
      "prefix": false,
      "source": "company IR site",
+     "speaker": "Ramakrishnan",
      "call_date": "2026-05-07",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "open-ended",
+   "first_is_revision": false
   },
   {
    "label": "AUM / loan growth",
+   "moved": null,
    "story": "no year stated aum / loan growth: 20% → not scored.",
    "actual": null,
    "metric": "aum_growth",
@@ -570,6 +632,7 @@
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
      "call": "Q4 FY26 call",
      "high": 20.0,
+     "noun": "guidance",
      "page": 12,
      "unit": "%",
      "label": "loan book growth",
@@ -580,22 +643,30 @@
      "metric": "aum_growth",
      "period": "no year stated",
      "source": "company IR site",
+     "speaker": "Ramakrishnan",
      "call_date": "2026-05-07",
      "direction": "new",
+     "qualifier": null,
      "confidence": "high",
      "by_management": true
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "not scored",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "not scored",
+   "first_is_revision": false
   },
   {
    "label": "Credit cost",
+   "moved": null,
    "story": "no year stated credit cost: 2% → not scored.",
    "actual": null,
    "metric": "credit_cost",
@@ -611,6 +682,7 @@
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
      "call": "Q4 FY26 call",
      "high": 2.0,
+     "noun": "guidance",
      "page": 12,
      "unit": "%",
      "label": "credit cost",
@@ -621,20 +693,28 @@
      "period": "no year stated",
      "prefix": false,
      "source": "company IR site",
+     "speaker": "Ramakrishnan",
      "call_date": "2026-05-07",
-     "direction": "maintained"
+     "direction": "maintained",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "not scored",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "not scored",
+   "first_is_revision": false
   },
   {
    "label": "Return on assets",
+   "moved": null,
    "story": "no year stated return on assets: 3–3.2% → not scored.",
    "actual": null,
    "metric": "roa",
@@ -650,6 +730,7 @@
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
      "call": "Q4 FY26 call",
      "high": 3.2,
+     "noun": "plan",
      "page": 12,
      "unit": "%",
      "label": "roa",
@@ -660,20 +741,28 @@
      "period": "no year stated",
      "prefix": true,
      "source": "company IR site",
+     "speaker": "Ramakrishnan",
      "call_date": "2026-05-07",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "not scored",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "not scored",
+   "first_is_revision": false
   },
   {
    "label": "Return on equity",
+   "moved": null,
    "story": "no year stated return on equity: 16–18% → not scored.",
    "actual": null,
    "metric": "roe",
@@ -689,6 +778,7 @@
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
      "call": "Q4 FY26 call",
      "high": 18.0,
+     "noun": "plan",
      "page": 12,
      "unit": "%",
      "label": "roe",
@@ -699,17 +789,24 @@
      "period": "no year stated",
      "prefix": true,
      "source": "company IR site",
+     "speaker": "Ramakrishnan",
      "call_date": "2026-05-07",
-     "direction": "unclear"
+     "direction": "unclear",
+     "qualifier": null
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "not scored",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "not scored",
+   "first_is_revision": false
   }
  ],
  "industry": "Engineering",
@@ -921,6 +1018,6 @@
  ],
  "provenance": {
   "live": false,
-  "reviewed": false
+  "reviewed": true
  }
 }

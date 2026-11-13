@@ -1,6 +1,6 @@
 {
  "name": "Deepak Nitrite Limited",
- "as_of": "2026-11-13T17:30:11.871644+05:30",
+ "as_of": "2026-11-13T18:00:51.480479+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/DEEPAKNTR_04112026111452_NSE-concall_transcript.pdf",
@@ -73,9 +73,13 @@
  "ledger": {
   "open": 1,
   "missed": 0,
+  "pattern": null,
   "resolved": 0,
   "delivered": 0,
+  "met_final": 0,
+  "met_first": 0,
   "calls_read": 4,
+  "first_known": 0,
   "calls_listed": 8,
   "unverifiable": 0
  },
@@ -172,6 +176,7 @@
  "guidance": [
   {
    "label": "Operating margin",
+   "moved": null,
    "story": "medium term operating margin: 14–15% → open-ended.",
    "actual": null,
    "metric": "operating_margin",
@@ -183,6 +188,7 @@
      "url": "https://nsearchives.nseindia.com/corporate/DEEPAKNTR_04112026111452_NSE-concall_transcript.pdf",
      "call": "Q2 FY27 call",
      "high": 15.0,
+     "noun": "guidance",
      "page": 11,
      "unit": "%",
      "label": "EBIT",
@@ -193,19 +199,26 @@
      "metric": "operating_margin",
      "period": "medium term",
      "source": "NSE",
+     "speaker": null,
      "call_date": "2026-11-04",
      "direction": "new",
+     "qualifier": null,
      "confidence": "high",
      "by_management": true
     }
    ],
+   "steers": [],
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
-   "as_of_quarter": "2026-09-30"
+   "verdict_line": null,
+   "as_of_quarter": "2026-09-30",
+   "verdict_first": null,
+   "verdict_label": "open-ended",
+   "first_is_revision": false
   }
  ],
  "industry": "Chemicals - Organic",
@@ -417,6 +430,6 @@
  ],
  "provenance": {
   "live": false,
-  "reviewed": false
+  "reviewed": true
  }
 }
