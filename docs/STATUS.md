@@ -1,4 +1,4 @@
-# Scope status vs SPEC §3 (updated 2026-11-13, after item 2)
+# Scope status vs SPEC §3 (updated 2026-11-13, night: engine frozen, frontend phase)
 
 ✅ done · 🟡 partial · ❌ missing. Evidence is a file, endpoint or measured output.
 
@@ -14,15 +14,15 @@
 | One-line "so what"; rest buried | ✅ | classifier one-liners (eval 86.8% end to end, docs/evals.md) |
 | Triggered alerts, configurable, in-app inbox | ✅ | defaults by measurement (vs NIFTY, 4×, 6%, results opt-in): 24 in 30 days (was 101); one alert per stock-day; "moved with no disclosure" |
 | "Why is this here?" on every item | ✅ | `WhySheet.tsx` shows the score breakdown incl. the network component |
-| Research: Business snapshot | 🟡 | segment mix, segment result ÷ revenue, like-for-like YoY from the company's full-year XBRL segment note (13 cos; 9 declare single-segment). No annual-report text cached (all ARs are on NSE, paused), so no "what it does" prose |
+| Research: Business snapshot | 🟡 | segment mix / margins / like-for-like YoY from XBRL segment notes; **what it does**: one verbatim self-description from the latest annual report, page cited (5 of 7 ledger companies; CreditAccess and Persistent: the card says no sentence states it plainly) |
 | Research: Financial snapshot | 🟡 | latest-quarter revenue/EBITDA/PAT/margins in the trajectory; no TTM, ROE/ROCE, net debt |
 | Research: Trajectory | 🟡 | 12 quarters revenue bars + margin line (`Research.tsx`); spec asks 5–10 years + CAGRs |
-| Research: Promise Ledger | ✅ | 8 calls (INFY 4); chains given→revised→outcome→verdict; company-reported actuals first; hero KAYNES 5 resolved, CREDITACC 5; say–do line at ≥ 4 |
+| Research: Promise Ledger | ✅ | hero CREDITACC (5 resolved, each checked against its quote), KAYNES second; scoreboard + one timeline per outlook; first vs final guidance verdicts; verbal steers; stricter year rule (POLYCAB 4→0, KAYNES 5→3) · `docs/hero_first.png`, `docs/hero_full.png` |
 | Research: Guidance (open, with run-rate) | ✅ | open items show due year; run-rate line for revenue bands ("Needs +8.8% to +12.5% YoY in the remaining 2 quarters"); never for constant-currency bands |
 | Research: Bull vs Bear | 🟡 | computed signals from numbers (`research.py signals()`); not 3+3 cited points each for every company |
 | Every research claim cited | ✅ | quotes are verbatim-verified and link to the NSE transcript |
-| Live pipeline with visible progress for an uncached symbol | ❌ | runs on the laptop only (`finn research SYM`); NSE 403s the hosted API |
-| "Who can help?" sheet on Push cards and Research sections | 🟡 | on Push cards ✅; Research has one "Who to call" section, not a chip per section |
+| Live pipeline with visible progress for an uncached symbol | ✅ | job queue + GitHub runner; gate passed on POLYCAB (2 min 46 s, runner start 36 s); 'not reviewed' line on live reports |
+| "Who can help?" sheet on Push cards and Research sections | 🟡 | on every Push card ✅ and the Promise-ledger section ✅ (`docs/screens/status_research_help.png`); Business, Financials/Trajectory and Bull-vs-bear sections have none (only the page-end 'Who to call') |
 | Second-degree paths with strength + evidence | ✅ | `network/graph.py` warmth × overlap; PathLine shows the evidence |
 | Direct query "who do I know at / knows about X" | ✅ | free-text search on People over the directory (employer, title, theme, NSE symbol; every word must match; ranked by match then warmth); tested |
 | Synthetic network ~70 contacts | ✅ | 72 contacts, 40 meetings, every one tagged synthetic in UI |
@@ -40,12 +40,23 @@
 | Cash quality section | ❌ | annual cash flow in `fin_facts`, not surfaced |
 | Red flags section | ❌ | annual reports linked, not read |
 | Results card linked to the Promise Ledger | ❌ | |
-| Ask bar (tool-calling, typed cards) | ❌ | removed from the UI until it can run on a hosted model from the API (needs a Gemini key as a Render secret) |
+| Ask bar (tool-calling, typed cards) | ❌ | removed; the command bar (frontend item 2) replaces it |
 | People: expertise map | ✅ | People tab |
-| People: coverage gaps (weight vs depth) | ✅ | coverage grid uses `holdings.weight_pct` vs contacts inside |
-| People: keep-warm nudges with drafted opener | 🟡 | nudges with the reason; no drafted opener |
-| Person dossier | ✅ | "Diligence on a person" sheet (`person_view`) |
-| Note resurfacing | ❌ | meetings exist in the synthetic data; not shown against filings |
+| People: coverage gaps (weight vs depth) | ✅ | holding weight vs contacts inside / one step away · `docs/screens/status_coverage_gaps.png` |
+| People: keep-warm nudges with drafted opener | 🟡 | 'Reasons to reconnect' with the filing that makes the call timely and how cold the contact is; **no drafted opener** · `docs/screens/status_keep_warm.png` |
+| Person dossier | ✅ | 'Diligence on a person': career and education as disclosed in the filing, your overlap, second-degree reach, link to the filing · `docs/screens/status_person_dossier.png`. Known flaw: one parsed span is wrong (Anup Bagchi 'ICICI Bank 1992–now' from 'various leadership positions') |
+| Note resurfacing (your meeting notes against a new filing) | ❌ | 40 synthetic meetings with notes exist in the DB; nothing surfaces them on a card |
 | Web Push / swipe feedback | ❌ | PWA manifest only |
 | Unexplained-move detection | ✅ | "moved with no disclosure": no material filing that session or the two before |
 | Classifier eval harness with labelled set | ✅ | `push/evaluate.py` over `data/eval/labelled.jsonl` (114 rows), results in docs/evals.md |
+
+## Network features, checked 2026-11-13 (frontend phase, item 1)
+
+| Feature | Status | Evidence (390 px screenshot) |
+|---|---|---|
+| Person dossier | ✅ done | `docs/screens/status_person_dossier.png` (People → New faces → Anup Bagchi) |
+| Note resurfacing (my meeting notes shown against a new filing) | ❌ missing | — |
+| Keep-warm nudges with a drafted opener | 🟡 partial: nudge + reason, no opener | `docs/screens/status_keep_warm.png` |
+| Coverage gaps | ✅ done | `docs/screens/status_coverage_gaps.png` |
+| Second-degree paths on the management-change card | ✅ done (HDFC Bank MD & CEO card → sheet: dossier + 3 paths) | `docs/screens/status_mgmt_change_paths.png`. Several other management-change cards still show the exchange label as headline ("Change in Management"): the fact-line rule covers event categories only |
+| "Who can help?" on every research section | 🟡 partial: Promise ledger only (+ page-end "Who to call") | `docs/screens/status_research_help.png` |
