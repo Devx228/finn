@@ -174,3 +174,13 @@ def test_analyst_restating_guidance_is_not_management():
     assert [s for _, s in chosen] == [
         "Ganesh Narayanan: We expect credit cost of 5.5% to 6% for FY26, and we will hold it."
     ]
+
+
+def test_run_rate_says_what_the_rest_of_the_year_needs():
+    from finn.pull.research import run_rate
+
+    qs = [{"fy": 2026, "label": f"Q{i} FY26", "revenue": 100.0} for i in (1, 2, 3, 4)]
+    qs += [{"fy": 2027, "label": f"Q{i} FY27", "revenue": 110.0} for i in (1, 2)]
+    got = run_rate(qs, 2027, "revenue_growth", {"low": 10.0, "high": 12.0, "unit": "%"})
+    assert got == "Needs +10.0% to +14.0% YoY in the remaining 2 quarters (so far +10.0%)"
+    assert run_rate(qs[:4], 2026, "revenue_growth", {"low": 10.0, "high": 12.0, "unit": "%"}) is None

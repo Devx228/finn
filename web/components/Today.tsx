@@ -201,6 +201,11 @@ function BriefView({ loaded, onWhy }: { loaded: Loaded<Brief>; onWhy: (r: BriefR
         </p>
       )}
       {b.source_credit && <p className="mt-4 text-center text-[11px] text-ink-3">{b.source_credit}</p>}
+      <p className="mt-2 text-center text-[11px]">
+        <a href="/cost" className="text-ink-3 underline">
+          Under the hood: what this cost to compute
+        </a>
+      </p>
     </div>
   );
 }

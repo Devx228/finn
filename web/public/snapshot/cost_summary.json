@@ -1,0 +1,148 @@
+{
+ "note": "Free tiers (Gemini, Groq) and a local model (Ollama): actual cost is zero. List-price equivalents appear only for models whose paid price is verified; others are counted, not estimated.",
+ "as_of": "2026-11-13T14:05:55.455024+05:30",
+ "totals": {
+  "cache_hits": 677,
+  "model_calls": 1070,
+  "input_tokens": 355173,
+  "output_tokens": 102300,
+  "cache_hit_rate": 63.3,
+  "list_price_usd": 0,
+  "unpriced_calls": 746,
+  "actual_cost_inr": 0
+ },
+ "filings": {
+  "total": 1199,
+  "by_model": 249,
+  "by_rules": 947
+ },
+ "by_model": [
+  {
+   "calls": 584,
+   "model": "gemini-3.5-flash-lite",
+   "failed": 4,
+   "provider": "gemini",
+   "cache_hits": 512,
+   "input_tokens": 60145,
+   "priced_calls": 0,
+   "output_tokens": 26216,
+   "avg_latency_ms": 2749,
+   "list_price_usd": null
+  },
+  {
+   "calls": 154,
+   "model": "qwen2.5-7b-8k",
+   "failed": 5,
+   "provider": "ollama",
+   "cache_hits": 95,
+   "input_tokens": 73699,
+   "priced_calls": 154,
+   "output_tokens": 11319,
+   "avg_latency_ms": 33105,
+   "list_price_usd": 0.0
+  },
+  {
+   "calls": 147,
+   "model": "qwen2.5:7b",
+   "failed": 0,
+   "provider": "ollama",
+   "cache_hits": 12,
+   "input_tokens": 172370,
+   "priced_calls": 147,
+   "output_tokens": 47742,
+   "avg_latency_ms": 32659,
+   "list_price_usd": 0.0
+  },
+  {
+   "calls": 129,
+   "model": "gemini-3-flash-preview",
+   "failed": 90,
+   "provider": "gemini",
+   "cache_hits": 32,
+   "input_tokens": 6816,
+   "priced_calls": 0,
+   "output_tokens": 2307,
+   "avg_latency_ms": 41890,
+   "list_price_usd": null
+  },
+  {
+   "calls": 27,
+   "model": "openai/gpt-oss-120b",
+   "failed": 0,
+   "provider": "groq",
+   "cache_hits": 22,
+   "input_tokens": 7706,
+   "priced_calls": 0,
+   "output_tokens": 6937,
+   "avg_latency_ms": 4484,
+   "list_price_usd": null
+  },
+  {
+   "calls": 17,
+   "model": "qwen2.5:3b",
+   "failed": 0,
+   "provider": "ollama",
+   "cache_hits": 0,
+   "input_tokens": 24470,
+   "priced_calls": 17,
+   "output_tokens": 6163,
+   "avg_latency_ms": 8707,
+   "list_price_usd": 0.0
+  },
+  {
+   "calls": 6,
+   "model": "qwen/qwen3.8-27b",
+   "failed": 0,
+   "provider": "groq",
+   "cache_hits": 4,
+   "input_tokens": 2275,
+   "priced_calls": 0,
+   "output_tokens": 14,
+   "avg_latency_ms": 391,
+   "list_price_usd": null
+  },
+  {
+   "calls": 6,
+   "model": "llama3.1:8b",
+   "failed": 1,
+   "provider": "ollama",
+   "cache_hits": 0,
+   "input_tokens": 7692,
+   "priced_calls": 6,
+   "output_tokens": 1602,
+   "avg_latency_ms": 38308,
+   "list_price_usd": 0.0
+  }
+ ],
+ "by_purpose": [
+  {
+   "calls": 882,
+   "purpose": "extract_guidance",
+   "cache_hits": 665
+  },
+  {
+   "calls": 109,
+   "purpose": "classify_batch",
+   "cache_hits": 0
+  },
+  {
+   "calls": 59,
+   "purpose": "eval_classify",
+   "cache_hits": 11
+  },
+  {
+   "calls": 18,
+   "purpose": "extract_appointment",
+   "cache_hits": 0
+  },
+  {
+   "calls": 2,
+   "purpose": "smoke_classify",
+   "cache_hits": 1
+  }
+ ],
+ "documents_read": {
+  "NSE": 24,
+  "company IR site": 16
+ }
+}

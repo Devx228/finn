@@ -1,6 +1,6 @@
 {
  "name": "HDFC Bank Limited",
- "as_of": "2026-11-13T13:26:26.261509+05:30",
+ "as_of": "2026-11-13T14:05:55.185959+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK_23102026224657_SEintimationTranscriptofearningscall17oct2026.pdf",
@@ -131,6 +131,68 @@
   "bull": []
  },
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
+ "business": {
+  "note": null,
+  "year": "FY26",
+  "basis": "consolidated",
+  "source": {
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_BANKING_1654391_18042026073048_WEB.xml"
+  },
+  "industry": "Banks",
+  "segments": [
+   {
+    "yoy": 6.5,
+    "ebit": 32026.7,
+    "name": "Retail Banking",
+    "share": 41.8,
+    "margin": 10.6,
+    "revenue": 301853.5
+   },
+   {
+    "yoy": -9.1,
+    "ebit": 33948.0,
+    "name": "Wholesale Banking",
+    "share": 24.1,
+    "margin": 19.5,
+    "revenue": 174506.3
+   },
+   {
+    "yoy": 0.4,
+    "ebit": 7083.5,
+    "name": "Insurance Business",
+    "share": 14.9,
+    "margin": 6.6,
+    "revenue": 108079.8
+   },
+   {
+    "yoy": 32.0,
+    "ebit": 18963.3,
+    "name": "Treasury",
+    "share": 11.4,
+    "margin": 23.1,
+    "revenue": 82158.4
+   },
+   {
+    "yoy": 3.9,
+    "ebit": 10416.0,
+    "name": "Other Banking Business",
+    "share": 5.1,
+    "margin": 28.3,
+    "revenue": 36841.0
+   },
+   {
+    "yoy": 13.8,
+    "ebit": 2068.4,
+    "name": "Others",
+    "share": 2.7,
+    "margin": 10.6,
+    "revenue": 19507.5
+   }
+  ],
+  "period_end": "2026-03-31",
+  "segment_total": 722946.5,
+  "single_segment": false
+ },
  "guidance": [],
  "industry": "Banks",
  "quarters": [

@@ -1,6 +1,6 @@
 {
  "name": "Trent Limited",
- "as_of": "2026-11-13T13:26:26.380943+05:30",
+ "as_of": "2026-11-13T14:05:55.383529+05:30",
  "calls": [],
  "stats": [],
  "format": "indas",
@@ -73,6 +73,14 @@
   ]
  },
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
+ "business": {
+  "note": "Files as a single segment (its results filing says so).",
+  "year": null,
+  "source": null,
+  "industry": "Miscellaneous",
+  "segments": [],
+  "single_segment": true
+ },
  "guidance": [],
  "industry": "Miscellaneous",
  "quarters": [

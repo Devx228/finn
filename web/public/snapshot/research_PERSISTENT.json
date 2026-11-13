@@ -1,6 +1,6 @@
 {
  "name": "Persistent Systems Limited",
- "as_of": "2026-11-13T13:26:25.264251+05:30",
+ "as_of": "2026-11-13T14:05:53.451915+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_23102026204328_PSLTranscriptSubmissionOctober2026Sd.pdf",
@@ -190,6 +190,44 @@
   ]
  },
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
+ "business": {
+  "note": null,
+  "year": "FY26",
+  "basis": "consolidated",
+  "source": {
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1656685_21042026071318_WEB.xml"
+  },
+  "industry": "Computers - Software",
+  "segments": [
+   {
+    "yoy": 19.8,
+    "ebit": 2059.3,
+    "name": "Software, Hi-Tech and Emerging Industries",
+    "share": 39.9,
+    "margin": 35.0,
+    "revenue": 5883.0
+   },
+   {
+    "yoy": null,
+    "ebit": 1768.6,
+    "name": "BFSI",
+    "share": 34.5,
+    "margin": 34.7,
+    "revenue": 5093.3
+   },
+   {
+    "yoy": 15.9,
+    "ebit": 1403.0,
+    "name": "Healthcare & Life Sciences",
+    "share": 25.6,
+    "margin": 37.2,
+    "revenue": 3772.2
+   }
+  ],
+  "period_end": "2026-03-31",
+  "segment_total": 14748.5,
+  "single_segment": false
+ },
  "guidance": [
   {
    "label": "Revenue",
@@ -223,6 +261,7 @@
    "context": null,
    "verdict": "pending",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "Falls due with FY31 results, not reported yet",
    "as_of_quarter": "2026-09-30"
@@ -261,6 +300,7 @@
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
    "as_of_quarter": "2026-09-30"
@@ -299,6 +339,7 @@
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
    "as_of_quarter": "2026-09-30"

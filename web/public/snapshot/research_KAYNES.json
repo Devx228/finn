@@ -1,6 +1,6 @@
 {
  "name": "Kaynes Technology India Limited",
- "as_of": "2026-11-13T13:26:21.184450+05:30",
+ "as_of": "2026-11-13T14:05:46.635858+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12082026164943_TranscriptoftheEarningAnnouncement.pdf",
@@ -212,11 +212,18 @@
   "bull": [
    "Revenue +40.5% YoY in Q1 FY27",
    "Delivered FY26 ebitda margin: 15.8% vs 15.6%",
-   "Delivered FY25 ebitda margin: 15.1% vs 15%",
-   "medium term capex guidance raised 2×"
+   "Delivered FY25 ebitda margin: 15.1% vs 15%"
   ]
  },
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
+ "business": {
+  "note": "Files as a single segment (its results filing says so).",
+  "year": null,
+  "source": null,
+  "industry": null,
+  "segments": [],
+  "single_segment": true
+ },
  "guidance": [
   {
    "label": "Capex",
@@ -252,6 +259,7 @@
    "context": null,
    "verdict": "not scored",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
    "as_of_quarter": "2026-06-30"
@@ -288,6 +296,7 @@
    "context": null,
    "verdict": "not scored",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
    "as_of_quarter": "2026-06-30"
@@ -339,6 +348,7 @@
    "context": null,
    "verdict": "missed",
    "resolved": true,
+   "run_rate": null,
    "cross_check": {
     "span": "FY",
     "unit": "%",
@@ -399,6 +409,7 @@
    "context": null,
    "verdict": "beat",
    "resolved": true,
+   "run_rate": null,
    "cross_check": {
     "span": "FY",
     "unit": "%",
@@ -455,6 +466,7 @@
    "context": null,
    "verdict": "missed",
    "resolved": true,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "50.8% vs 55%",
    "as_of_quarter": "2026-06-30"
@@ -502,6 +514,7 @@
    "context": null,
    "verdict": "beat",
    "resolved": true,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "15.1% vs 15%",
    "as_of_quarter": "2026-06-30"
@@ -572,6 +585,7 @@
    "context": null,
    "verdict": "missed",
    "resolved": true,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "₹2,722 cr vs ₹2,800 cr guided",
    "as_of_quarter": "2026-06-30"
@@ -696,6 +710,7 @@
    "context": null,
    "verdict": "not scored",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
    "as_of_quarter": "2026-06-30"
@@ -732,6 +747,7 @@
    "context": null,
    "verdict": "not scored",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
    "as_of_quarter": "2026-06-30"

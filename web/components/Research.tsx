@@ -5,7 +5,15 @@ import { useEffect, useState } from "react";
 import { CandidateRow } from "@/components/Network";
 import { type Loaded, loadWithFallback } from "@/lib/api";
 import { formatCr } from "@/lib/format";
-import type { GuidancePoint, GuidanceTrack, Ledger, Quarter, Research, ResearchIndex } from "@/lib/types";
+import type {
+  Business,
+  GuidancePoint,
+  GuidanceTrack,
+  Ledger,
+  Quarter,
+  Research,
+  ResearchIndex,
+} from "@/lib/types";
 
 const H = "mb-2 text-[12px] font-semibold uppercase tracking-wider text-ink-3";
 
@@ -140,6 +148,8 @@ function Body({ r }: { r: Research }) {
         )}
       </section>
 
+      {r.business && <BusinessSnapshot b={r.business} />}
+
       {(r.signals.bull.length > 0 || r.signals.bear.length > 0) && (
         <section>
           <h2 className={H}>Bull vs bear — from the numbers</h2>
@@ -165,6 +175,11 @@ function Body({ r }: { r: Research }) {
 
       <section className="text-[11px] leading-snug text-ink-3">
         <p>{r.sources}</p>
+        <p className="mt-1">
+          <a href="/cost" className="underline">
+            Under the hood: what this cost to compute
+          </a>
+        </p>
         <ul className="mt-1 space-y-0.5">
           {r.calls.map((c) => (
             <li key={c.url}>
@@ -178,6 +193,65 @@ function Body({ r }: { r: Research }) {
         </ul>
       </section>
     </div>
+  );
+}
+
+/** What the company does, from its own segment note: mix, segment result ÷ revenue, YoY. */
+function BusinessSnapshot({ b }: { b: Business }) {
+  if (!b.segments.length) {
+    return (
+      <section>
+        <h2 className={H}>Business snapshot</h2>
+        <p className="rounded-lg border border-line bg-surface px-3 py-3 text-[13px] text-ink-2">
+          {b.industry ? `${b.industry}. ` : ""}
+          {b.note}
+        </p>
+      </section>
+    );
+  }
+  const max = Math.max(...b.segments.map((s) => s.share ?? 0));
+  return (
+    <section>
+      <h2 className={H}>
+        Business snapshot · {b.year} segments
+      </h2>
+      <div className="rounded-lg border border-line bg-surface px-3 py-3">
+        {b.industry && <p className="mb-2 text-[13px] text-ink-2">{b.industry}</p>}
+        <ul className="space-y-2">
+          {b.segments.map((s) => (
+            <li key={s.name} className="text-[13px]">
+              <div className="flex items-baseline justify-between gap-2">
+                <span className="truncate font-medium">{s.name}</span>
+                <span className="shrink-0 tabular-nums text-ink-2">{s.share}%</span>
+              </div>
+              <div className="mt-1 h-1.5 rounded bg-line">
+                <div
+                  className="h-1.5 rounded bg-accent/70"
+                  style={{ width: `${max ? ((s.share ?? 0) / max) * 100 : 0}%` }}
+                  aria-hidden
+                />
+              </div>
+              <p className="mt-0.5 text-[11px] tabular-nums text-ink-3">
+                {formatCr(s.revenue)}
+                {s.margin !== null && ` · result ${s.margin}% of revenue`}
+                {s.yoy !== null && ` · ${s.yoy > 0 ? "+" : ""}${s.yoy}% YoY`}
+              </p>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-2 text-[11px] text-ink-3">
+          Segment revenue and segment result as the company reports them ({b.basis}), from its{" "}
+          {b.source?.xbrl ? (
+            <a href={b.source.xbrl} target="_blank" rel="noreferrer" className="underline">
+              full-year results filing
+            </a>
+          ) : (
+            "results filing"
+          )}
+          . YoY only where the same segment appears a year earlier.
+        </p>
+      </div>
+    </section>
   );
 }
 
@@ -286,6 +360,7 @@ function TrackCard({ t }: { t: GuidanceTrack }) {
           {t.cross_check.span}, {t.cross_check.basis}) — shown for comparison, never used for the verdict
         </p>
       )}
+      {t.run_rate && <p className="mt-1 text-[12px] text-ink-2">{t.run_rate}</p>}
       {t.context && <p className="mt-1 text-[11px] text-ink-3">{t.context}</p>}
       {open !== null && <Quote p={t.points[open]} />}
       {open === null && <p className="mt-1 text-[11px] text-ink-3">Tap a call to see management&apos;s words.</p>}

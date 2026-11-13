@@ -1,6 +1,6 @@
 {
  "name": "Larsen & Toubro Limited",
- "as_of": "2026-11-13T13:26:24.342309+05:30",
+ "as_of": "2026-11-13T14:05:51.946300+05:30",
  "calls": [
   {
    "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q2FY27%20Earnings%20Call%20Transcript.pdf",
@@ -160,8 +160,7 @@
  "signals": {
   "bear": [
    "EBITDA margin 8.7% in Q2 FY27, down 130 bps YoY",
-   "FY26 revenue growth missed: 12.0% vs 15%",
-   "FY26 ebitda margin guidance cut 1× (8.5% → 8.5% → 7.8%)"
+   "FY26 revenue growth missed: 12.0% vs 15%"
   ],
   "bull": [
    "Revenue +15.8% YoY in Q2 FY27",
@@ -169,6 +168,76 @@
   ]
  },
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
+ "business": {
+  "note": null,
+  "year": "FY26",
+  "basis": "consolidated",
+  "source": {
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1663820_05052026073236_WEB.xml"
+  },
+  "industry": "Engineering",
+  "segments": [
+   {
+    "yoy": 3.1,
+    "ebit": 7760.0,
+    "name": "Infrastructure Projects",
+    "share": 46.8,
+    "margin": 5.7,
+    "revenue": 135344.6
+   },
+   {
+    "yoy": 34.9,
+    "ebit": 3374.4,
+    "name": "Energy Projects",
+    "share": 19.0,
+    "margin": 6.1,
+    "revenue": 54888.6
+   },
+   {
+    "yoy": 11.3,
+    "ebit": 8633.9,
+    "name": "IT & Technology Services",
+    "share": 18.7,
+    "margin": 16.0,
+    "revenue": 53946.5
+   },
+   {
+    "yoy": 13.8,
+    "ebit": 4032.1,
+    "name": "Financial Services",
+    "share": 6.0,
+    "margin": 23.3,
+    "revenue": 17283.4
+   },
+   {
+    "yoy": 42.3,
+    "ebit": 2105.1,
+    "name": "Hi-Tech Manufacturing",
+    "share": 5.0,
+    "margin": 14.5,
+    "revenue": 14488.8
+   },
+   {
+    "yoy": 2.1,
+    "ebit": 2085.7,
+    "name": "Others",
+    "share": 2.8,
+    "margin": 26.1,
+    "revenue": 7978.0
+   },
+   {
+    "yoy": -4.7,
+    "ebit": 539.0,
+    "name": "Development Projects",
+    "share": 1.8,
+    "margin": 10.5,
+    "revenue": 5118.5
+   }
+  ],
+  "period_end": "2026-03-31",
+  "segment_total": 289048.4,
+  "single_segment": false
+ },
  "guidance": [
   {
    "label": "Revenue growth",
@@ -259,6 +328,7 @@
    "context": null,
    "verdict": "on track",
    "resolved": false,
+   "run_rate": "Needs +8.8% to +12.5% YoY in the remaining 2 quarters (so far +11.4%)",
    "cross_check": null,
    "verdict_why": "11.4% within 10–12%",
    "as_of_quarter": "2026-09-30"
@@ -295,6 +365,7 @@
    "context": null,
    "verdict": "not scored",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
    "as_of_quarter": "2026-09-30"
@@ -333,6 +404,7 @@
    "context": null,
    "verdict": "not scored",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
    "as_of_quarter": "2026-09-30"
@@ -371,6 +443,7 @@
    "context": null,
    "verdict": "not scored",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
    "as_of_quarter": "2026-09-30"
@@ -409,6 +482,7 @@
    "context": null,
    "verdict": "not scored",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
    "as_of_quarter": "2026-09-30"
@@ -460,6 +534,7 @@
    "context": null,
    "verdict": "missed",
    "resolved": true,
+   "run_rate": null,
    "cross_check": {
     "span": "FY",
     "unit": "%",
@@ -553,6 +628,7 @@
    "context": null,
    "verdict": "not scored",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
    "as_of_quarter": "2026-09-30"
@@ -591,6 +667,7 @@
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
    "as_of_quarter": "2026-09-30"
@@ -629,6 +706,7 @@
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
    "as_of_quarter": "2026-09-30"

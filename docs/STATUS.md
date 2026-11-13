@@ -1,4 +1,4 @@
-# Scope status vs SPEC §3 (as of 2026-11-13, before the Promise Ledger rework)
+# Scope status vs SPEC §3 (updated 2026-11-13, after item 2)
 
 ✅ done · 🟡 partial · ❌ missing. Evidence is a file, endpoint or measured output.
 
@@ -14,11 +14,11 @@
 | One-line "so what"; rest buried | ✅ | classifier one-liners (eval 86.8% end to end, docs/evals.md) |
 | Triggered alerts, configurable, in-app inbox | 🟡 | `push/alerts.py` + `web/lib/alerts.ts`, tested both sides; **defaults fire 101 in 30 days — too noisy**; no "no disclosure" mark |
 | "Why is this here?" on every item | ✅ | `WhySheet.tsx` shows the score breakdown incl. the network component |
-| Research: Business snapshot | ❌ | not built (no segment / what-it-does section) |
+| Research: Business snapshot | 🟡 | segment mix, segment result ÷ revenue, like-for-like YoY from the company's full-year XBRL segment note (13 cos; 9 declare single-segment). No annual-report text cached (all ARs are on NSE, paused), so no "what it does" prose |
 | Research: Financial snapshot | 🟡 | latest-quarter revenue/EBITDA/PAT/margins in the trajectory; no TTM, ROE/ROCE, net debt |
 | Research: Trajectory | 🟡 | 12 quarters revenue bars + margin line (`Research.tsx`); spec asks 5–10 years + CAGRs |
-| Research: Promise Ledger | 🟡 | per-metric band history + verdicts from **4** calls; INFY 2 resolved; CC guidance "not comparable"; no say–do score |
-| Research: Guidance (open, with run-rate) | 🟡 | open bands shown in the tracker; no run-rate line ("needs +x% in H2") |
+| Research: Promise Ledger | ✅ | 8 calls (INFY 4); chains given→revised→outcome→verdict; company-reported actuals first; hero KAYNES 5 resolved, CREDITACC 5; say–do line at ≥ 4 |
+| Research: Guidance (open, with run-rate) | ✅ | open items show due year; run-rate line for revenue bands ("Needs +8.8% to +12.5% YoY in the remaining 2 quarters"); never for constant-currency bands |
 | Research: Bull vs Bear | 🟡 | computed signals from numbers (`research.py signals()`); not 3+3 cited points each for every company |
 | Every research claim cited | ✅ | quotes are verbatim-verified and link to the NSE transcript |
 | Live pipeline with visible progress for an uncached symbol | ❌ | runs on the laptop only (`finn research SYM`); NSE 403s the hosted API |
@@ -28,9 +28,9 @@
 | Synthetic network ~70 contacts | ✅ | 72 contacts, 40 meetings, every one tagged synthetic in UI |
 | Deployed URL, no login, phone-usable | ✅ | finn-tawny-nine.vercel.app + Render API; Phase 0a phone check |
 | Bundled snapshot fallback | ✅ | `web/lib/api.ts loadWithFallback` → `web/public/snapshot/*.json` |
-| Cost ledger screen | 🟡 | every call logged to `llm_calls` with list-price USD (`llm/store.py`); **no `/api/cost`, no screen** |
-| README | ❌ | no README.md at repo root |
-| Architecture doc with diagram | ❌ | not written; WRITEUP.md is a 17-line stub |
+| Cost ledger screen | ✅ | `/api/cost` (view `cost:summary`) + `/cost` screen: calls, cache rate, tokens, failures, by model and task, rules vs model; ₹0 actual; list price shown only where verified |
+| README | ✅ | README.md |
+| Architecture doc with diagram | ✅ | docs/ARCHITECTURE.md + docs/architecture.svg (WRITEUP still a stub) |
 
 ## P1
 

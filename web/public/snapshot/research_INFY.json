@@ -1,6 +1,6 @@
 {
  "name": "Infosys Limited",
- "as_of": "2026-11-13T13:26:23.315839+05:30",
+ "as_of": "2026-11-13T14:05:50.365924+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173824_SE_filing_Earnings_call_transcript.pdf",
@@ -146,6 +146,84 @@
   ]
  },
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
+ "business": {
+  "note": null,
+  "year": "FY26",
+  "basis": "consolidated",
+  "source": {
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1658040_23042026090154_WEB.xml"
+  },
+  "industry": "Computers - Software",
+  "segments": [
+   {
+    "yoy": 10.5,
+    "ebit": 12678.0,
+    "name": "Financial Services",
+    "share": 27.9,
+    "margin": 25.4,
+    "revenue": 49908.0
+   },
+   {
+    "yoy": 15.4,
+    "ebit": 6444.0,
+    "name": "Manufacturing",
+    "share": 16.3,
+    "margin": 22.2,
+    "revenue": 29078.0
+   },
+   {
+    "yoy": 9.7,
+    "ebit": 5984.0,
+    "name": "Energy, Utilities, Resources and Services",
+    "share": 13.3,
+    "margin": 25.1,
+    "revenue": 23818.0
+   },
+   {
+    "yoy": 4.6,
+    "ebit": 7089.0,
+    "name": "Retail",
+    "share": 12.9,
+    "margin": 30.7,
+    "revenue": 23077.0
+   },
+   {
+    "yoy": 13.9,
+    "ebit": 3861.0,
+    "name": "Communication",
+    "share": 12.2,
+    "margin": 17.7,
+    "revenue": 21765.0
+   },
+   {
+    "yoy": 6.4,
+    "ebit": 3228.0,
+    "name": "Hi-Tech",
+    "share": 7.8,
+    "margin": 23.2,
+    "revenue": 13928.0
+   },
+   {
+    "yoy": 3.7,
+    "ebit": 2444.0,
+    "name": "Life Sciences",
+    "share": 6.9,
+    "margin": 19.9,
+    "revenue": 12267.0
+   },
+   {
+    "yoy": 0.0,
+    "ebit": 717.0,
+    "name": "All other segments",
+    "share": 2.7,
+    "margin": 14.9,
+    "revenue": 4809.0
+   }
+  ],
+  "period_end": "2026-03-31",
+  "segment_total": 178650.0,
+  "single_segment": false
+ },
  "guidance": [
   {
    "label": "Revenue growth",
@@ -240,6 +318,7 @@
    "context": "Reported ₹ growth 12.3% (2Q YTD), which includes currency moves",
    "verdict": "on track",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "1.9% within 1–2%",
    "as_of_quarter": "2026-09-30"
@@ -337,6 +416,7 @@
    "context": null,
    "verdict": "on track",
    "resolved": false,
+   "run_rate": null,
    "cross_check": {
     "span": "2Q YTD",
     "unit": "%",
@@ -397,6 +477,7 @@
    "context": "Reported ₹ growth 9.6% (FY), which includes currency moves",
    "verdict": "delivered",
    "resolved": true,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "3.1% within 3–3.5%",
    "as_of_quarter": "2026-09-30"
@@ -448,6 +529,7 @@
    "context": null,
    "verdict": "delivered",
    "resolved": true,
+   "run_rate": null,
    "cross_check": {
     "span": "FY",
     "unit": "%",

@@ -1,6 +1,6 @@
 {
  "name": "CREDITACCESS GRAMEEN LIMITED",
- "as_of": "2026-11-13T13:26:22.433097+05:30",
+ "as_of": "2026-11-13T14:05:48.635913+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
@@ -226,6 +226,14 @@
   ]
  },
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
+ "business": {
+  "note": "Files as a single segment (its results filing says so).",
+  "year": null,
+  "source": null,
+  "industry": null,
+  "segments": [],
+  "single_segment": true
+ },
  "guidance": [
   {
    "label": "AUM / loan growth",
@@ -284,6 +292,7 @@
    "context": null,
    "verdict": "pending",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "The company hasn't stated a year-to-date aum / loan growth; our estimate from the filings is 21.5% (2Q YTD) (cross-check only)",
    "as_of_quarter": "2026-09-30"
@@ -368,6 +377,7 @@
    "context": null,
    "verdict": "pending",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "The company hasn't stated a year-to-date credit cost; our estimate from the filings is 3.6% (2Q YTD annualised) (cross-check only)",
    "as_of_quarter": "2026-09-30"
@@ -419,6 +429,7 @@
    "context": null,
    "verdict": "ahead",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "14.7% vs 12.8–13.2%",
    "as_of_quarter": "2026-09-30"
@@ -457,6 +468,7 @@
    "context": null,
    "verdict": "not scored",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "The company didn't state this figure in the calls read, and it isn't in the results filings",
    "as_of_quarter": "2026-09-30"
@@ -531,6 +543,7 @@
    "context": null,
    "verdict": "ahead",
    "resolved": false,
+   "run_rate": null,
    "cross_check": {
     "span": "2Q YTD annualised",
     "unit": "%",
@@ -614,6 +627,7 @@
    "context": null,
    "verdict": "on track",
    "resolved": false,
+   "run_rate": null,
    "cross_check": {
     "span": "2Q YTD annualised",
     "unit": "%",
@@ -697,6 +711,7 @@
    "context": null,
    "verdict": "delivered",
    "resolved": true,
+   "run_rate": null,
    "cross_check": {
     "span": "FY",
     "unit": "%",
@@ -780,6 +795,7 @@
    "context": null,
    "verdict": "missed",
    "resolved": true,
+   "run_rate": null,
    "cross_check": {
     "span": "FY",
     "unit": "%",
@@ -863,6 +879,7 @@
    "context": null,
    "verdict": "missed",
    "resolved": true,
+   "run_rate": null,
    "cross_check": {
     "span": "FY",
     "unit": "%",
@@ -910,6 +927,7 @@
    "context": null,
    "verdict": "not scored",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "The company didn't state this figure in the calls read, and it isn't in the results filings",
    "as_of_quarter": "2026-09-30"
@@ -948,6 +966,7 @@
    "context": null,
    "verdict": "not scored",
    "resolved": false,
+   "run_rate": null,
    "cross_check": {
     "span": "FY",
     "unit": "%",
@@ -995,6 +1014,7 @@
    "context": null,
    "verdict": "not scored",
    "resolved": false,
+   "run_rate": null,
    "cross_check": {
     "span": "FY",
     "unit": "%",
@@ -1042,6 +1062,7 @@
    "context": null,
    "verdict": "not scored",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "The company didn't state this figure in the calls read, and it isn't in the results filings",
    "as_of_quarter": "2026-09-30"
@@ -1080,6 +1101,7 @@
    "context": null,
    "verdict": "not scored",
    "resolved": false,
+   "run_rate": null,
    "cross_check": {
     "span": "FY",
     "unit": "%",
@@ -1140,6 +1162,7 @@
    "context": null,
    "verdict": "missed",
    "resolved": true,
+   "run_rate": null,
    "cross_check": {
     "span": "FY",
     "unit": "%",
@@ -1200,6 +1223,7 @@
    "context": null,
    "verdict": "missed",
    "resolved": true,
+   "run_rate": null,
    "cross_check": {
     "span": "FY",
     "unit": "%",
@@ -1247,6 +1271,7 @@
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
    "as_of_quarter": "2026-09-30"

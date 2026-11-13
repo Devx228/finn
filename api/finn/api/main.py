@@ -114,6 +114,12 @@ def list_research() -> dict:
     return _view("research:index")
 
 
+@app.get("/api/cost")
+def get_cost() -> dict:
+    """Cost ledger: every model call (hit or miss), tokens, cache rate, filings decided by rules."""
+    return _view("cost:summary")
+
+
 @app.get("/api/alerts/inputs")
 def get_alert_inputs() -> dict:
     """EOD bars + material filings for the holdings; rules are evaluated client-side (and in

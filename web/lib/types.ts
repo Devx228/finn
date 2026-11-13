@@ -242,11 +242,60 @@ export interface GuidanceTrack {
     source?: { quote?: string; page?: number; url?: string; call?: string; from?: string; xbrl?: string | null };
   } | null;
   cross_check?: { value: number; unit: string; span: string; basis: string } | null;
+  run_rate?: string | null;
   context?: string | null;
   verdict: string;
   verdict_why: string;
   resolved?: boolean;
   story: string;
+}
+
+export interface Segment {
+  name: string;
+  revenue: number;
+  ebit: number | null;
+  share: number | null;
+  margin: number | null;
+  yoy: number | null;
+}
+
+export interface Business {
+  industry: string | null;
+  year: string | null;
+  basis?: string;
+  segments: Segment[];
+  single_segment: boolean;
+  segment_total?: number;
+  source: { xbrl: string } | null;
+  note: string | null;
+}
+
+export interface CostSummary {
+  as_of: string;
+  totals: {
+    model_calls: number;
+    cache_hits: number;
+    cache_hit_rate: number | null;
+    input_tokens: number;
+    output_tokens: number;
+    actual_cost_inr: number;
+    list_price_usd: number;
+    unpriced_calls: number;
+  };
+  filings: { total: number; by_rules: number; by_model: number };
+  documents_read: Record<string, number>;
+  by_model: {
+    provider: string;
+    model: string;
+    calls: number;
+    cache_hits: number;
+    failed: number;
+    input_tokens: number;
+    output_tokens: number;
+    avg_latency_ms: number | null;
+  }[];
+  by_purpose: { purpose: string; calls: number; cache_hits: number }[];
+  note: string;
 }
 
 export interface Ledger {
@@ -270,6 +319,7 @@ export interface Research {
   calls: { label: string; filed_at: string; url: string; source?: string; pages: number; n_items: number }[];
   signals: { bull: string[]; bear: string[] };
   ledger?: Ledger;
+  business?: Business;
   sources: string;
   network: Candidate[];
 }

@@ -33,6 +33,9 @@ class ParsedXBRL:
     facts: list[Fact]
     meta: dict[str, str] = field(default_factory=dict)
     entry_point: str = ""
+    # text facts that name a dimension member, e.g. {"ReportableSegmentsAxis=…1Member":
+    # "Infrastructure Projects"} from DescriptionOfReportableSegment
+    labels: dict[str, str] = field(default_factory=dict)
 
     @property
     def fmt(self) -> str:
@@ -98,6 +101,7 @@ def parse_xbrl(content: bytes) -> ParsedXBRL:
             units[u.get("id", "")] = "/".join(measures)
 
     meta: dict[str, str] = {}
+    labels: dict[str, str] = {}
     raw: list[tuple[str, str, str, str | None]] = []  # concept, context id, text, unit id
     for el in root:
         cref = el.get("contextRef")
@@ -110,6 +114,8 @@ def parse_xbrl(content: bytes) -> ParsedXBRL:
                 raw.append((name, cref, text, el.get("unitRef")))
         elif text and not contexts[cref][2] and name not in meta:
             meta[name] = text[:2000]
+        elif text and contexts[cref][2] and name.startswith("DescriptionOf"):
+            labels.setdefault(contexts[cref][2], text[:200])
 
     # NSE quirk (verified 2026-11-12): year-to-date contexts ("Four*") are declared with the
     # quarter's own dates while their values are year-to-date. Re-date them from the filing's
@@ -129,4 +135,4 @@ def parse_xbrl(content: bytes) -> ParsedXBRL:
         p_start, p_end, p_dims = contexts[cref]
         f = Fact(name, p_dims, p_start, p_end, num, units.get(unit_id or ""))
         facts.setdefault((name, p_dims, p_start, p_end), f)  # Q1: quarter == YTD; keep one
-    return ParsedXBRL(facts=list(facts.values()), meta=meta, entry_point=entry)
+    return ParsedXBRL(facts=list(facts.values()), meta=meta, entry_point=entry, labels=labels)

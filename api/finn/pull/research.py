@@ -275,6 +275,35 @@ NOT_SCORED = "not scored"
 COMPUTED_OK = {"revenue", "revenue_growth", "ebitda_margin"}
 
 
+def run_rate(qs: list[dict], fy: int, metric: str, last: dict) -> str | None:
+    """What the rest of the year needs for a still-open revenue band, from the filings
+    (unambiguous metrics only): "Needs +14.8% YoY in the remaining 2 quarters (so far +11.4%)"."""
+    cur = [q for q in qs if q["fy"] == fy and q["revenue"] is not None]
+    prev = {q["label"][:2]: q for q in qs if q["fy"] == fy - 1 and q["revenue"] is not None}
+    if not cur or len(cur) >= 4 or len(prev) < 4:
+        return None
+    done = {q["label"][:2] for q in cur}
+    ytd, ytd_prev = sum(q["revenue"] for q in cur), sum(prev[k]["revenue"] for k in done if k in prev)
+    rest_prev = sum(q["revenue"] for k, q in prev.items() if k not in done)
+    left = 4 - len(cur)
+    if not ytd_prev or not rest_prev:
+        return None
+    so_far = (ytd / ytd_prev - 1) * 100
+    if metric == "revenue_growth" and last.get("unit") == "%":
+        lo = ((ytd_prev + rest_prev) * (1 + last["low"] / 100) - ytd) / rest_prev * 100 - 100
+        hi = ((ytd_prev + rest_prev) * (1 + last["high"] / 100) - ytd) / rest_prev * 100 - 100
+        need = f"{lo:+.1f}%" if abs(hi - lo) < 0.05 else f"{lo:+.1f}% to {hi:+.1f}%"
+        return f"Needs {need} YoY in the remaining {left} quarter{'s' * (left > 1)} (so far {so_far:+.1f}%)"
+    if metric == "revenue" and last.get("unit") == "₹ cr":
+        need_cr = last["low"] - ytd
+        g = (need_cr / rest_prev - 1) * 100
+        return (
+            f"Needs ₹{need_cr:,.0f} cr in the remaining {left} quarter{'s' * (left > 1)} "
+            f"({g:+.1f}% YoY; so far {so_far:+.1f}%)"
+        )
+    return None
+
+
 def _fmt(a: dict) -> str:
     v = f"₹{a['value']:,.0f} cr" if a["unit"] == "₹ cr" else f"{a['value']}%"
     return f"{v} ({a['span']})"
@@ -471,6 +500,11 @@ def tracks(
             act["source"] = {"xbrl": next((q["xbrl"] for q in reversed(qs) if q["fy"] == fy), None)}
         if cross and "source" not in cross:
             cross["source"] = {"xbrl": next((q["xbrl"] for q in reversed(qs) if q["fy"] == fy), None)}
+        rr = (
+            run_rate(qs, fy, metric, last)
+            if v in ("on track", "ahead", "behind") and fy and not cc_guided
+            else None  # a rupee run-rate means nothing next to a constant-currency band
+        )
         cuts = sum(p["change"] == "cut" for p in pts)
         raises = sum(p["change"] == "raised" for p in pts)
         out.append(
@@ -481,6 +515,7 @@ def tracks(
                 "points": pts,
                 "actual": act,
                 "cross_check": cross,
+                "run_rate": rr,
                 "context": context,
                 "verdict": v,
                 "verdict_why": why,
@@ -548,6 +583,8 @@ def signals(qs: list[dict], trks: list[dict], fmt: str) -> dict[str, list[str]]:
                 f"PAT {last['pat_yoy']:+.1f}% YoY in {last['label']}"
             )
     for t in trks:
+        if t["verdict"] in (NOT_SCORED, "open-ended"):
+            continue  # bull/bear only from guidance we can hold the company to
         cuts = sum(p["change"] == "cut" for p in t["points"])
         raises = sum(p["change"] == "raised" for p in t["points"])
         chain = " → ".join(_band(p) for p in t["points"])
@@ -578,6 +615,9 @@ def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None,
         raise ValueError(f"unknown symbol {symbol}")
     cid, name, fmt, industry = row
     qs, fy_start = quarters(conn, cid, fmt)
+    from finn.pull import business
+
+    biz = business.snapshot(conn, cid, industry, fy_start)
     calls, stats, docs = [], [], []
     listed = tr.pick(conn, cid, n_calls)
     for d in tr.ensure_text(conn, nse, cid, n_calls):
@@ -609,6 +649,7 @@ def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None,
         "format": fmt,
         "as_of": datetime.now().astimezone().isoformat(),
         "quarters": qs[-12:],
+        "business": biz,
         "guidance": trks,
         "calls": [{k: v for k, v in c.items() if k != "items"} | {"n_items": len(c["items"])} for c in calls],
         "signals": signals(qs, trks, fmt),
@@ -653,7 +694,7 @@ def materialise(conn: Connection, symbol: str, router: Router | None, nse: NSE |
         "SET body = EXCLUDED.body, as_of = EXCLUDED.as_of, updated_at = now()",
         (f"research:{symbol}", Jsonb(body)),
     )
-    roles = dict(
+    roles: dict[str, str] = dict(
         conn.execute(
             "SELECT c.nse_symbol, r.role FROM research_set r JOIN companies c ON c.id = r.company_id"
         ).fetchall()

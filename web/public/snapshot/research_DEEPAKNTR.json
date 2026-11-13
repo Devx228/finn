@@ -1,6 +1,6 @@
 {
  "name": "Deepak Nitrite Limited",
- "as_of": "2026-11-13T13:26:25.798264+05:30",
+ "as_of": "2026-11-13T14:05:54.404781+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/DEEPAKNTR_04112026111452_NSE-concall_transcript.pdf",
@@ -139,6 +139,36 @@
   ]
  },
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
+ "business": {
+  "note": null,
+  "year": "FY26",
+  "basis": "consolidated",
+  "source": {
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1668039_15052026082210_WEB.xml"
+  },
+  "industry": "Chemicals - Organic",
+  "segments": [
+   {
+    "yoy": -7.0,
+    "ebit": 694.6,
+    "name": "Phenolics",
+    "share": 67.9,
+    "margin": 12.9,
+    "revenue": 5400.7
+   },
+   {
+    "yoy": 1.0,
+    "ebit": 107.0,
+    "name": "Advanced Intermediates",
+    "share": 32.1,
+    "margin": 4.2,
+    "revenue": 2553.3
+   }
+  ],
+  "period_end": "2026-03-31",
+  "segment_total": 7954.0,
+  "single_segment": false
+ },
  "guidance": [
   {
    "label": "Operating margin",
@@ -172,6 +202,7 @@
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
+   "run_rate": null,
    "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
    "as_of_quarter": "2026-09-30"

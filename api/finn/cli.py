@@ -230,6 +230,9 @@ def cmd_push(args: argparse.Namespace) -> int:
         now = datetime.now(ZoneInfo("Asia/Kolkata"))
         print("  network      ", network_views.materialise(conn, now))
         print("  alerts       ", alerts.materialise(conn, now))
+        from finn.llm import ledger
+
+        print("  cost ledger  ", ledger.materialise(conn))
         print("  briefs       ", brief.materialise(conn, now))
     return 0
 
@@ -271,6 +274,9 @@ def cmd_research(args: argparse.Namespace) -> int:
                 return 1
             except ValueError as e:
                 print(f"  {sym:<12} skipped: {e}")
+        from finn.llm import ledger
+
+        print("  cost ledger", ledger.materialise(conn))
     return 0
 
 
