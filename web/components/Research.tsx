@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import { FreshnessBadge } from "./FreshnessBadge";
 import { ResearchJobPanel } from "./ResearchJob";
 import { useCallback, useEffect, useState } from "react";
 import { GroupCard, HelpButton, LedgerHead, Legend, Scoreboard } from "@/components/Ledger";
@@ -107,17 +108,27 @@ export function ResearchView() {
       </div>
       {cur === undefined && <p className="text-[14px] text-ink-3">Loading {sym}…</p>}
       {cur === null && <ResearchJobPanel key={sym} sym={sym} onReady={bump} />}
-      {cur && <Body r={cur.data} />}
+      {cur && (
+        <div className="mb-3">
+          <FreshnessBadge source={cur.source} asOf={cur.data.as_of} />
+        </div>
+      )}
+      {cur && <Body r={cur.data} fy={params.get("fy")} />}
     </div>
   );
 }
 
 const FORMAT: Record<string, string> = { nbfc: "NBFC", bank: "Bank", indas: "Company" };
 
-function Body({ r }: { r: Research }) {
+function Body({ r, fy }: { r: Research; fy?: string | null }) {
   const tracks = r.guidance;
   const groups = r.groups ?? [];
-  const firstResolved = groups.find((g) => g.resolved)?.id ?? null;
+  // ?fy=FY27 (from a results card): open that year’s chain first
+  const target = fy ? (groups.find((g) => g.period === fy && g.resolved) ?? groups.find((g) => g.period === fy))?.id : null;
+  const firstResolved = target ?? groups.find((g) => g.resolved)?.id ?? null;
+  useEffect(() => {
+    if (target) requestAnimationFrame(() => document.getElementById(target)?.scrollIntoView({ block: "start" }));
+  }, [target]);
   const [openIds, setOpenIds] = useState<Set<string>>(() => new Set(firstResolved ? [firstResolved] : []));
   const toggle = (id: string) =>
     setOpenIds((s) => {

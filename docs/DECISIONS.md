@@ -703,3 +703,7 @@ worth→buried (a ₹1,000–2,500 cr order is under 1% of L&T's revenue).
 - LICENSE: MIT (owner's choice).
 - Secret scan across the full git history (`scripts/secret_scan_history.py`, patterns for Google,
   Groq, GitHub, Neon, Postgres URLs with passwords, private keys): 0 hits in 45 commits.
+- **Freshness on every tab** (critic): Research and People now show the same "Live / Snapshot · as of"
+  badge as Today (`components/FreshnessBadge.tsx`), so stale snapshot data is never unlabelled.
+- **Results card → Promise Ledger** (critic): a results card's link reads "FY27 promises" and opens
+  `/research?s=SYM&fy=FY27`, which opens and scrolls to that year's chain (resolved first).

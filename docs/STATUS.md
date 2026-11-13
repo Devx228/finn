@@ -39,7 +39,7 @@
 | Balance sheet section | ❌ | half-year balance sheets are in `fin_facts`, not surfaced |
 | Cash quality section | ❌ | annual cash flow in `fin_facts`, not surfaced |
 | Red flags section | ❌ | annual reports linked, not read |
-| Results card linked to the Promise Ledger | ❌ | |
+| Results card linked to the Promise Ledger | ✅ | "FY27 promises" link opens that year's chain · `docs/screens/step3_results_link.png`, `step3_ledger_fy27.png` |
 | Ask bar (tool-calling, typed cards) | ❌ | removed; the command bar (frontend item 2) replaces it |
 | People: expertise map | ✅ | People tab |
 | People: coverage gaps (weight vs depth) | ✅ | holding weight vs contacts inside / one step away · `docs/screens/status_coverage_gaps.png` |
@@ -60,3 +60,4 @@
 | Coverage gaps | ✅ done | `docs/screens/status_coverage_gaps.png` |
 | Second-degree paths on the management-change card | ✅ done (HDFC Bank MD & CEO card → sheet: dossier + 3 paths) | `docs/screens/status_mgmt_change_paths.png`. Several other management-change cards still show the exchange label as headline ("Change in Management"): the fact-line rule covers event categories only |
 | "Who can help?" on every research section | 🟡 partial: Promise ledger only (+ page-end "Who to call") | `docs/screens/status_research_help.png` |
+| Live / Snapshot freshness badge on every tab | ✅ | Today, Research, People · `docs/screens/step4_badge_people.png` |

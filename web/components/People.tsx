@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { FreshnessBadge } from "@/components/FreshnessBadge";
 import { CandidateRow, ContactLine, PersonBlock, Strength, SyntheticTag } from "@/components/Network";
 import { type Loaded, loadWithFallback } from "@/lib/api";
 import { formatWhen } from "@/lib/format";
@@ -35,6 +36,11 @@ export function People() {
       </header>
       {home === null && <p className="text-[14px] text-ink-3">Loading your network…</p>}
       {home === "error" && <p className="text-[14px] text-down">Couldn&apos;t load your network.</p>}
+      {home && home !== "error" && (
+        <div className="mb-3">
+          <FreshnessBadge source={home.source} asOf={home.data.as_of} />
+        </div>
+      )}
       {home && home !== "error" && <Home h={home.data} onPerson={setPerson} />}
       {person !== null && <PersonSheet id={person} onClose={() => setPerson(null)} />}
     </div>

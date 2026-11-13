@@ -231,9 +231,18 @@ function Actions({ it, onWhy }: { it: BriefRow; onWhy: (r: BriefRow) => void }) 
           Filing on NSE
         </a>
       )}
-      <Link href={`/research?s=${encodeURIComponent(it.symbol)}`} className="flex min-h-11 items-center text-ink-2">
-        Research
-      </Link>
+      {(() => {
+        // a results card links to the promises that fall due in its fiscal year
+        const fy = it.card?.period_label.match(/FY\d{2}/)?.[0];
+        return (
+          <Link
+            href={`/research?s=${encodeURIComponent(it.symbol)}${fy ? `&fy=${fy}` : ""}`}
+            className="flex min-h-11 items-center text-ink-2"
+          >
+            {fy ? `${fy} promises` : "Research"}
+          </Link>
+        );
+      })()}
       {it.bundled > 0 && (
         <span className="flex min-h-11 items-center text-ink-3">+{it.bundled} related</span>
       )}
