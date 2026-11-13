@@ -193,3 +193,14 @@ Phone over Wi-Fi: build web with `NEXT_PUBLIC_API_BASE=http://<lan-ip>:8000`, st
 - `scripts/phone_shot.mjs` now logs page errors / failed requests (`SHOT_DEBUG=1` for all URLs).
 - External critic review received; folded into `docs/HANDOFF.md` "Next steps" with an order and
   open decisions. Agent instructions: `CLAUDE.md` (+ `AGENTS.md` pointer).
+
+## Checkpoint 2026-11-14 (midday)
+Done today, all pushed, checks green (85 API / 14 web):
+- Submission package: README (walk-through, screenshots, deliberate cuts), ARCHITECTURE (current
+  ledger rules, live research, limits, tests), 682-word covering note in docs/WRITEUP.md, MIT
+  LICENSE, full-history secret scan (`scripts/secret_scan_history.py`: 0 hits).
+- Event-to-action: Who-can-help sheet shows the promise record + chain link, the investor's last
+  note, a drafted opener (Copy) and Copy questions; keep-warm openers.
+- Results card → "FY27 promises" deep link; Live/Snapshot badge on every tab; Who can help on each
+  research section. Screens: `docs/screens/step2_*.png`, `step3_*.png`, `step4_*.png`, `step5_*.png`.
+Next: `docs/HANDOFF.md` step 6 (compact Research summary), then 7 (command bar, confirm first), 8, 9.

@@ -82,12 +82,20 @@
     "what_theyd_know": "How Reserve Bank of India (RBI) runs general-management up to 2012"
    }
   ],
+  "note": {
+   "date": "2026-02-01",
+   "text": "Open question for me: leadership continuity at the top after the merger integration. Track any MD & CEO succession announcement.",
+   "with": [
+    "Varun Bhatia",
+    "Priyanka Siddiqui"
+   ]
+  },
   "people": [],
   "points": 0,
   "questions": []
  },
  "name": "HDFC Bank Limited",
- "as_of": "2026-11-13T21:49:26.336855+05:30",
+ "as_of": "2026-11-14T04:03:21.863674+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK_23102026224657_SEintimationTranscriptofearningscall17oct2026.pdf",

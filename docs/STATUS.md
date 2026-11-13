@@ -55,9 +55,9 @@
 | Feature | Status | Evidence (390 px screenshot) |
 |---|---|---|
 | Person dossier | ✅ done | `docs/screens/status_person_dossier.png` (People → New faces → Anup Bagchi) |
-| Note resurfacing (my meeting notes shown against a new filing) | ❌ missing | — |
-| Keep-warm nudges with a drafted opener | 🟡 partial: nudge + reason, no opener | `docs/screens/status_keep_warm.png` |
+| Note resurfacing (my meeting notes shown against a new filing) | ✅ done | in the Who-can-help sheet of every card |
+| Keep-warm nudges with a drafted opener | ✅ done (opener from stored facts, Copy) | `docs/screens/step2_keepwarm_opener.png` |
 | Coverage gaps | ✅ done | `docs/screens/status_coverage_gaps.png` |
 | Second-degree paths on the management-change card | ✅ done (HDFC Bank MD & CEO card → sheet: dossier + 3 paths) | `docs/screens/status_mgmt_change_paths.png`. Several other management-change cards still show the exchange label as headline ("Change in Management"): the fact-line rule covers event categories only |
-| "Who can help?" on every research section | 🟡 partial: Promise ledger only (+ page-end "Who to call") | `docs/screens/status_research_help.png` |
+| "Who can help?" on every research section | ✅ done (ledger, business, bull vs bear, financials) | `docs/screens/step5_help_sections.png` |
 | Live / Snapshot freshness badge on every tab | ✅ | Today, Research, People · `docs/screens/step4_badge_people.png` |

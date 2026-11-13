@@ -133,6 +133,12 @@ export interface ItemNetwork {
   call: Candidate[];
   questions: string[];
   points: number;
+  /** the investor’s own last meeting note on this company (synthetic) */
+  note?: { date: string; with: string[]; text: string };
+  /** the company’s Promise Ledger summary, when a reviewed ledger exists */
+  promise?: { pattern: string; line: string | null; title: string | null; href: string };
+  /** a drafted reconnect message built from stored facts only */
+  opener?: { to: string; text: string };
 }
 
 export interface Figure {
@@ -157,6 +163,7 @@ export interface KeepWarm extends Contact {
   event_text: string;
   url: string | null;
   months_cold: number;
+  opener?: string;
 }
 
 export interface ExpertiseRow {

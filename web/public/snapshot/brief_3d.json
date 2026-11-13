@@ -1,6 +1,6 @@
 {
  "now": [],
- "as_of": "2026-11-13T22:25:36.927846+05:30",
+ "as_of": "2026-11-14T04:04:23.872871+05:30",
  "worth": [
   {
    "id": "f418",
@@ -8,7 +8,7 @@
    "card": null,
    "kind": "filing",
    "tier": "worth",
-   "score": 65,
+   "score": 64,
    "symbol": "BAJFINANCE",
    "bundled": 0,
    "company": "Bajaj Finance Limited",
@@ -63,6 +63,10 @@
       "what_theyd_know": "How CREDITACCESS GRAMEEN LIMITED runs IR up to 2019"
      }
     ],
+    "opener": {
+     "to": "Diya Dutta",
+     "text": "Hi Diya, it's been a while since we spoke in March. I was reading Bajaj Finance's filing on 11 Nov: QIP committee approves opening of issue and fixes floor price at Rs 992.25 per share. I'd value 15 minutes of your view on it, given your time at Cholamandalam Investment and Finance. Would this week work?"
+    },
     "people": [],
     "points": 7,
     "questions": [
@@ -93,8 +97,8 @@
      "points": 8
     },
     "staleness": {
-     "why": "53 h old",
-     "points": -7
+     "why": "59 h old",
+     "points": -8
     },
     "user_pref": {
      "why": null,
@@ -152,7 +156,7 @@
        "points": 7
       },
       "staleness": {
-       "why": "55 h old",
+       "why": "61 h old",
        "points": -8
       },
       "user_pref": {
@@ -179,7 +183,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 12,
+     "score": 11,
      "symbol": "MARUTI",
      "bundled": 0,
      "company": "Maruti Suzuki India Limited",
@@ -206,8 +210,8 @@
        "points": 8
       },
       "staleness": {
-       "why": "34 h old",
-       "points": -5
+       "why": "40 h old",
+       "points": -6
       },
       "user_pref": {
        "why": null,
@@ -233,7 +237,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 12,
+     "score": 11,
      "symbol": "HDFCBANK",
      "bundled": 0,
      "company": "HDFC Bank Limited",
@@ -260,8 +264,8 @@
        "points": 9
       },
       "staleness": {
-       "why": "32 h old",
-       "points": -4
+       "why": "38 h old",
+       "points": -5
       },
       "user_pref": {
        "why": null,
@@ -278,110 +282,6 @@
      },
      "filing_ids": [
       363
-     ],
-     "category_label": "Investor meetings"
-    },
-    {
-     "id": "f137",
-     "ts": "2026-11-12T11:23:41+00:00",
-     "card": null,
-     "kind": "filing",
-     "tier": "buried",
-     "score": 11,
-     "symbol": "TATASTEEL",
-     "bundled": 0,
-     "company": "Tata Steel Limited",
-     "network": null,
-     "pdf_url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_12112026165318_BSENSE_Signed.pdf",
-     "category": "investor_meetings",
-     "headline": "Intimation of Schedule of Analyst / Institutional Investor Meeting under the Securities and Exchange Board of India (Listing Obligations and Disclosure Requirem",
-     "sub_type": null,
-     "components": {
-      "base": {
-       "why": "investor / analyst meeting schedule",
-       "points": 6
-      },
-      "network": {
-       "why": "no one in your network is close to this",
-       "points": 0
-      },
-      "magnitude": {
-       "why": null,
-       "points": 0
-      },
-      "portfolio": {
-       "why": "7.5% of portfolio",
-       "points": 9
-      },
-      "staleness": {
-       "why": "30 h old",
-       "points": -4
-      },
-      "user_pref": {
-       "why": null,
-       "points": 0
-      },
-      "price_reaction": {
-       "why": null,
-       "points": 0
-      }
-     },
-     "filing_ids": [
-      137
-     ],
-     "category_label": "Investor meetings"
-    },
-    {
-     "id": "f467",
-     "ts": "2026-11-11T15:25:29+00:00",
-     "card": null,
-     "kind": "filing",
-     "tier": "buried",
-     "score": 10,
-     "symbol": "AUBANK",
-     "bundled": 0,
-     "company": "AU Small Finance Bank Limited",
-     "network": null,
-     "pdf_url": "https://nsearchives.nseindia.com/corporate/AUBANK_11112026205434_Investor_Meet_Intimation.pdf",
-     "category": "investor_meetings",
-     "headline": "Not read yet: Analysts/Institutional Investor Meet/Con. Call Updates",
-     "sub_type": "unread",
-     "components": {
-      "base": {
-       "why": "investor / analyst meeting schedule",
-       "points": 6
-      },
-      "network": {
-       "why": "no one in your network is close to this",
-       "points": 0
-      },
-      "magnitude": {
-       "why": null,
-       "points": 0
-      },
-      "portfolio": {
-       "why": "4.3% of portfolio",
-       "points": 5
-      },
-      "staleness": {
-       "why": "50 h old",
-       "points": -7
-      },
-      "user_pref": {
-       "why": null,
-       "points": 0
-      },
-      "price_reaction": {
-       "why": {
-        "session": "2026-11-12",
-        "volume_multiple": 1.3,
-        "abnormal_return_pct": 2.8
-       },
-       "points": 6
-      }
-     },
-     "filing_ids": [
-      467
      ],
      "category_label": "Investor meetings"
     },
@@ -418,7 +318,7 @@
        "points": 8
       },
       "staleness": {
-       "why": "34 h old",
+       "why": "39 h old",
        "points": -5
       },
       "user_pref": {
@@ -440,12 +340,116 @@
      "category_label": "Investor meetings"
     },
     {
+     "id": "f137",
+     "ts": "2026-11-12T11:23:41+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 10,
+     "symbol": "TATASTEEL",
+     "bundled": 0,
+     "company": "Tata Steel Limited",
+     "network": null,
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_12112026165318_BSENSE_Signed.pdf",
+     "category": "investor_meetings",
+     "headline": "Intimation of Schedule of Analyst / Institutional Investor Meeting under the Securities and Exchange Board of India (Listing Obligations and Disclosure Requirem",
+     "sub_type": null,
+     "components": {
+      "base": {
+       "why": "investor / analyst meeting schedule",
+       "points": 6
+      },
+      "network": {
+       "why": "no one in your network is close to this",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "7.5% of portfolio",
+       "points": 9
+      },
+      "staleness": {
+       "why": "35 h old",
+       "points": -5
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": null,
+       "points": 0
+      }
+     },
+     "filing_ids": [
+      137
+     ],
+     "category_label": "Investor meetings"
+    },
+    {
+     "id": "f467",
+     "ts": "2026-11-11T15:25:29+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 9,
+     "symbol": "AUBANK",
+     "bundled": 0,
+     "company": "AU Small Finance Bank Limited",
+     "network": null,
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/AUBANK_11112026205434_Investor_Meet_Intimation.pdf",
+     "category": "investor_meetings",
+     "headline": "Not read yet: Analysts/Institutional Investor Meet/Con. Call Updates",
+     "sub_type": "unread",
+     "components": {
+      "base": {
+       "why": "investor / analyst meeting schedule",
+       "points": 6
+      },
+      "network": {
+       "why": "no one in your network is close to this",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "4.3% of portfolio",
+       "points": 5
+      },
+      "staleness": {
+       "why": "55 h old",
+       "points": -8
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": {
+        "session": "2026-11-12",
+        "volume_multiple": 1.3,
+        "abnormal_return_pct": 2.8
+       },
+       "points": 6
+      }
+     },
+     "filing_ids": [
+      467
+     ],
+     "category_label": "Investor meetings"
+    },
+    {
      "id": "f242",
      "ts": "2026-11-11T11:38:38+00:00",
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 9,
+     "score": 8,
      "symbol": "ULTRACEMCO",
      "bundled": 0,
      "company": "UltraTech Cement Limited",
@@ -472,8 +476,8 @@
        "points": 9
       },
       "staleness": {
-       "why": "53 h old",
-       "points": -7
+       "why": "59 h old",
+       "points": -8
       },
       "user_pref": {
        "why": null,
@@ -499,7 +503,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 9,
+     "score": 8,
      "symbol": "TITAN",
      "bundled": 0,
      "company": "Titan Company Limited",
@@ -526,8 +530,8 @@
        "points": 7
       },
       "staleness": {
-       "why": "31 h old",
-       "points": -4
+       "why": "37 h old",
+       "points": -5
       },
       "user_pref": {
        "why": null,
@@ -549,7 +553,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 9,
+     "score": 8,
      "symbol": "M&M",
      "bundled": 0,
      "company": "Mahindra & Mahindra Limited",
@@ -576,8 +580,8 @@
        "points": 7
       },
       "staleness": {
-       "why": "29 h old",
-       "points": -4
+       "why": "35 h old",
+       "points": -5
       },
       "user_pref": {
        "why": null,
@@ -599,7 +603,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 8,
+     "score": 7,
      "symbol": "BHARTIARTL",
      "bundled": 0,
      "company": "Bharti Airtel Limited",
@@ -626,8 +630,8 @@
        "points": 7
       },
       "staleness": {
-       "why": "52 h old",
-       "points": -7
+       "why": "58 h old",
+       "points": -8
       },
       "user_pref": {
        "why": null,
@@ -653,7 +657,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 5,
+     "score": 4,
      "symbol": "KPITTECH",
      "bundled": 0,
      "company": "KPIT Technologies Limited",
@@ -680,8 +684,8 @@
        "points": 3
       },
       "staleness": {
-       "why": "30 h old",
-       "points": -4
+       "why": "36 h old",
+       "points": -5
       },
       "user_pref": {
        "why": null,
@@ -703,7 +707,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 5,
+     "score": 4,
      "symbol": "KPITTECH",
      "bundled": 0,
      "company": "KPIT Technologies Limited",
@@ -730,8 +734,8 @@
        "points": 3
       },
       "staleness": {
-       "why": "30 h old",
-       "points": -4
+       "why": "36 h old",
+       "points": -5
       },
       "user_pref": {
        "why": null,
@@ -759,7 +763,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 36,
+     "score": 35,
      "symbol": "M&M",
      "bundled": 0,
      "company": "Mahindra & Mahindra Limited",
@@ -786,8 +790,8 @@
        "points": 7
       },
       "staleness": {
-       "why": "51 h old",
-       "points": -7
+       "why": "57 h old",
+       "points": -8
       },
       "user_pref": {
        "why": null,
@@ -813,7 +817,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 35,
+     "score": 34,
      "symbol": "BHARTIARTL",
      "bundled": 0,
      "company": "Bharti Airtel Limited",
@@ -840,8 +844,8 @@
        "points": 7
       },
       "staleness": {
-       "why": "29 h old",
-       "points": -4
+       "why": "34 h old",
+       "points": -5
       },
       "user_pref": {
        "why": null,
@@ -863,7 +867,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 34,
+     "score": 33,
      "symbol": "TITAN",
      "bundled": 0,
      "company": "Titan Company Limited",
@@ -890,8 +894,8 @@
        "points": 7
       },
       "staleness": {
-       "why": "56 h old",
-       "points": -8
+       "why": "61 h old",
+       "points": -9
       },
       "user_pref": {
        "why": null,
@@ -917,7 +921,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 34,
+     "score": 33,
      "symbol": "PIIND",
      "bundled": 0,
      "company": "PI Industries Limited",
@@ -944,8 +948,8 @@
        "points": 4
       },
       "staleness": {
-       "why": "36 h old",
-       "points": -5
+       "why": "42 h old",
+       "points": -6
       },
       "user_pref": {
        "why": null,
@@ -977,7 +981,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 20,
+     "score": 19,
      "symbol": "HDFCBANK",
      "bundled": 0,
      "company": "HDFC Bank Limited",
@@ -1032,6 +1036,18 @@
         "what_theyd_know": "How State Bank of India runs sales today"
        }
       ],
+      "note": {
+       "date": "2026-02-01",
+       "text": "Open question for me: leadership continuity at the top after the merger integration. Track any MD & CEO succession announcement.",
+       "with": [
+        "Varun Bhatia",
+        "Priyanka Siddiqui"
+       ]
+      },
+      "opener": {
+       "to": "Nikhil Gill",
+       "text": "Hi Nikhil, it's been a while since we spoke in July. I was reading HDFC Bank's filing on 12 Nov: RBI approves re-appointment of V. Srinivasa Rangan as Executive Director for one year from November 23, 2026. I'd value 15 minutes of your view on it, given your time at ICICI Bank. Would this week work?"
+      },
       "people": [],
       "points": 5,
       "questions": [
@@ -1062,8 +1078,8 @@
        "points": 9
       },
       "staleness": {
-       "why": "29 h old",
-       "points": -4
+       "why": "35 h old",
+       "points": -5
       },
       "user_pref": {
        "why": null,
@@ -1091,7 +1107,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 15,
+     "score": 14,
      "symbol": "M&M",
      "bundled": 0,
      "company": "Mahindra & Mahindra Limited",
@@ -1118,8 +1134,8 @@
        "points": 7
       },
       "staleness": {
-       "why": "29 h old",
-       "points": -4
+       "why": "35 h old",
+       "points": -5
       },
       "user_pref": {
        "why": null,

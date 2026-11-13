@@ -200,12 +200,18 @@ function Body({ r, fy }: { r: Research; fy?: string | null }) {
 
       {r.business && (
         <div id="business" className="scroll-mt-4">
+          <div className="mb-1 flex justify-end">
+            <HelpButton help={r.help} company={r.name} />
+          </div>
           <BusinessSnapshot b={r.business} />
         </div>
       )}
 
       {(r.signals.bull.length > 0 || r.signals.bear.length > 0) && (
         <section id="signals" className="scroll-mt-4">
+          <div className="mb-1 flex justify-end">
+            <HelpButton help={r.help} company={r.name} />
+          </div>
           <h2 className={H}>Bull vs bear — from the numbers</h2>
           <div className="grid grid-cols-2 gap-2">
             <Case title="Bull" items={r.signals.bull} cls="text-up" />
@@ -215,6 +221,9 @@ function Body({ r, fy }: { r: Research; fy?: string | null }) {
       )}
 
       <div id="financials" className="scroll-mt-4">
+          <div className="mb-1 flex justify-end">
+            <HelpButton help={r.help} company={r.name} />
+          </div>
         <Trajectory qs={r.quarters} format={r.format} />
       </div>
 

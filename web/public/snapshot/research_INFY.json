@@ -82,12 +82,20 @@
     "what_theyd_know": "How Wipro runs treasury-credit up to 2012"
    }
   ],
+  "note": {
+   "date": "2026-06-01",
+   "text": "Question to track: CEO transition planning, and whether guidance bands narrow.",
+   "with": [
+    "Riya Kamath",
+    "Saanvi Nair"
+   ]
+  },
   "people": [],
   "points": 0,
   "questions": []
  },
  "name": "Infosys Limited",
- "as_of": "2026-11-13T21:49:16.860034+05:30",
+ "as_of": "2026-11-14T04:03:15.691815+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173824_SE_filing_Earnings_call_transcript.pdf",

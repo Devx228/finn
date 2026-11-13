@@ -272,7 +272,9 @@ def attach_network(conn: Connection, items: list[Item]) -> None:
         conn.rollback()
         return
     for it in items:
-        it.network = net.for_item(it.symbol, it.category, it.filing_ids, it.name)
+        it.network = net.for_item(
+            it.symbol, it.category, it.filing_ids, it.name, fact=it.headline, when=f"{it.ts:%d %b}"
+        )
 
 
 def score(conn: Connection, items: list[Item], now: datetime, window_h: int) -> None:

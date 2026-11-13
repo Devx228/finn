@@ -1,14 +1,14 @@
 {
  "note": "Free tiers (Gemini, Groq) and a local model (Ollama): actual cost is zero. Paid-rate equivalents use each provider's published price, verified on the date shown.",
- "as_of": "2026-11-13T22:25:37.725689+05:30",
+ "as_of": "2026-11-14T04:04:24.405234+05:30",
  "totals": {
-  "cache_hits": 1290,
-  "model_calls": 1803,
+  "cache_hits": 1355,
+  "model_calls": 1868,
   "input_tokens": 497708,
   "output_tokens": 150081,
-  "cache_hit_rate": 71.5,
+  "cache_hit_rate": 72.5,
   "list_price_usd": 0.1371,
-  "unpriced_calls": 1382,
+  "unpriced_calls": 1447,
   "actual_cost_inr": 0
  },
  "filings": {
@@ -18,11 +18,11 @@
  },
  "by_model": [
   {
-   "calls": 1295,
+   "calls": 1360,
    "model": "gemini-3.5-flash-lite",
    "failed": 30,
    "provider": "gemini",
-   "cache_hits": 1111,
+   "cache_hits": 1176,
    "input_tokens": 186136,
    "priced_calls": 86,
    "output_tokens": 62331,
@@ -116,9 +116,9 @@
  ],
  "by_purpose": [
   {
-   "calls": 1465,
+   "calls": 1510,
    "purpose": "extract_guidance",
-   "cache_hits": 1226
+   "cache_hits": 1271
   },
   {
    "calls": 110,
@@ -126,24 +126,24 @@
    "cache_hits": 0
   },
   {
+   "calls": 66,
+   "purpose": "fact_line",
+   "cache_hits": 26
+  },
+  {
    "calls": 59,
    "purpose": "eval_classify",
    "cache_hits": 11
   },
   {
-   "calls": 58,
-   "purpose": "fact_line",
-   "cache_hits": 18
-  },
-  {
-   "calls": 43,
+   "calls": 49,
    "purpose": "about_pick",
-   "cache_hits": 18
+   "cache_hits": 24
   },
   {
-   "calls": 37,
+   "calls": 39,
    "purpose": "mgmt_line",
-   "cache_hits": 16
+   "cache_hits": 18
   },
   {
    "calls": 18,
@@ -151,9 +151,9 @@
    "cache_hits": 0
   },
   {
-   "calls": 11,
+   "calls": 15,
    "purpose": "label_line",
-   "cache_hits": 0
+   "cache_hits": 4
   },
   {
    "calls": 2,

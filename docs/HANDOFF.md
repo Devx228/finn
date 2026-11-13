@@ -29,6 +29,12 @@
 
 ## Next steps (owner's list, with the external critic's review of 14 Nov folded in)
 
+**Done on 14 Nov:** 1 (submission package), 2 (event-to-action in the Who-can-help sheet + keep-warm
+opener), 3 (results → ledger deep link), 4 (freshness badge), 5 (Who can help on each research
+section). **Start at 6.** Small follow-ups seen in screenshots: CreditAccess's business snapshot says
+"single segment" twice; on cards the first person to call can be a current employee (Research's
+sheet ranks former employees first; the card sheet uses the raw ranking).
+
 The critic's verdict: strong technically (architecture 9/10, trust 9/10), weaker on submission
 readiness (6/10), mobile density (7/10) and network actionability (6.5/10). Its most urgent point:
 **the submission documents contradict the finished app**. With the deadline on 15 Nov, the

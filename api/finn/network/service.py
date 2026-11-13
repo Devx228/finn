@@ -134,6 +134,14 @@ def _career_json(p: Person) -> list[dict]:
     ]
 
 
+def _worked_at(why: str) -> str | None:
+    """'worked at peer Hindustan Unilever as CHRO (2018–now); …' → 'Hindustan Unilever'."""
+    import re
+
+    m = re.match(r"worked at (?:peer )?(.+?) as ", why)
+    return m.group(1).replace(" Limited", "") if m else None
+
+
 GENERIC_ORG_WORDS = {
     "limited",
     "ltd",
@@ -278,6 +286,31 @@ class Net:
             self.mentions[pid].append(m)
             self.filing_people[fid].append(m)
         clean_public_careers(conn, self.people, self.mentions)
+        # the investor's own meeting notes (synthetic, labelled), newest first, per company symbol
+        self.notes: dict[str, list[dict]] = defaultdict(list)
+        for day, sym, pids, notes, tags in conn.execute(
+            "SELECT m.date, c.nse_symbol, m.person_ids, m.notes, m.tags FROM meetings m "
+            "JOIN companies c ON c.id = m.company_id ORDER BY m.date DESC"
+        ).fetchall():
+            self.notes[sym].append(
+                {"date": day, "person_ids": list(pids or []), "notes": notes, "tags": tags}
+            )
+        # the Promise Ledger's own summary line per researched company (only reviewed ledgers)
+        self.promises: dict[str, dict] = {}
+        for _key, body in conn.execute(
+            "SELECT key, body FROM views WHERE key LIKE 'research:%%' AND key <> 'research:index'"
+        ).fetchall():
+            ledger = body.get("ledger") or {}
+            groups = [g for g in body.get("groups") or [] if g.get("resolved")]
+            if not ledger.get("pattern") or not (body.get("provenance") or {}).get("reviewed"):
+                continue
+            g = groups[0] if groups else None
+            self.promises[body["symbol"]] = {
+                "pattern": ledger["pattern"],
+                "line": (g["verdicts"][0]["line"] if g and g.get("verdicts") else None),
+                "title": g["title"] if g else None,
+                "href": f"/research?s={body['symbol']}" + (f"&fy={g['period']}" if g else ""),
+            }
         inv = syn.investor()
         self.you = [(o, s, e) for o, _, s, e in inv["employers"]]
         self.you_edu = [(i, d, ey) for i, d, _, ey in inv["alma_maters"]]
@@ -358,7 +391,58 @@ class Net:
         }
 
     # ---- for a brief item ------------------------------------------------------------------
-    def for_item(self, symbol: str, category: str, filing_ids: list[int], company: str) -> dict | None:
+    def last_note(self, symbol: str, people: list[int] | None = None) -> dict | None:
+        """The investor's most recent meeting note on this company; one with any of `people`
+        present wins. Date, who was there and the note itself, exactly as stored."""
+        notes = self.notes.get(symbol) or []
+        if not notes:
+            return None
+        pick = next((n for n in notes if people and set(n["person_ids"]) & set(people)), notes[0])
+        names = [self.people[i].name for i in pick["person_ids"] if i in self.people]
+        return {"date": pick["date"].isoformat(), "with": names, "text": pick["notes"]}
+
+    def opener(
+        self,
+        contact: dict,
+        company: str,
+        fact: str | None,
+        when: str | None,
+        current: bool,
+        where: str | None = None,
+    ) -> str:
+        """A reconnect message assembled from stored facts only: their name, when you last spoke,
+        the filing (its own one-line fact and date). Current employees get a public-only note."""
+        first = contact["name"].split()[0]
+        last = contact.get("last_contact")
+        since = f" since we spoke in {date.fromisoformat(last):%B}" if last else ""
+        co = company.replace(" Limited", "")
+        if fact and len(fact) > 140:  # end on a word, never mid-number
+            fact = fact[:140].rsplit(" ", 1)[0].rstrip(",;:") + "…"
+        about = (
+            f"{co}'s filing{f' on {when}' if when else ''}: {fact.rstrip('.')}"
+            + ("" if fact.endswith("…") else ".")
+            if fact
+            else f"{co}'s latest filing."
+        )
+        # only say why they'd know what the record says: where they actually worked
+        ask = (
+            "I'd value 15 minutes on how the industry sees it, only what's public of course."
+            if current
+            else f"I'd value 15 minutes of your view on it, given your time at {where}."
+            if where
+            else "I'd value 15 minutes of your view on it."
+        )
+        return f"Hi {first}, it's been a while{since}. I was reading {about} {ask} Would this week work?"
+
+    def for_item(
+        self,
+        symbol: str,
+        category: str,
+        filing_ids: list[int],
+        company: str,
+        fact: str | None = None,
+        when: str | None = None,
+    ) -> dict | None:
         if category not in MATERIAL:
             return None
         named = []
@@ -389,7 +473,20 @@ class Net:
             points = max(points, round(10 * min(1.0, best["rank"])))
         if any(v["you"] for v in named):
             points = max(points, 8)
-        return {"people": named[:3], "call": call, "questions": qs, "points": points}
+        out = {"people": named[:3], "call": call, "questions": qs, "points": points}
+        note = self.last_note(symbol, [c["id"] for c in call])
+        if note:
+            out["note"] = note
+        if symbol in self.promises:
+            out["promise"] = self.promises[symbol]
+        if best:
+            out["opener"] = {
+                "to": best["name"],
+                "text": self.opener(
+                    best, company, fact, when, bool(best.get("compliance")), _worked_at(best.get("why", ""))
+                ),
+            }
+        return out
 
     # ---- the People tab ---------------------------------------------------------------------
     def expertise(self) -> list[dict]:
@@ -457,6 +554,14 @@ class Net:
                             "event_text": clean_subject(subj)[:140],
                             "url": url,
                             "months_cold": (TODAY - c.last_contact).days // 30,
+                            "opener": self.opener(
+                                _contact_json(c),
+                                self.org_name.get(e.org_id, e.org),
+                                clean_subject(subj),
+                                f"{ts:%d %b}",
+                                e.end is None,
+                                e.org.replace(" Limited", ""),
+                            ),
                         }
                     )
                     break

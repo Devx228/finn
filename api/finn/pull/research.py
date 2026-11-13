@@ -1159,6 +1159,9 @@ def materialise(
             "questions": ledger_questions(body["guidance"]),
             "points": 0,
         }
+        note = net.last_note(symbol, [c["id"] for c in cands[:5]])
+        if note:
+            body["help"]["note"] = note  # the investor's own last meeting note on this company
     except Exception:
         conn.rollback()
         body["network"] = []

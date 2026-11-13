@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { CopyButton } from "@/components/ActionBlock";
 import { FreshnessBadge } from "@/components/FreshnessBadge";
 import { CandidateRow, ContactLine, PersonBlock, Strength, SyntheticTag } from "@/components/Network";
 import { type Loaded, loadWithFallback } from "@/lib/api";
@@ -87,6 +88,15 @@ function Home({ h, onPerson }: { h: NetworkHome; onPerson: (id: number) => void 
                 <p className="mt-0.5 text-[12px] text-ink-3">
                   {k.headline} · {k.how_known}
                 </p>
+                {k.opener && (
+                  <details className="mt-1">
+                    <summary className="min-h-9 cursor-pointer text-[13px] text-accent">Drafted opener</summary>
+                    <p className="mt-1 rounded-md bg-bg px-3 py-2 text-[13px] leading-snug">{k.opener}</p>
+                    <div className="mt-2">
+                      <CopyButton text={k.opener} label="Copy opener" />
+                    </div>
+                  </details>
+                )}
               </li>
             ))}
           </ul>

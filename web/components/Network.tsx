@@ -1,6 +1,7 @@
 "use client";
 
 import type { Candidate, Contact, ItemNetwork, PathView, PersonView } from "@/lib/types";
+import { ActionBlock } from "@/components/ActionBlock";
 
 const DOTS: Record<string, number> = { strong: 3, medium: 2, weak: 1 };
 
@@ -209,6 +210,7 @@ export function NetworkSheet({
             Close
           </button>
         </div>
+        <ActionBlock net={net} />
         {net.people.length > 0 && (
           <div className="space-y-5 border-b border-line pb-4">
             {net.people.slice(0, 2).map((p) => (

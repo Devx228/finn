@@ -707,3 +707,13 @@ worth→buried (a ₹1,000–2,500 cr order is under 1% of L&T's revenue).
   badge as Today (`components/FreshnessBadge.tsx`), so stale snapshot data is never unlabelled.
 - **Results card → Promise Ledger** (critic): a results card's link reads "FY27 promises" and opens
   `/research?s=SYM&fy=FY27`, which opens and scrolls to that year's chain (resolved first).
+- **Event to action** (critic's "one feature to win"; owner item 4): every card's "Who can help?"
+  sheet now opens with the company's Promise-Ledger line (reviewed ledgers only) and a link to the
+  chain, the investor's own last meeting note on the company (synthetic, labelled, with date and
+  who was there), and a drafted opener to the first person to call, with Copy opener and Copy
+  questions. The opener is assembled from stored facts only (their name, when you last spoke, the
+  filing's own one-line fact and date, where they actually worked); to a current employee it asks
+  only for "what's public". Keep-warm nudges carry the same drafted opener. (`components/ActionBlock.tsx`,
+  `network/service.py` `last_note` / `opener`, `for_item(fact=, when=)`.)
+- **"Who can help?" on each research section** (owner item 4): Business, Bull vs bear and Financials
+  carry the same button as the Promise ledger.
