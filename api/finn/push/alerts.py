@@ -76,15 +76,24 @@ def inputs(conn: Connection, now: datetime) -> dict:
     }
 
 
+# Administrative filings that tell the market nothing new about the business. Everything else the
+# classifier put in an event category counts as a disclosure whatever its score: the score ranks
+# the brief, but "moved with no disclosure" is a factual claim, so it errs towards "there was one".
+# (A closure-of-operations filing scored 34 once and was wrongly ignored by a score cut-off.)
+ADMIN_CATEGORIES = ("unclassified", "investor_meetings", "earnings_call", "agm_egm", "postal_ballot")
+
+
 def _disclosures(conn: Connection, ids: list[int], now: datetime) -> dict[str, list[str]]:
-    """Dates of *material* filings per holding (any category, same materiality cut as the alert
-    feed). Routine notices (trading window, newspaper copies) don't explain a price move."""
+    """Dates of disclosures per holding: any event-category filing, or any filing scored at the
+    alert feed's materiality cut. Routine notices (trading window, newspaper copies, call
+    intimations) don't explain a price move."""
     out: dict[str, list[str]] = {}
     for sym, d in conn.execute(
         "SELECT DISTINCT c.nse_symbol, (f.ts_ist AT TIME ZONE 'Asia/Kolkata')::date FROM filings f "
         "JOIN filing_class k ON k.filing_id = f.id JOIN companies c ON c.id = f.company_id "
-        "WHERE f.company_id = ANY(%s) AND f.ts_ist >= %s::date - 140 AND coalesce(k.base, 0) >= 40",
-        (ids, now.date()),
+        "WHERE f.company_id = ANY(%s) AND f.ts_ist >= %s::date - 140 AND f.dup_of IS NULL "
+        "AND (coalesce(k.base, 0) >= 40 OR k.category <> ALL(%s))",
+        (ids, now.date(), list(ADMIN_CATEGORIES)),
     ).fetchall():
         out.setdefault(sym, []).append(str(d))
     return out

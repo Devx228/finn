@@ -38,6 +38,8 @@ export function CostView() {
         />
       </section>
 
+      {c.paid_rates && <PaidRates p={c.paid_rates} cacheHits={t.cache_hits} />}
+
       <section>
         <h2 className={H}>By model</h2>
         <div className="overflow-x-auto rounded-lg border border-line bg-surface">
@@ -89,7 +91,6 @@ export function CostView() {
         <p>{c.note}</p>
         <p className="mt-1">
           Transcripts read: {Object.entries(c.documents_read).map(([k, v]) => `${v} from ${k}`).join(" · ")}.
-          {t.unpriced_calls > 0 && ` ${n(t.unpriced_calls)} hosted calls have no verified list price, so none is shown.`}
         </p>
         <p className="mt-1">As of {new Date(c.as_of).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })}.</p>
       </section>
@@ -104,5 +105,37 @@ function Stat({ label, value, sub }: { label: string; value: string; sub: string
       <p className="text-[20px] font-semibold tabular-nums">{value}</p>
       <p className="text-[11px] text-ink-3">{sub}</p>
     </div>
+  );
+}
+
+const usd = (x: number) => `$${x < 1 ? x.toFixed(3) : x.toFixed(2)}`;
+
+function PaidRates({ p, cacheHits }: { p: NonNullable<CostSummary["paid_rates"]>; cacheHits: number }) {
+  const ref = p.reference_model.split(":")[1];
+  return (
+    <section>
+      <h2 className={H}>At paid rates</h2>
+      <div className="rounded-lg border border-line bg-surface px-3 py-2 text-[13px]">
+        <div className="flex justify-between py-1">
+          <span>Hosted calls actually made</span>
+          <span className="tabular-nums">{usd(p.hosted_calls_usd)}</span>
+        </div>
+        <div className="flex justify-between py-1">
+          <span>Local-model work, if sent to {ref}</span>
+          <span className="tabular-nums">{usd(p.local_calls_if_hosted_usd)}</span>
+        </div>
+        <div className="flex justify-between border-t border-line py-1 font-semibold">
+          <span>Paid-rate equivalent</span>
+          <span className="tabular-nums">{usd(p.hosted_calls_usd + p.local_calls_if_hosted_usd)}</span>
+        </div>
+        <p className="mt-1 text-[11px] leading-snug text-ink-3">
+          {n(cacheHits)} answers came from the cache and spent no tokens. {p.note} Prices per 1M tokens (in / out):{" "}
+          {Object.entries(p.prices_per_m)
+            .map(([k, [i, o]]) => `${k.split(":")[1]} $${i} / $${o}`)
+            .join(" · ")}
+          . Sources: {Object.values(p.sources).join("; ")}, checked {p.verified}.
+        </p>
+      </div>
+    </section>
   );
 }

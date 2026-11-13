@@ -51,6 +51,21 @@ def summary(conn: Connection) -> dict:
     docs: dict[str, int] = dict(
         conn.execute("SELECT source, count(*) FROM documents WHERE pages IS NOT NULL GROUP BY 1").fetchall()
     )
+    # Paid-rate comparison, computed from logged tokens and verified prices only.
+    from finn.llm.store import LIST_PRICE_PER_M, PRICE_SOURCES, PRICES_VERIFIED
+
+    ref_key = ("gemini", "gemini-3.5-flash-lite")  # the default extraction model
+    ref = LIST_PRICE_PER_M[ref_key]
+    hosted_usd = 0.0
+    local_tokens = [0, 0]
+    for x in by_model:
+        price = LIST_PRICE_PER_M.get((x["provider"], x["model"]))
+        if price:
+            hosted_usd += (x["input_tokens"] * price[0] + x["output_tokens"] * price[1]) / 1e6
+        elif x["provider"] == "ollama":
+            local_tokens[0] += x["input_tokens"]
+            local_tokens[1] += x["output_tokens"]
+    local_as_ref = (local_tokens[0] * ref[0] + local_tokens[1] * ref[1]) / 1e6
     calls = sum(x["calls"] for x in by_model)
     hits = sum(x["cache_hits"] for x in by_model)
     return {
@@ -65,6 +80,17 @@ def summary(conn: Connection) -> dict:
             "list_price_usd": round(sum(x["list_price_usd"] or 0 for x in by_model), 4),
             "unpriced_calls": sum(x["calls"] - x["priced_calls"] for x in by_model),
         },
+        "paid_rates": {
+            "hosted_calls_usd": round(hosted_usd, 4),
+            "local_calls_if_hosted_usd": round(local_as_ref, 4),
+            "local_tokens": {"input": local_tokens[0], "output": local_tokens[1]},
+            "reference_model": f"{ref_key[0]}:{ref_key[1]}",
+            "prices_per_m": {f"{p}:{m}": list(v) for (p, m), v in LIST_PRICE_PER_M.items()},
+            "sources": PRICE_SOURCES,
+            "verified": PRICES_VERIFIED,
+            "note": "Cache hits spend no tokens, so they cost nothing at any rate; failed calls "
+            "logged no tokens and are not priced.",
+        },
         "filings": {
             "total": filings,
             "by_rules": int(decided.get("rules", 0)),
@@ -74,9 +100,8 @@ def summary(conn: Connection) -> dict:
         "by_model": by_model,
         "by_purpose": by_purpose,
         "note": (
-            "Free tiers (Gemini, Groq) and a local model (Ollama): actual cost is zero. List-price "
-            "equivalents appear only for models whose paid price is verified; others are counted, "
-            "not estimated."
+            "Free tiers (Gemini, Groq) and a local model (Ollama): actual cost is zero. Paid-rate "
+            "equivalents use each provider's published price, verified on the date shown."
         ),
     }
 

@@ -11,7 +11,19 @@ from finn import db
 # USD per 1M tokens (input, output) at the provider's PAID list price, so the ledger shows
 # what the free usage would have cost. Filled from provider pricing pages when verified;
 # unknown models log NULL rather than a guess. Local models cost nothing.
-LIST_PRICE_PER_M: dict[tuple[str, str], tuple[float, float]] = {}
+# Verified 2026-11-13 (DECISIONS.md): Gemini from aistudio.google.com/docs/pricing (paid tier,
+# Standard, text input; output includes thinking tokens); Groq from console.groq.com/docs/models.
+LIST_PRICE_PER_M: dict[tuple[str, str], tuple[float, float]] = {
+    ("gemini", "gemini-3.5-flash-lite"): (0.30, 2.50),
+    ("gemini", "gemini-3-flash-preview"): (0.50, 3.00),
+    ("groq", "openai/gpt-oss-120b"): (0.15, 0.60),
+    ("groq", "qwen/qwen3.8-27b"): (0.80, 4.00),
+}
+PRICE_SOURCES = {
+    "gemini": "aistudio.google.com/docs/pricing (paid tier, standard)",
+    "groq": "console.groq.com/docs/models",
+}
+PRICES_VERIFIED = "2026-11-13"
 
 
 def list_price(provider: str | None, model: str | None, tin: int | None, tout: int | None):

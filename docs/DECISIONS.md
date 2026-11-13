@@ -571,3 +571,35 @@ share one fixture and four identical tests.
   directory materialised into `network:home` (each contact's employers with years, titles, org
   themes, mapped NSE symbols). Every query word must match; ranked by where it matched (current
   employer > past employer = symbol > theme > title > name) then warmth. Tested.
+
+## 2026-11-13 (evening) — NSE diagnosis, live research jobs, disclosure fix, verified prices
+- **NSE refusal was the campus address.** One request to the exact URL refused on campus Wi-Fi
+  (Infosys Q2 transcript), same client and headers, from a phone hotspot: HTTP 200,
+  `application/pdf`, 611,615 bytes. The `SOURCE_REFUSED.json` marker stays until the owner deletes
+  it (the agent was not permitted to move it, correctly); the laptop stays stopped until then.
+  Direct Postgres to Neon also works on the hotspot, so the HTTPS mirror is no longer needed there.
+- **Live research job queue** (`finn/jobs.py`, migration 0007, `.github/workflows/research.yml`).
+  App → `POST /api/research/jobs` → validated against the NSE master in `companies` → cached report
+  returned if it exists → one active job per symbol (unique partial index; a second request joins)
+  → 3 new tickers/hour and 6/day per client (salted hash of the IP, never stored raw), 20/day total
+  → at most 2 running. Runner: the laptop worker (`finn worker`, heartbeat every 15–30 s) if seen in
+  the last 90 s, else the API dispatches one GitHub Actions run for that job id; the run only claims
+  the job row, so the dispatch input can't name a ticker or command. Runner start-up is shown as
+  measured (dispatch → claim, median and max over past runs), never a promised number; a run that
+  hasn't started in 10 min or stops reporting for 12 min is failed with the reason. A refusal from
+  NSE is written to `source_blocks` (origin `github`) permanently: FINN then never sends work there
+  and the app says a new ticker can't be fetched until the laptop is online.
+- **"Moved with no disclosure" was wrong twice for CG Power.** The owner asked to see the filing
+  timestamps beside the price dates: CG Power filed a closure-of-operations disclosure (litigation)
+  at 12:35 on 5 Nov, inside the session, but the classifier scored it 34 and the rule only counted
+  filings scored ≥ 40. The rule now counts every event-category filing whatever its score (only
+  administrative categories — unclassified, investor meetings, call intimations, AGM/EGM, postal
+  ballot — are excluded unless scored ≥ 40): the claim is factual, so it errs towards "there was a
+  disclosure". Result: one no-disclosure alert in 30 days (CG Power, 15 Oct, −5.2%, −6.9% vs NIFTY;
+  no filing on 13–15 Oct before the close; an ESOP allotment came at 16:24, after it).
+- **Paid list prices verified** from the providers' own pages (2026-11-13): Gemini 3.5 Flash-Lite
+  $0.30/$2.50 and Gemini 3 Flash Preview $0.50/$3.00 per 1M in/out (aistudio.google.com/docs/
+  pricing, paid tier, standard); Groq gpt-oss-120b $0.15/$0.60 and qwen3.8-27b $0.80/$4.00
+  (console.groq.com/docs/models). The ledger shows hosted calls at those rates ($0.10) and the local
+  model's tokens priced as Gemini 3.5 Flash-Lite ($0.25); cache hits spent no tokens. Shown in USD:
+  no exchange rate is verified, so none is applied.

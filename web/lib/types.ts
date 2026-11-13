@@ -283,6 +283,16 @@ export interface CostSummary {
     list_price_usd: number;
     unpriced_calls: number;
   };
+  paid_rates?: {
+    hosted_calls_usd: number;
+    local_calls_if_hosted_usd: number;
+    local_tokens: { input: number; output: number };
+    reference_model: string;
+    prices_per_m: Record<string, [number, number]>;
+    sources: Record<string, string>;
+    verified: string;
+    note: string;
+  };
   filings: { total: number; by_rules: number; by_model: number };
   documents_read: Record<string, number>;
   by_model: {
