@@ -45,4 +45,5 @@ jobs:
       - name: Run the job
         run: |
           case "$JOB_ID" in ''|*[!0-9]*) echo "job_id must be a number"; exit 1;; esac
+          if [ -z "$DATABASE_URL" ]; then echo "DATABASE_URL secret is empty: the job can't be claimed or reported"; exit 1; fi
           finn worker --job "$JOB_ID"

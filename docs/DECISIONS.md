@@ -603,3 +603,9 @@ share one fixture and four identical tests.
   (console.groq.com/docs/models). The ledger shows hosted calls at those rates ($0.10) and the local
   model's tokens priced as Gemini 3.5 Flash-Lite ($0.25); cache hits spent no tokens. Shown in USD:
   no exchange rate is verified, so none is applied.
+- **NSE stop file cleared by the owner (2026-11-13).** Reason: the refusal on 12 Nov came from the
+  campus Wi-Fi address; the same URL with the same client loaded from a phone hotspot (HTTP 200,
+  PDF). NSE may resume **from the laptop on the hotspot only**, under the same rules (one request at
+  a time, ≥ 1.2 s apart, cached, permanent stop on any refusal). Check before any laptop NSE run:
+  Neon's Postgres port must be reachable directly, the sign that the laptop is on the hotspot and
+  not campus Wi-Fi (which blocks 5432); if it isn't, don't fetch.
