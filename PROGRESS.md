@@ -131,12 +131,12 @@ Phone over Wi-Fi: build web with `NEXT_PUBLIC_API_BASE=http://<lan-ip>:8000`, st
   3. Business snapshot leads with facts (segment mix); HDFC Bank's product sentence dropped.
 - STATUS.md updated with network-feature status + screenshots in `docs/screens/status_*.png`.
 
-### Done locally, NOT yet committed (commit first when resuming)
+### Also done (committed in 8acc52d at this checkpoint)
 - Grounding check: every model-written one-line must have its periods/numbers in the filing text
   (or subject when no text): `severity.grounded`, `pipeline.ground_check_stage` (wired into
   `finn push`), test in `api/tests/test_severity.py`. Found by the screenshot review: Persistent
   cards said "Q3" for Q2 filings. Already pushed to Neon (filing_class + brief/alerts/network views)
-  and exported to the snapshot; only the code commit is missing.
+  and exported to the snapshot.
 - `scripts/phone_shot.mjs`: linear-time text lookup (was quadratic and hung on the 30-day page).
 - `docs/screens/before/`: the pre-design-pass screenshot set (10 screens × dark/light) was being
   re-taken when paused; contact sheets `_sheet_dark.png`, `_sheet_light.png`. Check all 20 exist;
