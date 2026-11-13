@@ -1,6 +1,95 @@
 {
+ "help": {
+  "call": [
+   {
+    "id": 58,
+    "why": "worked at peer ACC as Chief Technology Officer (2020–now); met-as-management, last spoke Jun 2026, 5 interactions in 24 months",
+    "name": "Ananya Mistry",
+    "rank": 0.737,
+    "warmth": 0.69,
+    "headline": "Chief Technology Officer, ACC",
+    "how_known": "met-as-management",
+    "relevance": 0.77,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "met-as-management, last spoke Jun 2026, 5 interactions in 24 months",
+    "last_contact": "2026-06-13",
+    "warmth_label": "strong",
+    "what_theyd_know": "How ACC runs R&D-technical today"
+   },
+   {
+    "id": 69,
+    "why": "worked at peer UltraTech Cement Limited as VP Sales (2010–now); industry-friend, last spoke Sep 2026, 1 interactions in 24 months",
+    "name": "Imran Saxena",
+    "rank": 0.686,
+    "warmth": 0.78,
+    "headline": "VP Sales, UltraTech Cement Limited",
+    "how_known": "industry-friend",
+    "relevance": 0.63,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "industry-friend, last spoke Sep 2026, 1 interactions in 24 months",
+    "last_contact": "2026-09-04",
+    "warmth_label": "strong",
+    "what_theyd_know": "How UltraTech Cement Limited runs sales today"
+   },
+   {
+    "id": 25,
+    "why": "worked at peer Ambuja Cements as Head of Credit Risk (2012–now); classmate, last spoke Jun 2026, 10 interactions in 24 months",
+    "name": "Suresh Nair",
+    "rank": 0.653,
+    "warmth": 0.69,
+    "headline": "Head of Credit Risk, Ambuja Cements",
+    "how_known": "classmate",
+    "relevance": 0.63,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "classmate, last spoke Jun 2026, 10 interactions in 24 months",
+    "last_contact": "2026-06-26",
+    "warmth_label": "strong",
+    "what_theyd_know": "How Ambuja Cements runs treasury-credit today"
+   },
+   {
+    "id": 80,
+    "why": "worked at peer Siemens India as Treasurer (2013–now); classmate, last spoke Nov 2025, 0 interactions in 24 months",
+    "name": "Sneha Varma",
+    "rank": 0.565,
+    "warmth": 0.41,
+    "headline": "Treasurer, Siemens India",
+    "how_known": "classmate",
+    "relevance": 0.7,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "classmate, last spoke Nov 2025, 0 interactions in 24 months",
+    "last_contact": "2025-11-10",
+    "warmth_label": "medium",
+    "what_theyd_know": "How Siemens India runs treasury-credit today"
+   },
+   {
+    "id": 36,
+    "why": "worked at peer ACC as HR Business Partner (2013–2016); industry-friend, last spoke Dec 2024, 0 interactions in 24 months",
+    "name": "Aditya Kamath",
+    "rank": 0.13,
+    "warmth": 0.24,
+    "headline": "HR Business Partner, ACC",
+    "how_known": "industry-friend",
+    "relevance": 0.09,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "industry-friend, last spoke Dec 2024, 0 interactions in 24 months",
+    "last_contact": "2024-12-21",
+    "warmth_label": "weak",
+    "what_theyd_know": "How ACC runs HR up to 2016"
+   }
+  ],
+  "people": [],
+  "points": 0,
+  "questions": [
+   "FY26 revenue growth came in at 12.0% against 15% guided. What was misjudged?"
+  ]
+ },
  "name": "Larsen & Toubro Limited",
- "as_of": "2026-11-13T18:00:31.748619+05:30",
+ "as_of": "2026-11-13T19:09:52.741529+05:30",
  "calls": [
   {
    "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q2FY27%20Earnings%20Call%20Transcript.pdf",
@@ -97,10 +186,254 @@
   }
  ],
  "format": "indas",
+ "groups": [
+  {
+   "id": "fy26-revenue-growth",
+   "steps": [
+    {
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q2FY26%20Earnings%20Call%20Transcript%20.pdf",
+     "call": "Q2 FY26 call",
+     "date": "2025-10-29",
+     "kind": "statement",
+     "page": 10,
+     "quote": "Accordingly, we maintain our full year revenue growth guidance at 15%.",
+     "values": [
+      {
+       "low": 15.0,
+       "high": 15.0,
+       "unit": "%",
+       "floor": false,
+       "short": "Rev. growth",
+       "change": "first given",
+       "metric": "revenue_growth"
+      }
+     ],
+     "speaker": "Ramakrishnan",
+     "qualifier": null
+    }
+   ],
+   "title": "FY26 Revenue growth",
+   "period": "FY26",
+   "metrics": [
+    "revenue_growth"
+   ],
+   "results": [
+    {
+     "kind": "result",
+     "basis": "company-reported",
+     "source": {
+      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+      "call": "Q4 FY26 call",
+      "from": "company IR site",
+      "page": 5,
+      "quote": "On the revenue front, growth for FY26 stood at 12% compared to our guidance of 15%."
+     },
+     "values": [
+      {
+       "span": "FY",
+       "unit": "%",
+       "short": "Rev. growth",
+       "value": 12.0,
+       "metric": "revenue_growth"
+      }
+     ]
+    }
+   ],
+   "resolved": true,
+   "verdicts": [
+    {
+     "line": "Missed 15% guidance",
+     "label": "missed",
+     "short": "Rev. growth",
+     "caveat": null,
+     "metric": "revenue_growth",
+     "verdict": "missed"
+    }
+   ],
+   "cross_checks": [
+    {
+     "span": "FY",
+     "unit": "%",
+     "basis": "computed from the results filings: reported ₹ growth, consolidated",
+     "short": "Rev. growth",
+     "value": 11.8,
+     "source": {
+      "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1663820_05052026073236_WEB.xml"
+     },
+     "quarters": 4
+    }
+   ]
+  },
+  {
+   "id": "fy27-revenue-growth",
+   "steps": [
+    {
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "date": "2026-05-07",
+     "kind": "statement",
+     "page": 13,
+     "quote": "On Revenue, we expect growth to be in the range of 10% to 12% for FY27.",
+     "values": [
+      {
+       "low": 10.0,
+       "high": 12.0,
+       "unit": "%",
+       "floor": false,
+       "short": "Rev. growth",
+       "change": "first given",
+       "metric": "revenue_growth"
+      }
+     ],
+     "speaker": "Ramakrishnan",
+     "qualifier": null
+    },
+    {
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q1%20FY27%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q1 FY27 call",
+     "date": "2026-07-28",
+     "kind": "statement",
+     "page": 11,
+     "quote": "For now, we remain committed to our FY '27 growth guidance of 10% to 12% revenue growth guidance.",
+     "values": [
+      {
+       "low": 10.0,
+       "high": 12.0,
+       "unit": "%",
+       "floor": false,
+       "short": "Rev. growth",
+       "change": "held",
+       "metric": "revenue_growth"
+      }
+     ],
+     "speaker": "Ramakrishnan",
+     "qualifier": null
+    },
+    {
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q2FY27%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q2 FY27 call",
+     "date": "2026-10-27",
+     "kind": "statement",
+     "page": 9,
+     "quote": "Considering the overall operating environment, we are confident of achieving our FY27 revenue growth guidance of the 10% to 12% band.",
+     "values": [
+      {
+       "low": 10.0,
+       "high": 12.0,
+       "unit": "%",
+       "floor": false,
+       "short": "Rev. growth",
+       "change": "held",
+       "metric": "revenue_growth"
+      }
+     ],
+     "speaker": null,
+     "qualifier": null
+    }
+   ],
+   "title": "FY27 Revenue growth",
+   "period": "FY27",
+   "metrics": [
+    "revenue_growth"
+   ],
+   "results": [
+    {
+     "kind": "result",
+     "basis": "computed from the results filings: reported ₹ growth, consolidated",
+     "source": {
+      "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1747229_27102026081332_WEB.xml"
+     },
+     "values": [
+      {
+       "span": "2Q YTD",
+       "unit": "%",
+       "short": "Rev. growth",
+       "value": 11.4,
+       "metric": "revenue_growth"
+      }
+     ]
+    }
+   ],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "11.4% within 10–12%",
+     "label": "on track",
+     "short": "Rev. growth",
+     "caveat": null,
+     "metric": "revenue_growth",
+     "verdict": "on track"
+    }
+   ],
+   "cross_checks": []
+  },
+  {
+   "id": "medium-term-revenue-growth-operating-margin",
+   "steps": [
+    {
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "date": "2026-05-07",
+     "kind": "statement",
+     "page": 12,
+     "quote": "The Lakshya L31 targets 13% to 15% revenue CAGR growth for over five years with EBIT margins of 16% to 17%, reflecting a structurally stronger and higher-quality growth profile.",
+     "values": [
+      {
+       "low": 13.0,
+       "high": 15.0,
+       "unit": "%",
+       "floor": false,
+       "short": "Rev. growth",
+       "change": "first given",
+       "metric": "revenue_growth"
+      },
+      {
+       "low": 16.0,
+       "high": 17.0,
+       "unit": "%",
+       "floor": false,
+       "short": "Op. margin",
+       "change": "first given",
+       "metric": "operating_margin"
+      }
+     ],
+     "speaker": "Ramakrishnan",
+     "qualifier": null
+    }
+   ],
+   "title": "Guidance (medium term)",
+   "period": "medium term",
+   "metrics": [
+    "revenue_growth",
+    "operating_margin"
+   ],
+   "results": [],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "No year attached, so it never falls due; listed, not scored",
+     "label": "open-ended",
+     "short": "Rev. growth",
+     "caveat": null,
+     "metric": "revenue_growth",
+     "verdict": "open-ended"
+    },
+    {
+     "line": "No year attached, so it never falls due; listed, not scored",
+     "label": "open-ended",
+     "short": "Op. margin",
+     "caveat": null,
+     "metric": "operating_margin",
+     "verdict": "open-ended"
+    }
+   ],
+   "cross_checks": []
+  }
+ ],
  "ledger": {
   "open": 3,
   "missed": 1,
-  "pattern": "Of 1 resolved promise, 0 met the guidance as first given and 1 missed even the final guidance.",
+  "pattern": "1 resolved · none met as first given · 1 missed",
   "resolved": 1,
   "delivered": 0,
   "met_final": 0,
@@ -246,6 +579,7 @@
   {
    "label": "Revenue growth",
    "moved": null,
+   "short": "Rev. growth",
    "story": "FY27 revenue growth: 10–12% → 10–12% → 10–12% (held) → filings show 11.4% (2Q YTD) → on track.",
    "actual": {
     "span": "2Q YTD",
@@ -355,6 +689,7 @@
   {
    "label": "Revenue growth",
    "moved": null,
+   "short": "Rev. growth",
    "story": "FY26 revenue growth: 15% → company reported 12.0% (FY) → missed.",
    "actual": {
     "span": "FY",
@@ -425,6 +760,7 @@
   {
    "label": "EBITDA margin",
    "moved": null,
+   "short": "EBITDA margin",
    "story": "FY26 ebitda margin: 8.5% → 8.5% → 7.8% (cut once) → not scored.",
    "actual": null,
    "metric": "ebitda_margin",
@@ -525,6 +861,7 @@
   {
    "label": "Revenue growth",
    "moved": null,
+   "short": "Rev. growth",
    "story": "medium term revenue growth: 13–15% → open-ended.",
    "actual": null,
    "metric": "revenue_growth",
@@ -573,6 +910,7 @@
   {
    "label": "Operating margin",
    "moved": null,
+   "short": "Op. margin",
    "story": "medium term operating margin: 16–17% → open-ended.",
    "actual": null,
    "metric": "operating_margin",
@@ -621,6 +959,7 @@
   {
    "label": "AUM / loan growth",
    "moved": null,
+   "short": "AUM growth",
    "story": "no year stated aum / loan growth: 20% → not scored.",
    "actual": null,
    "metric": "aum_growth",
@@ -667,6 +1006,7 @@
   {
    "label": "Credit cost",
    "moved": null,
+   "short": "Credit cost",
    "story": "no year stated credit cost: 2% → not scored.",
    "actual": null,
    "metric": "credit_cost",
@@ -715,6 +1055,7 @@
   {
    "label": "Return on assets",
    "moved": null,
+   "short": "ROA",
    "story": "no year stated return on assets: 3–3.2% → not scored.",
    "actual": null,
    "metric": "roa",
@@ -763,6 +1104,7 @@
   {
    "label": "Return on equity",
    "moved": null,
+   "short": "ROE",
    "story": "no year stated return on equity: 16–18% → not scored.",
    "actual": null,
    "metric": "roe",

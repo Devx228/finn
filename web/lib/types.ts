@@ -269,6 +269,9 @@ export interface GuidanceTrack {
   context?: string | null;
   verdict: string;
   verdict_label?: string;
+  short?: string;
+  first_is_revision?: boolean;
+  caveat?: string | null;
   verdict_first?: string | null;
   verdict_line?: string | null;
   moved?: "lowered" | "raised" | null;
@@ -352,6 +355,8 @@ export interface Ledger {
 
 export interface Research {
   provenance?: { live: boolean; reviewed: boolean };
+  groups?: ChainGroup[];
+  help?: ItemNetwork;
   symbol: string;
   name: string;
   industry: string | null;
@@ -407,3 +412,49 @@ export interface ResearchJob {
 export type JobResponse =
   | { state: "cached"; symbol: string; name: string }
   | { state: "job"; joined: boolean; job: ResearchJob };
+
+export interface GroupValue {
+  metric: string;
+  short: string;
+  low: number;
+  high: number;
+  unit: string | null;
+  floor: boolean;
+  change: "first given" | "raised" | "cut" | "held" | "narrowed" | "reiterated";
+}
+
+/** A step in a chain: a management statement (several metrics at once) or an analyst steer. */
+export interface GroupStep {
+  kind: "statement" | "steer";
+  date: string;
+  call: string;
+  page: number | null;
+  url: string;
+  speaker?: string | null;
+  quote: string;
+  qualifier?: string | null;
+  values?: GroupValue[];
+  analyst?: string;
+  analyst_quote?: string;
+  reply_quote?: string;
+  reply_page?: number;
+  low?: number;
+  high?: number;
+}
+
+export interface ChainGroup {
+  id: string;
+  period: string;
+  title: string;
+  resolved: boolean;
+  metrics: string[];
+  steps: GroupStep[];
+  results: {
+    kind: "result";
+    basis: string;
+    source: { quote?: string; page?: number; url?: string; call?: string; from?: string; xbrl?: string | null };
+    values: { metric: string; short: string; value: number; unit: string; span: string }[];
+  }[];
+  verdicts: { metric: string; short: string; label: string; verdict: string; line: string; caveat?: string | null }[];
+  cross_checks: { short: string; value: number; unit: string; span: string; basis: string }[];
+}

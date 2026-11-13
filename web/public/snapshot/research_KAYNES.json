@@ -1,6 +1,96 @@
 {
+ "help": {
+  "call": [
+   {
+    "id": 22,
+    "why": "worked at peer CG Power and Industrial Solutions Limited as Treasurer (2019–now); classmate, last spoke Mar 2026, 7 interactions in 24 months",
+    "name": "Diya Agarwal",
+    "rank": 0.671,
+    "warmth": 0.63,
+    "headline": "Treasurer, CG Power and Industrial Solutions Limited",
+    "how_known": "classmate",
+    "relevance": 0.7,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "classmate, last spoke Mar 2026, 7 interactions in 24 months",
+    "last_contact": "2026-03-09",
+    "warmth_label": "medium",
+    "what_theyd_know": "How CG Power and Industrial Solutions Limited runs treasury-credit today"
+   },
+   {
+    "id": 82,
+    "why": "worked at peer Dixon Technologies (India) Limited as Senior Vice President (2026–now); met-as-management, last spoke Oct 2025, 3 interactions in 24 months",
+    "name": "Shreya Gill",
+    "rank": 0.667,
+    "warmth": 0.62,
+    "headline": "Senior Vice President, Dixon Technologies (India) Limited",
+    "how_known": "met-as-management",
+    "relevance": 0.7,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "met-as-management, last spoke Oct 2025, 3 interactions in 24 months",
+    "last_contact": "2025-10-25",
+    "warmth_label": "medium",
+    "what_theyd_know": "How Dixon Technologies (India) Limited runs general-management today"
+   },
+   {
+    "id": 55,
+    "why": "worked at peer Amber Enterprises as VP Strategy & M&A (2008–now); classmate, last spoke Jun 2026, 7 interactions in 24 months",
+    "name": "Manish Naidu",
+    "rank": 0.658,
+    "warmth": 0.6,
+    "headline": "VP Strategy & M&A, Amber Enterprises",
+    "how_known": "classmate",
+    "relevance": 0.7,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "classmate, last spoke Jun 2026, 7 interactions in 24 months",
+    "last_contact": "2026-06-01",
+    "warmth_label": "medium",
+    "what_theyd_know": "How Amber Enterprises runs strategy today"
+   },
+   {
+    "id": 33,
+    "why": "worked at peer Tata Electronics as Head of Corporate Development (2018–now); ex-colleague, last spoke May 2026, 10 interactions in 24 months",
+    "name": "Tanvi Tandon",
+    "rank": 0.618,
+    "warmth": 0.6,
+    "headline": "Head of Corporate Development, Tata Electronics",
+    "how_known": "ex-colleague",
+    "relevance": 0.63,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "ex-colleague, last spoke May 2026, 10 interactions in 24 months",
+    "last_contact": "2026-05-28",
+    "warmth_label": "medium",
+    "what_theyd_know": "How Tata Electronics runs strategy today"
+   },
+   {
+    "id": 66,
+    "why": "worked at peer Tata Electronics as Head of Investor Relations (2016–2022); classmate, last spoke May 2026, 2 interactions in 24 months",
+    "name": "Ira Saxena",
+    "rank": 0.4,
+    "warmth": 0.52,
+    "headline": "Head of Investor Relations, Tata Electronics",
+    "how_known": "classmate",
+    "relevance": 0.34,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "classmate, last spoke May 2026, 2 interactions in 24 months",
+    "last_contact": "2026-05-23",
+    "warmth_label": "medium",
+    "what_theyd_know": "How Tata Electronics runs IR up to 2022"
+   }
+  ],
+  "people": [],
+  "points": 0,
+  "questions": [
+   "FY25 revenue came in at ₹2,722 cr, below guidance already lowered from ₹3,000 cr+ to ₹2,800–2,900 cr. What drove the shortfall after the cut, and what is different now?",
+   "FY25 revenue growth came in at 50.8% against 55%+ guided. What was misjudged?"
+  ]
+ },
  "name": "Kaynes Technology India Limited",
- "as_of": "2026-11-13T18:00:12.413444+05:30",
+ "as_of": "2026-11-13T19:09:47.783985+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12082026164943_TranscriptoftheEarningAnnouncement.pdf",
@@ -142,10 +232,346 @@
   }
  ],
  "format": "indas",
+ "groups": [
+  {
+   "id": "fy25-revenue-growth",
+   "steps": [
+    {
+     "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
+     "call": "Q3 FY25 call",
+     "date": "2025-02-01",
+     "kind": "statement",
+     "page": 3,
+     "quote": "In the coming quarter of this year, we expect to pick up the revenue growth rates such that the annual operating revenue growth would exceed 55% on year-on-year basis and an expansion in terms of profitability for year FY '25.",
+     "values": [
+      {
+       "low": 55.0,
+       "high": 55.0,
+       "unit": "%",
+       "floor": true,
+       "short": "Rev. growth",
+       "change": "first given",
+       "metric": "revenue_growth"
+      }
+     ],
+     "speaker": "Ramesh Kannan",
+     "qualifier": null
+    }
+   ],
+   "title": "FY25 Revenue growth",
+   "period": "FY25",
+   "metrics": [
+    "revenue_growth"
+   ],
+   "results": [
+    {
+     "kind": "result",
+     "basis": "computed from the results filings: reported ₹ growth, consolidated",
+     "source": {
+      "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1441102_16052025040930_WEB.xml"
+     },
+     "values": [
+      {
+       "span": "FY",
+       "unit": "%",
+       "short": "Rev. growth",
+       "value": 50.8,
+       "metric": "revenue_growth"
+      }
+     ]
+    }
+   ],
+   "resolved": true,
+   "verdicts": [
+    {
+     "line": "Missed 55%+ guidance",
+     "label": "missed",
+     "short": "Rev. growth",
+     "caveat": null,
+     "metric": "revenue_growth",
+     "verdict": "missed"
+    }
+   ],
+   "cross_checks": []
+  },
+  {
+   "id": "fy25-ebitda-margin",
+   "steps": [
+    {
+     "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
+     "call": "Q3 FY25 call",
+     "date": "2025-02-01",
+     "kind": "statement",
+     "page": 10,
+     "quote": "So revenue guidance will be somewhere between INR2,800 crores and INR2,900 crores. And the margins will be 15% plus for the year.",
+     "values": [
+      {
+       "low": 15.0,
+       "high": 15.0,
+       "unit": "%",
+       "floor": true,
+       "short": "EBITDA margin",
+       "change": "first given",
+       "metric": "ebitda_margin"
+      }
+     ],
+     "speaker": "Jairam Sampath",
+     "qualifier": null
+    }
+   ],
+   "title": "FY25 EBITDA margin",
+   "period": "FY25",
+   "metrics": [
+    "ebitda_margin"
+   ],
+   "results": [
+    {
+     "kind": "result",
+     "basis": "computed from the results filings: EBITDA ÷ revenue from the filings",
+     "source": {
+      "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1441102_16052025040930_WEB.xml"
+     },
+     "values": [
+      {
+       "span": "FY",
+       "unit": "%",
+       "short": "EBITDA margin",
+       "value": 15.1,
+       "metric": "ebitda_margin"
+      }
+     ]
+    }
+   ],
+   "resolved": true,
+   "verdicts": [
+    {
+     "line": "Met 15%+ guidance",
+     "label": "delivered",
+     "short": "EBITDA margin",
+     "caveat": null,
+     "metric": "ebitda_margin",
+     "verdict": "delivered"
+    }
+   ],
+   "cross_checks": []
+  },
+  {
+   "id": "fy25-revenue",
+   "steps": [
+    {
+     "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%205.11.2024.pdf",
+     "call": "Q2 FY25 call",
+     "date": "2024-11-05",
+     "kind": "statement",
+     "page": 5,
+     "quote": "Our inventory days was at about 107, as we made advanced purchases keeping in mind the requirements of the upcoming quarter, which are expected to be busy and we plan to execute revenues in excess of about INR3,000 crores in FY25.",
+     "values": [
+      {
+       "low": 3000.0,
+       "high": 3000.0,
+       "unit": "₹ cr",
+       "floor": true,
+       "short": "Revenue",
+       "change": "first given",
+       "metric": "revenue"
+      }
+     ],
+     "speaker": "Jairam Sampath",
+     "qualifier": null
+    },
+    {
+     "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
+     "call": "Q3 FY25 call",
+     "date": "2025-02-01",
+     "kind": "statement",
+     "page": 10,
+     "quote": "So revenue guidance will be somewhere between INR2,800 crores and INR2,900 crores. And the margins will be 15% plus for the year.",
+     "values": [
+      {
+       "low": 2800.0,
+       "high": 2900.0,
+       "unit": "₹ cr",
+       "floor": false,
+       "short": "Revenue",
+       "change": "cut",
+       "metric": "revenue"
+      }
+     ],
+     "speaker": "Jairam Sampath",
+     "qualifier": null
+    }
+   ],
+   "title": "FY25 Revenue",
+   "period": "FY25",
+   "metrics": [
+    "revenue"
+   ],
+   "results": [
+    {
+     "kind": "result",
+     "basis": "computed from the results filings: revenue from operations, consolidated",
+     "source": {
+      "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1441102_16052025040930_WEB.xml"
+     },
+     "values": [
+      {
+       "span": "FY",
+       "unit": "₹ cr",
+       "short": "Revenue",
+       "value": 2721.8,
+       "metric": "revenue"
+      }
+     ]
+    }
+   ],
+   "resolved": true,
+   "verdicts": [
+    {
+     "line": "Missed ₹3,000 cr+ plan · missed the lowered ₹2,800–2,900 cr",
+     "label": "missed after cut",
+     "short": "Revenue",
+     "caveat": null,
+     "metric": "revenue",
+     "verdict": "missed"
+    }
+   ],
+   "cross_checks": []
+  },
+  {
+   "id": "no-year-stated-revenue-growth",
+   "steps": [
+    {
+     "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
+     "call": "Q3 FY25 call",
+     "date": "2025-02-01",
+     "kind": "statement",
+     "page": 19,
+     "quote": "We target companies which are similar or better in terms of profitability. So we can say that roughly the EMS business is good to grow anywhere between 40% to 50% on its own by generating its own revenues and then implementing capex.",
+     "values": [
+      {
+       "low": 40.0,
+       "high": 50.0,
+       "unit": "%",
+       "floor": false,
+       "short": "Rev. growth",
+       "change": "first given",
+       "metric": "revenue_growth"
+      }
+     ],
+     "speaker": "Jairam Sampath",
+     "qualifier": null
+    },
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_08112025175717_EarningscalltranscriptQ22026Signed.pdf",
+     "call": "Q2 FY26 call",
+     "date": "2025-11-08",
+     "kind": "statement",
+     "page": 15,
+     "quote": "So as we go forward, we expect automotive to grow at the rate of growth of our company's growth rate, which will be anywhere around 50% plus/minus, you can take.",
+     "values": [
+      {
+       "low": 50.0,
+       "high": 50.0,
+       "unit": "%",
+       "floor": false,
+       "short": "Rev. growth",
+       "change": "raised",
+       "metric": "revenue_growth"
+      }
+     ],
+     "speaker": "Jairam Sampath",
+     "qualifier": null
+    }
+   ],
+   "title": "Revenue growth (no year stated)",
+   "period": "no year stated",
+   "metrics": [
+    "revenue_growth"
+   ],
+   "results": [],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "The quote names no year, so it can't be held to one; listed, not scored",
+     "label": "open-ended",
+     "short": "Rev. growth",
+     "caveat": null,
+     "metric": "revenue_growth",
+     "verdict": "open-ended"
+    }
+   ],
+   "cross_checks": []
+  },
+  {
+   "id": "no-year-stated-ebitda-margin",
+   "steps": [
+    {
+     "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
+     "call": "Q3 FY25 call",
+     "date": "2025-02-01",
+     "kind": "statement",
+     "page": 14,
+     "quote": "Yes, that's the target, 15% minimum, 15% is the standard margin that we talked about.",
+     "values": [
+      {
+       "low": 15.0,
+       "high": 15.0,
+       "unit": "%",
+       "floor": true,
+       "short": "EBITDA margin",
+       "change": "first given",
+       "metric": "ebitda_margin"
+      }
+     ],
+     "speaker": null,
+     "qualifier": null
+    },
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_05082025165345_SEintimationtranscriptSigned.pdf",
+     "call": "Q1 FY26 call",
+     "date": "2025-08-05",
+     "kind": "statement",
+     "page": 13,
+     "quote": "We are saying that looking at the first quarter, the EBITDA might exceed the guidance of 15.6%.",
+     "values": [
+      {
+       "low": 15.6,
+       "high": 15.6,
+       "unit": "%",
+       "floor": true,
+       "short": "EBITDA margin",
+       "change": "raised",
+       "metric": "ebitda_margin"
+      }
+     ],
+     "speaker": "Jairam Sampath",
+     "qualifier": null
+    }
+   ],
+   "title": "EBITDA margin (no year stated)",
+   "period": "no year stated",
+   "metrics": [
+    "ebitda_margin"
+   ],
+   "results": [],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "The quote names no year, so it can't be held to one; listed, not scored",
+     "label": "open-ended",
+     "short": "EBITDA margin",
+     "caveat": null,
+     "metric": "ebitda_margin",
+     "verdict": "open-ended"
+    }
+   ],
+   "cross_checks": []
+  }
+ ],
  "ledger": {
   "open": 2,
   "missed": 2,
-  "pattern": "Of 3 resolved promises, 1 met the guidance as first given and 2 missed even the final guidance (1 after a cut).",
+  "pattern": "3 resolved · 1 met as first given · 2 missed, 1 of them even after a cut",
   "resolved": 3,
   "delivered": 1,
   "met_final": 1,
@@ -157,22 +583,6 @@
  },
  "symbol": "KAYNES",
  "network": [
-  {
-   "id": 77,
-   "why": "worked at Kaynes Technology India Limited as Chief Risk Officer (2017–now); classmate, last spoke Jul 2026, 6 interactions in 24 months",
-   "name": "Ananya Pillai",
-   "rank": 0.77,
-   "warmth": 0.77,
-   "headline": "Chief Risk Officer, Kaynes Technology India Limited",
-   "how_known": "classmate",
-   "relevance": 0.77,
-   "synthetic": true,
-   "compliance": "Current employee of Kaynes Technology India Limited — treat as a potential insider. Don't seek unpublished price-sensitive information; keep to public and industry context.",
-   "warmth_why": "classmate, last spoke Jul 2026, 6 interactions in 24 months",
-   "last_contact": "2026-07-13",
-   "warmth_label": "strong",
-   "what_theyd_know": "How Kaynes Technology India Limited runs treasury-credit today"
-  },
   {
    "id": 22,
    "why": "worked at peer CG Power and Industrial Solutions Limited as Treasurer (2019–now); classmate, last spoke Mar 2026, 7 interactions in 24 months",
@@ -204,6 +614,22 @@
    "last_contact": "2025-10-25",
    "warmth_label": "medium",
    "what_theyd_know": "How Dixon Technologies (India) Limited runs general-management today"
+  },
+  {
+   "id": 55,
+   "why": "worked at peer Amber Enterprises as VP Strategy & M&A (2008–now); classmate, last spoke Jun 2026, 7 interactions in 24 months",
+   "name": "Manish Naidu",
+   "rank": 0.658,
+   "warmth": 0.6,
+   "headline": "VP Strategy & M&A, Amber Enterprises",
+   "how_known": "classmate",
+   "relevance": 0.7,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "classmate, last spoke Jun 2026, 7 interactions in 24 months",
+   "last_contact": "2026-06-01",
+   "warmth_label": "medium",
+   "what_theyd_know": "How Amber Enterprises runs strategy today"
   }
  ],
  "signals": {
@@ -231,6 +657,7 @@
   {
    "label": "Capex",
    "moved": null,
+   "short": "Capex",
    "story": "FY27 capex: 300 ₹ cr → not scored.",
    "actual": null,
    "metric": "capex",
@@ -279,6 +706,7 @@
   {
    "label": "Segment revenue",
    "moved": null,
+   "short": "Segment revenue",
    "story": "FY27 segment revenue: 450–500 ₹ cr → not scored.",
    "actual": null,
    "metric": "segment_revenue",
@@ -325,6 +753,7 @@
   {
    "label": "Revenue growth",
    "moved": null,
+   "short": "Rev. growth",
    "story": "FY25 revenue growth: 55% → filings show 50.8% (FY) → missed.",
    "actual": {
     "span": "FY",
@@ -382,6 +811,7 @@
   {
    "label": "EBITDA margin",
    "moved": null,
+   "short": "EBITDA margin",
    "story": "FY25 ebitda margin: 15% → filings show 15.1% (FY) → delivered.",
    "actual": {
     "span": "FY",
@@ -439,6 +869,7 @@
   {
    "label": "Revenue",
    "moved": "lowered",
+   "short": "Revenue",
    "story": "FY25 revenue: 3000 ₹ cr → 2800–2900 ₹ cr (cut once) → filings show ₹2,722 cr (FY) → missed.",
    "actual": {
     "span": "FY",
@@ -522,6 +953,7 @@
   {
    "label": "Revenue growth",
    "moved": null,
+   "short": "Rev. growth",
    "story": "no year stated revenue growth: 40–50% → 50% (raised once) → open-ended.",
    "actual": null,
    "metric": "revenue_growth",
@@ -596,6 +1028,7 @@
   {
    "label": "EBITDA margin",
    "moved": null,
+   "short": "EBITDA margin",
    "story": "no year stated ebitda margin: 15% → 15.6% (raised once) → open-ended.",
    "actual": null,
    "metric": "ebitda_margin",
@@ -668,6 +1101,7 @@
   {
    "label": "Capex",
    "moved": null,
+   "short": "Capex",
    "story": "medium term capex: 1400 ₹ cr → 3400 ₹ cr → 3400 ₹ cr → 3700 ₹ cr → 1400 ₹ cr (cut once) → not scored.",
    "actual": null,
    "metric": "capex",
@@ -814,6 +1248,7 @@
   {
    "label": "Segment revenue",
    "moved": null,
+   "short": "Segment revenue",
    "story": "medium term segment revenue: 25000 ₹ cr → not scored.",
    "actual": null,
    "metric": "segment_revenue",

@@ -1,6 +1,93 @@
 {
+ "help": {
+  "call": [
+   {
+    "id": 21,
+    "why": "worked at peer UPL as Managing Director (2017–now); ex-colleague, last spoke Aug 2026, 1 interactions in 24 months",
+    "name": "Imran Iyer",
+    "rank": 0.712,
+    "warmth": 0.73,
+    "headline": "Managing Director, UPL",
+    "how_known": "ex-colleague",
+    "relevance": 0.7,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "ex-colleague, last spoke Aug 2026, 1 interactions in 24 months",
+    "last_contact": "2026-08-21",
+    "warmth_label": "strong",
+    "what_theyd_know": "How UPL runs general-management today"
+   },
+   {
+    "id": 76,
+    "why": "worked at peer UPL as Head of Key Accounts (2020–now); ex-colleague, last spoke May 2026, 9 interactions in 24 months",
+    "name": "Nikhil Gokhale",
+    "rank": 0.617,
+    "warmth": 0.51,
+    "headline": "Head of Key Accounts, UPL",
+    "how_known": "ex-colleague",
+    "relevance": 0.7,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "ex-colleague, last spoke May 2026, 9 interactions in 24 months",
+    "last_contact": "2026-05-07",
+    "warmth_label": "medium",
+    "what_theyd_know": "How UPL runs sales today"
+   },
+   {
+    "id": 54,
+    "why": "worked at peer Aarti Industries as VP Strategy & M&A (2024–now); introduced-by, last spoke Oct 2025, 0 interactions in 24 months",
+    "name": "Arjun Shetty",
+    "rank": 0.593,
+    "warmth": 0.4,
+    "headline": "VP Strategy & M&A, Aarti Industries",
+    "how_known": "introduced-by",
+    "relevance": 0.77,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "introduced-by, last spoke Oct 2025, 0 interactions in 24 months",
+    "last_contact": "2025-10-15",
+    "warmth_label": "medium",
+    "what_theyd_know": "How Aarti Industries runs strategy today"
+   },
+   {
+    "id": 43,
+    "why": "worked at peer SRF as Head of Compliance (2014–now); introduced-by, last spoke Dec 2025, 0 interactions in 24 months",
+    "name": "Thomas Mukherjee",
+    "rank": 0.498,
+    "warmth": 0.35,
+    "headline": "Head of Compliance, SRF",
+    "how_known": "introduced-by",
+    "relevance": 0.63,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "introduced-by, last spoke Dec 2025, 0 interactions in 24 months",
+    "last_contact": "2025-12-11",
+    "warmth_label": "medium",
+    "what_theyd_know": "How SRF runs legal-compliance today"
+   },
+   {
+    "id": 65,
+    "why": "worked at Deepak Nitrite Limited as Head of Corporate Development (2008–now); classmate, last spoke Oct 2026, 6 interactions in 24 months",
+    "name": "Priyanka Mistry",
+    "rank": 0.665,
+    "warmth": 0.72,
+    "headline": "Head of Corporate Development, Deepak Nitrite Limited",
+    "how_known": "classmate",
+    "relevance": 0.63,
+    "synthetic": true,
+    "compliance": "Current employee of Deepak Nitrite Limited — treat as a potential insider. Don't seek unpublished price-sensitive information; keep to public and industry context.",
+    "warmth_why": "classmate, last spoke Oct 2026, 6 interactions in 24 months",
+    "last_contact": "2026-10-05",
+    "warmth_label": "strong",
+    "what_theyd_know": "How Deepak Nitrite Limited runs strategy today"
+   }
+  ],
+  "people": [],
+  "points": 0,
+  "questions": []
+ },
  "name": "Deepak Nitrite Limited",
- "as_of": "2026-11-13T18:00:51.480479+05:30",
+ "as_of": "2026-11-13T19:09:56.232522+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/DEEPAKNTR_04112026111452_NSE-concall_transcript.pdf",
@@ -70,6 +157,52 @@
   }
  ],
  "format": "indas",
+ "groups": [
+  {
+   "id": "medium-term-operating-margin",
+   "steps": [
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/DEEPAKNTR_04112026111452_NSE-concall_transcript.pdf",
+     "call": "Q2 FY27 call",
+     "date": "2026-11-04",
+     "kind": "statement",
+     "page": 11,
+     "quote": "So just for clarification, we are estimating that in the next year, with all the assets that have been commissioned running at steady-state, we should be targeting something along the lines of about 14% to 15% EBIT.",
+     "values": [
+      {
+       "low": 14.0,
+       "high": 15.0,
+       "unit": "%",
+       "floor": false,
+       "short": "Op. margin",
+       "change": "first given",
+       "metric": "operating_margin"
+      }
+     ],
+     "speaker": null,
+     "qualifier": null
+    }
+   ],
+   "title": "Operating margin (medium term)",
+   "period": "medium term",
+   "metrics": [
+    "operating_margin"
+   ],
+   "results": [],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "No year attached, so it never falls due; listed, not scored",
+     "label": "open-ended",
+     "short": "Op. margin",
+     "caveat": null,
+     "metric": "operating_margin",
+     "verdict": "open-ended"
+    }
+   ],
+   "cross_checks": []
+  }
+ ],
  "ledger": {
   "open": 1,
   "missed": 0,
@@ -102,36 +235,36 @@
    "what_theyd_know": "How UPL runs general-management today"
   },
   {
-   "id": 65,
-   "why": "worked at Deepak Nitrite Limited as Head of Corporate Development (2008–now); classmate, last spoke Oct 2026, 6 interactions in 24 months",
-   "name": "Priyanka Mistry",
-   "rank": 0.665,
-   "warmth": 0.72,
-   "headline": "Head of Corporate Development, Deepak Nitrite Limited",
-   "how_known": "classmate",
-   "relevance": 0.63,
+   "id": 76,
+   "why": "worked at peer UPL as Head of Key Accounts (2020–now); ex-colleague, last spoke May 2026, 9 interactions in 24 months",
+   "name": "Nikhil Gokhale",
+   "rank": 0.617,
+   "warmth": 0.51,
+   "headline": "Head of Key Accounts, UPL",
+   "how_known": "ex-colleague",
+   "relevance": 0.7,
    "synthetic": true,
-   "compliance": "Current employee of Deepak Nitrite Limited — treat as a potential insider. Don't seek unpublished price-sensitive information; keep to public and industry context.",
-   "warmth_why": "classmate, last spoke Oct 2026, 6 interactions in 24 months",
-   "last_contact": "2026-10-05",
-   "warmth_label": "strong",
-   "what_theyd_know": "How Deepak Nitrite Limited runs strategy today"
+   "compliance": null,
+   "warmth_why": "ex-colleague, last spoke May 2026, 9 interactions in 24 months",
+   "last_contact": "2026-05-07",
+   "warmth_label": "medium",
+   "what_theyd_know": "How UPL runs sales today"
   },
   {
-   "id": 32,
-   "why": "worked at Deepak Nitrite Limited as Head of R&D (2015–now); met-as-management, last spoke Apr 2026, 6 interactions in 24 months",
-   "name": "Diya Nair",
-   "rank": 0.65,
-   "warmth": 0.68,
-   "headline": "Head of R&D, Deepak Nitrite Limited",
-   "how_known": "met-as-management",
-   "relevance": 0.63,
+   "id": 54,
+   "why": "worked at peer Aarti Industries as VP Strategy & M&A (2024–now); introduced-by, last spoke Oct 2025, 0 interactions in 24 months",
+   "name": "Arjun Shetty",
+   "rank": 0.593,
+   "warmth": 0.4,
+   "headline": "VP Strategy & M&A, Aarti Industries",
+   "how_known": "introduced-by",
+   "relevance": 0.77,
    "synthetic": true,
-   "compliance": "Current employee of Deepak Nitrite Limited — treat as a potential insider. Don't seek unpublished price-sensitive information; keep to public and industry context.",
-   "warmth_why": "met-as-management, last spoke Apr 2026, 6 interactions in 24 months",
-   "last_contact": "2026-04-04",
-   "warmth_label": "strong",
-   "what_theyd_know": "How Deepak Nitrite Limited runs R&D-technical today"
+   "compliance": null,
+   "warmth_why": "introduced-by, last spoke Oct 2025, 0 interactions in 24 months",
+   "last_contact": "2025-10-15",
+   "warmth_label": "medium",
+   "what_theyd_know": "How Aarti Industries runs strategy today"
   }
  ],
  "signals": {
@@ -177,6 +310,7 @@
   {
    "label": "Operating margin",
    "moved": null,
+   "short": "Op. margin",
    "story": "medium term operating margin: 14–15% → open-ended.",
    "actual": null,
    "metric": "operating_margin",

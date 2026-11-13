@@ -3,15 +3,14 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { ResearchJobPanel } from "./ResearchJob";
 import { useCallback, useEffect, useState } from "react";
+import { GroupCard, HelpButton, LedgerHead, Legend, Scoreboard } from "@/components/Ledger";
 import { CandidateRow } from "@/components/Network";
 import { type Loaded, loadWithFallback } from "@/lib/api";
 import { formatCr } from "@/lib/format";
 import type {
-  Steer,
   Business,
   GuidancePoint,
   GuidanceTrack,
-  Ledger,
   Quarter,
   Research,
   ResearchIndex,
@@ -93,7 +92,7 @@ export function ResearchView() {
         />
         <button className="h-11 rounded-lg bg-ink px-4 text-[14px] font-semibold text-bg">Open</button>
       </form>
-      <div className="-mx-4 mb-4 flex gap-1.5 overflow-x-auto px-4 pb-1">
+      <div className="-mx-4 mb-4 flex gap-1.5 overflow-x-auto px-4 pb-1 [scrollbar-width:none]">
         {(index?.companies ?? []).map((c) => (
           <button
             key={c.symbol}
@@ -113,26 +112,57 @@ export function ResearchView() {
   );
 }
 
+const FORMAT: Record<string, string> = { nbfc: "NBFC", bank: "Bank", indas: "Company" };
+
 function Body({ r }: { r: Research }) {
   const tracks = r.guidance;
-  // resolved chains lead (the centrepiece), newest year first; open ones follow
-  const checkable = [
-    ...tracks.filter((t) => t.resolved),
-    ...tracks.filter((t) => !t.resolved && t.verdict !== "not scored"),
+  const groups = r.groups ?? [];
+  const firstResolved = groups.find((g) => g.resolved)?.id ?? null;
+  const [openIds, setOpenIds] = useState<Set<string>>(() => new Set(firstResolved ? [firstResolved] : []));
+  const toggle = (id: string) =>
+    setOpenIds((s) => {
+      const n = new Set(s);
+      if (n.has(id)) n.delete(id);
+      else n.add(id);
+      return n;
+    });
+  const jump = (id: string) => {
+    setOpenIds((s) => new Set(s).add(id));
+    requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }));
+  };
+  const grouped = new Set(groups.flatMap((g) => g.metrics.map((m) => `${m}|${g.period}`)));
+  const rest = tracks.filter((t) => !grouped.has(`${t.metric}|${t.period}`));
+  const sections: [string, string][] = [
+    ["ledger", "Promise ledger"],
+    ...(r.business ? ([["business", "Business"]] as [string, string][]) : []),
+    ...(r.signals.bull.length || r.signals.bear.length ? ([["signals", "Bull vs bear"]] as [string, string][]) : []),
+    ["financials", "Financials"],
+    ...(r.network.length ? ([["people", "Who to call"]] as [string, string][]) : []),
   ];
   return (
     <div className="space-y-6">
       <div>
         <h2 className="text-[19px] font-semibold leading-tight">{r.name}</h2>
         <p className="text-[12px] text-ink-3">
-          {r.industry ?? r.format} · {r.calls.length} earnings calls · {r.quarters.length} quarters of filings
+          {r.industry ?? FORMAT[r.format] ?? r.format} · {r.calls.length} earnings calls · {r.quarters.length}{" "}
+          quarters of filings
         </p>
         {r.provenance && !r.provenance.reviewed && <Unreviewed asOf={r.as_of} />}
+        <nav aria-label="On this page" className="-mx-4 mt-2 flex gap-1.5 overflow-x-auto px-4 pb-1 [scrollbar-width:none]">
+          {sections.map(([id, label]) => (
+            <a key={id} href={`#${id}`} className="h-8 shrink-0 rounded-full border border-line px-3 text-[12px] leading-8 text-ink-2">
+              {label}
+            </a>
+          ))}
+        </nav>
       </div>
 
-      <section>
-        <h2 className={H}>Promised vs delivered</h2>
-        {r.ledger && <LedgerLine l={r.ledger} />}
+      <section id="ledger" className="scroll-mt-4">
+        <div className="mb-1 flex items-center justify-between gap-2">
+          <h2 className={H + " mb-0"}>Promised vs delivered</h2>
+          <HelpButton help={r.help} company={r.name} />
+        </div>
+        {r.ledger && <LedgerHead l={r.ledger} />}
         {tracks.length === 0 ? (
           <p className="rounded-lg border border-line bg-surface px-3 py-3 text-[13px] text-ink-2">
             {r.calls.length === 0
@@ -141,24 +171,30 @@ function Body({ r }: { r: Research }) {
           </p>
         ) : (
           <div className="space-y-3">
-            {(checkable.length ? checkable : tracks).map((t) =>
-              t.resolved || t.points.length > 1 ? (
-                <ChainTimeline key={`${t.metric}-${t.period}`} t={t} />
-              ) : (
-                <TrackCard key={`${t.metric}-${t.period}`} t={t} />
-              ),
-            )}
-            {checkable.length > 0 && tracks.length > checkable.length && (
-              <OtherTracks tracks={tracks.filter((t) => !checkable.includes(t))} />
+            <Scoreboard tracks={tracks} groups={groups} onJump={jump} />
+            {groups.length > 0 && <Legend />}
+            {groups.map((g) => (
+              <GroupCard key={g.id} g={g} open={openIds.has(g.id)} onToggle={() => toggle(g.id)} />
+            ))}
+            {groups.length === 0 &&
+              tracks
+                .filter((t) => t.verdict !== "not scored")
+                .map((t) => <TrackCard key={`${t.metric}-${t.period}`} t={t} />)}
+            {rest.filter((t) => t.verdict === "not scored").length > 0 && (
+              <OtherTracks tracks={rest.filter((t) => t.verdict === "not scored")} />
             )}
           </div>
         )}
       </section>
 
-      {r.business && <BusinessSnapshot b={r.business} />}
+      {r.business && (
+        <div id="business" className="scroll-mt-4">
+          <BusinessSnapshot b={r.business} />
+        </div>
+      )}
 
       {(r.signals.bull.length > 0 || r.signals.bear.length > 0) && (
-        <section>
+        <section id="signals" className="scroll-mt-4">
           <h2 className={H}>Bull vs bear — from the numbers</h2>
           <div className="grid grid-cols-2 gap-2">
             <Case title="Bull" items={r.signals.bull} cls="text-up" />
@@ -167,10 +203,12 @@ function Body({ r }: { r: Research }) {
         </section>
       )}
 
-      <Trajectory qs={r.quarters} format={r.format} />
+      <div id="financials" className="scroll-mt-4">
+        <Trajectory qs={r.quarters} format={r.format} />
+      </div>
 
       {r.network.length > 0 && (
-        <section>
+        <section id="people" className="scroll-mt-4">
           <h2 className={H}>Who to call about {r.symbol}</h2>
           <ul className="divide-y divide-line rounded-lg border border-line bg-surface px-3">
             {r.network.map((c) => (
@@ -418,30 +456,6 @@ function Outcome({ t, marker }: { t: GuidanceTrack; marker: boolean }) {
   );
 }
 
-function LedgerLine({ l }: { l: Ledger }) {
-  return (
-    <p className="mb-2 text-[13px] leading-snug text-ink-2">
-      Read {l.calls_read} of the last {l.calls_listed} calls ·{" "}
-      <b className="tabular-nums text-ink">{l.resolved}</b> promise{l.resolved === 1 ? "" : "s"} resolved
-      {l.resolved > 0 && (
-        <>
-          {" "}
-          ({l.delivered} delivered, {l.missed} missed)
-        </>
-      )}{" "}
-      · {l.open} open · {l.unverifiable} not scored
-      {l.resolved >= 4 && (
-        <span className="block text-[12px] text-ink-3">
-          Say–do: met final guidance {l.met_final ?? l.delivered} of {l.resolved}
-          {l.met_first !== undefined &&
-            ` · met original guidance ${l.met_first} of ${l.first_known ?? l.resolved}${(l.first_known ?? l.resolved) < l.resolved ? " where the original was read" : ""}`}
-        </span>
-      )}
-      {l.pattern && <span className="mt-1 block text-[13px] font-medium text-ink">{l.pattern}</span>}
-    </p>
-  );
-}
-
 function Quote({ p }: { p: GuidancePoint }) {
   return (
     <blockquote className="mt-2 border-l-2 border-line pl-3 text-[13px] leading-snug text-ink-2">
@@ -601,127 +615,3 @@ function Unreviewed({ asOf }: { asOf: string }) {
   );
 }
 
-const day = (d: string) =>
-  new Date(d).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
-
-/** A few words around the number, so a step reads at phone width; the full page is one tap away. */
-function excerpt(q: string, n = 70, around?: number): string {
-  // centre on this step's own number when given (a quote may carry a neighbouring clause)
-  const forms = around === undefined ? [] : [around.toLocaleString("en-IN"), String(around), around.toFixed(1)];
-  const hit = forms.map((f) => q.indexOf(f)).find((x) => x >= 0);
-  const i = hit ?? q.search(/\d/);
-  if (i < 0 || q.length <= 2 * n) return q;
-  let a = Math.max(0, i - n);
-  let b = Math.min(q.length, i + n);
-  if (a > 0) a = q.indexOf(" ", a) + 1;
-  if (b < q.length) b = q.lastIndexOf(" ", b);
-  return `${a > 0 ? "…" : ""}${q.slice(a, b)}${b < q.length ? "…" : ""}`;
-}
-
-const pageUrl = (url: string, page: number | null | undefined) => (page ? `${url}#page=${page}` : url);
-
-type Step = { kind: "point"; date: string; p: GuidancePoint } | { kind: "steer"; date: string; s: Steer };
-
-const changeWord = (p: GuidancePoint) =>
-  p.reiterates ? "reiterated" : p.change === "cut" ? "▼ lowered" : p.change === "raised" ? "▲ raised" : p.change;
-
-/** The chain as a timeline: each statement, any verbal steer, then the result and both verdicts. */
-function ChainTimeline({ t }: { t: GuidanceTrack }) {
-  const label = t.verdict_label ?? t.verdict;
-  const v = VERDICT[label] ?? VERDICT[t.verdict] ?? VERDICT["not scored"];
-  const steps: Step[] = [
-    ...t.points.map((p) => ({ kind: "point" as const, date: p.call_date, p })),
-    ...(t.steers ?? []).map((s) => ({ kind: "steer" as const, date: s.call_date, s })),
-  ].sort((a, b) => a.date.localeCompare(b.date));
-  const a = t.actual;
-  const src = a?.source;
-  const resultHref = src?.url ? pageUrl(src.url, src.page) : (src?.xbrl ?? undefined);
-  return (
-    <article className="rounded-lg border border-line bg-surface px-3 py-3">
-      <div className="flex items-baseline justify-between gap-2">
-        <h3 className="text-[15px] font-semibold">
-          {t.period} {t.label}
-        </h3>
-        <span className={`shrink-0 text-[13px] font-semibold ${v.cls}`}>
-          {v.icon} {label}
-        </span>
-      </div>
-      <p className="mt-1 text-[14px] font-medium leading-snug">{t.verdict_line ?? t.verdict_why}</p>
-
-      <ol className="mt-3 border-l border-line pl-3">
-        {steps.map((st, i) =>
-          st.kind === "point" ? (
-            <li key={i} className="relative pb-3">
-              <span className="absolute -left-[17px] top-1.5 h-2 w-2 rounded-full bg-accent" aria-hidden />
-              <a href={pageUrl(st.p.url, st.p.page)} target="_blank" rel="noreferrer" className="block">
-                <p className="text-[11px] text-ink-3">
-                  {day(st.p.call_date)} · {st.p.speaker || "Management"} · {st.p.call}
-                  {st.p.page ? `, p. ${st.p.page}` : ""}
-                </p>
-                <p className="text-[14px] font-semibold">
-                  {st.p.qualifier ? `${st.p.qualifier} ` : ""}
-                  {band(st.p)} {st.p.noun ?? "guidance"}{" "}
-                  <span
-                    className={`text-[12px] font-normal ${
-                      st.p.change === "cut" ? "text-down" : st.p.change === "raised" ? "text-up" : "text-ink-3"
-                    }`}
-                  >
-                    {changeWord(st.p)}
-                  </span>
-                </p>
-                <p className="text-[13px] leading-snug text-ink-2 underline decoration-line underline-offset-2">
-                  “{excerpt(st.p.quote, 70, st.p.low)}”
-                </p>
-              </a>
-            </li>
-          ) : (
-            <li key={i} className="relative pb-3">
-              <span
-                className="absolute -left-[17px] top-1.5 h-2 w-2 rounded-full border border-ink-3 bg-surface"
-                aria-hidden
-              />
-              <a href={pageUrl(st.s.url, st.s.reply_page)} target="_blank" rel="noreferrer" className="block">
-                <p className="text-[11px] text-ink-3">
-                  {day(st.s.call_date)} · {st.s.call}, p. {st.s.page} · verbal steer, no new number
-                </p>
-                <p className="text-[13px] leading-snug text-ink-2">
-                  <span className="text-ink-3">Analyst ({st.s.analyst}):</span> “{excerpt(st.s.analyst_quote, 60)}”
-                </p>
-                <p className="text-[13px] font-medium leading-snug underline decoration-line underline-offset-2">
-                  {st.s.speaker}: “{st.s.reply_quote}”
-                </p>
-              </a>
-            </li>
-          ),
-        )}
-        {a && (
-          <li className="relative">
-            <span className="absolute -left-[17px] top-1.5 h-2 w-2 rounded-full bg-ink" aria-hidden />
-            <a href={resultHref} target="_blank" rel="noreferrer" className="block">
-              <p className="text-[11px] text-ink-3">
-                Result · {src?.call ?? "results filing"}
-                {src?.page ? `, p. ${src.page}` : ""} · {a.basis}
-              </p>
-              <p className="text-[14px] font-semibold">
-                {a.unit === "₹ cr" ? formatCr(a.value) : `${a.value}%`} ({a.span})
-              </p>
-              {src?.quote && (
-                <p className="text-[13px] leading-snug text-ink-2 underline decoration-line underline-offset-2">
-                  “{excerpt(src.quote)}”
-                </p>
-              )}
-            </a>
-          </li>
-        )}
-      </ol>
-      {t.cross_check && (
-        <p className="mt-2 text-[11px] text-ink-3">
-          Our cross-check from the filings:{" "}
-          {t.cross_check.unit === "₹ cr" ? formatCr(t.cross_check.value) : `${t.cross_check.value}%`} (
-          {t.cross_check.span}, {t.cross_check.basis}); never used for the verdict.
-        </p>
-      )}
-      <p className="mt-1 text-[11px] text-ink-3">Tap any step to open that page of the source.</p>
-    </article>
-  );
-}

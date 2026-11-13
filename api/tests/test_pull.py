@@ -323,10 +323,10 @@ def test_two_verdicts_and_preliminary_qualifier():
         {"resolved": True, "verdict": "delivered", "verdict_first": "missed", "moved": "lowered"},
         {"resolved": True, "verdict": "missed", "verdict_first": "missed", "moved": "lowered"},
     ]
-    assert r.pattern(trk) == (
-        "Of 2 resolved promises, 0 met the guidance as first given, 1 more was met only after a cut "
-        "and 1 missed even the final guidance (1 after a cut)."
+    want = (
+        "2 resolved · none met as first given · 1 met only after a cut · 1 missed, 1 of them even after a cut"
     )
+    assert r.pattern(trk) == want
 
 
 def test_floor_word_must_sit_by_its_own_number_and_revision_first_is_flagged():

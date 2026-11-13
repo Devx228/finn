@@ -1,6 +1,93 @@
 {
+ "help": {
+  "call": [
+   {
+    "id": 42,
+    "why": "worked at peer Wipro as Head of Key Accounts (2025–now); personal, last spoke Oct 2026, 2 interactions in 24 months",
+    "name": "Suresh Hegde",
+    "rank": 0.716,
+    "warmth": 0.74,
+    "headline": "Head of Key Accounts, Wipro",
+    "how_known": "personal",
+    "relevance": 0.7,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "personal, last spoke Oct 2026, 2 interactions in 24 months",
+    "last_contact": "2026-10-15",
+    "warmth_label": "strong",
+    "what_theyd_know": "How Wipro runs sales today"
+   },
+   {
+    "id": 64,
+    "why": "worked at peer Infosys Limited as Regional Sales Head (2010–now); met-as-management, last spoke Mar 2026, 8 interactions in 24 months",
+    "name": "Saanvi Nair",
+    "rank": 0.643,
+    "warmth": 0.79,
+    "headline": "Regional Sales Head, Infosys Limited",
+    "how_known": "met-as-management",
+    "relevance": 0.56,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "met-as-management, last spoke Mar 2026, 8 interactions in 24 months",
+    "last_contact": "2026-03-16",
+    "warmth_label": "strong",
+    "what_theyd_know": "How Infosys Limited runs sales today"
+   },
+   {
+    "id": 53,
+    "why": "worked at peer Tata Consultancy Services as Head of Corporate Development (2013–now); introduced-by, last spoke Sep 2026, 4 interactions in 24 months",
+    "name": "Gaurav Qureshi",
+    "rank": 0.634,
+    "warmth": 0.64,
+    "headline": "Head of Corporate Development, Tata Consultancy Services",
+    "how_known": "introduced-by",
+    "relevance": 0.63,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "introduced-by, last spoke Sep 2026, 4 interactions in 24 months",
+    "last_contact": "2026-09-19",
+    "warmth_label": "medium",
+    "what_theyd_know": "How Tata Consultancy Services runs strategy today"
+   },
+   {
+    "id": 20,
+    "why": "worked at peer Wipro as Head of Compliance (2011–now); met-as-management, last spoke Sep 2026, 6 interactions in 24 months",
+    "name": "Riya Kamath",
+    "rank": 0.626,
+    "warmth": 0.62,
+    "headline": "Head of Compliance, Wipro",
+    "how_known": "met-as-management",
+    "relevance": 0.63,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "met-as-management, last spoke Sep 2026, 6 interactions in 24 months",
+    "last_contact": "2026-09-16",
+    "warmth_label": "medium",
+    "what_theyd_know": "How Wipro runs legal-compliance today"
+   },
+   {
+    "id": 75,
+    "why": "worked at peer Nagarro as Head of Investor Relations (2011–2016); industry-friend, last spoke Aug 2025, 0 interactions in 24 months",
+    "name": "Harpreet Pillai",
+    "rank": 0.203,
+    "warmth": 0.52,
+    "headline": "Head of Investor Relations, Nagarro",
+    "how_known": "industry-friend",
+    "relevance": 0.11,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "industry-friend, last spoke Aug 2025, 0 interactions in 24 months",
+    "last_contact": "2025-08-08",
+    "warmth_label": "medium",
+    "what_theyd_know": "How Nagarro runs IR up to 2016"
+   }
+  ],
+  "people": [],
+  "points": 0,
+  "questions": []
+ },
  "name": "Persistent Systems Limited",
- "as_of": "2026-11-13T18:00:42.571837+05:30",
+ "as_of": "2026-11-13T19:09:54.745739+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_23102026204328_PSLTranscriptSubmissionOctober2026Sd.pdf",
@@ -120,6 +207,140 @@
   }
  ],
  "format": "indas",
+ "groups": [
+  {
+   "id": "fy31-revenue",
+   "steps": [
+    {
+     "url": "https://www.persistent.com/wp-content/uploads/2025/01/Analyst-Call-Transcript-Q3-FY25.pdf",
+     "call": "Q3 FY25 call",
+     "date": "2025-01-22",
+     "kind": "statement",
+     "page": 20,
+     "quote": "We remain confident in our trajectory towards this near-term aspiration and as a team have set our sights on our next aspiration, achieving $5 billion in revenue by FY31.",
+     "values": [
+      {
+       "low": 5.0,
+       "high": 5.0,
+       "unit": "$ billion",
+       "floor": false,
+       "short": "Revenue",
+       "change": "first given",
+       "metric": "revenue"
+      }
+     ],
+     "speaker": "Sandeep Kalra",
+     "qualifier": null
+    }
+   ],
+   "title": "FY31 Revenue",
+   "period": "FY31",
+   "metrics": [
+    "revenue"
+   ],
+   "results": [],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "Falls due with FY31 results, not reported yet",
+     "label": "pending",
+     "short": "Revenue",
+     "caveat": null,
+     "metric": "revenue",
+     "verdict": "pending"
+    }
+   ],
+   "cross_checks": []
+  },
+  {
+   "id": "medium-term-revenue-growth",
+   "steps": [
+    {
+     "url": "https://www.persistent.com/wp-content/uploads/2025/07/analyst-call-transcript-q1fy26.pdf",
+     "call": "Q1 FY26 call",
+     "date": "2025-07-23",
+     "kind": "statement",
+     "page": 30,
+     "quote": "We need a compounded annual growth rate in the range of 19%-20%.",
+     "values": [
+      {
+       "low": 19.0,
+       "high": 20.0,
+       "unit": "%",
+       "floor": false,
+       "short": "Rev. growth",
+       "change": "first given",
+       "metric": "revenue_growth"
+      }
+     ],
+     "speaker": "Sandeep Kalra",
+     "qualifier": null
+    }
+   ],
+   "title": "Revenue growth (medium term)",
+   "period": "medium term",
+   "metrics": [
+    "revenue_growth"
+   ],
+   "results": [],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "No year attached, so it never falls due; listed, not scored",
+     "label": "open-ended",
+     "short": "Rev. growth",
+     "caveat": null,
+     "metric": "revenue_growth",
+     "verdict": "open-ended"
+    }
+   ],
+   "cross_checks": []
+  },
+  {
+   "id": "medium-term-operating-margin",
+   "steps": [
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_23102026204328_PSLTranscriptSubmissionOctober2026Sd.pdf",
+     "call": "Q2 FY27 call",
+     "date": "2026-10-23",
+     "kind": "statement",
+     "page": 22,
+     "quote": "So, we are reasonably assured in our minds about what we are signed up for, our ability to optimize margins over a period of time and deliver to our aspirational goals of 16 to 17% margins and the growth that we aspire.",
+     "values": [
+      {
+       "low": 16.0,
+       "high": 17.0,
+       "unit": "%",
+       "floor": false,
+       "short": "Op. margin",
+       "change": "first given",
+       "metric": "operating_margin"
+      }
+     ],
+     "speaker": "Sandeep Kalra",
+     "qualifier": "aspirational"
+    }
+   ],
+   "title": "Operating margin (medium term)",
+   "period": "medium term",
+   "metrics": [
+    "operating_margin"
+   ],
+   "results": [],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "No year attached, so it never falls due; listed, not scored",
+     "label": "open-ended",
+     "short": "Op. margin",
+     "caveat": null,
+     "metric": "operating_margin",
+     "verdict": "open-ended"
+    }
+   ],
+   "cross_checks": []
+  }
+ ],
  "ledger": {
   "open": 3,
   "missed": 0,
@@ -236,6 +457,7 @@
   {
    "label": "Revenue",
    "moved": null,
+   "short": "Revenue",
    "story": "FY31 revenue: 5 $ billion → pending.",
    "actual": null,
    "metric": "revenue",
@@ -282,6 +504,7 @@
   {
    "label": "Revenue growth",
    "moved": null,
+   "short": "Rev. growth",
    "story": "medium term revenue growth: 19–20% → open-ended.",
    "actual": null,
    "metric": "revenue_growth",
@@ -330,6 +553,7 @@
   {
    "label": "Operating margin",
    "moved": null,
+   "short": "Op. margin",
    "story": "medium term operating margin: 16–17% → open-ended.",
    "actual": null,
    "metric": "operating_margin",

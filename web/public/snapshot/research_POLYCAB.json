@@ -1,6 +1,12 @@
 {
+ "help": {
+  "call": [],
+  "people": [],
+  "points": 0,
+  "questions": []
+ },
  "name": "Polycab India Limited",
- "as_of": "2026-11-13T18:01:15.692543+05:30",
+ "as_of": "2026-11-13T19:10:00.381850+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_19102026163912_Intimation_of_Earnings_Call_Transcript.pdf",
@@ -152,6 +158,497 @@
   }
  ],
  "format": "indas",
+ "groups": [
+  {
+   "id": "fy30-capex",
+   "steps": [
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_25072025164059_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q1 FY26 call",
+     "date": "2025-07-25",
+     "kind": "statement",
+     "page": 5,
+     "quote": "Capital expenditure for the quarter was ₹ 4.1 billion, in-line with our Project Spring guidance of investing ₹ 12 billion to ₹ 16 billion annually through FY30.",
+     "values": [
+      {
+       "low": 409.99999999999994,
+       "high": 409.99999999999994,
+       "unit": "₹ cr",
+       "floor": false,
+       "short": "Capex",
+       "change": "first given",
+       "metric": "capex"
+      }
+     ],
+     "speaker": "Chirayu Upadhyaya",
+     "qualifier": null
+    }
+   ],
+   "title": "FY30 Capex",
+   "period": "FY30",
+   "metrics": [
+    "capex"
+   ],
+   "results": [],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "Falls due with FY30 results, not reported yet",
+     "label": "pending",
+     "short": "Capex",
+     "caveat": null,
+     "metric": "capex",
+     "verdict": "pending"
+    }
+   ],
+   "cross_checks": []
+  },
+  {
+   "id": "fy27-capex",
+   "steps": [
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_08052026185934_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "date": "2026-05-08",
+     "kind": "statement",
+     "page": 14,
+     "quote": "Plus if you look at our capex guidance, we've already pumped in INR 1,500 crores in this financial year.",
+     "values": [
+      {
+       "low": 1500.0,
+       "high": 1500.0,
+       "unit": "₹ cr",
+       "floor": false,
+       "short": "Capex",
+       "change": "first given",
+       "metric": "capex"
+      }
+     ],
+     "speaker": "Shashank Yagnick",
+     "qualifier": null
+    }
+   ],
+   "title": "FY27 Capex",
+   "period": "FY27",
+   "metrics": [
+    "capex"
+   ],
+   "results": [],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "The company hasn't stated a year-to-date capex; our estimate from the filings is ₹598 cr (2Q YTD) (cross-check only)",
+     "label": "pending",
+     "short": "Capex",
+     "caveat": null,
+     "metric": "capex",
+     "verdict": "pending"
+    }
+   ],
+   "cross_checks": []
+  },
+  {
+   "id": "no-year-stated-revenue-growth",
+   "steps": [
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_29012025215542_EarningsTranscript29012025.pdf",
+     "call": "Q3 FY25 call",
+     "date": "2025-01-29",
+     "kind": "statement",
+     "page": 11,
+     "quote": "We expect to grow at 1.5x of that growth. That means our growth will be somewhere between 15% to 20%.",
+     "values": [
+      {
+       "low": 15.0,
+       "high": 20.0,
+       "unit": "%",
+       "floor": false,
+       "short": "Rev. growth",
+       "change": "first given",
+       "metric": "revenue_growth"
+      }
+     ],
+     "speaker": null,
+     "qualifier": null
+    },
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_08052026185934_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "date": "2026-05-08",
+     "kind": "statement",
+     "page": 13,
+     "quote": "So if market grows, we will deliver 1.5x of that growth. If we are expecting 12% market growth, then we should deliver 18% and plus.",
+     "values": [
+      {
+       "low": 18.0,
+       "high": 18.0,
+       "unit": "%",
+       "floor": false,
+       "short": "Rev. growth",
+       "change": "raised",
+       "metric": "revenue_growth"
+      }
+     ],
+     "speaker": null,
+     "qualifier": null
+    },
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_20072026120857_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q1 FY27 call",
+     "date": "2026-07-20",
+     "kind": "statement",
+     "page": 9,
+     "quote": "But I think we have always guided that we will do 1.5x of market growth, which is a mix of both volume and value.",
+     "values": [
+      {
+       "low": 1.5,
+       "high": 1.5,
+       "unit": "x",
+       "floor": false,
+       "short": "Rev. growth",
+       "change": "cut",
+       "metric": "revenue_growth"
+      }
+     ],
+     "speaker": "Shashank Yagnick",
+     "qualifier": null
+    }
+   ],
+   "title": "Revenue growth (no year stated)",
+   "period": "no year stated",
+   "metrics": [
+    "revenue_growth"
+   ],
+   "results": [],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "The quote names no year, so it can't be held to one; listed, not scored",
+     "label": "open-ended",
+     "short": "Rev. growth",
+     "caveat": null,
+     "metric": "revenue_growth",
+     "verdict": "open-ended"
+    }
+   ],
+   "cross_checks": []
+  },
+  {
+   "id": "no-year-stated-ebitda-margin",
+   "steps": [
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_14052025172938_SIGNED_Intimation_of_Earnings_Call_Transcript-combined.pdf",
+     "call": "Q4 FY25 call",
+     "date": "2025-05-14",
+     "kind": "statement",
+     "page": 13,
+     "quote": "So largely there are positive variables as well as negative variables, and that is where the margin trajectory going ahead in spite of whatever will happen, I think we have given a guidance of 11% to 13% and we are reasonably confident that we should be able to deliver within those margin guidance.",
+     "values": [
+      {
+       "low": 11.0,
+       "high": 13.0,
+       "unit": "%",
+       "floor": false,
+       "short": "EBITDA margin",
+       "change": "first given",
+       "metric": "ebitda_margin"
+      }
+     ],
+     "speaker": "Chirayu Upadhyaya",
+     "qualifier": null
+    },
+    {
+     "low": 11.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_14052025172938_SIGNED_Intimation_of_Earnings_Call_Transcript-combined.pdf",
+     "call": "Q4 FY25 call",
+     "date": "2025-05-14",
+     "high": 13.0,
+     "kind": "steer",
+     "page": 11,
+     "unit": "%",
+     "metric": "ebitda_margin",
+     "stance": "confirmed",
+     "analyst": "Achal Lohade",
+     "speaker": "Chirayu Upadhyaya",
+     "position": null,
+     "call_date": "2025-05-14",
+     "reply_page": 11,
+     "reply_quote": "Yes.",
+     "analyst_quote": "Polycab India Limited May 07, 2025 Chirayu Upadhyaya: Our guidance, as a part of Project Spring, is on EBITDA and we’ve given the guidance that over the near to mid-term we expect the EBITDA margins in the cables and wires business to be consistently in the 11% to 13% range."
+    },
+    {
+     "low": 11.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_19102026163912_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q2 FY27 call",
+     "date": "2026-10-19",
+     "high": 13.0,
+     "kind": "steer",
+     "page": 10,
+     "unit": "%",
+     "metric": null,
+     "stance": "confirmed",
+     "analyst": "Umang Mehta",
+     "speaker": "Aditya Nathany",
+     "position": null,
+     "call_date": "2026-10-19",
+     "reply_page": 11,
+     "reply_quote": "Yes.",
+     "analyst_quote": "Now, I understand 11% to 13% is your long-term guidance."
+    },
+    {
+     "low": 11.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_19102026163912_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q2 FY27 call",
+     "date": "2026-10-19",
+     "high": 13.0,
+     "kind": "steer",
+     "page": 16,
+     "unit": "%",
+     "metric": null,
+     "stance": "rejected",
+     "analyst": "Ashish Jain",
+     "speaker": "Aditya Nathany",
+     "position": null,
+     "call_date": "2026-10-19",
+     "reply_page": 16,
+     "reply_quote": "No, Ashish, as I alluded in my previous comments, we are not taking any initiatives as of now in terms of competition, per se.",
+     "analyst_quote": "But long-term, we are still holding 11% to 13% range guidance."
+    }
+   ],
+   "title": "EBITDA margin (no year stated)",
+   "period": "no year stated",
+   "metrics": [
+    "ebitda_margin"
+   ],
+   "results": [],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "The quote names no year, so it can't be held to one; listed, not scored",
+     "label": "open-ended",
+     "short": "EBITDA margin",
+     "caveat": null,
+     "metric": "ebitda_margin",
+     "verdict": "open-ended"
+    }
+   ],
+   "cross_checks": []
+  },
+  {
+   "id": "medium-term-ebitda-margin",
+   "steps": [
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_25072025164059_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q1 FY26 call",
+     "date": "2025-07-25",
+     "kind": "statement",
+     "page": 11,
+     "quote": "But otherwise, the longer- term guidance will continue to be the 11% to 13% EBITDA margins.",
+     "values": [
+      {
+       "low": 11.0,
+       "high": 13.0,
+       "unit": "%",
+       "floor": false,
+       "short": "EBITDA margin",
+       "change": "first given",
+       "metric": "ebitda_margin"
+      }
+     ],
+     "speaker": "Chirayu Upadhyaya",
+     "qualifier": null
+    },
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_28102025211243_SEintimationearningscall17102025.pdf",
+     "call": "Q2 FY26 call",
+     "date": "2025-10-28",
+     "kind": "statement",
+     "page": 7,
+     "quote": "This includes a one-time gain of approximately ₹ 300 million, excluding which margins would be at around 10%, consistent with our mid- to long-term guidance.",
+     "values": [
+      {
+       "low": 10.0,
+       "high": 10.0,
+       "unit": "%",
+       "floor": false,
+       "short": "EBITDA margin",
+       "change": "cut",
+       "metric": "ebitda_margin"
+      }
+     ],
+     "speaker": "Chirayu Upadhyaya",
+     "qualifier": null
+    },
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_08052026185934_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "date": "2026-05-08",
+     "kind": "statement",
+     "page": 13,
+     "quote": "So again, that's a very calibrated guidance which we have given that over long term, we should expect 11% to 13% EBITDA margin.",
+     "values": [
+      {
+       "low": 11.0,
+       "high": 13.0,
+       "unit": "%",
+       "floor": false,
+       "short": "EBITDA margin",
+       "change": "raised",
+       "metric": "ebitda_margin"
+      }
+     ],
+     "speaker": "Shashank Yagnick",
+     "qualifier": null
+    },
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_20072026120857_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q1 FY27 call",
+     "date": "2026-07-20",
+     "kind": "statement",
+     "page": 5,
+     "quote": "Consistent with our Project Spring roadmap, we continue to maintain our medium- to long-term margin guidance of 11% to 13% for this business.",
+     "values": [
+      {
+       "low": 11.0,
+       "high": 13.0,
+       "unit": "%",
+       "floor": false,
+       "short": "EBITDA margin",
+       "change": "held",
+       "metric": "ebitda_margin"
+      }
+     ],
+     "speaker": "Shashank Yagnick",
+     "qualifier": null
+    }
+   ],
+   "title": "EBITDA margin (medium term)",
+   "period": "medium term",
+   "metrics": [
+    "ebitda_margin"
+   ],
+   "results": [],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "No year attached, so it never falls due; listed, not scored",
+     "label": "open-ended",
+     "short": "EBITDA margin",
+     "caveat": null,
+     "metric": "ebitda_margin",
+     "verdict": "open-ended"
+    }
+   ],
+   "cross_checks": []
+  },
+  {
+   "id": "medium-term-capex",
+   "steps": [
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_29012025215542_EarningsTranscript29012025.pdf",
+     "call": "Q3 FY25 call",
+     "date": "2025-01-29",
+     "kind": "statement",
+     "page": 11,
+     "quote": "As we have released within our guidance, we are gearing up to do capex of between ₹ 60 billion to ₹ 80 billion over the next 5 years.",
+     "values": [
+      {
+       "low": 6000.0,
+       "high": 6000.0,
+       "unit": "₹ cr",
+       "floor": false,
+       "short": "Capex",
+       "change": "first given",
+       "metric": "capex"
+      }
+     ],
+     "speaker": "Chirayu Upadhyaya",
+     "qualifier": null
+    },
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_14052025172938_SIGNED_Intimation_of_Earnings_Call_Transcript-combined.pdf",
+     "call": "Q4 FY25 call",
+     "date": "2025-05-14",
+     "kind": "statement",
+     "page": 8,
+     "quote": "Polycab has also been declared the lowest bidder in the Goa, Karnataka and Puducherry package with the capex order amounting to ₹ 41 billion (inclusive of GST), execution of the agreement for which is expected to complete soon.",
+     "values": [
+      {
+       "low": 4100.0,
+       "high": 4100.0,
+       "unit": "₹ cr",
+       "floor": false,
+       "short": "Capex",
+       "change": "cut",
+       "metric": "capex"
+      }
+     ],
+     "speaker": "Chirayu Upadhyaya",
+     "qualifier": null
+    },
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_25072025164059_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q1 FY26 call",
+     "date": "2025-07-25",
+     "kind": "statement",
+     "page": 8,
+     "quote": "So again, within Project Spring, we have given a guidance of spending roughly ₹ 6,000 crores to ₹ 8,000 crores over the next 5 years.",
+     "values": [
+      {
+       "low": 6000.0,
+       "high": 8000.0,
+       "unit": "₹ cr",
+       "floor": false,
+       "short": "Capex",
+       "change": "raised",
+       "metric": "capex"
+      }
+     ],
+     "speaker": null,
+     "qualifier": null
+    },
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_20072026120857_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q1 FY27 call",
+     "date": "2026-07-20",
+     "kind": "statement",
+     "page": 5,
+     "quote": "As these effects normalize, we expect the working capital cycle to settle within our long-term operating range of 45 to 50 days. Capital expenditure during the quarter amounted to INR 3.2 billion, reflecting our continued commitment to building capacity and strengthening future growth drivers.",
+     "values": [
+      {
+       "low": 320.0,
+       "high": 320.0,
+       "unit": "₹ cr",
+       "floor": false,
+       "short": "Capex",
+       "change": "cut",
+       "metric": "capex"
+      }
+     ],
+     "speaker": "Shashank Yagnick",
+     "qualifier": null
+    }
+   ],
+   "title": "Capex (medium term)",
+   "period": "medium term",
+   "metrics": [
+    "capex"
+   ],
+   "results": [],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "No year attached, so it never falls due; listed, not scored",
+     "label": "open-ended",
+     "short": "Capex",
+     "caveat": null,
+     "metric": "capex",
+     "verdict": "open-ended"
+    }
+   ],
+   "cross_checks": []
+  }
+ ],
  "ledger": {
   "open": 6,
   "missed": 0,
@@ -189,6 +686,7 @@
   {
    "label": "Revenue growth",
    "moved": null,
+   "short": "Rev. growth",
    "story": "FY30 revenue growth: 1.5–2 x → not scored.",
    "actual": null,
    "metric": "revenue_growth",
@@ -235,6 +733,7 @@
   {
    "label": "EBITDA margin",
    "moved": null,
+   "short": "EBITDA margin",
    "story": "FY30 ebitda margin: 8–10% → 8–10% (held) → not scored.",
    "actual": null,
    "metric": "ebitda_margin",
@@ -309,6 +808,7 @@
   {
    "label": "Capex",
    "moved": null,
+   "short": "Capex",
    "story": "FY30 capex: 410 ₹ cr → pending.",
    "actual": null,
    "metric": "capex",
@@ -357,6 +857,7 @@
   {
    "label": "Capex",
    "moved": null,
+   "short": "Capex",
    "story": "FY27 capex: 1500 ₹ cr → pending.",
    "actual": null,
    "metric": "capex",
@@ -405,6 +906,7 @@
   {
    "label": "Capex",
    "moved": null,
+   "short": "Capex",
    "story": "FY26 capex: 1200 ₹ cr → 340 ₹ cr (cut once) → not scored.",
    "actual": null,
    "metric": "capex",
@@ -488,6 +990,7 @@
   {
    "label": "Capex",
    "moved": null,
+   "short": "Capex",
    "story": "FY25 capex: 130 ₹ cr → not scored.",
    "actual": null,
    "metric": "capex",
@@ -545,6 +1048,7 @@
   {
    "label": "Revenue growth",
    "moved": null,
+   "short": "Rev. growth",
    "story": "no year stated revenue growth: 15–20% → 18% → 1.5 x (cut once) → open-ended.",
    "actual": null,
    "metric": "revenue_growth",
@@ -643,6 +1147,7 @@
   {
    "label": "EBITDA margin",
    "moved": null,
+   "short": "EBITDA margin",
    "story": "no year stated ebitda margin: 11–13% → open-ended.",
    "actual": null,
    "metric": "ebitda_margin",
@@ -743,6 +1248,7 @@
   {
    "label": "EBITDA margin",
    "moved": null,
+   "short": "EBITDA margin",
    "story": "medium term ebitda margin: 11–13% → 10% → 11–13% → 11–13% (cut once) → open-ended.",
    "actual": null,
    "metric": "ebitda_margin",
@@ -869,6 +1375,7 @@
   {
    "label": "Capex",
    "moved": null,
+   "short": "Capex",
    "story": "medium term capex: 6000 ₹ cr → 4100 ₹ cr → 6000–8000 ₹ cr → 320 ₹ cr (cut 2×) → open-ended.",
    "actual": null,
    "metric": "capex",

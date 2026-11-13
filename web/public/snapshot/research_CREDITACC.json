@@ -1,6 +1,97 @@
 {
+ "help": {
+  "call": [
+   {
+    "id": 19,
+    "why": "worked at CREDITACCESS GRAMEEN LIMITED as Head of Investor Relations (2017–2019); industry-friend, last spoke Jun 2025, 0 interactions in 24 months",
+    "name": "Radhika Saxena",
+    "rank": 0.337,
+    "warmth": 0.51,
+    "headline": "Head of Investor Relations, CREDITACCESS GRAMEEN LIMITED",
+    "how_known": "industry-friend",
+    "relevance": 0.26,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "industry-friend, last spoke Jun 2025, 0 interactions in 24 months",
+    "last_contact": "2025-06-16",
+    "warmth_label": "medium",
+    "what_theyd_know": "How CREDITACCESS GRAMEEN LIMITED runs IR up to 2019"
+   },
+   {
+    "id": 63,
+    "why": "worked at peer Cholamandalam Investment and Finance as Chief Risk Officer (2016–now); classmate, last spoke Mar 2026, 5 interactions in 24 months",
+    "name": "Diya Dutta",
+    "rank": 0.728,
+    "warmth": 0.67,
+    "headline": "Chief Risk Officer, Cholamandalam Investment and Finance",
+    "how_known": "classmate",
+    "relevance": 0.77,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "classmate, last spoke Mar 2026, 5 interactions in 24 months",
+    "last_contact": "2026-03-23",
+    "warmth_label": "strong",
+    "what_theyd_know": "How Cholamandalam Investment and Finance runs treasury-credit today"
+   },
+   {
+    "id": 52,
+    "why": "worked at peer Cholamandalam Investment and Finance as HR Business Partner (2014–2016); ex-colleague, last spoke Jul 2026, 3 interactions in 24 months",
+    "name": "Aarav Agarwal",
+    "rank": 0.222,
+    "warmth": 0.8,
+    "headline": "CHRO, AU Small Finance Bank Limited",
+    "how_known": "ex-colleague",
+    "relevance": 0.09,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "ex-colleague, last spoke Jul 2026, 3 interactions in 24 months",
+    "last_contact": "2026-07-20",
+    "warmth_label": "strong",
+    "what_theyd_know": "How Cholamandalam Investment and Finance runs HR up to 2016"
+   },
+   {
+    "id": 30,
+    "why": "worked at peer Spandana Sphoorty as CHRO (2010–2015); introduced-by, last spoke Oct 2026, 6 interactions in 24 months",
+    "name": "Diya Varma",
+    "rank": 0.189,
+    "warmth": 0.54,
+    "headline": "CHRO, Spandana Sphoorty",
+    "how_known": "introduced-by",
+    "relevance": 0.09,
+    "synthetic": true,
+    "compliance": null,
+    "warmth_why": "introduced-by, last spoke Oct 2026, 6 interactions in 24 months",
+    "last_contact": "2026-10-18",
+    "warmth_label": "medium",
+    "what_theyd_know": "How Spandana Sphoorty runs HR up to 2015"
+   },
+   {
+    "id": 74,
+    "why": "worked at CREDITACCESS GRAMEEN LIMITED as Head of Compliance (2014–now); industry-friend, last spoke Sep 2025, 0 interactions in 24 months",
+    "name": "Zoya Chatterjee",
+    "rank": 0.504,
+    "warmth": 0.36,
+    "headline": "Head of Compliance, CREDITACCESS GRAMEEN LIMITED",
+    "how_known": "industry-friend",
+    "relevance": 0.63,
+    "synthetic": true,
+    "compliance": "Current employee of CREDITACCESS GRAMEEN LIMITED — treat as a potential insider. Don't seek unpublished price-sensitive information; keep to public and industry context.",
+    "warmth_why": "industry-friend, last spoke Sep 2025, 0 interactions in 24 months",
+    "last_contact": "2025-09-03",
+    "warmth_label": "medium",
+    "what_theyd_know": "How CREDITACCESS GRAMEEN LIMITED runs legal-compliance today"
+   }
+  ],
+  "people": [],
+  "points": 0,
+  "questions": [
+   "FY26 return on assets came in at 2.7%, below guidance already lowered from 4.2–4.5% to 2.9–3.4%. What drove the shortfall after the cut, and what is different now?",
+   "FY26 return on equity came in at 10.7%, below guidance already lowered from 17–19% to 11.8–13.3%. What drove the shortfall after the cut, and what is different now?",
+   "FY26 AUM / loan growth landed at 14.0% against guidance lowered from 18–20% to 14–18%. What forced the cut, and what would it take to reach the original?"
+  ]
+ },
  "name": "CREDITACCESS GRAMEEN LIMITED",
- "as_of": "2026-11-13T17:59:57.898504+05:30",
+ "as_of": "2026-11-13T19:09:45.042568+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
@@ -151,10 +242,786 @@
   }
  ],
  "format": "nbfc",
+ "groups": [
+  {
+   "id": "fy26-aum-growth-roa-roe",
+   "steps": [
+    {
+     "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/01/CreditAccess-Grameen_Earnings-Call-Transcript_Q3_FY-2024-25.pdf",
+     "call": "Q3 FY25 call",
+     "date": "2025-01-24",
+     "kind": "statement",
+     "page": 5,
+     "quote": "The preliminary outlook for FY26 projects healthy 18%-20% AUM growth, 4.2%-4.5% ROA and 17%-19% ROE.",
+     "values": [
+      {
+       "low": 18.0,
+       "high": 20.0,
+       "unit": "%",
+       "floor": false,
+       "short": "AUM growth",
+       "change": "first given",
+       "metric": "aum_growth"
+      },
+      {
+       "low": 4.2,
+       "high": 4.5,
+       "unit": "%",
+       "floor": false,
+       "short": "ROA",
+       "change": "first given",
+       "metric": "roa"
+      },
+      {
+       "low": 17.0,
+       "high": 19.0,
+       "unit": "%",
+       "floor": false,
+       "short": "ROE",
+       "change": "first given",
+       "metric": "roe"
+      }
+     ],
+     "speaker": "Ganesh Narayanan",
+     "qualifier": "preliminary"
+    },
+    {
+     "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/05/CreditAccess-Grameen_Earnings-Call-Transcript_Q4_FY-2024-25.pdf",
+     "call": "Q4 FY25 call",
+     "date": "2025-05-16",
+     "kind": "statement",
+     "page": 5,
+     "quote": "Considering the evolving business environment, we are aiming for an AUM growth of 14% to 18% of which MFI growth will be 8% to 12% and the balance will come from retail finance. NIM of 12.6% to 12.8%, Credit cost of 5.5% to 6%, ROA of 2.9% to 3.4%, and ROE of 11.8% to 13.3% in FY26.",
+     "values": [
+      {
+       "low": 14.0,
+       "high": 18.0,
+       "unit": "%",
+       "floor": false,
+       "short": "AUM growth",
+       "change": "cut",
+       "metric": "aum_growth"
+      },
+      {
+       "low": 2.9,
+       "high": 3.4,
+       "unit": "%",
+       "floor": false,
+       "short": "ROA",
+       "change": "cut",
+       "metric": "roa"
+      },
+      {
+       "low": 11.8,
+       "high": 13.3,
+       "unit": "%",
+       "floor": false,
+       "short": "ROE",
+       "change": "cut",
+       "metric": "roe"
+      }
+     ],
+     "speaker": "Udaya Kumar Hebbar",
+     "qualifier": null
+    },
+    {
+     "low": 14.0,
+     "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/11/CreditAccess-Grameen_Earnings-Call-Transcript_Q2_FY-2025-26.pdf",
+     "call": "Q2 FY26 call",
+     "date": "2025-10-28",
+     "high": 18.0,
+     "kind": "steer",
+     "page": 11,
+     "unit": "%",
+     "metric": null,
+     "stance": "confirmed",
+     "analyst": "Shreepal Doshi",
+     "speaker": "Ganesh Narayanan",
+     "position": "lower end",
+     "call_date": "2025-10-28",
+     "reply_page": 11,
+     "reply_quote": "Yes, we should assume at the lower end of the bracket.",
+     "analyst_quote": "And sir, just on the growth front, I mean, I think the last quarter, the guidance slide reflected a growth guidance of almost 14% to 18%."
+    }
+   ],
+   "title": "FY26 outlook",
+   "period": "FY26",
+   "metrics": [
+    "aum_growth",
+    "roa",
+    "roe"
+   ],
+   "results": [
+    {
+     "kind": "result",
+     "basis": "company-reported",
+     "source": {
+      "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_13052026101034_Final_Transcript.pdf",
+      "call": "Q4 FY26 call",
+      "from": "NSE",
+      "page": 3,
+      "quote": "The AUM grew 14.0% YoY and 11.4% QoQ, in line with the annual growth guidance, despite 7.6% write-offs made in FY26."
+     },
+     "values": [
+      {
+       "span": "FY",
+       "unit": "%",
+       "short": "AUM growth",
+       "value": 14.0,
+       "metric": "aum_growth"
+      }
+     ]
+    },
+    {
+     "kind": "result",
+     "basis": "company-reported",
+     "source": {
+      "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_13052026101034_Final_Transcript.pdf",
+      "call": "Q4 FY26 call",
+      "from": "NSE",
+      "page": 4,
+      "quote": "We ended the year with INR 778 Crore PAT, translating to ROA of 2.7% and ROE of 10.7%."
+     },
+     "values": [
+      {
+       "span": "FY",
+       "unit": "%",
+       "short": "ROA",
+       "value": 2.7,
+       "metric": "roa"
+      },
+      {
+       "span": "FY",
+       "unit": "%",
+       "short": "ROE",
+       "value": 10.7,
+       "metric": "roe"
+      }
+     ]
+    }
+   ],
+   "resolved": true,
+   "verdicts": [
+    {
+     "line": "Missed preliminary 18–20% outlook · met the lowered 14–18%, at the very bottom of the range",
+     "label": "met after cut",
+     "short": "AUM growth",
+     "caveat": null,
+     "metric": "aum_growth",
+     "verdict": "delivered"
+    },
+    {
+     "line": "Missed preliminary 4.2–4.5% outlook · missed the lowered 2.9–3.4%",
+     "label": "missed after cut",
+     "short": "ROA",
+     "caveat": null,
+     "metric": "roa",
+     "verdict": "missed"
+    },
+    {
+     "line": "Missed preliminary 17–19% outlook · missed the lowered 11.8–13.3%",
+     "label": "missed after cut",
+     "short": "ROE",
+     "caveat": null,
+     "metric": "roe",
+     "verdict": "missed"
+    }
+   ],
+   "cross_checks": [
+    {
+     "span": "FY",
+     "unit": "%",
+     "basis": "loans on the balance sheet, YoY to Mar 2026 (AUM also includes off-book loans)",
+     "short": "AUM growth",
+     "value": 15.0,
+     "source": {
+      "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_NBFC_INDAS_1665139_08052026091123_WEB.xml"
+     },
+     "quarters": 4
+    },
+    {
+     "span": "FY",
+     "unit": "%",
+     "basis": "profit ÷ average total assets",
+     "short": "ROA",
+     "value": 2.6,
+     "source": {
+      "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_NBFC_INDAS_1665139_08052026091123_WEB.xml"
+     },
+     "quarters": 4
+    },
+    {
+     "span": "FY",
+     "unit": "%",
+     "basis": "profit ÷ average equity",
+     "short": "ROE",
+     "value": 10.5,
+     "source": {
+      "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_NBFC_INDAS_1665139_08052026091123_WEB.xml"
+     },
+     "quarters": 4
+    }
+   ]
+  },
+  {
+   "id": "fy25-roa-roe",
+   "steps": [
+    {
+     "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/01/CreditAccess-Grameen_Earnings-Call-Transcript_Q3_FY-2024-25.pdf",
+     "call": "Q3 FY25 call",
+     "date": "2025-01-24",
+     "kind": "statement",
+     "page": 5,
+     "quote": "Considering the current scenario, we are aiming for an AUM growth of 7%-8%, NIM of 12.8%-13.0%, credit cost of 6.7%-6.9%, ROA of 2.3%-2.4% and an ROE of 9.5%-10.0% in FY25.",
+     "values": [
+      {
+       "low": 2.3,
+       "high": 2.4,
+       "unit": "%",
+       "floor": false,
+       "short": "ROA",
+       "change": "first given",
+       "metric": "roa"
+      },
+      {
+       "low": 9.5,
+       "high": 10.0,
+       "unit": "%",
+       "floor": false,
+       "short": "ROE",
+       "change": "first given",
+       "metric": "roe"
+      }
+     ],
+     "speaker": "Ganesh Narayanan",
+     "qualifier": null
+    }
+   ],
+   "title": "FY25 guidance",
+   "period": "FY25",
+   "metrics": [
+    "roa",
+    "roe"
+   ],
+   "results": [
+    {
+     "kind": "result",
+     "basis": "company-reported",
+     "source": {
+      "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/05/CreditAccess-Grameen_Earnings-Call-Transcript_Q4_FY-2024-25.pdf",
+      "call": "Q4 FY25 call",
+      "from": "company IR site",
+      "page": 4,
+      "quote": "Amid the multiple headwinds faced in FY25, we delivered ROA of 1.9% and ROE of 7.7%."
+     },
+     "values": [
+      {
+       "span": "FY",
+       "unit": "%",
+       "short": "ROA",
+       "value": 1.9,
+       "metric": "roa"
+      },
+      {
+       "span": "FY",
+       "unit": "%",
+       "short": "ROE",
+       "value": 7.7,
+       "metric": "roe"
+      }
+     ]
+    }
+   ],
+   "resolved": true,
+   "verdicts": [
+    {
+     "line": "Missed 2.3–2.4% guidance",
+     "label": "missed",
+     "short": "ROA",
+     "caveat": null,
+     "metric": "roa",
+     "verdict": "missed"
+    },
+    {
+     "line": "Missed 9.5–10% guidance",
+     "label": "missed",
+     "short": "ROE",
+     "caveat": null,
+     "metric": "roe",
+     "verdict": "missed"
+    }
+   ],
+   "cross_checks": [
+    {
+     "span": "FY",
+     "unit": "%",
+     "basis": "profit ÷ average total assets",
+     "short": "ROA",
+     "value": 1.9,
+     "source": {
+      "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_NBFC_INDAS_1441430_16052025063352_WEB.xml"
+     },
+     "quarters": 4
+    },
+    {
+     "span": "FY",
+     "unit": "%",
+     "basis": "profit ÷ average equity",
+     "short": "ROE",
+     "value": 7.9,
+     "source": {
+      "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_NBFC_INDAS_1441430_16052025063352_WEB.xml"
+     },
+     "quarters": 4
+    }
+   ]
+  },
+  {
+   "id": "fy27-aum-growth",
+   "steps": [
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_13052026101034_Final_Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "date": "2026-05-13",
+     "kind": "statement",
+     "page": 6,
+     "quote": "For FY27, we are guiding an AUM growth of 20.0-25.0%, NIM of 12.8-13.2%, cost to income of 33.0-35.0%, credit cost of 3.0-4.0%, ROA of 4.0-4.8%, and an ROE of 16.0-20.0%.",
+     "values": [
+      {
+       "low": 20.0,
+       "high": 25.0,
+       "unit": "%",
+       "floor": false,
+       "short": "AUM growth",
+       "change": "first given",
+       "metric": "aum_growth"
+      }
+     ],
+     "speaker": "Ganesh Narayanan",
+     "qualifier": null
+    },
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
+     "call": "Q2 FY27 call",
+     "date": "2026-10-26",
+     "kind": "statement",
+     "page": 5,
+     "quote": "We retain our AUM growth guidance of 20% to 25%, supported by return to growth in Group Loan portfolio, coupled with continued momentum in Retail Finance.",
+     "values": [
+      {
+       "low": 20.0,
+       "high": 25.0,
+       "unit": "%",
+       "floor": false,
+       "short": "AUM growth",
+       "change": "reiterated",
+       "metric": "aum_growth"
+      }
+     ],
+     "speaker": "Ganesh Narayanan",
+     "qualifier": null
+    },
+    {
+     "low": 20.0,
+     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
+     "call": "Q2 FY27 call",
+     "date": "2026-10-26",
+     "high": 25.0,
+     "kind": "steer",
+     "page": 15,
+     "unit": "%",
+     "metric": null,
+     "stance": "confirmed",
+     "analyst": "Shreepal Doshi",
+     "speaker": "Ganesh Narayanan",
+     "position": null,
+     "call_date": "2026-10-26",
+     "reply_page": 15,
+     "reply_quote": "Yes.",
+     "analyst_quote": "And growth also confident of holding it in the range of 20% to 25%?"
+    }
+   ],
+   "title": "FY27 AUM / loan growth",
+   "period": "FY27",
+   "metrics": [
+    "aum_growth"
+   ],
+   "results": [],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "The company hasn't stated a year-to-date aum / loan growth; our estimate from the filings is 21.5% (2Q YTD) (cross-check only)",
+     "label": "pending",
+     "short": "AUM growth",
+     "caveat": null,
+     "metric": "aum_growth",
+     "verdict": "pending"
+    }
+   ],
+   "cross_checks": []
+  },
+  {
+   "id": "fy27-credit-cost",
+   "steps": [
+    {
+     "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/11/CreditAccess-Grameen_Earnings-Call-Transcript_Q2_FY-2025-26.pdf",
+     "call": "Q2 FY26 call",
+     "date": "2025-10-28",
+     "kind": "statement",
+     "page": 5,
+     "quote": "We are envisaging that the next year credit cost would be in the range of 4% to 4.5%.",
+     "values": [
+      {
+       "low": 4.0,
+       "high": 4.5,
+       "unit": "%",
+       "floor": false,
+       "short": "Credit cost",
+       "change": "first given",
+       "metric": "credit_cost"
+      }
+     ],
+     "speaker": "Ganesh Narayanan",
+     "qualifier": null
+    },
+    {
+     "low": 4.0,
+     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_27012026105321_Transcript_Final.pdf",
+     "call": "Q3 FY26 call",
+     "date": "2026-01-27",
+     "high": 4.5,
+     "kind": "steer",
+     "page": 8,
+     "unit": "%",
+     "metric": "credit_cost",
+     "stance": "confirmed",
+     "analyst": "Abhijeet Tibrewal",
+     "speaker": "Ganesh Narayanan",
+     "position": null,
+     "call_date": "2026-01-27",
+     "reply_page": 8,
+     "reply_quote": "Yes.",
+     "analyst_quote": "You had shared that this FY27 credit cost guidance of 4.0% to 4.5% is factoring in monthly PAR accretion of about 30 to 35 bps."
+    },
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_13052026101034_Final_Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "date": "2026-05-13",
+     "kind": "statement",
+     "page": 6,
+     "quote": "For FY27, we are guiding an AUM growth of 20.0-25.0%, NIM of 12.8-13.2%, cost to income of 33.0-35.0%, credit cost of 3.0-4.0%, ROA of 4.0-4.8%, and an ROE of 16.0-20.0%.",
+     "values": [
+      {
+       "low": 3.0,
+       "high": 4.0,
+       "unit": "%",
+       "floor": false,
+       "short": "Credit cost",
+       "change": "cut",
+       "metric": "credit_cost"
+      }
+     ],
+     "speaker": "Ganesh Narayanan",
+     "qualifier": null
+    },
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
+     "call": "Q2 FY27 call",
+     "date": "2026-10-26",
+     "kind": "statement",
+     "page": 5,
+     "quote": "We're maintaining our credit cost guidance of 3% to 4%, and it should comfortably cover for any volatility on account of evolving drought-related conditions in some operating geographies.",
+     "values": [
+      {
+       "low": 3.0,
+       "high": 4.0,
+       "unit": "%",
+       "floor": false,
+       "short": "Credit cost",
+       "change": "reiterated",
+       "metric": "credit_cost"
+      }
+     ],
+     "speaker": "Ganesh Narayanan",
+     "qualifier": null
+    }
+   ],
+   "title": "FY27 Credit cost",
+   "period": "FY27",
+   "metrics": [
+    "credit_cost"
+   ],
+   "results": [],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "The company hasn't stated a year-to-date credit cost; our estimate from the filings is 3.6% (2Q YTD annualised) (cross-check only)",
+     "label": "pending",
+     "short": "Credit cost",
+     "caveat": null,
+     "metric": "credit_cost",
+     "verdict": "pending"
+    }
+   ],
+   "cross_checks": []
+  },
+  {
+   "id": "fy27-nim",
+   "steps": [
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_13052026101034_Final_Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "date": "2026-05-13",
+     "kind": "statement",
+     "page": 6,
+     "quote": "For FY27, we are guiding an AUM growth of 20.0-25.0%, NIM of 12.8-13.2%, cost to income of 33.0-35.0%, credit cost of 3.0-4.0%, ROA of 4.0-4.8%, and an ROE of 16.0-20.0%.",
+     "values": [
+      {
+       "low": 12.8,
+       "high": 13.2,
+       "unit": "%",
+       "floor": false,
+       "short": "NIM",
+       "change": "first given",
+       "metric": "nim"
+      }
+     ],
+     "speaker": "Ganesh Narayanan",
+     "qualifier": null
+    }
+   ],
+   "title": "FY27 Net interest margin",
+   "period": "FY27",
+   "metrics": [
+    "nim"
+   ],
+   "results": [
+    {
+     "kind": "result",
+     "basis": "company-reported",
+     "source": {
+      "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
+      "call": "Q2 FY27 call",
+      "from": "NSE",
+      "page": 7,
+      "quote": "I mean on a H1 basis, our NIM is 14.7%."
+     },
+     "values": [
+      {
+       "span": "2Q YTD",
+       "unit": "%",
+       "short": "NIM",
+       "value": 14.7,
+       "metric": "nim"
+      }
+     ]
+    }
+   ],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "14.7% vs 12.8–13.2%",
+     "label": "ahead",
+     "short": "NIM",
+     "caveat": null,
+     "metric": "nim",
+     "verdict": "ahead"
+    }
+   ],
+   "cross_checks": []
+  },
+  {
+   "id": "fy27-roa-roe",
+   "steps": [
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_13052026101034_Final_Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "date": "2026-05-13",
+     "kind": "statement",
+     "page": 6,
+     "quote": "For FY27, we are guiding an AUM growth of 20.0-25.0%, NIM of 12.8-13.2%, cost to income of 33.0-35.0%, credit cost of 3.0-4.0%, ROA of 4.0-4.8%, and an ROE of 16.0-20.0%.",
+     "values": [
+      {
+       "low": 4.0,
+       "high": 4.8,
+       "unit": "%",
+       "floor": false,
+       "short": "ROA",
+       "change": "first given",
+       "metric": "roa"
+      },
+      {
+       "low": 16.0,
+       "high": 20.0,
+       "unit": "%",
+       "floor": false,
+       "short": "ROE",
+       "change": "first given",
+       "metric": "roe"
+      }
+     ],
+     "speaker": "Ganesh Narayanan",
+     "qualifier": null
+    },
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
+     "call": "Q2 FY27 call",
+     "date": "2026-10-26",
+     "kind": "statement",
+     "page": 5,
+     "quote": "We raised our profitability guidance for FY27, ROA of 5.2% to 5.8% versus 4% to 4.8% earlier and ROE of 21% to 24% versus 16% to 20% earlier.",
+     "values": [
+      {
+       "low": 5.2,
+       "high": 5.8,
+       "unit": "%",
+       "floor": false,
+       "short": "ROA",
+       "change": "raised",
+       "metric": "roa"
+      },
+      {
+       "low": 21.0,
+       "high": 24.0,
+       "unit": "%",
+       "floor": false,
+       "short": "ROE",
+       "change": "raised",
+       "metric": "roe"
+      }
+     ],
+     "speaker": "Ganesh Narayanan",
+     "qualifier": null
+    }
+   ],
+   "title": "FY27 guidance",
+   "period": "FY27",
+   "metrics": [
+    "roa",
+    "roe"
+   ],
+   "results": [
+    {
+     "kind": "result",
+     "basis": "company-reported",
+     "source": {
+      "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
+      "call": "Q2 FY27 call",
+      "from": "NSE",
+      "page": 3,
+      "quote": "Our H1 ROA stood at 5.9% and ROE stood at 23.8%."
+     },
+     "values": [
+      {
+       "span": "2Q YTD",
+       "unit": "%",
+       "short": "ROA",
+       "value": 5.9,
+       "metric": "roa"
+      },
+      {
+       "span": "2Q YTD",
+       "unit": "%",
+       "short": "ROE",
+       "value": 23.8,
+       "metric": "roe"
+      }
+     ]
+    }
+   ],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "5.9% vs 5.2–5.8%",
+     "label": "ahead",
+     "short": "ROA",
+     "caveat": null,
+     "metric": "roa",
+     "verdict": "ahead"
+    },
+    {
+     "line": "23.8% within 21–24%",
+     "label": "on track",
+     "short": "ROE",
+     "caveat": null,
+     "metric": "roe",
+     "verdict": "on track"
+    }
+   ],
+   "cross_checks": [
+    {
+     "span": "2Q YTD annualised",
+     "unit": "%",
+     "basis": "profit ÷ average total assets",
+     "short": "ROA",
+     "value": 6.0,
+     "source": {
+      "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_NBFC_INDAS_1744139_22102026061824_WEB.xml"
+     },
+     "quarters": 2
+    },
+    {
+     "span": "2Q YTD annualised",
+     "unit": "%",
+     "basis": "profit ÷ average equity",
+     "short": "ROE",
+     "value": 23.7,
+     "source": {
+      "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_NBFC_INDAS_1744139_22102026061824_WEB.xml"
+     },
+     "quarters": 2
+    }
+   ]
+  },
+  {
+   "id": "medium-term-roa",
+   "steps": [
+    {
+     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_27012026105321_Transcript_Final.pdf",
+     "call": "Q3 FY26 call",
+     "date": "2026-01-27",
+     "kind": "statement",
+     "page": 15,
+     "quote": "So, you should assume that as a company, we'll be in the range of around 4.5% ROA even in a good time.",
+     "values": [
+      {
+       "low": 4.5,
+       "high": 4.5,
+       "unit": "%",
+       "floor": false,
+       "short": "ROA",
+       "change": "first given",
+       "metric": "roa"
+      }
+     ],
+     "speaker": "Ganesh Narayanan",
+     "qualifier": null
+    }
+   ],
+   "title": "Return on assets (medium term)",
+   "period": "medium term",
+   "metrics": [
+    "roa"
+   ],
+   "results": [],
+   "resolved": false,
+   "verdicts": [
+    {
+     "line": "No year attached, so it never falls due; listed, not scored",
+     "label": "open-ended",
+     "short": "ROA",
+     "caveat": null,
+     "metric": "roa",
+     "verdict": "open-ended"
+    }
+   ],
+   "cross_checks": []
+  }
+ ],
  "ledger": {
   "open": 6,
   "missed": 4,
-  "pattern": "Of 5 resolved promises, 0 met the guidance as first given, 1 more was met only after a cut and 4 missed even the final guidance (2 after a cut).",
+  "pattern": "5 resolved · none met as first given · 1 met only after a cut · 4 missed, 2 of them even after a cut",
   "resolved": 5,
   "delivered": 1,
   "met_final": 1,
@@ -166,6 +1033,22 @@
  },
  "symbol": "CREDITACC",
  "network": [
+  {
+   "id": 19,
+   "why": "worked at CREDITACCESS GRAMEEN LIMITED as Head of Investor Relations (2017–2019); industry-friend, last spoke Jun 2025, 0 interactions in 24 months",
+   "name": "Radhika Saxena",
+   "rank": 0.337,
+   "warmth": 0.51,
+   "headline": "Head of Investor Relations, CREDITACCESS GRAMEEN LIMITED",
+   "how_known": "industry-friend",
+   "relevance": 0.26,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "industry-friend, last spoke Jun 2025, 0 interactions in 24 months",
+   "last_contact": "2025-06-16",
+   "warmth_label": "medium",
+   "what_theyd_know": "How CREDITACCESS GRAMEEN LIMITED runs IR up to 2019"
+  },
   {
    "id": 63,
    "why": "worked at peer Cholamandalam Investment and Finance as Chief Risk Officer (2016–now); classmate, last spoke Mar 2026, 5 interactions in 24 months",
@@ -183,36 +1066,20 @@
    "what_theyd_know": "How Cholamandalam Investment and Finance runs treasury-credit today"
   },
   {
-   "id": 74,
-   "why": "worked at CREDITACCESS GRAMEEN LIMITED as Head of Compliance (2014–now); industry-friend, last spoke Sep 2025, 0 interactions in 24 months",
-   "name": "Zoya Chatterjee",
-   "rank": 0.504,
-   "warmth": 0.36,
-   "headline": "Head of Compliance, CREDITACCESS GRAMEEN LIMITED",
-   "how_known": "industry-friend",
-   "relevance": 0.63,
-   "synthetic": true,
-   "compliance": "Current employee of CREDITACCESS GRAMEEN LIMITED — treat as a potential insider. Don't seek unpublished price-sensitive information; keep to public and industry context.",
-   "warmth_why": "industry-friend, last spoke Sep 2025, 0 interactions in 24 months",
-   "last_contact": "2025-09-03",
-   "warmth_label": "medium",
-   "what_theyd_know": "How CREDITACCESS GRAMEEN LIMITED runs legal-compliance today"
-  },
-  {
-   "id": 19,
-   "why": "worked at CREDITACCESS GRAMEEN LIMITED as Head of Investor Relations (2017–2019); industry-friend, last spoke Jun 2025, 0 interactions in 24 months",
-   "name": "Radhika Saxena",
-   "rank": 0.337,
-   "warmth": 0.51,
-   "headline": "Head of Investor Relations, CREDITACCESS GRAMEEN LIMITED",
-   "how_known": "industry-friend",
-   "relevance": 0.26,
+   "id": 52,
+   "why": "worked at peer Cholamandalam Investment and Finance as HR Business Partner (2014–2016); ex-colleague, last spoke Jul 2026, 3 interactions in 24 months",
+   "name": "Aarav Agarwal",
+   "rank": 0.222,
+   "warmth": 0.8,
+   "headline": "CHRO, AU Small Finance Bank Limited",
+   "how_known": "ex-colleague",
+   "relevance": 0.09,
    "synthetic": true,
    "compliance": null,
-   "warmth_why": "industry-friend, last spoke Jun 2025, 0 interactions in 24 months",
-   "last_contact": "2025-06-16",
-   "warmth_label": "medium",
-   "what_theyd_know": "How CREDITACCESS GRAMEEN LIMITED runs IR up to 2019"
+   "warmth_why": "ex-colleague, last spoke Jul 2026, 3 interactions in 24 months",
+   "last_contact": "2026-07-20",
+   "warmth_label": "strong",
+   "what_theyd_know": "How Cholamandalam Investment and Finance runs HR up to 2016"
   }
  ],
  "signals": {
@@ -242,6 +1109,7 @@
   {
    "label": "AUM / loan growth",
    "moved": null,
+   "short": "AUM growth",
    "story": "FY27 aum / loan growth: 20–25% → 20–25% (held) → pending.",
    "actual": null,
    "metric": "aum_growth",
@@ -335,6 +1203,7 @@
   {
    "label": "Credit cost",
    "moved": null,
+   "short": "Credit cost",
    "story": "FY27 credit cost: 4–4.5% → 3–4% → 3–4% (cut once) → pending.",
    "actual": null,
    "metric": "credit_cost",
@@ -454,6 +1323,7 @@
   {
    "label": "Net interest margin",
    "moved": null,
+   "short": "NIM",
    "story": "FY27 net interest margin: 12.8–13.2% → company reported 14.7% (2Q YTD) → ahead.",
    "actual": {
     "span": "2Q YTD",
@@ -515,6 +1385,7 @@
   {
    "label": "Cost-to-income",
    "moved": null,
+   "short": "Cost/income",
    "story": "FY27 cost-to-income: 33–35% → not scored.",
    "actual": null,
    "metric": "cost_to_income",
@@ -563,6 +1434,7 @@
   {
    "label": "Return on assets",
    "moved": null,
+   "short": "ROA",
    "story": "FY27 return on assets: 4–4.8% → 5.2–5.8% (raised once) → company reported 5.9% (2Q YTD) → ahead.",
    "actual": {
     "span": "2Q YTD",
@@ -659,6 +1531,7 @@
   {
    "label": "Return on equity",
    "moved": null,
+   "short": "ROE",
    "story": "FY27 return on equity: 16–20% → 21–24% (raised once) → company reported 23.8% (2Q YTD) → on track.",
    "actual": {
     "span": "2Q YTD",
@@ -755,6 +1628,7 @@
   {
    "label": "AUM / loan growth",
    "moved": "lowered",
+   "short": "AUM growth",
    "story": "FY26 aum / loan growth: 18–20% → 14–18% (cut once) → company reported 14.0% (FY) → delivered.",
    "actual": {
     "span": "FY",
@@ -869,6 +1743,7 @@
   {
    "label": "Return on assets",
    "moved": "lowered",
+   "short": "ROA",
    "story": "FY26 return on assets: 4.2–4.5% → 2.9–3.4% (cut once) → company reported 2.7% (FY) → missed.",
    "actual": {
     "span": "FY",
@@ -965,6 +1840,7 @@
   {
    "label": "Return on equity",
    "moved": "lowered",
+   "short": "ROE",
    "story": "FY26 return on equity: 17–19% → 11.8–13.3% (cut once) → company reported 10.7% (FY) → missed.",
    "actual": {
     "span": "FY",
@@ -1061,6 +1937,7 @@
   {
    "label": "Net interest margin",
    "moved": null,
+   "short": "NIM",
    "story": "FY26 net interest margin: 12.6–12.8% → not scored.",
    "actual": null,
    "metric": "nim",
@@ -1109,6 +1986,7 @@
   {
    "label": "Credit cost",
    "moved": null,
+   "short": "Credit cost",
    "story": "FY26 credit cost: 5.5–6% → not scored.",
    "actual": null,
    "metric": "credit_cost",
@@ -1166,6 +2044,7 @@
   {
    "label": "AUM / loan growth",
    "moved": null,
+   "short": "AUM growth",
    "story": "FY25 aum / loan growth: 7–8% → not scored.",
    "actual": null,
    "metric": "aum_growth",
@@ -1223,6 +2102,7 @@
   {
    "label": "Net interest margin",
    "moved": null,
+   "short": "NIM",
    "story": "FY25 net interest margin: 12.8–13% → not scored.",
    "actual": null,
    "metric": "nim",
@@ -1271,6 +2151,7 @@
   {
    "label": "Credit cost",
    "moved": null,
+   "short": "Credit cost",
    "story": "FY25 credit cost: 6.7–6.9% → not scored.",
    "actual": null,
    "metric": "credit_cost",
@@ -1328,6 +2209,7 @@
   {
    "label": "Return on assets",
    "moved": null,
+   "short": "ROA",
    "story": "FY25 return on assets: 2.3–2.4% → company reported 1.9% (FY) → missed.",
    "actual": {
     "span": "FY",
@@ -1398,6 +2280,7 @@
   {
    "label": "Return on equity",
    "moved": null,
+   "short": "ROE",
    "story": "FY25 return on equity: 9.5–10% → company reported 7.7% (FY) → missed.",
    "actual": {
     "span": "FY",
@@ -1468,6 +2351,7 @@
   {
    "label": "Return on assets",
    "moved": null,
+   "short": "ROA",
    "story": "medium term return on assets: 4.5% → open-ended.",
    "actual": null,
    "metric": "roa",

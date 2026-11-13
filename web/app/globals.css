@@ -7,7 +7,7 @@
   --surface: #ffffff;
   --ink: #16161a;
   --ink-2: #55555e;
-  --ink-3: #8a8a93;
+  --ink-3: #6b6b74; /* 5.3:1 on surface (AA) */
   --line: #e7e5e1;
   --accent: #1f4fd1;
   --up: #157a3c;
@@ -22,7 +22,7 @@
     --surface: #17171b;
     --ink: #ececef;
     --ink-2: #a9a9b2;
-    --ink-3: #74747d;
+    --ink-3: #8e8e98; /* 5.5:1 on surface (AA) */
     --line: #2a2a30;
     --accent: #7ea0ff;
     --up: #4cc38a;

@@ -26,6 +26,20 @@ from finn.push.pipeline import _quarter_facts
 from finn.push.results import CR, fiscal_label, metrics
 from finn.sources.nse import NSE
 
+METRIC_SHORT = {
+    "revenue_growth": "Rev. growth",
+    "revenue": "Revenue",
+    "operating_margin": "Op. margin",
+    "ebitda_margin": "EBITDA margin",
+    "pat_growth": "Profit growth",
+    "capex": "Capex",
+    "aum_growth": "AUM growth",
+    "credit_cost": "Credit cost",
+    "nim": "NIM",
+    "roa": "ROA",
+    "roe": "ROE",
+    "cost_to_income": "Cost/income",
+}
 METRIC_LABEL = {
     "revenue_growth": "Revenue growth",
     "revenue": "Revenue",
@@ -451,34 +465,39 @@ def _line(first: dict, v1: str, last: dict, v2: str, act: dict, two: bool) -> st
     return out[0].upper() + out[1:]
 
 
-def pattern(trks: list[dict]) -> str | None:
-    """The ledger's one-line summary, from the computed counts only."""
+def pattern(trks: list[dict], calls_read: int = 0, calls_listed: int = 0) -> str | None:
+    """The ledger's one-line count, from the computed counts only:
+    '5 resolved · none met as first given · 1 met only after a cut · 4 missed, 2 of them even after
+    a cut'."""
     res = [t for t in trks if t["resolved"]]
     if not res:
         return None
     n = len(res)
+    unknown = sum(bool(t.get("first_is_revision")) for t in res)
     first_met = sum(t.get("verdict_first") in MET for t in res)
-    final_met = sum(t["verdict"] in MET for t in res)
     cut_then_met = sum(
         t["verdict"] in MET and t.get("moved") == "lowered" and t.get("verdict_first") not in MET for t in res
     )
-    missed_after_cut = sum(t["verdict"] == "missed" and t.get("moved") == "lowered" for t in res)
-    missed = sum(t["verdict"] == "missed" for t in res)
+    revised_met = sum(t["verdict"] in MET and bool(t.get("first_is_revision")) for t in res)
     raised_beaten = sum(t["verdict"] == "beat" and t.get("moved") == "raised" for t in res)
-    unknown = sum(bool(t.get("first_is_revision")) for t in res)
-    known = f" (the original is in a call not read for {unknown})" if unknown else ""
-    parts = [
-        f"Of {n} resolved promise{'s' if n != 1 else ''}, {first_met} met the guidance as first given{known}"
-    ]
+    missed = sum(t["verdict"] == "missed" for t in res)
+    missed_after_cut = sum(t["verdict"] == "missed" and t.get("moved") == "lowered" for t in res)
+    parts = [f"{n} resolved"]
+    if n - unknown:
+        parts.append(f"{first_met or 'none'} met as first given")
     if cut_then_met:
-        parts.append(f"{cut_then_met} more {'was' if cut_then_met == 1 else 'were'} met only after a cut")
+        parts.append(f"{cut_then_met} met only after a cut")
     if raised_beaten:
-        parts.append(f"{raised_beaten} beat guidance that had been raised")
+        parts.append(f"{raised_beaten} beat a raised target")
+    if revised_met:
+        seen = f" ({calls_read} of {calls_listed})" if calls_listed else ""
+        parts.append(f"{revised_met} met a revised target whose original is in a call not read{seen}")
     if missed:
-        extra = f" ({missed_after_cut} after a cut)" if missed_after_cut else ""
-        parts.append(f"{missed} missed even the final guidance{extra}")
-    out = ", ".join(parts[:-1]) + (" and " if len(parts) > 1 else "") + parts[-1] + "."
-    return out if final_met or missed else out
+        parts.append(
+            f"{missed} missed"
+            + (f", {missed_after_cut} of them even after a cut" if missed_after_cut else "")
+        )
+    return " · ".join(parts)
 
 
 def _already_passed(qs: list[dict], metric: str, last: dict) -> float | None:
@@ -737,9 +756,7 @@ def tracks(
             if first_is_revision:
                 # we never saw the original: don't score against it, and say so
                 v_first = None
-                line = (
-                    line or why
-                ) + " · the first statement read is itself a revision; the original is in a call not read"
+                line = line or why
             mid1, mid2 = (first["low"] + first["high"]) / 2, (last["low"] + last["high"]) / 2
             moved = "lowered" if mid2 < mid1 - 1e-9 else "raised" if mid2 > mid1 + 1e-9 else None
         label = v
@@ -774,6 +791,7 @@ def tracks(
                 "context": context,
                 "verdict": v,
                 "verdict_label": label,
+                "short": METRIC_SHORT.get(metric, METRIC_LABEL.get(metric, metric)),
                 "verdict_first": v_first,
                 "verdict_line": line,
                 "moved": moved,
@@ -867,6 +885,159 @@ def signals(qs: list[dict], trks: list[dict], fmt: str) -> dict[str, list[str]]:
     return {"bull": bull[:4], "bear": bear[:4]}
 
 
+def group_chains(trks: list[dict]) -> list[dict]:
+    """Chains stated together are shown together: same period and the same statements in the same
+    order (one sentence carrying AUM growth, ROA and ROE) become one timeline whose steps show every
+    number, each quote once. Per-metric verdicts stay separate."""
+    keyed: dict[tuple, list[dict]] = {}
+    for t in trks:
+        if t["verdict"] == NOT_SCORED or not t["points"]:
+            continue
+        k = (t["period"], tuple((p["call_date"], p["quote"]) for p in t["points"]))
+        keyed.setdefault(k, []).append(t)
+    out = []
+    for (period, _), ts in keyed.items():
+        first = ts[0]["points"][0]
+        name = f"{first.get('noun') or 'guidance'}" if len(ts) > 1 else ts[0]["label"]
+        title = f"{period} {name}" if period.startswith("FY") else f"{name[0].upper()}{name[1:]} ({period})"
+        steps = []
+        for i, p in enumerate(ts[0]["points"]):
+            steps.append(
+                {
+                    "kind": "statement",
+                    "date": p["call_date"],
+                    "call": p["call"],
+                    "page": p.get("page"),
+                    "url": p["url"],
+                    "speaker": p.get("speaker"),
+                    "quote": p["quote"],
+                    "qualifier": next(
+                        (t["points"][i].get("qualifier") for t in ts if t["points"][i].get("qualifier")), None
+                    ),
+                    "values": [
+                        {
+                            "metric": t["metric"],
+                            "short": t.get("short"),
+                            "low": t["points"][i]["low"],
+                            "high": t["points"][i]["high"],
+                            "unit": t["points"][i].get("unit"),
+                            "floor": is_floor(t["points"][i]),
+                            "change": "reiterated"
+                            if t["points"][i].get("reiterates")
+                            else t["points"][i]["change"],
+                        }
+                        for t in ts
+                    ],
+                }
+            )
+        seen = set()
+        for t in ts:
+            for st in t.get("steers") or []:
+                key = (st["call_date"], st["reply_quote"])
+                if key not in seen:
+                    seen.add(key)
+                    steps.append({"kind": "steer", "date": st["call_date"], **st})
+        steps.sort(key=lambda x: x["date"])
+        results: dict[str, dict] = {}
+        for t in ts:
+            a = t.get("actual")
+            if not a:
+                continue
+            src = a.get("source") or {}
+            key = src.get("quote") or src.get("xbrl") or t["metric"]
+            r = results.setdefault(
+                key, {"kind": "result", "source": src, "basis": a.get("basis"), "values": []}
+            )
+            r["values"].append(
+                {
+                    "metric": t["metric"],
+                    "short": t.get("short"),
+                    "value": a["value"],
+                    "unit": a["unit"],
+                    "span": a["span"],
+                }
+            )
+        out.append(
+            {
+                "id": re.sub(r"[^a-z0-9]+", "-", f"{period}-{'-'.join(t['metric'] for t in ts)}".lower()),
+                "period": period,
+                "title": title,
+                "resolved": any(t["resolved"] for t in ts),
+                "metrics": [t["metric"] for t in ts],
+                "steps": steps,
+                "results": list(results.values()),
+                "verdicts": [
+                    {
+                        "metric": t["metric"],
+                        "short": t.get("short"),
+                        "label": t.get("verdict_label") or t["verdict"],
+                        "verdict": t["verdict"],
+                        "line": t.get("verdict_line") or t["verdict_why"],
+                        "caveat": t.get("caveat"),
+                    }
+                    for t in ts
+                ],
+                "cross_checks": [
+                    {"short": t.get("short"), **t["cross_check"]} for t in ts if t.get("cross_check")
+                ],
+            }
+        )
+    rank = {"resolved": 0}
+    out.sort(key=lambda g: (rank.get("resolved" if g["resolved"] else "", 1), _period_sort(g["period"])))
+    return out
+
+
+def _period_sort(period: str) -> int:
+    return -int(period[2:]) if period[2:].isdigit() else 0
+
+
+def ledger_questions(trks: list[dict], top: int = 3) -> list[str]:
+    """What to ask, drawn only from this ledger's own numbers."""
+
+    def band(p: dict) -> str:
+        return _bandtxt(p)
+
+    def val(a: dict | None) -> str:
+        if not a:
+            return "n/a"
+        return f"₹{a['value']:,.0f} cr" if a.get("unit") == "₹ cr" else f"{a['value']:.1f}%"
+
+    qs: list[tuple[int, str]] = []
+    for t in trks:
+        pts, a = t["points"], t.get("actual")
+        if not pts:
+            continue
+        lbl = t["label"] if t["label"][:2].isupper() else t["label"][0].lower() + t["label"][1:]
+        name = f"{t['period']} {lbl}"
+        if t["resolved"] and t["verdict"] == "missed" and t.get("moved") == "lowered":
+            qs.append(
+                (
+                    0,
+                    f"{name} came in at {val(a)}, below guidance already lowered from {band(pts[0])} to "
+                    f"{band(pts[-1])}. What drove the shortfall after the cut, and what is different now?",
+                )
+            )
+        elif t["resolved"] and t.get("verdict_label") == "met after cut":
+            qs.append(
+                (
+                    1,
+                    f"{name} landed at {val(a)} against guidance lowered from {band(pts[0])} to "
+                    f"{band(pts[-1])}. What forced the cut, and what would it take to reach the original?",
+                )
+            )
+        elif t["resolved"] and t["verdict"] == "missed":
+            qs.append((2, f"{name} came in at {val(a)} against {band(pts[-1])} guided. What was misjudged?"))
+        elif not t["resolved"] and t.get("moved") == "raised" and a:
+            qs.append(
+                (
+                    3,
+                    f"{name} guidance was raised from {band(pts[0])} to {band(pts[-1])}, with "
+                    f"{val(a)} so far. What would have to go wrong to miss it?",
+                )
+            )
+    return [q for _, q in sorted(qs, key=lambda x: x[0])[:top]]
+
+
 def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None, n_calls: int = 8) -> dict:
     row = conn.execute(
         "SELECT id, name, coalesce(fin_format, 'indas'), industry FROM companies WHERE nse_symbol = %s",
@@ -905,6 +1076,9 @@ def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None,
         )
     said = reported_mod.outcomes(docs, fy_start, fiscal_label)
     trks = tracks(calls, qs, fy_start, conn, cid, said, lender=fmt in ("bank", "nbfc"))
+    for t in trks:
+        if t.get("first_is_revision") and t["resolved"]:
+            t["caveat"] = f"Original guidance is in a call not read ({len(calls)} of {len(listed)})"
     resolved = [t for t in trks if t["resolved"]]
     return {
         "symbol": symbol,
@@ -915,6 +1089,7 @@ def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None,
         "quarters": qs[-12:],
         "business": biz,
         "guidance": trks,
+        "groups": group_chains(trks),
         "calls": [
             {k: v for k, v in c.items() if k not in ("items", "steers")} | {"n_items": len(c["items"])}
             for c in calls
@@ -933,7 +1108,7 @@ def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None,
             "met_final": sum(t["verdict"] in MET for t in resolved),
             "met_first": sum(t.get("verdict_first") in MET for t in resolved),
             "first_known": sum(not t.get("first_is_revision") for t in resolved),
-            "pattern": pattern(trks),
+            "pattern": pattern(trks, len(calls), len(listed)),
         },
         "stats": stats,
         "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its "
@@ -965,7 +1140,23 @@ def materialise(
     try:  # weave the network in: who to call about this company
         from finn.network.service import Net
 
-        body["network"] = Net(conn).who_for(symbol, top=3)
+        net = Net(conn)
+        cands = net.who_for(symbol, top=6)
+        company = body["name"]
+
+        def tier(c: dict) -> int:  # former employees of this company, then peers, then current staff
+            if c.get("compliance"):
+                return 2
+            return 0 if c.get("why", "").lower().startswith("worked at " + company.lower()) else 1
+
+        cands.sort(key=lambda c: (tier(c), -c.get("rank", 0)))
+        body["network"] = cands[:3]
+        body["help"] = {
+            "people": [],
+            "call": cands[:5],
+            "questions": ledger_questions(body["guidance"]),
+            "points": 0,
+        }
     except Exception:
         conn.rollback()
         body["network"] = []
