@@ -164,3 +164,11 @@ Phone over Wi-Fi: build web with `NEXT_PUBLIC_API_BASE=http://<lan-ip>:8000`, st
 - Still needing the hotspot: text of 4 non-PDF/unfetched filings (UltraTech ×3 resignations,
   rumour clarifications at Sun Pharma ×2 and AU Bank) — they show "Not read yet" and are buried.
 - Known data flaws, shown honestly: CreditAccess and Persistent have no "company's words" sentence.
+
+## Checkpoint 2026-11-14 (morning)
+- Before-design-pass screenshots complete: `docs/screens/before/` (20 + 2 contact sheets).
+- Local web server had been serving a half-replaced build ("Loading brief…" forever); rebuilt and
+  restarted. Not a code bug; the live Vercel app was unaffected. Noted in CLAUDE.md gotchas.
+- `scripts/phone_shot.mjs` now logs page errors / failed requests (`SHOT_DEBUG=1` for all URLs).
+- External critic review received; folded into `docs/HANDOFF.md` "Next steps" with an order and
+  open decisions. Agent instructions: `CLAUDE.md` (+ `AGENTS.md` pointer).

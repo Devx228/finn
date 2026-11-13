@@ -24,6 +24,10 @@ let id = 0;
 const pend = new Map();
 ws.onmessage = (m) => {
   const d = JSON.parse(m.data);
+  if (d.method === "Runtime.exceptionThrown") console.error("page error:", JSON.stringify(d.params.exceptionDetails).slice(0, 400));
+  if (d.method === "Runtime.consoleAPICalled" && d.params.type === "error") console.error("console.error:", JSON.stringify(d.params.args).slice(0, 400));
+  if (d.method === "Network.requestWillBeSent" && process.env.SHOT_DEBUG) console.error("req:", d.params.requestId, d.params.request.url.slice(0, 120));
+  if (d.method === "Network.loadingFailed") console.error("net fail:", d.params.errorText, d.params.requestId);
   if (d.id && pend.has(d.id)) pend.get(d.id)(d.result ?? d.error);
 };
 await new Promise((r) => (ws.onopen = r));
@@ -36,6 +40,8 @@ const send = (method, params = {}) =>
 const evaluate = async (expression) =>
   { const r = await send("Runtime.evaluate", { expression, returnByValue: true, awaitPromise: true }); if (r?.exceptionDetails || !r?.result) console.error("eval:", JSON.stringify(r).slice(0, 300)); return r?.result?.value; };
 
+await send("Runtime.enable");
+await send("Network.enable");
 await send("Emulation.setDeviceMetricsOverride", { width: 390, height: Number(height), deviceScaleFactor: 2, mobile: true });
 await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-color-scheme", value: scheme }] });
 await send("Page.navigate", { url });
