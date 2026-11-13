@@ -2,6 +2,27 @@
 
 Kept current with every commit so any agent or model can resume without the chat history.
 
+> **New agent? Start with [`continuing_prompt.md`](continuing_prompt.md)** — it lists what to read,
+> the rules (`CLAUDE.md`), how to verify (`bash scripts/verify.sh`) and what to do next
+> (`docs/HANDOFF.md`). This file is the running history; the newest checkpoints are at the bottom.
+
+## Current state at a glance (14 Nov 2026)
+
+| Area | State | Where |
+|---|---|---|
+| Today brief (Now / Worth / Buried, results cards, why-this, alerts with rules) | ✅ live | `push/*`, `web/components/Today.tsx`, `ResultsCard.tsx`, `Alerts.tsx` |
+| Ranking from filing text (operational stops, amount vs revenue, order bands, hosted-model fact lines, grounding) | ✅ | `push/severity.py`, `push/pipeline.py`; `docs/ranking_rescore.md` |
+| Management-change headlines (who / role / joining or leaving / date) | ✅ (HDFC 27 Oct lacks date) | `push/pipeline.py` `management_lines_stage` |
+| Promise Ledger (hero CREDITACC; two verdicts; steers; scoreboard; outlook timelines) | ✅ | `pull/research.py`, `pull/guidance.py`, `web/components/Ledger.tsx` |
+| Business snapshot (segment mix; company's words when they describe the whole company) | ✅ | `pull/business.py` |
+| Live research for any ticker (job queue, GitHub runner, progress UI) | ✅ gate passed (POLYCAB) | `jobs.py`, `.github/workflows/research.yml`, `ResearchJob.tsx` |
+| Network: dossiers (careers as filed), paths, Who can help, coverage, keep-warm, who-knows search | ✅ / 🟡 (no opener, no note resurfacing) | `network/*`, `People.tsx`, `Network.tsx` |
+| Cost ledger with verified paid-rate comparison | ✅ | `llm/ledger.py`, `Cost.tsx` |
+| Evals (classifier, guidance 26 claims + 25 negatives, ranking regressions) | ✅ | `docs/evals.md`, `data/eval/` |
+| Submission docs (README/ARCHITECTURE out of date, WRITEUP stub, no LICENSE) | ❌ next | `docs/HANDOFF.md` step 1 |
+| Command bar, web push, first-run, pre-call, filter audit, design pass | ❌ planned | `docs/HANDOFF.md` |
+
+
 **Authority order:** `docs/brief.pdf` (the challenge) > owner decisions in `docs/DECISIONS.md`
 > `docs/SPEC.md` (build spec, edited inline where the owner changed it). Gate evidence for each
 phase is in `docs/PHASES.md`. Deadline: **15 Nov 2026**.

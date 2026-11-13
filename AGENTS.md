@@ -1,6 +1,6 @@
 # Agent instructions
 
-All instructions for coding agents are in **[CLAUDE.md](CLAUDE.md)** (rules, code map, environments,
+Start at **[continuing_prompt.md](continuing_prompt.md)**. All rules for coding agents are in **[CLAUDE.md](CLAUDE.md)** (rules, code map, environments,
 checks). Read it first, then `PROGRESS.md`, `docs/STATUS.md` and `docs/HANDOFF.md`.
 
 Short version: the engine is frozen; make additive frontend changes only; never invent data; don't

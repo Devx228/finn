@@ -5,7 +5,7 @@ Three parts: **Push** (the "Today" brief of exchange filings), **Pull** (Researc
 Promise Ledger: what management guided vs what it delivered), **Network** (People: who to call,
 second-degree paths, dossiers). Live: web on Vercel, API on Render, data in Neon Postgres.
 
-**Read this file, then `PROGRESS.md` (latest checkpoint at the bottom), `docs/STATUS.md`
+**Entry point: [`continuing_prompt.md`](continuing_prompt.md).** Read this file, then `PROGRESS.md` (latest checkpoint at the bottom), `docs/STATUS.md`
 (what is done / partial / missing, with screenshots) and the tail of `docs/DECISIONS.md` before
 changing anything.** `docs/HANDOFF.md` has the prompt to resume work and the ordered next steps.
 
@@ -74,7 +74,7 @@ changing anything.** `docs/HANDOFF.md` has the prompt to resume work and the ord
   web `cd web && NEXT_PUBLIC_API_BASE=http://localhost:8000 npm run build && npx next start -p 3006`
   (after a rebuild, restart the server: a server left running on a replaced build hangs on "Loading…").
 
-## Checks (run before every commit)
+## Checks (run before every commit): `bash scripts/verify.sh`
 `cd api && .venv/Scripts/ruff check finn tests && .venv/Scripts/mypy finn && .venv/Scripts/python -m pytest -q`
 `cd web && npx eslint . && npx tsc --noEmit && npm test && npm run build`
 (85 API tests and 14 web tests passed at the last checkpoint.)
