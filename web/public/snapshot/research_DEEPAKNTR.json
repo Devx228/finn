@@ -1,6 +1,6 @@
 {
  "name": "Deepak Nitrite Limited",
- "as_of": "2026-11-13T12:01:07.827162+05:30",
+ "as_of": "2026-11-13T13:26:25.798264+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/DEEPAKNTR_04112026111452_NSE-concall_transcript.pdf",
@@ -71,13 +71,13 @@
  ],
  "format": "indas",
  "ledger": {
-  "open": 0,
+  "open": 1,
   "missed": 0,
   "resolved": 0,
   "delivered": 0,
   "calls_read": 4,
   "calls_listed": 8,
-  "unverifiable": 1
+  "unverifiable": 0
  },
  "symbol": "DEEPAKNTR",
  "network": [
@@ -172,6 +172,7 @@
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
+   "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
    "as_of_quarter": "2026-09-30"
   }

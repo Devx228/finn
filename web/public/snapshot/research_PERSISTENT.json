@@ -1,6 +1,6 @@
 {
  "name": "Persistent Systems Limited",
- "as_of": "2026-11-13T12:01:06.575616+05:30",
+ "as_of": "2026-11-13T13:26:25.264251+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_23102026204328_PSLTranscriptSubmissionOctober2026Sd.pdf",
@@ -121,13 +121,13 @@
  ],
  "format": "indas",
  "ledger": {
-  "open": 0,
+  "open": 3,
   "missed": 0,
   "resolved": 0,
   "delivered": 0,
   "calls_read": 7,
   "calls_listed": 8,
-  "unverifiable": 3
+  "unverifiable": 0
  },
  "symbol": "PERSISTENT",
  "network": [
@@ -193,7 +193,7 @@
  "guidance": [
   {
    "label": "Revenue",
-   "story": "FY31 revenue: 5 $ billion → unverifiable.",
+   "story": "FY31 revenue: 5 $ billion → pending.",
    "actual": null,
    "metric": "revenue",
    "period": "FY31",
@@ -221,9 +221,10 @@
     }
    ],
    "context": null,
-   "verdict": "unverifiable",
+   "verdict": "pending",
    "resolved": false,
-   "verdict_why": "A target for one business; the filings report the company as a whole",
+   "cross_check": null,
+   "verdict_why": "Falls due with FY31 results, not reported yet",
    "as_of_quarter": "2026-09-30"
   },
   {
@@ -235,6 +236,10 @@
    "points": [
     {
      "by": "rules",
+     "kw": [
+      28,
+      34
+     ],
      "low": 19.0,
      "url": "https://www.persistent.com/wp-content/uploads/2025/07/analyst-call-transcript-q1fy26.pdf",
      "call": "Q1 FY26 call",
@@ -247,6 +252,7 @@
      "change": "first given",
      "metric": "revenue_growth",
      "period": "medium term",
+     "prefix": false,
      "source": "company IR site",
      "call_date": "2025-07-23",
      "direction": "unclear"
@@ -255,6 +261,7 @@
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
+   "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
    "as_of_quarter": "2026-09-30"
   },
@@ -267,6 +274,10 @@
    "points": [
     {
      "by": "rules",
+     "kw": [
+      181,
+      188
+     ],
      "low": 16.0,
      "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_23102026204328_PSLTranscriptSubmissionOctober2026Sd.pdf",
      "call": "Q2 FY27 call",
@@ -279,6 +290,7 @@
      "change": "first given",
      "metric": "operating_margin",
      "period": "medium term",
+     "prefix": true,
      "source": "NSE",
      "call_date": "2026-10-23",
      "direction": "unclear"
@@ -287,6 +299,7 @@
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
+   "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
    "as_of_quarter": "2026-09-30"
   }

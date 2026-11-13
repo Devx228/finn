@@ -18,14 +18,16 @@ const VERDICT: Record<string, { icon: string; cls: string }> = {
   behind: { icon: "▼", cls: "text-down" },
   pending: { icon: "…", cls: "text-ink-3" },
   "open-ended": { icon: "·", cls: "text-ink-3" },
-  unverifiable: { icon: "·", cls: "text-ink-3" },
+  "not scored": { icon: "·", cls: "text-ink-3" },
 };
 
 export function ResearchView() {
   const params = useSearchParams();
   const router = useRouter();
   const [index, setIndex] = useState<ResearchIndex | null>(null);
-  const sym = (params.get("s") ?? "KAYNES").toUpperCase(); // the Promise Ledger hero
+  // default: the company the research set marks as hero (data/research_set.json), not a constant
+  const hero = index?.companies.find((c) => c.hero)?.symbol ?? index?.companies[0]?.symbol;
+  const sym = (params.get("s") ?? hero ?? "").toUpperCase();
   const [res, setRes] = useState<{ sym: string; r: Loaded<Research> | null } | null>(null);
   const [q, setQ] = useState("");
 
@@ -36,6 +38,7 @@ export function ResearchView() {
   }, []);
 
   useEffect(() => {
+    if (!sym) return;
     let live = true;
     loadWithFallback<Research>(`/api/research/${encodeURIComponent(sym)}`, `research_${sym}.json`)
       .then((r) => live && setRes({ sym, r }))
@@ -106,7 +109,7 @@ export function ResearchView() {
 
 function Body({ r }: { r: Research }) {
   const tracks = r.guidance;
-  const checkable = tracks.filter((t) => t.verdict !== "unverifiable" && t.verdict !== "open-ended");
+  const checkable = tracks.filter((t) => t.verdict !== "not scored");
   return (
     <div className="space-y-6">
       <div>
@@ -123,7 +126,7 @@ function Body({ r }: { r: Research }) {
           <p className="rounded-lg border border-line bg-surface px-3 py-3 text-[13px] text-ink-2">
             {r.calls.length === 0
               ? "No earnings-call transcripts filed recently, so there is no guidance to hold management to. The numbers below still come from the filings."
-              : `Management gave no explicit numeric guidance in the last ${r.calls.length} calls (we only count verbatim targets).`}
+              : `No numeric guidance found in the ${r.ledger?.calls_read ?? r.calls.length} calls read (only verbatim management targets count).`}
           </p>
         ) : (
           <div className="space-y-3">
@@ -202,7 +205,13 @@ function band(p: GuidancePoint): string {
 
 function TrackCard({ t }: { t: GuidanceTrack }) {
   const [open, setOpen] = useState<number | null>(null);
-  const v = VERDICT[t.verdict] ?? VERDICT.unverifiable;
+  const v = VERDICT[t.verdict] ?? VERDICT["not scored"];
+  const shown =
+    t.verdict === "pending"
+      ? `open · due ${t.period}`
+      : t.verdict === "open-ended"
+        ? "open · no due year"
+        : t.verdict;
   const pct = t.points.every((p) => p.unit === "%");
   const vals = t.points.flatMap((p) => [p.low, p.high]);
   if (t.actual && t.actual.unit === "%") vals.push(t.actual.value);
@@ -219,7 +228,7 @@ function TrackCard({ t }: { t: GuidanceTrack }) {
           {t.period} {t.label.toLowerCase()}
         </h3>
         <span className={`shrink-0 text-[13px] font-semibold ${v.cls}`}>
-          {v.icon} {t.verdict}
+          {v.icon} {shown}
         </span>
       </div>
       <p className="mt-0.5 text-[13px] leading-snug text-ink-2">{t.verdict_why}</p>
@@ -270,6 +279,13 @@ function TrackCard({ t }: { t: GuidanceTrack }) {
         ))}
       </div>
       {t.actual && <Outcome t={t} marker={!!showActual} />}
+      {t.cross_check && (
+        <p className="mt-1 text-[11px] text-ink-3">
+          Our cross-check from the filings:{" "}
+          {t.cross_check.unit === "₹ cr" ? formatCr(t.cross_check.value) : `${t.cross_check.value}%`} (
+          {t.cross_check.span}, {t.cross_check.basis}) — shown for comparison, never used for the verdict
+        </p>
+      )}
       {t.context && <p className="mt-1 text-[11px] text-ink-3">{t.context}</p>}
       {open !== null && <Quote p={t.points[open]} />}
       {open === null && <p className="mt-1 text-[11px] text-ink-3">Tap a call to see management&apos;s words.</p>}
@@ -331,7 +347,7 @@ function LedgerLine({ l }: { l: Ledger }) {
           ({l.delivered} delivered, {l.missed} missed)
         </>
       )}{" "}
-      · {l.open} still open · {l.unverifiable} not checkable from filings
+      · {l.open} open · {l.unverifiable} not scored
       {l.resolved >= 4 && (
         <span className="block text-[12px] text-ink-3">
           Say–do: delivered {l.delivered} of {l.resolved} resolved numeric promises.
@@ -361,7 +377,7 @@ function OtherTracks({ tracks }: { tracks: GuidanceTrack[] }) {
   return (
     <details className="rounded-lg border border-line bg-surface">
       <summary className="flex min-h-11 cursor-pointer items-center justify-between px-3 text-[14px]">
-        <span>Guidance the filings can&apos;t check</span>
+        <span>Not scored (no company-reported or unambiguous figure)</span>
         <span className="text-ink-3">{tracks.length}</span>
       </summary>
       <ul className="divide-y divide-line border-t border-line px-3">

@@ -3,7 +3,9 @@
 from datetime import date
 
 from finn.pull.guidance import Item, doubt, rule_items, sentences
-from finn.pull.research import cc_reported, tracks, verdict
+from finn.pull.reported import outcomes
+from finn.pull.research import tracks, verdict
+from finn.push.results import fiscal_label
 
 
 def _items(*sentences: str, fy: int = 2027) -> list[dict]:
@@ -48,7 +50,7 @@ def test_questions_outcomes_and_segments_are_not_guidance():
 def test_verdicts():
     assert verdict({"value": 21.0}, 20, 22, final=False)[0] == "on track"
     assert verdict({"value": 12.9}, 17, 17, final=True)[0] == "missed"
-    assert verdict(None, 20, 22, final=True)[0] == "unverifiable"
+    assert verdict(None, 20, 22, final=True)[0] == "not scored"
 
 
 def _call(label, date, low, high):
@@ -70,18 +72,23 @@ def _call(label, date, low, high):
     }
 
 
-CC_CALLS = [
+CALLS = [
     {
         "qend": date(2026, 3, 31),
+        "filed_at": "2026-04-27",
         "label": "Q4 FY26 call",
         "url": "q4",
         "pages": [
             "We had growth of 3.1% for the full year in constant currency terms. Momentum in Financial "
-            "Services continues with 3.9% year-on-year growth in constant currency terms."
+            "Services continues with 3.9% year-on-year growth in constant currency terms. "
+            "We ended the year with INR 778 Crore PAT, translating to ROA of 2.7% and ROE of 10.7%. "
+            "The operational EBITDA for Q4 '26 came up to INR1,937 million, translating into an EBITDA "
+            "margin of 15.6%."
         ],
     },
     {
         "qend": date(2026, 9, 30),
+        "filed_at": "2026-10-28",
         "label": "Q2 FY27 call",
         "url": "q2",
         "pages": [
@@ -92,12 +99,17 @@ CC_CALLS = [
 ]
 
 
-def test_cc_growth_is_read_from_the_companys_own_words():
-    got = {(r["fy"], r["quarters"]): (r["value"], r["url"]) for r in cc_reported(CC_CALLS, 4)}
-    assert got == {(2026, 4): (3.1, "q4"), (2027, 2): (1.9, "q2")}  # not the segment, not sequential
+def test_reported_outcomes_are_read_with_their_period():
+    got = {
+        (o["metric"], o["fy"], o["quarters"], o["cc"]): o["value"] for o in outcomes(CALLS, 4, fiscal_label)
+    }
+    assert got[("revenue_growth", 2026, 4, True)] == 3.1  # full year, cc; not the segment's 3.9
+    assert got[("revenue_growth", 2027, 2, True)] == 1.9  # H1; not the quarter's 1.5
+    assert got[("roa", 2026, 4, False)] == 2.7 and got[("roe", 2026, 4, False)] == 10.7
+    assert ("ebitda_margin", 2026, 4, False) not in got  # a Q4 margin is not the year's
 
 
-def test_cc_guidance_chain_resolves_against_company_reported_cc():
+def test_company_reported_figure_decides_and_ours_is_a_cross_check():
     calls = [
         _call("Q4", "2026-04-27", 1.5, 3.5),
         _call("Q1", "2026-07-28", 1.5, 3.0),
@@ -107,10 +119,11 @@ def test_cc_guidance_chain_resolves_against_company_reported_cc():
     qs += [{"fy": 2026, "label": f"Q{i} FY26", "revenue": 100.0, "end": f"2025-0{3 * i}-30"} for i in (1, 2)]
     for q in qs:
         q["xbrl"] = None
-    (t,) = tracks(calls, qs, 4, cc=cc_reported(CC_CALLS, 4))
+    (t,) = tracks(calls, qs, 4, reported=outcomes(CALLS, 4, fiscal_label))
     assert [p["change"] for p in t["points"]] == ["first given", "cut", "cut"]
     assert t["verdict"] == "on track" and t["actual"]["basis"] == "company-reported, constant currency"
     assert t["actual"]["source"]["url"] == "q2" and t["story"].endswith("→ on track.")
+    assert "₹ growth 10.0%" in t["context"]  # rupee growth shown, never used for a cc band
 
 
 def test_sentence_over_a_page_break_keeps_its_subject():

@@ -241,6 +241,7 @@ export interface GuidanceTrack {
     basis: string;
     source?: { quote?: string; page?: number; url?: string; call?: string; from?: string; xbrl?: string | null };
   } | null;
+  cross_check?: { value: number; unit: string; span: string; basis: string } | null;
   context?: string | null;
   verdict: string;
   verdict_why: string;
@@ -274,5 +275,13 @@ export interface Research {
 }
 
 export interface ResearchIndex {
-  companies: { symbol: string; name: string; tracks: number; calls: number }[];
+  companies: {
+    symbol: string;
+    name: string;
+    tracks: number;
+    calls: number;
+    resolved?: number;
+    role?: string | null;
+    hero?: boolean;
+  }[];
 }

@@ -1,13 +1,13 @@
 {
  "name": "Infosys Limited",
- "as_of": "2026-11-13T12:01:05.892450+05:30",
+ "as_of": "2026-11-13T13:26:23.315839+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173824_SE_filing_Earnings_call_transcript.pdf",
    "label": "Q2 FY27 call",
    "pages": 48,
    "source": "NSE",
-   "n_items": 3,
+   "n_items": 4,
    "filed_at": "2026-10-28T12:08:42+00:00"
   },
   {
@@ -31,14 +31,14 @@
    "label": "Q3 FY26 call",
    "pages": 39,
    "source": "NSE",
-   "n_items": 2,
+   "n_items": 3,
    "filed_at": "2026-01-19T16:52:39+00:00"
   }
  ],
  "stats": [
   {
    "model": 0,
-   "rules": 3,
+   "rules": 4,
    "dropped": 1,
    "model_name": "gemini-3.5-flash-lite",
    "drop_reasons": {
@@ -49,10 +49,12 @@
   {
    "model": 0,
    "rules": 2,
-   "dropped": 0,
+   "dropped": 1,
    "model_name": "gemini-3.5-flash-lite",
-   "drop_reasons": {},
-   "selected_chars": 4350
+   "drop_reasons": {
+    "metric outside the tracked set": 1
+   },
+   "selected_chars": 4486
   },
   {
    "model": 0,
@@ -64,7 +66,7 @@
   },
   {
    "model": 0,
-   "rules": 2,
+   "rules": 3,
    "dropped": 0,
    "model_name": "gemini-3.5-flash-lite",
    "drop_reasons": {},
@@ -140,7 +142,7 @@
    "Revenue +10.7% YoY in Q2 FY27",
    "PAT +6.3% YoY in Q2 FY27",
    "Delivered FY26 revenue growth: 3.1% within 3–3.5%",
-   "Delivered FY26 operating margin: 20.9% within 20–22%"
+   "Delivered FY26 operating margin: 21.0% within 20–22%"
   ]
  },
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
@@ -167,6 +169,10 @@
    "points": [
     {
      "by": "rules",
+     "kw": [
+      4,
+      18
+     ],
      "low": 1.5,
      "url": "https://nsearchives.nseindia.com/corporate/Infosys_27042026203405_Transcript_April232026_Q4.pdf",
      "call": "Q4 FY26 call",
@@ -179,12 +185,17 @@
      "change": "first given",
      "metric": "revenue_growth",
      "period": "FY27",
+     "prefix": false,
      "source": "NSE",
      "call_date": "2026-04-27",
      "direction": "unclear"
     },
     {
      "by": "rules",
+     "kw": [
+      87,
+      101
+     ],
      "low": 1.5,
      "url": "https://nsearchives.nseindia.com/corporate/Infosys_28072026202438_SE_filing_Earnings_call_transcript.pdf",
      "call": "Q1 FY27 call",
@@ -197,12 +208,17 @@
      "change": "cut",
      "metric": "revenue_growth",
      "period": "FY27",
+     "prefix": false,
      "source": "NSE",
      "call_date": "2026-07-28",
      "direction": "unclear"
     },
     {
      "by": "rules",
+     "kw": [
+      74,
+      88
+     ],
      "low": 1.0,
      "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173824_SE_filing_Earnings_call_transcript.pdf",
      "call": "Q2 FY27 call",
@@ -215,6 +231,7 @@
      "change": "cut",
      "metric": "revenue_growth",
      "period": "FY27",
+     "prefix": false,
      "source": "NSE",
      "call_date": "2026-10-28",
      "direction": "unclear"
@@ -223,19 +240,24 @@
    "context": "Reported ₹ growth 12.3% (2Q YTD), which includes currency moves",
    "verdict": "on track",
    "resolved": false,
+   "cross_check": null,
    "verdict_why": "1.9% within 1–2%",
    "as_of_quarter": "2026-09-30"
   },
   {
    "label": "Operating margin",
-   "story": "FY27 operating margin: 20–22% → 20–22% → 20–22% (held) → filings show 21.0% (2Q YTD) → on track.",
+   "story": "FY27 operating margin: 20–22% → 20–22% → 20–22% (held) → company reported 21.0% (2Q YTD) → on track.",
    "actual": {
     "span": "2Q YTD",
     "unit": "%",
-    "basis": "EBIT ÷ revenue from the filings",
+    "basis": "company-reported",
     "value": 21.0,
     "source": {
-     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1745058_23102026082117_WEB.xml"
+     "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173824_SE_filing_Earnings_call_transcript.pdf",
+     "call": "Q2 FY27 call",
+     "from": "NSE",
+     "page": 28,
+     "quote": "For H1, operating margin stood at 21% at the midpoint of our guided range."
     },
     "quarters": 2
    },
@@ -244,6 +266,10 @@
    "points": [
     {
      "by": "rules",
+     "kw": [
+      4,
+      20
+     ],
      "low": 20.0,
      "url": "https://nsearchives.nseindia.com/corporate/Infosys_27042026203405_Transcript_April232026_Q4.pdf",
      "call": "Q4 FY26 call",
@@ -256,12 +282,17 @@
      "change": "first given",
      "metric": "operating_margin",
      "period": "FY27",
+     "prefix": false,
      "source": "NSE",
      "call_date": "2026-04-27",
      "direction": "unclear"
     },
     {
      "by": "rules",
+     "kw": [
+      61,
+      77
+     ],
      "low": 20.0,
      "url": "https://nsearchives.nseindia.com/corporate/Infosys_28072026202438_SE_filing_Earnings_call_transcript.pdf",
      "call": "Q1 FY27 call",
@@ -274,12 +305,17 @@
      "change": "held",
      "metric": "operating_margin",
      "period": "FY27",
+     "prefix": true,
      "source": "NSE",
      "call_date": "2026-07-28",
      "direction": "maintained"
     },
     {
      "by": "rules",
+     "kw": [
+      4,
+      20
+     ],
      "low": 20.0,
      "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173824_SE_filing_Earnings_call_transcript.pdf",
      "call": "Q2 FY27 call",
@@ -292,6 +328,7 @@
      "change": "held",
      "metric": "operating_margin",
      "period": "FY27",
+     "prefix": false,
      "source": "NSE",
      "call_date": "2026-10-28",
      "direction": "maintained"
@@ -300,6 +337,16 @@
    "context": null,
    "verdict": "on track",
    "resolved": false,
+   "cross_check": {
+    "span": "2Q YTD",
+    "unit": "%",
+    "basis": "computed from the results filings: EBIT ÷ revenue from the filings",
+    "value": 21.0,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1745058_23102026082117_WEB.xml"
+    },
+    "quarters": 2
+   },
    "verdict_why": "21.0% within 20–22%",
    "as_of_quarter": "2026-09-30"
   },
@@ -315,8 +362,8 @@
      "url": "https://nsearchives.nseindia.com/corporate/Infosys_27042026203405_Transcript_April232026_Q4.pdf",
      "call": "Q4 FY26 call",
      "from": "NSE",
-     "page": 26,
-     "quote": "We had a growth of 3.1% for the full year in constant currency terms."
+     "page": 4,
+     "quote": "We had growth of 3.1% for the full year in constant currency terms."
     },
     "quarters": 4
    },
@@ -325,6 +372,10 @@
    "points": [
     {
      "by": "rules",
+     "kw": [
+      83,
+      90
+     ],
      "low": 3.0,
      "url": "https://nsearchives.nseindia.com/corporate/Infosys_19012026222220_SEfiling_Earningscalltranscript_19012026.pdf",
      "call": "Q3 FY26 call",
@@ -337,6 +388,7 @@
      "change": "first given",
      "metric": "revenue_growth",
      "period": "FY26",
+     "prefix": false,
      "source": "NSE",
      "call_date": "2026-01-19",
      "direction": "unclear"
@@ -345,19 +397,24 @@
    "context": "Reported ₹ growth 9.6% (FY), which includes currency moves",
    "verdict": "delivered",
    "resolved": true,
+   "cross_check": null,
    "verdict_why": "3.1% within 3–3.5%",
    "as_of_quarter": "2026-09-30"
   },
   {
    "label": "Operating margin",
-   "story": "FY26 operating margin: 20–22% → filings show 20.9% (FY) → delivered.",
+   "story": "FY26 operating margin: 20–22% → company reported 21.0% (FY) → delivered.",
    "actual": {
     "span": "FY",
     "unit": "%",
-    "basis": "EBIT ÷ revenue from the filings",
-    "value": 20.9,
+    "basis": "company-reported",
+    "value": 21.0,
     "source": {
-     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1658040_23042026090154_WEB.xml"
+     "url": "https://nsearchives.nseindia.com/corporate/Infosys_27042026203405_Transcript_April232026_Q4.pdf",
+     "call": "Q4 FY26 call",
+     "from": "NSE",
+     "page": 7,
+     "quote": "Jayesh Sanghrajka So if you look at the margins, the full year margins is at 21%."
     },
     "quarters": 4
    },
@@ -366,6 +423,10 @@
    "points": [
     {
      "by": "rules",
+     "kw": [
+      4,
+      20
+     ],
      "low": 20.0,
      "url": "https://nsearchives.nseindia.com/corporate/Infosys_19012026222220_SEfiling_Earningscalltranscript_19012026.pdf",
      "call": "Q3 FY26 call",
@@ -378,6 +439,7 @@
      "change": "first given",
      "metric": "operating_margin",
      "period": "FY26",
+     "prefix": false,
      "source": "NSE",
      "call_date": "2026-01-19",
      "direction": "maintained"
@@ -386,7 +448,17 @@
    "context": null,
    "verdict": "delivered",
    "resolved": true,
-   "verdict_why": "20.9% within 20–22%",
+   "cross_check": {
+    "span": "FY",
+    "unit": "%",
+    "basis": "computed from the results filings: EBIT ÷ revenue from the filings",
+    "value": 20.9,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1658040_23042026090154_WEB.xml"
+    },
+    "quarters": 4
+   },
+   "verdict_why": "21.0% within 20–22%",
    "as_of_quarter": "2026-09-30"
   }
  ],

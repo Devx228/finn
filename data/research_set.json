@@ -1,21 +1,25 @@
 {
- "as_of": "2026-11-12",
+ "as_of": "2026-11-13",
  "companies": [
   {
    "symbol": "INFY",
-   "role": "hero: publishes revenue-growth and margin guidance bands"
+   "role": "guidance cuts and constant-currency handling (read 4 of 8 calls)",
+   "hero": false
   },
   {
    "symbol": "KAYNES",
-   "role": "mid-cap with capacity / capex guidance"
+   "role": "hero: rupee revenue, growth and EBITDA-margin guidance checkable from filings",
+   "hero": true
   },
   {
    "symbol": "CREDITACC",
-   "role": "financial (NBFC): no EBITDA, different statement rows"
+   "role": "second: lender (NBFC) — loan growth, ROA, ROE, credit cost",
+   "hero": false
   },
   {
    "symbol": "TRENT",
-   "role": "fewest concall transcripts in pool (0 in 120 days) \u2014 degradation demo"
+   "role": "no recent earnings-call transcripts — degradation demo",
+   "hero": false
   }
  ]
 }

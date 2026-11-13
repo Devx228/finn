@@ -1,6 +1,6 @@
 {
  "name": "Larsen & Toubro Limited",
- "as_of": "2026-11-13T12:01:07.331973+05:30",
+ "as_of": "2026-11-13T13:26:24.342309+05:30",
  "calls": [
   {
    "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q2FY27%20Earnings%20Call%20Transcript.pdf",
@@ -23,7 +23,7 @@
    "label": "Q4 FY26 call",
    "pages": 28,
    "source": "company IR site",
-   "n_items": 7,
+   "n_items": 9,
    "filed_at": "2026-05-07T18:00:00+00:00"
   },
   {
@@ -53,7 +53,7 @@
     "skip pattern / question": 2,
     "metric outside the tracked set": 1
    },
-   "selected_chars": 2256
+   "selected_chars": 2507
   },
   {
    "model": 0,
@@ -67,7 +67,7 @@
   },
   {
    "model": 1,
-   "rules": 6,
+   "rules": 8,
    "dropped": 3,
    "model_name": "gemini-3.5-flash-lite",
    "drop_reasons": {
@@ -98,7 +98,7 @@
  ],
  "format": "indas",
  "ledger": {
-  "open": 1,
+  "open": 3,
   "missed": 1,
   "resolved": 1,
   "delivered": 0,
@@ -160,7 +160,7 @@
  "signals": {
   "bear": [
    "EBITDA margin 8.7% in Q2 FY27, down 130 bps YoY",
-   "FY26 revenue growth missed: 11.8% vs 15%",
+   "FY26 revenue growth missed: 12.0% vs 15%",
    "FY26 ebitda margin guidance cut 1× (8.5% → 8.5% → 7.8%)"
   ],
   "bull": [
@@ -176,7 +176,7 @@
    "actual": {
     "span": "2Q YTD",
     "unit": "%",
-    "basis": "reported ₹ growth, consolidated",
+    "basis": "computed from the results filings: reported ₹ growth, consolidated",
     "value": 11.4,
     "source": {
      "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1747229_27102026081332_WEB.xml"
@@ -188,6 +188,10 @@
    "points": [
     {
      "by": "rules",
+     "kw": [
+      22,
+      28
+     ],
      "low": 10.0,
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
      "call": "Q4 FY26 call",
@@ -200,12 +204,17 @@
      "change": "first given",
      "metric": "revenue_growth",
      "period": "FY27",
+     "prefix": false,
      "source": "company IR site",
      "call_date": "2026-05-07",
      "direction": "unclear"
     },
     {
      "by": "rules",
+     "kw": [
+      73,
+      87
+     ],
      "low": 10.0,
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q1%20FY27%20Earnings%20Call%20Transcript.pdf",
      "call": "Q1 FY27 call",
@@ -218,12 +227,17 @@
      "change": "held",
      "metric": "revenue_growth",
      "period": "FY27",
+     "prefix": true,
      "source": "company IR site",
      "call_date": "2026-07-28",
      "direction": "maintained"
     },
     {
      "by": "rules",
+     "kw": [
+      86,
+      100
+     ],
      "low": 10.0,
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q2FY27%20Earnings%20Call%20Transcript.pdf",
      "call": "Q2 FY27 call",
@@ -236,6 +250,7 @@
      "change": "held",
      "metric": "revenue_growth",
      "period": "FY27",
+     "prefix": false,
      "source": "company IR site",
      "call_date": "2026-10-27",
      "direction": "unclear"
@@ -244,12 +259,13 @@
    "context": null,
    "verdict": "on track",
    "resolved": false,
+   "cross_check": null,
    "verdict_why": "11.4% within 10–12%",
    "as_of_quarter": "2026-09-30"
   },
   {
    "label": "AUM / loan growth",
-   "story": "FY27 aum / loan growth: 20% → unverifiable.",
+   "story": "FY27 aum / loan growth: 20% → not scored.",
    "actual": null,
    "metric": "aum_growth",
    "period": "FY27",
@@ -277,20 +293,25 @@
     }
    ],
    "context": null,
-   "verdict": "unverifiable",
+   "verdict": "not scored",
    "resolved": false,
+   "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
    "as_of_quarter": "2026-09-30"
   },
   {
    "label": "Credit cost",
-   "story": "FY27 credit cost: 2% → unverifiable.",
+   "story": "FY27 credit cost: 2% → not scored.",
    "actual": null,
    "metric": "credit_cost",
    "period": "FY27",
    "points": [
     {
      "by": "rules",
+     "kw": [
+      144,
+      155
+     ],
      "low": 2.0,
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
      "call": "Q4 FY26 call",
@@ -303,27 +324,109 @@
      "change": "first given",
      "metric": "credit_cost",
      "period": "FY27",
+     "prefix": false,
      "source": "company IR site",
      "call_date": "2026-05-07",
      "direction": "maintained"
     }
    ],
    "context": null,
-   "verdict": "unverifiable",
+   "verdict": "not scored",
    "resolved": false,
+   "cross_check": null,
+   "verdict_why": "A target for one business; the filings report the company as a whole",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Return on assets",
+   "story": "FY27 return on assets: 3–3.2% → not scored.",
+   "actual": null,
+   "metric": "roa",
+   "period": "FY27",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      77,
+      80
+     ],
+     "low": 3.0,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "high": 3.2,
+     "page": 12,
+     "unit": "%",
+     "label": "roa",
+     "quote": "The financial outcomes under the plan are calibrated to deliver a 3% to 3.2% ROA and a 16% to 18% ROE, reinforcing sustainability of returns while scaling the franchise.",
+     "scope": "segment",
+     "change": "first given",
+     "metric": "roa",
+     "period": "FY27",
+     "prefix": true,
+     "source": "company IR site",
+     "call_date": "2026-05-07",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "not scored",
+   "resolved": false,
+   "cross_check": null,
+   "verdict_why": "A target for one business; the filings report the company as a whole",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Return on equity",
+   "story": "FY27 return on equity: 16–18% → not scored.",
+   "actual": null,
+   "metric": "roe",
+   "period": "FY27",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      98,
+      101
+     ],
+     "low": 16.0,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "high": 18.0,
+     "page": 12,
+     "unit": "%",
+     "label": "roe",
+     "quote": "The financial outcomes under the plan are calibrated to deliver a 3% to 3.2% ROA and a 16% to 18% ROE, reinforcing sustainability of returns while scaling the franchise.",
+     "scope": "segment",
+     "change": "first given",
+     "metric": "roe",
+     "period": "FY27",
+     "prefix": true,
+     "source": "company IR site",
+     "call_date": "2026-05-07",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "not scored",
+   "resolved": false,
+   "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
    "as_of_quarter": "2026-09-30"
   },
   {
    "label": "Revenue growth",
-   "story": "FY26 revenue growth: 15% → filings show 11.8% (FY) → missed.",
+   "story": "FY26 revenue growth: 15% → company reported 12.0% (FY) → missed.",
    "actual": {
     "span": "FY",
     "unit": "%",
-    "basis": "reported ₹ growth, consolidated",
-    "value": 11.8,
+    "basis": "company-reported",
+    "value": 12.0,
     "source": {
-     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1663820_05052026073236_WEB.xml"
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "from": "company IR site",
+     "page": 5,
+     "quote": "On the revenue front, growth for FY26 stood at 12% compared to our guidance of 15%."
     },
     "quarters": 4
    },
@@ -332,6 +435,10 @@
    "points": [
     {
      "by": "rules",
+     "kw": [
+      39,
+      53
+     ],
      "low": 15.0,
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q2FY26%20Earnings%20Call%20Transcript%20.pdf",
      "call": "Q2 FY26 call",
@@ -344,6 +451,7 @@
      "change": "first given",
      "metric": "revenue_growth",
      "period": "FY26",
+     "prefix": false,
      "source": "company IR site",
      "call_date": "2025-10-29",
      "direction": "maintained"
@@ -352,18 +460,32 @@
    "context": null,
    "verdict": "missed",
    "resolved": true,
-   "verdict_why": "11.8% vs 15%",
+   "cross_check": {
+    "span": "FY",
+    "unit": "%",
+    "basis": "computed from the results filings: reported ₹ growth, consolidated",
+    "value": 11.8,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1663820_05052026073236_WEB.xml"
+    },
+    "quarters": 4
+   },
+   "verdict_why": "12.0% vs 15%",
    "as_of_quarter": "2026-09-30"
   },
   {
    "label": "EBITDA margin",
-   "story": "FY26 ebitda margin: 8.5% → 8.5% → 7.8% (cut once) → unverifiable.",
+   "story": "FY26 ebitda margin: 8.5% → 8.5% → 7.8% (cut once) → not scored.",
    "actual": null,
    "metric": "ebitda_margin",
    "period": "FY26",
    "points": [
     {
      "by": "rules",
+     "kw": [
+      76,
+      82
+     ],
      "low": 8.5,
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2025AnalysttransL&T%20Q4FY25%20Earnings%20Call%20Transcript.pdf",
      "call": "Q4 FY25 call",
@@ -376,12 +498,17 @@
      "change": "first given",
      "metric": "ebitda_margin",
      "period": "FY26",
+     "prefix": false,
      "source": "company IR site",
      "call_date": "2025-05-08",
      "direction": "unclear"
     },
     {
      "by": "rules",
+     "kw": [
+      108,
+      121
+     ],
      "low": 8.5,
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q2FY26%20Earnings%20Call%20Transcript%20.pdf",
      "call": "Q2 FY26 call",
@@ -394,12 +521,17 @@
      "change": "held",
      "metric": "ebitda_margin",
      "period": "FY26",
+     "prefix": false,
      "source": "company IR site",
      "call_date": "2025-10-29",
      "direction": "unclear"
     },
     {
      "by": "rules",
+     "kw": [
+      37,
+      44
+     ],
      "low": 7.8,
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
      "call": "Q4 FY26 call",
@@ -412,14 +544,16 @@
      "change": "cut",
      "metric": "ebitda_margin",
      "period": "FY26",
+     "prefix": false,
      "source": "company IR site",
      "call_date": "2026-05-07",
      "direction": "maintained"
     }
    ],
    "context": null,
-   "verdict": "unverifiable",
+   "verdict": "not scored",
    "resolved": false,
+   "cross_check": null,
    "verdict_why": "A target for one business; the filings report the company as a whole",
    "as_of_quarter": "2026-09-30"
   },
@@ -432,6 +566,10 @@
    "points": [
     {
      "by": "rules",
+     "kw": [
+      35,
+      42
+     ],
      "low": 13.0,
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
      "call": "Q4 FY26 call",
@@ -444,6 +582,7 @@
      "change": "first given",
      "metric": "revenue_growth",
      "period": "medium term",
+     "prefix": true,
      "source": "company IR site",
      "call_date": "2026-05-07",
      "direction": "unclear"
@@ -452,6 +591,7 @@
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
+   "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
    "as_of_quarter": "2026-09-30"
   },
@@ -464,6 +604,10 @@
    "points": [
     {
      "by": "rules",
+     "kw": [
+      80,
+      91
+     ],
      "low": 16.0,
      "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
      "call": "Q4 FY26 call",
@@ -476,6 +620,7 @@
      "change": "first given",
      "metric": "operating_margin",
      "period": "medium term",
+     "prefix": false,
      "source": "company IR site",
      "call_date": "2026-05-07",
      "direction": "unclear"
@@ -484,6 +629,7 @@
    "context": null,
    "verdict": "open-ended",
    "resolved": false,
+   "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
    "as_of_quarter": "2026-09-30"
   }

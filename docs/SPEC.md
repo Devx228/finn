@@ -633,6 +633,16 @@ Degradation: no transcripts → annual-report-only mode with the ledger section 
 ```
 
 **Resolution.**
+- *[Owner rule, 2026-11-13]* **When the company reports the guided metric itself, that reported
+  number is the actual** — quoted with page and link, labelled "company-reported" (for revenue
+  growth guided in constant currency, only a company-reported constant-currency figure counts).
+  Our own figure from the filings is used as the actual **only where the filing is unambiguous**:
+  revenue, revenue growth in rupees, and EBITDA margin as defined on the results card. For every
+  other metric (ROA, ROE, loan/AUM growth, credit cost, NIM, operating margin, capex, …) our
+  computed figure is shown beside the company's as a cross-check and never decides a verdict; with
+  no company-reported figure the claim is **not scored** (or **open** while the year runs). No
+  "missed" verdict is shown without a company-reported or unambiguous actual. Tolerance is
+  rounding only (±0.05 pt).
 - Numeric + computable metric + period elapsed → code compares against reported actuals → `delivered` / `missed` (with the gap) / `partially`.
 - Period not yet elapsed → `pending`, with a run-rate line computed in code ("needs +19% in H2; H1 was +11%").
 - Later calls restate the same metric with a different value → `revised` — link the chain to show **guidance drift** ("FY26 growth: 15% → 12–13% → 'low double digits'").

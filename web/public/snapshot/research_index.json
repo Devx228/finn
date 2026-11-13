@@ -1,52 +1,76 @@
 {
  "companies": [
   {
-   "name": "CREDITACCESS GRAMEEN LIMITED",
-   "calls": 8,
-   "symbol": "CREDITACC",
-   "tracks": 10
-  },
-  {
-   "name": "Deepak Nitrite Limited",
-   "calls": 4,
-   "symbol": "DEEPAKNTR",
-   "tracks": 1
-  },
-  {
-   "name": "HDFC Bank Limited",
-   "calls": 4,
-   "symbol": "HDFCBANK",
-   "tracks": 0
-  },
-  {
-   "name": "Infosys Limited",
-   "calls": 4,
-   "symbol": "INFY",
-   "tracks": 4
-  },
-  {
+   "hero": true,
    "name": "Kaynes Technology India Limited",
+   "role": "hero: rupee revenue, growth and EBITDA-margin guidance checkable from filings",
    "calls": 8,
    "symbol": "KAYNES",
-   "tracks": 9
+   "tracks": 9,
+   "resolved": 5
   },
   {
+   "hero": false,
+   "name": "CREDITACCESS GRAMEEN LIMITED",
+   "role": "second: lender (NBFC) — loan growth, ROA, ROE, credit cost",
+   "calls": 8,
+   "symbol": "CREDITACC",
+   "tracks": 17,
+   "resolved": 5
+  },
+  {
+   "hero": false,
+   "name": "Infosys Limited",
+   "role": "guidance cuts and constant-currency handling (read 4 of 8 calls)",
+   "calls": 4,
+   "symbol": "INFY",
+   "tracks": 4,
+   "resolved": 2
+  },
+  {
+   "hero": false,
    "name": "Larsen & Toubro Limited",
+   "role": null,
    "calls": 5,
    "symbol": "LT",
-   "tracks": 7
+   "tracks": 9,
+   "resolved": 1
   },
   {
+   "hero": false,
+   "name": "Deepak Nitrite Limited",
+   "role": null,
+   "calls": 4,
+   "symbol": "DEEPAKNTR",
+   "tracks": 1,
+   "resolved": 0
+  },
+  {
+   "hero": false,
+   "name": "HDFC Bank Limited",
+   "role": null,
+   "calls": 4,
+   "symbol": "HDFCBANK",
+   "tracks": 0,
+   "resolved": 0
+  },
+  {
+   "hero": false,
    "name": "Persistent Systems Limited",
+   "role": null,
    "calls": 7,
    "symbol": "PERSISTENT",
-   "tracks": 3
+   "tracks": 3,
+   "resolved": 0
   },
   {
+   "hero": false,
    "name": "Trent Limited",
+   "role": "no recent earnings-call transcripts — degradation demo",
    "calls": 0,
    "symbol": "TRENT",
-   "tracks": 0
+   "tracks": 0,
+   "resolved": 0
   }
  ]
 }

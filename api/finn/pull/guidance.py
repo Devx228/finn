@@ -20,7 +20,7 @@ MAX_CHARS = 6000
 CUE = re.compile(
     r"guidance|guiding|guide[ds]? |we expect|we are expecting|we anticipate|outlook|target(?:ing)?|"
     r"aspir|we will (?:grow|deliver|achieve)|should be (?:in|around|between)|in the range of|"
-    r"band|capex|capital expenditure|we aim|we plan to invest",
+    r"band|capex|capital expenditure|we aim|aiming|we plan to invest|we plan",
     re.I,
 )
 NUM = re.compile(r"\d")
@@ -227,7 +227,9 @@ METRIC_KEYS: list[tuple[re.Pattern[str], str]] = [
     (re.compile(r"\broe\b", re.I), "roe"),
     (re.compile(r"capex|capital expenditure", re.I), "capex"),
     (
-        re.compile(r"revenue growth|revenue|top[- ]?line(?: growth)?|\bgrowth\b|\bgrow\b", re.I),
+        re.compile(
+            r"revenue growth|revenue|top[- ]?line(?: growth)?|\bgrowth\b|\bgrow\b|\bgrew\b|\bgrown\b", re.I
+        ),
         "revenue_growth",
     ),
 ]
@@ -245,7 +247,7 @@ COMPANY_WIDE = re.compile(
 )
 RULE_CUE = re.compile(
     r"guidance|guiding|guide |we expect|expected to|outlook|target|aspire|in the range of|we will|"
-    r"we are confident|we aim",
+    r"we are confident|we aim|aiming|we plan|we are looking at|we see .{0,20}in the range",
     re.I,
 )
 SKIP = re.compile(
@@ -259,7 +261,18 @@ SKIP = re.compile(
     r"order (?:intake|inflow)|bookings|it was just|was just|additional|incremental|"
     r"from (?:that|this|the) (?:one |mega |large )?deal|from one deal|contribut|run[- ]?rate|"
     r"(?:first|second) half|television|interview|\banother\b|remaining|balance of|"
-    r"over the previous year|over last year|\bto revenue\b|\bprinted\b|you guys",
+    r"over the previous year|over last year|\bto revenue\b|\bprinted\b|you guys|"
+    r"compared (?:to|with) (?:the |our )?guidance|\bremained\b|\bwith an? \d[\d.]*\s*%",
+    re.I,
+)
+RESULT_VERB = re.compile(r"\b(?:was|were|stood|remained|came in|ended|grew|delivered|reported)\b", re.I)
+# For reading reported outcomes (not guidance): paraphrases, increments, adjusted or cross-cycle
+# figures and run rates are not the period's reported number.
+SKIP_OUTCOME = re.compile(
+    r"you had|you mentioned|that you|you said|your guidance|you guys|additional|incremental|"
+    r"run[- ]?rate|\btcv\b|bookings|order (?:intake|inflow)|exit(?:ed)? rate|annuali[sz]ed|"
+    r"cross[- ]cycle|over the (?:past|last) \w+ years|compounded|\bcagr\b|per annum|excluding|"
+    r"adjusted|would have|if .{0,40}excluded|since inception|\bto revenue\b|% of (?:the )?revenue",
     re.I,
 )
 FY = re.compile(
@@ -317,11 +330,52 @@ def _direction(low: str) -> str:
 def rule_items(chosen: list[tuple[int, str]], call_fy: int) -> list[dict]:
     """High-precision rules: each metric keyword in a guidance sentence takes the first number
     after it and before the next keyword, so 'AUM growth of 20–25%, NIM of 12.8–13.2%, credit
-    cost of 3–4%' yields three items, each with its own band."""
+    cost of 3–4%' yields three items, each with its own band. A sentence that only continues a
+    guidance sentence ("…AUM growth of 14% to 18%." "NIM of 12.6% to 12.8%, ROA of … in FY26.")
+    counts as guidance too."""
     out, seen = [], set()
+    prev_cue = False
     for page, s in chosen:
-        if "?" in s or not RULE_CUE.search(s) or SKIP.search(s):
+        cue = bool(RULE_CUE.search(s))
+        # the sentence right after a guidance sentence, unless it states a result
+        carried = not cue and prev_cue and not RESULT_VERB.search(s)
+        prev_cue = cue and "?" not in s and not SKIP.search(s)
+        if "?" in s or SKIP.search(s) or not (cue or carried):
             continue
+        for p in pairs(s):
+            key = (p["metric"], p["low"], p["high"])
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(
+                {
+                    **{k: v for k, v in p.items() if k != "at"},
+                    "label": p["metric"].replace("_", " "),
+                    "period": MEDIUM_TERM
+                    if p["metric"] == "capex" and not (FY.search(s) or YEARISH.search(s))
+                    else _fy(s, call_fy),
+                    "direction": _direction(s.lower()),
+                    "quote": s,
+                    "page": page,
+                    "by": "rules",
+                }
+            )
+    return out
+
+
+def _lead(s: str, start: int) -> str:
+    """The words leading up to position `start`; when the word opens a new clause ("On the revenue
+    front, growth …"), the clause before it."""
+    pre = s[max(0, start - 40) : start]
+    return pre.rstrip().rstrip(",;").rstrip() if re.search(r"[,;]\s*$", pre) else pre[-30:]
+
+
+def pairs(s: str) -> list[dict]:
+    """Every (metric, number) pair in one sentence: each metric keyword takes the number right
+    before it ("4.2%-4.5% ROA") or else the first free number after it, before the next keyword.
+    Shared by guidance extraction and by reading what the company later reported."""
+    out: list[dict] = []
+    if True:
         hits: list[tuple[int, int, str]] = []
         taken: list[tuple[int, int]] = []
         for rx, metric in METRIC_KEYS:
@@ -331,6 +385,19 @@ def rule_items(chosen: list[tuple[int, str]], call_fy: int) -> list[dict]:
                 taken.append((m.start(), m.end()))
                 hits.append((m.start(), m.end(), metric))
         hits.sort()
+        # "AUM grew 14%", "margins grew to": a growth verb right after another metric word is that
+        # metric's verb, not a separate revenue-growth mention.
+        hits = [
+            h
+            for k, h in enumerate(hits)
+            if not (
+                k
+                and h[2] == "revenue_growth"
+                and s[h[0] : h[1]].lower() in ("grew", "grown", "grow", "growth")
+                and hits[k - 1][2] != "revenue_growth"
+                and h[0] - hits[k - 1][1] <= 3
+            )
+        ]
         nums = list(NUMSPAN.finditer(s))
         # "18%-20% AUM growth, 4.2%-4.5% ROA": a number right before a metric word is that
         # metric's, and no other keyword may take it.
@@ -342,10 +409,14 @@ def rule_items(chosen: list[tuple[int, str]], call_fy: int) -> list[dict]:
         claimed = {id(x) for x in prefix.values()}
         for i, (start, end, metric) in enumerate(hits):
             word = s[start:end].lower()
+            if metric == "operating_margin" and re.search(
+                r"(?:pat|net|gross|profit|contribution|pbt)\W*$", s[max(0, start - 15) : start], re.I
+            ):
+                continue  # "PAT margin", "gross margin": not the operating margin
             if (
                 metric == "revenue_growth"
-                and word in ("growth", "grow")
-                and not COMPANY_WIDE.search(s[max(0, start - 30) : start])
+                and word in ("growth", "grow", "grew", "grown")
+                and not COMPANY_WIDE.search(_lead(s, start))
             ):
                 continue  # "microfinance growth", "automotive to grow": a segment, not the company
             nxt = hits[i + 1][0] if i + 1 < len(hits) else len(s)
@@ -375,27 +446,18 @@ def rule_items(chosen: list[tuple[int, str]], call_fy: int) -> list[dict]:
                 continue
             if lo > hi:
                 lo, hi = hi, lo
-            key = (metric, lo, hi)
-            if key in seen:
-                continue
-            seen.add(key)
             out.append(
                 {
                     "metric": metric,
-                    "label": metric.replace("_", " "),
-                    "period": MEDIUM_TERM
-                    if metric == "capex" and not (FY.search(s) or YEARISH.search(s))
-                    else _fy(s, call_fy),
                     "low": lo,
                     "high": hi,
                     "unit": unit,
-                    "direction": _direction(s.lower()),
-                    "quote": s,
-                    "page": page,
+                    "at": n.start(),
+                    "kw": (start, end),
+                    "prefix": n is prefix.get(start),
                     "scope": "segment"
                     if (unit == "₹ cr" and SEGMENT.search(s)) or SEGMENT_NAMED.search(s[: n.start()])
                     else "company",
-                    "by": "rules",
                 }
             )
     return out

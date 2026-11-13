@@ -20,6 +20,7 @@ from psycopg.types.json import Jsonb
 
 from finn.llm.router import Router
 from finn.pull import guidance as gd
+from finn.pull import reported as reported_mod
 from finn.pull import transcripts as tr
 from finn.push.pipeline import _quarter_facts
 from finn.push.results import CR, fiscal_label, metrics
@@ -141,89 +142,6 @@ def fy_actual(qs: list[dict], fy: int, metric: str) -> dict | None:
             "basis": f"{'EBIT' if k == 'ebit' else 'EBITDA'} ÷ revenue from the filings",
         }
     return None
-
-
-# --- company-reported constant-currency growth (resolves CC guidance against the company's own
-# later statement; quoted and cited, never inferred from ₹ growth) -----------------------------
-CC_RX = re.compile(r"constant currency|\bcc\b", re.I)
-GROWTH_RX = re.compile(r"\bgr[eo]w|growth", re.I)
-CC_NOT = re.compile(
-    r"guidance|guid|expect|outlook|\bwill\b|target|\?|vertical|segment|financial services|manufactur|"
-    r"retail|communications|energy|europe|america|geograph|client|deal|digital",
-    re.I,
-)
-
-
-def _cc_value(s: str) -> float | None:
-    ms = list(re.finditer(r"(-?\d+(?:\.\d+)?)\s*%", s))
-    for i, m in enumerate(ms):
-        tail = s[m.end() : ms[i + 1].start() if i + 1 < len(ms) else len(s)].lower()
-        if re.search(r"sequential|q-?on-?q|qoq|reported", tail[:40]):
-            continue
-        return float(m.group(1))
-    return None
-
-
-def cc_reported(docs: list[dict], fy_start: int) -> list[dict]:
-    """Constant-currency revenue growth the company itself reported on a call, for the full year
-    (Q4 call) or year to date (Q1 YoY, H1, nine months)."""
-    out = []
-    for d in docs:
-        qend: date = d["qend"]
-        fy = _fy_of(qend, fy_start)
-        qn = int(fiscal_label(qend, fy_start)[1])
-        for page, s in gd.sentences(d["pages"]):
-            if not (CC_RX.search(s) and GROWTH_RX.search(s)) or CC_NOT.search(s):
-                continue
-            if re.search(r"full year|for the year|financial year|\bFY ?'?\d\d\b", s, re.I):
-                m = re.search(r"\bFY ?'?(\d\d)\b", s)
-                if qn != 4 or (m and 2000 + int(m.group(1)) != fy):
-                    continue
-                n = 4
-            elif re.search(r"\bH1\b|first half", s, re.I) and qn == 2:
-                n = 2
-            elif re.search(r"nine months|\b9M\b", s, re.I) and qn == 3:
-                n = 3
-            elif re.search(r"\bQ1\b", s) and qn == 1 and re.search(r"y-?o-?y|y-on-y|year-on-year", s, re.I):
-                n = 1
-            else:
-                continue
-            v = _cc_value(s)
-            if v is not None:
-                out.append(
-                    {
-                        "fy": fy,
-                        "quarters": n,
-                        "value": v,
-                        "quote": s,
-                        "page": page,
-                        "url": d["url"],
-                        "call": d["label"],
-                        "source": d.get("source") or "NSE",
-                    }
-                )
-    return out
-
-
-def cc_actual(reported: list[dict], fy: int) -> dict | None:
-    xs = sorted((r for r in reported if r["fy"] == fy), key=lambda r: r["quarters"])
-    if not xs:
-        return None
-    r = xs[-1]
-    return {
-        "value": r["value"],
-        "unit": "%",
-        "span": "FY" if r["quarters"] == 4 else f"{r['quarters']}Q YTD",
-        "quarters": r["quarters"],
-        "basis": "company-reported, constant currency",
-        "source": {
-            "quote": r["quote"],
-            "page": r["page"],
-            "url": r["url"],
-            "call": r["call"],
-            "from": r.get("source", "NSE"),
-        },
-    }
 
 
 # --- metrics checkable straight from the XBRL filings (balance sheet / cash flow / P&L) --------
@@ -348,6 +266,29 @@ def filing_actual(conn: Connection, cid: int, metric: str, fy: int, fy_start: in
 
 
 LOWER_BETTER = {"credit_cost"}
+LENDER_METRICS = {"aum_growth", "credit_cost", "nim", "roa"}
+LENDER_WORDS = re.compile(r"\bROA\b|\bNIM\b|loan book|credit cost|\bAUM\b|disbursement", re.I)
+NOT_SCORED = "not scored"
+# SPEC §10.3 (owner, 13 Nov): when the company reports the guided metric itself, that number is the
+# actual. Our own figure from the filings is the actual only where the filing is unambiguous;
+# for everything else it is shown as a cross-check and never decides a verdict.
+COMPUTED_OK = {"revenue", "revenue_growth", "ebitda_margin"}
+
+
+def _fmt(a: dict) -> str:
+    v = f"₹{a['value']:,.0f} cr" if a["unit"] == "₹ cr" else f"{a['value']}%"
+    return f"{v} ({a['span']})"
+
+
+def _computed(conn, cid, qs: list[dict], metric: str, fy: int, fy_start: int, last: dict) -> dict | None:
+    if metric in FILING_METRICS:
+        return filing_actual(conn, cid, metric, fy, fy_start) if conn is not None and cid else None
+    a = fy_actual(qs, fy, metric)
+    if a:
+        a = {**a, "basis": "computed from the results filings: " + a["basis"]}
+    return a
+
+
 # cost-to-income is deliberately absent: the company's definition can't be rebuilt from XBRL lines
 # (CREDITACC reported 34.1% where opex ÷ (income − finance costs) gives ~29%), so it isn't scored.
 FILING_METRICS = {"capex", "aum_growth", "credit_cost", "roa", "roe"}
@@ -357,9 +298,9 @@ def verdict(
     actual: dict | None, low: float, high: float, final: bool, lower_better: bool = False
 ) -> tuple[str, str]:
     if actual is None:
-        return "unverifiable", "Not checkable from the filings"
+        return NOT_SCORED, "No actual for this period"
     v = actual["value"]
-    slack = 0.25
+    slack = 0.05  # rounding only: reported figures carry one decimal
     band = f"{low:g}–{high:g}%" if low != high else f"{low:g}%"
     if v < low - slack:
         good = lower_better
@@ -393,7 +334,7 @@ def tracks(
     fy_start: int,
     conn: Connection | None = None,
     cid: int | None = None,
-    cc: list[dict] | None = None,
+    reported: list[dict] | None = None,
     lender: bool = False,
 ) -> list[dict]:
     series: dict[tuple[str, str], list[dict]] = defaultdict(list)
@@ -409,8 +350,10 @@ def tracks(
         for it in c["items"]:
             if it.get("unit") == "bps" or it.get("low") is None:
                 continue  # bps are changes, not levels; a chain never mixes units
-            if not lender and it["metric"] in ("aum_growth", "credit_cost", "nim"):
-                it = {**it, "scope": "segment"}  # a non-lender's loan book is a subsidiary's
+            if not lender and (
+                it["metric"] in LENDER_METRICS or LENDER_WORDS.search(it["quote"])
+            ):  # a non-lender talking loan book / credit cost / NIM / ROA is talking about a subsidiary
+                it = {**it, "scope": "segment"}
             if lender and it["metric"] == "revenue_growth":
                 it = {**it, "metric": "aum_growth"}  # a lender's "growth" is loan-book growth
             if (
@@ -458,52 +401,76 @@ def tracks(
             prev = p
         fy = int(period[2:]) + 2000 if period and period.startswith("FY") and period[2:].isdigit() else None
         last = pts[-1]
-        cc_guided = cc_company
+        cc_guided = cc_company and metric == "revenue_growth"
         segment = (
             metric == "segment_revenue"
             or any(p.get("scope") == "segment" for p in pts)
-            or (metric == "revenue" and last_fy_rev and last["high"] < 0.5 * last_fy_rev)
+            or (
+                metric == "revenue"
+                and last.get("unit") == "₹ cr"
+                and last_fy_rev
+                and last["high"] < 0.5 * last_fy_rev
+            )
         )
         act = None
+        cross = None
         context = None
+        lower = metric in LOWER_BETTER
         if segment:
-            v, why = "unverifiable", "A target for one business; the filings report the company as a whole"
+            v, why = NOT_SCORED, "A target for one business; the filings report the company as a whole"
         elif fy is None:
             v, why = "open-ended", "No year attached, so it never falls due; listed, not scored"
         elif not any(q["fy"] == fy for q in qs):
-            v, why = "pending", f"No {period} results reported yet"
-        elif metric == "revenue_growth" and cc_guided:
-            act = cc_actual(cc or [], fy) if fy else None
-            inr = fy_actual(qs, fy, metric) if fy else None
-            if inr:
-                context = f"Reported ₹ growth {inr['value']}% ({inr['span']}), which includes currency moves"
-            if act:
-                v, why = verdict(act, last["low"], last["high"], act["quarters"] == 4)
-            else:
-                v, why = (
-                    "pending",
-                    "Waiting for the company to report constant-currency growth for the period",
-                )
-        elif metric in FILING_METRICS:
-            act = filing_actual(conn, cid, metric, fy, fy_start) if conn is not None and cid and fy else None
+            v, why = "pending", f"Falls due with {period} results, not reported yet"
+        else:
+            # 1. what the company itself reported for this metric and year (its own definition)
+            rep = reported_mod.best(reported or [], metric, fy, cc=True if cc_guided else None)
+            if metric == "revenue_growth" and not cc_guided:
+                rep = reported_mod.best(reported or [], metric, fy, cc=False)
+            # 2. our own figure from the filings: the actual only where the filing is unambiguous
+            comp = _computed(conn, cid, qs, metric, fy, fy_start, last)
+            if cc_guided:
+                if comp:
+                    context = (
+                        f"Reported ₹ growth {comp['value']}% ({comp['span']}), which includes currency moves"
+                    )
+                comp = None  # ₹ growth never stands in for constant-currency guidance
+            if rep:
+                act, cross = rep, comp
+            elif comp and metric in COMPUTED_OK:
+                act = comp
             if act is None:
-                v, why = "unverifiable", "Not checkable from the filings"
+                if comp and comp["quarters"] < 4:
+                    v = "pending"
+                    why = (
+                        f"The company hasn't stated a year-to-date "
+                        f"{METRIC_LABEL.get(metric, metric).lower()}; "
+                        f"our estimate from the filings is {_fmt(comp)} (cross-check only)"
+                    )
+                else:
+                    v = NOT_SCORED
+                    why = "The company didn't state this figure in the calls read" + (
+                        f"; our estimate from the filings is {_fmt(comp)} (cross-check only, not scored)"
+                        if comp
+                        else ", and it isn't in the results filings"
+                    )
+                    cross = comp
+                act = None
             elif metric == "capex":
                 v, why = _capex_verdict(act, last["high"])
-            else:
-                v, why = verdict(act, last["low"], last["high"], act["quarters"] == 4, metric in LOWER_BETTER)
-        else:
-            act = fy_actual(qs, fy, metric) if fy else None
-            if metric == "revenue" and last["unit"] == "₹ cr" and act:
+            elif metric == "revenue" and last["unit"] == "₹ cr":
                 hit = act["value"] >= last["low"] * 0.98
                 v = "delivered" if hit else "missed"
                 why = f"₹{act['value']:,.0f} cr vs ₹{last['low']:,.0f} cr guided"
             elif last["unit"] != "%":
-                v, why = "unverifiable", "Not checkable from the filings"
+                v, why = NOT_SCORED, "Guided in a unit the filings don't report"
+                act = None
             else:
-                v, why = verdict(act, last["low"], last["high"], bool(act and act["quarters"] == 4))
+                v, why = verdict(act, last["low"], last["high"], act["quarters"] == 4, lower)
         if act and "source" not in act:
             act["source"] = {"xbrl": next((q["xbrl"] for q in reversed(qs) if q["fy"] == fy), None)}
+        if cross and "source" not in cross:
+            cross["source"] = {"xbrl": next((q["xbrl"] for q in reversed(qs) if q["fy"] == fy), None)}
         cuts = sum(p["change"] == "cut" for p in pts)
         raises = sum(p["change"] == "raised" for p in pts)
         out.append(
@@ -513,6 +480,7 @@ def tracks(
                 "period": period,
                 "points": pts,
                 "actual": act,
+                "cross_check": cross,
                 "context": context,
                 "verdict": v,
                 "verdict_why": why,
@@ -631,7 +599,8 @@ def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None,
                 "items": items,
             }
         )
-    trks = tracks(calls, qs, fy_start, conn, cid, cc_reported(docs, fy_start), lender=fmt in ("bank", "nbfc"))
+    said = reported_mod.outcomes(docs, fy_start, fiscal_label)
+    trks = tracks(calls, qs, fy_start, conn, cid, said, lender=fmt in ("bank", "nbfc"))
     resolved = [t for t in trks if t["resolved"]]
     return {
         "symbol": symbol,
@@ -649,8 +618,10 @@ def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None,
             "resolved": len(resolved),
             "delivered": sum(t["verdict"] in ("delivered", "beat") for t in resolved),
             "missed": sum(t["verdict"] == "missed" for t in resolved),
-            "open": sum(t["verdict"] in ("on track", "ahead", "behind", "pending") for t in trks),
-            "unverifiable": sum(t["verdict"] in ("unverifiable", "open-ended") for t in trks),
+            "open": sum(
+                t["verdict"] in ("on track", "ahead", "behind", "pending", "open-ended") for t in trks
+            ),
+            "unverifiable": sum(t["verdict"] == NOT_SCORED for t in trks),
         },
         "stats": stats,
         "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its "
@@ -682,12 +653,26 @@ def materialise(conn: Connection, symbol: str, router: Router | None, nse: NSE |
         "SET body = EXCLUDED.body, as_of = EXCLUDED.as_of, updated_at = now()",
         (f"research:{symbol}", Jsonb(body)),
     )
+    roles = dict(
+        conn.execute(
+            "SELECT c.nse_symbol, r.role FROM research_set r JOIN companies c ON c.id = r.company_id"
+        ).fetchall()
+    )
     idx = [
-        {"symbol": b["symbol"], "name": b["name"], "tracks": len(b["guidance"]), "calls": len(b["calls"])}
+        {
+            "symbol": b["symbol"],
+            "name": b["name"],
+            "tracks": len(b["guidance"]),
+            "calls": len(b["calls"]),
+            "resolved": (b.get("ledger") or {}).get("resolved", 0),
+            "role": roles.get(b["symbol"]),
+            "hero": (roles.get(b["symbol"]) or "").lower().startswith("hero"),
+        }
         for (b,) in conn.execute(
             "SELECT body FROM views WHERE key LIKE 'research:%%' AND key <> 'research:index' ORDER BY key"
         ).fetchall()
     ]
+    idx.sort(key=lambda c: (not c["hero"], -c["resolved"], c["symbol"]))  # hero first, then by evidence
     conn.execute(
         "INSERT INTO views (key, body, as_of) VALUES ('research:index', %s, now()) "
         "ON CONFLICT (key) DO UPDATE "

@@ -530,3 +530,20 @@ Router: throttle is now per provider:model (Gemini 3.5-flash-lite 14/min, 3-flas
   actual); an analyst's "you guys … 16% was the target". Rules added: multi-year markers, segment
   words before the number make it segment-scope (one segment point makes the whole chain segment),
   a non-lender's loan-book metrics are a subsidiary's.
+
+## 2026-11-13 (late) — The company's own number decides; README / ARCHITECTURE / diagram
+- **Owner rule (SPEC §10.3):** when the company reports the guided metric itself, that number is
+  the actual (quoted, cited, "company-reported"); our computed figure decides only where the
+  filing is unambiguous (revenue, rupee revenue growth, EBITDA margin) and is otherwise a
+  cross-check. Implemented generically in `finn/pull/reported.py` (no per-company code):
+  management sentences stating a result, number right after its metric word, the nearest period
+  marker decides (a quarter marker disqualifies), multi-year sentences skipped.
+- Effects: CREDITACC FY26 loan growth / ROA / ROE now resolve on the company's figures (14.0% /
+  2.7% / 10.7%; ours 15.0 / 2.6 / 10.5 shown as cross-checks); its real FY26 guidance from the May
+  2025 call (14–18%, ROA 2.9–3.4%, ROE 11.8–13.3%) was being missed ("aiming" not a cue; the
+  continuation sentence had no cue) — both fixed generally. L&T FY26 growth: the company itself
+  says "growth for FY26 stood at 12% compared to our guidance of 15%" (group revenue) → missed,
+  cited. Tolerance cut to rounding (±0.05): the company calls its FY26 ROA of 2.7% vs 2.9–3.4% "a
+  marginal miss", and so do we now.
+- "unverifiable" renamed "not scored"; open items show their due year; the hero is read from
+  `data/research_set.json` (role "hero: …"), not from code. No more companies, no more IR fetching.

@@ -6,6 +6,7 @@ For networks that reset Postgres connections on 5432 (seen 2026-11-13 on the own
     python scripts/neon_http.py push-views research:  # pipeline-owned views only
     python scripts/neon_http.py push-llm              # cache insert-only; ledger rows appended
     python scripts/neon_http.py push-documents        # new docs by url; never overwrites text
+    python scripts/neon_http.py push-research-set     # from data/research_set.json (pipeline-owned)
 Run from api/ with the venv: .venv/Scripts/python ../scripts/neon_http.py ...
 Never prints the connection string.
 """
@@ -204,6 +205,18 @@ def push_documents() -> tuple[int, int]:
     return new, filled
 
 
+def push_research_set() -> int:
+    """research_set is pipeline-owned: loaded from data/research_set.json, replaced as a whole."""
+    rows = json.loads((REPO_ROOT / "data" / "research_set.json").read_text(encoding="utf-8"))["companies"]
+    q("DELETE FROM research_set")
+    for r in rows:
+        q(
+            "INSERT INTO research_set (company_id, role) SELECT id, $2 FROM companies WHERE nse_symbol = $1",
+            [r["symbol"], r.get("role")],
+        )
+    return len(rows)
+
+
 if __name__ == "__main__":
     cmd, *args = sys.argv[1:] or ["sizes"]
     if cmd == "sizes":
@@ -214,6 +227,8 @@ if __name__ == "__main__":
         print("views pushed:", push_views(args[0] if args else ""))
     elif cmd == "push-llm":
         print("llm_cache offered / llm_calls inserted:", push_llm())
+    elif cmd == "push-research-set":
+        print("research_set rows:", push_research_set())
     elif cmd == "push-documents":
         print("documents new / text filled:", push_documents())
     else:

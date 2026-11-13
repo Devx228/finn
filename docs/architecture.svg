@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 640" width="980" height="640" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">FINN architecture</title>
+  <desc id="d">Sources feed batch pipelines on a laptop worker; pipelines write materialised views to Postgres; the API serves views to the phone web app, which falls back to a bundled snapshot.</desc>
+  <style>
+    .bg { fill: #ffffff; }
+    .box { fill: #f6f7f9; stroke: #c9ced6; stroke-width: 1.2; }
+    .hot { fill: #eef3ff; stroke: #5b7bd5; stroke-width: 1.4; }
+    .warn { fill: #fff6ec; stroke: #d08a3a; stroke-width: 1.2; }
+    .h { font-size: 15px; font-weight: 600; fill: #16181d; }
+    .t { font-size: 12px; fill: #3b414b; }
+    .s { font-size: 11px; fill: #6a717d; }
+    .lane { font-size: 11px; font-weight: 600; letter-spacing: .08em; fill: #6a717d; }
+    .arrow { stroke: #6a717d; stroke-width: 1.4; fill: none; marker-end: url(#a); }
+    .dash { stroke: #9aa1ad; stroke-width: 1.2; fill: none; stroke-dasharray: 4 4; marker-end: url(#a); }
+    .no { stroke: #c0392b; stroke-width: 1.4; fill: none; stroke-dasharray: 3 3; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0f1115; }
+      .box { fill: #181b21; stroke: #343a45; }
+      .hot { fill: #18213a; stroke: #6f8fe6; }
+      .warn { fill: #2a2117; stroke: #b9803c; }
+      .h { fill: #eceef2; } .t { fill: #c3c8d1; } .s, .lane { fill: #8d95a2; }
+      .arrow { stroke: #8d95a2; } .dash { stroke: #6a717d; }
+    }
+  </style>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6a717d"/></marker></defs>
+  <rect class="bg" width="980" height="640" rx="10"/>
+
+  <text class="lane" x="24" y="30">PRIMARY SOURCES</text>
+  <text class="lane" x="268" y="30">WRITE PATH · batch, on the worker</text>
+  <text class="lane" x="580" y="30">STORE</text>
+  <text class="lane" x="780" y="30">READ PATH · zero model calls</text>
+
+  <!-- sources -->
+  <rect class="box" x="20" y="44" width="220" height="92" rx="8"/>
+  <text class="h" x="34" y="68">NSE (exchange)</text>
+  <text class="t" x="34" y="88">filings, XBRL results,</text>
+  <text class="t" x="34" y="104">transcripts, annual reports</text>
+  <text class="s" x="34" y="124">polite client · stopped on refusal</text>
+
+  <rect class="box" x="20" y="148" width="220" height="80" rx="8"/>
+  <text class="h" x="34" y="172">Company IR sites</text>
+  <text class="t" x="34" y="192">older call transcripts</text>
+  <text class="s" x="34" y="212">robots.txt · 1 request/file · stop on refusal</text>
+
+  <rect class="box" x="20" y="240" width="220" height="62" rx="8"/>
+  <text class="h" x="34" y="264">Yahoo Finance</text>
+  <text class="s" x="34" y="284">end-of-day prices, NIFTY</text>
+
+  <rect class="box" x="20" y="314" width="220" height="62" rx="8"/>
+  <text class="h" x="34" y="338">Synthetic network</text>
+  <text class="s" x="34" y="358">72 contacts · labelled synthetic</text>
+
+  <rect class="warn" x="20" y="392" width="220" height="74" rx="8"/>
+  <text class="h" x="34" y="416">Not used</text>
+  <text class="s" x="34" y="436">BSE (CDN 403) · Screener (terms)</text>
+  <text class="s" x="34" y="452">au.bank.in, infosys.com (refused)</text>
+
+  <!-- pipelines -->
+  <rect class="box" x="264" y="44" width="290" height="70" rx="8"/>
+  <text class="h" x="278" y="68">Ingest</text>
+  <text class="t" x="278" y="88">filings · XBRL facts · prices · PDF text</text>
+  <text class="s" x="278" y="104">cached forever; documents never re-fetched</text>
+
+  <rect class="box" x="264" y="126" width="290" height="86" rx="8"/>
+  <text class="h" x="278" y="150">Push</text>
+  <text class="t" x="278" y="170">rules classify ~79% → model the rest</text>
+  <text class="t" x="278" y="186">results cards · score · Now / Worth / Buried</text>
+  <text class="s" x="278" y="202">alerts inputs · network on every card</text>
+
+  <rect class="hot" x="264" y="224" width="290" height="118" rx="8"/>
+  <text class="h" x="278" y="248">Pull · Promise Ledger</text>
+  <text class="t" x="278" y="268">select guidance sentences (management only)</text>
+  <text class="t" x="278" y="284">rules first → model adds → verbatim check</text>
+  <text class="t" x="278" y="300">chain: given → revised → outcome → verdict</text>
+  <text class="t" x="278" y="316">actual = company-reported figure first</text>
+  <text class="s" x="278" y="332">ours only if unambiguous; else a cross-check</text>
+
+  <rect class="box" x="264" y="354" width="290" height="62" rx="8"/>
+  <text class="h" x="278" y="378">Network</text>
+  <text class="s" x="278" y="398">warmth × overlap paths · who to call · insider flag</text>
+
+  <rect class="box" x="264" y="428" width="290" height="96" rx="8"/>
+  <text class="h" x="278" y="452">LLM router (tiers, not model names)</text>
+  <text class="t" x="278" y="472">Gemini → Groq → local qwen2.5 (Ollama)</text>
+  <text class="s" x="278" y="492">used by Push (classification) and Pull (extraction)</text>
+  <text class="s" x="278" y="508">content-hash cache · every call in a cost ledger</text>
+
+  <!-- store -->
+  <rect class="hot" x="576" y="126" width="180" height="216" rx="8"/>
+  <text class="h" x="590" y="150">Postgres (Neon)</text>
+  <text class="t" x="590" y="172">filings · fin_facts</text>
+  <text class="t" x="590" y="188">documents (text + source)</text>
+  <text class="t" x="590" y="204">persons · relationships</text>
+  <text class="t" x="590" y="220">llm_cache · llm_calls</text>
+  <text class="h" x="590" y="250">views</text>
+  <text class="t" x="590" y="270">brief:&lt;window&gt;</text>
+  <text class="t" x="590" y="286">research:&lt;SYM&gt;</text>
+  <text class="t" x="590" y="302">network:* · alerts:inputs</text>
+  <text class="s" x="590" y="326">materialised JSON, read as-is</text>
+
+  <!-- read path -->
+  <rect class="box" x="778" y="126" width="182" height="78" rx="8"/>
+  <text class="h" x="792" y="150">API · FastAPI</text>
+  <text class="t" x="792" y="170">Render (free)</text>
+  <text class="s" x="792" y="190">serves views; never calls NSE</text>
+
+  <rect class="hot" x="778" y="236" width="182" height="106" rx="8"/>
+  <text class="h" x="792" y="260">Web app · Next.js</text>
+  <text class="t" x="792" y="280">Vercel · phone-first</text>
+  <text class="t" x="792" y="296">Today · Research · People</text>
+  <text class="s" x="792" y="316">alert rules run in the browser</text>
+  <text class="s" x="792" y="332">no login</text>
+
+  <rect class="box" x="778" y="374" width="182" height="62" rx="8"/>
+  <text class="h" x="792" y="398">Bundled snapshot</text>
+  <text class="s" x="792" y="418">if the API is slow or down</text>
+
+  <!-- arrows -->
+  <path class="arrow" d="M240,90 H264"/>
+  <path class="arrow" d="M240,188 C252,188 252,280 264,280"/>
+  <path class="arrow" d="M240,270 C252,270 252,96 262,96"/>
+  <path class="arrow" d="M240,345 H264"/>
+  <path class="arrow" d="M554,80 C566,80 566,160 576,160"/>
+  <path class="arrow" d="M554,170 H576"/>
+  <path class="arrow" d="M554,284 H576"/>
+  <path class="arrow" d="M554,385 C566,385 566,310 576,310"/>
+  <path class="arrow" d="M756,165 H778"/>
+  <path class="arrow" d="M869,204 V236"/>
+  <path class="dash" d="M869,374 V344"/>
+
+  <text class="s" x="20" y="556">Solid: data flow. Dashed: fallback. Every number on screen is computed in code from a filing or quoted from the company;</text>
+  <text class="s" x="20" y="572">models only structure text, and any quote that is not verbatim in its source is dropped.</text>
+  <text class="s" x="20" y="596">Planned (item 4): research job queue — app writes a job, the laptop worker claims it, else a GitHub Actions run (cached documents only until NSE is cleared).</text>
+</svg>
