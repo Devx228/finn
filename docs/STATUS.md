@@ -12,7 +12,7 @@
 | Management-change card (bio + network overlap) | ✅ | bio extracted from the company's filing; "You were at ICICI Bank 2014–17" on HDFCBANK |
 | Material-event card (→ who to call, why) | ✅ | `network/service.py for_item` → people, call, 3 questions, insider flag |
 | One-line "so what"; rest buried | ✅ | classifier one-liners (eval 86.8% end to end, docs/evals.md) |
-| Triggered alerts, configurable, in-app inbox | 🟡 | `push/alerts.py` + `web/lib/alerts.ts`, tested both sides; **defaults fire 101 in 30 days — too noisy**; no "no disclosure" mark |
+| Triggered alerts, configurable, in-app inbox | ✅ | defaults by measurement (vs NIFTY, 4×, 6%, results opt-in): 24 in 30 days (was 101); one alert per stock-day; "moved with no disclosure" |
 | "Why is this here?" on every item | ✅ | `WhySheet.tsx` shows the score breakdown incl. the network component |
 | Research: Business snapshot | 🟡 | segment mix, segment result ÷ revenue, like-for-like YoY from the company's full-year XBRL segment note (13 cos; 9 declare single-segment). No annual-report text cached (all ARs are on NSE, paused), so no "what it does" prose |
 | Research: Financial snapshot | 🟡 | latest-quarter revenue/EBITDA/PAT/margins in the trajectory; no TTM, ROE/ROCE, net debt |
@@ -24,7 +24,7 @@
 | Live pipeline with visible progress for an uncached symbol | ❌ | runs on the laptop only (`finn research SYM`); NSE 403s the hosted API |
 | "Who can help?" sheet on Push cards and Research sections | 🟡 | on Push cards ✅; Research has one "Who to call" section, not a chip per section |
 | Second-degree paths with strength + evidence | ✅ | `network/graph.py` warmth × overlap; PathLine shows the evidence |
-| Direct query "who do I know at / knows about X" | 🟡 | symbol chips + expertise-map themes on People; no free-text search |
+| Direct query "who do I know at / knows about X" | ✅ | free-text search on People over the directory (employer, title, theme, NSE symbol; every word must match; ranked by match then warmth); tested |
 | Synthetic network ~70 contacts | ✅ | 72 contacts, 40 meetings, every one tagged synthetic in UI |
 | Deployed URL, no login, phone-usable | ✅ | finn-tawny-nine.vercel.app + Render API; Phase 0a phone check |
 | Bundled snapshot fallback | ✅ | `web/lib/api.ts loadWithFallback` → `web/public/snapshot/*.json` |
@@ -40,12 +40,12 @@
 | Cash quality section | ❌ | annual cash flow in `fin_facts`, not surfaced |
 | Red flags section | ❌ | annual reports linked, not read |
 | Results card linked to the Promise Ledger | ❌ | |
-| Ask bar (tool-calling, typed cards) | ❌ | `AskBar.tsx` is a disabled input — visible and half-built |
+| Ask bar (tool-calling, typed cards) | ❌ | removed from the UI until it can run on a hosted model from the API (needs a Gemini key as a Render secret) |
 | People: expertise map | ✅ | People tab |
 | People: coverage gaps (weight vs depth) | ✅ | coverage grid uses `holdings.weight_pct` vs contacts inside |
 | People: keep-warm nudges with drafted opener | 🟡 | nudges with the reason; no drafted opener |
 | Person dossier | ✅ | "Diligence on a person" sheet (`person_view`) |
 | Note resurfacing | ❌ | meetings exist in the synthetic data; not shown against filings |
 | Web Push / swipe feedback | ❌ | PWA manifest only |
-| Unexplained-move detection | ❌ | (planned as the "moved with no disclosure" alert mark) |
+| Unexplained-move detection | ✅ | "moved with no disclosure": no material filing that session or the two before |
 | Classifier eval harness with labelled set | ✅ | `push/evaluate.py` over `data/eval/labelled.jsonl` (114 rows), results in docs/evals.md |

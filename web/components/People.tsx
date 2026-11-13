@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CandidateRow, ContactLine, PersonBlock, Strength, SyntheticTag } from "@/components/Network";
 import { type Loaded, loadWithFallback } from "@/lib/api";
 import { formatWhen } from "@/lib/format";
 import type { CompanyNetwork, Figure, NetworkHome, PersonView } from "@/lib/types";
+import { search } from "@/lib/whoKnows";
 
 const H = "mb-2 text-[12px] font-semibold uppercase tracking-wider text-ink-3";
 
@@ -45,6 +46,8 @@ function Home({ h, onPerson }: { h: NetworkHome; onPerson: (id: number) => void 
   const figures = h.figures.filter((f) => f.best || f.you.length).slice(0, 6);
   return (
     <div className="space-y-6">
+      {h.directory && <WhoKnows h={h} />}
+
       <p className="rounded-md border border-line px-3 py-2 text-[12px] leading-snug text-ink-3">
         {h.contacts} contacts · {h.synthetic_note}
       </p>
@@ -136,6 +139,58 @@ function Home({ h, onPerson }: { h: NetworkHome; onPerson: (id: number) => void 
         </ul>
       </section>
     </div>
+  );
+}
+
+/** Free-text "who do I know at X / who knows about Y" over the directory (no model). */
+function WhoKnows({ h }: { h: NetworkHome }) {
+  const [q, setQ] = useState("");
+  const hits = useMemo(() => (q.trim().length > 1 ? search(h.directory ?? [], q) : []), [h.directory, q]);
+  const examples = ["HDFC Bank", "banking", "steel", "credit risk"];
+  return (
+    <section>
+      <label htmlFor="who" className="sr-only">
+        Who do I know at, or who knows about
+      </label>
+      <input
+        id="who"
+        value={q}
+        onChange={(e) => setQ(e.target.value)}
+        placeholder="Who do I know at… / who knows about…"
+        className="h-11 w-full rounded-lg border border-line bg-surface px-3 text-[15px] placeholder:text-ink-3"
+      />
+      {!q && (
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {examples.map((x) => (
+            <button
+              key={x}
+              onClick={() => setQ(x)}
+              className="h-8 rounded-full border border-line px-3 text-[12px] text-ink-2"
+            >
+              {x}
+            </button>
+          ))}
+        </div>
+      )}
+      {q.trim().length > 1 && (
+        <ul className="mt-2 divide-y divide-line rounded-lg border border-line bg-surface px-3">
+          {hits.length === 0 && <li className="py-2 text-[13px] text-ink-3">No one in your network matches every word.</li>}
+          {hits.map(({ person: p, why }) => (
+            <li key={p.id} className="py-2">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-[14px] font-semibold">
+                  {p.name} {p.synthetic && <SyntheticTag />}
+                </span>
+                <Strength label={p.warmth_label} />
+              </div>
+              {p.headline && <p className="text-[13px] text-ink-2">{p.headline}</p>}
+              {why.length > 0 && <p className="text-[12px] text-ink-2">{why.join(" · ")}</p>}
+              <p className="text-[11px] text-ink-3">{p.warmth_why}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
   );
 }
 

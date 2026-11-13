@@ -182,6 +182,7 @@ export interface NetworkHome {
   figures: Figure[];
   expertise: ExpertiseRow[];
   coverage: CoverageRow[];
+  directory?: import("./whoKnows").DirectoryEntry[];
 }
 
 export interface CompanyNetwork {

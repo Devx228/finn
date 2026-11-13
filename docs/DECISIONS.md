@@ -561,3 +561,13 @@ two sessions before (trading sessions, not calendar days — a Monday move answe
 results): 3 in 30 days, all CG Power (5–6 Nov falls; its closure-order stay was disclosed 7 Nov).
 Saved rules use a new storage key so old defaults don't linger. Python and TypeScript evaluators
 share one fixture and four identical tests.
+
+## 2026-11-13 (late) — Ask bar removed for now; "who knows X" built without a model
+- **Ask bar removed** from the UI (owner: build it on a hosted model or remove it). Building it
+  properly means the API calls a model at request time, which needs a Gemini key as a Render
+  secret (owner action) and breaks the zero-model read path; a disabled control is half-built and
+  visible. Revisit when the key is on Render.
+- **Free-text "who do I know at X / who knows about Y"** on People: deterministic search over a
+  directory materialised into `network:home` (each contact's employers with years, titles, org
+  themes, mapped NSE symbols). Every query word must match; ranked by where it matched (current
+  employer > past employer = symbol > theme > title > name) then warmth. Tested.

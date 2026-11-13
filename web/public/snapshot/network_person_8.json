@@ -47,11 +47,11 @@
   },
   {
    "ts": "2026-10-29T11:02:13+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163140_AppointmentofDirector.pdf",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163122_AppointmentofDirector.pdf",
    "role": "Chairman",
    "event": "appointment",
    "symbol": "TRENT",
-   "filing_id": 1175,
+   "filing_id": 1172,
    "person_id": 8
   },
   {
@@ -65,11 +65,11 @@
   },
   {
    "ts": "2026-10-29T11:02:13+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163122_AppointmentofDirector.pdf",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163140_AppointmentofDirector.pdf",
    "role": "Chairman",
    "event": "appointment",
    "symbol": "TRENT",
-   "filing_id": 1172,
+   "filing_id": 1175,
    "person_id": 8
   }
  ],

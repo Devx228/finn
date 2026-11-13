@@ -365,6 +365,25 @@ class Net:
             )
         return out
 
+    def directory(self) -> list[dict]:
+        """Every contact with what a free-text "who knows X" can match on: career (orgs, titles,
+        years), the themes of those orgs, and the listed companies they map to. Searched in the
+        browser; no model."""
+        sym_by_org = {self.org_name[o].lower(): s for s, o in self.org_by_symbol.items()}
+        out = []
+        for p in self.contacts:
+            career = _career_json(p)
+            themes = sorted({t for e in p.emps if (t := org_theme(e.org, None))})
+            out.append(
+                {
+                    **_contact_json(p),
+                    "career": career,
+                    "themes": themes,
+                    "symbols": sorted({s for e in p.emps if (s := sym_by_org.get(e.org.lower()))}),
+                }
+            )
+        return out
+
     def figures(self) -> list[dict]:
         out = []
         for pid, ms in self.mentions.items():
@@ -402,6 +421,7 @@ def materialise(conn: Connection, now: datetime) -> dict[str, int]:
         "figures": net.figures(),
         "expertise": net.expertise(),
         "coverage": cov,
+        "directory": net.directory(),
     }
     for sym in net.org_by_symbol:
         views[f"network:company:{sym}"] = {

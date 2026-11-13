@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-12T23:32:04.012644+05:30",
+ "as_of": "2026-11-13T14:15:41.534777+05:30",
  "figures": [
   {
    "id": 12,
@@ -690,6 +690,2199 @@
    "symbol": "DEEPAKNTR",
    "adjacent": 3,
    "weight_pct": 2.6
+  }
+ ],
+ "directory": [
+  {
+   "id": 18,
+   "name": "Varun Bhatia",
+   "career": [
+    {
+     "org": "HDFC Bank Limited",
+     "span": "2011–now",
+     "title": "Head of FP&A",
+     "current": true
+    }
+   ],
+   "themes": [
+    "banking"
+   ],
+   "warmth": 0.38,
+   "symbols": [
+    "HDFCBANK"
+   ],
+   "headline": "Head of FP&A, HDFC Bank Limited",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke May 2025, 0 interactions in 24 months",
+   "last_contact": "2025-05-17",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 19,
+   "name": "Radhika Saxena",
+   "career": [
+    {
+     "org": "Cholamandalam Investment and Finance",
+     "span": "2010–2017",
+     "title": "Head of Investor Relations",
+     "current": false
+    },
+    {
+     "org": "CREDITACCESS GRAMEEN LIMITED",
+     "span": "2017–2019",
+     "title": "Head of Investor Relations",
+     "current": false
+    }
+   ],
+   "themes": [
+    "rural lending"
+   ],
+   "warmth": 0.51,
+   "symbols": [
+    "CREDITACC"
+   ],
+   "headline": "Head of Investor Relations, CREDITACCESS GRAMEEN LIMITED",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke Jun 2025, 0 interactions in 24 months",
+   "last_contact": "2025-06-16",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 20,
+   "name": "Riya Kamath",
+   "career": [
+    {
+     "org": "Infosys Limited",
+     "span": "2004–2011",
+     "title": "Head of Compliance",
+     "current": false
+    },
+    {
+     "org": "Wipro",
+     "span": "2011–now",
+     "title": "Head of Compliance",
+     "current": true
+    }
+   ],
+   "themes": [
+    "IT services"
+   ],
+   "warmth": 0.62,
+   "symbols": [
+    "INFY"
+   ],
+   "headline": "Head of Compliance, Wipro",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke Sep 2026, 6 interactions in 24 months",
+   "last_contact": "2026-09-16",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 21,
+   "name": "Imran Iyer",
+   "career": [
+    {
+     "org": "UPL",
+     "span": "2007–2012",
+     "title": "President",
+     "current": false
+    },
+    {
+     "org": "Deepak Nitrite Limited",
+     "span": "2013–2016",
+     "title": "President",
+     "current": false
+    },
+    {
+     "org": "UPL",
+     "span": "2017–now",
+     "title": "Managing Director",
+     "current": true
+    }
+   ],
+   "themes": [
+    "specialty chemicals"
+   ],
+   "warmth": 0.73,
+   "symbols": [
+    "DEEPAKNTR"
+   ],
+   "headline": "Managing Director, UPL",
+   "how_known": "ex-colleague",
+   "synthetic": true,
+   "warmth_why": "ex-colleague, last spoke Aug 2026, 1 interactions in 24 months",
+   "last_contact": "2026-08-21",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 22,
+   "name": "Diya Agarwal",
+   "career": [
+    {
+     "org": "Amber Enterprises",
+     "span": "2009–2013",
+     "title": "Credit Manager",
+     "current": false
+    },
+    {
+     "org": "Dixon Technologies (India) Limited",
+     "span": "2014–2019",
+     "title": "Treasurer",
+     "current": false
+    },
+    {
+     "org": "CG Power and Industrial Solutions Limited",
+     "span": "2019–now",
+     "title": "Treasurer",
+     "current": true
+    }
+   ],
+   "themes": [
+    "semiconductors & electronics"
+   ],
+   "warmth": 0.63,
+   "symbols": [
+    "CGPOWER",
+    "DIXON"
+   ],
+   "headline": "Treasurer, CG Power and Industrial Solutions Limited",
+   "how_known": "classmate",
+   "synthetic": true,
+   "warmth_why": "classmate, last spoke Mar 2026, 7 interactions in 24 months",
+   "last_contact": "2026-03-09",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 23,
+   "name": "Gurpreet Hegde",
+   "career": [
+    {
+     "org": "Titan Company Limited",
+     "span": "2007–2011",
+     "title": "Credit Manager",
+     "current": false
+    },
+    {
+     "org": "Varun Beverages Limited",
+     "span": "2011–now",
+     "title": "Treasurer",
+     "current": true
+    }
+   ],
+   "themes": [
+    "consumer"
+   ],
+   "warmth": 0.24,
+   "symbols": [
+    "TITAN",
+    "VBL"
+   ],
+   "headline": "Treasurer, Varun Beverages Limited",
+   "how_known": "classmate",
+   "synthetic": true,
+   "warmth_why": "classmate, last spoke Mar 2025, 0 interactions in 24 months",
+   "last_contact": "2025-03-03",
+   "warmth_label": "weak"
+  },
+  {
+   "id": 24,
+   "name": "Zoya Mukherjee",
+   "career": [
+    {
+     "org": "Sun Pharmaceutical Industries Limited",
+     "span": "2006–2013",
+     "title": "VP Sales",
+     "current": false
+    },
+    {
+     "org": "Lupin",
+     "span": "2014–now",
+     "title": "VP Sales",
+     "current": true
+    }
+   ],
+   "themes": [
+    "pharma"
+   ],
+   "warmth": 0.58,
+   "symbols": [
+    "SUNPHARMA"
+   ],
+   "headline": "VP Sales, Lupin",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke Jul 2026, 10 interactions in 24 months",
+   "last_contact": "2026-07-07",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 25,
+   "name": "Suresh Nair",
+   "career": [
+    {
+     "org": "ACC",
+     "span": "2005–2011",
+     "title": "Head of Credit Risk",
+     "current": false
+    },
+    {
+     "org": "Ambuja Cements",
+     "span": "2012–now",
+     "title": "Head of Credit Risk",
+     "current": true
+    }
+   ],
+   "themes": [
+    "industrials & infra"
+   ],
+   "warmth": 0.69,
+   "symbols": [],
+   "headline": "Head of Credit Risk, Ambuja Cements",
+   "how_known": "classmate",
+   "synthetic": true,
+   "warmth_why": "classmate, last spoke Jun 2026, 10 interactions in 24 months",
+   "last_contact": "2026-06-26",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 26,
+   "name": "Tara Gill",
+   "career": [
+    {
+     "org": "Vodafone Idea",
+     "span": "2012–2014",
+     "title": "Legal Counsel",
+     "current": false
+    },
+    {
+     "org": "Bharti Airtel Limited",
+     "span": "2015–now",
+     "title": "General Counsel",
+     "current": true
+    }
+   ],
+   "themes": [
+    "metals & telecom"
+   ],
+   "warmth": 0.65,
+   "symbols": [
+    "BHARTIARTL"
+   ],
+   "headline": "General Counsel, Bharti Airtel Limited",
+   "how_known": "introduced-by",
+   "synthetic": true,
+   "warmth_why": "introduced-by, last spoke May 2026, 4 interactions in 24 months",
+   "last_contact": "2026-05-18",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 27,
+   "name": "Siddharth Agarwal",
+   "career": [
+    {
+     "org": "Cummins Group in India",
+     "span": "2006–2008",
+     "title": "Plant Head",
+     "current": false
+    },
+    {
+     "org": "Tata Motors",
+     "span": "2008–2014",
+     "title": "Head of Supply Chain",
+     "current": false
+    },
+    {
+     "org": "Mahindra & Mahindra Limited",
+     "span": "2014–now",
+     "title": "Head of Supply Chain",
+     "current": true
+    }
+   ],
+   "themes": [
+    "autos"
+   ],
+   "warmth": 0.57,
+   "symbols": [
+    "M&M"
+   ],
+   "headline": "Head of Supply Chain, Mahindra & Mahindra Limited",
+   "how_known": "ex-colleague",
+   "synthetic": true,
+   "warmth_why": "ex-colleague, last spoke Mar 2026, 10 interactions in 24 months",
+   "last_contact": "2026-03-28",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 28,
+   "name": "Pooja Bhatia",
+   "career": [
+    {
+     "org": "Jefferies India",
+     "span": "2014–2017",
+     "title": "Senior Manager, Finance",
+     "current": false
+    },
+    {
+     "org": "Kotak Institutional Equities",
+     "span": "2018–2025",
+     "title": "Deputy CFO",
+     "current": false
+    },
+    {
+     "org": "Jefferies India",
+     "span": "2025–now",
+     "title": "CFO",
+     "current": true
+    }
+   ],
+   "themes": [
+    "markets"
+   ],
+   "warmth": 0.81,
+   "symbols": [],
+   "headline": "CFO, Jefferies India",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke Mar 2026, 6 interactions in 24 months",
+   "last_contact": "2026-03-30",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 29,
+   "name": "Nikhil Gill",
+   "career": [
+    {
+     "org": "ICICI Bank Limited",
+     "span": "2014–now",
+     "title": "Head of Compliance",
+     "current": true
+    }
+   ],
+   "themes": [
+    "banking"
+   ],
+   "warmth": 0.84,
+   "symbols": [],
+   "headline": "Head of Compliance, ICICI Bank Limited",
+   "how_known": "personal",
+   "synthetic": true,
+   "warmth_why": "personal, last spoke Jul 2026, 9 interactions in 24 months",
+   "last_contact": "2026-07-05",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 30,
+   "name": "Diya Varma",
+   "career": [
+    {
+     "org": "Cholamandalam Investment and Finance",
+     "span": "2006–2010",
+     "title": "HR Business Partner",
+     "current": false
+    },
+    {
+     "org": "Spandana Sphoorty",
+     "span": "2010–2015",
+     "title": "CHRO",
+     "current": false
+    }
+   ],
+   "themes": [
+    "rural lending"
+   ],
+   "warmth": 0.54,
+   "symbols": [],
+   "headline": "CHRO, Spandana Sphoorty",
+   "how_known": "introduced-by",
+   "synthetic": true,
+   "warmth_why": "introduced-by, last spoke Oct 2026, 6 interactions in 24 months",
+   "last_contact": "2026-10-18",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 31,
+   "name": "Farhan Siddiqui",
+   "career": [
+    {
+     "org": "Wipro",
+     "span": "2008–2012",
+     "title": "Credit Manager",
+     "current": false
+    }
+   ],
+   "themes": [
+    "IT services"
+   ],
+   "warmth": 0.85,
+   "symbols": [],
+   "headline": "Credit Manager, Wipro",
+   "how_known": "classmate",
+   "synthetic": true,
+   "warmth_why": "classmate, last spoke Nov 2026, 6 interactions in 24 months",
+   "last_contact": "2026-11-07",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 32,
+   "name": "Diya Nair",
+   "career": [
+    {
+     "org": "UPL",
+     "span": "2011–2014",
+     "title": "Principal Engineer",
+     "current": false
+    },
+    {
+     "org": "Deepak Nitrite Limited",
+     "span": "2015–now",
+     "title": "Head of R&D",
+     "current": true
+    }
+   ],
+   "themes": [
+    "specialty chemicals"
+   ],
+   "warmth": 0.68,
+   "symbols": [
+    "DEEPAKNTR"
+   ],
+   "headline": "Head of R&D, Deepak Nitrite Limited",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke Apr 2026, 6 interactions in 24 months",
+   "last_contact": "2026-04-04",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 33,
+   "name": "Tanvi Tandon",
+   "career": [
+    {
+     "org": "Dixon Technologies (India) Limited",
+     "span": "2013–2018",
+     "title": "Head of Corporate Development",
+     "current": false
+    },
+    {
+     "org": "Tata Electronics",
+     "span": "2018–now",
+     "title": "Head of Corporate Development",
+     "current": true
+    }
+   ],
+   "themes": [
+    "semiconductors & electronics"
+   ],
+   "warmth": 0.6,
+   "symbols": [
+    "DIXON"
+   ],
+   "headline": "Head of Corporate Development, Tata Electronics",
+   "how_known": "ex-colleague",
+   "synthetic": true,
+   "warmth_why": "ex-colleague, last spoke May 2026, 10 interactions in 24 months",
+   "last_contact": "2026-05-28",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 34,
+   "name": "Suresh Trivedi",
+   "career": [
+    {
+     "org": "PepsiCo India",
+     "span": "2010–2012",
+     "title": "Regional Sales Head",
+     "current": false
+    },
+    {
+     "org": "PepsiCo India",
+     "span": "2012–2017",
+     "title": "Head of Key Accounts",
+     "current": false
+    },
+    {
+     "org": "Trent Limited",
+     "span": "2017–now",
+     "title": "Chief Business Officer",
+     "current": true
+    }
+   ],
+   "themes": [
+    "consumer"
+   ],
+   "warmth": 0.72,
+   "symbols": [
+    "TRENT"
+   ],
+   "headline": "Chief Business Officer, Trent Limited",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke Oct 2026, 6 interactions in 24 months",
+   "last_contact": "2026-10-15",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 35,
+   "name": "Aarav Pillai",
+   "career": [
+    {
+     "org": "Cipla",
+     "span": "2014–2017",
+     "title": "Senior Manager, Finance",
+     "current": false
+    },
+    {
+     "org": "Dr. Reddy's Laboratories",
+     "span": "2018–2025",
+     "title": "Deputy CFO",
+     "current": false
+    }
+   ],
+   "themes": [
+    "pharma"
+   ],
+   "warmth": 0.37,
+   "symbols": [],
+   "headline": "Deputy CFO, Dr. Reddy's Laboratories",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke Oct 2025, 0 interactions in 24 months",
+   "last_contact": "2025-10-20",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 36,
+   "name": "Aditya Kamath",
+   "career": [
+    {
+     "org": "ACC",
+     "span": "2013–2016",
+     "title": "HR Business Partner",
+     "current": false
+    }
+   ],
+   "themes": [
+    "industrials & infra"
+   ],
+   "warmth": 0.24,
+   "symbols": [],
+   "headline": "HR Business Partner, ACC",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke Dec 2024, 0 interactions in 24 months",
+   "last_contact": "2024-12-21",
+   "warmth_label": "weak"
+  },
+  {
+   "id": 37,
+   "name": "Kabir Agarwal",
+   "career": [
+    {
+     "org": "Vodafone Idea",
+     "span": "2010–2013",
+     "title": "Business Head",
+     "current": false
+    },
+    {
+     "org": "Tata Steel Limited",
+     "span": "2014–2019",
+     "title": "Managing Director",
+     "current": false
+    },
+    {
+     "org": "Tata Steel Limited",
+     "span": "2019–now",
+     "title": "Managing Director",
+     "current": true
+    }
+   ],
+   "themes": [
+    "metals & telecom"
+   ],
+   "warmth": 0.71,
+   "symbols": [
+    "TATASTEEL"
+   ],
+   "headline": "Managing Director, Tata Steel Limited",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke Mar 2026, 10 interactions in 24 months",
+   "last_contact": "2026-03-31",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 38,
+   "name": "Manish Reddy",
+   "career": [
+    {
+     "org": "Mahindra & Mahindra Limited",
+     "span": "2007–2011",
+     "title": "IR Manager",
+     "current": false
+    },
+    {
+     "org": "Maruti Suzuki India Limited",
+     "span": "2012–2018",
+     "title": "Head of Investor Relations",
+     "current": false
+    },
+    {
+     "org": "Mahindra & Mahindra Limited",
+     "span": "2019–now",
+     "title": "Head of Investor Relations",
+     "current": true
+    }
+   ],
+   "themes": [
+    "autos"
+   ],
+   "warmth": 0.42,
+   "symbols": [
+    "M&M",
+    "MARUTI"
+   ],
+   "headline": "Head of Investor Relations, Mahindra & Mahindra Limited",
+   "how_known": "introduced-by",
+   "synthetic": true,
+   "warmth_why": "introduced-by, last spoke Feb 2025, 0 interactions in 24 months",
+   "last_contact": "2025-02-27",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 39,
+   "name": "Imran Sengupta",
+   "career": [
+    {
+     "org": "Motilal Oswal",
+     "span": "2013–2020",
+     "title": "Head of Compliance",
+     "current": false
+    },
+    {
+     "org": "SBI Mutual Fund",
+     "span": "2020–2022",
+     "title": "Head of Compliance",
+     "current": false
+    },
+    {
+     "org": "Motilal Oswal",
+     "span": "2022–2026",
+     "title": "General Counsel",
+     "current": false
+    }
+   ],
+   "themes": [
+    "markets"
+   ],
+   "warmth": 0.58,
+   "symbols": [],
+   "headline": "General Counsel, Motilal Oswal",
+   "how_known": "introduced-by",
+   "synthetic": true,
+   "warmth_why": "introduced-by, last spoke Apr 2026, 2 interactions in 24 months",
+   "last_contact": "2026-04-18",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 40,
+   "name": "Shreya Naidu",
+   "career": [
+    {
+     "org": "Reserve Bank of India (RBI)",
+     "span": "2005–2012",
+     "title": "President",
+     "current": false
+    }
+   ],
+   "themes": [
+    "banking"
+   ],
+   "warmth": 0.84,
+   "symbols": [],
+   "headline": "President, Reserve Bank of India (RBI)",
+   "how_known": "introduced-by",
+   "synthetic": true,
+   "warmth_why": "introduced-by, last spoke Aug 2026, 9 interactions in 24 months",
+   "last_contact": "2026-08-04",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 41,
+   "name": "Manish Sinha",
+   "career": [
+    {
+     "org": "AU Small Finance Bank Limited",
+     "span": "2004–2008",
+     "title": "Plant Head",
+     "current": false
+    }
+   ],
+   "themes": [
+    "banking"
+   ],
+   "warmth": 0.62,
+   "symbols": [
+    "AUBANK"
+   ],
+   "headline": "Plant Head, AU Small Finance Bank Limited",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke Mar 2026, 9 interactions in 24 months",
+   "last_contact": "2026-03-08",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 42,
+   "name": "Suresh Hegde",
+   "career": [
+    {
+     "org": "Nagarro",
+     "span": "2014–2019",
+     "title": "VP Sales",
+     "current": false
+    },
+    {
+     "org": "Tata Consultancy Services",
+     "span": "2019–2024",
+     "title": "Head of Key Accounts",
+     "current": false
+    },
+    {
+     "org": "Wipro",
+     "span": "2025–now",
+     "title": "Head of Key Accounts",
+     "current": true
+    }
+   ],
+   "themes": [
+    "IT services"
+   ],
+   "warmth": 0.74,
+   "symbols": [],
+   "headline": "Head of Key Accounts, Wipro",
+   "how_known": "personal",
+   "synthetic": true,
+   "warmth_why": "personal, last spoke Oct 2026, 2 interactions in 24 months",
+   "last_contact": "2026-10-15",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 43,
+   "name": "Thomas Mukherjee",
+   "career": [
+    {
+     "org": "SRF",
+     "span": "2014–now",
+     "title": "Head of Compliance",
+     "current": true
+    }
+   ],
+   "themes": [
+    "specialty chemicals"
+   ],
+   "warmth": 0.35,
+   "symbols": [],
+   "headline": "Head of Compliance, SRF",
+   "how_known": "introduced-by",
+   "synthetic": true,
+   "warmth_why": "introduced-by, last spoke Dec 2025, 0 interactions in 24 months",
+   "last_contact": "2025-12-11",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 44,
+   "name": "Priyanka Naidu",
+   "career": [
+    {
+     "org": "Dixon Technologies (India) Limited",
+     "span": "2009–2014",
+     "title": "Head of Compliance",
+     "current": false
+    },
+    {
+     "org": "Amber Enterprises",
+     "span": "2015–2017",
+     "title": "Head of Compliance",
+     "current": false
+    },
+    {
+     "org": "Dixon Technologies (India) Limited",
+     "span": "2017–2020",
+     "title": "General Counsel",
+     "current": false
+    }
+   ],
+   "themes": [
+    "semiconductors & electronics"
+   ],
+   "warmth": 0.58,
+   "symbols": [
+    "DIXON"
+   ],
+   "headline": "General Counsel, Dixon Technologies (India) Limited",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke Jul 2026, 5 interactions in 24 months",
+   "last_contact": "2026-07-02",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 45,
+   "name": "Sneha Sengupta",
+   "career": [
+    {
+     "org": "Hindustan Unilever",
+     "span": "2013–2016",
+     "title": "Legal Counsel",
+     "current": false
+    },
+    {
+     "org": "Varun Beverages Limited",
+     "span": "2016–2022",
+     "title": "General Counsel",
+     "current": false
+    },
+    {
+     "org": "Avenue Supermarts",
+     "span": "2022–now",
+     "title": "General Counsel",
+     "current": true
+    }
+   ],
+   "themes": [
+    "consumer"
+   ],
+   "warmth": 0.5,
+   "symbols": [
+    "VBL"
+   ],
+   "headline": "General Counsel, Avenue Supermarts",
+   "how_known": "introduced-by",
+   "synthetic": true,
+   "warmth_why": "introduced-by, last spoke Jun 2026, 3 interactions in 24 months",
+   "last_contact": "2026-06-12",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 46,
+   "name": "Gurpreet Sengupta",
+   "career": [
+    {
+     "org": "Dr. Reddy's Laboratories",
+     "span": "2013–2015",
+     "title": "HR Business Partner",
+     "current": false
+    },
+    {
+     "org": "Sun Pharmaceutical Industries Limited",
+     "span": "2015–now",
+     "title": "CHRO",
+     "current": true
+    }
+   ],
+   "themes": [
+    "pharma"
+   ],
+   "warmth": 0.46,
+   "symbols": [
+    "SUNPHARMA"
+   ],
+   "headline": "CHRO, Sun Pharmaceutical Industries Limited",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke Jan 2025, 0 interactions in 24 months",
+   "last_contact": "2025-01-03",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 47,
+   "name": "Dev Saxena",
+   "career": [
+    {
+     "org": "Larsen & Toubro Limited",
+     "span": "2009–now",
+     "title": "Head of FP&A",
+     "current": true
+    }
+   ],
+   "themes": [
+    "industrials & infra"
+   ],
+   "warmth": 0.57,
+   "symbols": [
+    "LT"
+   ],
+   "headline": "Head of FP&A, Larsen & Toubro Limited",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke Apr 2026, 7 interactions in 24 months",
+   "last_contact": "2026-04-02",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 48,
+   "name": "Aarav Siddiqui",
+   "career": [
+    {
+     "org": "Tata Steel Limited",
+     "span": "2008–now",
+     "title": "IR Manager",
+     "current": true
+    }
+   ],
+   "themes": [
+    "metals & telecom"
+   ],
+   "warmth": 0.71,
+   "symbols": [
+    "TATASTEEL"
+   ],
+   "headline": "IR Manager, Tata Steel Limited",
+   "how_known": "classmate",
+   "synthetic": true,
+   "warmth_why": "classmate, last spoke May 2026, 7 interactions in 24 months",
+   "last_contact": "2026-05-06",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 49,
+   "name": "Pooja Chopra",
+   "career": [
+    {
+     "org": "Mahindra & Mahindra Limited",
+     "span": "2004–2011",
+     "title": "Head of FP&A",
+     "current": false
+    },
+    {
+     "org": "Cummins Group in India",
+     "span": "2011–2016",
+     "title": "Deputy CFO",
+     "current": false
+    },
+    {
+     "org": "Tata Motors",
+     "span": "2016–now",
+     "title": "Deputy CFO",
+     "current": true
+    }
+   ],
+   "themes": [
+    "autos"
+   ],
+   "warmth": 0.36,
+   "symbols": [
+    "M&M"
+   ],
+   "headline": "Deputy CFO, Tata Motors",
+   "how_known": "introduced-by",
+   "synthetic": true,
+   "warmth_why": "introduced-by, last spoke Jun 2025, 0 interactions in 24 months",
+   "last_contact": "2025-06-19",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 50,
+   "name": "Tanvi Sethi",
+   "career": [
+    {
+     "org": "HDFC Mutual Fund",
+     "span": "2008–2010",
+     "title": "Business Head",
+     "current": false
+    },
+    {
+     "org": "McKinsey & Company",
+     "span": "2010–now",
+     "title": "Managing Director",
+     "current": true
+    }
+   ],
+   "themes": [
+    "markets"
+   ],
+   "warmth": 0.72,
+   "symbols": [],
+   "headline": "Managing Director, McKinsey & Company",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke May 2026, 4 interactions in 24 months",
+   "last_contact": "2026-05-09",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 51,
+   "name": "Priyanka Siddiqui",
+   "career": [
+    {
+     "org": "HDFC Bank Limited",
+     "span": "2006–2011",
+     "title": "Head of Compliance",
+     "current": false
+    }
+   ],
+   "themes": [
+    "banking"
+   ],
+   "warmth": 0.71,
+   "symbols": [
+    "HDFCBANK"
+   ],
+   "headline": "Head of Compliance, HDFC Bank Limited",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke Sep 2026, 2 interactions in 24 months",
+   "last_contact": "2026-09-04",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 52,
+   "name": "Aarav Agarwal",
+   "career": [
+    {
+     "org": "Cholamandalam Investment and Finance",
+     "span": "2014–2016",
+     "title": "HR Business Partner",
+     "current": false
+    },
+    {
+     "org": "AU Small Finance Bank Limited",
+     "span": "2016–2019",
+     "title": "CHRO",
+     "current": false
+    }
+   ],
+   "themes": [
+    "banking",
+    "rural lending"
+   ],
+   "warmth": 0.8,
+   "symbols": [
+    "AUBANK"
+   ],
+   "headline": "CHRO, AU Small Finance Bank Limited",
+   "how_known": "ex-colleague",
+   "synthetic": true,
+   "warmth_why": "ex-colleague, last spoke Jul 2026, 3 interactions in 24 months",
+   "last_contact": "2026-07-20",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 53,
+   "name": "Gaurav Qureshi",
+   "career": [
+    {
+     "org": "Nagarro",
+     "span": "2009–2012",
+     "title": "Strategy Manager",
+     "current": false
+    },
+    {
+     "org": "Tata Consultancy Services",
+     "span": "2013–now",
+     "title": "Head of Corporate Development",
+     "current": true
+    }
+   ],
+   "themes": [
+    "IT services"
+   ],
+   "warmth": 0.64,
+   "symbols": [],
+   "headline": "Head of Corporate Development, Tata Consultancy Services",
+   "how_known": "introduced-by",
+   "synthetic": true,
+   "warmth_why": "introduced-by, last spoke Sep 2026, 4 interactions in 24 months",
+   "last_contact": "2026-09-19",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 54,
+   "name": "Arjun Shetty",
+   "career": [
+    {
+     "org": "SRF",
+     "span": "2014–2020",
+     "title": "Head of Corporate Development",
+     "current": false
+    },
+    {
+     "org": "SRF",
+     "span": "2021–2024",
+     "title": "Head of Corporate Development",
+     "current": false
+    },
+    {
+     "org": "Aarti Industries",
+     "span": "2024–now",
+     "title": "VP Strategy & M&A",
+     "current": true
+    }
+   ],
+   "themes": [
+    "specialty chemicals"
+   ],
+   "warmth": 0.4,
+   "symbols": [],
+   "headline": "VP Strategy & M&A, Aarti Industries",
+   "how_known": "introduced-by",
+   "synthetic": true,
+   "warmth_why": "introduced-by, last spoke Oct 2025, 0 interactions in 24 months",
+   "last_contact": "2025-10-15",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 55,
+   "name": "Manish Naidu",
+   "career": [
+    {
+     "org": "CG Power and Industrial Solutions Limited",
+     "span": "2005–2008",
+     "title": "Strategy Manager",
+     "current": false
+    },
+    {
+     "org": "Amber Enterprises",
+     "span": "2008–now",
+     "title": "VP Strategy & M&A",
+     "current": true
+    }
+   ],
+   "themes": [
+    "semiconductors & electronics"
+   ],
+   "warmth": 0.6,
+   "symbols": [
+    "CGPOWER"
+   ],
+   "headline": "VP Strategy & M&A, Amber Enterprises",
+   "how_known": "classmate",
+   "synthetic": true,
+   "warmth_why": "classmate, last spoke Jun 2026, 7 interactions in 24 months",
+   "last_contact": "2026-06-01",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 56,
+   "name": "Akash Gill",
+   "career": [
+    {
+     "org": "Trent Limited",
+     "span": "2012–2019",
+     "title": "VP Operations",
+     "current": false
+    },
+    {
+     "org": "Titan Company Limited",
+     "span": "2020–now",
+     "title": "Head of Supply Chain",
+     "current": true
+    }
+   ],
+   "themes": [
+    "consumer"
+   ],
+   "warmth": 0.75,
+   "symbols": [
+    "TITAN",
+    "TRENT"
+   ],
+   "headline": "Head of Supply Chain, Titan Company Limited",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke Sep 2026, 10 interactions in 24 months",
+   "last_contact": "2026-09-11",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 57,
+   "name": "Akash Rao",
+   "career": [
+    {
+     "org": "Sun Pharmaceutical Industries Limited",
+     "span": "2012–now",
+     "title": "Regional Sales Head",
+     "current": true
+    }
+   ],
+   "themes": [
+    "pharma"
+   ],
+   "warmth": 0.7,
+   "symbols": [
+    "SUNPHARMA"
+   ],
+   "headline": "Regional Sales Head, Sun Pharmaceutical Industries Limited",
+   "how_known": "introduced-by",
+   "synthetic": true,
+   "warmth_why": "introduced-by, last spoke Apr 2026, 5 interactions in 24 months",
+   "last_contact": "2026-04-05",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 58,
+   "name": "Ananya Mistry",
+   "career": [
+    {
+     "org": "Ambuja Cements",
+     "span": "2009–2013",
+     "title": "Principal Engineer",
+     "current": false
+    },
+    {
+     "org": "Siemens India",
+     "span": "2014–2020",
+     "title": "Chief Technology Officer",
+     "current": false
+    },
+    {
+     "org": "ACC",
+     "span": "2020–now",
+     "title": "Chief Technology Officer",
+     "current": true
+    }
+   ],
+   "themes": [
+    "industrials & infra"
+   ],
+   "warmth": 0.69,
+   "symbols": [],
+   "headline": "Chief Technology Officer, ACC",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke Jun 2026, 5 interactions in 24 months",
+   "last_contact": "2026-06-13",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 59,
+   "name": "Aditi Bhatia",
+   "career": [
+    {
+     "org": "Tata Steel Limited",
+     "span": "2004–now",
+     "title": "Head of FP&A",
+     "current": true
+    }
+   ],
+   "themes": [
+    "metals & telecom"
+   ],
+   "warmth": 0.57,
+   "symbols": [
+    "TATASTEEL"
+   ],
+   "headline": "Head of FP&A, Tata Steel Limited",
+   "how_known": "classmate",
+   "synthetic": true,
+   "warmth_why": "classmate, last spoke May 2026, 7 interactions in 24 months",
+   "last_contact": "2026-05-03",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 60,
+   "name": "Pooja Kamath",
+   "career": [
+    {
+     "org": "Bosch India",
+     "span": "2010–2014",
+     "title": "Legal Counsel",
+     "current": false
+    }
+   ],
+   "themes": [
+    "autos"
+   ],
+   "warmth": 0.39,
+   "symbols": [],
+   "headline": "Legal Counsel, Bosch India",
+   "how_known": "personal",
+   "synthetic": true,
+   "warmth_why": "personal, last spoke Apr 2026, 4 interactions in 24 months",
+   "last_contact": "2026-04-16",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 61,
+   "name": "Pranav Mistry",
+   "career": [
+    {
+     "org": "EY India",
+     "span": "2014–2017",
+     "title": "Strategy Manager",
+     "current": false
+    },
+    {
+     "org": "EY India",
+     "span": "2018–2024",
+     "title": "VP Strategy & M&A",
+     "current": false
+    },
+    {
+     "org": "Motilal Oswal",
+     "span": "2024–now",
+     "title": "VP Strategy & M&A",
+     "current": true
+    }
+   ],
+   "themes": [
+    "markets"
+   ],
+   "warmth": 0.6,
+   "symbols": [],
+   "headline": "VP Strategy & M&A, Motilal Oswal",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke Sep 2026, 7 interactions in 24 months",
+   "last_contact": "2026-09-01",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 62,
+   "name": "Meera Khanna",
+   "career": [
+    {
+     "org": "Axis Bank",
+     "span": "2010–2017",
+     "title": "VP Sales",
+     "current": false
+    },
+    {
+     "org": "ICICI Bank Limited",
+     "span": "2018–2023",
+     "title": "Head of Key Accounts",
+     "current": false
+    },
+    {
+     "org": "State Bank of India",
+     "span": "2024–now",
+     "title": "Chief Business Officer",
+     "current": true
+    }
+   ],
+   "themes": [
+    "banking"
+   ],
+   "warmth": 0.36,
+   "symbols": [],
+   "headline": "Chief Business Officer, State Bank of India",
+   "how_known": "introduced-by",
+   "synthetic": true,
+   "warmth_why": "introduced-by, last spoke Jan 2026, 0 interactions in 24 months",
+   "last_contact": "2026-01-21",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 63,
+   "name": "Diya Dutta",
+   "career": [
+    {
+     "org": "CREDITACCESS GRAMEEN LIMITED",
+     "span": "2004–2011",
+     "title": "Head of Credit Risk",
+     "current": false
+    },
+    {
+     "org": "CREDITACCESS GRAMEEN LIMITED",
+     "span": "2011–2016",
+     "title": "Treasurer",
+     "current": false
+    },
+    {
+     "org": "Cholamandalam Investment and Finance",
+     "span": "2016–now",
+     "title": "Chief Risk Officer",
+     "current": true
+    }
+   ],
+   "themes": [
+    "rural lending"
+   ],
+   "warmth": 0.67,
+   "symbols": [
+    "CREDITACC"
+   ],
+   "headline": "Chief Risk Officer, Cholamandalam Investment and Finance",
+   "how_known": "classmate",
+   "synthetic": true,
+   "warmth_why": "classmate, last spoke Mar 2026, 5 interactions in 24 months",
+   "last_contact": "2026-03-23",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 64,
+   "name": "Saanvi Nair",
+   "career": [
+    {
+     "org": "Infosys Limited",
+     "span": "2010–now",
+     "title": "Regional Sales Head",
+     "current": true
+    }
+   ],
+   "themes": [
+    "IT services"
+   ],
+   "warmth": 0.79,
+   "symbols": [
+    "INFY"
+   ],
+   "headline": "Regional Sales Head, Infosys Limited",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke Mar 2026, 8 interactions in 24 months",
+   "last_contact": "2026-03-16",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 65,
+   "name": "Priyanka Mistry",
+   "career": [
+    {
+     "org": "Deepak Nitrite Limited",
+     "span": "2008–now",
+     "title": "Head of Corporate Development",
+     "current": true
+    }
+   ],
+   "themes": [
+    "specialty chemicals"
+   ],
+   "warmth": 0.72,
+   "symbols": [
+    "DEEPAKNTR"
+   ],
+   "headline": "Head of Corporate Development, Deepak Nitrite Limited",
+   "how_known": "classmate",
+   "synthetic": true,
+   "warmth_why": "classmate, last spoke Oct 2026, 6 interactions in 24 months",
+   "last_contact": "2026-10-05",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 66,
+   "name": "Ira Saxena",
+   "career": [
+    {
+     "org": "Dixon Technologies (India) Limited",
+     "span": "2012–2016",
+     "title": "IR Manager",
+     "current": false
+    },
+    {
+     "org": "Tata Electronics",
+     "span": "2016–2022",
+     "title": "Head of Investor Relations",
+     "current": false
+    }
+   ],
+   "themes": [
+    "semiconductors & electronics"
+   ],
+   "warmth": 0.52,
+   "symbols": [
+    "DIXON"
+   ],
+   "headline": "Head of Investor Relations, Tata Electronics",
+   "how_known": "classmate",
+   "synthetic": true,
+   "warmth_why": "classmate, last spoke May 2026, 2 interactions in 24 months",
+   "last_contact": "2026-05-23",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 67,
+   "name": "Dev Ghosh",
+   "career": [
+    {
+     "org": "Hindustan Unilever",
+     "span": "2009–2012",
+     "title": "HR Business Partner",
+     "current": false
+    },
+    {
+     "org": "PepsiCo India",
+     "span": "2012–2019",
+     "title": "CHRO",
+     "current": false
+    },
+    {
+     "org": "Titan Company Limited",
+     "span": "2020–now",
+     "title": "CHRO",
+     "current": true
+    }
+   ],
+   "themes": [
+    "consumer"
+   ],
+   "warmth": 0.87,
+   "symbols": [
+    "TITAN"
+   ],
+   "headline": "CHRO, Titan Company Limited",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke Aug 2026, 8 interactions in 24 months",
+   "last_contact": "2026-08-01",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 68,
+   "name": "Ira Gokhale",
+   "career": [
+    {
+     "org": "Sun Pharmaceutical Industries Limited",
+     "span": "2013–2020",
+     "title": "VP Sales",
+     "current": false
+    },
+    {
+     "org": "Cipla",
+     "span": "2020–now",
+     "title": "Head of Key Accounts",
+     "current": true
+    }
+   ],
+   "themes": [
+    "pharma"
+   ],
+   "warmth": 0.77,
+   "symbols": [
+    "SUNPHARMA"
+   ],
+   "headline": "Head of Key Accounts, Cipla",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke Apr 2026, 6 interactions in 24 months",
+   "last_contact": "2026-04-11",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 69,
+   "name": "Imran Saxena",
+   "career": [
+    {
+     "org": "UltraTech Cement Limited",
+     "span": "2010–now",
+     "title": "VP Sales",
+     "current": true
+    }
+   ],
+   "themes": [
+    "industrials & infra"
+   ],
+   "warmth": 0.78,
+   "symbols": [
+    "ULTRACEMCO"
+   ],
+   "headline": "VP Sales, UltraTech Cement Limited",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke Sep 2026, 1 interactions in 24 months",
+   "last_contact": "2026-09-04",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 70,
+   "name": "Pooja Naidu",
+   "career": [
+    {
+     "org": "JSW Steel",
+     "span": "2008–2013",
+     "title": "Head of Compliance",
+     "current": false
+    },
+    {
+     "org": "Vodafone Idea",
+     "span": "2013–now",
+     "title": "General Counsel",
+     "current": true
+    }
+   ],
+   "themes": [
+    "metals & telecom"
+   ],
+   "warmth": 0.82,
+   "symbols": [],
+   "headline": "General Counsel, Vodafone Idea",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke Apr 2026, 6 interactions in 24 months",
+   "last_contact": "2026-04-08",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 71,
+   "name": "Rahul Varma",
+   "career": [
+    {
+     "org": "Cummins Group in India",
+     "span": "2004–now",
+     "title": "Plant Head",
+     "current": true
+    }
+   ],
+   "themes": [
+    "autos"
+   ],
+   "warmth": 0.47,
+   "symbols": [],
+   "headline": "Plant Head, Cummins Group in India",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke Aug 2025, 0 interactions in 24 months",
+   "last_contact": "2025-08-23",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 72,
+   "name": "Karan Nair",
+   "career": [
+    {
+     "org": "EY India",
+     "span": "2010–2014",
+     "title": "Senior Manager, Finance",
+     "current": false
+    },
+    {
+     "org": "McKinsey & Company",
+     "span": "2014–2019",
+     "title": "Deputy CFO",
+     "current": false
+    },
+    {
+     "org": "McKinsey & Company",
+     "span": "2020–2026",
+     "title": "CFO",
+     "current": false
+    }
+   ],
+   "themes": [
+    "markets"
+   ],
+   "warmth": 0.57,
+   "symbols": [],
+   "headline": "CFO, McKinsey & Company",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke Jun 2026, 1 interactions in 24 months",
+   "last_contact": "2026-06-01",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 73,
+   "name": "Arjun Sengupta",
+   "career": [
+    {
+     "org": "Reserve Bank of India (RBI)",
+     "span": "2011–2013",
+     "title": "Business Head",
+     "current": false
+    }
+   ],
+   "themes": [
+    "banking"
+   ],
+   "warmth": 0.55,
+   "symbols": [],
+   "headline": "Business Head, Reserve Bank of India (RBI)",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke Mar 2026, 7 interactions in 24 months",
+   "last_contact": "2026-03-08",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 74,
+   "name": "Zoya Chatterjee",
+   "career": [
+    {
+     "org": "CREDITACCESS GRAMEEN LIMITED",
+     "span": "2014–now",
+     "title": "Head of Compliance",
+     "current": true
+    }
+   ],
+   "themes": [
+    "rural lending"
+   ],
+   "warmth": 0.36,
+   "symbols": [
+    "CREDITACC"
+   ],
+   "headline": "Head of Compliance, CREDITACCESS GRAMEEN LIMITED",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke Sep 2025, 0 interactions in 24 months",
+   "last_contact": "2025-09-03",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 75,
+   "name": "Harpreet Pillai",
+   "career": [
+    {
+     "org": "Nagarro",
+     "span": "2011–2016",
+     "title": "Head of Investor Relations",
+     "current": false
+    }
+   ],
+   "themes": [
+    "IT services"
+   ],
+   "warmth": 0.52,
+   "symbols": [],
+   "headline": "Head of Investor Relations, Nagarro",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke Aug 2025, 0 interactions in 24 months",
+   "last_contact": "2025-08-08",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 76,
+   "name": "Nikhil Gokhale",
+   "career": [
+    {
+     "org": "Deepak Nitrite Limited",
+     "span": "2010–2017",
+     "title": "VP Sales",
+     "current": false
+    },
+    {
+     "org": "SRF",
+     "span": "2017–2020",
+     "title": "VP Sales",
+     "current": false
+    },
+    {
+     "org": "UPL",
+     "span": "2020–now",
+     "title": "Head of Key Accounts",
+     "current": true
+    }
+   ],
+   "themes": [
+    "specialty chemicals"
+   ],
+   "warmth": 0.51,
+   "symbols": [
+    "DEEPAKNTR"
+   ],
+   "headline": "Head of Key Accounts, UPL",
+   "how_known": "ex-colleague",
+   "synthetic": true,
+   "warmth_why": "ex-colleague, last spoke May 2026, 9 interactions in 24 months",
+   "last_contact": "2026-05-07",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 77,
+   "name": "Ananya Pillai",
+   "career": [
+    {
+     "org": "Amber Enterprises",
+     "span": "2010–2012",
+     "title": "Credit Manager",
+     "current": false
+    },
+    {
+     "org": "CG Power and Industrial Solutions Limited",
+     "span": "2012–2016",
+     "title": "Head of Credit Risk",
+     "current": false
+    },
+    {
+     "org": "Kaynes Technology India Limited",
+     "span": "2017–now",
+     "title": "Chief Risk Officer",
+     "current": true
+    }
+   ],
+   "themes": [
+    "semiconductors & electronics"
+   ],
+   "warmth": 0.77,
+   "symbols": [
+    "CGPOWER",
+    "KAYNES"
+   ],
+   "headline": "Chief Risk Officer, Kaynes Technology India Limited",
+   "how_known": "classmate",
+   "synthetic": true,
+   "warmth_why": "classmate, last spoke Jul 2026, 6 interactions in 24 months",
+   "last_contact": "2026-07-13",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 78,
+   "name": "Thomas Agarwal",
+   "career": [
+    {
+     "org": "Varun Beverages Limited",
+     "span": "2012–2017",
+     "title": "CHRO",
+     "current": false
+    },
+    {
+     "org": "Hindustan Unilever",
+     "span": "2018–now",
+     "title": "CHRO",
+     "current": true
+    }
+   ],
+   "themes": [
+    "consumer"
+   ],
+   "warmth": 0.93,
+   "symbols": [
+    "VBL"
+   ],
+   "headline": "CHRO, Hindustan Unilever",
+   "how_known": "classmate",
+   "synthetic": true,
+   "warmth_why": "classmate, last spoke Oct 2026, 6 interactions in 24 months",
+   "last_contact": "2026-10-08",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 79,
+   "name": "Venkat Sandhu",
+   "career": [
+    {
+     "org": "Lupin",
+     "span": "2014–2019",
+     "title": "Head of FP&A",
+     "current": false
+    },
+    {
+     "org": "Cipla",
+     "span": "2019–2026",
+     "title": "Deputy CFO",
+     "current": false
+    }
+   ],
+   "themes": [
+    "pharma"
+   ],
+   "warmth": 0.59,
+   "symbols": [],
+   "headline": "Deputy CFO, Cipla",
+   "how_known": "personal",
+   "synthetic": true,
+   "warmth_why": "personal, last spoke Mar 2026, 8 interactions in 24 months",
+   "last_contact": "2026-03-30",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 80,
+   "name": "Sneha Varma",
+   "career": [
+    {
+     "org": "Siemens India",
+     "span": "2004–2008",
+     "title": "Credit Manager",
+     "current": false
+    },
+    {
+     "org": "UltraTech Cement Limited",
+     "span": "2008–2013",
+     "title": "Treasurer",
+     "current": false
+    },
+    {
+     "org": "Siemens India",
+     "span": "2013–now",
+     "title": "Treasurer",
+     "current": true
+    }
+   ],
+   "themes": [
+    "industrials & infra"
+   ],
+   "warmth": 0.41,
+   "symbols": [
+    "ULTRACEMCO"
+   ],
+   "headline": "Treasurer, Siemens India",
+   "how_known": "classmate",
+   "synthetic": true,
+   "warmth_why": "classmate, last spoke Nov 2025, 0 interactions in 24 months",
+   "last_contact": "2025-11-10",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 81,
+   "name": "Suresh Varma",
+   "career": [
+    {
+     "org": "Tata Steel Limited",
+     "span": "2012–2018",
+     "title": "VP Sales",
+     "current": false
+    },
+    {
+     "org": "Tata Steel Limited",
+     "span": "2018–2023",
+     "title": "Head of Key Accounts",
+     "current": false
+    },
+    {
+     "org": "Vodafone Idea",
+     "span": "2023–now",
+     "title": "Chief Business Officer",
+     "current": true
+    }
+   ],
+   "themes": [
+    "metals & telecom"
+   ],
+   "warmth": 0.88,
+   "symbols": [
+    "TATASTEEL"
+   ],
+   "headline": "Chief Business Officer, Vodafone Idea",
+   "how_known": "classmate",
+   "synthetic": true,
+   "warmth_why": "classmate, last spoke Jul 2026, 9 interactions in 24 months",
+   "last_contact": "2026-07-05",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 82,
+   "name": "Shreya Gill",
+   "career": [
+    {
+     "org": "Dixon Technologies (India) Limited",
+     "span": "2026–now",
+     "title": "Senior Vice President",
+     "current": true
+    }
+   ],
+   "themes": [
+    "semiconductors & electronics"
+   ],
+   "warmth": 0.62,
+   "symbols": [
+    "DIXON"
+   ],
+   "headline": "Senior Vice President, Dixon Technologies (India) Limited",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke Oct 2025, 3 interactions in 24 months",
+   "last_contact": "2025-10-25",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 83,
+   "name": "Aditya Saxena",
+   "career": [
+    {
+     "org": "Aditya Birla Group",
+     "span": "2005–2009",
+     "title": "Senior Vice President",
+     "current": false
+    },
+    {
+     "org": "Motilal Oswal",
+     "span": "2010–now",
+     "title": "Director",
+     "current": true
+    }
+   ],
+   "themes": [
+    "markets"
+   ],
+   "warmth": 0.68,
+   "symbols": [],
+   "headline": "Director, Motilal Oswal",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke Feb 2026, 4 interactions in 24 months",
+   "last_contact": "2026-02-27",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 84,
+   "name": "Siddharth Gill",
+   "career": [
+    {
+     "org": "AZB & Partners",
+     "span": "2005–2009",
+     "title": "Senior Vice President",
+     "current": false
+    },
+    {
+     "org": "Jefferies India",
+     "span": "2009–now",
+     "title": "Director",
+     "current": true
+    }
+   ],
+   "themes": [
+    "markets"
+   ],
+   "warmth": 0.81,
+   "symbols": [],
+   "headline": "Director, Jefferies India",
+   "how_known": "ex-colleague",
+   "synthetic": true,
+   "warmth_why": "ex-colleague, last spoke Sep 2026, 2 interactions in 24 months",
+   "last_contact": "2026-09-27",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 85,
+   "name": "Riya Naidu",
+   "career": [
+    {
+     "org": "Jerome Merchant + Partners",
+     "span": "2017–2021",
+     "title": "Senior Vice President",
+     "current": false
+    },
+    {
+     "org": "Jefferies India",
+     "span": "2021–now",
+     "title": "Director",
+     "current": true
+    }
+   ],
+   "themes": [
+    "markets"
+   ],
+   "warmth": 0.65,
+   "symbols": [],
+   "headline": "Director, Jefferies India",
+   "how_known": "industry-friend",
+   "synthetic": true,
+   "warmth_why": "industry-friend, last spoke Nov 2025, 4 interactions in 24 months",
+   "last_contact": "2025-11-05",
+   "warmth_label": "medium"
+  },
+  {
+   "id": 86,
+   "name": "Aarav Reddy",
+   "career": [
+    {
+     "org": "Cummins Group in India",
+     "span": "2005–2008",
+     "title": "Senior Vice President",
+     "current": false
+    },
+    {
+     "org": "Jefferies India",
+     "span": "2008–now",
+     "title": "Director",
+     "current": true
+    }
+   ],
+   "themes": [
+    "autos",
+    "markets"
+   ],
+   "warmth": 0.7,
+   "symbols": [],
+   "headline": "Director, Jefferies India",
+   "how_known": "ex-colleague",
+   "synthetic": true,
+   "warmth_why": "ex-colleague, last spoke Feb 2026, 2 interactions in 24 months",
+   "last_contact": "2026-02-13",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 87,
+   "name": "Nisha Mistry",
+   "career": [
+    {
+     "org": "Cummins Inc. Components Group",
+     "span": "2010–2014",
+     "title": "Senior Vice President",
+     "current": false
+    },
+    {
+     "org": "EY India",
+     "span": "2014–now",
+     "title": "Director",
+     "current": true
+    }
+   ],
+   "themes": [
+    "autos",
+    "markets"
+   ],
+   "warmth": 0.82,
+   "symbols": [],
+   "headline": "Director, EY India",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke May 2026, 8 interactions in 24 months",
+   "last_contact": "2026-05-16",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 88,
+   "name": "Aditi D'Costa",
+   "career": [
+    {
+     "org": "ICICI Bank Limited",
+     "span": "2005–2008",
+     "title": "Senior Vice President",
+     "current": false
+    },
+    {
+     "org": "HDFC Mutual Fund",
+     "span": "2008–now",
+     "title": "Director",
+     "current": true
+    }
+   ],
+   "themes": [
+    "banking",
+    "markets"
+   ],
+   "warmth": 0.95,
+   "symbols": [],
+   "headline": "Director, HDFC Mutual Fund",
+   "how_known": "met-as-management",
+   "synthetic": true,
+   "warmth_why": "met-as-management, last spoke Oct 2026, 7 interactions in 24 months",
+   "last_contact": "2026-10-23",
+   "warmth_label": "strong"
+  },
+  {
+   "id": 89,
+   "name": "Aditi Chopra",
+   "career": [
+    {
+     "org": "ICICI Prudential Life Insurance",
+     "span": "2023–2026",
+     "title": "Senior Vice President",
+     "current": false
+    },
+    {
+     "org": "McKinsey & Company",
+     "span": "2026–now",
+     "title": "Director",
+     "current": true
+    }
+   ],
+   "themes": [
+    "markets"
+   ],
+   "warmth": 0.57,
+   "symbols": [],
+   "headline": "Director, McKinsey & Company",
+   "how_known": "ex-colleague",
+   "synthetic": true,
+   "warmth_why": "ex-colleague, last spoke Jan 2026, 3 interactions in 24 months",
+   "last_contact": "2026-01-01",
+   "warmth_label": "medium"
   }
  ],
  "expertise": [

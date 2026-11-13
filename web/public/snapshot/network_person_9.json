@@ -80,6 +80,15 @@
   },
   {
    "ts": "2026-10-29T11:02:13+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163044_AppointmentofDirector.pdf",
+   "role": "Additional Director (Non-Executive, Non-Independent)",
+   "event": "appointment",
+   "symbol": "TRENT",
+   "filing_id": 1173,
+   "person_id": 9
+  },
+  {
+   "ts": "2026-10-29T11:02:13+00:00",
    "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163140_AppointmentofDirector.pdf",
    "role": "Additional Director (Non-Executive, Non-Independent)",
    "event": "appointment",
@@ -94,15 +103,6 @@
    "event": "appointment",
    "symbol": "TRENT",
    "filing_id": 1174,
-   "person_id": 9
-  },
-  {
-   "ts": "2026-10-29T11:02:13+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/TRENT_29102026163044_AppointmentofDirector.pdf",
-   "role": "Additional Director (Non-Executive, Non-Independent)",
-   "event": "appointment",
-   "symbol": "TRENT",
-   "filing_id": 1173,
    "person_id": 9
   }
  ],
