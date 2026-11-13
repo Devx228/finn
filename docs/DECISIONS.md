@@ -506,3 +506,27 @@ Router: throttle is now per provider:model (Gemini 3.5-flash-lite 14/min, 3-flas
   constant currency decided per company, lower credit-cost guidance shown as good news.
 - **EXTRACT order changed:** gemini-3.5-flash-lite first. 3-flash timed out on 48 of 57 calls on
   13 Nov; it scored the same 1.00/1.00 as flash-lite in the pipeline on the gold set.
+
+## 2026-11-13 (night) — Hero = KAYNES; true source labels; company IR sites
+- **Owner decision:** KAYNES is the Promise Ledger hero, CREDITACC second; INFY stays on 4 of 8
+  calls as the guidance-cut / constant-currency example. Gate (SPEC §16): hero ≥ 5 resolved, fully
+  cited promises. KAYNES: 5 (2 delivered, 3 missed), each with quote + page + transcript link and
+  the XBRL filing behind the actual.
+- **Labels are true:** files FINN fetched from a company site live in `data/ir/<SYM>/` and are
+  labelled "company IR site"; only files the owner places in `data/manual/` are "downloaded by
+  hand". The 8 earlier records were relabelled locally and on Neon.
+- **Company IR fetcher** (`finn/sources/ir.py`): robots.txt first and obeyed; one plain request
+  per file (honest User-Agent, no header tricks, no retries), 5 s apart; cached; the first refusal
+  writes `data/cache/IR_REFUSED_<host>.json` and that host is never contacted again (tested).
+  Results: persistent.com 3 files; investors.larsentoubro.com 5; www.au.bank.in **refused (403)**
+  on its listing page — stopped for good; www.infosys.com refused earlier — marker recorded;
+  godeepak.com TLS certificate fails verification — skipped (not disabling verification); other IR
+  listing pages render links with JavaScript, so URLs came from web search, guessed variants
+  limited to 3 per file.
+- **Review of every resolved claim on the new ledgers removed:** CAGR / "over five years" targets
+  read as one year (L&T Lakshya 13–15%, Persistent 19–20% CAGR); "Net Working Capital to Revenue
+  … 12%" read as revenue growth; L&T's P&M-portfolio margin and its finance subsidiary's loan-book
+  and credit-cost targets scored against the consolidated company; "ROE printed … 16.6%" (an
+  actual); an analyst's "you guys … 16% was the target". Rules added: multi-year markers, segment
+  words before the number make it segment-scope (one segment point makes the whole chain segment),
+  a non-lender's loan-book metrics are a subsidiary's.

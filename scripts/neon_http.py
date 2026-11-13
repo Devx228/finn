@@ -179,8 +179,10 @@ def push_documents() -> tuple[int, int]:
             "fetched_at, source) SELECT c.id, $2, $3, $4::timestamptz, $5, $6, $7::int, $8::jsonb, "
             "$9::timestamptz, $10 FROM companies c WHERE c.nse_symbol = $1 "
             "ON CONFLICT (url) DO UPDATE SET pages = EXCLUDED.pages, n_pages = EXCLUDED.n_pages, "
-            "sha256 = EXCLUDED.sha256, fetched_at = EXCLUDED.fetched_at "
-            "WHERE documents.pages IS NULL RETURNING (xmax = 0) AS inserted",
+            "sha256 = EXCLUDED.sha256, fetched_at = EXCLUDED.fetched_at, source = EXCLUDED.source "
+            "WHERE documents.pages IS NULL "
+            "OR (documents.source <> 'NSE' AND documents.source <> EXCLUDED.source) "
+            "RETURNING (xmax = 0) AS inserted",
             [
                 sym,
                 j["kind"],

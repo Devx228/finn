@@ -234,6 +234,12 @@ METRIC_KEYS: list[tuple[re.Pattern[str], str]] = [
 SEGMENT = re.compile(
     r"segment|division|vertical|subsidiar|\bbusiness(?:es)?\b|\bboth\b|\bunit\b|\bplant\b", re.I
 )
+# A number that names a portfolio/segment/subsidiary is that unit's, for any metric.
+SEGMENT_NAMED = re.compile(
+    r"\bportfolio\b|\bsegment\b|\bdivision\b|\bvertical\b|projects and manufacturing|"
+    r"\bp&m\b|subsidiar|\bfinance (?:arm|business|company)",
+    re.I,
+)
 COMPANY_WIDE = re.compile(
     r"\b(our|overall|company|consolidated|revenue|top ?line|we|annual|business)\b[^,;]*$", re.I
 )
@@ -253,7 +259,7 @@ SKIP = re.compile(
     r"order (?:intake|inflow)|bookings|it was just|was just|additional|incremental|"
     r"from (?:that|this|the) (?:one |mega |large )?deal|from one deal|contribut|run[- ]?rate|"
     r"(?:first|second) half|television|interview|\banother\b|remaining|balance of|"
-    r"over the previous year|over last year",
+    r"over the previous year|over last year|\bto revenue\b|\bprinted\b|you guys",
     re.I,
 )
 FY = re.compile(
@@ -278,7 +284,8 @@ YEARISH = re.compile(r"this year|next year|current year|for the year|this fiscal
 # A total spread over several years: never one year's number, even if a year is named.
 MULTI_YEAR = re.compile(
     r"total (?:spend|capex|investment)|total \w+ of|cumulative|across these \w+ years|"
-    r"over the next (?:few|\d+|two|three|four|five) years",
+    r"over the next (?:few|\d+|two|three|four|five) years|\bcagr\b|compounded|"
+    r"(?:for |over )(?:the next )?(?:over )?(?:\d+|two|three|four|five) years",
     re.I,
 )
 
@@ -385,7 +392,9 @@ def rule_items(chosen: list[tuple[int, str]], call_fy: int) -> list[dict]:
                     "direction": _direction(s.lower()),
                     "quote": s,
                     "page": page,
-                    "scope": "segment" if unit == "₹ cr" and SEGMENT.search(s) else "company",
+                    "scope": "segment"
+                    if (unit == "₹ cr" and SEGMENT.search(s)) or SEGMENT_NAMED.search(s[: n.start()])
+                    else "company",
                     "by": "rules",
                 }
             )
@@ -430,6 +439,9 @@ def extract(
             model = res.model
             full = _norm(joined(pages)[0])
             for it in res.data.items:  # type: ignore[attr-defined]
+                first = re.search(r"\d", it.quote)
+                if SEGMENT_NAMED.search(it.quote[: first.start() if first else len(it.quote)]):
+                    it.scope = "segment"
                 if it.metric == "revenue" and it.scope == "segment":
                     it.metric = "segment_revenue"
                 if it.metric == "revenue" and (it.unit or "").strip() == "%":

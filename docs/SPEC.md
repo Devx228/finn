@@ -147,6 +147,10 @@ Each holding gets a mock weight (%) and a mock entry date. Weight feeds ranking.
 Pick for what they prove:
 
 - **One company that gives explicit numeric guidance every quarter** (a large IT services name that publishes a revenue-growth band and margin band is ideal) — this is the hero for the Promise Ledger.
+  *[Changed 2026-11-13 by the owner: hero = **KAYNES** (rupee revenue, growth and EBITDA-margin
+  guidance checkable straight from filings); second = **CREDITACC** (loan growth, credit cost,
+  ROA, ROE); INFY stays on 4 of 8 calls as the example of guidance cuts and constant-currency
+  handling.]*
 - **One mid-cap with capex / capacity guidance** — shows multi-year promises.
 - **One bank or NBFC** — proves the engine handles financials (no EBITDA; different statement rows).
 - **One small cap with few or no concalls** — proves graceful degradation ("annual-report-only mode").
@@ -827,7 +831,9 @@ Generate network, entity resolution, strength, who-can-help, paths. Management-c
 
 **Phase 4 — Pull.**
 Research pipeline, P0 sections, Promise Ledger with verifier, live progress, pre-cache all demo companies, generalisation check.
-*Gate:* the hero company's ledger has ≥ 8 resolved numeric claims, each with a working page citation; an unseen ticker completes live on the phone.
+*Gate:* the hero company's ledger has ≥ 5 resolved numeric claims, each fully cited (quote with
+page and transcript link; actual with its filing), none padded; an unseen ticker completes live on
+the phone. *[Changed 2026-11-13 by the owner from ≥ 8: hero is KAYNES.]*
 
 **Phase 5 — the differentiators (all of P1).**
 In this order: results↔ledger link; Balance sheet, Cash quality and Red flags sections; coverage gaps, keep-warm and note resurfacing; person dossier; Ask bar; unexplained-move alerts; Web Push; swipe feedback; classifier eval harness.
@@ -887,7 +893,7 @@ Standing rule: never trade a P0 gate for a P1 feature, and never leave something
 ## 19. Writeup skeleton (covering email, ~500–700 words)
 
 1. **What I built** — two sentences and the live link. The point of view: a finite briefing that answers *what changed, so what, who can help*.
-2. **Three things to try on your phone** — a results card; a management-change card with its network path; the Promise Ledger on {hero company}; then "type any NSE ticker".
+2. **Three things to try on your phone** — a results card; a management-change card with its network path; the Promise Ledger on Kaynes; then "type any NSE ticker".
 3. **Key decisions and trade-offs** — rules-before-models filtering with a visible buried pile; bundling; computed numbers with validation; closed-book research with a citation verifier; deterministic, explainable network scoring; materialised views so the read path makes no model calls.
 4. **Architecture**
    - *Data pipelines:* sources, cadence, storage, entity resolution (how a name in a filing becomes a person in the network, with confidence).

@@ -50,6 +50,10 @@ phase is in `docs/PHASES.md`. Deadline: **15 Nov 2026**.
 - **Promise Ledger rework (2026-11-13)** — cc guidance resolved against company-reported cc growth,
   filing-checked capex/loan growth/credit cost/ROA/ROE, chains end to end, ledger counts, hosted
   extraction tier `EXTRACT` (eval in docs/evals.md). Scope status table: docs/STATUS.md.
+- **Ledgers (13 Nov):** KAYNES (hero) 8/8 calls, 5 resolved; CREDITACC 8/8, 3; INFY 4/8, 2; LT 5/8
+  (IR site), 1; PERSISTENT 7/8, 0; DEEPAKNTR 4/8, 0; HDFCBANK 4/8, 0 (banks don't guide).
+  IR fetch: `finn.sources.ir.IRFetcher` → `data/ir/<SYM>/` → `finn import-transcripts SYM`.
+  Refused hosts (never again): `data/cache/IR_REFUSED_*.json` (au.bank.in, infosys.com).
 - **Manual transcripts:** `data/manual/<SYM>/manifest.json` + PDFs → `finn import-transcripts SYM`
   → `finn research SYM --offline`. INFY's 4 PDFs (Q3 FY25–Q2 FY26) still needed from the owner.
 - **BLOCKERS (owner):** (1) `data/cache/SOURCE_REFUSED.json` — NSE 403'd the laptop on 13 Nov; no NSE

@@ -269,27 +269,31 @@
  },
  "research:CREDITACC": {
   "file": "research_CREDITACC.json",
-  "as_of": "2026-11-13T06:04:41.056585+00:00"
+  "as_of": "2026-11-13T06:31:04.443530+00:00"
  },
  "research:DEEPAKNTR": {
   "file": "research_DEEPAKNTR.json",
-  "as_of": "2026-11-13T06:04:43.961918+00:00"
+  "as_of": "2026-11-13T06:31:07.498797+00:00"
  },
  "research:HDFCBANK": {
   "file": "research_HDFCBANK.json",
-  "as_of": "2026-11-13T06:04:53.488386+00:00"
+  "as_of": "2026-11-13T06:31:08.002786+00:00"
  },
  "research:INFY": {
   "file": "research_INFY.json",
-  "as_of": "2026-11-13T06:04:42.851658+00:00"
+  "as_of": "2026-11-13T06:31:05.279565+00:00"
  },
  "research:KAYNES": {
   "file": "research_KAYNES.json",
-  "as_of": "2026-11-13T06:04:42.073693+00:00"
+  "as_of": "2026-11-13T06:31:03.305806+00:00"
+ },
+ "research:LT": {
+  "file": "research_LT.json",
+  "as_of": "2026-11-13T06:31:06.729521+00:00"
  },
  "research:PERSISTENT": {
   "file": "research_PERSISTENT.json",
-  "as_of": "2026-11-13T06:04:43.560751+00:00"
+  "as_of": "2026-11-13T06:31:06.028174+00:00"
  },
  "research:TRENT": {
   "file": "research_TRENT.json",
@@ -297,6 +301,6 @@
  },
  "research:index": {
   "file": "research_index.json",
-  "as_of": "2026-11-13T06:04:53.488386+00:00"
+  "as_of": "2026-11-13T06:31:08.002786+00:00"
  }
 }

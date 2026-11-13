@@ -282,8 +282,11 @@ def cmd_import_transcripts(args: argparse.Namespace) -> int:
     with db.connection() as conn:
         db.migrate(conn)
         for sym in [s.strip().upper() for s in args.symbols.split(",") if s.strip()]:
-            for line in import_manual(conn, sym, REPO_ROOT / "data" / "manual"):
-                print(f"  {sym:<12} {line}")
+            # data/ir: fetched by FINN from the company's IR site; data/manual: put there by the owner
+            for root in ("ir", "manual"):
+                if (REPO_ROOT / "data" / root / sym / "manifest.json").exists():
+                    for line in import_manual(conn, sym, REPO_ROOT / "data" / root):
+                        print(f"  {sym:<12} [{root}] {line}")
     return 0
 
 
@@ -317,7 +320,9 @@ def main(argv: list[str] | None = None) -> int:
     rs.add_argument("--no-llm", action="store_true", help="rules-only guidance extraction")
     rs.add_argument("--offline", action="store_true", help="never fetch: use cached documents only")
     rs.set_defaults(fn=cmd_research)
-    imp = sub.add_parser("import-transcripts", help="ingest PDFs from data/manual/<SYMBOL>/")
+    imp = sub.add_parser(
+        "import-transcripts", help="ingest transcripts from data/ir/<SYMBOL>/ and data/manual/<SYMBOL>/"
+    )
     imp.add_argument("symbols", help="comma-separated NSE symbols")
     imp.set_defaults(fn=cmd_import_transcripts)
     args = p.parse_args(argv)

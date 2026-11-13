@@ -1,0 +1,24 @@
+{
+ "symbol": "PERSISTENT",
+ "source": "company IR site",
+ "calls": [
+  {
+   "file": "q3-fy25.pdf",
+   "url": "https://www.persistent.com/wp-content/uploads/2025/01/Analyst-Call-Transcript-Q3-FY25.pdf",
+   "call_date": "2025-01-22",
+   "quarter": "Q3 FY25"
+  },
+  {
+   "file": "q2-fy26.pdf",
+   "url": "https://www.persistent.com/wp-content/uploads/2025/10/analyst-call-transcript-q2fy26.pdf",
+   "call_date": "2025-10-14",
+   "quarter": "Q2 FY26"
+  },
+  {
+   "file": "q1-fy26.pdf",
+   "url": "https://www.persistent.com/wp-content/uploads/2025/07/analyst-call-transcript-q1fy26.pdf",
+   "call_date": "2025-07-23",
+   "quarter": "Q1 FY26"
+  }
+ ]
+}

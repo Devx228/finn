@@ -1,6 +1,6 @@
 {
  "symbol": "CREDITACC",
- "source": "company IR site, manually downloaded",
+ "source": "company IR site",
  "calls": [
   {
    "file": "q3fy25.pdf",

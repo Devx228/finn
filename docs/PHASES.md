@@ -112,3 +112,11 @@ Live API `GET /api/research/<SYM>` ledger blocks after the manual import:
   ₹2,800–2,900 cr → ₹2,722 cr, FY26 growth ~50% → 33.2%; EBITDA margin delivered both years).
 - INFY: read 4 of 8 (infosys.com refused; awaiting owner's manual download) · resolved 2 delivered.
 Total resolved across the three: 10. Hero (INFY) gate ≥ 8: not met until its 4 older calls are in.
+
+### Phase 4 gate — met on the hero (2026-11-13, night)
+Hero KAYNES (owner decision): read 8 of 8 calls; **5 resolved, fully cited** — FY25 revenue growth
+">55%" → 50.8% missed; FY25 revenue ₹2,800–2,900 cr → ₹2,722 cr missed; FY25 EBITDA margin "15%
+plus" → 15.1% delivered; FY26 revenue growth "~50%" → 33.2% missed; FY26 EBITDA margin 15.6% →
+15.8% delivered. Each point: transcript quote with page and link (NSE or company IR site); actual
+computed from the XBRL results filing (linked). Ledger table for all companies in PROGRESS.md.
+Live run on the phone: not yet (job queue is next; NSE stopped).

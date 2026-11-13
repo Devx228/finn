@@ -1,0 +1,698 @@
+{
+ "name": "Larsen & Toubro Limited",
+ "as_of": "2026-11-13T12:01:07.331973+05:30",
+ "calls": [
+  {
+   "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q2FY27%20Earnings%20Call%20Transcript.pdf",
+   "label": "Q2 FY27 call",
+   "pages": 20,
+   "source": "company IR site",
+   "n_items": 2,
+   "filed_at": "2026-10-27T18:00:00+00:00"
+  },
+  {
+   "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q1%20FY27%20Earnings%20Call%20Transcript.pdf",
+   "label": "Q1 FY27 call",
+   "pages": 26,
+   "source": "company IR site",
+   "n_items": 1,
+   "filed_at": "2026-07-28T18:00:00+00:00"
+  },
+  {
+   "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+   "label": "Q4 FY26 call",
+   "pages": 28,
+   "source": "company IR site",
+   "n_items": 7,
+   "filed_at": "2026-05-07T18:00:00+00:00"
+  },
+  {
+   "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q2FY26%20Earnings%20Call%20Transcript%20.pdf",
+   "label": "Q2 FY26 call",
+   "pages": 25,
+   "source": "company IR site",
+   "n_items": 3,
+   "filed_at": "2025-10-29T18:00:00+00:00"
+  },
+  {
+   "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2025AnalysttransL&T%20Q4FY25%20Earnings%20Call%20Transcript.pdf",
+   "label": "Q4 FY25 call",
+   "pages": 28,
+   "source": "company IR site",
+   "n_items": 1,
+   "filed_at": "2025-05-08T18:00:00+00:00"
+  }
+ ],
+ "stats": [
+  {
+   "model": 0,
+   "rules": 2,
+   "dropped": 3,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 2,
+    "metric outside the tracked set": 1
+   },
+   "selected_chars": 2256
+  },
+  {
+   "model": 0,
+   "rules": 1,
+   "dropped": 1,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 1
+   },
+   "selected_chars": 3055
+  },
+  {
+   "model": 1,
+   "rules": 6,
+   "dropped": 3,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 3
+   },
+   "selected_chars": 5792
+  },
+  {
+   "model": 0,
+   "rules": 3,
+   "dropped": 1,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 1
+   },
+   "selected_chars": 4378
+  },
+  {
+   "model": 0,
+   "rules": 1,
+   "dropped": 3,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 3
+   },
+   "selected_chars": 4110
+  }
+ ],
+ "format": "indas",
+ "ledger": {
+  "open": 1,
+  "missed": 1,
+  "resolved": 1,
+  "delivered": 0,
+  "calls_read": 5,
+  "calls_listed": 8,
+  "unverifiable": 5
+ },
+ "symbol": "LT",
+ "network": [
+  {
+   "id": 58,
+   "why": "worked at peer ACC as Chief Technology Officer (2020–now); met-as-management, last spoke Jun 2026, 5 interactions in 24 months",
+   "name": "Ananya Mistry",
+   "rank": 0.737,
+   "warmth": 0.69,
+   "headline": "Chief Technology Officer, ACC",
+   "how_known": "met-as-management",
+   "relevance": 0.77,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "met-as-management, last spoke Jun 2026, 5 interactions in 24 months",
+   "last_contact": "2026-06-13",
+   "warmth_label": "strong",
+   "what_theyd_know": "How ACC runs R&D-technical today"
+  },
+  {
+   "id": 69,
+   "why": "worked at peer UltraTech Cement Limited as VP Sales (2010–now); industry-friend, last spoke Sep 2026, 1 interactions in 24 months",
+   "name": "Imran Saxena",
+   "rank": 0.686,
+   "warmth": 0.78,
+   "headline": "VP Sales, UltraTech Cement Limited",
+   "how_known": "industry-friend",
+   "relevance": 0.63,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "industry-friend, last spoke Sep 2026, 1 interactions in 24 months",
+   "last_contact": "2026-09-04",
+   "warmth_label": "strong",
+   "what_theyd_know": "How UltraTech Cement Limited runs sales today"
+  },
+  {
+   "id": 25,
+   "why": "worked at peer Ambuja Cements as Head of Credit Risk (2012–now); classmate, last spoke Jun 2026, 10 interactions in 24 months",
+   "name": "Suresh Nair",
+   "rank": 0.653,
+   "warmth": 0.69,
+   "headline": "Head of Credit Risk, Ambuja Cements",
+   "how_known": "classmate",
+   "relevance": 0.63,
+   "synthetic": true,
+   "compliance": null,
+   "warmth_why": "classmate, last spoke Jun 2026, 10 interactions in 24 months",
+   "last_contact": "2026-06-26",
+   "warmth_label": "strong",
+   "what_theyd_know": "How Ambuja Cements runs treasury-credit today"
+  }
+ ],
+ "signals": {
+  "bear": [
+   "EBITDA margin 8.7% in Q2 FY27, down 130 bps YoY",
+   "FY26 revenue growth missed: 11.8% vs 15%",
+   "FY26 ebitda margin guidance cut 1× (8.5% → 8.5% → 7.8%)"
+  ],
+  "bull": [
+   "Revenue +15.8% YoY in Q2 FY27",
+   "PAT +27.2% YoY in Q2 FY27"
+  ]
+ },
+ "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
+ "guidance": [
+  {
+   "label": "Revenue growth",
+   "story": "FY27 revenue growth: 10–12% → 10–12% → 10–12% (held) → filings show 11.4% (2Q YTD) → on track.",
+   "actual": {
+    "span": "2Q YTD",
+    "unit": "%",
+    "basis": "reported ₹ growth, consolidated",
+    "value": 11.4,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1747229_27102026081332_WEB.xml"
+    },
+    "quarters": 2
+   },
+   "metric": "revenue_growth",
+   "period": "FY27",
+   "points": [
+    {
+     "by": "rules",
+     "low": 10.0,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "high": 12.0,
+     "page": 13,
+     "unit": "%",
+     "label": "revenue growth",
+     "quote": "On Revenue, we expect growth to be in the range of 10% to 12% for FY27.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "revenue_growth",
+     "period": "FY27",
+     "source": "company IR site",
+     "call_date": "2026-05-07",
+     "direction": "unclear"
+    },
+    {
+     "by": "rules",
+     "low": 10.0,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q1%20FY27%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q1 FY27 call",
+     "high": 12.0,
+     "page": 11,
+     "unit": "%",
+     "label": "revenue growth",
+     "quote": "For now, we remain committed to our FY '27 growth guidance of 10% to 12% revenue growth guidance.",
+     "scope": "company",
+     "change": "held",
+     "metric": "revenue_growth",
+     "period": "FY27",
+     "source": "company IR site",
+     "call_date": "2026-07-28",
+     "direction": "maintained"
+    },
+    {
+     "by": "rules",
+     "low": 10.0,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q2FY27%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q2 FY27 call",
+     "high": 12.0,
+     "page": 9,
+     "unit": "%",
+     "label": "revenue growth",
+     "quote": "Considering the overall operating environment, we are confident of achieving our FY27 revenue growth guidance of the 10% to 12% band.",
+     "scope": "company",
+     "change": "held",
+     "metric": "revenue_growth",
+     "period": "FY27",
+     "source": "company IR site",
+     "call_date": "2026-10-27",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "on track",
+   "resolved": false,
+   "verdict_why": "11.4% within 10–12%",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "AUM / loan growth",
+   "story": "FY27 aum / loan growth: 20% → unverifiable.",
+   "actual": null,
+   "metric": "aum_growth",
+   "period": "FY27",
+   "points": [
+    {
+     "by": "model",
+     "low": 20.0,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "high": 20.0,
+     "page": 12,
+     "unit": "%",
+     "label": "loan book growth",
+     "quote": "The strategy emphasizes disciplined portfolio expansion and strong risk management with targets of 20% plus loan book growth, while maintaining credit costs below 2%.",
+     "scope": "segment",
+     "change": "first given",
+     "future": true,
+     "metric": "aum_growth",
+     "period": "FY27",
+     "source": "company IR site",
+     "call_date": "2026-05-07",
+     "direction": "new",
+     "confidence": "high",
+     "by_management": true
+    }
+   ],
+   "context": null,
+   "verdict": "unverifiable",
+   "resolved": false,
+   "verdict_why": "A target for one business; the filings report the company as a whole",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Credit cost",
+   "story": "FY27 credit cost: 2% → unverifiable.",
+   "actual": null,
+   "metric": "credit_cost",
+   "period": "FY27",
+   "points": [
+    {
+     "by": "rules",
+     "low": 2.0,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "high": 2.0,
+     "page": 12,
+     "unit": "%",
+     "label": "credit cost",
+     "quote": "The strategy emphasizes disciplined portfolio expansion and strong risk management with targets of 20% plus loan book growth, while maintaining credit costs below 2%.",
+     "scope": "segment",
+     "change": "first given",
+     "metric": "credit_cost",
+     "period": "FY27",
+     "source": "company IR site",
+     "call_date": "2026-05-07",
+     "direction": "maintained"
+    }
+   ],
+   "context": null,
+   "verdict": "unverifiable",
+   "resolved": false,
+   "verdict_why": "A target for one business; the filings report the company as a whole",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Revenue growth",
+   "story": "FY26 revenue growth: 15% → filings show 11.8% (FY) → missed.",
+   "actual": {
+    "span": "FY",
+    "unit": "%",
+    "basis": "reported ₹ growth, consolidated",
+    "value": 11.8,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1663820_05052026073236_WEB.xml"
+    },
+    "quarters": 4
+   },
+   "metric": "revenue_growth",
+   "period": "FY26",
+   "points": [
+    {
+     "by": "rules",
+     "low": 15.0,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q2FY26%20Earnings%20Call%20Transcript%20.pdf",
+     "call": "Q2 FY26 call",
+     "high": 15.0,
+     "page": 10,
+     "unit": "%",
+     "label": "revenue growth",
+     "quote": "Accordingly, we maintain our full year revenue growth guidance at 15%.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "revenue_growth",
+     "period": "FY26",
+     "source": "company IR site",
+     "call_date": "2025-10-29",
+     "direction": "maintained"
+    }
+   ],
+   "context": null,
+   "verdict": "missed",
+   "resolved": true,
+   "verdict_why": "11.8% vs 15%",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "EBITDA margin",
+   "story": "FY26 ebitda margin: 8.5% → 8.5% → 7.8% (cut once) → unverifiable.",
+   "actual": null,
+   "metric": "ebitda_margin",
+   "period": "FY26",
+   "points": [
+    {
+     "by": "rules",
+     "low": 8.5,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2025AnalysttransL&T%20Q4FY25%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q4 FY25 call",
+     "high": 8.5,
+     "page": 23,
+     "unit": "%",
+     "label": "operating margin",
+     "quote": "At this juncture, what we have given as a target guidance for P&M portfolio margin for FY '26 at 8.5%.",
+     "scope": "segment",
+     "change": "first given",
+     "metric": "ebitda_margin",
+     "period": "FY26",
+     "source": "company IR site",
+     "call_date": "2025-05-08",
+     "direction": "unclear"
+    },
+    {
+     "by": "rules",
+     "low": 8.5,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q2FY26%20Earnings%20Call%20Transcript%20.pdf",
+     "call": "Q2 FY26 call",
+     "high": 8.5,
+     "page": 10,
+     "unit": "%",
+     "label": "ebitda margin",
+     "quote": "With the execution momentum expected to pick up in H2, we are reasonably confident to achieve our full year EBITDA margin target of 8.5%.",
+     "scope": "company",
+     "change": "held",
+     "metric": "ebitda_margin",
+     "period": "FY26",
+     "source": "company IR site",
+     "call_date": "2025-10-29",
+     "direction": "unclear"
+    },
+    {
+     "by": "rules",
+     "low": 7.8,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "high": 7.8,
+     "page": 13,
+     "unit": "%",
+     "label": "operating margin",
+     "quote": "On this reclassified basis, the FY26 margins for Projects, Products and Manufacturing was 7.8%, and we expect the same to be stable as well in FY27 as well.",
+     "scope": "company",
+     "change": "cut",
+     "metric": "ebitda_margin",
+     "period": "FY26",
+     "source": "company IR site",
+     "call_date": "2026-05-07",
+     "direction": "maintained"
+    }
+   ],
+   "context": null,
+   "verdict": "unverifiable",
+   "resolved": false,
+   "verdict_why": "A target for one business; the filings report the company as a whole",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Revenue growth",
+   "story": "medium term revenue growth: 13–15% → open-ended.",
+   "actual": null,
+   "metric": "revenue_growth",
+   "period": "medium term",
+   "points": [
+    {
+     "by": "rules",
+     "low": 13.0,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "high": 15.0,
+     "page": 12,
+     "unit": "%",
+     "label": "revenue growth",
+     "quote": "The Lakshya L31 targets 13% to 15% revenue CAGR growth for over five years with EBIT margins of 16% to 17%, reflecting a structurally stronger and higher-quality growth profile.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "revenue_growth",
+     "period": "medium term",
+     "source": "company IR site",
+     "call_date": "2026-05-07",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "open-ended",
+   "resolved": false,
+   "verdict_why": "No year attached, so it never falls due; listed, not scored",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Operating margin",
+   "story": "medium term operating margin: 16–17% → open-ended.",
+   "actual": null,
+   "metric": "operating_margin",
+   "period": "medium term",
+   "points": [
+    {
+     "by": "rules",
+     "low": 16.0,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "high": 17.0,
+     "page": 12,
+     "unit": "%",
+     "label": "operating margin",
+     "quote": "The Lakshya L31 targets 13% to 15% revenue CAGR growth for over five years with EBIT margins of 16% to 17%, reflecting a structurally stronger and higher-quality growth profile.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "operating_margin",
+     "period": "medium term",
+     "source": "company IR site",
+     "call_date": "2026-05-07",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "open-ended",
+   "resolved": false,
+   "verdict_why": "No year attached, so it never falls due; listed, not scored",
+   "as_of_quarter": "2026-09-30"
+  }
+ ],
+ "industry": "Engineering",
+ "quarters": [
+  {
+   "fy": 2024,
+   "end": "2023-12-31",
+   "nii": null,
+   "pat": 3592.8,
+   "ebit": 4838.2,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_101842_1040026_31012024025506.xml",
+   "basis": "consolidated",
+   "label": "Q3 FY24",
+   "ebitda": 5759.0,
+   "pat_yoy": null,
+   "revenue": 55127.8,
+   "pat_margin": 6.5,
+   "ebit_margin": 8.8,
+   "revenue_yoy": null,
+   "ebitda_margin": 10.4
+  },
+  {
+   "fy": 2024,
+   "end": "2024-03-31",
+   "nii": null,
+   "pat": 5013.2,
+   "ebit": 6212.8,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_105517_1118914_09052024035346.xml",
+   "basis": "consolidated",
+   "label": "Q4 FY24",
+   "ebitda": 7234.0,
+   "pat_yoy": 12.4,
+   "revenue": 67078.7,
+   "pat_margin": 7.5,
+   "ebit_margin": 9.3,
+   "revenue_yoy": 15.0,
+   "ebitda_margin": 10.8
+  },
+  {
+   "fy": 2025,
+   "end": "2024-06-30",
+   "nii": null,
+   "pat": 3444.7,
+   "ebit": 4617.4,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_109440_1202069_25072024014459.xml",
+   "basis": "consolidated",
+   "label": "Q1 FY25",
+   "ebitda": 5615.3,
+   "pat_yoy": 11.3,
+   "revenue": 55119.8,
+   "pat_margin": 6.2,
+   "ebit_margin": 8.4,
+   "revenue_yoy": 15.1,
+   "ebitda_margin": 10.2
+  },
+  {
+   "fy": 2025,
+   "end": "2024-09-30",
+   "nii": null,
+   "pat": 4098.8,
+   "ebit": 5338.2,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_114071_1295139_31102024022725.xml",
+   "basis": "consolidated",
+   "label": "Q2 FY25",
+   "ebitda": 6362.0,
+   "pat_yoy": 6.6,
+   "revenue": 61554.6,
+   "pat_margin": 6.7,
+   "ebit_margin": 8.7,
+   "revenue_yoy": 20.6,
+   "ebitda_margin": 10.3
+  },
+  {
+   "fy": 2025,
+   "end": "2024-12-31",
+   "nii": null,
+   "pat": 3974.0,
+   "ebit": 5207.9,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_118260_1367030_31012025015554.xml",
+   "basis": "consolidated",
+   "label": "Q3 FY25",
+   "ebitda": 6254.9,
+   "pat_yoy": 10.6,
+   "revenue": 64667.8,
+   "pat_margin": 6.1,
+   "ebit_margin": 8.1,
+   "revenue_yoy": 17.3,
+   "ebitda_margin": 9.7
+  },
+  {
+   "fy": 2025,
+   "end": "2025-03-31",
+   "nii": null,
+   "pat": 5497.3,
+   "ebit": null,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1434675_09052025014028_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q4 FY25",
+   "ebitda": null,
+   "pat_yoy": 9.7,
+   "revenue": 74392.3,
+   "pat_margin": 7.4,
+   "ebit_margin": null,
+   "revenue_yoy": 10.9,
+   "ebitda_margin": null
+  },
+  {
+   "fy": 2026,
+   "end": "2025-06-30",
+   "nii": null,
+   "pat": 4318.2,
+   "ebit": 5284.4,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1497092_29072025074331_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q1 FY26",
+   "ebitda": 6317.7,
+   "pat_yoy": 25.4,
+   "revenue": 63678.9,
+   "pat_margin": 6.8,
+   "ebit_margin": 8.3,
+   "revenue_yoy": 15.5,
+   "ebitda_margin": 9.9
+  },
+  {
+   "fy": 2026,
+   "end": "2025-09-30",
+   "nii": null,
+   "pat": 4678.0,
+   "ebit": 5714.6,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1560629_29102025075509_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q2 FY26",
+   "ebitda": 6806.4,
+   "pat_yoy": 14.1,
+   "revenue": 67983.5,
+   "pat_margin": 6.9,
+   "ebit_margin": 8.4,
+   "revenue_yoy": 10.4,
+   "ebitda_margin": 10.0
+  },
+  {
+   "fy": 2026,
+   "end": "2025-12-31",
+   "nii": null,
+   "pat": 3824.7,
+   "ebit": 6345.1,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1612263_28012026075512_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q3 FY26",
+   "ebitda": 7416.8,
+   "pat_yoy": -3.8,
+   "revenue": 71449.7,
+   "pat_margin": 5.4,
+   "ebit_margin": 8.9,
+   "revenue_yoy": 10.5,
+   "ebitda_margin": 10.4
+  },
+  {
+   "fy": 2026,
+   "end": "2026-03-31",
+   "nii": null,
+   "pat": 6133.1,
+   "ebit": 7442.3,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1663820_05052026073236_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q4 FY26",
+   "ebitda": 8610.3,
+   "pat_yoy": 11.6,
+   "revenue": 82762.2,
+   "pat_margin": 7.4,
+   "ebit_margin": 9.0,
+   "revenue_yoy": 11.3,
+   "ebitda_margin": 10.4
+  },
+  {
+   "fy": 2027,
+   "end": "2026-06-30",
+   "nii": null,
+   "pat": 4988.0,
+   "ebit": 5084.2,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1703294_28072026061959_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q1 FY27",
+   "ebitda": 6116.5,
+   "pat_yoy": 15.5,
+   "revenue": 67941.7,
+   "pat_margin": 7.3,
+   "ebit_margin": 7.5,
+   "revenue_yoy": 6.7,
+   "ebitda_margin": 9.0
+  },
+  {
+   "fy": 2027,
+   "end": "2026-09-30",
+   "nii": null,
+   "pat": 5949.1,
+   "ebit": 5807.7,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1747229_27102026081332_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q2 FY27",
+   "ebitda": 6844.6,
+   "pat_yoy": 27.2,
+   "revenue": 78749.9,
+   "pat_margin": 7.6,
+   "ebit_margin": 7.4,
+   "revenue_yoy": 15.8,
+   "ebitda_margin": 8.7
+  }
+ ]
+}

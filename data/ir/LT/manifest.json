@@ -1,0 +1,36 @@
+{
+ "symbol": "LT",
+ "source": "company IR site",
+ "calls": [
+  {
+   "file": "q4fy25.pdf",
+   "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2025AnalysttransL&T%20Q4FY25%20Earnings%20Call%20Transcript.pdf",
+   "call_date": "2025-05-08",
+   "quarter": "Q4 FY25"
+  },
+  {
+   "file": "q2fy26.pdf",
+   "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q2FY26%20Earnings%20Call%20Transcript%20.pdf",
+   "call_date": "2025-10-29",
+   "quarter": "Q2 FY26"
+  },
+  {
+   "file": "q4fy26.pdf",
+   "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+   "call_date": "2026-05-07",
+   "quarter": "Q4 FY26"
+  },
+  {
+   "file": "q1fy27.pdf",
+   "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q1%20FY27%20Earnings%20Call%20Transcript.pdf",
+   "call_date": "2026-07-28",
+   "quarter": "Q1 FY27"
+  },
+  {
+   "file": "q2fy27.pdf",
+   "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q2FY27%20Earnings%20Call%20Transcript.pdf",
+   "call_date": "2026-10-27",
+   "quarter": "Q2 FY27"
+  }
+ ]
+}

@@ -1,6 +1,6 @@
 {
  "symbol": "INFY",
- "source": "company IR site, manually downloaded",
+ "source": "company IR site, downloaded by hand",
  "calls": [
   {
    "file": "q3fy25.pdf",

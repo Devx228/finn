@@ -78,9 +78,7 @@ def main() -> int:
                     "filings_120d": len(anns),
                     "results_30d": any(tag(a) == "results" for a in recent30),
                     "kmp_changes_90d": [f"{a.ts:%d %b}: {(a.subject or '')[:110]}" for a in kmp],
-                    "material_90d": [
-                        f"{a.ts:%d %b} [{tag(a)}]: {(a.subject or '')[:110]}" for a in material
-                    ],
+                    "material_90d": [f"{a.ts:%d %b} [{tag(a)}]: {(a.subject or '')[:110]}" for a in material],
                     "transcripts_120d": sum(is_transcript(a) for a in anns),
                 }
             )
@@ -91,9 +89,7 @@ def main() -> int:
     for r in rows:
         r["mcap_cr"] = mcap_crore(r["symbol"])
         m = r["mcap_cr"]
-        r["size"] = (
-            None if m is None else ("large" if m >= LARGE_CR else "mid" if m >= MID_CR else "small")
-        )
+        r["size"] = None if m is None else ("large" if m >= LARGE_CR else "mid" if m >= MID_CR else "small")
 
     def richness(r):
         return 3 * bool(r["kmp_changes_90d"]) + 2 * bool(r["material_90d"]) + r["results_30d"]
@@ -167,9 +163,7 @@ def main() -> int:
     research = [
         {"symbol": "INFY", "role": "hero: publishes revenue-growth and margin guidance bands"},
     ]
-    capex = [
-        r for r in ranked if r["size"] == "mid" and any("[capex]" in m for m in r["material_90d"])
-    ]
+    capex = [r for r in ranked if r["size"] == "mid" and any("[capex]" in m for m in r["material_90d"])]
     research.append(
         {
             "symbol": (capex[0] if capex else by["KAYNES"])["symbol"],

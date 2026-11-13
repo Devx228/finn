@@ -409,6 +409,8 @@ def tracks(
         for it in c["items"]:
             if it.get("unit") == "bps" or it.get("low") is None:
                 continue  # bps are changes, not levels; a chain never mixes units
+            if not lender and it["metric"] in ("aum_growth", "credit_cost", "nim"):
+                it = {**it, "scope": "segment"}  # a non-lender's loan book is a subsidiary's
             if lender and it["metric"] == "revenue_growth":
                 it = {**it, "metric": "aum_growth"}  # a lender's "growth" is loan-book growth
             if (
@@ -459,7 +461,7 @@ def tracks(
         cc_guided = cc_company
         segment = (
             metric == "segment_revenue"
-            or last.get("scope") == "segment"
+            or any(p.get("scope") == "segment" for p in pts)
             or (metric == "revenue" and last_fy_rev and last["high"] < 0.5 * last_fy_rev)
         )
         act = None

@@ -25,7 +25,7 @@ export function ResearchView() {
   const params = useSearchParams();
   const router = useRouter();
   const [index, setIndex] = useState<ResearchIndex | null>(null);
-  const sym = (params.get("s") ?? "INFY").toUpperCase();
+  const sym = (params.get("s") ?? "KAYNES").toUpperCase(); // the Promise Ledger hero
   const [res, setRes] = useState<{ sym: string; r: Loaded<Research> | null } | null>(null);
   const [q, setQ] = useState("");
 
@@ -168,7 +168,7 @@ function Body({ r }: { r: Research }) {
               <a href={c.url} target="_blank" rel="noreferrer" className="underline">
                 {c.label} transcript
               </a>
-              {c.source && c.source !== "NSE" ? " (company IR site)" : ""}{" "}
+              {c.source && c.source !== "NSE" ? ` (${c.source})` : ""}{" "}
               · {c.pages} pages · {c.n_items} guidance items
             </li>
           ))}
@@ -278,7 +278,11 @@ function TrackCard({ t }: { t: GuidanceTrack }) {
 }
 
 const srcLabel = (s?: string) =>
-  !s || s === "NSE" ? "transcript on NSE" : "transcript on the company's IR site (downloaded by hand)";
+  !s || s === "NSE"
+    ? "transcript on NSE"
+    : s.includes("by hand")
+      ? "transcript on the company's IR site (downloaded by hand)"
+      : "transcript on the company's IR site";
 
 /** The end of the chain: what was actually reported, and where it is written down. */
 function Outcome({ t, marker }: { t: GuidanceTrack; marker: boolean }) {

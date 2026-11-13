@@ -1,6 +1,6 @@
 {
  "name": "Persistent Systems Limited",
- "as_of": "2026-11-13T11:34:43.820260+05:30",
+ "as_of": "2026-11-13T12:01:06.575616+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_23102026204328_PSLTranscriptSubmissionOctober2026Sd.pdf",
@@ -33,6 +33,30 @@
    "source": "NSE",
    "n_items": 0,
    "filed_at": "2026-01-27T16:08:34+00:00"
+  },
+  {
+   "url": "https://www.persistent.com/wp-content/uploads/2025/10/analyst-call-transcript-q2fy26.pdf",
+   "label": "Q2 FY26 call",
+   "pages": 21,
+   "source": "company IR site",
+   "n_items": 0,
+   "filed_at": "2025-10-14T18:00:00+00:00"
+  },
+  {
+   "url": "https://www.persistent.com/wp-content/uploads/2025/07/analyst-call-transcript-q1fy26.pdf",
+   "label": "Q1 FY26 call",
+   "pages": 31,
+   "source": "company IR site",
+   "n_items": 1,
+   "filed_at": "2025-07-23T18:00:00+00:00"
+  },
+  {
+   "url": "https://www.persistent.com/wp-content/uploads/2025/01/Analyst-Call-Transcript-Q3-FY25.pdf",
+   "label": "Q3 FY25 call",
+   "pages": 31,
+   "source": "company IR site",
+   "n_items": 1,
+   "filed_at": "2025-01-22T18:00:00+00:00"
   }
  ],
  "stats": [
@@ -65,6 +89,34 @@
    "model_name": "gemini-3.5-flash-lite",
    "drop_reasons": {},
    "selected_chars": 1211
+  },
+  {
+   "model": 0,
+   "rules": 0,
+   "dropped": 1,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "metric not named in the quote": 1
+   },
+   "selected_chars": 1615
+  },
+  {
+   "model": 0,
+   "rules": 1,
+   "dropped": 0,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {},
+   "selected_chars": 727
+  },
+  {
+   "model": 1,
+   "rules": 0,
+   "dropped": 1,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "2000 not in the quote": 1
+   },
+   "selected_chars": 3372
   }
  ],
  "format": "indas",
@@ -73,9 +125,9 @@
   "missed": 0,
   "resolved": 0,
   "delivered": 0,
-  "calls_read": 4,
+  "calls_read": 7,
   "calls_listed": 8,
-  "unverifiable": 1
+  "unverifiable": 3
  },
  "symbol": "PERSISTENT",
  "network": [
@@ -139,6 +191,73 @@
  },
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
  "guidance": [
+  {
+   "label": "Revenue",
+   "story": "FY31 revenue: 5 $ billion → unverifiable.",
+   "actual": null,
+   "metric": "revenue",
+   "period": "FY31",
+   "points": [
+    {
+     "by": "model",
+     "low": 5.0,
+     "url": "https://www.persistent.com/wp-content/uploads/2025/01/Analyst-Call-Transcript-Q3-FY25.pdf",
+     "call": "Q3 FY25 call",
+     "high": 5.0,
+     "page": 20,
+     "unit": "$ billion",
+     "label": "revenue",
+     "quote": "We remain confident in our trajectory towards this near-term aspiration and as a team have set our sights on our next aspiration, achieving $5 billion in revenue by FY31.",
+     "scope": "company",
+     "change": "first given",
+     "future": true,
+     "metric": "revenue",
+     "period": "FY31",
+     "source": "company IR site",
+     "call_date": "2025-01-22",
+     "direction": "new",
+     "confidence": "high",
+     "by_management": true
+    }
+   ],
+   "context": null,
+   "verdict": "unverifiable",
+   "resolved": false,
+   "verdict_why": "A target for one business; the filings report the company as a whole",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Revenue growth",
+   "story": "medium term revenue growth: 19–20% → open-ended.",
+   "actual": null,
+   "metric": "revenue_growth",
+   "period": "medium term",
+   "points": [
+    {
+     "by": "rules",
+     "low": 19.0,
+     "url": "https://www.persistent.com/wp-content/uploads/2025/07/analyst-call-transcript-q1fy26.pdf",
+     "call": "Q1 FY26 call",
+     "high": 20.0,
+     "page": 30,
+     "unit": "%",
+     "label": "revenue growth",
+     "quote": "We need a compounded annual growth rate in the range of 19%-20%.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "revenue_growth",
+     "period": "medium term",
+     "source": "company IR site",
+     "call_date": "2025-07-23",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "open-ended",
+   "resolved": false,
+   "verdict_why": "No year attached, so it never falls due; listed, not scored",
+   "as_of_quarter": "2026-09-30"
+  },
   {
    "label": "Operating margin",
    "story": "medium term operating margin: 16–17% → open-ended.",

@@ -1,6 +1,6 @@
 {
  "name": "CREDITACCESS GRAMEEN LIMITED",
- "as_of": "2026-11-13T11:34:41.806383+05:30",
+ "as_of": "2026-11-13T12:01:05.147857+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
@@ -38,7 +38,7 @@
    "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/11/CreditAccess-Grameen_Earnings-Call-Transcript_Q2_FY-2025-26.pdf",
    "label": "Q2 FY26 call",
    "pages": 16,
-   "source": "company IR site, manually downloaded",
+   "source": "company IR site",
    "n_items": 1,
    "filed_at": "2025-10-28T18:00:00+00:00"
   },
@@ -46,7 +46,7 @@
    "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/07/CreditAccess-Grameen_Earnings-Call-Transcript_Q1_FY-2025-26.pdf",
    "label": "Q1 FY26 call",
    "pages": 17,
-   "source": "company IR site, manually downloaded",
+   "source": "company IR site",
    "n_items": 0,
    "filed_at": "2025-07-22T18:00:00+00:00"
   },
@@ -54,7 +54,7 @@
    "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/05/CreditAccess-Grameen_Earnings-Call-Transcript_Q4_FY-2024-25.pdf",
    "label": "Q4 FY25 call",
    "pages": 20,
-   "source": "company IR site, manually downloaded",
+   "source": "company IR site",
    "n_items": 0,
    "filed_at": "2025-05-16T18:00:00+00:00"
   },
@@ -62,7 +62,7 @@
    "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/01/CreditAccess-Grameen_Earnings-Call-Transcript_Q3_FY-2024-25.pdf",
    "label": "Q3 FY25 call",
    "pages": 20,
-   "source": "company IR site, manually downloaded",
+   "source": "company IR site",
    "n_items": 5,
    "filed_at": "2025-01-24T18:00:00+00:00"
   }
@@ -315,7 +315,7 @@
      "change": "first given",
      "metric": "credit_cost",
      "period": "FY27",
-     "source": "company IR site, manually downloaded",
+     "source": "company IR site",
      "call_date": "2025-10-28",
      "direction": "unclear"
     },
@@ -574,7 +574,7 @@
      "change": "first given",
      "metric": "aum_growth",
      "period": "FY26",
-     "source": "company IR site, manually downloaded",
+     "source": "company IR site",
      "call_date": "2025-01-24",
      "direction": "unclear"
     }
@@ -615,7 +615,7 @@
      "change": "first given",
      "metric": "roa",
      "period": "FY26",
-     "source": "company IR site, manually downloaded",
+     "source": "company IR site",
      "call_date": "2025-01-24",
      "direction": "unclear"
     }
@@ -656,7 +656,7 @@
      "change": "first given",
      "metric": "roe",
      "period": "FY26",
-     "source": "company IR site, manually downloaded",
+     "source": "company IR site",
      "call_date": "2025-01-24",
      "direction": "unclear"
     }

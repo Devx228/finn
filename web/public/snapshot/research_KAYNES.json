@@ -1,6 +1,6 @@
 {
  "name": "Kaynes Technology India Limited",
- "as_of": "2026-11-13T11:34:42.724590+05:30",
+ "as_of": "2026-11-13T12:01:04.125362+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12082026164943_TranscriptoftheEarningAnnouncement.pdf",
@@ -14,7 +14,7 @@
    "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/IntimationEarningsCallTranscriptQ4_2026.pdf",
    "label": "Q4 FY26 call",
    "pages": 20,
-   "source": "company IR site, manually downloaded",
+   "source": "company IR site",
    "n_items": 1,
    "filed_at": "2026-05-14T18:00:00+00:00"
   },
@@ -46,7 +46,7 @@
    "url": "https://www.kaynestechnology.co.in/doc/Regulation-46-of-sebi-lodr-regulation/Earnings%20Call%20Transcript%2016.05.2025.pdf",
    "label": "Q4 FY25 call",
    "pages": 18,
-   "source": "company IR site, manually downloaded",
+   "source": "company IR site",
    "n_items": 1,
    "filed_at": "2025-05-16T18:00:00+00:00"
   },
@@ -54,7 +54,7 @@
    "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
    "label": "Q3 FY25 call",
    "pages": 19,
-   "source": "company IR site, manually downloaded",
+   "source": "company IR site",
    "n_items": 4,
    "filed_at": "2025-02-01T18:00:00+00:00"
   },
@@ -62,7 +62,7 @@
    "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%205.11.2024.pdf",
    "label": "Q2 FY25 call",
    "pages": 22,
-   "source": "company IR site, manually downloaded",
+   "source": "company IR site",
    "n_items": 0,
    "filed_at": "2024-11-05T18:00:00+00:00"
   }
@@ -398,7 +398,7 @@
      "change": "first given",
      "metric": "revenue_growth",
      "period": "FY25",
-     "source": "company IR site, manually downloaded",
+     "source": "company IR site",
      "call_date": "2025-02-01",
      "direction": "unclear"
     }
@@ -440,7 +440,7 @@
      "future": true,
      "metric": "ebitda_margin",
      "period": "FY25",
-     "source": "company IR site, manually downloaded",
+     "source": "company IR site",
      "call_date": "2025-02-01",
      "direction": "new",
      "confidence": "high",
@@ -483,7 +483,7 @@
      "change": "first given",
      "metric": "revenue",
      "period": "FY25",
-     "source": "company IR site, manually downloaded",
+     "source": "company IR site",
      "call_date": "2025-02-01",
      "direction": "unclear"
     }
@@ -516,7 +516,7 @@
      "future": true,
      "metric": "capex",
      "period": "medium term",
-     "source": "company IR site, manually downloaded",
+     "source": "company IR site",
      "call_date": "2025-05-16",
      "direction": "new",
      "confidence": "high",
@@ -614,7 +614,7 @@
      "future": true,
      "metric": "segment_revenue",
      "period": "medium term",
-     "source": "company IR site, manually downloaded",
+     "source": "company IR site",
      "call_date": "2026-05-14",
      "direction": "new",
      "confidence": "high",
