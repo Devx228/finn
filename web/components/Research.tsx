@@ -1,7 +1,8 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { ResearchJobPanel } from "./ResearchJob";
+import { useCallback, useEffect, useState } from "react";
 import { CandidateRow } from "@/components/Network";
 import { type Loaded, loadWithFallback } from "@/lib/api";
 import { formatCr } from "@/lib/format";
@@ -38,12 +39,14 @@ export function ResearchView() {
   const sym = (params.get("s") ?? hero ?? "").toUpperCase();
   const [res, setRes] = useState<{ sym: string; r: Loaded<Research> | null } | null>(null);
   const [q, setQ] = useState("");
+  const [reload, setReload] = useState(0);
+  const bump = useCallback(() => setReload((n) => n + 1), []);
 
   useEffect(() => {
     loadWithFallback<ResearchIndex>("/api/research", "research_index.json")
       .then((d) => setIndex(d.data))
       .catch(() => setIndex({ companies: [] }));
-  }, []);
+  }, [reload]);
 
   useEffect(() => {
     if (!sym) return;
@@ -54,7 +57,7 @@ export function ResearchView() {
     return () => {
       live = false;
     };
-  }, [sym]);
+  }, [sym, reload]);
 
   const go = (s: string) => router.replace(`/research?s=${encodeURIComponent(s.trim().toUpperCase())}`);
   const cur = res?.sym === sym ? res.r : undefined;
@@ -99,17 +102,7 @@ export function ResearchView() {
         ))}
       </div>
       {cur === undefined && <p className="text-[14px] text-ink-3">Loading {sym}…</p>}
-      {cur === null && (
-        <div className="rounded-lg border border-line bg-surface px-3 py-3 text-[14px] text-ink-2">
-          <p className="font-medium text-ink">No research view for {sym} yet.</p>
-          <p className="mt-1 text-[13px]">
-            The engine works on any NSE ticker with XBRL results and call transcripts: the worker runs{" "}
-            <code className="rounded bg-bg px-1">finn research {sym}</code>, which fetches the last eight
-            transcripts once (politely, cached) and builds this page. The hosted API can&apos;t reach NSE, so
-            that step runs on the worker, not on demand from your phone.
-          </p>
-        </div>
-      )}
+      {cur === null && <ResearchJobPanel key={sym} sym={sym} onReady={bump} />}
       {cur && <Body r={cur.data} />}
     </div>
   );

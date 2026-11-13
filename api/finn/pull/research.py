@@ -694,6 +694,12 @@ def materialise(conn: Connection, symbol: str, router: Router | None, nse: NSE |
         "SET body = EXCLUDED.body, as_of = EXCLUDED.as_of, updated_at = now()",
         (f"research:{symbol}", Jsonb(body)),
     )
+    refresh_index(conn)
+    return {"quarters": len(body["quarters"]), "guidance": len(body["guidance"]), "calls": len(body["calls"])}
+
+
+def refresh_index(conn: Connection) -> None:
+    """Rebuild `research:index` from the research views that exist."""
     roles: dict[str, str] = dict(
         conn.execute(
             "SELECT c.nse_symbol, r.role FROM research_set r JOIN companies c ON c.id = r.company_id"
@@ -721,4 +727,3 @@ def materialise(conn: Connection, symbol: str, router: Router | None, nse: NSE |
         (Jsonb({"companies": idx}),),
     )
     conn.commit()
-    return {"quarters": len(body["quarters"]), "guidance": len(body["guidance"]), "calls": len(body["calls"])}

@@ -29,6 +29,11 @@ class Settings(BaseSettings):
     openrouter_api_key: str = ""
     gemini_api_key: str = ""
 
+    # live research jobs: the API starts a GitHub Actions run when no laptop worker is online
+    github_dispatch_token: str = ""
+    github_repo: str = ""  # owner/name; on Render, RENDER_GIT_REPO_SLUG is used when unset
+    github_ref: str = "main"
+
     @property
     def cors_origin_list(self) -> list[str]:
         return [o.strip() for o in self.cors_origins.split(",") if o.strip()]

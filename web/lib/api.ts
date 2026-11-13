@@ -49,3 +49,25 @@ export async function loadWithFallback<T>(
 export function warmUp(): void {
   fetch(`${API_BASE}/health`, { cache: "no-store" }).catch(() => {});
 }
+
+/** POST JSON to the live API (no snapshot fallback: a write needs the live backend). */
+export async function postJson<T>(
+  apiPath: string,
+  body: unknown,
+  opts: { base?: string; timeoutMs?: number } = {},
+): Promise<{ ok: boolean; status: number; data: T }> {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), opts.timeoutMs ?? 30_000);
+  try {
+    const r = await fetch(`${opts.base ?? API_BASE}${apiPath}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+      signal: ctrl.signal,
+      cache: "no-store",
+    });
+    return { ok: r.ok, status: r.status, data: (await r.json()) as T };
+  } finally {
+    clearTimeout(timer);
+  }
+}

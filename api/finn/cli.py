@@ -296,6 +296,48 @@ def cmd_import_transcripts(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_worker(args: argparse.Namespace) -> int:
+    """Research job worker. `--job N`: run that one job (a GitHub Actions run started by the API).
+    Without it: the laptop worker, which heartbeats and claims queued jobs until stopped."""
+    import os
+    import time
+
+    from finn import jobs
+    from finn.llm.router import Router
+    from finn.llm.store import LLMStore
+    from finn.sources.nse import NSE
+
+    origin = "github" if args.job else "laptop"
+    router = Router(store=LLMStore())
+    with db.connection() as conn:
+        db.migrate(conn)
+        if args.job:
+            run_url = None
+            if os.environ.get("GITHUB_RUN_ID"):
+                run_url = (
+                    f"{os.environ.get('GITHUB_SERVER_URL', 'https://github.com')}/"
+                    f"{os.environ.get('GITHUB_REPOSITORY', '')}/actions/runs/{os.environ['GITHUB_RUN_ID']}"
+                )
+            job = jobs.claim(conn, "github", job_id=args.job, run_url=run_url)
+            if job is None:
+                print(f"job {args.job}: not claimable (already taken, finished, or at capacity)")
+                return 0
+            print(f"job {job['id']} {job['symbol']}:", jobs.run(conn, job, origin, NSE, router))
+            return 0
+        name = jobs.worker_name()
+        print(f"worker {name}: polling (ctrl-c to stop)")
+        while True:
+            jobs.heartbeat(conn, name, "laptop")
+            jobs.tick(conn)
+            job = jobs.claim(conn, "laptop")
+            if job:
+                print(f"  job {job['id']} {job['symbol']}:", jobs.run(conn, job, origin, NSE, router))
+                continue
+            if args.once:
+                return 0
+            time.sleep(15)
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="finn")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -331,6 +373,10 @@ def main(argv: list[str] | None = None) -> int:
     )
     imp.add_argument("symbols", help="comma-separated NSE symbols")
     imp.set_defaults(fn=cmd_import_transcripts)
+    wk = sub.add_parser("worker", help="research job worker (laptop loop, or one GitHub job)")
+    wk.add_argument("--job", type=int, help="run this job id (GitHub Actions)")
+    wk.add_argument("--once", action="store_true", help="laptop: exit when the queue is empty")
+    wk.set_defaults(fn=cmd_worker)
     args = p.parse_args(argv)
     return args.fn(args)
 

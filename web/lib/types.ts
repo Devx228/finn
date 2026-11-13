@@ -336,3 +336,32 @@ export interface ResearchIndex {
     hero?: boolean;
   }[];
 }
+
+export interface JobStep {
+  name: string;
+  label: string;
+  state: "pending" | "running" | "done" | "skipped" | "refused" | "empty";
+  detail?: string;
+  at?: string;
+}
+
+export interface ResearchJob {
+  id: number;
+  symbol: string;
+  status: "queued" | "dispatched" | "running" | "done" | "failed" | "refused";
+  runner: "laptop" | "github" | null;
+  requested_at: string;
+  dispatched_at: string | null;
+  claimed_at: string | null;
+  heartbeat_at: string | null;
+  finished_at: string | null;
+  steps: JobStep[];
+  message: string | null;
+  run_url: string | null;
+  note: string;
+  laptop_online: boolean;
+}
+
+export type JobResponse =
+  | { state: "cached"; symbol: string; name: string }
+  | { state: "job"; joined: boolean; job: ResearchJob };

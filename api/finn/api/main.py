@@ -8,8 +8,9 @@ from datetime import date, datetime, time
 from typing import Literal
 from zoneinfo import ZoneInfo
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 from finn import db
 from finn.config import get_settings
@@ -125,3 +126,41 @@ def get_alert_inputs() -> dict:
     """EOD bars + material filings for the holdings; rules are evaluated client-side (and in
     finn.push.alerts.evaluate, the same logic) so threshold changes apply instantly."""
     return _view("alerts:inputs")
+
+
+class JobRequest(BaseModel):
+    symbol: str
+
+
+def _client_ip(req: Request) -> str | None:
+    # Render puts the caller first in X-Forwarded-For; locally there is no proxy
+    fwd = req.headers.get("x-forwarded-for", "")
+    return fwd.split(",")[0].strip() or (req.client.host if req.client else None)
+
+
+@app.post("/api/research/jobs")
+def create_research_job(body: JobRequest, req: Request) -> dict:
+    """Research a ticker that has no report yet. Validated against the NSE master; a cached report
+    is returned as-is; one live job per symbol; rate-limited per client and per day."""
+    from finn import jobs
+
+    with db.connection() as conn:
+        try:
+            return jobs.request(conn, body.symbol, _client_ip(req))
+        except jobs.JobError as e:
+            raise HTTPException(status_code=e.status, detail={"code": e.code, "message": e.message}) from e
+
+
+@app.get("/api/research/jobs/{job_id}")
+def get_research_job(job_id: int) -> dict:
+    """Progress of a research job, with a plain-words note on where it is (incl. runner start-up)."""
+    from finn import jobs
+
+    with db.connection() as conn:
+        j = jobs.get(conn, job_id)
+        if j is not None and j["status"] == "queued":
+            jobs.schedule(conn)  # capacity may have freed since it was queued
+            j = jobs.get(conn, job_id)
+    if j is None:
+        raise HTTPException(status_code=404, detail={"code": "no_job", "message": "No such job."})
+    return j
