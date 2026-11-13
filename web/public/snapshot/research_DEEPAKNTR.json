@@ -87,7 +87,7 @@
   "questions": []
  },
  "name": "Deepak Nitrite Limited",
- "as_of": "2026-11-13T19:09:56.232522+05:30",
+ "as_of": "2026-11-13T21:02:34.579514+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/DEEPAKNTR_04112026111452_NSE-concall_transcript.pdf",
@@ -279,6 +279,13 @@
  "business": {
   "note": null,
   "year": "FY26",
+  "about": {
+   "by": "first describing sentence, verbatim",
+   "url": "https://nsearchives.nseindia.com/annual_reports/AR_29797_DEEPAKNTR_2025_2026_A_16675200_14072026212237.pdf",
+   "page": 9,
+   "text": "Deepak Group is one of India’s leading integrated chemical intermediates companies, with a strong presence across Advanced Intermediates and Phenolics.",
+   "period": "FY2026"
+  },
   "basis": "consolidated",
   "source": {
    "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1668039_15052026082210_WEB.xml"

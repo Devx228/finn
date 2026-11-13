@@ -87,7 +87,7 @@
   "questions": []
  },
  "name": "Trent Limited",
- "as_of": "2026-11-13T19:09:57.721537+05:30",
+ "as_of": "2026-11-13T21:02:36.392349+05:30",
  "calls": [],
  "stats": [],
  "format": "indas",
@@ -168,6 +168,10 @@
  "business": {
   "note": "Files as a single segment (its results filing says so).",
   "year": null,
+  "about": {
+   "note": "No annual report read for this company yet.",
+   "text": null
+  },
   "source": null,
   "industry": "Miscellaneous",
   "segments": [],

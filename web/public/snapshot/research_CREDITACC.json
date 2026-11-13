@@ -91,7 +91,7 @@
   ]
  },
  "name": "CREDITACCESS GRAMEEN LIMITED",
- "as_of": "2026-11-13T19:09:45.042568+05:30",
+ "as_of": "2026-11-13T21:02:22.230871+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
@@ -1100,6 +1100,10 @@
  "business": {
   "note": "Files as a single segment (its results filing says so).",
   "year": null,
+  "about": {
+   "note": "No sentence in the FY2026 annual report's opening pages says plainly what the company does.",
+   "text": null
+  },
   "source": null,
   "industry": null,
   "segments": [],

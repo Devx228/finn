@@ -1050,6 +1050,7 @@ def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None,
     from finn.pull import business
 
     biz = business.snapshot(conn, cid, industry, fy_start)
+    biz["about"] = business.about(conn, cid, router)
     calls, stats, docs = [], [], []
     listed = tr.pick(conn, cid, n_calls)
     for d in tr.ensure_text(conn, nse, cid, n_calls):

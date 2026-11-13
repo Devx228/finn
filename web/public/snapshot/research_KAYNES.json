@@ -90,7 +90,7 @@
   ]
  },
  "name": "Kaynes Technology India Limited",
- "as_of": "2026-11-13T19:09:47.783985+05:30",
+ "as_of": "2026-11-13T21:02:25.505813+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12082026164943_TranscriptoftheEarningAnnouncement.pdf",
@@ -648,6 +648,13 @@
  "business": {
   "note": "Files as a single segment (its results filing says so).",
   "year": null,
+  "about": {
+   "by": "first describing sentence, verbatim",
+   "url": "https://nsearchives.nseindia.com/annual_reports/AR_32142_KAYNES_2025_2026_A_15182676_06102026111513.pdf",
+   "page": 9,
+   "text": "Kaynes Technology India Limited (‘Kaynes’, ‘Our Company’ or ‘We’) is a leading end-to-end IoT solutions-integrated electronics manufacturing company in India, offering comprehensive capabilities across the entire ESDM value chain from new product design and engineering to manufacturing and lifecycle support.",
+   "period": "FY2026"
+  },
   "source": null,
   "industry": null,
   "segments": [],

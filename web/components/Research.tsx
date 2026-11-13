@@ -242,11 +242,29 @@ function Body({ r }: { r: Research }) {
 }
 
 /** What the company does, from its own segment note: mix, segment result ÷ revenue, YoY. */
+/** What it does, in the company's own words from its latest annual report, with the page. */
+function About({ a }: { a?: Business["about"] }) {
+  if (!a) return null;
+  if (!a.text) return <p className="mb-2 text-[13px] text-ink-3">{a.note}</p>;
+  return (
+    <blockquote className="mb-3 text-[14px] leading-snug">
+      “{a.text}”
+      <footer className="mt-1 text-[12px] text-ink-3">
+        <a href={a.page ? `${a.url}#page=${a.page}` : a.url} target="_blank" rel="noreferrer" className="underline">
+          {a.period} annual report, p. {a.page}
+        </a>{" "}
+        · the company&apos;s own words
+      </footer>
+    </blockquote>
+  );
+}
+
 function BusinessSnapshot({ b }: { b: Business }) {
   if (!b.segments.length) {
     return (
       <section>
         <h2 className={H}>Business snapshot</h2>
+        <About a={b.about} />
         <p className="rounded-lg border border-line bg-surface px-3 py-3 text-[13px] text-ink-2">
           {b.industry ? `${b.industry}. ` : ""}
           {b.note}
@@ -260,6 +278,7 @@ function BusinessSnapshot({ b }: { b: Business }) {
       <h2 className={H}>
         Business snapshot · {b.year} segments
       </h2>
+      <About a={b.about} />
       <div className="rounded-lg border border-line bg-surface px-3 py-3">
         {b.industry && <p className="mb-2 text-[13px] text-ink-2">{b.industry}</p>}
         <ul className="space-y-2">

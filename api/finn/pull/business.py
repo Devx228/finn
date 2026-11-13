@@ -127,3 +127,119 @@ def snapshot(conn: Connection, cid: int, industry: str | None, fy_start: int = 4
         "source": {"xbrl": cur[4]},
         "note": None,
     }
+
+
+# -- "what it does": the company's own words from its latest annual report -------------------------
+OVERVIEW = re.compile(
+    r"\b(business overview|corporate overview|company overview|about (?:us|the company|[A-Z][\w&]+)|"
+    r"who we are|our business|at a glance|corporate snapshot)\b",
+    re.I,
+)
+DESCRIBES = re.compile(r"\b(?:we are|we're|is an?|is one of|is india'?s|are one of|leading|largest)\b", re.I)
+BUSINESS_NOUN = re.compile(
+    r"manufactur|provider|lender|bank|services|solutions|company|platform|engineering|chemical|"
+    r"financ|technolog|construction|retail|electronics|institution|conglomerate",
+    re.I,
+)
+# self-descriptions that are about hiring, culture or awards, not the business
+NOT_BUSINESS = re.compile(
+    r"employer|employee|workplace|culture|great place|csr\b|award|certified|recogni[sz]ed", re.I
+)
+ABOUT_PROMPT = "about-v1"
+ABOUT_SYSTEM = (
+    "You pick, from numbered sentences taken from a company's annual report, the one or two that best "
+    "say what the company does: its business, products or services, and customers. Prefer plain "
+    'description over slogans, awards or numbers about the year. Return JSON {"ids": [...]} with one '
+    'or two ids from the list, in reading order. If none describes the business, return {"ids": []}.'
+)
+
+
+def _names(company: str) -> list[str]:
+    """How a report refers to itself: 'CreditAccess', 'HDFC Bank', 'L&T', 'Infosys'."""
+    words = [w for w in re.findall(r"[A-Za-z&.]+", company) if w.lower() not in {"limited", "ltd", "ltd."}]
+    out = [words[0]] if words else []
+    if len(words) >= 2:
+        out.append(f"{words[0]} {words[1]}")
+    if "&" in company:
+        parts = [w for w in words if w != "&"]
+        if len(parts) >= 2:
+            out.append(f"{parts[0][0]}&{parts[1][0]}")
+    return out
+
+
+def _candidates(pages: list[str], company: str, limit: int = 30) -> list[tuple[int, str]]:
+    """Sentences in the first 60 pages where the company describes itself ('X is a ...', 'We are
+    one of ...'), cut to start at that self-description. Verbatim; page numbers kept."""
+    names = "|".join(re.escape(n) for n in _names(company))
+    rx = re.compile(
+        rf"(?:\b(?:{names})\b[^.]{{0,40}}?|\bwe)\s+(?:is|are)\s+"
+        rf"(?:a|an|one of|india'?s|the)\b[^.]{{20,260}}\.",
+        re.I,
+    )
+    out: list[tuple[int, str]] = []
+    seen: set[str] = set()
+    for i, p in enumerate(pages[:60]):
+        text = re.sub(r"\s+", " ", p or "")
+        for m in rx.finditer(text):
+            # start at the sentence's own beginning ("Kaynes Technology India Limited ('Kaynes' ...) is")
+            lo = max(text.rfind(". ", 0, m.start()) + 2, m.start() - 160, 0)
+            starts = [
+                x.start() for x in re.finditer(rf"(?<![\w'‘’\"“])(?:{names})\b", text[lo : m.end()], re.I)
+            ]
+            start = lo + starts[-1] if starts else m.start()  # the last unquoted mention: after any heading
+            sent = text[start : m.end()].strip()
+            if NOT_BUSINESS.search(sent):
+                continue
+            if sent.lower() not in seen and BUSINESS_NOUN.search(sent):
+                seen.add(sent.lower())
+                out.append((i + 1, sent[0].upper() + sent[1:]))
+    return out[:limit]
+
+
+def about(conn: Connection, cid: int, router=None) -> dict:
+    """Two lines in the company's own words, chosen from its latest annual report's overview pages,
+    with the page cited. Nothing is paraphrased; when no page describes the business, say so."""
+    row = conn.execute(
+        "SELECT period, url, pages FROM documents WHERE company_id = %s AND kind = 'annual_report' "
+        "AND pages IS NOT NULL ORDER BY filed_at DESC NULLS LAST LIMIT 1",
+        (cid,),
+    ).fetchone()
+    if row is None:
+        return {"text": None, "note": "No annual report read for this company yet."}
+    period, url, pages = row
+    name = conn.execute("SELECT name FROM companies WHERE id = %s", (cid,)).fetchone()
+    cands = _candidates(pages, name[0] if name else "")
+    if not cands:
+        return {
+            "text": None,
+            "note": f"The {period} annual report's overview pages don't describe the business in a sentence.",
+        }
+    pick: list[int] = []
+    if router is not None:
+        from pydantic import BaseModel
+
+        class Pick(BaseModel):
+            ids: list[int]
+
+        listing = "\n".join(f"[{k}] {s}" for k, (_, s) in enumerate(cands))
+        try:
+            res = router.call("EXTRACT", "about_pick", ABOUT_PROMPT, ABOUT_SYSTEM, listing, Pick)
+            pick = [k for k in res.data.ids if 0 <= k < len(cands)][:1]  # type: ignore[attr-defined]
+        except Exception:
+            pick = []
+    if not pick:
+        return {
+            "text": None,
+            "note": f"No sentence in the {period} annual report's opening pages says plainly "
+            "what the company does.",
+        }
+    chosen = [cands[k] for k in sorted(pick)]
+    return {
+        "text": " ".join(s for _, s in chosen),
+        "page": chosen[0][0],
+        "url": url,
+        "period": period,
+        "by": "picked by model, verbatim"
+        if router is not None and pick != [0]
+        else "first describing sentence, verbatim",
+    }

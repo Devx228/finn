@@ -291,6 +291,7 @@ export interface Segment {
 }
 
 export interface Business {
+  about?: { text: string | null; note?: string; page?: number; url?: string; period?: string; by?: string };
   industry: string | null;
   year: string | null;
   basis?: string;

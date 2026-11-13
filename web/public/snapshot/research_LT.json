@@ -89,7 +89,7 @@
   ]
  },
  "name": "Larsen & Toubro Limited",
- "as_of": "2026-11-13T19:09:52.741529+05:30",
+ "as_of": "2026-11-13T21:02:30.654628+05:30",
  "calls": [
   {
    "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q2FY27%20Earnings%20Call%20Transcript.pdf",
@@ -508,6 +508,13 @@
  "business": {
   "note": null,
   "year": "FY26",
+  "about": {
+   "by": "picked by model, verbatim",
+   "url": "https://nsearchives.nseindia.com/annual_reports/AR_29259_LT_2025_2026_A_29793480_14052026183032.pdf",
+   "page": 36,
+   "text": "L&T is a diversified conglomerate with operations spanning multiple geographies and industry sectors, including engineering, construction, manufacturing, technology, financial services and real estate.",
+   "period": "FY2026"
+  },
   "basis": "consolidated",
   "source": {
    "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1663820_05052026073236_WEB.xml"

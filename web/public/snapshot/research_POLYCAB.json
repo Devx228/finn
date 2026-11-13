@@ -6,7 +6,7 @@
   "questions": []
  },
  "name": "Polycab India Limited",
- "as_of": "2026-11-13T19:10:00.381850+05:30",
+ "as_of": "2026-11-13T21:02:39.219322+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_19102026163912_Intimation_of_Earnings_Call_Transcript.pdf",
@@ -677,6 +677,10 @@
  "business": {
   "note": "segment names not in the cached filing",
   "year": null,
+  "about": {
+   "note": "No annual report read for this company yet.",
+   "text": null
+  },
   "source": null,
   "industry": null,
   "segments": [],

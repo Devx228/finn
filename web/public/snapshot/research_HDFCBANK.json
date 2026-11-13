@@ -87,7 +87,7 @@
   "questions": []
  },
  "name": "HDFC Bank Limited",
- "as_of": "2026-11-13T19:09:57.457975+05:30",
+ "as_of": "2026-11-13T21:02:36.108750+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK_23102026224657_SEintimationTranscriptofearningscall17oct2026.pdf",
@@ -226,6 +226,13 @@
  "business": {
   "note": null,
   "year": "FY26",
+  "about": {
+   "by": "first describing sentence, verbatim",
+   "url": "https://nsearchives.nseindia.com/annual_reports/AR_29735_HDFCBANK_2025_2026_A_12667766_11072026001055.pdf",
+   "page": 59,
+   "text": "HDFC Bank is one of the Largest Retail Mortgage lenders in the Country supporting the Retail Home buyers and MSMEs in buying Homes for personal use and Commercial properties for their business use.",
+   "period": "FY2026"
+  },
   "basis": "consolidated",
   "source": {
    "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_BANKING_1654391_18042026073048_WEB.xml"
