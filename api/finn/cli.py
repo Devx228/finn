@@ -215,7 +215,8 @@ def cmd_push(args: argparse.Namespace) -> int:
         ids = list(ingest.company_ids(conn, ingest.demo_symbols()).values())
         print("  rules        ", pipeline.classify_rules_stage(conn, ids))
         try:
-            print("  thin texts   ", pipeline.fetch_thin_texts(conn, NSE(), ids))
+            if not args.offline:
+                print("  thin texts   ", pipeline.fetch_thin_texts(conn, NSE(), ids))
             print("  rules (text) ", pipeline.classify_rules_stage(conn, ids))
         except SourceRefused as e:
             print(f"!! STOPPED: {e}. Access rule: do not retry; tell the owner.")
@@ -224,8 +225,13 @@ def cmd_push(args: argparse.Namespace) -> int:
             try:
                 print("  model        ", pipeline.classify_llm_stage(conn, Router(store=LLMStore()), ids))
                 print("  post-check   ", pipeline.drop_foreign_one_liners(conn))
+                print("  severity     ", pipeline.severity_stage(conn, ids))
+                print("  fact lines   ", pipeline.fact_lines_stage(conn, Router(store=LLMStore()), ids))
+                print("  post-check   ", pipeline.drop_foreign_one_liners(conn))
             except LLMUnavailable as e:
                 print(f"  model         skipped ({e}); undecided filings show as 'not yet classified'")
+        if args.no_llm:
+            print("  severity     ", pipeline.severity_stage(conn, ids))
         print("  results cards", pipeline.compute_results_cards(conn, ids))
         now = datetime.now(ZoneInfo("Asia/Kolkata"))
         print("  network      ", network_views.materialise(conn, now))
@@ -357,6 +363,7 @@ def main(argv: list[str] | None = None) -> int:
     ing.set_defaults(fn=cmd_ingest)
     push = sub.add_parser("push", help="classify, results cards, materialise briefs")
     push.add_argument("--no-llm", action="store_true", help="rules only (e.g. on a CI runner)")
+    push.add_argument("--offline", action="store_true", help="no NSE requests: use cached filing text only")
     push.set_defaults(fn=cmd_push)
     net = sub.add_parser("network", help="seed the synthetic network and materialise network views")
     net.add_argument(

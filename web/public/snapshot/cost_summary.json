@@ -1,44 +1,44 @@
 {
  "note": "Free tiers (Gemini, Groq) and a local model (Ollama): actual cost is zero. Paid-rate equivalents use each provider's published price, verified on the date shown.",
- "as_of": "2026-11-13T19:10:00.523250+05:30",
+ "as_of": "2026-11-13T19:37:15.304515+05:30",
  "totals": {
-  "cache_hits": 1086,
-  "model_calls": 1487,
-  "input_tokens": 365385,
-  "output_tokens": 108247,
-  "cache_hit_rate": 73.0,
-  "list_price_usd": 0.0179,
-  "unpriced_calls": 1155,
+  "cache_hits": 1095,
+  "model_calls": 1530,
+  "input_tokens": 417454,
+  "output_tokens": 123106,
+  "cache_hit_rate": 71.6,
+  "list_price_usd": 0.0602,
+  "unpriced_calls": 1176,
   "actual_cost_inr": 0
  },
  "filings": {
   "total": 1199,
-  "by_model": 249,
+  "by_model": 252,
   "by_rules": 947
  },
  "by_model": [
   {
-   "calls": 1001,
+   "calls": 1037,
    "model": "gemini-3.5-flash-lite",
-   "failed": 4,
+   "failed": 16,
    "provider": "gemini",
-   "cache_hits": 921,
-   "input_tokens": 70357,
-   "priced_calls": 8,
-   "output_tokens": 32163,
-   "avg_latency_ms": 2728,
-   "list_price_usd": 0.0179311
+   "cache_hits": 927,
+   "input_tokens": 112424,
+   "priced_calls": 26,
+   "output_tokens": 42499,
+   "avg_latency_ms": 2942,
+   "list_price_usd": 0.0563912
   },
   {
-   "calls": 154,
+   "calls": 155,
    "model": "qwen2.5-7b-8k",
    "failed": 5,
    "provider": "ollama",
    "cache_hits": 95,
-   "input_tokens": 73699,
-   "priced_calls": 154,
-   "output_tokens": 11319,
-   "avg_latency_ms": 33105,
+   "input_tokens": 75618,
+   "priced_calls": 155,
+   "output_tokens": 11549,
+   "avg_latency_ms": 33429,
    "list_price_usd": 0.0
   },
   {
@@ -66,16 +66,16 @@
    "list_price_usd": null
   },
   {
-   "calls": 27,
+   "calls": 33,
    "model": "openai/gpt-oss-120b",
    "failed": 0,
    "provider": "groq",
-   "cache_hits": 22,
-   "input_tokens": 7706,
-   "priced_calls": 0,
-   "output_tokens": 6937,
-   "avg_latency_ms": 4484,
-   "list_price_usd": null
+   "cache_hits": 25,
+   "input_tokens": 15789,
+   "priced_calls": 3,
+   "output_tokens": 11230,
+   "avg_latency_ms": 4228,
+   "list_price_usd": 0.00378825
   },
   {
    "calls": 17,
@@ -121,7 +121,7 @@
    "cache_hits": 1074
   },
   {
-   "calls": 109,
+   "calls": 110,
    "purpose": "classify_batch",
    "cache_hits": 0
   },
@@ -129,6 +129,11 @@
    "calls": 59,
    "purpose": "eval_classify",
    "cache_hits": 11
+  },
+  {
+   "calls": 42,
+   "purpose": "fact_line",
+   "cache_hits": 9
   },
   {
    "calls": 18,
@@ -149,8 +154,8 @@
   },
   "verified": "2026-11-13",
   "local_tokens": {
-   "input": 278231,
-   "output": 66826
+   "input": 280150,
+   "output": 67056
   },
   "prices_per_m": {
    "groq:qwen/qwen3.8-27b": [
@@ -171,8 +176,8 @@
    ]
   },
   "reference_model": "gemini:gemini-3.5-flash-lite",
-  "hosted_calls_usd": 0.119,
-  "local_calls_if_hosted_usd": 0.2505
+  "hosted_calls_usd": 0.1613,
+  "local_calls_if_hosted_usd": 0.2517
  },
  "documents_read": {
   "NSE": 39,

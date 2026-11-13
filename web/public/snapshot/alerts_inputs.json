@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-13T16:54:49.761226+05:30",
+ "as_of": "2026-11-13T19:37:14.967295+05:30",
  "nifty": [
   [
    "2026-07-06",
@@ -455,12 +455,12 @@
  "credit": "Prices: Yahoo Finance (end of day). Filings: NSE.",
  "filings": [
   {
-   "id": 419,
-   "ts": "2026-11-10T07:28:49+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_10112026125828_BFL_Reg_30__Allotment_of_warrants_Final_1.pdf",
+   "id": 418,
+   "ts": "2026-11-11T11:43:26+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_11112026171309_SEintimationopeningofissue.pdf",
    "symbol": "BAJFINANCE",
    "category": "fund_raise",
-   "headline": "Allotment of 5,74,25,740 securities pursuant to Preferential Issue at its meeting held on November 10, 2026"
+   "headline": "QIP committee approves opening of issue and fixes floor price at Rs 992.25 per share"
   },
   {
    "id": 421,
@@ -469,14 +469,6 @@
    "symbol": "BAJFINANCE",
    "category": "results",
    "headline": "Half Yearly Report for FY2026-27 released"
-  },
-  {
-   "id": 140,
-   "ts": "2026-11-07T10:15:33+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_07112026154336_NSEBSE_CPDPL.pdf",
-   "symbol": "TATASTEEL",
-   "category": "M&A",
-   "headline": "Acquisition of 38,222 equity shares of face value ₹10/- each in Creative Port Development Private Limited ( CPDPL ) due to conversion of 25,10,830 Optionally Co"
   },
   {
    "id": 513,
@@ -509,14 +501,6 @@
    "symbol": "TATASTEEL",
    "category": "results",
    "headline": "The financial results for the quarter and half year ended September 30, 2026"
-  },
-  {
-   "id": 569,
-   "ts": "2026-11-06T10:06:06+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/AmitDodani_06112026153559_SEIntimationSMLRightsIssue.pdf",
-   "symbol": "M&M",
-   "category": "M&A",
-   "headline": "Acquisition"
   },
   {
    "id": 203,
@@ -559,52 +543,20 @@
    "headline": "The Unaudited Standalone and Consolidated financial results for the Second Quarter and Half Year ended September 30, 2026"
   },
   {
+   "id": 514,
+   "ts": "2026-11-05T07:05:21+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/CGPOWER_05112026123502_Draft_SE_Disclosure-_Closure_of_Operations-051126.pdf",
+   "symbol": "CGPOWER",
+   "category": "litigation",
+   "headline": "Received direction from Maharashtra Pollution Control Board directing closure of Waluj manufacturing unit operations"
+  },
+  {
    "id": 1008,
    "ts": "2026-11-04T14:10:36+00:00",
    "url": "https://nsearchives.nseindia.com/corporate/PIIND_04112026193824_Resultssd.pdf",
    "symbol": "PIIND",
    "category": "results",
    "headline": "The Outcome of Board Meeting held on November 04, 2026 for approval of Unaudited Standalone and Consolidated Financial Results for the quarter and half year Sep"
-  },
-  {
-   "id": 469,
-   "ts": "2026-11-04T11:45:17+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/kkurmi_04112026171135_Reply_to_news_clarification.pdf",
-   "symbol": "AUBANK",
-   "category": "press_release",
-   "headline": "The Exchange has sought clarification from AU Small Finance Bank Limited with respect to recent news item captioned AU Bank probes potential data leak.  The res"
-  },
-  {
-   "id": 84,
-   "ts": "2026-11-04T04:34:11+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/SUNSEC_04112026100317_Reply_to_SEs_-_Rumour_Verification02112026.pdf",
-   "symbol": "SUNPHARMA",
-   "category": "press_release",
-   "headline": "The Exchange has sought clarification from Sun Pharmaceutical Industries Limited with respect to recent news item captioned India orders Sun Pharma to halt eye-"
-  },
-  {
-   "id": 147,
-   "ts": "2026-11-03T07:19:40+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_03112026124745_BSENSE.pdf",
-   "symbol": "TATASTEEL",
-   "category": "M&A",
-   "headline": "Effective Date  of the Scheme of Amalgamation amongst Tata Steel Limited and Rujuvalika Investments Limited, wholly owned subsidiary, and their respective share"
-  },
-  {
-   "id": 148,
-   "ts": "2026-11-03T07:16:35+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_03112026124351_BSENSE.pdf",
-   "symbol": "TATASTEEL",
-   "category": "M&A",
-   "headline": "Effective Date  of the Scheme of Amalgamation amongst Tata Steel Limited and Rujuvalika Investments Limited, wholly owned subsidiary, and their respective share"
-  },
-  {
-   "id": 85,
-   "ts": "2026-11-02T15:28:22+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/SUNSEC_02112026205719_Reply_to_SEs_-_Rumour_Verification02112026.pdf",
-   "symbol": "SUNPHARMA",
-   "category": "press_release",
-   "headline": "Clarification regarding news report relating to the Company s Assam facility"
   },
   {
    "id": 471,
@@ -671,22 +623,6 @@
    "headline": "The financial results for the period ended September 30, 2026"
   },
   {
-   "id": 205,
-   "ts": "2026-10-28T08:19:00+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/TITAN_28102026134838_SEIntimation_-_Canada_Incorporation.pdf",
-   "symbol": "TITAN",
-   "category": "M&A",
-   "headline": "The Company has incorporated Titan Company Canada Inc. as its wholly owned subsidiary"
-  },
-  {
-   "id": 39,
-   "ts": "2026-10-28T07:58:05+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/KPITTECH_28102026132555_1_Outcome.pdf",
-   "symbol": "KPITTECH",
-   "category": "M&A",
-   "headline": "The Board of Directors of the Company approved the Strike-off of Somit Solutions Limited, wholly owned step-down subsidiary of the Company"
-  },
-  {
    "id": 43,
    "ts": "2026-10-28T07:27:10+00:00",
    "url": "https://nsearchives.nseindia.com/corporate/KPITTECH_28102026125528_1_Outcome.pdf",
@@ -719,6 +655,14 @@
    "headline": "The financial results for the period ended September 30, 2026"
   },
   {
+   "id": 806,
+   "ts": "2026-10-27T04:46:48+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/PAM_27102026101631_PressRelease27102026.pdf",
+   "symbol": "LT",
+   "category": "press_release",
+   "headline": "Secured major design and build orders for Dhaka Metro Line 1"
+  },
+  {
    "id": 368,
    "ts": "2026-10-27T02:32:54+00:00",
    "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK_27102026080232_SEIntimation_appt_of_AB.pdf",
@@ -727,20 +671,20 @@
    "headline": "MD & CEO change at HDFC Bank - Sashidhar Jagdishan retires, Anup Bagchi appointed"
   },
   {
+   "id": 920,
+   "ts": "2026-10-26T17:55:38+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_26102026232529_PersistentSEOutcomeAllotmentofsharesOct262026IIFLSigned.pdf",
+   "symbol": "PERSISTENT",
+   "category": "fund_raise",
+   "headline": "Persistent Systems issues securities through Qualified Institution Placement"
+  },
+  {
    "id": 477,
    "ts": "2026-10-24T09:56:10+00:00",
    "url": "https://nsearchives.nseindia.com/corporate/SUMIT1_24102026152406_BM_Outcome.pdf",
    "symbol": "AUBANK",
    "category": "results",
    "headline": "The financial results for the period ended September 30, 2026"
-  },
-  {
-   "id": 525,
-   "ts": "2026-10-23T08:57:28+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/CGPOWER_23102026142708_OutcomeoftheBoardMeeting23102026.pdf",
-   "symbol": "CGPOWER",
-   "category": "capex",
-   "headline": "Capacity addition"
   },
   {
    "id": 526,
@@ -757,14 +701,6 @@
    "symbol": "PERSISTENT",
    "category": "results",
    "headline": "Board approves audited financial statements for Q3 and H1 FY27"
-  },
-  {
-   "id": 251,
-   "ts": "2026-10-19T12:08:09+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/ULTRACEMCO_19102026173746_MPM19102026.pdf",
-   "symbol": "ULTRACEMCO",
-   "category": "press_release",
-   "headline": "Rumour Verification - Regulation 30(11)"
   },
   {
    "id": 432,
@@ -807,6 +743,14 @@
    "headline": "The financial results for the period ended September 30, 2026"
   },
   {
+   "id": 808,
+   "ts": "2026-10-19T04:48:20+00:00",
+   "url": "https://nsearchives.nseindia.com/corporate/PAM_19102026101805_PressRelease19102026.pdf",
+   "symbol": "LT",
+   "category": "press_release",
+   "headline": "Secured LNTP and commenced initial activities for New Tashkent International Airport project in Uzbekistan"
+  },
+  {
    "id": 375,
    "ts": "2026-10-17T10:44:18+00:00",
    "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK_17102026161248_Stockexchangeintimation_LV_KB.pdf",
@@ -829,14 +773,6 @@
    "symbol": "PERSISTENT",
    "category": "results",
    "headline": "Board approves audited financial statements for Q3 and H1 FY27"
-  },
-  {
-   "id": 150,
-   "ts": "2026-10-15T13:54:44+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_15102026192421_BSENSE_Signed.pdf",
-   "symbol": "TATASTEEL",
-   "category": "M&A",
-   "headline": "Receipt of certified true copy of the Order of the Hon ble National Company Law Tribunal, Mumbai Bench in the matter of the Scheme of Amalgamation of Rujuvalika"
   },
   {
    "id": 933,
@@ -999,14 +935,6 @@
    "headline": "Acquisition of equity shares in T Steel Holdings Pte. Ltd"
   },
   {
-   "id": 157,
-   "ts": "2026-09-29T11:17:07+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_29092026164617_BSENSE_Signed.pdf",
-   "symbol": "TATASTEEL",
-   "category": "litigation",
-   "headline": "Disclosure under Regulation(s) 30 read with 51 of the Securities and Exchange Board of India (Listing Obligations and Disclosure Requirements) Regulations, 2015"
-  },
-  {
    "id": 272,
    "ts": "2026-09-24T12:40:17+00:00",
    "url": "https://nsearchives.nseindia.com/corporate/ULTRACEMCO_24092026180953_MPM24092026.pdf",
@@ -1045,14 +973,6 @@
    "symbol": "ULTRACEMCO",
    "category": "press_release",
    "headline": "Rumour Verification - Regulation 30(11)"
-  },
-  {
-   "id": 755,
-   "ts": "2026-09-21T13:10:49+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/DIXON_21092026184010_AcquisitionAdivistarFinal21092026.pdf",
-   "symbol": "DIXON",
-   "category": "M&A",
-   "headline": "Acquisition"
   },
   {
    "id": 276,
@@ -1167,22 +1087,6 @@
    "headline": "Acquisition of equity stake in T Steel Holdings Pte. Ltd"
   },
   {
-   "id": 170,
-   "ts": "2026-08-26T09:17:21+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_26082026144016_BSENSE_-_890_crore.pdf",
-   "symbol": "TATASTEEL",
-   "category": "litigation",
-   "headline": "Disclosure under Regulation 30 read with Regulation 51 of the Securities and Exchange Board of India (Listing Obligations and Disclosure Requirements) Regulatio"
-  },
-  {
-   "id": 171,
-   "ts": "2026-08-26T09:03:57+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_26082026142913_BSENSE_-_Sukinda_August_26_2026.pdf",
-   "symbol": "TATASTEEL",
-   "category": "litigation",
-   "headline": "Disclosure under Regulations 30 and 51 of Securities and Exchange Board of India (Listing Obligations and Disclosure Requirements) Regulations, 2015"
-  },
-  {
    "id": 347,
    "ts": "2026-08-25T10:51:24+00:00",
    "url": "https://nsearchives.nseindia.com/corporate/VBL_25082026162007_Outcome.pdf",
@@ -1191,36 +1095,12 @@
    "headline": "The Board of Directors at their meeting held today inter-alia approved: (i) to incorporate a wholly-owned subsidiary company in India, (ii) appointment of Mr. P"
   },
   {
-   "id": 172,
-   "ts": "2026-08-25T04:46:37+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_25082026100839_BSENSE.pdf",
-   "symbol": "TATASTEEL",
-   "category": "litigation",
-   "headline": "Disclosure under Regulation 30 and 51 of the Securities and Exchange Board of India (Listing Obligations and Disclosure Requirements) Regulations, 2015"
-  },
-  {
    "id": 291,
    "ts": "2026-08-21T12:34:14+00:00",
    "url": "https://nsearchives.nseindia.com/corporate/ULTRACEMCO1_21082026180343_UHG_Holdings_IFSC_Private_Limited_SE_disclosure_21082026.pdf",
    "symbol": "ULTRACEMCO",
    "category": "M&A",
    "headline": "Incorporation of UHG Holdings IFSC Private Limited"
-  },
-  {
-   "id": 173,
-   "ts": "2026-08-20T14:00:35+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_20082026192916_BSENSE_signed.pdf",
-   "symbol": "TATASTEEL",
-   "category": "M&A",
-   "headline": "Acquisition of equity stake in TM International Logistics Limited"
-  },
-  {
-   "id": 543,
-   "ts": "2026-08-20T05:24:18+00:00",
-   "url": "https://nsearchives.nseindia.com/corporate/CGPOWER_20082026105341_SE_Intimitaion_Tosil_20_08_26.pdf",
-   "symbol": "CGPOWER",
-   "category": "M&A",
-   "headline": "Axiro Semiconductor completes acquisition of Tosil Systems"
   },
   {
    "id": 544,

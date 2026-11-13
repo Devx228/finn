@@ -120,6 +120,8 @@ def pull(only: list[str]) -> None:
 #   llm_calls  : insert-only, no id (Neon assigns), de-duplicated on (ts, purpose, model).
 #   documents  : new rows by url only, no id (Neon assigns); an existing url is never touched
 #                except to fill pages/source where Neon has none.
+#   filing_class: upsert by filing_id (ids are shared with Neon: the mirror is a copy). Written
+#                only by the push pipeline; the live app never writes it.
 # Anything else (jobs, feedback, settings, ...) is refused.
 PIPELINE_VIEW_PREFIXES = ("research:", "network:", "brief:", "alerts:", "coverage:", "cost:")
 
@@ -205,6 +207,22 @@ def push_documents() -> tuple[int, int]:
     return new, filled
 
 
+def push_filing_class(batch: int = 150) -> int:
+    rows = _local("SELECT to_jsonb(k) FROM filing_class k")
+    for i in range(0, len(rows), batch):
+        q(
+            "INSERT INTO filing_class SELECT * FROM jsonb_populate_recordset(null::filing_class, $1::jsonb) "
+            "ON CONFLICT (filing_id) DO UPDATE SET category = EXCLUDED.category, sub_type = EXCLUDED.sub_type, "
+            "base = EXCLUDED.base, materiality = EXCLUDED.materiality, one_line = EXCLUDED.one_line, "
+            "entities = EXCLUDED.entities, needs_deep_read = EXCLUDED.needs_deep_read, "
+            "decided_by = EXCLUDED.decided_by, model = EXCLUDED.model, "
+            "prompt_version = EXCLUDED.prompt_version, reason = EXCLUDED.reason, "
+            "classified_at = EXCLUDED.classified_at",
+            [json.dumps(rows[i : i + batch], ensure_ascii=False)],
+        )
+    return len(rows)
+
+
 def push_research_set() -> int:
     """research_set is pipeline-owned: loaded from data/research_set.json, replaced as a whole."""
     rows = json.loads((REPO_ROOT / "data" / "research_set.json").read_text(encoding="utf-8"))["companies"]
@@ -229,6 +247,8 @@ if __name__ == "__main__":
         print("llm_cache offered / llm_calls inserted:", push_llm())
     elif cmd == "push-research-set":
         print("research_set rows:", push_research_set())
+    elif cmd == "push-filing-class":
+        print("filing_class rows upserted:", push_filing_class())
     elif cmd == "push-documents":
         print("documents new / text filled:", push_documents())
     else:

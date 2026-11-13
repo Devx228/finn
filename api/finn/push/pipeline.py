@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from collections import Counter
 
 from psycopg import Connection
@@ -14,8 +15,8 @@ from finn.push.classify_rules import Classified, classify
 from finn.sources.nse import NSE
 
 
-def _text(pages) -> str | None:
-    return " ".join(pages[:2]) if pages else None
+def _text(pages, n: int = 2) -> str | None:
+    return " ".join(pages[:n]) if pages else None
 
 
 def _store(
@@ -35,7 +36,11 @@ def _store(
         "entities, needs_deep_read, decided_by, model, prompt_version, reason) "
         "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT (filing_id) DO UPDATE SET "
         "category=EXCLUDED.category, sub_type=EXCLUDED.sub_type, base=EXCLUDED.base, "
-        "materiality=EXCLUDED.materiality, one_line=EXCLUDED.one_line, entities=EXCLUDED.entities, "
+        "materiality=EXCLUDED.materiality, entities=EXCLUDED.entities, "
+        # a rules re-run keeps the fact line written from the text (fact_lines_stage)
+        "one_line=CASE WHEN EXCLUDED.decided_by = 'rules' "
+        "THEN coalesce(EXCLUDED.one_line, filing_class.one_line) "
+        "ELSE EXCLUDED.one_line END, "
         "needs_deep_read=EXCLUDED.needs_deep_read, decided_by=EXCLUDED.decided_by, "
         "model=EXCLUDED.model, prompt_version=EXCLUDED.prompt_version, reason=EXCLUDED.reason, "
         "classified_at=now()",
@@ -278,5 +283,175 @@ def classify_llm_stage(
             counts["llm_decided"] += 1
         counts["calls"] += 0 if res.cache_hit else 1
         counts["cache_hits"] += 1 if res.cache_hit else 0
+        conn.commit()
+    return dict(counts)
+
+
+# -- stage 1b: read event filings before scoring them (finn/push/severity.py) --------------------
+def _revenue_ttm(conn: Connection, cid: int) -> float | None:
+    from finn.pull.research import quarters
+
+    fmt = conn.execute("SELECT coalesce(fin_format, 'indas') FROM companies WHERE id = %s", (cid,)).fetchone()
+    qs, _ = quarters(conn, cid, fmt[0] if fmt else "indas")
+    full = [q["revenue"] for q in qs if q.get("revenue") is not None]
+    return sum(full[-4:]) if len(full) >= 4 else None
+
+
+def severity_stage(conn: Connection, company_ids: list[int], days: int = 400) -> dict[str, int]:
+    """Re-score every event filing from its text (any decider). Category and one-liner are kept;
+    base and reason change. Filings no rule can judge are marked for the hosted model."""
+    from finn.push import severity as sv
+
+    rows = conn.execute(
+        "SELECT f.id, f.company_id, f.subject, f.text_pages, k.category, k.sub_type, k.base, k.reason, "
+        "k.decided_by, k.materiality "
+        "FROM filings f JOIN filing_class k ON k.filing_id = f.id WHERE f.company_id = ANY(%s) "
+        "AND f.ts_ist >= now() - make_interval(days => %s) AND k.category = ANY(%s)",
+        (company_ids, days, list(sv.EVENT)),
+    ).fetchall()
+    rev: dict[int, float | None] = {}
+    counts: Counter = Counter()
+    for fid, cid, subj, pages, cat, st, base, reason, by, materiality in rows:
+        if cid not in rev:
+            rev[cid] = _revenue_ttm(conn, cid)
+        why = (reason or "").split(" · read: ")[0].removeprefix("needs model: ")
+        s = sv.assess(cat, st, base, why, subj or "", _text(pages, 6), rev[cid])
+        if s is None:
+            counts["routine"] += 1
+            continue
+        if s.needs_model:
+            if by == "llm":  # the model rated it from the text: its own rating stands
+                if materiality is not None:
+                    conn.execute(
+                        "UPDATE filing_class SET base = %s, reason = %s WHERE filing_id = %s",
+                        (round(materiality * 0.6), why, fid),
+                    )
+                counts["model_rated"] += 1
+                continue
+            conn.execute(
+                "UPDATE filing_class SET reason = %s WHERE filing_id = %s", (f"needs model: {why}", fid)
+            )
+            counts["to_model"] += 1
+            continue
+        conn.execute(
+            "UPDATE filing_class SET base = %s, reason = %s WHERE filing_id = %s",
+            (s.base, f"{why} · read: {s.reason}", fid),
+        )
+        counts["rescored"] += 1
+    conn.commit()
+    return dict(counts)
+
+
+def _focus(reason: str | None) -> str:
+    r = (reason or "").removeprefix("needs model: ").split(" · ")[0]
+    return r.split(": ", 1)[1] if r.startswith("model (") and ": " in r else r
+
+
+STOP = {
+    "of",
+    "the",
+    "and",
+    "or",
+    "a",
+    "an",
+    "to",
+    "in",
+    "on",
+    "for",
+    "by",
+    "with",
+    "order",
+    "update",
+    "model",
+}
+RESULTS_LINE = re.compile(r"\b(?:approved|announced|declared)\b.{0,60}\b(?:financial )?results\b", re.I)
+
+
+def _window(text: str, focus: str, n: int = 1400) -> str:
+    """The part of the filing about this item: from the first place its words appear (a letter
+    listing results first and the disposal third would otherwise only show the results)."""
+    t = re.sub(r"\s+", " ", text)
+    words = [w for w in re.findall(r"[a-z]{4,}", focus.lower()) if w not in STOP]
+    hits = [i for w in words for i in [t.lower().find(w, 200)] if i > 0]
+    start = max(0, min(hits) - 150) if hits else 0
+    return t[start : start + n]
+
+
+def fact_lines_stage(
+    conn: Connection, router: Router, company_ids: list[int], days: int = 30
+) -> dict[str, int]:
+    """Every event filing gets a one-line fact from its text (hosted model), so a card never shows
+    the exchange's generic label. Filings no rule could judge also take the model's rating. If the
+    model returns nothing usable, an operational stop falls back to the filing's own sentence;
+    anything else is left without a line and is buried by the brief."""
+    from finn.push import severity as sv
+
+    rows = conn.execute(
+        "SELECT f.id, f.exch_category, f.subject, f.text_pages, k.one_line, k.reason, "
+        "coalesce(k.model, '') FROM filings f "
+        "JOIN filing_class k ON k.filing_id = f.id WHERE f.company_id = ANY(%s) AND f.dup_of IS NULL "
+        "AND f.ts_ist >= now() - make_interval(days => %s) AND k.category = ANY(%s) "
+        "AND coalesce(k.sub_type, '') <> ALL(%s) AND f.text_pages IS NOT NULL ORDER BY f.ts_ist",
+        (company_ids, days, list(sv.EVENT), list(sv.ROUTINE_SUBTYPES)),
+    ).fetchall()
+    # empty line, no rule could judge it, or only the small local model has rated it
+    todo = [
+        r[:6]
+        for r in rows
+        if sv.says_nothing(r[4], r[1])
+        or (r[5] or "").startswith("needs model: ")
+        or (r[6].startswith("ollama") and " · read: " not in (r[5] or ""))
+    ]
+    counts: Counter = Counter()
+    for i in range(0, len(todo), cl.BATCH):
+        batch = todo[i : i + cl.BATCH]
+        payload = [
+            {
+                "ref": cl.ref_for(fid),
+                "exch_category": cat,
+                # a board-outcome letter lists several items: name the one this filing is about
+                "subject": f"{subj} [summarise the item about: {_focus(why)}]",
+                "text": _window(" ".join(pages), _focus(why)),
+            }
+            for fid, cat, subj, pages, _one, why in batch
+        ]
+        try:
+            res = router.call(
+                "EXTRACT",
+                "fact_line",
+                cl.PROMPT_VERSION,
+                cl.SYSTEM,
+                cl.render_batch(payload),
+                cl.Batch,
+                cache_payload=payload,
+            )
+            by_idx = {it.idx: it for it in res.data.items}  # type: ignore[attr-defined]
+            model = f"{res.provider}:{res.model}"
+        except Exception as e:  # model down: fall back below
+            by_idx, model = {}, f"unavailable: {type(e).__name__}"
+            counts["model_errors"] += 1
+        for j, (fid, cat, _subj, pages, _one, why) in enumerate(batch):
+            it = by_idx.get(j)
+            line = cl.clip_words(it.one_line) if it is not None and it.ref == cl.ref_for(fid) else None
+            if line and sv.says_nothing(line, cat):
+                line = None
+            if line is None and pages:
+                line = sv.verbatim_fact(" ".join(pages), sv.OPSTOP)
+            sets, args = ["one_line = %s"], [line]
+            # no rule judged it from the text: the hosted model's rating replaces any earlier one
+            if it is not None and line and " · read: " not in (why or ""):
+                kept = (why or "").removeprefix("needs model: ").split(" · rated by ")[0]
+                sets += ["base = %s", "materiality = %s", "reason = %s", "model = %s"]
+                args += [round(it.materiality * 0.6), it.materiality, f"{kept} · rated by {model}", model]
+            conn.execute(f"UPDATE filing_class SET {', '.join(sets)} WHERE filing_id = %s", (*args, fid))
+            if line and RESULTS_LINE.search(line):
+                # the filing is a results release after all: the results card already covers it
+                conn.execute(
+                    "UPDATE filing_class SET sub_type = 'press_release', base = LEAST(base, 20) "
+                    "WHERE filing_id = %s",
+                    (fid,),
+                )
+                counts["results_release"] += 1
+            counts["lines" if line else "nothing_useful"] += 1
         conn.commit()
     return dict(counts)

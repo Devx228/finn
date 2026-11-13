@@ -121,3 +121,13 @@ claims (an achievement, a reported calendar-year figure, an export-mix target, a
 actual, a yearless long-term band). Each must yield no claim, or only an open one; checked in
 `api/tests/test_pull.py::test_polycab_negatives_never_become_scored_claims` (passes). Ledger
 re-run under the stricter rules: resolved KAYNES 5→3, POLYCAB 4→0, CREDITACC 5→5, INFY 2→2, LT 1→1.
+
+## Ranking regression set and classifier, before/after the ranking fix (2026-11-13)
+| | Before | After |
+|---|---|---|
+| Labelled filings | 114 | 124 (+10 ranking regressions; 4 existing rows given expected ranges) |
+| Rules: decided / correct category | 76 / 76 (1.000) | 85 / 85 (1.000) |
+| Severity regressions (base within the expected range) | not measured (4 of the 14 would have passed: the Airtel penalties at 34 were above 20) | 13 / 14 |
+The one miss: Sun Pharma ILUMYA US approval, hosted-model base 39 vs expected ≥ 40 (it still
+shows in Worth knowing). `python -m finn.push.evaluate` reports both; expected ranges are set from
+judgment about the filing, not from the scorer's output.

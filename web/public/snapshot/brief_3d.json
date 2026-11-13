@@ -1,14 +1,14 @@
 {
  "now": [],
- "as_of": "2026-11-12T23:23:08.108747+05:30",
+ "as_of": "2026-11-13T19:37:14.967295+05:30",
  "worth": [
   {
-   "id": "f419",
-   "ts": "2026-11-10T07:28:49+00:00",
+   "id": "f418",
+   "ts": "2026-11-11T11:43:26+00:00",
    "card": null,
    "kind": "filing",
    "tier": "worth",
-   "score": 60,
+   "score": 65,
    "symbol": "BAJFINANCE",
    "bundled": 0,
    "company": "Bajaj Finance Limited",
@@ -71,14 +71,14 @@
      "Does this change the dividend or capex plans?"
     ]
    },
-   "pdf_url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_10112026125828_BFL_Reg_30__Allotment_of_warrants_Final_1.pdf",
+   "pdf_url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_11112026171309_SEintimationopeningofissue.pdf",
    "category": "fund_raise",
-   "headline": "Allotment of 5,74,25,740 securities pursuant to Preferential Issue at its meeting held on November 10, 2026",
-   "sub_type": "equity_raise",
+   "headline": "QIP committee approves opening of issue and fixes floor price at Rs 992.25 per share",
+   "sub_type": null,
    "components": {
     "base": {
-     "why": "equity issue",
-     "points": 52
+     "why": "model (qwen2.5:7b): Outcome of QIP 2026 Special Committee meeting · rated by gemini:gemini-3.5-flash-lite",
+     "points": 51
     },
     "network": {
      "why": "Diya Dutta can give context",
@@ -93,8 +93,8 @@
      "points": 8
     },
     "staleness": {
-     "why": "58 h old",
-     "points": -8
+     "why": "50 h old",
+     "points": -7
     },
     "user_pref": {
      "why": null,
@@ -102,15 +102,15 @@
     },
     "price_reaction": {
      "why": {
-      "session": "2026-11-11",
-      "volume_multiple": 1.0,
-      "abnormal_return_pct": 0.5
+      "session": "2026-11-12",
+      "volume_multiple": 1.2,
+      "abnormal_return_pct": 3.2
      },
-     "points": 1
+     "points": 6
     }
    },
    "filing_ids": [
-    419
+    418
    ],
    "category_label": "Fund raise"
   }
@@ -125,7 +125,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 17,
+     "score": 15,
      "symbol": "M&M",
      "bundled": 0,
      "company": "Mahindra & Mahindra Limited",
@@ -152,8 +152,8 @@
        "points": 7
       },
       "staleness": {
-       "why": "32 h old",
-       "points": -5
+       "why": "53 h old",
+       "points": -7
       },
       "user_pref": {
        "why": null,
@@ -179,7 +179,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 15,
+     "score": 13,
      "symbol": "MARUTI",
      "bundled": 0,
      "company": "Maruti Suzuki India Limited",
@@ -206,8 +206,8 @@
        "points": 8
       },
       "staleness": {
-       "why": "11 h old",
-       "points": -2
+       "why": "32 h old",
+       "points": -4
       },
       "user_pref": {
        "why": null,
@@ -233,7 +233,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 15,
+     "score": 12,
      "symbol": "HDFCBANK",
      "bundled": 0,
      "company": "HDFC Bank Limited",
@@ -260,8 +260,8 @@
        "points": 9
       },
       "staleness": {
-       "why": "9 h old",
-       "points": -1
+       "why": "29 h old",
+       "points": -4
       },
       "user_pref": {
        "why": null,
@@ -282,116 +282,12 @@
      "category_label": "Investor meetings"
     },
     {
-     "id": "f512",
-     "ts": "2026-11-12T07:23:36+00:00",
-     "card": null,
-     "kind": "filing",
-     "tier": "buried",
-     "score": 14,
-     "symbol": "CGPOWER",
-     "bundled": 0,
-     "company": "CG Power and Industrial Solutions Limited",
-     "network": null,
-     "pdf_url": "https://nsearchives.nseindia.com/corporate/CGPOWER_12112026125253_CGIPL_IntimationofAnalystcall_27112026.pdf",
-     "category": "investor_meetings",
-     "headline": "Schedule of meet",
-     "sub_type": null,
-     "components": {
-      "base": {
-       "why": "investor / analyst meeting schedule",
-       "points": 6
-      },
-      "network": {
-       "why": "no one in your network is close to this",
-       "points": 0
-      },
-      "magnitude": {
-       "why": null,
-       "points": 0
-      },
-      "portfolio": {
-       "why": "6.8% of portfolio",
-       "points": 8
-      },
-      "staleness": {
-       "why": "10 h old",
-       "points": -1
-      },
-      "user_pref": {
-       "why": null,
-       "points": 0
-      },
-      "price_reaction": {
-       "why": {
-        "session": "2026-11-12",
-        "volume_multiple": 0.5,
-        "abnormal_return_pct": -0.3
-       },
-       "points": 1
-      }
-     },
-     "filing_ids": [
-      512
-     ],
-     "category_label": "Investor meetings"
-    },
-    {
-     "id": "f137",
-     "ts": "2026-11-12T11:23:41+00:00",
-     "card": null,
-     "kind": "filing",
-     "tier": "buried",
-     "score": 14,
-     "symbol": "TATASTEEL",
-     "bundled": 0,
-     "company": "Tata Steel Limited",
-     "network": null,
-     "pdf_url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_12112026165318_BSENSE_Signed.pdf",
-     "category": "investor_meetings",
-     "headline": "Intimation of Schedule of Analyst / Institutional Investor Meeting under the Securities and Exchange Board of India (Listing Obligations and Disclosure Requirem",
-     "sub_type": null,
-     "components": {
-      "base": {
-       "why": "investor / analyst meeting schedule",
-       "points": 6
-      },
-      "network": {
-       "why": "no one in your network is close to this",
-       "points": 0
-      },
-      "magnitude": {
-       "why": null,
-       "points": 0
-      },
-      "portfolio": {
-       "why": "7.5% of portfolio",
-       "points": 9
-      },
-      "staleness": {
-       "why": "6 h old",
-       "points": -1
-      },
-      "user_pref": {
-       "why": null,
-       "points": 0
-      },
-      "price_reaction": {
-       "why": null,
-       "points": 0
-      }
-     },
-     "filing_ids": [
-      137
-     ],
-     "category_label": "Investor meetings"
-    },
-    {
      "id": "f467",
      "ts": "2026-11-11T15:25:29+00:00",
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 13,
+     "score": 11,
      "symbol": "AUBANK",
      "bundled": 0,
      "company": "AU Small Finance Bank Limited",
@@ -418,8 +314,8 @@
        "points": 5
       },
       "staleness": {
-       "why": "26 h old",
-       "points": -4
+       "why": "47 h old",
+       "points": -6
       },
       "user_pref": {
        "why": null,
@@ -440,12 +336,116 @@
      "category_label": "Investor meetings"
     },
     {
+     "id": "f512",
+     "ts": "2026-11-12T07:23:36+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 11,
+     "symbol": "CGPOWER",
+     "bundled": 0,
+     "company": "CG Power and Industrial Solutions Limited",
+     "network": null,
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/CGPOWER_12112026125253_CGIPL_IntimationofAnalystcall_27112026.pdf",
+     "category": "investor_meetings",
+     "headline": "Schedule of meet",
+     "sub_type": null,
+     "components": {
+      "base": {
+       "why": "investor / analyst meeting schedule",
+       "points": 6
+      },
+      "network": {
+       "why": "no one in your network is close to this",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "6.8% of portfolio",
+       "points": 8
+      },
+      "staleness": {
+       "why": "31 h old",
+       "points": -4
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": {
+        "session": "2026-11-12",
+        "volume_multiple": 0.5,
+        "abnormal_return_pct": -0.3
+       },
+       "points": 1
+      }
+     },
+     "filing_ids": [
+      512
+     ],
+     "category_label": "Investor meetings"
+    },
+    {
+     "id": "f137",
+     "ts": "2026-11-12T11:23:41+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 11,
+     "symbol": "TATASTEEL",
+     "bundled": 0,
+     "company": "Tata Steel Limited",
+     "network": null,
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_12112026165318_BSENSE_Signed.pdf",
+     "category": "investor_meetings",
+     "headline": "Intimation of Schedule of Analyst / Institutional Investor Meeting under the Securities and Exchange Board of India (Listing Obligations and Disclosure Requirem",
+     "sub_type": null,
+     "components": {
+      "base": {
+       "why": "investor / analyst meeting schedule",
+       "points": 6
+      },
+      "network": {
+       "why": "no one in your network is close to this",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "7.5% of portfolio",
+       "points": 9
+      },
+      "staleness": {
+       "why": "27 h old",
+       "points": -4
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": null,
+       "points": 0
+      }
+     },
+     "filing_ids": [
+      137
+     ],
+     "category_label": "Investor meetings"
+    },
+    {
      "id": "f242",
      "ts": "2026-11-11T11:38:38+00:00",
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 12,
+     "score": 9,
      "symbol": "ULTRACEMCO",
      "bundled": 0,
      "company": "UltraTech Cement Limited",
@@ -472,8 +472,8 @@
        "points": 9
       },
       "staleness": {
-       "why": "30 h old",
-       "points": -4
+       "why": "50 h old",
+       "points": -7
       },
       "user_pref": {
        "why": null,
@@ -499,7 +499,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 12,
+     "score": 9,
      "symbol": "TITAN",
      "bundled": 0,
      "company": "Titan Company Limited",
@@ -526,8 +526,8 @@
        "points": 7
       },
       "staleness": {
-       "why": "8 h old",
-       "points": -1
+       "why": "28 h old",
+       "points": -4
       },
       "user_pref": {
        "why": null,
@@ -549,7 +549,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 12,
+     "score": 9,
      "symbol": "M&M",
      "bundled": 0,
      "company": "Mahindra & Mahindra Limited",
@@ -576,8 +576,8 @@
        "points": 7
       },
       "staleness": {
-       "why": "6 h old",
-       "points": -1
+       "why": "26 h old",
+       "points": -4
       },
       "user_pref": {
        "why": null,
@@ -599,7 +599,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 11,
+     "score": 8,
      "symbol": "BHARTIARTL",
      "bundled": 0,
      "company": "Bharti Airtel Limited",
@@ -626,8 +626,8 @@
        "points": 7
       },
       "staleness": {
-       "why": "29 h old",
-       "points": -4
+       "why": "49 h old",
+       "points": -7
       },
       "user_pref": {
        "why": null,
@@ -648,62 +648,12 @@
      "category_label": "Investor meetings"
     },
     {
-     "id": "f31",
-     "ts": "2026-11-12T10:50:13+00:00",
-     "card": null,
-     "kind": "filing",
-     "tier": "buried",
-     "score": 8,
-     "symbol": "KPITTECH",
-     "bundled": 0,
-     "company": "KPIT Technologies Limited",
-     "network": null,
-     "pdf_url": "https://nsearchives.nseindia.com/corporate/KPITTECH_12112026161901_KPIT_Investor_Conference_Avendus_and_JM_Financials_S.pdf",
-     "category": "investor_meetings",
-     "headline": "Schedule of meet",
-     "sub_type": null,
-     "components": {
-      "base": {
-       "why": "investor / analyst meeting schedule",
-       "points": 6
-      },
-      "network": {
-       "why": "no one in your network is close to this",
-       "points": 0
-      },
-      "magnitude": {
-       "why": null,
-       "points": 0
-      },
-      "portfolio": {
-       "why": "2.9% of portfolio",
-       "points": 3
-      },
-      "staleness": {
-       "why": "7 h old",
-       "points": -1
-      },
-      "user_pref": {
-       "why": null,
-       "points": 0
-      },
-      "price_reaction": {
-       "why": null,
-       "points": 0
-      }
-     },
-     "filing_ids": [
-      31
-     ],
-     "category_label": "Investor meetings"
-    },
-    {
      "id": "f32",
      "ts": "2026-11-12T10:50:13+00:00",
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 8,
+     "score": 5,
      "symbol": "KPITTECH",
      "bundled": 0,
      "company": "KPIT Technologies Limited",
@@ -730,8 +680,8 @@
        "points": 3
       },
       "staleness": {
-       "why": "7 h old",
-       "points": -1
+       "why": "27 h old",
+       "points": -4
       },
       "user_pref": {
        "why": null,
@@ -744,6 +694,56 @@
      },
      "filing_ids": [
       32
+     ],
+     "category_label": "Investor meetings"
+    },
+    {
+     "id": "f31",
+     "ts": "2026-11-12T10:50:13+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 5,
+     "symbol": "KPITTECH",
+     "bundled": 0,
+     "company": "KPIT Technologies Limited",
+     "network": null,
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/KPITTECH_12112026161901_KPIT_Investor_Conference_Avendus_and_JM_Financials_S.pdf",
+     "category": "investor_meetings",
+     "headline": "Schedule of meet",
+     "sub_type": null,
+     "components": {
+      "base": {
+       "why": "investor / analyst meeting schedule",
+       "points": 6
+      },
+      "network": {
+       "why": "no one in your network is close to this",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "2.9% of portfolio",
+       "points": 3
+      },
+      "staleness": {
+       "why": "27 h old",
+       "points": -4
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": null,
+       "points": 0
+      }
+     },
+     "filing_ids": [
+      31
      ],
      "category_label": "Investor meetings"
     }
@@ -759,7 +759,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 39,
+     "score": 36,
      "symbol": "M&M",
      "bundled": 0,
      "company": "Mahindra & Mahindra Limited",
@@ -786,8 +786,8 @@
        "points": 7
       },
       "staleness": {
-       "why": "28 h old",
-       "points": -4
+       "why": "49 h old",
+       "points": -7
       },
       "user_pref": {
        "why": null,
@@ -808,62 +808,12 @@
      "category_label": "Earnings calls"
     },
     {
-     "id": "f663",
-     "ts": "2026-11-12T12:06:21+00:00",
-     "card": null,
-     "kind": "filing",
-     "tier": "buried",
-     "score": 38,
-     "symbol": "BHARTIARTL",
-     "bundled": 0,
-     "company": "Bharti Airtel Limited",
-     "network": null,
-     "pdf_url": "https://nsearchives.nseindia.com/corporate/BHARTIARTL_12112026172851_Airtel_Stx_Intimation.pdf",
-     "category": "earnings_call",
-     "headline": "Transcript",
-     "sub_type": "transcript",
-     "components": {
-      "base": {
-       "why": "earnings-call transcript",
-       "points": 32
-      },
-      "network": {
-       "why": "no one in your network is close to this",
-       "points": 0
-      },
-      "magnitude": {
-       "why": null,
-       "points": 0
-      },
-      "portfolio": {
-       "why": "6.1% of portfolio",
-       "points": 7
-      },
-      "staleness": {
-       "why": "6 h old",
-       "points": -1
-      },
-      "user_pref": {
-       "why": null,
-       "points": 0
-      },
-      "price_reaction": {
-       "why": null,
-       "points": 0
-      }
-     },
-     "filing_ids": [
-      663
-     ],
-     "category_label": "Earnings calls"
-    },
-    {
      "id": "f193",
      "ts": "2026-11-11T09:09:56+00:00",
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 37,
+     "score": 35,
      "symbol": "TITAN",
      "bundled": 0,
      "company": "Titan Company Limited",
@@ -890,8 +840,8 @@
        "points": 7
       },
       "staleness": {
-       "why": "33 h old",
-       "points": -5
+       "why": "53 h old",
+       "points": -7
       },
       "user_pref": {
        "why": null,
@@ -912,12 +862,62 @@
      "category_label": "Earnings calls"
     },
     {
+     "id": "f663",
+     "ts": "2026-11-12T12:06:21+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 35,
+     "symbol": "BHARTIARTL",
+     "bundled": 0,
+     "company": "Bharti Airtel Limited",
+     "network": null,
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/BHARTIARTL_12112026172851_Airtel_Stx_Intimation.pdf",
+     "category": "earnings_call",
+     "headline": "Transcript",
+     "sub_type": "transcript",
+     "components": {
+      "base": {
+       "why": "earnings-call transcript",
+       "points": 32
+      },
+      "network": {
+       "why": "no one in your network is close to this",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "6.1% of portfolio",
+       "points": 7
+      },
+      "staleness": {
+       "why": "26 h old",
+       "points": -4
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": null,
+       "points": 0
+      }
+     },
+     "filing_ids": [
+      663
+     ],
+     "category_label": "Earnings calls"
+    },
+    {
      "id": "f1004",
      "ts": "2026-11-12T05:03:31+00:00",
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 37,
+     "score": 34,
      "symbol": "PIIND",
      "bundled": 0,
      "company": "PI Industries Limited",
@@ -944,8 +944,8 @@
        "points": 4
       },
       "staleness": {
-       "why": "13 h old",
-       "points": -2
+       "why": "33 h old",
+       "points": -5
       },
       "user_pref": {
        "why": null,
@@ -969,352 +969,6 @@
    "label": "Earnings calls"
   },
   {
-   "count": 2,
-   "items": [
-    {
-     "id": "f566",
-     "ts": "2026-11-12T11:43:06+00:00",
-     "card": null,
-     "kind": "filing",
-     "tier": "buried",
-     "score": 18,
-     "symbol": "M&M",
-     "bundled": 0,
-     "company": "Mahindra & Mahindra Limited",
-     "network": null,
-     "pdf_url": "https://nsearchives.nseindia.com/corporate/AmitDodani_12112026171250_MonthlyReportOct2026.pdf",
-     "category": "unclassified",
-     "headline": "Mahindra & Mahindra reports October production, sales and export figures",
-     "sub_type": null,
-     "components": {
-      "base": {
-       "why": "model (qwen2.5:7b): Mahindra & Mahindra reports October production, sales and export figures",
-       "points": 12
-      },
-      "network": {
-       "why": "no one in your network is close to this",
-       "points": 0
-      },
-      "magnitude": {
-       "why": null,
-       "points": 0
-      },
-      "portfolio": {
-       "why": "6.1% of portfolio",
-       "points": 7
-      },
-      "staleness": {
-       "why": "6 h old",
-       "points": -1
-      },
-      "user_pref": {
-       "why": null,
-       "points": 0
-      },
-      "price_reaction": {
-       "why": null,
-       "points": 0
-      }
-     },
-     "filing_ids": [
-      566
-     ],
-     "category_label": "Routine paperwork"
-    },
-    {
-     "id": "f420",
-     "ts": "2026-11-10T06:45:58+00:00",
-     "card": null,
-     "kind": "filing",
-     "tier": "buried",
-     "score": 6,
-     "symbol": "BAJFINANCE",
-     "bundled": 0,
-     "company": "Bajaj Finance Limited",
-     "network": null,
-     "pdf_url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_10112026121523_BFL_Reg_30_Outcome_PricingofPIpostVRFinal.pdf",
-     "category": "unclassified",
-     "headline": "Outcome of PI 2026 - Special Committee Meeting held on November 10, 2026",
-     "sub_type": "committee_meeting",
-     "components": {
-      "base": {
-       "why": "committee meeting",
-       "points": 5
-      },
-      "network": {
-       "why": "no one in your network is close to this",
-       "points": 0
-      },
-      "magnitude": {
-       "why": null,
-       "points": 0
-      },
-      "portfolio": {
-       "why": "6.7% of portfolio",
-       "points": 8
-      },
-      "staleness": {
-       "why": "59 h old",
-       "points": -8
-      },
-      "user_pref": {
-       "why": null,
-       "points": 0
-      },
-      "price_reaction": {
-       "why": {
-        "session": "2026-11-11",
-        "volume_multiple": 1.0,
-        "abnormal_return_pct": 0.5
-       },
-       "points": 1
-      }
-     },
-     "filing_ids": [
-      420
-     ],
-     "category_label": "Routine paperwork"
-    }
-   ],
-   "label": "Routine paperwork"
-  },
-  {
-   "count": 1,
-   "items": [
-    {
-     "id": "f859",
-     "ts": "2026-11-10T06:26:00+00:00",
-     "card": null,
-     "kind": "filing",
-     "tier": "buried",
-     "score": 38,
-     "symbol": "MARUTI",
-     "bundled": 0,
-     "company": "Maruti Suzuki India Limited",
-     "network": {
-      "call": [
-       {
-        "id": 38,
-        "why": "worked at peer Mahindra & Mahindra Limited as Head of Investor Relations (2019–now); introduced-by, last spoke Feb 2025, 0 interactions in 24 months",
-        "name": "Manish Reddy",
-        "rank": 0.571,
-        "warmth": 0.42,
-        "headline": "Head of Investor Relations, Mahindra & Mahindra Limited",
-        "how_known": "introduced-by",
-        "relevance": 0.7,
-        "synthetic": true,
-        "compliance": null,
-        "warmth_why": "introduced-by, last spoke Feb 2025, 0 interactions in 24 months",
-        "last_contact": "2025-02-27",
-        "warmth_label": "medium",
-        "what_theyd_know": "How Mahindra & Mahindra Limited runs IR today"
-       },
-       {
-        "id": 49,
-        "why": "worked at peer Tata Motors as Deputy CFO (2016–now); introduced-by, last spoke Jun 2025, 0 interactions in 24 months",
-        "name": "Pooja Chopra",
-        "rank": 0.537,
-        "warmth": 0.36,
-        "headline": "Deputy CFO, Tata Motors",
-        "how_known": "introduced-by",
-        "relevance": 0.7,
-        "synthetic": true,
-        "compliance": null,
-        "warmth_why": "introduced-by, last spoke Jun 2025, 0 interactions in 24 months",
-        "last_contact": "2025-06-19",
-        "warmth_label": "medium",
-        "what_theyd_know": "How Tata Motors runs finance today"
-       },
-       {
-        "id": 27,
-        "why": "worked at peer Mahindra & Mahindra Limited as Head of Supply Chain (2014–now); ex-colleague, last spoke Mar 2026, 10 interactions in 24 months",
-        "name": "Siddharth Agarwal",
-        "rank": 0.475,
-        "warmth": 0.57,
-        "headline": "Head of Supply Chain, Mahindra & Mahindra Limited",
-        "how_known": "ex-colleague",
-        "relevance": 0.42,
-        "synthetic": true,
-        "compliance": null,
-        "warmth_why": "ex-colleague, last spoke Mar 2026, 10 interactions in 24 months",
-        "last_contact": "2026-03-28",
-        "warmth_label": "medium",
-        "what_theyd_know": "How Mahindra & Mahindra Limited runs operations today"
-       }
-      ],
-      "people": [],
-      "points": 6,
-      "questions": [
-       "Which line moved most this quarter, and is it one-off or a trend?",
-       "How are peers seeing demand and pricing in the same quarter?",
-       "Where does the street usually misread Maruti Suzuki India's quarterly numbers?"
-      ]
-     },
-     "pdf_url": "https://nsearchives.nseindia.com/corporate/MARUTIASHISH_10112026115416_STxIntimation_SMCResults_FirstHalfYr_10Nov2026.pdf",
-     "category": "results",
-     "headline": "Reference to the Financial Results issued by Suzuki Motor Corporation",
-     "sub_type": "press_release",
-     "components": {
-      "base": {
-       "why": "results press release / deck",
-       "points": 30
-      },
-      "network": {
-       "why": "Manish Reddy can give context",
-       "points": 6
-      },
-      "magnitude": {
-       "why": null,
-       "points": 0
-      },
-      "portfolio": {
-       "why": "6.3% of portfolio",
-       "points": 8
-      },
-      "staleness": {
-       "why": "59 h old",
-       "points": -8
-      },
-      "user_pref": {
-       "why": null,
-       "points": 0
-      },
-      "price_reaction": {
-       "why": {
-        "session": "2026-11-11",
-        "volume_multiple": 1.8,
-        "abnormal_return_pct": 1.1
-       },
-       "points": 2
-      }
-     },
-     "filing_ids": [
-      859
-     ],
-     "category_label": "Results"
-    }
-   ],
-   "label": "Results"
-  },
-  {
-   "count": 1,
-   "items": [
-    {
-     "id": "f418",
-     "ts": "2026-11-11T11:43:26+00:00",
-     "card": null,
-     "kind": "filing",
-     "tier": "buried",
-     "score": 35,
-     "symbol": "BAJFINANCE",
-     "bundled": 0,
-     "company": "Bajaj Finance Limited",
-     "network": {
-      "call": [
-       {
-        "id": 63,
-        "why": "worked at peer Cholamandalam Investment and Finance as Chief Risk Officer (2016–now); classmate, last spoke Mar 2026, 5 interactions in 24 months",
-        "name": "Diya Dutta",
-        "rank": 0.728,
-        "warmth": 0.67,
-        "headline": "Chief Risk Officer, Cholamandalam Investment and Finance",
-        "how_known": "classmate",
-        "relevance": 0.77,
-        "synthetic": true,
-        "compliance": null,
-        "warmth_why": "classmate, last spoke Mar 2026, 5 interactions in 24 months",
-        "last_contact": "2026-03-23",
-        "warmth_label": "strong",
-        "what_theyd_know": "How Cholamandalam Investment and Finance runs treasury-credit today"
-       },
-       {
-        "id": 74,
-        "why": "worked at peer CREDITACCESS GRAMEEN LIMITED as Head of Compliance (2014–now); industry-friend, last spoke Sep 2025, 0 interactions in 24 months",
-        "name": "Zoya Chatterjee",
-        "rank": 0.371,
-        "warmth": 0.36,
-        "headline": "Head of Compliance, CREDITACCESS GRAMEEN LIMITED",
-        "how_known": "industry-friend",
-        "relevance": 0.38,
-        "synthetic": true,
-        "compliance": null,
-        "warmth_why": "industry-friend, last spoke Sep 2025, 0 interactions in 24 months",
-        "last_contact": "2025-09-03",
-        "warmth_label": "medium",
-        "what_theyd_know": "How CREDITACCESS GRAMEEN LIMITED runs legal-compliance today"
-       },
-       {
-        "id": 19,
-        "why": "worked at peer CREDITACCESS GRAMEEN LIMITED as Head of Investor Relations (2017–2019); industry-friend, last spoke Jun 2025, 0 interactions in 24 months",
-        "name": "Radhika Saxena",
-        "rank": 0.201,
-        "warmth": 0.51,
-        "headline": "Head of Investor Relations, CREDITACCESS GRAMEEN LIMITED",
-        "how_known": "industry-friend",
-        "relevance": 0.11,
-        "synthetic": true,
-        "compliance": null,
-        "warmth_why": "industry-friend, last spoke Jun 2025, 0 interactions in 24 months",
-        "last_contact": "2025-06-16",
-        "warmth_label": "medium",
-        "what_theyd_know": "How CREDITACCESS GRAMEEN LIMITED runs IR up to 2019"
-       }
-      ],
-      "people": [],
-      "points": 7,
-      "questions": [
-       "Why raise now — growth, balance-sheet repair or regulatory capital?",
-       "Who are the likely buyers and at what discount?",
-       "Does this change the dividend or capex plans?"
-      ]
-     },
-     "pdf_url": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_11112026171309_SEintimationopeningofissue.pdf",
-     "category": "fund_raise",
-     "headline": "Outcome of QIP 2026 Special Committee meeting",
-     "sub_type": null,
-     "components": {
-      "base": {
-       "why": "model (qwen2.5:7b): Outcome of QIP 2026 Special Committee meeting",
-       "points": 18
-      },
-      "network": {
-       "why": "Diya Dutta can give context",
-       "points": 7
-      },
-      "magnitude": {
-       "why": null,
-       "points": 0
-      },
-      "portfolio": {
-       "why": "6.7% of portfolio",
-       "points": 8
-      },
-      "staleness": {
-       "why": "30 h old",
-       "points": -4
-      },
-      "user_pref": {
-       "why": null,
-       "points": 0
-      },
-      "price_reaction": {
-       "why": {
-        "session": "2026-11-12",
-        "volume_multiple": 1.2,
-        "abnormal_return_pct": 3.2
-       },
-       "points": 6
-      }
-     },
-     "filing_ids": [
-      418
-     ],
-     "category_label": "Fund raise"
-    }
-   ],
-   "label": "Fund raise"
-  },
-  {
    "count": 1,
    "items": [
     {
@@ -1323,7 +977,7 @@
      "card": null,
      "kind": "filing",
      "tier": "buried",
-     "score": 23,
+     "score": 20,
      "symbol": "HDFCBANK",
      "bundled": 0,
      "company": "HDFC Bank Limited",
@@ -1408,8 +1062,8 @@
        "points": 9
       },
       "staleness": {
-       "why": "6 h old",
-       "points": -1
+       "why": "26 h old",
+       "points": -4
       },
       "user_pref": {
        "why": null,
@@ -1427,13 +1081,69 @@
     }
    ],
    "label": "Re-appointments"
+  },
+  {
+   "count": 1,
+   "items": [
+    {
+     "id": "f566",
+     "ts": "2026-11-12T11:43:06+00:00",
+     "card": null,
+     "kind": "filing",
+     "tier": "buried",
+     "score": 15,
+     "symbol": "M&M",
+     "bundled": 0,
+     "company": "Mahindra & Mahindra Limited",
+     "network": null,
+     "pdf_url": "https://nsearchives.nseindia.com/corporate/AmitDodani_12112026171250_MonthlyReportOct2026.pdf",
+     "category": "unclassified",
+     "headline": "Mahindra & Mahindra reports October production, sales and export figures",
+     "sub_type": null,
+     "components": {
+      "base": {
+       "why": "model (qwen2.5:7b): Mahindra & Mahindra reports October production, sales and export figures",
+       "points": 12
+      },
+      "network": {
+       "why": "no one in your network is close to this",
+       "points": 0
+      },
+      "magnitude": {
+       "why": null,
+       "points": 0
+      },
+      "portfolio": {
+       "why": "6.1% of portfolio",
+       "points": 7
+      },
+      "staleness": {
+       "why": "26 h old",
+       "points": -4
+      },
+      "user_pref": {
+       "why": null,
+       "points": 0
+      },
+      "price_reaction": {
+       "why": null,
+       "points": 0
+      }
+     },
+     "filing_ids": [
+      566
+     ],
+     "category_label": "Routine paperwork"
+    }
+   ],
+   "label": "Routine paperwork"
   }
  ],
  "counts": {
   "now": 0,
   "worth": 1,
-  "buried": 21,
-  "filings": 22
+  "buried": 18,
+  "filings": 19
  },
  "window": "3d",
  "placeholder": false,

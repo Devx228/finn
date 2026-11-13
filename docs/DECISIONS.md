@@ -660,3 +660,35 @@ tests in api/tests/test_pull.py.
 - Data fetched on the hotspot (no refusals): the 7 ledger companies' FY2026 annual reports (7
   requests, ~101 MB) and the text of 39 event filings from the last 30 days that had never been read
   (needed for the ranking fix). A full copy of Neon is in the local Docker DB for work on Wi-Fi.
+
+## 2026-11-13 (late night) — FOUND AND FIXED: ranking scored whole categories without reading them
+**Failure.** CG Power's 5 Nov filing "Action(s) taken or orders passed" was a pollution board
+directing closure of its Waluj plant. One rule gave every filing in that NSE category a flat 34
+without reading it, no model wrote a summary, and the card's headline was the exchange's generic
+label. Same pattern elsewhere: every L&T order win 38 regardless of size; QIPs, press releases and
+FDA approvals rated by a small local model or not at all; "Press release on 20 October 2026" shown
+as a summary. Found by the owner checking the "moved with no disclosure" claim.
+**Fix (finn/push/severity.py, pipeline.severity_stage / fact_lines_stage).** No event category
+(orders passed, order wins, share sales, press releases, acquisitions, capex) keeps a flat score
+without its text being read: (1) operational stop (closure, suspension, licence cancelled, search,
+attachment) → top tier; (2) else the rupee amount at stake for that kind of event (penalty, order
+value, amount raised, consideration, outlay; never per-share prices or cumulative figures) as a
+share of the company's own trailing revenue; L&T-style order classes via the band table printed in
+the same filing; a company statement of "no material impact" caps it; (3) else the hosted model
+rates it from the text. Every event filing gets a one-line fact from the hosted model, pointed at
+its own item in multi-item board letters; a line that says nothing is discarded and the item is
+buried; an operational stop falls back to the filing's own sentence. Routine sub-types (results
+decks, monthly volumes, subsidiary incorporations, debt allotments) keep flat scores.
+**Checked by reading the filings:** Maruti's ₹13,000 cr is a *favourable* ITAT order (positive
+tax impact; contingent liability cut by ₹6,300 cr; "no major impact on financials") — capped at
+38, not promoted. The under-40 management changes are not CEO/MD/CFO changes (CCO, CISO, SMP,
+independent/non-executive directors, an ED re-appointment); two UltraTech resignations have no
+text (not PDFs) and wait for the hotspot. Rumour clarifications at Sun Pharma (×2) and AU Bank
+also have no text and stay unscored-by-text until fetched.
+**Result:** 7-day Now gains CG Power's High Court stay of the closure order; 30-day Now gains both
+CG Power filings (closure order and stay). 70 filings: base up 14, down 13, unchanged 43; tiers
+buried→worth 4, worth→now 1, worth→buried 10. Full table: docs/ranking_rescore.md. Hosted-model
+ratings varied between runs before caching (Bajaj QIP launch 18 vs 51; Sun Pharma ILUMYA 45 vs 39):
+answers are cached now, so they are stable, but the model's rating is a judgment, not a measurement.
+Labelled set +10 rows (124); 4 existing rows gained expected ranges; L&T #795 relabelled
+worth→buried (a ₹1,000–2,500 cr order is under 1% of L&T's revenue).

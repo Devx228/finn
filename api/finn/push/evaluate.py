@@ -111,3 +111,24 @@ def eval_model(rows: list[dict], route: str, n: int) -> dict:
         "sec_per_filing": round(secs / len(todo), 2) if todo else None,
         "misses": misses,
     }
+
+
+def eval_severity(rows: list[dict]) -> dict:
+    """Ranking regression set: each labelled row with `expect_base` [lo, hi] is checked against the
+    base the pipeline stored (rules → text severity → hosted-model rating). Reports every miss."""
+    checks = [r for r in rows if r.get("expect_base")]
+    with db.connection() as conn:
+        got = {
+            fid: (base, reason)
+            for fid, base, reason in conn.execute(
+                "SELECT filing_id, base, reason FROM filing_class WHERE filing_id = ANY(%s)",
+                ([r["filing_id"] for r in checks],),
+            ).fetchall()
+        }
+    misses = []
+    for r in checks:
+        lo, hi = r["expect_base"]
+        b, why = got.get(r["filing_id"], (None, None))
+        if b is None or not lo <= b <= hi:
+            misses.append((r["filing_id"], r["symbol"], r["expect_base"], b, (why or "")[:100]))
+    return {"checked": len(checks), "passed": len(checks) - len(misses), "misses": misses}

@@ -92,6 +92,7 @@ class Item:
     network: dict | None = None
     components: dict = field(default_factory=dict)
     score: int = 0
+    vacant: bool = False  # an event filing with nothing useful to say: always buried
 
 
 def portfolio(conn: Connection) -> dict[str, dict]:
@@ -107,7 +108,8 @@ def load_items(conn: Connection, since: datetime) -> list[Item]:
         """
         SELECT f.id, f.company_id, c.nse_symbol, c.name, f.ts_ist, coalesce(k.category, 'unclassified'),
                CASE WHEN k.filing_id IS NULL THEN 'pending' ELSE k.sub_type END, coalesce(k.base, 0),
-               f.subject, f.pdf_url, coalesce(k.one_line, ''), coalesce(k.reason, 'not yet classified')
+               f.subject, f.pdf_url, coalesce(k.one_line, ''), coalesce(k.reason, 'not yet classified'),
+               f.exch_category
         FROM filings f JOIN companies c ON c.id = f.company_id
         LEFT JOIN filing_class k ON k.filing_id = f.id
         WHERE c.nse_symbol = ANY(%s) AND f.ts_ist >= %s AND f.dup_of IS NULL
@@ -116,7 +118,19 @@ def load_items(conn: Connection, since: datetime) -> list[Item]:
         (list(port), since),
     ).fetchall()
     items = []
-    for fid, cid, sym, name, ts, cat, st, base, subj, url, one_line, reason in rows:
+    from finn.push import severity as sv
+
+    for fid, cid, sym, name, ts, cat, st, base, subj, url, one_line, reason, exch in rows:
+        # the headline is the fact from the filing; an event filing whose only "summary" is the
+        # exchange's label or "press release on <date>" has nothing to say and is buried
+        if sv.says_nothing(one_line, exch):
+            one_line = ""
+        vacant = (
+            cat in sv.EVENT
+            and (st or "") not in sv.ROUTINE_SUBTYPES
+            and not one_line
+            and sv.says_nothing(clean_subject(subj), exch)
+        )
         items.append(
             Item(
                 f"f{fid}",
@@ -131,6 +145,7 @@ def load_items(conn: Connection, since: datetime) -> list[Item]:
                 one_line or clean_subject(subj),
                 url,
                 reason,
+                vacant=vacant,
             )
         )
     return bundle_results(items)
@@ -295,10 +310,10 @@ def _network_component(it: Item) -> dict:
 
 def tiers(items: list[Item]) -> dict[str, list[Item]]:
     ranked = sorted(items, key=lambda i: (-i.score, i.ts))
-    now = [i for i in ranked if i.score >= NOW_MIN][:NOW_CAP]
+    now = [i for i in ranked if i.score >= NOW_MIN and not i.vacant][:NOW_CAP]
     rest = [i for i in ranked if i not in now]
-    worth = [i for i in rest if i.score >= WORTH_MIN]
-    buried = [i for i in rest if i.score < WORTH_MIN]
+    worth = [i for i in rest if i.score >= WORTH_MIN and not i.vacant]
+    buried = [i for i in rest if i.score < WORTH_MIN or i.vacant]
     return {"now": now, "worth": worth, "buried": buried}
 
 
