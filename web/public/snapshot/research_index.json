@@ -7,7 +7,7 @@
    "calls": 8,
    "symbol": "KAYNES",
    "tracks": 9,
-   "resolved": 5
+   "resolved": 3
   },
   {
    "hero": false,
@@ -15,7 +15,7 @@
    "role": "second: lender (NBFC) — loan growth, ROA, ROE, credit cost",
    "calls": 8,
    "symbol": "CREDITACC",
-   "tracks": 17,
+   "tracks": 19,
    "resolved": 5
   },
   {
@@ -24,7 +24,7 @@
    "role": "guidance cuts and constant-currency handling (read 4 of 8 calls)",
    "calls": 4,
    "symbol": "INFY",
-   "tracks": 4,
+   "tracks": 6,
    "resolved": 2
   },
   {
@@ -61,6 +61,15 @@
    "calls": 7,
    "symbol": "PERSISTENT",
    "tracks": 3,
+   "resolved": 0
+  },
+  {
+   "hero": false,
+   "name": "Polycab India Limited",
+   "role": null,
+   "calls": 8,
+   "symbol": "POLYCAB",
+   "tracks": 10,
    "resolved": 0
   },
   {

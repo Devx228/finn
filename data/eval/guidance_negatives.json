@@ -1,0 +1,20 @@
+{
+  "note": "Sentences that must NOT become a scored guidance claim (live-run review, POLYCAB, 2026-11-13). Each was scored as delivered/beat by the earlier rules. 'expect' is what extraction may produce: nothing, or an item whose period is open (no year / medium term).",
+  "cases": [
+    {"symbol": "POLYCAB", "call": "Q3 FY25 call, 29 Jan 2025", "page": 3, "call_fy": 2025, "expect": "nothing",
+     "why": "a target already achieved, stated as an achievement",
+     "quote": "This is a momentous occasion by us as we have achieved our first-ever 5-year guidance of reaching ₹ 200 billion top-line by FY26, ahead of the committed timeline."},
+    {"symbol": "POLYCAB", "call": "Q3 FY25 call, 29 Jan 2025", "page": 3, "call_fy": 2025, "expect": "nothing",
+     "why": "a reported figure for calendar 2024, not guidance",
+     "quote": "Our calendar year 2024 top-line stands at ₹ 210 billion, a 5% overachievement, that too over a year ahead of the targeted period."},
+    {"symbol": "POLYCAB", "call": "Q3 FY25 call, 29 Jan 2025", "page": 7, "call_fy": 2025, "expect": "nothing",
+     "why": "a revenue-mix target (international share), not revenue growth",
+     "quote": "Our next target is to grow the share of international business to north of 10% of the overall Company's revenue."},
+    {"symbol": "POLYCAB", "call": "Q4 FY25 call, 14 May 2025", "page": 11, "call_fy": 2026, "expect": "nothing",
+     "why": "a segment's actual for the year just ended, restated as EBITDA",
+     "quote": "Chirayu Upadhyaya: EBIT margins for cables and wires for the year were at 13.6%, so EBITDA margins would have been in the range of 14% to 15%."},
+    {"symbol": "POLYCAB", "call": "Q1 FY26 call, 25 Jul 2025", "page": 11, "call_fy": 2026, "expect": "open",
+     "why": "a long-term band with no year: open, never resolved",
+     "quote": "But otherwise, the longer- term guidance will continue to be the 11% to 13% EBITDA margins."}
+  ]
+}

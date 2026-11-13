@@ -1,6 +1,6 @@
 {
  "name": "Kaynes Technology India Limited",
- "as_of": "2026-11-13T14:05:46.635858+05:30",
+ "as_of": "2026-11-13T17:29:04.307503+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12082026164943_TranscriptoftheEarningAnnouncement.pdf",
@@ -143,10 +143,10 @@
  ],
  "format": "indas",
  "ledger": {
-  "open": 0,
-  "missed": 3,
-  "resolved": 5,
-  "delivered": 2,
+  "open": 2,
+  "missed": 2,
+  "resolved": 3,
+  "delivered": 1,
   "calls_read": 8,
   "calls_listed": 8,
   "unverifiable": 4
@@ -206,13 +206,12 @@
   "bear": [
    "EBITDA margin 15.6% in Q1 FY27, down 120 bps YoY",
    "PAT -24.4% YoY in Q1 FY27",
-   "FY26 revenue growth missed: 33.0% vs 50%",
-   "FY25 revenue growth missed: 50.8% vs 55%"
+   "FY25 revenue growth missed: 50.8% vs 55%",
+   "FY25 revenue guidance cut 1× (3000 ₹ cr → 2800–2900 ₹ cr)"
   ],
   "bull": [
    "Revenue +40.5% YoY in Q1 FY27",
-   "Delivered FY26 ebitda margin: 15.8% vs 15.6%",
-   "Delivered FY25 ebitda margin: 15.1% vs 15%"
+   "Delivered FY25 ebitda margin: 15.1% vs at least 15%"
   ]
  },
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
@@ -303,128 +302,6 @@
   },
   {
    "label": "Revenue growth",
-   "story": "FY26 revenue growth: 50% → company reported 33.0% (FY) → missed.",
-   "actual": {
-    "span": "FY",
-    "unit": "%",
-    "basis": "company-reported",
-    "value": 33.0,
-    "source": {
-     "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/IntimationEarningsCallTranscriptQ4_2026.pdf",
-     "call": "Q4 FY26 call",
-     "from": "company IR site",
-     "page": 5,
-     "quote": "And overall, for the year, we've grown at 33%, while the operational EBITDA for Q4 '26 came up to INR1,937 million, translating into an EBITDA margin of 15.6%, reflecting our continued operational resilience and scale expansion."
-    },
-    "quarters": 4
-   },
-   "metric": "revenue_growth",
-   "period": "FY26",
-   "points": [
-    {
-     "by": "rules",
-     "kw": [
-      89,
-      95
-     ],
-     "low": 50.0,
-     "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_08112025175717_EarningscalltranscriptQ22026Signed.pdf",
-     "call": "Q2 FY26 call",
-     "high": 50.0,
-     "page": 15,
-     "unit": "%",
-     "label": "revenue growth",
-     "quote": "So as we go forward, we expect automotive to grow at the rate of growth of our company's growth rate, which will be anywhere around 50% plus/minus, you can take.",
-     "scope": "company",
-     "change": "first given",
-     "metric": "revenue_growth",
-     "period": "FY26",
-     "prefix": false,
-     "source": "NSE",
-     "call_date": "2025-11-08",
-     "direction": "unclear"
-    }
-   ],
-   "context": null,
-   "verdict": "missed",
-   "resolved": true,
-   "run_rate": null,
-   "cross_check": {
-    "span": "FY",
-    "unit": "%",
-    "basis": "computed from the results filings: reported ₹ growth, consolidated",
-    "value": 33.2,
-    "source": {
-     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1666785_13052026102614_WEB.xml"
-    },
-    "quarters": 4
-   },
-   "verdict_why": "33.0% vs 50%",
-   "as_of_quarter": "2026-06-30"
-  },
-  {
-   "label": "EBITDA margin",
-   "story": "FY26 ebitda margin: 15.6% → company reported 15.8% (FY) → beat.",
-   "actual": {
-    "span": "FY",
-    "unit": "%",
-    "basis": "company-reported",
-    "value": 15.8,
-    "source": {
-     "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/IntimationEarningsCallTranscriptQ4_2026.pdf",
-     "call": "Q4 FY26 call",
-     "from": "company IR site",
-     "page": 3,
-     "quote": "This translates into an EBITDA margin of 15.8% for FY '26, while profit after tax came in at INR3,639 million, representing a PAT margin of 10% for FY '26."
-    },
-    "quarters": 4
-   },
-   "metric": "ebitda_margin",
-   "period": "FY26",
-   "points": [
-    {
-     "by": "rules",
-     "kw": [
-      53,
-      59
-     ],
-     "low": 15.6,
-     "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_05082025165345_SEintimationtranscriptSigned.pdf",
-     "call": "Q1 FY26 call",
-     "high": 15.6,
-     "page": 13,
-     "unit": "%",
-     "label": "ebitda margin",
-     "quote": "We are saying that looking at the first quarter, the EBITDA might exceed the guidance of 15.6%.",
-     "scope": "company",
-     "change": "first given",
-     "metric": "ebitda_margin",
-     "period": "FY26",
-     "prefix": false,
-     "source": "NSE",
-     "call_date": "2025-08-05",
-     "direction": "unclear"
-    }
-   ],
-   "context": null,
-   "verdict": "beat",
-   "resolved": true,
-   "run_rate": null,
-   "cross_check": {
-    "span": "FY",
-    "unit": "%",
-    "basis": "computed from the results filings: EBITDA ÷ revenue from the filings",
-    "value": 15.8,
-    "source": {
-     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1666785_13052026102614_WEB.xml"
-    },
-    "quarters": 4
-   },
-   "verdict_why": "15.8% vs 15.6%",
-   "as_of_quarter": "2026-06-30"
-  },
-  {
-   "label": "Revenue growth",
    "story": "FY25 revenue growth: 55% → filings show 50.8% (FY) → missed.",
    "actual": {
     "span": "FY",
@@ -473,7 +350,7 @@
   },
   {
    "label": "EBITDA margin",
-   "story": "FY25 ebitda margin: 15% → filings show 15.1% (FY) → beat.",
+   "story": "FY25 ebitda margin: 15% → filings show 15.1% (FY) → delivered.",
    "actual": {
     "span": "FY",
     "unit": "%",
@@ -500,7 +377,7 @@
      "page": 10,
      "unit": "%",
      "label": "operating margin",
-     "quote": "And the margins will be 15% plus for the year.",
+     "quote": "So revenue guidance will be somewhere between INR2,800 crores and INR2,900 crores. And the margins will be 15% plus for the year.",
      "scope": "company",
      "change": "first given",
      "metric": "ebitda_margin",
@@ -512,11 +389,11 @@
     }
    ],
    "context": null,
-   "verdict": "beat",
+   "verdict": "delivered",
    "resolved": true,
    "run_rate": null,
    "cross_check": null,
-   "verdict_why": "15.1% vs 15%",
+   "verdict_why": "15.1% vs at least 15%",
    "as_of_quarter": "2026-06-30"
   },
   {
@@ -571,7 +448,7 @@
      "page": 10,
      "unit": "₹ cr",
      "label": "revenue",
-     "quote": "So revenue guidance will be somewhere between INR2,800 crores and INR2,900 crores.",
+     "quote": "So revenue guidance will be somewhere between INR2,800 crores and INR2,900 crores. And the margins will be 15% plus for the year.",
      "scope": "company",
      "change": "cut",
      "metric": "revenue",
@@ -587,7 +464,129 @@
    "resolved": true,
    "run_rate": null,
    "cross_check": null,
-   "verdict_why": "₹2,722 cr vs ₹2,800 cr guided",
+   "verdict_why": "₹2,722 cr vs ₹2,800–2,900 cr guided",
+   "as_of_quarter": "2026-06-30"
+  },
+  {
+   "label": "Revenue growth",
+   "story": "no year stated revenue growth: 40–50% → 50% (raised once) → open-ended.",
+   "actual": null,
+   "metric": "revenue_growth",
+   "period": "no year stated",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      55,
+      59
+     ],
+     "low": 40.0,
+     "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
+     "call": "Q3 FY25 call",
+     "high": 50.0,
+     "page": 19,
+     "unit": "%",
+     "label": "revenue growth",
+     "quote": "We target companies which are similar or better in terms of profitability. So we can say that roughly the EMS business is good to grow anywhere between 40% to 50% on its own by generating its own revenues and then implementing capex.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "revenue_growth",
+     "period": "no year stated",
+     "prefix": false,
+     "source": "company IR site",
+     "call_date": "2025-02-01",
+     "direction": "unclear"
+    },
+    {
+     "by": "rules",
+     "kw": [
+      89,
+      95
+     ],
+     "low": 50.0,
+     "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_08112025175717_EarningscalltranscriptQ22026Signed.pdf",
+     "call": "Q2 FY26 call",
+     "high": 50.0,
+     "page": 15,
+     "unit": "%",
+     "label": "revenue growth",
+     "quote": "So as we go forward, we expect automotive to grow at the rate of growth of our company's growth rate, which will be anywhere around 50% plus/minus, you can take.",
+     "scope": "company",
+     "change": "raised",
+     "metric": "revenue_growth",
+     "period": "no year stated",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2025-11-08",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "open-ended",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "The quote names no year, so it can't be held to one; listed, not scored",
+   "as_of_quarter": "2026-06-30"
+  },
+  {
+   "label": "EBITDA margin",
+   "story": "no year stated ebitda margin: 15% → 15.6% (raised once) → open-ended.",
+   "actual": null,
+   "metric": "ebitda_margin",
+   "period": "no year stated",
+   "points": [
+    {
+     "by": "model",
+     "low": 15.0,
+     "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
+     "call": "Q3 FY25 call",
+     "high": 15.0,
+     "page": 14,
+     "unit": "%",
+     "label": "margin",
+     "quote": "Yes, that's the target, 15% minimum, 15% is the standard margin that we talked about.",
+     "scope": "company",
+     "change": "first given",
+     "future": true,
+     "metric": "ebitda_margin",
+     "period": "no year stated",
+     "source": "company IR site",
+     "call_date": "2025-02-01",
+     "direction": "maintained",
+     "confidence": "high",
+     "by_management": true
+    },
+    {
+     "by": "rules",
+     "kw": [
+      53,
+      59
+     ],
+     "low": 15.6,
+     "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_05082025165345_SEintimationtranscriptSigned.pdf",
+     "call": "Q1 FY26 call",
+     "high": 15.6,
+     "page": 13,
+     "unit": "%",
+     "label": "ebitda margin",
+     "quote": "We are saying that looking at the first quarter, the EBITDA might exceed the guidance of 15.6%.",
+     "scope": "company",
+     "change": "raised",
+     "metric": "ebitda_margin",
+     "period": "no year stated",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2025-08-05",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "open-ended",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "The quote names no year, so it can't be held to one; listed, not scored",
    "as_of_quarter": "2026-06-30"
   },
   {
@@ -631,7 +630,7 @@
      "page": 8,
      "unit": "₹ cr",
      "label": "capex",
-     "quote": "So just to remind you, the total capex for semicon is like INR3,400 crores and total capex for PC board is about INR1,400 crores.",
+     "quote": "And then, of course, FY '27, we will do -- we'll complete all the capex for semicon and PC board. So just to remind you, the total capex for semicon is like INR3,400 crores and total capex for PC board is about INR1,400 crores.",
      "scope": "company",
      "change": "raised",
      "metric": "capex",
@@ -696,7 +695,7 @@
      "page": 14,
      "unit": "₹ cr",
      "label": "capex",
-     "quote": "Other businesses, there is already a DPR, the INR3,200 crores is the total capex for OSAT, INR1,400 crores is the total capex for PC Board.",
+     "quote": "Some small amounts of capex we will do to make sure that the debottlenecking of lines are done and we start getting better asset turnaround. Other businesses, there is already a DPR, the INR3,200 crores is the total capex for OSAT, INR1,400 crores is the total capex for PC Board.",
      "scope": "segment",
      "change": "cut",
      "metric": "capex",
@@ -959,5 +958,9 @@
    "revenue_yoy": 40.5,
    "ebitda_margin": 15.6
   }
- ]
+ ],
+ "provenance": {
+  "live": false,
+  "reviewed": true
+ }
 }

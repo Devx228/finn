@@ -320,6 +320,7 @@ export interface Ledger {
 }
 
 export interface Research {
+  provenance?: { live: boolean; reviewed: boolean };
   symbol: string;
   name: string;
   industry: string | null;

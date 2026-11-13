@@ -1,6 +1,6 @@
 {
  "name": "Infosys Limited",
- "as_of": "2026-11-13T14:05:50.365924+05:30",
+ "as_of": "2026-11-13T17:29:34.318777+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173824_SE_filing_Earnings_call_transcript.pdf",
@@ -75,7 +75,7 @@
  ],
  "format": "indas",
  "ledger": {
-  "open": 2,
+  "open": 4,
   "missed": 0,
   "resolved": 2,
   "delivered": 2,
@@ -325,7 +325,7 @@
   },
   {
    "label": "Operating margin",
-   "story": "FY27 operating margin: 20–22% → 20–22% → 20–22% (held) → company reported 21.0% (2Q YTD) → on track.",
+   "story": "FY27 operating margin: 20–22% → 20–22% (held) → company reported 21.0% (2Q YTD) → on track.",
    "actual": {
     "span": "2Q YTD",
     "unit": "%",
@@ -365,29 +365,6 @@
      "source": "NSE",
      "call_date": "2026-04-27",
      "direction": "unclear"
-    },
-    {
-     "by": "rules",
-     "kw": [
-      61,
-      77
-     ],
-     "low": 20.0,
-     "url": "https://nsearchives.nseindia.com/corporate/Infosys_28072026202438_SE_filing_Earnings_call_transcript.pdf",
-     "call": "Q1 FY27 call",
-     "high": 22.0,
-     "page": 6,
-     "unit": "%",
-     "label": "operating margin",
-     "quote": "Our operating margin guidance remains the same at 20% to 22% operating margin.",
-     "scope": "company",
-     "change": "held",
-     "metric": "operating_margin",
-     "period": "FY27",
-     "prefix": true,
-     "source": "NSE",
-     "call_date": "2026-07-28",
-     "direction": "maintained"
     },
     {
      "by": "rules",
@@ -541,6 +518,130 @@
     "quarters": 4
    },
    "verdict_why": "21.0% within 20–22%",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Revenue growth",
+   "story": "no year stated revenue growth: 2% → open-ended.",
+   "actual": null,
+   "metric": "revenue_growth",
+   "period": "no year stated",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      51,
+      57
+     ],
+     "low": 2.0,
+     "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173824_SE_filing_Earnings_call_transcript.pdf",
+     "call": "Q2 FY27 call",
+     "high": 2.0,
+     "page": 8,
+     "unit": "%",
+     "label": "revenue growth",
+     "quote": "So, both of that put together impacted our overall growth guidance by 2% or continues to impact roughly that.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "revenue_growth",
+     "period": "no year stated",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2026-10-28",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "open-ended",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "The quote names no year, so it can't be held to one; listed, not scored",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Operating margin",
+   "story": "no year stated operating margin: 21% → 20–22% → 21% (held) → open-ended.",
+   "actual": null,
+   "metric": "operating_margin",
+   "period": "no year stated",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      15,
+      21
+     ],
+     "low": 21.0,
+     "url": "https://nsearchives.nseindia.com/corporate/Infosys_19012026222220_SEfiling_Earningscalltranscript_19012026.pdf",
+     "call": "Q3 FY26 call",
+     "high": 21.0,
+     "page": 39,
+     "unit": "%",
+     "label": "operating margin",
+     "quote": "We have had a strong quarter, good large deals, increase in our Infosys Limited 22 guidance. Our nine-month margin sits at 21%.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "operating_margin",
+     "period": "no year stated",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2026-01-19",
+     "direction": "unclear"
+    },
+    {
+     "by": "rules",
+     "kw": [
+      61,
+      77
+     ],
+     "low": 20.0,
+     "url": "https://nsearchives.nseindia.com/corporate/Infosys_28072026202438_SE_filing_Earnings_call_transcript.pdf",
+     "call": "Q1 FY27 call",
+     "high": 22.0,
+     "page": 6,
+     "unit": "%",
+     "label": "operating margin",
+     "quote": "Our operating margin guidance remains the same at 20% to 22% operating margin.",
+     "scope": "company",
+     "change": "held",
+     "metric": "operating_margin",
+     "period": "no year stated",
+     "prefix": true,
+     "source": "NSE",
+     "call_date": "2026-07-28",
+     "direction": "maintained"
+    },
+    {
+     "by": "rules",
+     "kw": [
+      4,
+      10
+     ],
+     "low": 21.0,
+     "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173824_SE_filing_Earnings_call_transcript.pdf",
+     "call": "Q2 FY27 call",
+     "high": 21.0,
+     "page": 6,
+     "unit": "%",
+     "label": "operating margin",
+     "quote": "So all of that is reflected in our guidance on the revenue and which is where it is 1% to 2% now. Our margin continues to remain at 21%.",
+     "scope": "company",
+     "change": "narrowed",
+     "metric": "operating_margin",
+     "period": "no year stated",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2026-10-28",
+     "direction": "maintained"
+    }
+   ],
+   "context": null,
+   "verdict": "open-ended",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "The quote names no year, so it can't be held to one; listed, not scored",
    "as_of_quarter": "2026-09-30"
   }
  ],
@@ -750,5 +851,9 @@
    "revenue_yoy": 10.7,
    "ebitda_margin": 23.7
   }
- ]
+ ],
+ "provenance": {
+  "live": false,
+  "reviewed": true
+ }
 }

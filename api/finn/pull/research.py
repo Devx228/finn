@@ -323,14 +323,32 @@ def _computed(conn, cid, qs: list[dict], metric: str, fy: int, fy_start: int, la
 FILING_METRICS = {"capex", "aum_growth", "credit_cost", "roa", "roe"}
 
 
+# "at least 20%", "north of 10%": a floor, met by anything at or above it
+FLOOR = re.compile(
+    r"at least|north of|more than|in excess of|upwards of|\bminimum\b|\bexceed|"
+    r"\b(?:over|above)\s+(?:₹|rs\.?|inr)?\s?\d|\d\s*%?\s*(?:\+|plus\b(?!\s*/\s*minus|\s+or\s+minus))",
+    re.I,
+)
+SUSPECT_GAP = 0.30  # guided vs actual this far apart: probably not the same thing
+
+
 def verdict(
-    actual: dict | None, low: float, high: float, final: bool, lower_better: bool = False
+    actual: dict | None,
+    low: float,
+    high: float,
+    final: bool,
+    lower_better: bool = False,
+    floor: bool = False,
 ) -> tuple[str, str]:
+    """beat = clearly beyond the band in the good direction; delivered = within it (or meeting a
+    floor); missed = short of it. Before the year ends: ahead / on track / behind."""
     if actual is None:
         return NOT_SCORED, "No actual for this period"
     v = actual["value"]
     slack = 0.05  # rounding only: reported figures carry one decimal
     band = f"{low:g}–{high:g}%" if low != high else f"{low:g}%"
+    if floor and not lower_better and v >= low - slack:
+        return ("delivered" if final else "on track"), f"{v}% vs at least {low:g}%"
     if v < low - slack:
         good = lower_better
         return (
@@ -355,6 +373,32 @@ def _capex_verdict(act: dict, plan: float) -> tuple[str, str]:
         "on track" if pace >= 0.75 else "behind",
         f"₹{spent:,.0f} cr spent in {n}Q ({spent / plan * 100:.0f}% of the ₹{plan:,.0f} cr plan)",
     )
+
+
+def _already_passed(qs: list[dict], metric: str, last: dict) -> float | None:
+    """For a revenue level target: trailing-four-quarter revenue reported before the call that
+    stated it. If that already met the target, the 'guidance' restates a goal already reached."""
+    if metric != "revenue" or last.get("unit") != "₹ cr" or not last.get("call_date"):
+        return None
+    before = [q for q in qs if q["revenue"] is not None and str(q["end"]) < last["call_date"]]
+    if len(before) < 4:
+        return None
+    ttm = sum(q["revenue"] for q in before[-4:])
+    return ttm if ttm >= last["low"] else None
+
+
+def _suspect(act: dict, last: dict, fy: int | None) -> bool:
+    mid = (last["low"] + last["high"]) / 2
+    if not mid or fy is None:
+        return False
+    if abs(act["value"] / mid - 1) <= SUSPECT_GAP:
+        return False
+    named = gd.FY.search(last["quote"])
+    if named:
+        y = int(named.group(1) or named.group(2) or named.group(4))
+        if y == fy % 100:
+            return False  # the quote names this exact year: the comparison is unambiguous
+    return True
 
 
 def tracks(
@@ -448,7 +492,22 @@ def tracks(
         if segment:
             v, why = NOT_SCORED, "A target for one business; the filings report the company as a whole"
         elif fy is None:
-            v, why = "open-ended", "No year attached, so it never falls due; listed, not scored"
+            v, why = (
+                "open-ended",
+                (
+                    "The quote names no year, so it can't be held to one; listed, not scored"
+                    if period == gd.NO_YEAR
+                    else "No year attached, so it never falls due; listed, not scored"
+                ),
+            )
+        elif (passed := _already_passed(qs, metric, last)) is not None:
+            v, why = (
+                NOT_SCORED,
+                (
+                    f"Already reached when stated: revenue for the four quarters before the "
+                    f"{last['call']} was ₹{passed:,.0f} cr, so this restates an old goal, not a promise"
+                ),
+            )
         elif not any(q["fy"] == fy for q in qs):
             v, why = "pending", f"Falls due with {period} results, not reported yet"
         else:
@@ -488,14 +547,36 @@ def tracks(
             elif metric == "capex":
                 v, why = _capex_verdict(act, last["high"])
             elif metric == "revenue" and last["unit"] == "₹ cr":
-                hit = act["value"] >= last["low"] * 0.98
-                v = "delivered" if hit else "missed"
-                why = f"₹{act['value']:,.0f} cr vs ₹{last['low']:,.0f} cr guided"
+                a, lo, hi = act["value"], last["low"], last["high"]
+                floor = bool(FLOOR.search(last["quote"]))
+                band = f"₹{lo:,.0f} cr" if lo == hi else f"₹{lo:,.0f}–{hi:,.0f} cr"
+                v = "missed" if a < lo * 0.98 else "delivered" if floor or a <= hi * 1.02 else "beat"
+                why = f"₹{a:,.0f} cr vs {band} guided"
             elif last["unit"] != "%":
                 v, why = NOT_SCORED, "Guided in a unit the filings don't report"
                 act = None
             else:
-                v, why = verdict(act, last["low"], last["high"], act["quarters"] == 4, lower)
+                v, why = verdict(
+                    act,
+                    last["low"],
+                    last["high"],
+                    act["quarters"] == 4,
+                    lower,
+                    bool(FLOOR.search(last["quote"])),
+                )
+            # guided and actual far apart: probably a different scope or definition, unless the
+            # quote itself names this exact fiscal year
+            if act is not None and v in ("delivered", "beat", "missed") and _suspect(act, last, fy):
+                gap = abs(act["value"] / ((last["low"] + last["high"]) / 2) - 1) * 100
+                cross = act
+                act = None
+                v, why = (
+                    NOT_SCORED,
+                    (
+                        f"Guided and actual differ by {gap:.0f}%, and the quote doesn't name {period}: "
+                        "probably not the same measure, so not scored"
+                    ),
+                )
         if act and "source" not in act:
             act["source"] = {"xbrl": next((q["xbrl"] for q in reversed(qs) if q["fy"] == fy), None)}
         if cross and "source" not in cross:
@@ -680,8 +761,17 @@ def _quarter_before(d: date) -> date:
     return date(y, m, calendar.monthrange(y, m)[1])
 
 
-def materialise(conn: Connection, symbol: str, router: Router | None, nse: NSE | None) -> dict:
+def materialise(
+    conn: Connection, symbol: str, router: Router | None, nse: NSE | None, live: bool = False
+) -> dict:
     body = build(conn, symbol, router, nse)
+    # Reviewed = in the research set the owner and FINN checked by hand (data/research_set.json).
+    # Anything else, and every on-demand run, says so on the page.
+    reviewed = conn.execute(
+        "SELECT 1 FROM research_set r JOIN companies c ON c.id = r.company_id WHERE c.nse_symbol = %s",
+        (symbol,),
+    ).fetchone()
+    body["provenance"] = {"live": live, "reviewed": bool(reviewed) and not live}
     try:  # weave the network in: who to call about this company
         from finn.network.service import Net
 

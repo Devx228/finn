@@ -1,0 +1,1029 @@
+{
+ "name": "Polycab India Limited",
+ "as_of": "2026-11-13T17:30:38.310650+05:30",
+ "calls": [
+  {
+   "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_19102026163912_Intimation_of_Earnings_Call_Transcript.pdf",
+   "label": "Q2 FY27 call",
+   "pages": 20,
+   "source": "NSE",
+   "n_items": 0,
+   "filed_at": "2026-10-19T11:09:28+00:00"
+  },
+  {
+   "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_20072026120857_Intimation_of_Earnings_Call_Transcript.pdf",
+   "label": "Q1 FY27 call",
+   "pages": 19,
+   "source": "NSE",
+   "n_items": 3,
+   "filed_at": "2026-07-20T06:41:37+00:00"
+  },
+  {
+   "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_08052026185934_Intimation_of_Earnings_Call_Transcript.pdf",
+   "label": "Q4 FY26 call",
+   "pages": 19,
+   "source": "NSE",
+   "n_items": 3,
+   "filed_at": "2026-05-08T13:29:43+00:00"
+  },
+  {
+   "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_22012026193636_Intimation_of_Earnings_Call_Transcript.pdf",
+   "label": "Q3 FY26 call",
+   "pages": 20,
+   "source": "NSE",
+   "n_items": 3,
+   "filed_at": "2026-01-22T14:07:01+00:00"
+  },
+  {
+   "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_28102025211243_SEintimationearningscall17102025.pdf",
+   "label": "Q2 FY26 call",
+   "pages": 19,
+   "source": "NSE",
+   "n_items": 2,
+   "filed_at": "2025-10-28T15:42:56+00:00"
+  },
+  {
+   "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_25072025164059_Intimation_of_Earnings_Call_Transcript.pdf",
+   "label": "Q1 FY26 call",
+   "pages": 23,
+   "source": "NSE",
+   "n_items": 5,
+   "filed_at": "2025-07-25T11:11:11+00:00"
+  },
+  {
+   "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_14052025172938_SIGNED_Intimation_of_Earnings_Call_Transcript-combined.pdf",
+   "label": "Q4 FY25 call",
+   "pages": 21,
+   "source": "NSE",
+   "n_items": 5,
+   "filed_at": "2025-05-14T11:59:51+00:00"
+  },
+  {
+   "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_29012025215542_EarningsTranscript29012025.pdf",
+   "label": "Q3 FY25 call",
+   "pages": 21,
+   "source": "NSE",
+   "n_items": 5,
+   "filed_at": "2025-01-29T16:26:27+00:00"
+  }
+ ],
+ "stats": [
+  {
+   "model": 0,
+   "rules": 0,
+   "dropped": 1,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 1
+   },
+   "selected_chars": 3285
+  },
+  {
+   "model": 1,
+   "rules": 2,
+   "dropped": 1,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 1
+   },
+   "selected_chars": 3392
+  },
+  {
+   "model": 0,
+   "rules": 3,
+   "dropped": 5,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "6e+10 not in the quote": 1,
+    "skip pattern / question": 4
+   },
+   "selected_chars": 4274
+  },
+  {
+   "model": 1,
+   "rules": 2,
+   "dropped": 2,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 1,
+    "metric outside the tracked set": 1
+   },
+   "selected_chars": 4244
+  },
+  {
+   "model": 0,
+   "rules": 2,
+   "dropped": 3,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 3
+   },
+   "selected_chars": 4626
+  },
+  {
+   "model": 1,
+   "rules": 4,
+   "dropped": 2,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "metric not named in the quote": 2
+   },
+   "selected_chars": 4109
+  },
+  {
+   "model": 1,
+   "rules": 4,
+   "dropped": 0,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {},
+   "selected_chars": 4270
+  },
+  {
+   "model": 2,
+   "rules": 3,
+   "dropped": 9,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "no number": 6,
+    "60 not in the quote": 1,
+    "skip pattern / question": 2
+   },
+   "selected_chars": 5943
+  }
+ ],
+ "format": "indas",
+ "ledger": {
+  "open": 6,
+  "missed": 0,
+  "resolved": 0,
+  "delivered": 0,
+  "calls_read": 8,
+  "calls_listed": 8,
+  "unverifiable": 4
+ },
+ "symbol": "POLYCAB",
+ "network": [],
+ "signals": {
+  "bear": [
+   "EBITDA margin 14.4% in Q2 FY27, down 140 bps YoY"
+  ],
+  "bull": [
+   "Revenue +52.8% YoY in Q2 FY27",
+   "PAT +42.9% YoY in Q2 FY27"
+  ]
+ },
+ "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
+ "business": {
+  "note": "segment names not in the cached filing",
+  "year": null,
+  "source": null,
+  "industry": null,
+  "segments": [],
+  "single_segment": false
+ },
+ "guidance": [
+  {
+   "label": "Revenue growth",
+   "story": "FY30 revenue growth: 1.5–2 x → not scored.",
+   "actual": null,
+   "metric": "revenue_growth",
+   "period": "FY30",
+   "points": [
+    {
+     "by": "model",
+     "low": 1.5,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_22012026193636_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q3 FY26 call",
+     "high": 2.0,
+     "page": 7,
+     "unit": "x",
+     "label": "industry growth",
+     "quote": "Looking ahead, we are confident in the long-term potential of the FMEG segment and remain on track to achieve our Project Spring targets of 1.5x - 2x industry growth and EBITDA margins in the range of 8% to 10% by FY30, positioning the business for sustained growth and value creation.",
+     "scope": "segment",
+     "change": "first given",
+     "future": true,
+     "metric": "revenue_growth",
+     "period": "FY30",
+     "source": "NSE",
+     "call_date": "2026-01-22",
+     "direction": "maintained",
+     "confidence": "high",
+     "by_management": true
+    }
+   ],
+   "context": null,
+   "verdict": "not scored",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "A target for one business; the filings report the company as a whole",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "EBITDA margin",
+   "story": "FY30 ebitda margin: 8–10% → 8–10% (held) → not scored.",
+   "actual": null,
+   "metric": "ebitda_margin",
+   "period": "FY30",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      176,
+      189
+     ],
+     "low": 8.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_25072025164059_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q1 FY26 call",
+     "high": 10.0,
+     "page": 6,
+     "unit": "%",
+     "label": "ebitda margin",
+     "quote": "We remain confident in the long- term potential of our FMEG business, continuing to align our efforts with Project Spring, targeting 1.5 to 2x of industry growth and improving EBITDA margins to 8% to 10% range by FY30.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "ebitda_margin",
+     "period": "FY30",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2025-07-25",
+     "direction": "maintained"
+    },
+    {
+     "by": "rules",
+     "kw": [
+      170,
+      183
+     ],
+     "low": 8.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_22012026193636_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q3 FY26 call",
+     "high": 10.0,
+     "page": 7,
+     "unit": "%",
+     "label": "ebitda margin",
+     "quote": "Looking ahead, we are confident in the long-term potential of the FMEG segment and remain on track to achieve our Project Spring targets of 1.5x - 2x industry growth and EBITDA margins in the range of 8% to 10% by FY30, positioning the business for sustained growth and value creation.",
+     "scope": "segment",
+     "change": "held",
+     "metric": "ebitda_margin",
+     "period": "FY30",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2026-01-22",
+     "direction": "maintained"
+    }
+   ],
+   "context": null,
+   "verdict": "not scored",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "A target for one business; the filings report the company as a whole",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Capex",
+   "story": "FY30 capex: 410 ₹ cr → pending.",
+   "actual": null,
+   "metric": "capex",
+   "period": "FY30",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      0,
+      19
+     ],
+     "low": 409.99999999999994,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_25072025164059_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q1 FY26 call",
+     "high": 409.99999999999994,
+     "page": 5,
+     "unit": "₹ cr",
+     "label": "capex",
+     "quote": "Capital expenditure for the quarter was ₹ 4.1 billion, in-line with our Project Spring guidance of investing ₹ 12 billion to ₹ 16 billion annually through FY30.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "capex",
+     "period": "FY30",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2025-07-25",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "pending",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "Falls due with FY30 results, not reported yet",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Capex",
+   "story": "FY27 capex: 1500 ₹ cr → pending.",
+   "actual": null,
+   "metric": "capex",
+   "period": "FY27",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      24,
+      29
+     ],
+     "low": 1500.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_08052026185934_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "high": 1500.0,
+     "page": 14,
+     "unit": "₹ cr",
+     "label": "capex",
+     "quote": "Plus if you look at our capex guidance, we've already pumped in INR 1,500 crores in this financial year.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "capex",
+     "period": "FY27",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2026-05-08",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "pending",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "The company hasn't stated a year-to-date capex; our estimate from the filings is ₹598 cr (2Q YTD) (cross-check only)",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Capex",
+   "story": "FY26 capex: 1200 ₹ cr → 340 ₹ cr (cut once) → not scored.",
+   "actual": null,
+   "metric": "capex",
+   "period": "FY26",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      29,
+      34
+     ],
+     "low": 1200.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_28102025211243_SEintimationearningscall17102025.pdf",
+     "call": "Q2 FY26 call",
+     "high": 1200.0,
+     "page": 8,
+     "unit": "₹ cr",
+     "label": "capex",
+     "quote": "We incurred ₹ 7.5 billion in capex during H1, consistent with our annual guidance of spending ₹ 12 billion to ₹ 16 billion annually.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "capex",
+     "period": "FY26",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2025-10-28",
+     "direction": "unclear"
+    },
+    {
+     "by": "rules",
+     "kw": [
+      0,
+      19
+     ],
+     "low": 340.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_22012026193636_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q3 FY26 call",
+     "high": 340.0,
+     "page": 5,
+     "unit": "₹ cr",
+     "label": "capex",
+     "quote": "Capital expenditure for the quarter was ₹ 3.4 billion, taking the 9M FY26 total to ₹ 10.9 billion, in-line with our Project Spring guidance of investing ₹ 12 billion to ₹ 16 billion annually through FY30.",
+     "scope": "company",
+     "change": "cut",
+     "metric": "capex",
+     "period": "FY26",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2026-01-22",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "not scored",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": {
+    "span": "FY",
+    "unit": "₹ cr",
+    "basis": "purchase of property, plant & equipment (cash flow)",
+    "value": 1480.3,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1664066_06052026044749_WEB.xml"
+    },
+    "quarters": 4
+   },
+   "verdict_why": "The company didn't state this figure in the calls read; our estimate from the filings is ₹1,480 cr (FY) (cross-check only, not scored)",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Capex",
+   "story": "FY25 capex: 130 ₹ cr → not scored.",
+   "actual": null,
+   "metric": "capex",
+   "period": "FY25",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      0,
+      5
+     ],
+     "low": 130.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_14052025172938_SIGNED_Intimation_of_Earnings_Call_Transcript-combined.pdf",
+     "call": "Q4 FY25 call",
+     "high": 130.0,
+     "page": 5,
+     "unit": "₹ cr",
+     "label": "capex",
+     "quote": "Capex for the quarter stood at ₹ 1.3 billion, taking our total capital expenditure for FY25 to ₹ 9.6 billion, which is well aligned with our guidance.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "capex",
+     "period": "FY25",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2025-05-14",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "not scored",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": {
+    "span": "FY",
+    "unit": "₹ cr",
+    "basis": "purchase of property, plant & equipment (cash flow)",
+    "value": 969.6,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1432542_06052025071425_WEB.xml"
+    },
+    "quarters": 4
+   },
+   "verdict_why": "The company didn't state this figure in the calls read; our estimate from the filings is ₹970 cr (FY) (cross-check only, not scored)",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Revenue growth",
+   "story": "no year stated revenue growth: 15–20% → 18% → 1.5 x (cut once) → open-ended.",
+   "actual": null,
+   "metric": "revenue_growth",
+   "period": "no year stated",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      15,
+      21
+     ],
+     "low": 15.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_29012025215542_EarningsTranscript29012025.pdf",
+     "call": "Q3 FY25 call",
+     "high": 20.0,
+     "page": 11,
+     "unit": "%",
+     "label": "revenue growth",
+     "quote": "We expect to grow at 1.5x of that growth. That means our growth will be somewhere between 15% to 20%.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "revenue_growth",
+     "period": "no year stated",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2025-01-29",
+     "direction": "unclear"
+    },
+    {
+     "by": "rules",
+     "kw": [
+      31,
+      37
+     ],
+     "low": 18.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_08052026185934_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "high": 18.0,
+     "page": 13,
+     "unit": "%",
+     "label": "revenue growth",
+     "quote": "So if market grows, we will deliver 1.5x of that growth. If we are expecting 12% market growth, then we should deliver 18% and plus.",
+     "scope": "company",
+     "change": "raised",
+     "metric": "revenue_growth",
+     "period": "no year stated",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2026-05-08",
+     "direction": "unclear"
+    },
+    {
+     "by": "model",
+     "low": 1.5,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_20072026120857_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q1 FY27 call",
+     "high": 1.5,
+     "page": 9,
+     "unit": "x",
+     "label": "market growth",
+     "quote": "But I think we have always guided that we will do 1.5x of market growth, which is a mix of both volume and value.",
+     "scope": "company",
+     "change": "cut",
+     "future": true,
+     "metric": "revenue_growth",
+     "period": "no year stated",
+     "source": "NSE",
+     "call_date": "2026-07-20",
+     "direction": "maintained",
+     "confidence": "high",
+     "by_management": true
+    }
+   ],
+   "context": null,
+   "verdict": "open-ended",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "The quote names no year, so it can't be held to one; listed, not scored",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "EBITDA margin",
+   "story": "no year stated ebitda margin: 11–13% → open-ended.",
+   "actual": null,
+   "metric": "ebitda_margin",
+   "period": "no year stated",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      93,
+      99
+     ],
+     "low": 11.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_14052025172938_SIGNED_Intimation_of_Earnings_Call_Transcript-combined.pdf",
+     "call": "Q4 FY25 call",
+     "high": 13.0,
+     "page": 13,
+     "unit": "%",
+     "label": "operating margin",
+     "quote": "So largely there are positive variables as well as negative variables, and that is where the margin trajectory going ahead in spite of whatever will happen, I think we have given a guidance of 11% to 13% and we are reasonably confident that we should be able to deliver within those margin guidance.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "ebitda_margin",
+     "period": "no year stated",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2025-05-14",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "open-ended",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "The quote names no year, so it can't be held to one; listed, not scored",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "EBITDA margin",
+   "story": "medium term ebitda margin: 11–13% → 10% → 11–13% → 11–13% (cut once) → open-ended.",
+   "actual": null,
+   "metric": "ebitda_margin",
+   "period": "medium term",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      76,
+      89
+     ],
+     "low": 11.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_25072025164059_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q1 FY26 call",
+     "high": 13.0,
+     "page": 11,
+     "unit": "%",
+     "label": "ebitda margin",
+     "quote": "But otherwise, the longer- term guidance will continue to be the 11% to 13% EBITDA margins.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "ebitda_margin",
+     "period": "medium term",
+     "prefix": true,
+     "source": "NSE",
+     "call_date": "2025-07-25",
+     "direction": "unclear"
+    },
+    {
+     "by": "rules",
+     "kw": [
+      78,
+      85
+     ],
+     "low": 10.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_28102025211243_SEintimationearningscall17102025.pdf",
+     "call": "Q2 FY26 call",
+     "high": 10.0,
+     "page": 7,
+     "unit": "%",
+     "label": "operating margin",
+     "quote": "This includes a one-time gain of approximately ₹ 300 million, excluding which margins would be at around 10%, consistent with our mid- to long-term guidance.",
+     "scope": "company",
+     "change": "cut",
+     "metric": "ebitda_margin",
+     "period": "medium term",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2025-10-28",
+     "direction": "unclear"
+    },
+    {
+     "by": "rules",
+     "kw": [
+      113,
+      126
+     ],
+     "low": 11.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_08052026185934_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "high": 13.0,
+     "page": 13,
+     "unit": "%",
+     "label": "ebitda margin",
+     "quote": "So again, that's a very calibrated guidance which we have given that over long term, we should expect 11% to 13% EBITDA margin.",
+     "scope": "company",
+     "change": "raised",
+     "metric": "ebitda_margin",
+     "period": "medium term",
+     "prefix": true,
+     "source": "NSE",
+     "call_date": "2026-05-08",
+     "direction": "unclear"
+    },
+    {
+     "by": "rules",
+     "kw": [
+      93,
+      99
+     ],
+     "low": 11.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_20072026120857_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q1 FY27 call",
+     "high": 13.0,
+     "page": 5,
+     "unit": "%",
+     "label": "operating margin",
+     "quote": "Consistent with our Project Spring roadmap, we continue to maintain our medium- to long-term margin guidance of 11% to 13% for this business.",
+     "scope": "company",
+     "change": "held",
+     "metric": "ebitda_margin",
+     "period": "medium term",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2026-07-20",
+     "direction": "maintained"
+    }
+   ],
+   "context": null,
+   "verdict": "open-ended",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "No year attached, so it never falls due; listed, not scored",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Capex",
+   "story": "medium term capex: 6000 ₹ cr → 4100 ₹ cr → 6000–8000 ₹ cr → 320 ₹ cr (cut 2×) → open-ended.",
+   "actual": null,
+   "metric": "capex",
+   "period": "medium term",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      65,
+      70
+     ],
+     "low": 6000.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_29012025215542_EarningsTranscript29012025.pdf",
+     "call": "Q3 FY25 call",
+     "high": 6000.0,
+     "page": 11,
+     "unit": "₹ cr",
+     "label": "capex",
+     "quote": "As we have released within our guidance, we are gearing up to do capex of between ₹ 60 billion to ₹ 80 billion over the next 5 years.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "capex",
+     "period": "medium term",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2025-01-29",
+     "direction": "unclear"
+    },
+    {
+     "by": "rules",
+     "kw": [
+      103,
+      108
+     ],
+     "low": 4100.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_14052025172938_SIGNED_Intimation_of_Earnings_Call_Transcript-combined.pdf",
+     "call": "Q4 FY25 call",
+     "high": 4100.0,
+     "page": 8,
+     "unit": "₹ cr",
+     "label": "capex",
+     "quote": "Polycab has also been declared the lowest bidder in the Goa, Karnataka and Puducherry package with the capex order amounting to ₹ 41 billion (inclusive of GST), execution of the agreement for which is expected to complete soon.",
+     "scope": "company",
+     "change": "cut",
+     "metric": "capex",
+     "period": "medium term",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2025-05-14",
+     "direction": "unclear"
+    },
+    {
+     "by": "model",
+     "low": 6000.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_25072025164059_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q1 FY26 call",
+     "high": 8000.0,
+     "page": 8,
+     "unit": "₹ cr",
+     "label": "Project Spring capex",
+     "quote": "So again, within Project Spring, we have given a guidance of spending roughly ₹ 6,000 crores to ₹ 8,000 crores over the next 5 years.",
+     "scope": "company",
+     "change": "raised",
+     "future": true,
+     "metric": "capex",
+     "period": "medium term",
+     "source": "NSE",
+     "call_date": "2025-07-25",
+     "direction": "maintained",
+     "confidence": "high",
+     "by_management": true
+    },
+    {
+     "by": "rules",
+     "kw": [
+      0,
+      19
+     ],
+     "low": 320.0,
+     "url": "https://nsearchives.nseindia.com/corporate/POLYCAB_20072026120857_Intimation_of_Earnings_Call_Transcript.pdf",
+     "call": "Q1 FY27 call",
+     "high": 320.0,
+     "page": 5,
+     "unit": "₹ cr",
+     "label": "capex",
+     "quote": "As these effects normalize, we expect the working capital cycle to settle within our long-term operating range of 45 to 50 days. Capital expenditure during the quarter amounted to INR 3.2 billion, reflecting our continued commitment to building capacity and strengthening future growth drivers.",
+     "scope": "company",
+     "change": "cut",
+     "metric": "capex",
+     "period": "medium term",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2026-07-20",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "open-ended",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "No year attached, so it never falls due; listed, not scored",
+   "as_of_quarter": "2026-09-30"
+  }
+ ],
+ "industry": null,
+ "quarters": [
+  {
+   "fy": 2024,
+   "end": "2023-12-31",
+   "nii": null,
+   "pat": 416.5,
+   "ebit": 507.6,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_101141_1027038_18012024042726.xml",
+   "basis": "consolidated",
+   "label": "Q3 FY24",
+   "ebitda": 569.5,
+   "pat_yoy": null,
+   "revenue": 4340.5,
+   "pat_margin": 9.6,
+   "ebit_margin": 11.7,
+   "revenue_yoy": null,
+   "ebitda_margin": 13.1
+  },
+  {
+   "fy": 2024,
+   "end": "2024-03-31",
+   "nii": null,
+   "pat": 553.5,
+   "ebit": 695.8,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_105607_1120051_10052024042433.xml",
+   "basis": "consolidated",
+   "label": "Q4 FY24",
+   "ebitda": 761.5,
+   "pat_yoy": 29.2,
+   "revenue": 5591.9,
+   "pat_margin": 9.9,
+   "ebit_margin": 12.4,
+   "revenue_yoy": 29.3,
+   "ebitda_margin": 13.6
+  },
+  {
+   "fy": 2025,
+   "end": "2024-06-30",
+   "nii": null,
+   "pat": 401.6,
+   "ebit": 516.3,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_109092_1192234_18072024053614.xml",
+   "basis": "consolidated",
+   "label": "Q1 FY25",
+   "ebitda": 583.4,
+   "pat_yoy": -0.3,
+   "revenue": 4698.0,
+   "pat_margin": 8.5,
+   "ebit_margin": 11.0,
+   "revenue_yoy": 20.8,
+   "ebitda_margin": 12.4
+  },
+  {
+   "fy": 2025,
+   "end": "2024-09-30",
+   "nii": null,
+   "pat": 445.2,
+   "ebit": 559.5,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_112849_1275859_17102024065630.xml",
+   "basis": "consolidated",
+   "label": "Q2 FY25",
+   "ebitda": 631.6,
+   "pat_yoy": 3.6,
+   "revenue": 5498.4,
+   "pat_margin": 8.1,
+   "ebit_margin": 10.2,
+   "revenue_yoy": 30.4,
+   "ebitda_margin": 11.5
+  },
+  {
+   "fy": 2025,
+   "end": "2024-12-31",
+   "nii": null,
+   "pat": 464.3,
+   "ebit": 641.4,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INDAS_117488_1357164_22012025051528.xml",
+   "basis": "consolidated",
+   "label": "Q3 FY25",
+   "ebitda": 719.9,
+   "pat_yoy": 11.5,
+   "revenue": 5226.1,
+   "pat_margin": 8.9,
+   "ebit_margin": 12.3,
+   "revenue_yoy": 20.4,
+   "ebitda_margin": 13.8
+  },
+  {
+   "fy": 2025,
+   "end": "2025-03-31",
+   "nii": null,
+   "pat": 734.4,
+   "ebit": 945.0,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1432542_06052025071425_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q4 FY25",
+   "ebitda": 1025.4,
+   "pat_yoy": 32.7,
+   "revenue": 6985.8,
+   "pat_margin": 10.5,
+   "ebit_margin": 13.5,
+   "revenue_yoy": 24.9,
+   "ebitda_margin": 14.7
+  },
+  {
+   "fy": 2026,
+   "end": "2025-06-30",
+   "nii": null,
+   "pat": 599.7,
+   "ebit": 771.9,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1485404_17072025035800_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q1 FY26",
+   "ebitda": 857.6,
+   "pat_yoy": 49.3,
+   "revenue": 5906.0,
+   "pat_margin": 10.2,
+   "ebit_margin": 13.1,
+   "revenue_yoy": 25.7,
+   "ebitda_margin": 14.5
+  },
+  {
+   "fy": 2026,
+   "end": "2025-09-30",
+   "nii": null,
+   "pat": 693.0,
+   "ebit": 924.0,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1552465_17102025061553_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q2 FY26",
+   "ebitda": 1020.7,
+   "pat_yoy": 55.7,
+   "revenue": 6477.2,
+   "pat_margin": 10.7,
+   "ebit_margin": 14.3,
+   "revenue_yoy": 17.8,
+   "ebitda_margin": 15.8
+  },
+  {
+   "fy": 2026,
+   "end": "2025-12-31",
+   "nii": null,
+   "pat": 630.2,
+   "ebit": 860.5,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1602515_16012026051416_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q3 FY26",
+   "ebitda": 966.1,
+   "pat_yoy": 35.7,
+   "revenue": 7636.1,
+   "pat_margin": 8.3,
+   "ebit_margin": 11.3,
+   "revenue_yoy": 46.1,
+   "ebitda_margin": 12.7
+  },
+  {
+   "fy": 2026,
+   "end": "2026-03-31",
+   "nii": null,
+   "pat": 785.6,
+   "ebit": 1063.5,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1664066_06052026044749_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q4 FY26",
+   "ebitda": 1161.3,
+   "pat_yoy": 7.0,
+   "revenue": 8864.5,
+   "pat_margin": 8.9,
+   "ebit_margin": 12.0,
+   "revenue_yoy": 26.9,
+   "ebitda_margin": 13.1
+  },
+  {
+   "fy": 2027,
+   "end": "2026-06-30",
+   "nii": null,
+   "pat": 796.7,
+   "ebit": 1033.3,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1694176_16072026035916_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q1 FY27",
+   "ebitda": 1136.2,
+   "pat_yoy": 32.8,
+   "revenue": 8209.7,
+   "pat_margin": 9.7,
+   "ebit_margin": 12.6,
+   "revenue_yoy": 39.0,
+   "ebitda_margin": 13.8
+  },
+  {
+   "fy": 2027,
+   "end": "2026-09-30",
+   "nii": null,
+   "pat": 990.0,
+   "ebit": 1311.5,
+   "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1738868_15102026035523_WEB.xml",
+   "basis": "consolidated",
+   "label": "Q2 FY27",
+   "ebitda": 1422.5,
+   "pat_yoy": 42.9,
+   "revenue": 9898.9,
+   "pat_margin": 10.0,
+   "ebit_margin": 13.2,
+   "revenue_yoy": 52.8,
+   "ebitda_margin": 14.4
+  }
+ ],
+ "provenance": {
+  "live": false,
+  "reviewed": false
+ }
+}

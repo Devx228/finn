@@ -1,6 +1,6 @@
 {
  "name": "CREDITACCESS GRAMEEN LIMITED",
- "as_of": "2026-11-13T14:05:48.635913+05:30",
+ "as_of": "2026-11-13T17:29:22.308928+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
@@ -152,7 +152,7 @@
  ],
  "format": "nbfc",
  "ledger": {
-  "open": 6,
+  "open": 8,
   "missed": 4,
   "resolved": 5,
   "delivered": 1,
@@ -222,7 +222,7 @@
    "Revenue +26.2% YoY in Q2 FY27",
    "PAT margin 26.3% in Q2 FY27, up 1800 bps YoY",
    "PAT +298.7% YoY in Q2 FY27",
-   "FY27 credit cost guidance lowered 1× (4–4.5% → 3–4% → 3–4%)"
+   "FY27 credit cost guidance lowered 1× (4–4.5% → 3–4%)"
   ]
  },
  "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
@@ -237,7 +237,7 @@
  "guidance": [
   {
    "label": "AUM / loan growth",
-   "story": "FY27 aum / loan growth: 20–25% → 20–25% (held) → pending.",
+   "story": "FY27 aum / loan growth: 20–25% → pending.",
    "actual": null,
    "metric": "aum_growth",
    "period": "FY27",
@@ -264,29 +264,6 @@
      "source": "NSE",
      "call_date": "2026-05-13",
      "direction": "unclear"
-    },
-    {
-     "by": "rules",
-     "kw": [
-      14,
-      24
-     ],
-     "low": 20.0,
-     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
-     "call": "Q2 FY27 call",
-     "high": 25.0,
-     "page": 5,
-     "unit": "%",
-     "label": "aum growth",
-     "quote": "We retain our AUM growth guidance of 20% to 25%, supported by return to growth in Group Loan portfolio, coupled with continued momentum in Retail Finance.",
-     "scope": "company",
-     "change": "held",
-     "metric": "aum_growth",
-     "period": "FY27",
-     "prefix": false,
-     "source": "NSE",
-     "call_date": "2026-10-26",
-     "direction": "maintained"
     }
    ],
    "context": null,
@@ -299,7 +276,7 @@
   },
   {
    "label": "Credit cost",
-   "story": "FY27 credit cost: 4–4.5% → 3–4% → 3–4% (cut once) → pending.",
+   "story": "FY27 credit cost: 4–4.5% → 3–4% (cut once) → pending.",
    "actual": null,
    "metric": "credit_cost",
    "period": "FY27",
@@ -349,29 +326,6 @@
      "source": "NSE",
      "call_date": "2026-05-13",
      "direction": "unclear"
-    },
-    {
-     "by": "rules",
-     "kw": [
-      22,
-      33
-     ],
-     "low": 3.0,
-     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
-     "call": "Q2 FY27 call",
-     "high": 4.0,
-     "page": 5,
-     "unit": "%",
-     "label": "credit cost",
-     "quote": "We're maintaining our credit cost guidance of 3% to 4%, and it should comfortably cover for any volatility on account of evolving drought-related conditions in some operating geographies.",
-     "scope": "company",
-     "change": "held",
-     "metric": "credit_cost",
-     "period": "FY27",
-     "prefix": false,
-     "source": "NSE",
-     "call_date": "2026-10-26",
-     "direction": "maintained"
     }
    ],
    "context": null,
@@ -697,7 +651,7 @@
      "page": 5,
      "unit": "%",
      "label": "aum growth",
-     "quote": "Considering the evolving business environment, we are aiming for an AUM growth of 14% to 18% of which MFI growth will be 8% to 12% and the balance will come from retail finance.",
+     "quote": "Considering the evolving business environment, we are aiming for an AUM growth of 14% to 18% of which MFI growth will be 8% to 12% and the balance will come from retail finance. NIM of 12.6% to 12.8%, Credit cost of 5.5% to 6%, ROA of 2.9% to 3.4%, and ROE of 11.8% to 13.3% in FY26.",
      "scope": "company",
      "change": "cut",
      "metric": "aum_growth",
@@ -781,7 +735,7 @@
      "page": 5,
      "unit": "%",
      "label": "roa",
-     "quote": "NIM of 12.6% to 12.8%, Credit cost of 5.5% to 6%, ROA of 2.9% to 3.4%, and ROE of 11.8% to 13.3% in FY26.",
+     "quote": "Considering the evolving business environment, we are aiming for an AUM growth of 14% to 18% of which MFI growth will be 8% to 12% and the balance will come from retail finance. NIM of 12.6% to 12.8%, Credit cost of 5.5% to 6%, ROA of 2.9% to 3.4%, and ROE of 11.8% to 13.3% in FY26.",
      "scope": "company",
      "change": "cut",
      "metric": "roa",
@@ -865,7 +819,7 @@
      "page": 5,
      "unit": "%",
      "label": "roe",
-     "quote": "NIM of 12.6% to 12.8%, Credit cost of 5.5% to 6%, ROA of 2.9% to 3.4%, and ROE of 11.8% to 13.3% in FY26.",
+     "quote": "Considering the evolving business environment, we are aiming for an AUM growth of 14% to 18% of which MFI growth will be 8% to 12% and the balance will come from retail finance. NIM of 12.6% to 12.8%, Credit cost of 5.5% to 6%, ROA of 2.9% to 3.4%, and ROE of 11.8% to 13.3% in FY26.",
      "scope": "company",
      "change": "cut",
      "metric": "roe",
@@ -913,7 +867,7 @@
      "page": 5,
      "unit": "%",
      "label": "nim",
-     "quote": "NIM of 12.6% to 12.8%, Credit cost of 5.5% to 6%, ROA of 2.9% to 3.4%, and ROE of 11.8% to 13.3% in FY26.",
+     "quote": "Considering the evolving business environment, we are aiming for an AUM growth of 14% to 18% of which MFI growth will be 8% to 12% and the balance will come from retail finance. NIM of 12.6% to 12.8%, Credit cost of 5.5% to 6%, ROA of 2.9% to 3.4%, and ROE of 11.8% to 13.3% in FY26.",
      "scope": "company",
      "change": "first given",
      "metric": "nim",
@@ -952,7 +906,7 @@
      "page": 5,
      "unit": "%",
      "label": "credit cost",
-     "quote": "NIM of 12.6% to 12.8%, Credit cost of 5.5% to 6%, ROA of 2.9% to 3.4%, and ROE of 11.8% to 13.3% in FY26.",
+     "quote": "Considering the evolving business environment, we are aiming for an AUM growth of 14% to 18% of which MFI growth will be 8% to 12% and the balance will come from retail finance. NIM of 12.6% to 12.8%, Credit cost of 5.5% to 6%, ROA of 2.9% to 3.4%, and ROE of 11.8% to 13.3% in FY26.",
      "scope": "company",
      "change": "first given",
      "metric": "credit_cost",
@@ -1238,6 +1192,45 @@
    "as_of_quarter": "2026-09-30"
   },
   {
+   "label": "AUM / loan growth",
+   "story": "no year stated aum / loan growth: 20–25% → open-ended.",
+   "actual": null,
+   "metric": "aum_growth",
+   "period": "no year stated",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      14,
+      24
+     ],
+     "low": 20.0,
+     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
+     "call": "Q2 FY27 call",
+     "high": 25.0,
+     "page": 5,
+     "unit": "%",
+     "label": "aum growth",
+     "quote": "We retain our AUM growth guidance of 20% to 25%, supported by return to growth in Group Loan portfolio, coupled with continued momentum in Retail Finance.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "aum_growth",
+     "period": "no year stated",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2026-10-26",
+     "direction": "maintained"
+    }
+   ],
+   "context": null,
+   "verdict": "open-ended",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "The quote names no year, so it can't be held to one; listed, not scored",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
    "label": "Return on assets",
    "story": "medium term return on assets: 4.5% → open-ended.",
    "actual": null,
@@ -1274,6 +1267,45 @@
    "run_rate": null,
    "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Credit cost",
+   "story": "no year stated credit cost: 3–4% → open-ended.",
+   "actual": null,
+   "metric": "credit_cost",
+   "period": "no year stated",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      22,
+      33
+     ],
+     "low": 3.0,
+     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
+     "call": "Q2 FY27 call",
+     "high": 4.0,
+     "page": 5,
+     "unit": "%",
+     "label": "credit cost",
+     "quote": "We're maintaining our credit cost guidance of 3% to 4%, and it should comfortably cover for any volatility on account of evolving drought-related conditions in some operating geographies.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "credit_cost",
+     "period": "no year stated",
+     "prefix": false,
+     "source": "NSE",
+     "call_date": "2026-10-26",
+     "direction": "maintained"
+    }
+   ],
+   "context": null,
+   "verdict": "open-ended",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "The quote names no year, so it can't be held to one; listed, not scored",
    "as_of_quarter": "2026-09-30"
   }
  ],
@@ -1483,5 +1515,9 @@
    "revenue_yoy": 26.2,
    "ebitda_margin": null
   }
- ]
+ ],
+ "provenance": {
+  "live": false,
+  "reviewed": true
+ }
 }

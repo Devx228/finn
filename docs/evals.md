@@ -114,3 +114,10 @@ local qwen2.5. Best by the numbers; Flash-Lite as first fallback (15 req/min vs 
 behind the strict check; local model when no key. Every model item must also pass the strict
 check (management + forward-looking + high confidence + metric named in its own quote + the band's
 numbers present in the quote), and every quote must be verbatim in the transcript.
+
+## Guidance negatives (live-run regression set), 2026-11-13
+`data/eval/guidance_negatives.json`: five POLYCAB sentences that earlier rules turned into scored
+claims (an achievement, a reported calendar-year figure, an export-mix target, a restated segment
+actual, a yearless long-term band). Each must yield no claim, or only an open one; checked in
+`api/tests/test_pull.py::test_polycab_negatives_never_become_scored_claims` (passes). Ledger
+re-run under the stricter rules: resolved KAYNES 5→3, POLYCAB 4→0, CREDITACC 5→5, INFY 2→2, LT 1→1.

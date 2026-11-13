@@ -1,6 +1,6 @@
 {
  "name": "Larsen & Toubro Limited",
- "as_of": "2026-11-13T14:05:51.946300+05:30",
+ "as_of": "2026-11-13T17:29:49.591889+05:30",
  "calls": [
   {
    "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2027AnalysttransL&T%20Q2FY27%20Earnings%20Call%20Transcript.pdf",
@@ -334,160 +334,6 @@
    "as_of_quarter": "2026-09-30"
   },
   {
-   "label": "AUM / loan growth",
-   "story": "FY27 aum / loan growth: 20% → not scored.",
-   "actual": null,
-   "metric": "aum_growth",
-   "period": "FY27",
-   "points": [
-    {
-     "by": "model",
-     "low": 20.0,
-     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
-     "call": "Q4 FY26 call",
-     "high": 20.0,
-     "page": 12,
-     "unit": "%",
-     "label": "loan book growth",
-     "quote": "The strategy emphasizes disciplined portfolio expansion and strong risk management with targets of 20% plus loan book growth, while maintaining credit costs below 2%.",
-     "scope": "segment",
-     "change": "first given",
-     "future": true,
-     "metric": "aum_growth",
-     "period": "FY27",
-     "source": "company IR site",
-     "call_date": "2026-05-07",
-     "direction": "new",
-     "confidence": "high",
-     "by_management": true
-    }
-   ],
-   "context": null,
-   "verdict": "not scored",
-   "resolved": false,
-   "run_rate": null,
-   "cross_check": null,
-   "verdict_why": "A target for one business; the filings report the company as a whole",
-   "as_of_quarter": "2026-09-30"
-  },
-  {
-   "label": "Credit cost",
-   "story": "FY27 credit cost: 2% → not scored.",
-   "actual": null,
-   "metric": "credit_cost",
-   "period": "FY27",
-   "points": [
-    {
-     "by": "rules",
-     "kw": [
-      144,
-      155
-     ],
-     "low": 2.0,
-     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
-     "call": "Q4 FY26 call",
-     "high": 2.0,
-     "page": 12,
-     "unit": "%",
-     "label": "credit cost",
-     "quote": "The strategy emphasizes disciplined portfolio expansion and strong risk management with targets of 20% plus loan book growth, while maintaining credit costs below 2%.",
-     "scope": "segment",
-     "change": "first given",
-     "metric": "credit_cost",
-     "period": "FY27",
-     "prefix": false,
-     "source": "company IR site",
-     "call_date": "2026-05-07",
-     "direction": "maintained"
-    }
-   ],
-   "context": null,
-   "verdict": "not scored",
-   "resolved": false,
-   "run_rate": null,
-   "cross_check": null,
-   "verdict_why": "A target for one business; the filings report the company as a whole",
-   "as_of_quarter": "2026-09-30"
-  },
-  {
-   "label": "Return on assets",
-   "story": "FY27 return on assets: 3–3.2% → not scored.",
-   "actual": null,
-   "metric": "roa",
-   "period": "FY27",
-   "points": [
-    {
-     "by": "rules",
-     "kw": [
-      77,
-      80
-     ],
-     "low": 3.0,
-     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
-     "call": "Q4 FY26 call",
-     "high": 3.2,
-     "page": 12,
-     "unit": "%",
-     "label": "roa",
-     "quote": "The financial outcomes under the plan are calibrated to deliver a 3% to 3.2% ROA and a 16% to 18% ROE, reinforcing sustainability of returns while scaling the franchise.",
-     "scope": "segment",
-     "change": "first given",
-     "metric": "roa",
-     "period": "FY27",
-     "prefix": true,
-     "source": "company IR site",
-     "call_date": "2026-05-07",
-     "direction": "unclear"
-    }
-   ],
-   "context": null,
-   "verdict": "not scored",
-   "resolved": false,
-   "run_rate": null,
-   "cross_check": null,
-   "verdict_why": "A target for one business; the filings report the company as a whole",
-   "as_of_quarter": "2026-09-30"
-  },
-  {
-   "label": "Return on equity",
-   "story": "FY27 return on equity: 16–18% → not scored.",
-   "actual": null,
-   "metric": "roe",
-   "period": "FY27",
-   "points": [
-    {
-     "by": "rules",
-     "kw": [
-      98,
-      101
-     ],
-     "low": 16.0,
-     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
-     "call": "Q4 FY26 call",
-     "high": 18.0,
-     "page": 12,
-     "unit": "%",
-     "label": "roe",
-     "quote": "The financial outcomes under the plan are calibrated to deliver a 3% to 3.2% ROA and a 16% to 18% ROE, reinforcing sustainability of returns while scaling the franchise.",
-     "scope": "segment",
-     "change": "first given",
-     "metric": "roe",
-     "period": "FY27",
-     "prefix": true,
-     "source": "company IR site",
-     "call_date": "2026-05-07",
-     "direction": "unclear"
-    }
-   ],
-   "context": null,
-   "verdict": "not scored",
-   "resolved": false,
-   "run_rate": null,
-   "cross_check": null,
-   "verdict_why": "A target for one business; the filings report the company as a whole",
-   "as_of_quarter": "2026-09-30"
-  },
-  {
    "label": "Revenue growth",
    "story": "FY26 revenue growth: 15% → company reported 12.0% (FY) → missed.",
    "actual": {
@@ -710,6 +556,160 @@
    "cross_check": null,
    "verdict_why": "No year attached, so it never falls due; listed, not scored",
    "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "AUM / loan growth",
+   "story": "no year stated aum / loan growth: 20% → not scored.",
+   "actual": null,
+   "metric": "aum_growth",
+   "period": "no year stated",
+   "points": [
+    {
+     "by": "model",
+     "low": 20.0,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "high": 20.0,
+     "page": 12,
+     "unit": "%",
+     "label": "loan book growth",
+     "quote": "The strategy emphasizes disciplined portfolio expansion and strong risk management with targets of 20% plus loan book growth, while maintaining credit costs below 2%.",
+     "scope": "segment",
+     "change": "first given",
+     "future": true,
+     "metric": "aum_growth",
+     "period": "no year stated",
+     "source": "company IR site",
+     "call_date": "2026-05-07",
+     "direction": "new",
+     "confidence": "high",
+     "by_management": true
+    }
+   ],
+   "context": null,
+   "verdict": "not scored",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "A target for one business; the filings report the company as a whole",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Credit cost",
+   "story": "no year stated credit cost: 2% → not scored.",
+   "actual": null,
+   "metric": "credit_cost",
+   "period": "no year stated",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      144,
+      155
+     ],
+     "low": 2.0,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "high": 2.0,
+     "page": 12,
+     "unit": "%",
+     "label": "credit cost",
+     "quote": "The strategy emphasizes disciplined portfolio expansion and strong risk management with targets of 20% plus loan book growth, while maintaining credit costs below 2%.",
+     "scope": "segment",
+     "change": "first given",
+     "metric": "credit_cost",
+     "period": "no year stated",
+     "prefix": false,
+     "source": "company IR site",
+     "call_date": "2026-05-07",
+     "direction": "maintained"
+    }
+   ],
+   "context": null,
+   "verdict": "not scored",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "A target for one business; the filings report the company as a whole",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Return on assets",
+   "story": "no year stated return on assets: 3–3.2% → not scored.",
+   "actual": null,
+   "metric": "roa",
+   "period": "no year stated",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      77,
+      80
+     ],
+     "low": 3.0,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "high": 3.2,
+     "page": 12,
+     "unit": "%",
+     "label": "roa",
+     "quote": "The strategy emphasizes disciplined portfolio expansion and strong risk management with targets of 20% plus loan book growth, while maintaining credit costs below 2%. The financial outcomes under the plan are calibrated to deliver a 3% to 3.2% ROA and a 16% to 18% ROE, reinforcing sustainability of returns while scaling the franchise.",
+     "scope": "segment",
+     "change": "first given",
+     "metric": "roa",
+     "period": "no year stated",
+     "prefix": true,
+     "source": "company IR site",
+     "call_date": "2026-05-07",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "not scored",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "A target for one business; the filings report the company as a whole",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Return on equity",
+   "story": "no year stated return on equity: 16–18% → not scored.",
+   "actual": null,
+   "metric": "roe",
+   "period": "no year stated",
+   "points": [
+    {
+     "by": "rules",
+     "kw": [
+      98,
+      101
+     ],
+     "low": 16.0,
+     "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q4%20FY26%20Earnings%20Call%20Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "high": 18.0,
+     "page": 12,
+     "unit": "%",
+     "label": "roe",
+     "quote": "The strategy emphasizes disciplined portfolio expansion and strong risk management with targets of 20% plus loan book growth, while maintaining credit costs below 2%. The financial outcomes under the plan are calibrated to deliver a 3% to 3.2% ROA and a 16% to 18% ROE, reinforcing sustainability of returns while scaling the franchise.",
+     "scope": "segment",
+     "change": "first given",
+     "metric": "roe",
+     "period": "no year stated",
+     "prefix": true,
+     "source": "company IR site",
+     "call_date": "2026-05-07",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "not scored",
+   "resolved": false,
+   "run_rate": null,
+   "cross_check": null,
+   "verdict_why": "A target for one business; the filings report the company as a whole",
+   "as_of_quarter": "2026-09-30"
   }
  ],
  "industry": "Engineering",
@@ -918,5 +918,9 @@
    "revenue_yoy": 15.8,
    "ebitda_margin": 8.7
   }
- ]
+ ],
+ "provenance": {
+  "live": false,
+  "reviewed": false
+ }
 }

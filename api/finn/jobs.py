@@ -427,13 +427,13 @@ def _run(conn: Connection, job: dict, origin: str, nse_factory, router) -> str:
             )
     step(conn, jid, "research", "running")
     try:
-        out = research.materialise(conn, sym, router, None if refused else nse)
+        out = research.materialise(conn, sym, router, None if refused else nse, live=True)
     except SourceRefused as e:
         conn.rollback()
         refused = str(e)
         if origin != "laptop":
             record_block(conn, origin, refused)
-        out = research.materialise(conn, sym, router, None)
+        out = research.materialise(conn, sym, router, None, live=True)
     if not out["quarters"] and not out["calls"]:
         conn.execute("DELETE FROM views WHERE key = %s", (f"research:{sym}",))
         research.refresh_index(conn)

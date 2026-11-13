@@ -609,3 +609,29 @@ share one fixture and four identical tests.
   a time, ≥ 1.2 s apart, cached, permanent stop on any refusal). Check before any laptop NSE run:
   Neon's Postgres port must be reachable directly, the sign that the laptop is on the hotspot and
   not campus Wi-Fi (which blocks 5432); if it isn't, don't fetch.
+
+## 2026-11-13 (night) — Stricter scoring after the first live run (POLYCAB)
+The first unreviewed live report (POLYCAB, job 2) showed four "delivered/beat" verdicts. All four
+were wrong when read against their quotes: an achievement ("we have achieved our ₹200 bn goal")
+scored as FY26 revenue guidance; a reported figure ("calendar 2024 top-line stands at ₹210 bn")
+as FY25 guidance; an export-mix target ("share of international business north of 10% of
+revenue") as FY25 revenue growth; and a segment's past EBIT restated as EBITDA, chained with a
+yearless long-term 11–13% band, as an FY26 margin "beat". New rules, for every ledger:
+- **A claim is held to a year only if its quote names the year or period** ("FY26", "this year",
+  "the financial year", "next year"). Otherwise it is listed as "no year stated", never resolved.
+  A year named in the continuation sentence right after counts (it is quoted with it).
+- Achievements, figures that "stand at", "would have been" restatements and mix targets ("share
+  of", "% of revenue") are results or other measures, never guidance.
+- A revenue target already met by trailing revenue when it was stated is a restated goal: not scored.
+- Verdicts: beat = clearly beyond the band; delivered = within it or meeting a floor ("at least",
+  "15% plus", "in excess of"); missed = short.
+- Guided and actual more than 30% apart → not scored as a suspect match, unless the quote names
+  that exact fiscal year.
+- Reports not in the hand-checked research set, and every live run, carry "Generated
+  automatically (time); not reviewed." The say–do line still needs ≥ 4 resolved claims.
+Effect: POLYCAB 4 → 0 resolved. **KAYNES 5 → 3**: "FY26 revenue growth missed" was scored on a
+quote about the automotive segment with no year; "FY26 EBITDA beat" on "might exceed the guidance
+of 15.6%" with no year; FY25 margin is now "delivered" (a 15%-plus floor met), not "beat". KAYNES
+no longer meets the hero gate (≥ 5); CREDITACC (5) does. Hero choice left to the owner.
+CREDITACC, INFY, LT unchanged in count. Regression cases: data/eval/guidance_negatives.json and
+tests in api/tests/test_pull.py.

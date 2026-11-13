@@ -184,3 +184,82 @@ def test_run_rate_says_what_the_rest_of_the_year_needs():
     got = run_rate(qs, 2027, "revenue_growth", {"low": 10.0, "high": 12.0, "unit": "%"})
     assert got == "Needs +10.0% to +14.0% YoY in the remaining 2 quarters (so far +10.0%)"
     assert run_rate(qs[:4], 2026, "revenue_growth", {"low": 10.0, "high": 12.0, "unit": "%"}) is None
+
+
+# -- live-run review (POLYCAB, 2026-11-13): claims that were wrongly scored -----------------------
+def test_polycab_negatives_never_become_scored_claims():
+    import json
+
+    from finn.config import REPO_ROOT
+    from finn.pull import guidance as gd
+
+    cases = json.loads((REPO_ROOT / "data/eval/guidance_negatives.json").read_text(encoding="utf-8"))["cases"]
+    for c in cases:
+        items = gd.rule_items([(c["page"], c["quote"])], c["call_fy"])
+        if c["expect"] == "nothing":
+            assert items == [], (c["why"], items)
+        else:
+            assert items and all(not i["period"].startswith("FY") for i in items), (c["why"], items)
+
+
+def test_period_must_be_named_in_the_quote():
+    from finn.pull import guidance as gd
+
+    assert gd._fy("We expect margins of 11% to 13%.", 2026) == gd.NO_YEAR
+    assert gd._fy("We expect margins of 11% to 13% this year.", 2026) == "FY26"
+    assert gd._fy("We expect FY27 margins of 11% to 13%.", 2026) == "FY27"
+
+
+def test_verdicts_floor_beat_and_suspect():
+    from finn.pull import research as r
+
+    a = {"value": 13.9, "quarters": 4}
+    assert r.verdict(a, 11, 13, True)[0] == "beat"
+    assert r.verdict(a, 13, 15, True)[0] == "delivered"
+    assert r.verdict({"value": 24.2, "quarters": 4}, 10, 10, True, floor=True)[0] == "delivered"
+    assert r.verdict({"value": 9.0, "quarters": 4}, 10, 10, True, floor=True)[0] == "missed"
+    last = {"low": 10, "high": 10, "quote": "We expect growth of 10%."}
+    assert r._suspect({"value": 24.2}, last, 2025)
+    assert not r._suspect({"value": 24.2}, {**last, "quote": "FY25 growth of 10%."}, 2025)
+    assert not r._suspect({"value": 12.0}, last, 2025)
+
+
+def test_target_already_reached_when_stated_is_not_a_promise():
+    from datetime import date
+
+    from finn.pull import research as r
+
+    qs = [{"end": date(2024, m, 28), "revenue": 5500.0} for m in (3, 6, 9, 12)]
+    last = {"unit": "₹ cr", "low": 20000, "call_date": "2025-01-29"}
+    assert r._already_passed(qs, "revenue", last) == 22000
+    assert r._already_passed(qs, "revenue", {**last, "low": 25000}) is None
+
+
+def test_named_year_and_floor_forms():
+    from finn.pull import guidance as gd
+    from finn.pull import research as r
+
+    # "the financial year" and "rest of the year" name the current year
+    assert gd._fy("Our operating margin guidance for the financial year remains 20% to 22%.", 2026) == "FY26"
+    assert gd._fy("a view for the rest of the financial year, guidance is 1.5% to 3%", 2027) == "FY27"
+    # a sentence stating a past figure AND a forward claim keeps the forward claim
+    s = (
+        "Our inventory days was at about 107, as we made advanced purchases keeping in mind the requirements "
+        "of the upcoming quarter, which are expected to be busy and we plan to execute revenues in excess of "
+        "about INR3,000 crores in FY25."
+    )
+    items = gd.rule_items([(5, s)], 2025)
+    assert [(i["metric"], i["period"], i["low"]) for i in items] == [("revenue", "FY25", 3000.0)]
+    assert r.FLOOR.search("And the margins will be 15% plus for the year.")
+    assert not r.FLOOR.search("anywhere around 50% plus/minus, you can take")
+
+
+def test_year_named_in_the_continuation_applies_to_the_sentence_it_continues():
+    from finn.pull import guidance as gd
+
+    ss = [
+        (5, "Considering the evolving business environment, we are aiming for an AUM growth of 14% to 18%."),
+        (5, "NIM of 12.6% to 12.8%, ROA of 2.9% to 3.4% in FY26."),
+    ]
+    got = {i["metric"]: i["period"] for i in gd.rule_items(ss, 2026)}
+    assert got.get("aum_growth", got.get("revenue_growth")) == "FY26", got

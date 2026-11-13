@@ -118,6 +118,7 @@ function Body({ r }: { r: Research }) {
         <p className="text-[12px] text-ink-3">
           {r.industry ?? r.format} · {r.calls.length} earnings calls · {r.quarters.length} quarters of filings
         </p>
+        {r.provenance && !r.provenance.reviewed && <Unreviewed asOf={r.as_of} />}
       </div>
 
       <section>
@@ -566,5 +567,20 @@ function Trajectory({ qs, format }: { qs: Quarter[]; format: string }) {
         </details>
       </div>
     </section>
+  );
+}
+
+function Unreviewed({ asOf }: { asOf: string }) {
+  // the exact time, which stays true however long after the run the page is opened
+  const when = new Date(asOf).toLocaleString("en-IN", {
+    day: "numeric",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  return (
+    <p className="mt-2 rounded-md border border-line bg-surface px-2 py-1.5 text-[12px] text-ink-2">
+      Generated automatically ({when}); not reviewed. Every verdict links to its quote: check before relying on it.
+    </p>
   );
 }

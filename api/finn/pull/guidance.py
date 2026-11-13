@@ -262,7 +262,11 @@ SKIP = re.compile(
     r"from (?:that|this|the) (?:one |mega |large )?deal|from one deal|contribut|run[- ]?rate|"
     r"(?:first|second) half|television|interview|\banother\b|remaining|balance of|"
     r"over the previous year|over last year|\bto revenue\b|\bprinted\b|you guys|"
-    r"compared (?:to|with) (?:the |our )?guidance|\bremained\b|\bwith an? \d[\d.]*\s*%",
+    r"compared (?:to|with) (?:the |our )?guidance|\bremained\b|\bwith an? \d[\d.]*\s*%|"
+    # a target already reached, or a figure for a past period, is a result, not a promise
+    r"\bachieved\b|\bstands at\b|overachiev|would have been|"
+    # a mix target ("share of exports north of 10% of revenue") is not growth or a margin
+    r"\bshare of\b|%\s*of (?:the )?(?:overall |total )?(?:company'?s? )?(?:revenue|top ?line|sales)\b",
     re.I,
 )
 RESULT_VERB = re.compile(r"\b(?:was|were|stood|remained|came in|ended|grew|delivered|reported)\b", re.I)
@@ -282,7 +286,7 @@ FY = re.compile(
 )
 # No single year to hold it to: an aspiration, or a total over several years.
 OPEN_ENDED = re.compile(
-    r"over a period of time|aspiration|aspirational|aspire|medium[- ]term|long[- ]term|"
+    r"over a period of time|aspiration|aspirational|aspire|medium[- ]?term|long(?:er)?-?\s?term|"
     r"over the next (?:few|\d+|two|three|four|five) years|across these \w+ years|"
     r"in the next (?:few|\d+|two|three|four|five) years|total (?:spend|capex|investment)|cumulative|"
     r"in a good time|through[- ]the[- ]cycle|steady[- ]state|normali[sz]ed|over the cycle",
@@ -291,7 +295,11 @@ OPEN_ENDED = re.compile(
 MEDIUM_TERM = "medium term"
 
 
-YEARISH = re.compile(r"this year|next year|current year|for the year|this fiscal|full year|annual", re.I)
+YEARISH = re.compile(
+    r"this year|next year|current year|for the year|this fiscal|full year|annual|"
+    r"(?:this|the|current) (?:financial|fiscal) year|rest of the (?:financial |fiscal )?year",
+    re.I,
+)
 
 
 # A total spread over several years: never one year's number, even if a year is named.
@@ -303,7 +311,12 @@ MULTI_YEAR = re.compile(
 )
 
 
+# The quote names no year or period: it can't be held to one (never defaulted to the call's year).
+NO_YEAR = "no year stated"
+
+
 def _fy(text: str, call_fy: int) -> str:
+    """The period the quote itself names. Never inferred from when the call happened."""
     if MULTI_YEAR.search(text):
         return MEDIUM_TERM
     m = FY.search(text)
@@ -314,7 +327,9 @@ def _fy(text: str, call_fy: int) -> str:
         return MEDIUM_TERM
     if re.search(r"next (fiscal |financial )?year", text, re.I):
         return f"FY{(call_fy + 1) % 100:02d}"
-    return f"FY{call_fy % 100:02d}"
+    if YEARISH.search(text):
+        return f"FY{call_fy % 100:02d}"
+    return NO_YEAR
 
 
 def _direction(low: str) -> str:
@@ -335,13 +350,30 @@ def rule_items(chosen: list[tuple[int, str]], call_fy: int) -> list[dict]:
     counts as guidance too."""
     out, seen = [], set()
     prev_cue = False
-    for page, s in chosen:
+    prev_s = ""
+    for i, (page, s) in enumerate(chosen):
         cue = bool(RULE_CUE.search(s))
         # the sentence right after a guidance sentence, unless it states a result
         carried = not cue and prev_cue and not RESULT_VERB.search(s)
+        lead_in = prev_s if carried else ""
         prev_cue = cue and "?" not in s and not SKIP.search(s)
+        prev_s = s
         if "?" in s or SKIP.search(s) or not (cue or carried):
             continue
+        # a continuation is quoted with the sentence it continues, so the year it names is in the quote
+        q = f"{lead_in} {s}".strip()
+        # ...and a guidance sentence whose year comes in the continuation right after it
+        # ("we are aiming for AUM growth of 14% to 18%. NIM of 12.6% to 12.8% ... in FY26.")
+        if cue and _fy(q, call_fy) == NO_YEAR and i + 1 < len(chosen):
+            nxt = chosen[i + 1][1]
+            if (
+                not RULE_CUE.search(nxt)
+                and not RESULT_VERB.search(nxt)
+                and "?" not in nxt
+                and not SKIP.search(nxt)
+                and _fy(nxt, call_fy) != NO_YEAR
+            ):
+                q = f"{q} {nxt}"
         for p in pairs(s):
             key = (p["metric"], p["low"], p["high"])
             if key in seen:
@@ -352,10 +384,10 @@ def rule_items(chosen: list[tuple[int, str]], call_fy: int) -> list[dict]:
                     **{k: v for k, v in p.items() if k != "at"},
                     "label": p["metric"].replace("_", " "),
                     "period": MEDIUM_TERM
-                    if p["metric"] == "capex" and not (FY.search(s) or YEARISH.search(s))
-                    else _fy(s, call_fy),
+                    if p["metric"] == "capex" and not (FY.search(q) or YEARISH.search(q))
+                    else _fy(q, call_fy),
                     "direction": _direction(s.lower()),
-                    "quote": s,
+                    "quote": q,
                     "page": page,
                     "by": "rules",
                 }
@@ -529,11 +561,9 @@ def extract(
                 d = it.model_dump()
                 if d.get("unit") and re.search(r"cr|crore|inr|rs|₹", d["unit"], re.I):
                     d["unit"] = "₹ cr"
-                d["period"] = (
-                    _fy(it.quote, call_fy)
-                    if FY.search(it.quote) or OPEN_ENDED.search(it.quote)
-                    else _fy(it.period or "", call_fy)
-                )
+                d["period"] = _fy(
+                    it.quote, call_fy
+                )  # the quote must name it; the model's label doesn't count
                 if d["metric"] == "capex" and not (FY.search(it.quote) or YEARISH.search(it.quote)):
                     d["period"] = MEDIUM_TERM  # a project's capex with no year is not a year's plan
                 items.append({**d, "page": page or None, "by": "model"})
