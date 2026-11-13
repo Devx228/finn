@@ -40,7 +40,8 @@ DEFAULT_TIERS = {
     "REASON": "ollama:qwen2.5-7b-8k",
     # Guidance extraction, ordered by the eval in docs/evals.md (2026-11-13). Providers without a
     # key are skipped, so a keyless clone still runs on the local model.
-    "EXTRACT": "gemini:gemini-3-flash-preview,gemini:gemini-3.5-flash-lite,groq:openai/gpt-oss-120b,"
+    # 3-flash scored best alone but timed out on 48 of 57 calls (13 Nov), so it is the fallback.
+    "EXTRACT": "gemini:gemini-3.5-flash-lite,groq:openai/gpt-oss-120b,gemini:gemini-3-flash-preview,"
     "ollama:qwen2.5-7b-8k",
     "VISION": "",
 }
@@ -155,7 +156,7 @@ class CallResult:
 class Router:
     backend: ChatBackend = field(default_factory=OpenAIBackend)
     store: Any = None  # finn.llm.store.LLMStore; None = no cache, no ledger (tests)
-    timeout: float = 180.0
+    timeout: float = 90.0
     sleep: Any = time.sleep
     _recent: dict[str, deque] = field(default_factory=dict)
 

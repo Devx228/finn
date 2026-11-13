@@ -103,3 +103,12 @@ All companies: **4 resolved** (INFY 2 delivered; KAYNES 1 delivered, 1 missed); 
 filing-checked FY27 targets on track. Gate (≥ 8 resolved on the hero): **not met — 2**. Main
 cause: NSE refused the fetch of the 4 older transcripts (DECISIONS 2026-11-13). Eval: docs/evals.md
 "Guidance extraction: hosted vs local". Tests: API 50 passed; web 9 passed; build OK.
+
+### Phase 4 — ledgers on 8 calls (2026-11-13, later)
+Live API `GET /api/research/<SYM>` ledger blocks after the manual import:
+- CREDITACC: read 8 of 8 · resolved 3 (0 delivered, 3 missed: FY26 loan growth 18–20% → 15.0%,
+  ROA 4.2–4.5% → 2.6%, ROE 17–19% → 10.5%) · FY27 loan growth / credit cost / ROA / ROE on track.
+- KAYNES: read 8 of 8 · resolved 5 (2 delivered, 3 missed: FY25 growth >55% → 50.8%, FY25 revenue
+  ₹2,800–2,900 cr → ₹2,722 cr, FY26 growth ~50% → 33.2%; EBITDA margin delivered both years).
+- INFY: read 4 of 8 (infosys.com refused; awaiting owner's manual download) · resolved 2 delivered.
+Total resolved across the three: 10. Hero (INFY) gate ≥ 8: not met until its 4 older calls are in.

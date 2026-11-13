@@ -2,15 +2,15 @@
  "companies": [
   {
    "name": "CREDITACCESS GRAMEEN LIMITED",
-   "calls": 4,
+   "calls": 8,
    "symbol": "CREDITACC",
-   "tracks": 6
+   "tracks": 10
   },
   {
    "name": "Deepak Nitrite Limited",
    "calls": 4,
    "symbol": "DEEPAKNTR",
-   "tracks": 3
+   "tracks": 1
   },
   {
    "name": "HDFC Bank Limited",
@@ -26,9 +26,9 @@
   },
   {
    "name": "Kaynes Technology India Limited",
-   "calls": 4,
+   "calls": 8,
    "symbol": "KAYNES",
-   "tracks": 4
+   "tracks": 9
   },
   {
    "name": "Persistent Systems Limited",

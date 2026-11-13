@@ -47,6 +47,7 @@ jobs:
           cache-dependency-path: web/package-lock.json
       - run: npm ci
       - run: npm run lint
+      - run: npx next typegen  # route/layout types (LayoutProps) exist only after typegen or a build
       - run: npx tsc --noEmit
       - run: npm test
       - run: npm run build

@@ -93,7 +93,7 @@ def quarters(conn: Connection, company_id: int, fmt: str) -> tuple[list[dict], i
         for k in ("revenue", "pat"):
             a, b = q[k], prev[k] if prev and prev["basis"] == q["basis"] else None
             q[f"{k}_yoy"] = round((a / b - 1) * 100, 1) if a is not None and b and b > 0 else None
-    return out[-12:], fy_start
+    return out, fy_start  # all cached quarters: actuals need the prior year; display trims
 
 
 def fy_actual(qs: list[dict], fy: int, metric: str) -> dict | None:
@@ -199,6 +199,7 @@ def cc_reported(docs: list[dict], fy_start: int) -> list[dict]:
                         "page": page,
                         "url": d["url"],
                         "call": d["label"],
+                        "source": d.get("source") or "NSE",
                     }
                 )
     return out
@@ -215,7 +216,13 @@ def cc_actual(reported: list[dict], fy: int) -> dict | None:
         "span": "FY" if r["quarters"] == 4 else f"{r['quarters']}Q YTD",
         "quarters": r["quarters"],
         "basis": "company-reported, constant currency",
-        "source": {"quote": r["quote"], "page": r["page"], "url": r["url"], "call": r["call"]},
+        "source": {
+            "quote": r["quote"],
+            "page": r["page"],
+            "url": r["url"],
+            "call": r["call"],
+            "from": r.get("source", "NSE"),
+        },
     }
 
 
@@ -387,17 +394,43 @@ def tracks(
     conn: Connection | None = None,
     cid: int | None = None,
     cc: list[dict] | None = None,
+    lender: bool = False,
 ) -> list[dict]:
     series: dict[tuple[str, str], list[dict]] = defaultdict(list)
+    quotes = [it["quote"].lower() for c in calls for it in c["items"]]
+    # a company that guides revenue in constant currency does so every time, even when a
+    # revision sentence doesn't repeat the words
+    cc_company = any(
+        ("constant currency" in q or " cc " in f" {q} ") and ("revenue" in q or "growth" in q) for q in quotes
+    )
+    uses_ebitda = any("ebitda" in q for q in quotes)
     for c in sorted(calls, key=lambda c: c["filed_at"]):
         best: dict[tuple[str, str], dict] = {}
         for it in c["items"]:
+            if it.get("unit") == "bps" or it.get("low") is None:
+                continue  # bps are changes, not levels; a chain never mixes units
+            if lender and it["metric"] == "revenue_growth":
+                it = {**it, "metric": "aum_growth"}  # a lender's "growth" is loan-book growth
+            if (
+                uses_ebitda
+                and it["metric"] == "operating_margin"
+                and not re.search(r"operating|\bebit\b", it["quote"], re.I)
+            ):
+                it = {**it, "metric": "ebitda_margin"}  # "margins will be 15%" at an EBITDA reporter
             key = (it["metric"], it["period"])
             # one point per call per metric: prefer company-wide, then the model's structured read
             if key not in best or (best[key].get("scope") == "segment" and it.get("scope") != "segment"):
                 best[key] = it
         for key, it in best.items():
-            series[key].append({**it, "call": c["label"], "call_date": c["filed_at"][:10], "url": c["url"]})
+            series[key].append(
+                {
+                    **it,
+                    "call": c["label"],
+                    "call_date": c["filed_at"][:10],
+                    "url": c["url"],
+                    "source": c.get("source", "NSE"),
+                }
+            )
     latest_q = max((q["end"] for q in qs), default=None)
     last_fy_rev = None
     full = [q for q in qs if q["revenue"] is not None]
@@ -423,9 +456,7 @@ def tracks(
             prev = p
         fy = int(period[2:]) + 2000 if period and period.startswith("FY") and period[2:].isdigit() else None
         last = pts[-1]
-        cc_guided = any(
-            "constant currency" in p["quote"].lower() or " cc " in f" {p['quote'].lower()} " for p in pts
-        )
+        cc_guided = cc_company
         segment = (
             metric == "segment_revenue"
             or last.get("scope") == "segment"
@@ -549,13 +580,18 @@ def signals(qs: list[dict], trks: list[dict], fmt: str) -> dict[str, list[str]]:
     for t in trks:
         cuts = sum(p["change"] == "cut" for p in t["points"])
         raises = sum(p["change"] == "raised" for p in t["points"])
-        if cuts:
-            bear.append(
-                f"{t['period']} {t['label'].lower()} guidance cut {cuts}× "
-                f"({' → '.join(_band(p) for p in t['points'])})"
-            )
-        if raises:
-            bull.append(f"{t['period']} {t['label'].lower()} guidance raised {raises}×")
+        chain = " → ".join(_band(p) for p in t["points"])
+        name = f"{t['period']} {t['label'].lower()} guidance"
+        if t["metric"] in LOWER_BETTER:  # a lower credit-cost guide is good news, a higher one bad
+            if cuts:
+                bull.append(f"{name} lowered {cuts}× ({chain})")
+            if raises:
+                bear.append(f"{name} raised {raises}× ({chain})")
+        else:
+            if cuts:
+                bear.append(f"{name} cut {cuts}× ({chain})")
+            if raises:
+                bull.append(f"{name} raised {raises}×")
         if t["verdict"] in ("delivered", "beat"):
             bull.append(f"Delivered {t['period']} {t['label'].lower()}: {t['verdict_why']}")
         if t["verdict"] in ("missed", "behind"):
@@ -588,11 +624,12 @@ def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None,
                 "label": fiscal_label(qend, fy_start) + " call",
                 "filed_at": filed.isoformat(),
                 "url": d["url"],
+                "source": d.get("source") or "NSE",
                 "pages": len(d["pages"]),
                 "items": items,
             }
         )
-    trks = tracks(calls, qs, fy_start, conn, cid, cc_reported(docs, fy_start))
+    trks = tracks(calls, qs, fy_start, conn, cid, cc_reported(docs, fy_start), lender=fmt in ("bank", "nbfc"))
     resolved = [t for t in trks if t["resolved"]]
     return {
         "symbol": symbol,
@@ -600,7 +637,7 @@ def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None,
         "industry": industry,
         "format": fmt,
         "as_of": datetime.now().astimezone().isoformat(),
-        "quarters": qs,
+        "quarters": qs[-12:],
         "guidance": trks,
         "calls": [{k: v for k, v in c.items() if k != "items"} | {"n_items": len(c["items"])} for c in calls],
         "signals": signals(qs, trks, fmt),
@@ -615,7 +652,8 @@ def build(conn: Connection, symbol: str, router: Router | None, nse: NSE | None,
         },
         "stats": stats,
         "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its "
-        "earnings-call transcripts on NSE. No news, broker notes or model knowledge.",
+        "earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes "
+        "or model knowledge.",
     }
 
 

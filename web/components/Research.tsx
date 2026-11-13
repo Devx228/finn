@@ -167,7 +167,8 @@ function Body({ r }: { r: Research }) {
             <li key={c.url}>
               <a href={c.url} target="_blank" rel="noreferrer" className="underline">
                 {c.label} transcript
-              </a>{" "}
+              </a>
+              {c.source && c.source !== "NSE" ? " (company IR site)" : ""}{" "}
               · {c.pages} pages · {c.n_items} guidance items
             </li>
           ))}
@@ -210,6 +211,7 @@ function TrackCard({ t }: { t: GuidanceTrack }) {
   const pad = Math.max(0.5, (hi - lo) * 0.15);
   const x = (n: number) => ((n - (lo - pad)) / (hi + pad - (lo - pad))) * 100;
   const showActual = pct && t.actual && t.actual.unit === "%";
+  const lowerBetter = t.metric === "credit_cost"; // lower guidance here is good news
   return (
     <article className="rounded-lg border border-line bg-surface px-3 py-3">
       <div className="flex items-baseline justify-between gap-2">
@@ -254,7 +256,11 @@ function TrackCard({ t }: { t: GuidanceTrack }) {
               {pct && <span className="block">{band(p)}</span>}
               <span
                 className={
-                  p.change === "cut" ? "text-down" : p.change === "raised" ? "text-up" : "text-ink-3"
+                  p.change === (lowerBetter ? "raised" : "cut")
+                    ? "text-down"
+                    : p.change === (lowerBetter ? "cut" : "raised")
+                      ? "text-up"
+                      : "text-ink-3"
                 }
               >
                 {p.change === "cut" ? "▼ cut" : p.change === "raised" ? "▲ raised" : p.change}
@@ -270,6 +276,9 @@ function TrackCard({ t }: { t: GuidanceTrack }) {
     </article>
   );
 }
+
+const srcLabel = (s?: string) =>
+  !s || s === "NSE" ? "transcript on NSE" : "transcript on the company's IR site (downloaded by hand)";
 
 /** The end of the chain: what was actually reported, and where it is written down. */
 function Outcome({ t, marker }: { t: GuidanceTrack; marker: boolean }) {
@@ -291,7 +300,7 @@ function Outcome({ t, marker }: { t: GuidanceTrack; marker: boolean }) {
             {src.call}
             {src.page ? `, p. ${src.page}` : ""} ·{" "}
             <a href={src.url} target="_blank" rel="noreferrer" className="underline">
-              transcript on NSE
+              {srcLabel(src.from)}
             </a>
           </footer>
         </blockquote>
@@ -336,7 +345,7 @@ function Quote({ p }: { p: GuidancePoint }) {
         {p.call}, {p.call_date}
         {p.page ? `, p. ${p.page}` : ""} ·{" "}
         <a href={p.url} target="_blank" rel="noreferrer" className="underline">
-          transcript on NSE
+          {srcLabel(p.source)}
         </a>{" "}
         · {p.by === "rules" ? "matched by rule" : "extracted by model, verified verbatim"}
       </footer>

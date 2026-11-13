@@ -1,34 +1,70 @@
 {
  "name": "Kaynes Technology India Limited",
- "as_of": "2026-11-13T03:34:20.399205+05:30",
+ "as_of": "2026-11-13T11:34:42.724590+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12082026164943_TranscriptoftheEarningAnnouncement.pdf",
    "label": "Q1 FY27 call",
    "pages": 20,
+   "source": "NSE",
    "n_items": 2,
    "filed_at": "2026-08-12T11:19:59+00:00"
+  },
+  {
+   "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/IntimationEarningsCallTranscriptQ4_2026.pdf",
+   "label": "Q4 FY26 call",
+   "pages": 20,
+   "source": "company IR site, manually downloaded",
+   "n_items": 1,
+   "filed_at": "2026-05-14T18:00:00+00:00"
   },
   {
    "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12022026212332_EaningscallTranscriptQ32026Signed.pdf",
    "label": "Q3 FY26 call",
    "pages": 19,
-   "n_items": 0,
+   "source": "NSE",
+   "n_items": 2,
    "filed_at": "2026-02-12T15:55:28+00:00"
   },
   {
    "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_08112025175717_EarningscalltranscriptQ22026Signed.pdf",
    "label": "Q2 FY26 call",
    "pages": 19,
-   "n_items": 1,
+   "source": "NSE",
+   "n_items": 2,
    "filed_at": "2025-11-08T12:28:02+00:00"
   },
   {
    "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_05082025165345_SEintimationtranscriptSigned.pdf",
    "label": "Q1 FY26 call",
    "pages": 19,
-   "n_items": 1,
+   "source": "NSE",
+   "n_items": 2,
    "filed_at": "2025-08-05T11:24:59+00:00"
+  },
+  {
+   "url": "https://www.kaynestechnology.co.in/doc/Regulation-46-of-sebi-lodr-regulation/Earnings%20Call%20Transcript%2016.05.2025.pdf",
+   "label": "Q4 FY25 call",
+   "pages": 18,
+   "source": "company IR site, manually downloaded",
+   "n_items": 1,
+   "filed_at": "2025-05-16T18:00:00+00:00"
+  },
+  {
+   "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
+   "label": "Q3 FY25 call",
+   "pages": 19,
+   "source": "company IR site, manually downloaded",
+   "n_items": 4,
+   "filed_at": "2025-02-01T18:00:00+00:00"
+  },
+  {
+   "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%205.11.2024.pdf",
+   "label": "Q2 FY25 call",
+   "pages": 22,
+   "source": "company IR site, manually downloaded",
+   "n_items": 0,
+   "filed_at": "2024-11-05T18:00:00+00:00"
   }
  ],
  "stats": [
@@ -38,48 +74,83 @@
    "dropped": 0,
    "model_name": "gemini-3.5-flash-lite",
    "drop_reasons": {},
-   "selected_chars": 2209
+   "selected_chars": 2187
   },
   {
-   "model": 0,
+   "model": 1,
    "rules": 0,
-   "dropped": 3,
+   "dropped": 2,
    "model_name": "gemini-3.5-flash-lite",
    "drop_reasons": {
-    "skip pattern / question": 1,
-    "metric not named in the quote": 2
+    "skip pattern / question": 2
    },
-   "selected_chars": 3056
+   "selected_chars": 2253
   },
   {
-   "model": 0,
+   "model": 2,
+   "rules": 0,
+   "dropped": 4,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "model confidence medium": 2,
+    "skip pattern / question": 2
+   },
+   "selected_chars": 1938
+  },
+  {
+   "model": 1,
    "rules": 1,
    "dropped": 0,
    "model_name": "gemini-3.5-flash-lite",
    "drop_reasons": {},
-   "selected_chars": 1478
+   "selected_chars": 1395
   },
   {
-   "model": 0,
+   "model": 1,
    "rules": 1,
    "dropped": 2,
    "model_name": "gemini-3.5-flash-lite",
    "drop_reasons": {
-    "15.5 not in the quote": 1,
-    "metric not named in the quote": 1
+    "metric not named in the quote": 2
    },
-   "selected_chars": 3068
+   "selected_chars": 2436
+  },
+  {
+   "model": 1,
+   "rules": 0,
+   "dropped": 0,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {},
+   "selected_chars": 635
+  },
+  {
+   "model": 2,
+   "rules": 2,
+   "dropped": 1,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 1
+   },
+   "selected_chars": 3624
+  },
+  {
+   "model": 0,
+   "rules": 0,
+   "dropped": 0,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {},
+   "selected_chars": 1275
   }
  ],
  "format": "indas",
  "ledger": {
   "open": 0,
-  "missed": 1,
-  "resolved": 2,
-  "delivered": 1,
-  "calls_read": 4,
-  "calls_listed": 7,
-  "unverifiable": 2
+  "missed": 3,
+  "resolved": 5,
+  "delivered": 2,
+  "calls_read": 8,
+  "calls_listed": 8,
+  "unverifiable": 4
  },
  "symbol": "KAYNES",
  "network": [
@@ -136,14 +207,17 @@
   "bear": [
    "EBITDA margin 15.6% in Q1 FY27, down 120 bps YoY",
    "PAT -24.4% YoY in Q1 FY27",
-   "FY26 revenue growth missed: 33.2% vs 50%"
+   "FY26 revenue growth missed: 33.2% vs 50%",
+   "FY25 revenue growth missed: 50.8% vs 55%"
   ],
   "bull": [
    "Revenue +40.5% YoY in Q1 FY27",
-   "Delivered FY26 ebitda margin: 15.8% within 15.6%"
+   "Delivered FY26 ebitda margin: 15.8% within 15.6%",
+   "Delivered FY25 ebitda margin: 15.1% within 15%",
+   "medium term capex guidance raised 1×"
   ]
  },
- "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts on NSE. No news, broker notes or model knowledge.",
+ "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
  "guidance": [
   {
    "label": "Capex",
@@ -166,6 +240,7 @@
      "change": "first given",
      "metric": "capex",
      "period": "FY27",
+     "source": "NSE",
      "call_date": "2026-08-12",
      "direction": "unclear"
     }
@@ -191,13 +266,14 @@
      "high": 500.0,
      "page": 14,
      "unit": "₹ cr",
-     "label": "full year revenue between OSAT and PCB",
+     "label": "OSAT and PCB full year revenue",
      "quote": "As far as OSAT and PCB is concerned, we already told from third quarter the revenue starts in both the business, and we have committed a full year revenue of totally INR500 crores between both, INR450 to INR500 crores, which is what we are targeting at this point in time, we are on the target.",
      "scope": "segment",
      "change": "first given",
      "future": true,
      "metric": "segment_revenue",
      "period": "FY27",
+     "source": "NSE",
      "call_date": "2026-08-12",
      "direction": "maintained",
      "confidence": "high",
@@ -240,6 +316,7 @@
      "change": "first given",
      "metric": "revenue_growth",
      "period": "FY26",
+     "source": "NSE",
      "call_date": "2025-11-08",
      "direction": "unclear"
     }
@@ -280,6 +357,7 @@
      "change": "first given",
      "metric": "ebitda_margin",
      "period": "FY26",
+     "source": "NSE",
      "call_date": "2025-08-05",
      "direction": "unclear"
     }
@@ -288,6 +366,265 @@
    "verdict": "delivered",
    "resolved": true,
    "verdict_why": "15.8% within 15.6%",
+   "as_of_quarter": "2026-06-30"
+  },
+  {
+   "label": "Revenue growth",
+   "story": "FY25 revenue growth: 55% → filings show 50.8% (FY) → missed.",
+   "actual": {
+    "span": "FY",
+    "unit": "%",
+    "basis": "reported ₹ growth, consolidated",
+    "value": 50.8,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1441102_16052025040930_WEB.xml"
+    },
+    "quarters": 4
+   },
+   "metric": "revenue_growth",
+   "period": "FY25",
+   "points": [
+    {
+     "by": "rules",
+     "low": 55.0,
+     "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
+     "call": "Q3 FY25 call",
+     "high": 55.0,
+     "page": 3,
+     "unit": "%",
+     "label": "revenue growth",
+     "quote": "In the coming quarter of this year, we expect to pick up the revenue growth rates such that the annual operating revenue growth would exceed 55% on year-on-year basis and an expansion in terms of profitability for year FY '25.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "revenue_growth",
+     "period": "FY25",
+     "source": "company IR site, manually downloaded",
+     "call_date": "2025-02-01",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "missed",
+   "resolved": true,
+   "verdict_why": "50.8% vs 55%",
+   "as_of_quarter": "2026-06-30"
+  },
+  {
+   "label": "EBITDA margin",
+   "story": "FY25 ebitda margin: 15% → filings show 15.1% (FY) → delivered.",
+   "actual": {
+    "span": "FY",
+    "unit": "%",
+    "basis": "EBITDA ÷ revenue from the filings",
+    "value": 15.1,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1441102_16052025040930_WEB.xml"
+    },
+    "quarters": 4
+   },
+   "metric": "ebitda_margin",
+   "period": "FY25",
+   "points": [
+    {
+     "by": "model",
+     "low": 15.0,
+     "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
+     "call": "Q3 FY25 call",
+     "high": 15.0,
+     "page": 10,
+     "unit": "%",
+     "label": "margins",
+     "quote": "And the margins will be 15% plus for the year.",
+     "scope": "company",
+     "change": "first given",
+     "future": true,
+     "metric": "ebitda_margin",
+     "period": "FY25",
+     "source": "company IR site, manually downloaded",
+     "call_date": "2025-02-01",
+     "direction": "new",
+     "confidence": "high",
+     "by_management": true
+    }
+   ],
+   "context": null,
+   "verdict": "delivered",
+   "resolved": true,
+   "verdict_why": "15.1% within 15%",
+   "as_of_quarter": "2026-06-30"
+  },
+  {
+   "label": "Revenue",
+   "story": "FY25 revenue: 2800–2900 ₹ cr → filings show ₹2,722 cr (FY) → missed.",
+   "actual": {
+    "span": "FY",
+    "unit": "₹ cr",
+    "basis": "revenue from operations, consolidated",
+    "value": 2721.8,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1441102_16052025040930_WEB.xml"
+    },
+    "quarters": 4
+   },
+   "metric": "revenue",
+   "period": "FY25",
+   "points": [
+    {
+     "by": "rules",
+     "low": 2800.0,
+     "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
+     "call": "Q3 FY25 call",
+     "high": 2900.0,
+     "page": 10,
+     "unit": "₹ cr",
+     "label": "revenue",
+     "quote": "So revenue guidance will be somewhere between INR2,800 crores and INR2,900 crores.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "revenue",
+     "period": "FY25",
+     "source": "company IR site, manually downloaded",
+     "call_date": "2025-02-01",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "missed",
+   "resolved": true,
+   "verdict_why": "₹2,722 cr vs ₹2,800 cr guided",
+   "as_of_quarter": "2026-06-30"
+  },
+  {
+   "label": "Capex",
+   "story": "medium term capex: 3400 ₹ cr → 3400 ₹ cr → 3700 ₹ cr → 3200 ₹ cr (cut once) → unverifiable.",
+   "actual": null,
+   "metric": "capex",
+   "period": "medium term",
+   "points": [
+    {
+     "by": "model",
+     "low": 3400.0,
+     "url": "https://www.kaynestechnology.co.in/doc/Regulation-46-of-sebi-lodr-regulation/Earnings%20Call%20Transcript%2016.05.2025.pdf",
+     "call": "Q4 FY25 call",
+     "high": 3400.0,
+     "page": 8,
+     "unit": "₹ cr",
+     "label": "semicon capex",
+     "quote": "So just to remind you, the total capex for semicon is like INR3,400 crores and total capex for PC board is about INR1,400 crores.",
+     "scope": "company",
+     "change": "first given",
+     "future": true,
+     "metric": "capex",
+     "period": "medium term",
+     "source": "company IR site, manually downloaded",
+     "call_date": "2025-05-16",
+     "direction": "new",
+     "confidence": "high",
+     "by_management": true
+    },
+    {
+     "by": "model",
+     "low": 3400.0,
+     "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_05082025165345_SEintimationtranscriptSigned.pdf",
+     "call": "Q1 FY26 call",
+     "high": 3400.0,
+     "page": 10,
+     "unit": "₹ cr",
+     "label": "capex",
+     "quote": "So by end of FY '27 or so when we -- the bulk of the, let's say, almost 50% plus of our total capex of 3,400 will be consumed by FY '27, we would probably have those clients also on board.",
+     "scope": "company",
+     "change": "held",
+     "future": true,
+     "metric": "capex",
+     "period": "medium term",
+     "source": "NSE",
+     "call_date": "2025-08-05",
+     "direction": "unclear",
+     "confidence": "high",
+     "by_management": true
+    },
+    {
+     "by": "model",
+     "low": 3700.0,
+     "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_08112025175717_EarningscalltranscriptQ22026Signed.pdf",
+     "call": "Q2 FY26 call",
+     "high": 3700.0,
+     "page": 12,
+     "unit": "₹ cr",
+     "label": "capex approval",
+     "quote": "That is as is government has given us approval of about INR3,700-odd crores of capex.",
+     "scope": "company",
+     "change": "raised",
+     "future": true,
+     "metric": "capex",
+     "period": "medium term",
+     "source": "NSE",
+     "call_date": "2025-11-08",
+     "direction": "new",
+     "confidence": "high",
+     "by_management": true
+    },
+    {
+     "by": "model",
+     "low": 3200.0,
+     "url": "https://nsearchives.nseindia.com/corporate/KAYNESTECH_12022026212332_EaningscallTranscriptQ32026Signed.pdf",
+     "call": "Q3 FY26 call",
+     "high": 3200.0,
+     "page": 14,
+     "unit": "₹ cr",
+     "label": "capex for OSAT",
+     "quote": "Other businesses, there is already a DPR, the INR3,200 crores is the total capex for OSAT, INR1,400 crores is the total capex for PC Board.",
+     "scope": "segment",
+     "change": "cut",
+     "future": true,
+     "metric": "capex",
+     "period": "medium term",
+     "source": "NSE",
+     "call_date": "2026-02-12",
+     "direction": "new",
+     "confidence": "high",
+     "by_management": true
+    }
+   ],
+   "context": null,
+   "verdict": "unverifiable",
+   "resolved": false,
+   "verdict_why": "A target for one business; the filings report the company as a whole",
+   "as_of_quarter": "2026-06-30"
+  },
+  {
+   "label": "Segment revenue",
+   "story": "medium term segment revenue: 25000 ₹ cr → unverifiable.",
+   "actual": null,
+   "metric": "segment_revenue",
+   "period": "medium term",
+   "points": [
+    {
+     "by": "model",
+     "low": 25000.0,
+     "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/IntimationEarningsCallTranscriptQ4_2026.pdf",
+     "call": "Q4 FY26 call",
+     "high": 25000.0,
+     "page": 4,
+     "unit": "₹ cr",
+     "label": "OSAT revenue visibility",
+     "quote": "In OSAT, the order outlook for both the current year and the medium term remains strong with revenue visibility of over INR25,000 million over the next 5 years.",
+     "scope": "segment",
+     "change": "first given",
+     "future": true,
+     "metric": "segment_revenue",
+     "period": "medium term",
+     "source": "company IR site, manually downloaded",
+     "call_date": "2026-05-14",
+     "direction": "new",
+     "confidence": "high",
+     "by_management": true
+    }
+   ],
+   "context": null,
+   "verdict": "unverifiable",
+   "resolved": false,
+   "verdict_why": "A target for one business; the filings report the company as a whole",
    "as_of_quarter": "2026-06-30"
   }
  ],

@@ -1,11 +1,12 @@
 {
  "name": "CREDITACCESS GRAMEEN LIMITED",
- "as_of": "2026-11-13T03:34:19.958307+05:30",
+ "as_of": "2026-11-13T11:34:41.806383+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
    "label": "Q2 FY27 call",
    "pages": 20,
+   "source": "NSE",
    "n_items": 4,
    "filed_at": "2026-10-26T07:25:38+00:00"
   },
@@ -13,6 +14,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_29072026165409_Transcript.pdf",
    "label": "Q1 FY27 call",
    "pages": 15,
+   "source": "NSE",
    "n_items": 0,
    "filed_at": "2026-07-29T11:24:29+00:00"
   },
@@ -20,6 +22,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_13052026101034_Final_Transcript.pdf",
    "label": "Q4 FY26 call",
    "pages": 16,
+   "source": "NSE",
    "n_items": 6,
    "filed_at": "2026-05-13T04:41:23+00:00"
   },
@@ -27,8 +30,41 @@
    "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_27012026105321_Transcript_Final.pdf",
    "label": "Q3 FY26 call",
    "pages": 16,
-   "n_items": 0,
+   "source": "NSE",
+   "n_items": 1,
    "filed_at": "2026-01-27T05:24:11+00:00"
+  },
+  {
+   "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/11/CreditAccess-Grameen_Earnings-Call-Transcript_Q2_FY-2025-26.pdf",
+   "label": "Q2 FY26 call",
+   "pages": 16,
+   "source": "company IR site, manually downloaded",
+   "n_items": 1,
+   "filed_at": "2025-10-28T18:00:00+00:00"
+  },
+  {
+   "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/07/CreditAccess-Grameen_Earnings-Call-Transcript_Q1_FY-2025-26.pdf",
+   "label": "Q1 FY26 call",
+   "pages": 17,
+   "source": "company IR site, manually downloaded",
+   "n_items": 0,
+   "filed_at": "2025-07-22T18:00:00+00:00"
+  },
+  {
+   "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/05/CreditAccess-Grameen_Earnings-Call-Transcript_Q4_FY-2024-25.pdf",
+   "label": "Q4 FY25 call",
+   "pages": 20,
+   "source": "company IR site, manually downloaded",
+   "n_items": 0,
+   "filed_at": "2025-05-16T18:00:00+00:00"
+  },
+  {
+   "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/01/CreditAccess-Grameen_Earnings-Call-Transcript_Q3_FY-2024-25.pdf",
+   "label": "Q3 FY25 call",
+   "pages": 20,
+   "source": "company IR site, manually downloaded",
+   "n_items": 5,
+   "filed_at": "2025-01-24T18:00:00+00:00"
   }
  ],
  "stats": [
@@ -41,25 +77,7 @@
     "skip pattern / question": 1,
     "metric not named in the quote": 2
    },
-   "selected_chars": 4632
-  },
-  {
-   "model": 0,
-   "rules": 0,
-   "dropped": 2,
-   "model_name": "gemini-3.5-flash-lite",
-   "drop_reasons": {
-    "skip pattern / question": 2
-   },
-   "selected_chars": 3662
-  },
-  {
-   "model": 0,
-   "rules": 6,
-   "dropped": 0,
-   "model_name": "gemini-3.5-flash-lite",
-   "drop_reasons": {},
-   "selected_chars": 4072
+   "selected_chars": 4254
   },
   {
    "model": 0,
@@ -69,18 +87,78 @@
    "drop_reasons": {
     "skip pattern / question": 1
    },
-   "selected_chars": 3383
+   "selected_chars": 3138
+  },
+  {
+   "model": 0,
+   "rules": 6,
+   "dropped": 0,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {},
+   "selected_chars": 3086
+  },
+  {
+   "model": 0,
+   "rules": 1,
+   "dropped": 1,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 1
+   },
+   "selected_chars": 2774
+  },
+  {
+   "model": 0,
+   "rules": 1,
+   "dropped": 4,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 2,
+    "metric not named in the quote": 2
+   },
+   "selected_chars": 2039
+  },
+  {
+   "model": 0,
+   "rules": 0,
+   "dropped": 3,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "skip pattern / question": 2,
+    "metric outside the tracked set": 1
+   },
+   "selected_chars": 1503
+  },
+  {
+   "model": 0,
+   "rules": 0,
+   "dropped": 1,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "metric not named in the quote": 1
+   },
+   "selected_chars": 1845
+  },
+  {
+   "model": 0,
+   "rules": 5,
+   "dropped": 2,
+   "model_name": "gemini-3.5-flash-lite",
+   "drop_reasons": {
+    "metric not named in the quote": 2
+   },
+   "selected_chars": 1118
   }
  ],
  "format": "nbfc",
  "ledger": {
   "open": 4,
-  "missed": 0,
-  "resolved": 0,
+  "missed": 3,
+  "resolved": 3,
   "delivered": 0,
-  "calls_read": 4,
+  "calls_read": 8,
   "calls_listed": 8,
-  "unverifiable": 2
+  "unverifiable": 3
  },
  "symbol": "CREDITACC",
  "network": [
@@ -134,15 +212,19 @@
   }
  ],
  "signals": {
-  "bear": [],
+  "bear": [
+   "FY26 aum / loan growth missed: 15.0% vs 18–20%",
+   "FY26 return on assets missed: 2.6% vs 4.2–4.5%",
+   "FY26 return on equity missed: 10.5% vs 17–19%"
+  ],
   "bull": [
    "Revenue +26.2% YoY in Q2 FY27",
    "PAT margin 26.3% in Q2 FY27, up 1800 bps YoY",
    "PAT +298.7% YoY in Q2 FY27",
-   "FY27 return on assets guidance raised 1×"
+   "FY27 credit cost guidance lowered 1× (4–4.5% → 3–4% → 3–4%)"
   ]
  },
- "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts on NSE. No news, broker notes or model knowledge.",
+ "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
  "guidance": [
   {
    "label": "AUM / loan growth",
@@ -174,6 +256,7 @@
      "change": "first given",
      "metric": "aum_growth",
      "period": "FY27",
+     "source": "NSE",
      "call_date": "2026-05-13",
      "direction": "unclear"
     },
@@ -191,6 +274,7 @@
      "change": "held",
      "metric": "aum_growth",
      "period": "FY27",
+     "source": "NSE",
      "call_date": "2026-10-26",
      "direction": "maintained"
     }
@@ -199,6 +283,83 @@
    "verdict": "on track",
    "resolved": false,
    "verdict_why": "21.5% within 20–25%",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Credit cost",
+   "story": "FY27 credit cost: 4–4.5% → 3–4% → 3–4% (cut once) → filings show 3.6% (2Q YTD annualised) → on track.",
+   "actual": {
+    "span": "2Q YTD annualised",
+    "unit": "%",
+    "basis": "impairment on financial instruments ÷ average loans",
+    "value": 3.6,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_NBFC_INDAS_1744139_22102026061824_WEB.xml"
+    },
+    "quarters": 2
+   },
+   "metric": "credit_cost",
+   "period": "FY27",
+   "points": [
+    {
+     "by": "rules",
+     "low": 4.0,
+     "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/11/CreditAccess-Grameen_Earnings-Call-Transcript_Q2_FY-2025-26.pdf",
+     "call": "Q2 FY26 call",
+     "high": 4.5,
+     "page": 5,
+     "unit": "%",
+     "label": "credit cost",
+     "quote": "We are envisaging that the next year credit cost would be in the range of 4% to 4.5%.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "credit_cost",
+     "period": "FY27",
+     "source": "company IR site, manually downloaded",
+     "call_date": "2025-10-28",
+     "direction": "unclear"
+    },
+    {
+     "by": "rules",
+     "low": 3.0,
+     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_13052026101034_Final_Transcript.pdf",
+     "call": "Q4 FY26 call",
+     "high": 4.0,
+     "page": 6,
+     "unit": "%",
+     "label": "credit cost",
+     "quote": "For FY27, we are guiding an AUM growth of 20.0-25.0%, NIM of 12.8-13.2%, cost to income of 33.0-35.0%, credit cost of 3.0-4.0%, ROA of 4.0-4.8%, and an ROE of 16.0-20.0%.",
+     "scope": "company",
+     "change": "cut",
+     "metric": "credit_cost",
+     "period": "FY27",
+     "source": "NSE",
+     "call_date": "2026-05-13",
+     "direction": "unclear"
+    },
+    {
+     "by": "rules",
+     "low": 3.0,
+     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
+     "call": "Q2 FY27 call",
+     "high": 4.0,
+     "page": 5,
+     "unit": "%",
+     "label": "credit cost",
+     "quote": "We're maintaining our credit cost guidance of 3% to 4%, and it should comfortably cover for any volatility on account of evolving drought-related conditions in some operating geographies.",
+     "scope": "company",
+     "change": "held",
+     "metric": "credit_cost",
+     "period": "FY27",
+     "source": "NSE",
+     "call_date": "2026-10-26",
+     "direction": "maintained"
+    }
+   ],
+   "context": null,
+   "verdict": "on track",
+   "resolved": false,
+   "verdict_why": "3.6% within 3–4%",
    "as_of_quarter": "2026-09-30"
   },
   {
@@ -222,6 +383,7 @@
      "change": "first given",
      "metric": "nim",
      "period": "FY27",
+     "source": "NSE",
      "call_date": "2026-05-13",
      "direction": "unclear"
     }
@@ -253,6 +415,7 @@
      "change": "first given",
      "metric": "cost_to_income",
      "period": "FY27",
+     "source": "NSE",
      "call_date": "2026-05-13",
      "direction": "unclear"
     }
@@ -261,63 +424,6 @@
    "verdict": "unverifiable",
    "resolved": false,
    "verdict_why": "Not checkable from the filings",
-   "as_of_quarter": "2026-09-30"
-  },
-  {
-   "label": "Credit cost",
-   "story": "FY27 credit cost: 3–4% → 3–4% (held) → filings show 3.6% (2Q YTD annualised) → on track.",
-   "actual": {
-    "span": "2Q YTD annualised",
-    "unit": "%",
-    "basis": "impairment on financial instruments ÷ average loans",
-    "value": 3.6,
-    "source": {
-     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_NBFC_INDAS_1744139_22102026061824_WEB.xml"
-    },
-    "quarters": 2
-   },
-   "metric": "credit_cost",
-   "period": "FY27",
-   "points": [
-    {
-     "by": "rules",
-     "low": 3.0,
-     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_13052026101034_Final_Transcript.pdf",
-     "call": "Q4 FY26 call",
-     "high": 4.0,
-     "page": 6,
-     "unit": "%",
-     "label": "credit cost",
-     "quote": "For FY27, we are guiding an AUM growth of 20.0-25.0%, NIM of 12.8-13.2%, cost to income of 33.0-35.0%, credit cost of 3.0-4.0%, ROA of 4.0-4.8%, and an ROE of 16.0-20.0%.",
-     "scope": "company",
-     "change": "first given",
-     "metric": "credit_cost",
-     "period": "FY27",
-     "call_date": "2026-05-13",
-     "direction": "unclear"
-    },
-    {
-     "by": "rules",
-     "low": 3.0,
-     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_26102026125458_Transcript.pdf",
-     "call": "Q2 FY27 call",
-     "high": 4.0,
-     "page": 5,
-     "unit": "%",
-     "label": "credit cost",
-     "quote": "We're maintaining our credit cost guidance of 3% to 4%, and it should comfortably cover for any volatility on account of evolving drought-related conditions in some operating geographies.",
-     "scope": "company",
-     "change": "held",
-     "metric": "credit_cost",
-     "period": "FY27",
-     "call_date": "2026-10-26",
-     "direction": "maintained"
-    }
-   ],
-   "context": null,
-   "verdict": "on track",
-   "resolved": false,
-   "verdict_why": "3.6% within 3–4%",
    "as_of_quarter": "2026-09-30"
   },
   {
@@ -350,6 +456,7 @@
      "change": "first given",
      "metric": "roa",
      "period": "FY27",
+     "source": "NSE",
      "call_date": "2026-05-13",
      "direction": "unclear"
     },
@@ -367,6 +474,7 @@
      "change": "raised",
      "metric": "roa",
      "period": "FY27",
+     "source": "NSE",
      "call_date": "2026-10-26",
      "direction": "raised"
     }
@@ -407,6 +515,7 @@
      "change": "first given",
      "metric": "roe",
      "period": "FY27",
+     "source": "NSE",
      "call_date": "2026-05-13",
      "direction": "unclear"
     },
@@ -424,6 +533,7 @@
      "change": "raised",
      "metric": "roe",
      "period": "FY27",
+     "source": "NSE",
      "call_date": "2026-10-26",
      "direction": "raised"
     }
@@ -432,6 +542,161 @@
    "verdict": "on track",
    "resolved": false,
    "verdict_why": "23.7% within 21–24%",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "AUM / loan growth",
+   "story": "FY26 aum / loan growth: 18–20% → filings show 15.0% (FY) → missed.",
+   "actual": {
+    "span": "FY",
+    "unit": "%",
+    "basis": "loans on the balance sheet, YoY to Mar 2026 (AUM also includes off-book loans)",
+    "value": 15.0,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_NBFC_INDAS_1665139_08052026091123_WEB.xml"
+    },
+    "quarters": 4
+   },
+   "metric": "aum_growth",
+   "period": "FY26",
+   "points": [
+    {
+     "by": "rules",
+     "low": 18.0,
+     "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/01/CreditAccess-Grameen_Earnings-Call-Transcript_Q3_FY-2024-25.pdf",
+     "call": "Q3 FY25 call",
+     "high": 20.0,
+     "page": 5,
+     "unit": "%",
+     "label": "aum growth",
+     "quote": "The preliminary outlook for FY26 projects healthy 18%-20% AUM growth, 4.2%-4.5% ROA and 17%-19% ROE.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "aum_growth",
+     "period": "FY26",
+     "source": "company IR site, manually downloaded",
+     "call_date": "2025-01-24",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "missed",
+   "resolved": true,
+   "verdict_why": "15.0% vs 18–20%",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Return on assets",
+   "story": "FY26 return on assets: 4.2–4.5% → filings show 2.6% (FY) → missed.",
+   "actual": {
+    "span": "FY",
+    "unit": "%",
+    "basis": "profit ÷ average total assets",
+    "value": 2.6,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_NBFC_INDAS_1665139_08052026091123_WEB.xml"
+    },
+    "quarters": 4
+   },
+   "metric": "roa",
+   "period": "FY26",
+   "points": [
+    {
+     "by": "rules",
+     "low": 4.2,
+     "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/01/CreditAccess-Grameen_Earnings-Call-Transcript_Q3_FY-2024-25.pdf",
+     "call": "Q3 FY25 call",
+     "high": 4.5,
+     "page": 5,
+     "unit": "%",
+     "label": "roa",
+     "quote": "The preliminary outlook for FY26 projects healthy 18%-20% AUM growth, 4.2%-4.5% ROA and 17%-19% ROE.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "roa",
+     "period": "FY26",
+     "source": "company IR site, manually downloaded",
+     "call_date": "2025-01-24",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "missed",
+   "resolved": true,
+   "verdict_why": "2.6% vs 4.2–4.5%",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Return on equity",
+   "story": "FY26 return on equity: 17–19% → filings show 10.5% (FY) → missed.",
+   "actual": {
+    "span": "FY",
+    "unit": "%",
+    "basis": "profit ÷ average equity",
+    "value": 10.5,
+    "source": {
+     "xbrl": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_NBFC_INDAS_1665139_08052026091123_WEB.xml"
+    },
+    "quarters": 4
+   },
+   "metric": "roe",
+   "period": "FY26",
+   "points": [
+    {
+     "by": "rules",
+     "low": 17.0,
+     "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/01/CreditAccess-Grameen_Earnings-Call-Transcript_Q3_FY-2024-25.pdf",
+     "call": "Q3 FY25 call",
+     "high": 19.0,
+     "page": 5,
+     "unit": "%",
+     "label": "roe",
+     "quote": "The preliminary outlook for FY26 projects healthy 18%-20% AUM growth, 4.2%-4.5% ROA and 17%-19% ROE.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "roe",
+     "period": "FY26",
+     "source": "company IR site, manually downloaded",
+     "call_date": "2025-01-24",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "missed",
+   "resolved": true,
+   "verdict_why": "10.5% vs 17–19%",
+   "as_of_quarter": "2026-09-30"
+  },
+  {
+   "label": "Return on assets",
+   "story": "medium term return on assets: 4.5% → open-ended.",
+   "actual": null,
+   "metric": "roa",
+   "period": "medium term",
+   "points": [
+    {
+     "by": "rules",
+     "low": 4.5,
+     "url": "https://nsearchives.nseindia.com/corporate/CREDITACC_27012026105321_Transcript_Final.pdf",
+     "call": "Q3 FY26 call",
+     "high": 4.5,
+     "page": 15,
+     "unit": "%",
+     "label": "roa",
+     "quote": "So, you should assume that as a company, we'll be in the range of around 4.5% ROA even in a good time.",
+     "scope": "company",
+     "change": "first given",
+     "metric": "roa",
+     "period": "medium term",
+     "source": "NSE",
+     "call_date": "2026-01-27",
+     "direction": "unclear"
+    }
+   ],
+   "context": null,
+   "verdict": "open-ended",
+   "resolved": false,
+   "verdict_why": "No year attached, so it never falls due; listed, not scored",
    "as_of_quarter": "2026-09-30"
   }
  ],

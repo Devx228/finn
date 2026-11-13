@@ -221,6 +221,7 @@ export interface GuidancePoint {
   page: number | null;
   by: "rules" | "model";
   scope?: "company" | "segment";
+  source?: string;
   call: string;
   call_date: string;
   url: string;
@@ -238,7 +239,7 @@ export interface GuidanceTrack {
     span: string;
     quarters: number;
     basis: string;
-    source?: { quote?: string; page?: number; url?: string; call?: string; xbrl?: string | null };
+    source?: { quote?: string; page?: number; url?: string; call?: string; from?: string; xbrl?: string | null };
   } | null;
   context?: string | null;
   verdict: string;
@@ -265,7 +266,7 @@ export interface Research {
   as_of: string;
   quarters: Quarter[];
   guidance: GuidanceTrack[];
-  calls: { label: string; filed_at: string; url: string; pages: number; n_items: number }[];
+  calls: { label: string; filed_at: string; url: string; source?: string; pages: number; n_items: number }[];
   signals: { bull: string[]; bear: string[] };
   ledger?: Ledger;
   sources: string;

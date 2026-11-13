@@ -264,12 +264,26 @@ def cmd_research(args: argparse.Namespace) -> int:
         db.migrate(conn)
         for sym in syms:
             try:
-                print(f"  {sym:<12}", research.materialise(conn, sym, router, NSE()))
+                nse = None if args.offline else NSE()
+                print(f"  {sym:<12}", research.materialise(conn, sym, router, nse))
             except SourceRefused as e:
                 print(f"!! STOPPED: {e}. Access rule: do not retry; tell the owner.")
                 return 1
             except ValueError as e:
                 print(f"  {sym:<12} skipped: {e}")
+    return 0
+
+
+def cmd_import_transcripts(args: argparse.Namespace) -> int:
+    """Ingest transcripts downloaded by hand into data/manual/<SYMBOL>/ (with manifest.json)."""
+    from finn.config import REPO_ROOT
+    from finn.pull.transcripts import import_manual
+
+    with db.connection() as conn:
+        db.migrate(conn)
+        for sym in [s.strip().upper() for s in args.symbols.split(",") if s.strip()]:
+            for line in import_manual(conn, sym, REPO_ROOT / "data" / "manual"):
+                print(f"  {sym:<12} {line}")
     return 0
 
 
@@ -301,7 +315,11 @@ def main(argv: list[str] | None = None) -> int:
     rs = sub.add_parser("research", help="build research views (pull) for symbols")
     rs.add_argument("symbols", help="comma-separated NSE symbols")
     rs.add_argument("--no-llm", action="store_true", help="rules-only guidance extraction")
+    rs.add_argument("--offline", action="store_true", help="never fetch: use cached documents only")
     rs.set_defaults(fn=cmd_research)
+    imp = sub.add_parser("import-transcripts", help="ingest PDFs from data/manual/<SYMBOL>/")
+    imp.add_argument("symbols", help="comma-separated NSE symbols")
+    imp.set_defaults(fn=cmd_import_transcripts)
     args = p.parse_args(argv)
     return args.fn(args)
 

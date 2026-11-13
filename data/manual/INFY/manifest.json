@@ -1,0 +1,30 @@
+{
+ "symbol": "INFY",
+ "source": "company IR site, manually downloaded",
+ "calls": [
+  {
+   "file": "q3fy25.pdf",
+   "url": "https://www.infosys.com/investors/reports-filings/quarterly-results/2024-2025/q3/documents/transcripts/earningscall.pdf",
+   "call_date": "2025-01-16",
+   "quarter": "Q3 FY25"
+  },
+  {
+   "file": "q4fy25.pdf",
+   "url": "https://www.infosys.com/investors/reports-filings/quarterly-results/2024-2025/q4/documents/transcripts/earningscall.pdf",
+   "call_date": "2025-04-17",
+   "quarter": "Q4 FY25"
+  },
+  {
+   "file": "q1fy26.pdf",
+   "url": "https://www.infosys.com/investors/reports-filings/quarterly-results/2025-2026/q1/documents/transcripts/earningscall.pdf",
+   "call_date": "2025-07-23",
+   "quarter": "Q1 FY26"
+  },
+  {
+   "file": "q2fy26.pdf",
+   "url": "https://www.infosys.com/investors/reports-filings/quarterly-results/2025-2026/q2/documents/transcripts/earningscall.pdf",
+   "call_date": "2025-10-16",
+   "quarter": "Q2 FY26"
+  }
+ ]
+}

@@ -478,3 +478,31 @@ Router: throttle is now per provider:model (Gemini 3.5-flash-lite 14/min, 3-flas
   FY27 closes (or when the older calls with FY26 guidance can be read). KAYNES gives the only
   rupee-checkable *resolved* pair today (FY26 growth ~50% guided vs 33.2% → missed; EBITDA margin
   15.6% vs 15.8% → delivered).
+
+## 2026-11-13 (later) — NSE diagnosis, transcripts from company IR sites, safe write-back
+- **NSE refusal, diagnosed from local logs only (no new NSE requests):** refused URL
+  `nsearchives.nseindia.com/corporate/Infosys_21102025214121_SEfiling_Earningscalltranscript_q2.pdf`
+  — same host and `/corporate/` path as the 24 transcripts fetched fine; 0 requests in the 10 min
+  before (last NSE response 18:31:58Z, refusal 21:35:27Z, a 3 h 03 min gap); it was the first and
+  only request of that process (no warm-up, no retry). infosys.com (also Akamai) returned the same
+  "Access Denied" to a plain client minutes later. Read: the network/IP, not our rate. Owner is
+  checking the URL in a browser; all automated NSE fetching stays stopped (no GitHub job calls NSE).
+- **Manual transcript import** (`finn import-transcripts SYM`): PDFs in `data/manual/<SYM>/` +
+  `manifest.json` (original URL, call date, quarter); stored like fetched ones with
+  `documents.source = 'company IR site, manually downloaded'` (migration 0006); the citation links
+  the company's own URL; PDFs are gitignored (never re-hosted). Owner asked for the download to be
+  done for them: CREDITACC ×4 and KAYNES ×4 came from the companies' sites with a plain client;
+  infosys.com refused (Akamai) and was not worked around — owner downloads those 4 by hand.
+- **Write-back to Neon is allowlisted** (`scripts/neon_http.py`): views only under pipeline-owned
+  prefixes; llm_cache insert-only; llm_calls appended without ids; documents inserted by url,
+  never overwriting text; any other table refused; the remote comes only from `.env` and must be a
+  Neon host. The first run of the insert-only ledger push hit a duplicate id (Neon's sequence was
+  behind after the earlier unsafe push) and failed instead of overwriting — sequence advanced.
+- **More precision guards from 8-call ledgers:** speaker attribution (analysts named by the
+  moderator, and the moderator, never count as management), number-before-metric phrasing
+  ("4.2%-4.5% ROA"), increments ("additional", "another", run-rate, half-year) skipped, multi-year
+  totals beat a named year, "FY25-26" = FY26, unit-consistent chains (bps never joins a % chain),
+  a lender's bare "growth" = loan growth, bare "margin" = EBITDA margin at EBITDA reporters,
+  constant currency decided per company, lower credit-cost guidance shown as good news.
+- **EXTRACT order changed:** gemini-3.5-flash-lite first. 3-flash timed out on 48 of 57 calls on
+  13 Nov; it scored the same 1.00/1.00 as flash-lite in the pipeline on the gold set.

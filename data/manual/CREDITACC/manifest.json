@@ -1,0 +1,30 @@
+{
+ "symbol": "CREDITACC",
+ "source": "company IR site, manually downloaded",
+ "calls": [
+  {
+   "file": "q3fy25.pdf",
+   "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/01/CreditAccess-Grameen_Earnings-Call-Transcript_Q3_FY-2024-25.pdf",
+   "call_date": "2025-01-24",
+   "quarter": "Q3 FY25"
+  },
+  {
+   "file": "q4fy25.pdf",
+   "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/05/CreditAccess-Grameen_Earnings-Call-Transcript_Q4_FY-2024-25.pdf",
+   "call_date": "2025-05-16",
+   "quarter": "Q4 FY25"
+  },
+  {
+   "file": "q1fy26.pdf",
+   "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/07/CreditAccess-Grameen_Earnings-Call-Transcript_Q1_FY-2025-26.pdf",
+   "call_date": "2025-07-22",
+   "quarter": "Q1 FY26"
+  },
+  {
+   "file": "q2fy26.pdf",
+   "url": "https://www.creditaccessgrameen.in/wp-content/uploads/2025/11/CreditAccess-Grameen_Earnings-Call-Transcript_Q2_FY-2025-26.pdf",
+   "call_date": "2025-10-28",
+   "quarter": "Q2 FY26"
+  }
+ ]
+}

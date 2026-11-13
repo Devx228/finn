@@ -147,15 +147,38 @@ def sentences(pages: list[str]) -> list[tuple[int, str]]:
     return out
 
 
+SPEAKER = re.compile(r"^((?:Mr\.?|Ms\.?|Mrs\.?|Dr\.?)?\s*[A-Z][\w.'’-]*(?:\s+[A-Z][\w.'’-]*){0,3}):\s")
+ANALYST = re.compile(
+    r"(?:question|questions) (?:is |comes |come )?from (?:the )?line of (?:Mr\.?|Ms\.?|Mrs\.?)?\s*"
+    r"([A-Z][\w.'’-]*(?:\s+[A-Z][\w.'’-]*){0,2})"
+)
+
+
+def management_only(ss: list[tuple[int, str]]) -> list[bool]:
+    """Per sentence: True unless an analyst or the moderator is speaking. Speakers come from
+    "Name:" tags; analysts are the names the moderator introduces ("question from the line of X")."""
+    analysts = {m.group(1).strip().lower() for _, s in ss for m in ANALYST.finditer(s)}
+    out, current = [], ""
+    for _, s in ss:
+        m = SPEAKER.match(s)
+        if m:
+            current = re.sub(r"^(?:mr|ms|mrs|dr)\.?\s*", "", m.group(1).strip().lower())
+        out.append(
+            not (current == "moderator" or any(current and current in a or a in current for a in analysts))
+        )
+    return out
+
+
 def select(pages: list[str]) -> tuple[str, list[tuple[int, str]]]:
     """Management sentences with a cue word and a number, plus the next sentence for context."""
     ss = sentences(pages)
+    mgmt = management_only(ss)
     keep: list[int] = []
     for i, (_, s) in enumerate(ss):
-        if s.endswith("?") or not CUE.search(s) or not NUM.search(s):
+        if not mgmt[i] or s.endswith("?") or not CUE.search(s) or not NUM.search(s):
             continue
         for j in (i, i + 1):
-            if j < len(ss) and j not in keep and not ss[j][1].endswith("?"):
+            if j < len(ss) and j not in keep and mgmt[j] and not ss[j][1].endswith("?"):
                 keep.append(j)
     chosen, total = [], 0
     for j in keep:
@@ -180,7 +203,7 @@ def locate(quote: str, chosen: list[tuple[int, str]], full_norm: str) -> int | N
 NUMSPAN = re.compile(
     r"(?:between\s+)?(?P<lo>-?\d+(?:\.\d+)?)\s*(?:%|percent|per cent)?\s*(?:to|-|–)\s*"
     r"(?P<hi>-?\d+(?:\.\d+)?)\s*(?P<u>%|percent|per cent|bps|basis points)"
-    r"|(?:rs\.?|₹|inr)\s*(?P<crlo>\d[\d,]*(?:\.\d+)?)\s*(?:to|-|–)\s*(?:rs\.?|₹|inr)?\s*"
+    r"|(?:rs\.?|₹|inr)\s*(?P<crlo>\d[\d,]*(?:\.\d+)?)\s*(?:crores?\s*)?(?:to|-|–|and)\s*(?:rs\.?|₹|inr)?\s*"
     r"(?P<crhi>\d[\d,]*(?:\.\d+)?)\s*(?P<crru>crores?|cr|billion|bn)\b"
     r"|(?:rs\.?|₹|inr)\s*(?P<cr>\d[\d,]*(?:\.\d+)?)\s*(?P<cru>crores?|cr|billion|bn)\b"
     r"|(?P<one>-?\d+(?:\.\d+)?)\s*(?P<ou>%|percent|per cent|bps|basis points)",
@@ -227,24 +250,45 @@ SKIP = re.compile(
     r"you('re| are) guiding|your guidance|you (have )?guided|you said|what you|per month|\bvs\.? |"
     r"\bgrew\b|in line with|within the|you had|you mentioned|that you|\bmiss|closer to|we may|"
     r"may be|if we are able|in a bad year|you have told|you told|you have said|\btcv\b|"
-    r"order (?:intake|inflow)|bookings|it was just|was just",
+    r"order (?:intake|inflow)|bookings|it was just|was just|additional|incremental|"
+    r"from (?:that|this|the) (?:one |mega |large )?deal|from one deal|contribut|run[- ]?rate|"
+    r"(?:first|second) half|television|interview|\banother\b|remaining|balance of|"
+    r"over the previous year|over last year",
     re.I,
 )
-FY = re.compile(r"\b(?:FY|financial year|fiscal(?: year)?)\s?'?(?:20)?(\d{2})\b|\b20(\d{2})-(\d{2})\b", re.I)
+FY = re.compile(
+    r"\bFY\s?'?(?:20)?\d{2}\s?[-–]\s?(?:20)?(\d{2})\b"  # "FY25-26" is FY26
+    r"|\b(?:FY|financial year|fiscal(?: year)?)\s?'?(?:20)?(\d{2})\b|\b20(\d{2})-(\d{2})\b",
+    re.I,
+)
 # No single year to hold it to: an aspiration, or a total over several years.
 OPEN_ENDED = re.compile(
     r"over a period of time|aspiration|aspirational|aspire|medium[- ]term|long[- ]term|"
     r"over the next (?:few|\d+|two|three|four|five) years|across these \w+ years|"
-    r"in the next (?:few|\d+|two|three|four|five) years|total (?:spend|capex|investment)|cumulative",
+    r"in the next (?:few|\d+|two|three|four|five) years|total (?:spend|capex|investment)|cumulative|"
+    r"in a good time|through[- ]the[- ]cycle|steady[- ]state|normali[sz]ed|over the cycle",
     re.I,
 )
 MEDIUM_TERM = "medium term"
 
 
+YEARISH = re.compile(r"this year|next year|current year|for the year|this fiscal|full year|annual", re.I)
+
+
+# A total spread over several years: never one year's number, even if a year is named.
+MULTI_YEAR = re.compile(
+    r"total (?:spend|capex|investment)|total \w+ of|cumulative|across these \w+ years|"
+    r"over the next (?:few|\d+|two|three|four|five) years",
+    re.I,
+)
+
+
 def _fy(text: str, call_fy: int) -> str:
+    if MULTI_YEAR.search(text):
+        return MEDIUM_TERM
     m = FY.search(text)
     if m:
-        y = int(m.group(1)) if m.group(1) else int(m.group(3))
+        y = int(m.group(1) or m.group(2) or m.group(4))
         return f"FY{y:02d}"
     if OPEN_ENDED.search(text):
         return MEDIUM_TERM
@@ -281,6 +325,14 @@ def rule_items(chosen: list[tuple[int, str]], call_fy: int) -> list[dict]:
                 hits.append((m.start(), m.end(), metric))
         hits.sort()
         nums = list(NUMSPAN.finditer(s))
+        # "18%-20% AUM growth, 4.2%-4.5% ROA": a number right before a metric word is that
+        # metric's, and no other keyword may take it.
+        prefix: dict[int, re.Match[str]] = {}
+        for h_start, _e, _m in hits:
+            before = [x for x in nums if 0 <= h_start - x.end() <= 2 and not s[x.end() : h_start].strip()]
+            if before:
+                prefix[h_start] = before[-1]
+        claimed = {id(x) for x in prefix.values()}
         for i, (start, end, metric) in enumerate(hits):
             word = s[start:end].lower()
             if (
@@ -290,9 +342,10 @@ def rule_items(chosen: list[tuple[int, str]], call_fy: int) -> list[dict]:
             ):
                 continue  # "microfinance growth", "automotive to grow": a segment, not the company
             nxt = hits[i + 1][0] if i + 1 < len(hits) else len(s)
-            seg = [x for x in nums if end <= x.start() < nxt]
+            seg = [x for x in nums if end <= x.start() < nxt and id(x) not in claimed]
             # "revised from 1.5% to 3% to 1% to 2%": after "from", the last band is the new one
             n = (seg[-1] if " from " in s[end : seg[0].start()].lower() else seg[0]) if seg else None
+            n = prefix.get(start, n)
             if n is None:
                 continue
             if n.group("cr") or n.group("crlo"):
@@ -323,7 +376,9 @@ def rule_items(chosen: list[tuple[int, str]], call_fy: int) -> list[dict]:
                 {
                     "metric": metric,
                     "label": metric.replace("_", " "),
-                    "period": _fy(s, call_fy),
+                    "period": MEDIUM_TERM
+                    if metric == "capex" and not (FY.search(s) or YEARISH.search(s))
+                    else _fy(s, call_fy),
                     "low": lo,
                     "high": hi,
                     "unit": unit,
@@ -393,6 +448,8 @@ def extract(
                     dropped += 1
                     reasons[why] = reasons.get(why, 0) + 1
                     continue
+                if it.low is None or it.high is None:
+                    it.low = it.high = it.low if it.low is not None else it.high
                 if conflicts(it):
                     continue  # a rule already read this sentence's number
                 d = it.model_dump()
@@ -403,6 +460,8 @@ def extract(
                     if FY.search(it.quote) or OPEN_ENDED.search(it.quote)
                     else _fy(it.period or "", call_fy)
                 )
+                if d["metric"] == "capex" and not (FY.search(it.quote) or YEARISH.search(it.quote)):
+                    d["period"] = MEDIUM_TERM  # a project's capex with no year is not a year's plan
                 items.append({**d, "page": page or None, "by": "model"})
                 n_model += 1
         except Exception as e:  # model down: rules-only result is still correct, just thinner

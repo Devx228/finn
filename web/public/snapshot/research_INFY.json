@@ -1,11 +1,12 @@
 {
  "name": "Infosys Limited",
- "as_of": "2026-11-13T03:34:19.354585+05:30",
+ "as_of": "2026-11-13T11:34:43.424769+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173824_SE_filing_Earnings_call_transcript.pdf",
    "label": "Q2 FY27 call",
    "pages": 48,
+   "source": "NSE",
    "n_items": 3,
    "filed_at": "2026-10-28T12:08:42+00:00"
   },
@@ -13,6 +14,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/Infosys_28072026202438_SE_filing_Earnings_call_transcript.pdf",
    "label": "Q1 FY27 call",
    "pages": 48,
+   "source": "NSE",
    "n_items": 2,
    "filed_at": "2026-07-28T14:54:53+00:00"
   },
@@ -20,6 +22,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/Infosys_27042026203405_Transcript_April232026_Q4.pdf",
    "label": "Q4 FY26 call",
    "pages": 46,
+   "source": "NSE",
    "n_items": 2,
    "filed_at": "2026-04-27T15:06:05+00:00"
   },
@@ -27,6 +30,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/Infosys_19012026222220_SEfiling_Earningscalltranscript_19012026.pdf",
    "label": "Q3 FY26 call",
    "pages": 39,
+   "source": "NSE",
    "n_items": 2,
    "filed_at": "2026-01-19T16:52:39+00:00"
   }
@@ -139,7 +143,7 @@
    "Delivered FY26 operating margin: 20.9% within 20–22%"
   ]
  },
- "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts on NSE. No news, broker notes or model knowledge.",
+ "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
  "guidance": [
   {
    "label": "Revenue growth",
@@ -152,6 +156,7 @@
     "source": {
      "url": "https://nsearchives.nseindia.com/corporate/Infosys_28102026173824_SE_filing_Earnings_call_transcript.pdf",
      "call": "Q2 FY27 call",
+     "from": "NSE",
      "page": 27,
      "quote": "H1 revenue growth was at 1.9% in constant currency terms and 2.1% in reported terms."
     },
@@ -166,14 +171,15 @@
      "url": "https://nsearchives.nseindia.com/corporate/Infosys_27042026203405_Transcript_April232026_Q4.pdf",
      "call": "Q4 FY26 call",
      "high": 3.5,
-     "page": 4,
+     "page": 27,
      "unit": "%",
      "label": "revenue growth",
-     "quote": "Our revenue growth guidance for the financial year 2027 is 1.5% to 3.5% growth year-on-year in constant currency terms.",
+     "quote": "Our revenue growth guidance of financial year '27 is 1.5% to 3.5% year-on-year in constant currency terms.",
      "scope": "company",
      "change": "first given",
      "metric": "revenue_growth",
      "period": "FY27",
+     "source": "NSE",
      "call_date": "2026-04-27",
      "direction": "unclear"
     },
@@ -191,6 +197,7 @@
      "change": "cut",
      "metric": "revenue_growth",
      "period": "FY27",
+     "source": "NSE",
      "call_date": "2026-07-28",
      "direction": "unclear"
     },
@@ -208,6 +215,7 @@
      "change": "cut",
      "metric": "revenue_growth",
      "period": "FY27",
+     "source": "NSE",
      "call_date": "2026-10-28",
      "direction": "unclear"
     }
@@ -248,6 +256,7 @@
      "change": "first given",
      "metric": "operating_margin",
      "period": "FY27",
+     "source": "NSE",
      "call_date": "2026-04-27",
      "direction": "unclear"
     },
@@ -265,6 +274,7 @@
      "change": "held",
      "metric": "operating_margin",
      "period": "FY27",
+     "source": "NSE",
      "call_date": "2026-07-28",
      "direction": "maintained"
     },
@@ -282,6 +292,7 @@
      "change": "held",
      "metric": "operating_margin",
      "period": "FY27",
+     "source": "NSE",
      "call_date": "2026-10-28",
      "direction": "maintained"
     }
@@ -303,6 +314,7 @@
     "source": {
      "url": "https://nsearchives.nseindia.com/corporate/Infosys_27042026203405_Transcript_April232026_Q4.pdf",
      "call": "Q4 FY26 call",
+     "from": "NSE",
      "page": 26,
      "quote": "We had a growth of 3.1% for the full year in constant currency terms."
     },
@@ -317,14 +329,15 @@
      "url": "https://nsearchives.nseindia.com/corporate/Infosys_19012026222220_SEfiling_Earningscalltranscript_19012026.pdf",
      "call": "Q3 FY26 call",
      "high": 3.5,
-     "page": 4,
+     "page": 24,
      "unit": "%",
      "label": "revenue growth",
-     "quote": "The new revenue growth guidance for this financial year is 3% to 3.5% growth in constant currency.",
+     "quote": "Strong year-to-date performance and robust deal wins have enabled us to revise our revenue guidance for FY'26 upward to 3% to 3.5%.",
      "scope": "company",
      "change": "first given",
      "metric": "revenue_growth",
      "period": "FY26",
+     "source": "NSE",
      "call_date": "2026-01-19",
      "direction": "unclear"
     }
@@ -365,6 +378,7 @@
      "change": "first given",
      "metric": "operating_margin",
      "period": "FY26",
+     "source": "NSE",
      "call_date": "2026-01-19",
      "direction": "maintained"
     }

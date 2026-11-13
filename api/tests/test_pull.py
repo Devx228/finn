@@ -24,6 +24,15 @@ def test_multi_metric_sentence_splits_each_band():
     assert all(i["period"] == "FY27" for i in got)
 
 
+def test_number_before_metric_and_increments():
+    got = _items(
+        "The preliminary outlook for FY26 projects healthy 18%-20% AUM growth, 4.2%-4.5% ROA and 17%-19% ROE."
+    )
+    by = {i["metric"]: (i["low"], i["high"]) for i in got}
+    assert by == {"aum_growth": (18.0, 20.0), "roa": (4.2, 4.5), "roe": (17.0, 19.0)}
+    assert not _items("Due to this delay, we expect additional 40-50 bps credit cost in FY26.")
+
+
 def test_revision_takes_the_new_band():
     got = _items("We are revising our full year revenue growth guidance from 1.5% to 3% to 1% to 2%.")
     assert [(i["metric"], i["low"], i["high"]) for i in got][-1] == ("revenue_growth", 1.0, 2.0)
@@ -138,3 +147,17 @@ def test_strict_check_drops_a_mislabelled_model_item():
         quote="Our operating margin guidance for FY27 is 20% to 22%.",
     )
     assert doubt(ok) is None
+
+
+def test_analyst_restating_guidance_is_not_management():
+    from finn.pull.guidance import select
+
+    pages = [
+        "Moderator: Next question comes from line of Shreepal Doshi from Equirus. Please go ahead. "
+        "Shreepal Doshi: Okay, we have given a guidance of 5.5-6.0% credit cost for FY26. "
+        "Ganesh Narayanan: We expect credit cost of 5.5% to 6% for FY26, and we will hold it."
+    ]
+    _, chosen = select(pages)
+    assert [s for _, s in chosen] == [
+        "Ganesh Narayanan: We expect credit cost of 5.5% to 6% for FY26, and we will hold it."
+    ]

@@ -28,3 +28,6 @@ next-env.d.ts
 data/cache/
 data/raw/
 *.log
+
+# manually downloaded transcripts: text goes to the DB, PDFs are never re-hosted
+data/manual/**/*.pdf

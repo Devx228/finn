@@ -1,11 +1,12 @@
 {
  "name": "Persistent Systems Limited",
- "as_of": "2026-11-13T03:34:20.778669+05:30",
+ "as_of": "2026-11-13T11:34:43.820260+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_23102026204328_PSLTranscriptSubmissionOctober2026Sd.pdf",
    "label": "Q2 FY27 call",
    "pages": 26,
+   "source": "NSE",
    "n_items": 1,
    "filed_at": "2026-10-23T15:13:45+00:00"
   },
@@ -13,6 +14,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_03072026121301_PSLInvestorCallTranscriptSubmissionSd.pdf",
    "label": "Q1 FY27 call",
    "pages": 29,
+   "source": "NSE",
    "n_items": 0,
    "filed_at": "2026-07-03T06:43:28+00:00"
   },
@@ -20,6 +22,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_28042026165400_PSLTranscriptSubmissionApril282026Sd.pdf",
    "label": "Q4 FY26 call",
    "pages": 1,
+   "source": "NSE",
    "n_items": 0,
    "filed_at": "2026-04-28T11:24:21+00:00"
   },
@@ -27,6 +30,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/PERSISTENTUSER1_27012026213814_PSLSubmissionoftheTranscriptforQ3FY26Sd.pdf",
    "label": "Q3 FY26 call",
    "pages": 28,
+   "source": "NSE",
    "n_items": 0,
    "filed_at": "2026-01-27T16:08:34+00:00"
   }
@@ -133,7 +137,7 @@
    "Revenue +30.3% YoY in Q2 FY27"
   ]
  },
- "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts on NSE. No news, broker notes or model knowledge.",
+ "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
  "guidance": [
   {
    "label": "Operating margin",
@@ -156,6 +160,7 @@
      "change": "first given",
      "metric": "operating_margin",
      "period": "medium term",
+     "source": "NSE",
      "call_date": "2026-10-23",
      "direction": "unclear"
     }

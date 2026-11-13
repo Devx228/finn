@@ -50,6 +50,8 @@ phase is in `docs/PHASES.md`. Deadline: **15 Nov 2026**.
 - **Promise Ledger rework (2026-11-13)** — cc guidance resolved against company-reported cc growth,
   filing-checked capex/loan growth/credit cost/ROA/ROE, chains end to end, ledger counts, hosted
   extraction tier `EXTRACT` (eval in docs/evals.md). Scope status table: docs/STATUS.md.
+- **Manual transcripts:** `data/manual/<SYM>/manifest.json` + PDFs → `finn import-transcripts SYM`
+  → `finn research SYM --offline`. INFY's 4 PDFs (Q3 FY25–Q2 FY26) still needed from the owner.
 - **BLOCKERS (owner):** (1) `data/cache/SOURCE_REFUSED.json` — NSE 403'd the laptop on 13 Nov; no NSE
   calls until the owner decides. (2) This Wi-Fi resets Postgres on 5432: use
   `scripts/neon_http.py pull` → work on `DATABASE_URL=.../finn_mirror` → `push-views research:` etc.

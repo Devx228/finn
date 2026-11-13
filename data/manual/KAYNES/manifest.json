@@ -1,0 +1,30 @@
+{
+ "symbol": "KAYNES",
+ "source": "company IR site, manually downloaded",
+ "calls": [
+  {
+   "file": "q2fy25.pdf",
+   "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%205.11.2024.pdf",
+   "call_date": "2024-11-05",
+   "quarter": "Q2 FY25"
+  },
+  {
+   "file": "q3fy25.pdf",
+   "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/Intimation%20of%20Transcript%20Q3%20FY25.pdf",
+   "call_date": "2025-02-01",
+   "quarter": "Q3 FY25"
+  },
+  {
+   "file": "q4fy25.pdf",
+   "url": "https://www.kaynestechnology.co.in/doc/Regulation-46-of-sebi-lodr-regulation/Earnings%20Call%20Transcript%2016.05.2025.pdf",
+   "call_date": "2025-05-16",
+   "quarter": "Q4 FY25"
+  },
+  {
+   "file": "q4fy26.pdf",
+   "url": "https://www.kaynestechnology.co.in/doc/Stock-Exchange-Disclosures/IntimationEarningsCallTranscriptQ4_2026.pdf",
+   "call_date": "2026-05-14",
+   "quarter": "Q4 FY26"
+  }
+ ]
+}

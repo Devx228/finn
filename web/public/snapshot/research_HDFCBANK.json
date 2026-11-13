@@ -1,11 +1,12 @@
 {
  "name": "HDFC Bank Limited",
- "as_of": "2026-11-13T03:34:21.588880+05:30",
+ "as_of": "2026-11-13T11:34:53.787252+05:30",
  "calls": [
   {
    "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK_23102026224657_SEintimationTranscriptofearningscall17oct2026.pdf",
    "label": "Q2 FY27 call",
    "pages": 17,
+   "source": "NSE",
    "n_items": 0,
    "filed_at": "2026-10-23T17:20:22+00:00"
   },
@@ -13,6 +14,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK_24072026154746_SEintimationTranscriptofearningscall18jul2026.pdf",
    "label": "Q1 FY27 call",
    "pages": 17,
+   "source": "NSE",
    "n_items": 0,
    "filed_at": "2026-07-24T10:22:03+00:00"
   },
@@ -20,6 +22,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK_24042026154113_SEintimationTranscriptofearningscall18April2026.pdf",
    "label": "Q4 FY26 call",
    "pages": 16,
+   "source": "NSE",
    "n_items": 0,
    "filed_at": "2026-04-24T10:14:52+00:00"
   },
@@ -27,6 +30,7 @@
    "url": "https://nsearchives.nseindia.com/corporate/HDFCBANK_19032026221513_SEintimationTranscriptofearningscall19Mar2026.pdf",
    "label": "Q3 FY26 call",
    "pages": 14,
+   "source": "NSE",
    "n_items": 0,
    "filed_at": "2026-03-19T16:46:04+00:00"
   }
@@ -126,7 +130,7 @@
   "bear": [],
   "bull": []
  },
- "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts on NSE. No news, broker notes or model knowledge.",
+ "sources": "Numbers: the company's quarterly XBRL results on NSE. Guidance: verbatim from its earnings-call transcripts (NSE, or the company's IR site where noted). No news, broker notes or model knowledge.",
  "guidance": [],
  "industry": "Banks",
  "quarters": [
