@@ -113,7 +113,7 @@ Take the first unfinished item in **`docs/HANDOFF.md` → "Next steps"**. At the
 > - Never print or commit secrets. Zero spend: free tiers only. Do not fetch from NSE unless the
 >   owner says the laptop is on the phone hotspot (campus Wi-Fi is refused); never delete
 >   `data/cache/SOURCE_REFUSED.json` or `IR_REFUSED_*.json`.
-> - Bash heredocs on this machine mangle `` and other backslashes: write regex-heavy code with
+> - Bash heredocs on this machine mangle `\b` and other backslashes: write regex-heavy code with
 >   the file Edit/Write tools, and check for `chr(8)` afterwards.
 >
 > **4. What to build, in order** (details in `docs/HANDOFF.md` "Next steps"; items 1–5 are done):
