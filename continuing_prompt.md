@@ -39,7 +39,7 @@ Screens to look at before UI work: `docs/screens/before/_sheet_dark.png`, `_shee
 
 ## 3. Before you change anything
 
-1. `bash scripts/verify.sh` must print **"OK: all checks green"** (API lint + types + 91 tests;
+1. `bash scripts/verify.sh` must print **"OK: all checks green"** (API lint + types + 92 tests;
    web lint + types + 18 tests + build; no secrets tracked). If it doesn't, stop and report;
    don't "fix" unrelated code.
 2. `git status` should be clean. `git log --oneline -15` shows recent work.
@@ -96,7 +96,7 @@ Take the first unfinished item in **`docs/HANDOFF.md` → "Next steps"**. At the
 > `docs/screens/before/_sheet_dark.png` and `_sheet_light.png` to see the current UI.
 >
 > **2. Prove the baseline:** run `bash scripts/verify.sh`. It must end with
-> "OK: all checks green" (91 API tests, 22 web tests, lint, types, build, no tracked secrets).
+> "OK: all checks green" (92 API tests, 23 web tests, lint, types, build, no tracked secrets).
 > `git status` must be clean. If either fails, stop and report; do not fix unrelated code.
 >
 > **3. Rules you must follow:**

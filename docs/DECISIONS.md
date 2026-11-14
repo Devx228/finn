@@ -777,3 +777,16 @@ worth→buried (a ₹1,000–2,500 cr order is under 1% of L&T's revenue).
   card is immediately reachable again.
 - Used a card instead of a modal so first run never blocks the investor's brief. Phone evidence:
   `docs/screens/step8b_first_run_dark.png` and `step8b_first_run_light.png`.
+
+## 2026-11-15 — Pre-call brief with evidence cutoff (step 8c)
+- No reviewed holding has a stored results or earnings-call date in the next seven days, so the
+  card takes the required replay path. It reconstructs Larsen & Toubro **as of 30 Apr 2026**, five
+  days before Q4 FY26 results were filed on 5 May. The replay cutoff is enforced in code: later
+  guidance points and results filings cannot enter the card.
+- The promise and run-rate are computed only from the reviewed report's stored evidence: 15% FY26
+  revenue-growth guidance from the Q2 call; revenue from six XBRL filings gives +12.0% for 3Q YTD;
+  reaching 15% required about +22.3% YoY in Q4. The live API result and bundled snapshot were
+  compared byte-for-structure and matched.
+- Three templated questions use only those values and link every transcript/XBRL used. Who-can-help
+  links to the existing top LT contact, Ananya Mistry, labelled synthetic. Phone evidence:
+  `docs/screens/step8c_pre_call_dark.png` and `step8c_pre_call_light.png`.

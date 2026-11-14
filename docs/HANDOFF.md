@@ -20,8 +20,8 @@
 > 390 px phone screenshot (`node scripts/phone_shot.mjs`), and wait for the owner.
 
 ## State at this handoff
-- Everything through step 8a is pushed; step 8b first-run guide is implemented locally. Checks
-  green (91 API tests, 22 web tests). Live push delivery still needs a VAPID keypair in Render.
+- Everything through step 8b is pushed; step 8c pre-call card is implemented locally. Checks
+  green (92 API tests, 23 web tests). Live push delivery still needs a VAPID keypair in Render.
 - Before-design-pass screenshots: `docs/screens/before/` (10 screens × dark/light, plus contact
   sheets `_sheet_dark.png`, `_sheet_light.png`).
 - Owner secrets already set: Render `GITHUB_DISPATCH_TOKEN`; GitHub Actions `DATABASE_URL`,
@@ -31,7 +31,8 @@
 **Done on 14 Nov:** 1 (submission package), 2 (event-to-action in the Who-can-help sheet + keep-warm
 opener), 3 (results → ledger deep link), 4 (freshness badge), 5 (Who can help on each research
 section), 6 (compact Research summary), 7 (rules-first command bar), 8a (Web Push code; live
-delivery awaits Render VAPID secrets), 8b (dismissible first-run guide). **Continue at 8c.** Small follow-ups seen in screenshots: CreditAccess's business snapshot says
+delivery awaits Render VAPID secrets), 8b (dismissible first-run guide), 8c (cited pre-call card
+with replay fallback). **Continue at 8d.** Small follow-ups seen in screenshots: CreditAccess's business snapshot says
 "single segment" twice; on cards the first person to call can be a current employee (Research's
 sheet ranks former employees first; the card sheet uses the raw ranking).
 

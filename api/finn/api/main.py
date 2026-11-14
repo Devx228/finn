@@ -128,6 +128,15 @@ def get_alert_inputs() -> dict:
     return _view("alerts:inputs")
 
 
+@app.get("/api/pre-call")
+def get_pre_call(as_of: date | None = None) -> dict:
+    """A reviewed holding's next-results prep, or an explicitly labelled historical replay."""
+    from finn import pre_call
+
+    with db.connection() as conn:
+        return pre_call.build(conn, as_of)
+
+
 class JobRequest(BaseModel):
     symbol: str
 

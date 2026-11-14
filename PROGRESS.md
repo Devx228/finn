@@ -248,3 +248,13 @@ Next: step 8b, the dismissible first-run “three things to try” card, reachab
 - Both-theme phone evidence: `docs/screens/step8b_first_run_dark.png` and
   `step8b_first_run_light.png`. Tests now 91 API / 22 web.
 Next: step 8c, the cited pre-call card with replay-date fallback when no event is due in 7 days.
+
+## Checkpoint 2026-11-15 (step 8c: pre-call card)
+- Added a reviewed-holdings-only pre-call endpoint and Today card. With no stored upcoming event,
+  it explicitly replays LT as of 30 Apr 2026 before Q4 FY26 results on 5 May.
+- The replay cutoff prevents hindsight leakage. Stored call guidance (15%) and six pre-cutoff XBRL
+  filings produce the 3Q YTD +12.0% run-rate and +22.3% Q4 need. All three questions directly link
+  their evidence; Who can help opens LT's existing Ananya Mistry path, labelled synthetic.
+- API and bundled snapshot match. Phone evidence: `docs/screens/step8c_pre_call_dark.png` and
+  `step8c_pre_call_light.png`. Tests now 92 API / 23 web.
+Next: step 8d, the two-sided filter audit with the required causality caveat.

@@ -1,0 +1,89 @@
+{
+  "mode": "replay",
+  "as_of": "2026-04-30",
+  "company": "Larsen & Toubro Limited",
+  "symbol": "LT",
+  "event": {
+    "date": "2026-05-05",
+    "label": "Q4 FY26 results",
+    "source": {
+      "label": "XBRL results filing on NSE",
+      "url": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1663820_05052026073236_WEB.xml"
+    }
+  },
+  "promises": [
+    {
+      "label": "FY26 Revenue growth",
+      "due": "Due with Q4 FY26 results",
+      "guided": "15%",
+      "run_rate": "3Q YTD revenue +12% YoY; needs +22.3% YoY in Q4 to reach 15%",
+      "sources": [
+        {
+          "label": "Q2 FY26 call, p. 10",
+          "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q2FY26%20Earnings%20Call%20Transcript%20.pdf"
+        },
+        {
+          "label": "Q1 FY26 XBRL results on NSE",
+          "url": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1497092_29072025074331_WEB.xml"
+        },
+        {
+          "label": "Q2 FY26 XBRL results on NSE",
+          "url": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1560629_29102025075509_WEB.xml"
+        },
+        {
+          "label": "Q3 FY26 XBRL results on NSE",
+          "url": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1612263_28012026075512_WEB.xml"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "text": "Management held FY26 revenue growth at 15%. What assumptions still have to land in Q4?",
+      "sources": [
+        {
+          "label": "Q2 FY26 call, p. 10",
+          "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q2FY26%20Earnings%20Call%20Transcript%20.pdf"
+        }
+      ]
+    },
+    {
+      "text": "Revenue was +12% YoY through 3Q YTD; reaching 15% needs about +22.3% in Q4. Where should that acceleration come from?",
+      "sources": [
+        {
+          "label": "Q1 FY26 XBRL results on NSE",
+          "url": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1497092_29072025074331_WEB.xml"
+        },
+        {
+          "label": "Q2 FY26 XBRL results on NSE",
+          "url": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1560629_29102025075509_WEB.xml"
+        },
+        {
+          "label": "Q3 FY26 XBRL results on NSE",
+          "url": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1612263_28012026075512_WEB.xml"
+        }
+      ]
+    },
+    {
+      "text": "What would make management revise the 15% FY26 revenue growth guidance at results?",
+      "sources": [
+        {
+          "label": "Q2 FY26 call, p. 10",
+          "url": "https://investors.larsentoubro.com/upload/Analysttrans/FY2026AnalysttransL&T%20Q2FY26%20Earnings%20Call%20Transcript%20.pdf"
+        },
+        {
+          "label": "Q3 FY26 XBRL results on NSE",
+          "url": "https://nsearchives.nseindia.com/corporate/xbrl/INTEGRATED_FILING_INDAS_1612263_28012026075512_WEB.xml"
+        }
+      ]
+    }
+  ],
+  "help": {
+    "name": "Ananya Mistry",
+    "headline": "Chief Technology Officer, ACC",
+    "why": "worked at peer ACC as Chief Technology Officer (2020–now); met-as-management, last spoke Jun 2026, 5 interactions in 24 months",
+    "synthetic": true,
+    "href": "/research?s=LT#people"
+  },
+  "replay_reason": "No stored reviewed holding has a results or earnings-call date in the next 7 days. Showing the last comparable setup as of 30 Apr 2026."
+}
