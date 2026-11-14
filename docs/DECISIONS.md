@@ -751,3 +751,19 @@ worth→buried (a ₹1,000–2,500 cr order is under 1% of L&T's revenue).
   plus stored synthetic contacts. Screens: `docs/screens/step7_command_bar_dark.png`,
   `step7_command_bar_light.png`, `step7_command_result_dark.png`, `step7_rule_creditacc.png`,
   `step7_rule_people.png`.
+
+## 2026-11-14 — Standards-based Web Push (step 8a)
+- Proceeded with the browser Push API after checking the platform limits: iOS/iPadOS supports Web
+  Push for Home Screen web apps from 16.4, permission must follow direct user interaction, and the
+  same service-worker flow works on supported Android and desktop browsers. No paid provider is
+  required, so a fallback channel was not built.
+- Settings asks for permission only after **Enable alerts** is tapped and states the iPhone Home
+  Screen requirement first. A subscribed device can send a rate-limited test alert. The regular
+  push pipeline sends each new stored 24-hour Now card once per device; notification text comes
+  from that stored card, and tapping it opens and highlights the exact card in the 7-day brief.
+- Browser-issued endpoints and keys are stored server-side; raw IPs and notification text are not.
+  The service fails closed when VAPID is absent. Render still needs `VAPID_PUBLIC_KEY` and
+  `VAPID_PRIVATE_KEY`; no secret was generated, printed or committed.
+- Evidence: `docs/screens/step8a_web_push_dark.png` and `step8a_web_push_light.png`. Tests cover
+  subscription validation, stored-card payload/deep link, automatic delivery deduplication and URL
+  construction.

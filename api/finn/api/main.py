@@ -136,6 +136,24 @@ class CommandRequest(BaseModel):
     prompt: str
 
 
+class PushKeys(BaseModel):
+    p256dh: str
+    auth: str
+
+
+class PushSubscription(BaseModel):
+    endpoint: str
+    keys: PushKeys
+
+
+class PushSubscriptionRequest(BaseModel):
+    subscription: PushSubscription
+
+
+class PushTokenRequest(BaseModel):
+    subscription_id: str
+
+
 def _client_ip(req: Request) -> str | None:
     # Render puts the caller first in X-Forwarded-For; locally there is no proxy
     fwd = req.headers.get("x-forwarded-for", "")
@@ -172,6 +190,43 @@ def run_command(body: CommandRequest, req: Request) -> dict:
                     "message": "The command model is unavailable. Symbol and People routes still work.",
                 },
             ) from e
+
+
+@app.get("/api/push/config")
+def get_push_config() -> dict:
+    from finn import web_push
+
+    return web_push.config()
+
+
+@app.post("/api/push/subscribe")
+def subscribe_push(body: PushSubscriptionRequest, req: Request) -> dict:
+    from finn import web_push
+
+    with db.connection() as conn:
+        try:
+            return web_push.subscribe(conn, body.subscription.model_dump(), _client_ip(req))
+        except web_push.JobError as e:
+            raise HTTPException(status_code=e.status, detail={"code": e.code, "message": e.message}) from e
+
+
+@app.post("/api/push/unsubscribe")
+def unsubscribe_push(body: PushTokenRequest) -> dict:
+    from finn import web_push
+
+    with db.connection() as conn:
+        return web_push.unsubscribe(conn, body.subscription_id)
+
+
+@app.post("/api/push/test")
+def test_push(body: PushTokenRequest, req: Request) -> dict:
+    from finn import web_push
+
+    with db.connection() as conn:
+        try:
+            return web_push.send_test(conn, body.subscription_id, _client_ip(req))
+        except web_push.JobError as e:
+            raise HTTPException(status_code=e.status, detail={"code": e.code, "message": e.message}) from e
 
 
 @app.post("/api/research/jobs")

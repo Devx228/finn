@@ -20,7 +20,8 @@
 > 390 px phone screenshot (`node scripts/phone_shot.mjs`), and wait for the owner.
 
 ## State at this handoff
-- Everything in the live app is committed and pushed; checks green (88 API tests, 18 web tests).
+- Everything through step 7 is live; step 8a Web Push is implemented locally. Checks green
+  (91 API tests, 20 web tests). Live push delivery still needs a VAPID keypair in Render.
 - Before-design-pass screenshots: `docs/screens/before/` (10 screens × dark/light, plus contact
   sheets `_sheet_dark.png`, `_sheet_light.png`).
 - Owner secrets already set: Render `GITHUB_DISPATCH_TOKEN`; GitHub Actions `DATABASE_URL`,
@@ -29,7 +30,8 @@
 
 **Done on 14 Nov:** 1 (submission package), 2 (event-to-action in the Who-can-help sheet + keep-warm
 opener), 3 (results → ledger deep link), 4 (freshness badge), 5 (Who can help on each research
-section), 6 (compact Research summary), 7 (rules-first command bar). **Start at 8.** Small follow-ups seen in screenshots: CreditAccess's business snapshot says
+section), 6 (compact Research summary), 7 (rules-first command bar), 8a (Web Push code; live
+delivery awaits Render VAPID secrets). **Continue at 8b.** Small follow-ups seen in screenshots: CreditAccess's business snapshot says
 "single segment" twice; on cards the first person to call can be a current employee (Research's
 sheet ranks former employees first; the card sheet uses the raw ranking).
 

@@ -243,6 +243,9 @@ def cmd_push(args: argparse.Namespace) -> int:
 
         print("  cost ledger  ", ledger.materialise(conn))
         print("  briefs       ", brief.materialise(conn, now))
+        from finn import web_push
+
+        print("  web push     ", web_push.deliver_new(conn))
     return 0
 
 

@@ -29,6 +29,11 @@ class Settings(BaseSettings):
     openrouter_api_key: str = ""
     gemini_api_key: str = ""
 
+    # Web Push: a standard P-256 VAPID pair. The private key stays on the API host.
+    vapid_public_key: str = ""
+    vapid_private_key: str = ""
+    vapid_subject: str = "mailto:owner@example.invalid"
+
     # live research jobs: the API starts a GitHub Actions run when no laptop worker is online
     github_dispatch_token: str = ""
     github_repo: str = ""  # owner/name; on Render, RENDER_GIT_REPO_SLUG is used when unset

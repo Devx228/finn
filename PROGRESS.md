@@ -228,3 +228,15 @@ Next: step 7, the approved rules-first command bar with typed, cited model fallb
 - All four shipped examples were exercised: two deterministic routes and two real hosted-model
   routes over the local mirror of live data. Phone evidence: `docs/screens/step7_*.png`.
 Next: step 8a, web push reliability and a free fallback decision before implementation.
+
+## Checkpoint 2026-11-14 (step 8a: Web Push)
+- Added standards-based Web Push with tap-only permission, an iPhone Add-to-Home-Screen note,
+  device enable/disable and a rate-limited **Send test alert** action in alert settings.
+- The existing push pipeline now sends each new stored 24-hour Now card once to each subscribed
+  device. The service worker opens the exact related card in the 7-day brief; the UI expands a
+  buried target if needed, scrolls to it and highlights it. No alert fact is model-written.
+- VAPID private material remains an environment secret. Code and UI are complete, but live
+  delivery is honestly pending `VAPID_PUBLIC_KEY` and `VAPID_PRIVATE_KEY` on Render.
+- Phone evidence: `docs/screens/step8a_web_push_dark.png` and `step8a_web_push_light.png`.
+- Tests now 91 API / 20 web.
+Next: step 8b, the dismissible first-run “three things to try” card, reachable again from settings.

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { type Alert, type AlertInputs, type AlertRules, evaluate } from "@/lib/alerts";
 import { loadWithFallback } from "@/lib/api";
 import { formatWhen } from "@/lib/format";
+import { PushSettings } from "@/components/PushSettings";
 
 const KEY = "finn.alertRules.v2"; // v2: defaults re-chosen by measurement (13 Nov)
 const CATS = ["results", "M&A", "management_change", "litigation", "fund_raise", "capex", "credit_rating",
@@ -149,6 +150,8 @@ function AlertsSheet({
         <button onClick={() => onChange(data.defaults)} className="mt-2 min-h-9 text-[12px] text-accent">
           Reset to defaults
         </button>
+
+        <PushSettings />
 
         <div className="mt-3 rounded-md bg-bg px-3 py-2 text-[13px]">
           With these rules FINN would have alerted you{" "}

@@ -47,7 +47,7 @@
 | People: keep-warm nudges with drafted opener | 🟡 | 'Reasons to reconnect' with the filing that makes the call timely and how cold the contact is; **no drafted opener** · `docs/screens/status_keep_warm.png` |
 | Person dossier | ✅ | 'Diligence on a person': career and education as disclosed in the filing, your overlap, second-degree reach, link to the filing · `docs/screens/status_person_dossier.png`. Known flaw: one parsed span is wrong (Anup Bagchi 'ICICI Bank 1992–now' from 'various leadership positions') |
 | Note resurfacing (your meeting notes against a new filing) | ❌ | 40 synthetic meetings with notes exist in the DB; nothing surfaces them on a card |
-| Web Push / swipe feedback | ❌ | PWA manifest only |
+| Web Push / swipe feedback | 🟡 | Standards-based Web Push: tap-only permission, device subscription, automatic deduped Now-card delivery, test alert and exact-card deep link; iPhone Home Screen note. Code complete; Render still needs VAPID public/private secrets. `docs/screens/step8a_web_push_dark.png` |
 | Unexplained-move detection | ✅ | "moved with no disclosure": no material filing that session or the two before |
 | Classifier eval harness with labelled set | ✅ | `push/evaluate.py` over `data/eval/labelled.jsonl` (114 rows), results in docs/evals.md |
 

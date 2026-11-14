@@ -37,6 +37,7 @@ export function Today() {
   const [result, setResult] = useState<Result | null>(null);
   const [why, setWhy] = useState<BriefRow | null>(null);
   const today = useToday();
+  const focusId = params.get("item") ?? "";
   const key = `${win}|${asOf}`;
 
   useEffect(() => {
@@ -108,16 +109,33 @@ export function Today() {
           last snapshot.
         </p>
       ) : (
-        current && "brief" in current && <BriefView loaded={current.brief} onWhy={setWhy} />
+        current && "brief" in current && <BriefView loaded={current.brief} onWhy={setWhy} focusId={focusId} />
       )}
       {why && <WhySheet item={why} onClose={() => setWhy(null)} />}
     </div>
   );
 }
 
-function BriefView({ loaded, onWhy }: { loaded: Loaded<Brief>; onWhy: (r: BriefRow) => void }) {
+function BriefView({
+  loaded,
+  onWhy,
+  focusId,
+}: {
+  loaded: Loaded<Brief>;
+  onWhy: (r: BriefRow) => void;
+  focusId: string;
+}) {
   const { data: b, source } = loaded;
   const [openBuried, setOpenBuried] = useState(false);
+  const focusedInBuried = b.buried.some((group) => group.items.some((item) => String(item.id) === focusId));
+  const showBuried = openBuried || focusedInBuried;
+  useEffect(() => {
+    if (!focusId) return;
+    const timer = window.setTimeout(() => {
+      document.getElementById(`brief-${focusId}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 120);
+    return () => window.clearTimeout(timer);
+  }, [focusId, source]);
   return (
     <div>
       <p className="mb-2 text-[13px] text-ink-2 tabular-nums">
@@ -141,7 +159,7 @@ function BriefView({ loaded, onWhy }: { loaded: Loaded<Brief>; onWhy: (r: BriefR
           </h2>
           <div className="space-y-3">
             {b.now.map((it) => (
-              <NowCard key={it.id} it={it} onWhy={onWhy} />
+              <NowCard key={it.id} it={it} onWhy={onWhy} focused={String(it.id) === focusId} />
             ))}
           </div>
         </section>
@@ -154,7 +172,7 @@ function BriefView({ loaded, onWhy }: { loaded: Loaded<Brief>; onWhy: (r: BriefR
           </h2>
           <ul className="divide-y divide-line rounded-lg border border-line bg-surface">
             {b.worth.map((it) => (
-              <WorthRow key={it.id} it={it} onWhy={onWhy} />
+              <WorthRow key={it.id} it={it} onWhy={onWhy} focused={String(it.id) === focusId} />
             ))}
           </ul>
         </section>
@@ -164,25 +182,35 @@ function BriefView({ loaded, onWhy }: { loaded: Loaded<Brief>; onWhy: (r: BriefR
         <section className="mb-5">
           <button
             onClick={() => setOpenBuried((o) => !o)}
-            aria-expanded={openBuried}
+            aria-expanded={showBuried}
             className="flex min-h-11 w-full items-center justify-between rounded-lg border border-line bg-surface px-3 text-left text-[14px] text-ink-2"
           >
             <span>
               Buried · {b.counts.buried} routine filing{b.counts.buried === 1 ? "" : "s"}
             </span>
-            <span className="text-ink-3">{openBuried ? "Hide" : "Show"}</span>
+            <span className="text-ink-3">{showBuried ? "Hide" : "Show"}</span>
           </button>
-          {openBuried && (
+          {showBuried && (
             <div className="mt-2 space-y-2">
               {b.buried.map((g) => (
-                <details key={g.label} className="rounded-lg border border-line bg-surface">
+                <details
+                  key={g.label}
+                  open={g.items.some((item) => String(item.id) === focusId) || undefined}
+                  className="rounded-lg border border-line bg-surface"
+                >
                   <summary className="flex min-h-11 cursor-pointer items-center justify-between px-3 text-[14px]">
                     <span>{g.label}</span>
                     <span className="text-ink-3 tabular-nums">{g.count}</span>
                   </summary>
                   <ul className="divide-y divide-line border-t border-line">
                     {g.items.map((it) => (
-                      <WorthRow key={it.id} it={it} onWhy={onWhy} muted />
+                      <WorthRow
+                        key={it.id}
+                        it={it}
+                        onWhy={onWhy}
+                        muted
+                        focused={String(it.id) === focusId}
+                      />
                     ))}
                   </ul>
                 </details>
@@ -261,9 +289,20 @@ function NetworkFor({ it }: { it: BriefRow }) {
   );
 }
 
-function NowCard({ it, onWhy }: { it: BriefRow; onWhy: (r: BriefRow) => void }) {
+function NowCard({
+  it,
+  onWhy,
+  focused,
+}: {
+  it: BriefRow;
+  onWhy: (r: BriefRow) => void;
+  focused: boolean;
+}) {
   return (
-    <article className="rounded-lg border border-line bg-surface px-3 py-3">
+    <article
+      id={`brief-${it.id}`}
+      className={`rounded-lg border bg-surface px-3 py-3 ${focused ? "border-accent ring-2 ring-accent/20" : "border-line"}`}
+    >
       <Meta it={it} />
       <p className="mt-1 text-[15px] font-medium leading-snug">{it.card ? it.card.take : it.headline}</p>
       {it.card && (
@@ -277,10 +316,20 @@ function NowCard({ it, onWhy }: { it: BriefRow; onWhy: (r: BriefRow) => void }) 
   );
 }
 
-function WorthRow({ it, onWhy, muted }: { it: BriefRow; onWhy: (r: BriefRow) => void; muted?: boolean }) {
+function WorthRow({
+  it,
+  onWhy,
+  muted,
+  focused = false,
+}: {
+  it: BriefRow;
+  onWhy: (r: BriefRow) => void;
+  muted?: boolean;
+  focused?: boolean;
+}) {
   const [open, setOpen] = useState(false);
   return (
-    <li className="px-3 py-2">
+    <li id={`brief-${it.id}`} className={`px-3 py-2 ${focused ? "ring-2 ring-inset ring-accent/30" : ""}`}>
       <button onClick={() => setOpen((o) => !o)} aria-expanded={open} className="block w-full text-left">
         <Meta it={it} />
         <p className={`mt-0.5 text-[14px] leading-snug ${muted ? "text-ink-2" : ""} ${open ? "" : "line-clamp-2"}`}>
