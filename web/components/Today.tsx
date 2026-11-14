@@ -6,6 +6,7 @@ import { useEffect, useState, useSyncExternalStore } from "react";
 import { AlertsStrip } from "@/components/Alerts";
 import { FirstRunCard } from "@/components/FirstRunCard";
 import { PreCallCard } from "@/components/PreCallCard";
+import { FilterAudit } from "@/components/FilterAudit";
 import { NetworkSheet, NetworkStrip } from "@/components/Network";
 import { ResultsCard } from "@/components/ResultsCard";
 import { WhySheet } from "@/components/WhySheet";
@@ -101,6 +102,7 @@ export function Today() {
       {!asOf && <FirstRunCard />}
       {!asOf && <PreCallCard />}
       {!asOf && <AlertsStrip />}
+      {!asOf && <FilterAudit />}
       {current === null && <p className="text-[14px] text-ink-3">Loading brief…</p>}
       {current && "error" in current && (
         <p className="text-[14px] text-down">

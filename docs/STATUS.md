@@ -50,6 +50,7 @@
 | Web Push / swipe feedback | 🟡 | Standards-based Web Push: tap-only permission, device subscription, automatic deduped Now-card delivery, test alert and exact-card deep link; iPhone Home Screen note. Code complete; Render still needs VAPID public/private secrets. `docs/screens/step8a_web_push_dark.png` |
 | First-run guide | ✅ | Dismissible “three things to try” card with deterministic routes to the 7-day brief, reviewed CREDITACC Research and HDFC Bank People search; restorable from Settings. `docs/screens/step8b_first_run_dark.png` |
 | Pre-call card | ✅ | Reviewed holding only; upcoming-date window with an honest replay fallback. LT replay as of 30 Apr 2026 shows the 5 May Q4 result, 15% FY26 guide, +12% 3Q YTD run-rate, implied +22.3% Q4 need, three directly cited questions and existing Who-can-help contact. `docs/screens/step8c_pre_call_dark.png` |
+| Filter audit | ✅ | Compares buried and Now tiers with the next two stored sessions at the configured ±6% vs-NIFTY threshold; shows one possible miss and three possible over-ranks in the current 30-day view, with filing links and an explicit non-causality warning. `docs/screens/step8d_filter_audit_dark.png` |
 | Unexplained-move detection | ✅ | "moved with no disclosure": no material filing that session or the two before |
 | Classifier eval harness with labelled set | ✅ | `push/evaluate.py` over `data/eval/labelled.jsonl` (114 rows), results in docs/evals.md |
 

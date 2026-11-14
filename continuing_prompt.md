@@ -96,7 +96,7 @@ Take the first unfinished item in **`docs/HANDOFF.md` → "Next steps"**. At the
 > `docs/screens/before/_sheet_dark.png` and `_sheet_light.png` to see the current UI.
 >
 > **2. Prove the baseline:** run `bash scripts/verify.sh`. It must end with
-> "OK: all checks green" (92 API tests, 23 web tests, lint, types, build, no tracked secrets).
+> "OK: all checks green" (92 API tests, 25 web tests, lint, types, build, no tracked secrets).
 > `git status` must be clean. If either fails, stop and report; do not fix unrelated code.
 >
 > **3. Rules you must follow:**

@@ -790,3 +790,15 @@ worth→buried (a ₹1,000–2,500 cr order is under 1% of L&T's revenue).
 - Three templated questions use only those values and link every transcript/XBRL used. Who-can-help
   links to the existing top LT contact, Ananya Mistry, labelled synthetic. Phone evidence:
   `docs/screens/step8c_pre_call_dark.png` and `step8c_pre_call_light.png`.
+
+## 2026-11-15 — Two-sided filter audit (step 8d)
+- Added a 30-day audit over the existing brief tiers and stored EOD prices. For each filing it
+  observes the next two trading sessions and uses the investor's existing ±6% vs-NIFTY alert
+  threshold. It changes no classification, scoring or alert rule.
+- Current result: one buried item followed by a threshold move (CG Power ESOP paperwork, -6.3%
+  vs NIFTY on 5 Nov) and three Now items followed by no threshold move in either session (Titan
+  results, CG Power's court stay, Deepak Nitrite results). A Now item is not called quiet until two
+  later sessions exist.
+- The card says prominently: **a price move does not prove the filing caused it**. Filing links,
+  dates, stock moves, NIFTY-relative moves and the Yahoo Finance/NSE credit remain visible. Phone
+  evidence: `docs/screens/step8d_filter_audit_dark.png` and `step8d_filter_audit_light.png`.

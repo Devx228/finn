@@ -258,3 +258,13 @@ Next: step 8c, the cited pre-call card with replay-date fallback when no event i
 - API and bundled snapshot match. Phone evidence: `docs/screens/step8c_pre_call_dark.png` and
   `step8c_pre_call_light.png`. Tests now 92 API / 23 web.
 Next: step 8d, the two-sided filter audit with the required causality caveat.
+
+## Checkpoint 2026-11-15 (step 8d: filter audit)
+- Added a read-only 30-day tier audit using the next two stored sessions and the existing ±6%
+  vs-NIFTY move threshold. It changes no engine rule.
+- Current evidence: one buried-then-moved item and three Now-then-quiet items. Every row links its
+  filing and shows both stock and relative move; the card explicitly says a move does not prove
+  causation. Tests require two later sessions before “quiet” is reported.
+- Phone evidence: `docs/screens/step8d_filter_audit_dark.png` and
+  `step8d_filter_audit_light.png`. Tests now 92 API / 25 web.
+Next: step 8e, the owner’s design pass and the two small known follow-ups.
