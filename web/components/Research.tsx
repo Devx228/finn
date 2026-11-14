@@ -293,14 +293,16 @@ function About({ a, what }: { a?: Business["about"]; what?: string | null }) {
 
 function BusinessSnapshot({ b }: { b: Business }) {
   if (!b.segments.length) {
+    const repeatsSingleSegment =
+      b.single_segment && /single (business )?segment/i.test(b.what ?? "") && /single segment/i.test(b.note ?? "");
+    const detail = `${b.industry ? `${b.industry}. ` : ""}${repeatsSingleSegment ? "" : b.note ?? ""}`.trim();
     return (
       <section>
         <h2 className={H}>Business snapshot</h2>
         <About a={b.about} what={b.what} />
-        <p className="rounded-lg border border-line bg-surface px-3 py-3 text-[13px] text-ink-2">
-          {b.industry ? `${b.industry}. ` : ""}
-          {b.note}
-        </p>
+        {detail && (
+          <p className="rounded-lg border border-line bg-surface px-3 py-3 text-[13px] text-ink-2">{detail}</p>
+        )}
       </section>
     );
   }
@@ -413,21 +415,33 @@ function TrackCard({ t }: { t: GuidanceTrack }) {
           >
             <span className="text-[12px] text-ink-3">{p.call.replace(" call", "")}</span>
             {pct ? (
-              <span className="relative h-5">
-                <span className="absolute inset-x-0 top-1/2 h-px bg-line" />
-                <span
-                  className="absolute top-1/2 h-2.5 -translate-y-1/2 rounded bg-accent/70"
-                  style={{ left: `${x(p.low)}%`, width: `max(4px, ${x(p.high) - x(p.low)}%)` }}
-                  title={band(p)}
+              <svg
+                viewBox="0 0 100 20"
+                className="h-5 w-full overflow-visible"
+                role="img"
+                aria-label={`Guided range ${band(p)}${showActual ? `; outcome ${t.actual!.value}%` : ""}`}
+              >
+                <line x1="0" x2="100" y1="10" y2="10" stroke="var(--line)" strokeWidth="1" />
+                <rect
+                  x={x(p.low)}
+                  y="5"
+                  width={Math.max(2, x(p.high) - x(p.low))}
+                  height="10"
+                  rx="5"
+                  fill="var(--accent)"
+                  opacity="0.7"
                 />
                 {showActual && (
-                  <span
-                    className="absolute inset-y-0 w-0.5 bg-ink"
-                    style={{ left: `${x(t.actual!.value)}%` }}
-                    aria-hidden
+                  <line
+                    x1={x(t.actual!.value)}
+                    x2={x(t.actual!.value)}
+                    y1="1"
+                    y2="19"
+                    stroke="var(--ink)"
+                    strokeWidth="2"
                   />
                 )}
-              </span>
+              </svg>
             ) : (
               <span className="text-[13px]">{band(p)}</span>
             )}

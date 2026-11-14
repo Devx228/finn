@@ -27,8 +27,8 @@ function describe(why: unknown): string | null {
 export function WhySheet({ item, onClose }: { item: BriefRow; onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-30 flex items-end justify-center" role="dialog" aria-modal="true">
-      <button aria-label="Close" className="absolute inset-0 bg-black/40" onClick={onClose} />
-      <div className="relative w-full max-w-[480px] rounded-t-2xl border-t border-line bg-surface px-4 pb-[max(env(safe-area-inset-bottom),16px)] pt-4">
+      <button aria-label="Close" className="finn-scrim absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="finn-sheet relative w-full max-w-[480px] rounded-t-2xl border-t border-line bg-surface px-4 pb-[max(env(safe-area-inset-bottom),16px)] pt-4">
         <div className="mb-3 flex items-baseline justify-between">
           <h2 className="text-[16px] font-semibold">Why is this here?</h2>
           <button onClick={onClose} className="min-h-11 px-2 text-[14px] text-ink-2">

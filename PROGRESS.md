@@ -268,3 +268,16 @@ Next: step 8d, the two-sided filter audit with the required causality caveat.
 - Phone evidence: `docs/screens/step8d_filter_audit_dark.png` and
   `step8d_filter_audit_light.png`. Tests now 92 API / 25 web.
 Next: step 8e, the owner’s design pass and the two small known follow-ups.
+
+## Checkpoint 2026-11-15 (step 8e: mobile design pass)
+- Consolidated the app to one face and three rendered type sizes, added labelled SVG tab icons and
+  consistent focus treatment, and limited new motion to bottom sheets with a reduced-motion opt-out.
+  Research keeps its SVG trajectory/sparkline and guidance range geometry is now SVG and labelled.
+- Removed CreditAccess's repeated single-segment sentence. Who-can-help now hard-ranks former
+  employees before current employees in both generation and rendering; relevance remains the
+  secondary order and stale mismatched openers are hidden.
+- Direct before/after evidence is under `docs/screens/before/` and `docs/screens/after/` for Today,
+  CreditAccess and Settings in both themes. Full verifier is green: 92 API tests, 25 web tests,
+  lint, types, production build and tracked-secret scan.
+Next: step 9, four never-researched live-queue tickers including a small cap and a financial;
+report every failure honestly.

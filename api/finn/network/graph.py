@@ -215,7 +215,9 @@ def who(
             else None
         )
         out.append(Candidate(c, round(best, 2), w, round(rank, 3), f"{why}; {wev}", know, flag))
-    return sorted(out, key=lambda x: -x.rank)[:top]
+    # A current employee can still be useful for public industry context, but should never be
+    # the first suggested call. Keep the relevance order within the former/current groups.
+    return sorted(out, key=lambda x: (x.compliance is not None, -x.rank))[:top]
 
 
 def recency_decay(months: float, half_life: float) -> float:

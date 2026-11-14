@@ -802,3 +802,20 @@ worth→buried (a ₹1,000–2,500 cr order is under 1% of L&T's revenue).
 - The card says prominently: **a price move does not prove the filing caused it**. Filing links,
   dates, stock moves, NIFTY-relative moves and the Yahoo Finance/NSE credit remain visible. Phone
   evidence: `docs/screens/step8d_filter_audit_dark.png` and `step8d_filter_audit_light.png`.
+
+## 2026-11-15 — Evidence-led mobile design pass (step 8e)
+- Kept the existing information architecture and one Source Sans 3 face, but constrained the UI to
+  three computed type sizes (metadata, reading text, titles). Bottom navigation now has labelled
+  inline SVG icons; focus-visible outlines are consistent and all meaning still has a written label,
+  so colour is never the only signal.
+- Guidance ranges use accessible inline SVG geometry, while the existing Research trajectory keeps
+  its SVG revenue bars and margin sparkline. Bottom sheets alone receive a short entrance transition,
+  disabled under `prefers-reduced-motion`; ordinary cards do not animate.
+- Fixed two screenshot findings without changing stored facts: CreditAccess no longer repeats its
+  stored “single business segment” statement, and Who-can-help rankings now place former employees
+  ahead of flagged current employees while preserving relevance order inside each group. A stale
+  opener is hidden if it no longer addresses the displayed first call.
+- Both themes retain the existing AA-tested tokens and explicit loading/error/empty copy. Directly
+  comparable after shots are in `docs/screens/after/` (Today, CreditAccess and Settings, dark/light);
+  the baseline remains in `docs/screens/before/`. Full gate: 92 API and 25 web tests, lint, types,
+  production build and tracked-secret scan all green.

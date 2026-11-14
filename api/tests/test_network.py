@@ -89,6 +89,8 @@ def test_who_flags_current_employees_and_prefers_former():
     )
     current = _p(1, "Now", [Emp(10, "Co", "CFO", "finance", 5, date(2015, 1, 1), None)], **rel)
     former = _p(2, "Was", [Emp(10, "Co", "CFO", "finance", 5, date(2015, 1, 1), date(2025, 6, 1))], **rel)
+    current.closeness = 5
+    current.interactions_24m = 12
     out = who(10, set(), set(), [current, former], "results", "Co")
     assert out[0].person.name == "Was"
     flagged = next(c for c in out if c.person.name == "Now")

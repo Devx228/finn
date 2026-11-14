@@ -51,6 +51,7 @@
 | First-run guide | ✅ | Dismissible “three things to try” card with deterministic routes to the 7-day brief, reviewed CREDITACC Research and HDFC Bank People search; restorable from Settings. `docs/screens/step8b_first_run_dark.png` |
 | Pre-call card | ✅ | Reviewed holding only; upcoming-date window with an honest replay fallback. LT replay as of 30 Apr 2026 shows the 5 May Q4 result, 15% FY26 guide, +12% 3Q YTD run-rate, implied +22.3% Q4 need, three directly cited questions and existing Who-can-help contact. `docs/screens/step8c_pre_call_dark.png` |
 | Filter audit | ✅ | Compares buried and Now tiers with the next two stored sessions at the configured ±6% vs-NIFTY threshold; shows one possible miss and three possible over-ranks in the current 30-day view, with filing links and an explicit non-causality warning. `docs/screens/step8d_filter_audit_dark.png` |
+| Mobile design pass | ✅ | One face / three-size type hierarchy, labelled SVG tab icons, SVG evidence graphics, semantic-only colour, AA focus treatment and reduced-motion-aware sheet transitions. CreditAccess duplicate removed; former employees are hard-ranked before current employees. Before/after: `docs/screens/before/`, `docs/screens/after/` |
 | Unexplained-move detection | ✅ | "moved with no disclosure": no material filing that session or the two before |
 | Classifier eval harness with labelled set | ✅ | `push/evaluate.py` over `data/eval/labelled.jsonl` (114 rows), results in docs/evals.md |
 

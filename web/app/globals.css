@@ -59,3 +59,53 @@ body {
   font-variant-numeric: tabular-nums;
   -webkit-tap-highlight-color: transparent;
 }
+
+/* Product type scale: metadata, reading text, and titles. Source Sans 3 remains the only face. */
+.text-\[9px\],
+.text-\[10px\],
+.text-\[11px\],
+.text-\[12px\] {
+  font-size: 0.75rem;
+}
+
+.text-\[13px\],
+.text-\[14px\],
+.text-\[15px\] {
+  font-size: 0.875rem;
+}
+
+.text-\[16px\],
+.text-\[17px\],
+.text-\[19px\],
+.text-\[20px\],
+.text-\[22px\] {
+  font-size: 1.25rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.finn-scrim {
+  animation: finn-fade-in 160ms ease-out;
+}
+
+.finn-sheet {
+  animation: finn-sheet-up 180ms ease-out;
+}
+
+@keyframes finn-fade-in {
+  from { opacity: 0; }
+}
+
+@keyframes finn-sheet-up {
+  from { transform: translateY(18px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .finn-scrim,
+  .finn-sheet {
+    animation: none;
+  }
+}

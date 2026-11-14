@@ -32,11 +32,15 @@ function short(name: string): string {
   return name.replace(/^(Mr|Mrs|Ms|Dr)\.?\s+/i, "");
 }
 
+function formerFirst(call: Candidate[]): Candidate[] {
+  return [...call].sort((a, b) => Number(Boolean(a.compliance)) - Number(Boolean(b.compliance)));
+}
+
 /** The one line on a brief card: the single most useful thing the network knows. */
 export function NetworkStrip({ net, onOpen }: { net: ItemNetwork; onOpen: () => void }) {
   const lead = net.people[0];
   const path = lead?.paths[0];
-  const call = net.call[0];
+  const call = formerFirst(net.call)[0];
   let line: React.ReactNode;
   if (lead && lead.you.length) {
     line = (
@@ -200,17 +204,23 @@ export function NetworkSheet({
   company: string;
   onClose: () => void;
 }) {
+  const call = formerFirst(net.call);
+  const shownNet = {
+    ...net,
+    call,
+    opener: net.opener && call[0]?.name !== net.opener.to ? undefined : net.opener,
+  };
   return (
     <div className="fixed inset-0 z-30 flex items-end justify-center" role="dialog" aria-modal="true">
-      <button aria-label="Close" className="absolute inset-0 bg-black/40" onClick={onClose} />
-      <div className="relative max-h-[88dvh] w-full max-w-[480px] overflow-y-auto rounded-t-2xl border-t border-line bg-surface px-4 pb-[max(env(safe-area-inset-bottom),16px)] pt-4">
+      <button aria-label="Close" className="finn-scrim absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="finn-sheet relative max-h-[88dvh] w-full max-w-[480px] overflow-y-auto rounded-t-2xl border-t border-line bg-surface px-4 pb-[max(env(safe-area-inset-bottom),16px)] pt-4">
         <div className="mb-2 flex items-baseline justify-between">
           <h2 className="text-[16px] font-semibold">Who can help · {company.replace(/ Limited$/, "")}</h2>
           <button onClick={onClose} className="min-h-11 px-2 text-[14px] text-ink-2">
             Close
           </button>
         </div>
-        <ActionBlock net={net} />
+        <ActionBlock net={shownNet} />
         {net.people.length > 0 && (
           <div className="space-y-5 border-b border-line pb-4">
             {net.people.slice(0, 2).map((p) => (
@@ -218,11 +228,11 @@ export function NetworkSheet({
             ))}
           </div>
         )}
-        {net.call.length > 0 && (
+        {call.length > 0 && (
           <section className="mt-4">
             <h4 className="text-[11px] font-semibold uppercase tracking-wider text-ink-3">Call for context</h4>
             <ul className="divide-y divide-line">
-              {net.call.map((c) => (
+              {call.map((c) => (
                 <CandidateRow key={c.id} c={c} />
               ))}
             </ul>
