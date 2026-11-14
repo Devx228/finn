@@ -819,3 +819,18 @@ worth→buried (a ₹1,000–2,500 cr order is under 1% of L&T's revenue).
   comparable after shots are in `docs/screens/after/` (Today, CreditAccess and Settings, dark/light);
   the baseline remains in `docs/screens/before/`. Full gate: 92 API and 25 web tests, lint, types,
   production build and tracked-secret scan all green.
+
+## 2026-11-15 — Live generalisation run (step 9, partial at queue limit)
+- Selected symbols absent from the live Research index, not just the bundled snapshot. `SJS` is the
+  small-cap case; `AUBANK` is the financial-company case; `DIXON` and `TITAN` broaden the sample.
+- Three allowed jobs completed on GitHub runners: SJS job 4 in 139 s (12 quarters, 8 calls, 8
+  guidance items), AUBANK job 5 in 177 s (12 / 8 / 10), and DIXON job 6 in 318 s (12 / 8 / 9).
+  Each live report is correctly labelled generated automatically and **not reviewed**.
+- The financial run exposed an honest coverage gap: AUBANK has 12 stored quarters but the compact
+  summary says no quarterly result is stored, because its bank-format facts do not supply the
+  result line that summary expects. No engine rule was changed to disguise this.
+- TITAN reached the live queue but was rejected with HTTP 429: “3 new tickers an hour, 6 a day from
+  one connection.” The client identity was not spoofed. Thus this checkpoint records three
+  successful unseen runs and one admission failure, not four successes.
+- Phone evidence: `docs/screens/step9_live_sjs_dark.png` and
+  `docs/screens/step9_live_aubank_light.png`.

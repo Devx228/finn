@@ -281,3 +281,16 @@ Next: step 8e, the owner’s design pass and the two small known follow-ups.
   lint, types, production build and tracked-secret scan.
 Next: step 9, four never-researched live-queue tickers including a small cap and a financial;
 report every failure honestly.
+
+## Checkpoint 2026-11-15 (step 9: live generalisation, partial)
+- Confirmed the symbols were absent from the live Research index. GitHub jobs completed for SJS
+  (small cap; job 4, 139 s, 12 quarters / 8 calls / 8 guidance items), AUBANK (financial; job 5,
+  177 s, 12 / 8 / 10), and DIXON (job 6, 318 s, 12 / 8 / 9).
+- All three generated reports are live and explicitly not reviewed. AUBANK also exposes a real
+  limitation: 12 bank-format quarters were stored, but the 20-second summary has no compatible
+  latest-result line. It says so instead of inventing one.
+- The fourth candidate, TITAN, was submitted but rejected with HTTP 429 at the queue boundary:
+  three new tickers per client per hour. The safeguard was not bypassed. Step 9 therefore has three
+  successes and one honest admission failure; retry TITAN after the legitimate window resets.
+- Phone evidence: `docs/screens/step9_live_sjs_dark.png` and `step9_live_aubank_light.png`.
+Next: retry TITAN after the hourly queue window; otherwise all ordered product work is complete.

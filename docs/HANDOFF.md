@@ -20,7 +20,8 @@
 > 390 px phone screenshot (`node scripts/phone_shot.mjs`), and wait for the owner.
 
 ## State at this handoff
-- Everything through step 8d is pushed; step 8e design pass is complete locally. Checks green
+- Everything through step 8e is pushed. Step 9 produced three live unseen reports (SJS, AUBANK,
+  DIXON); TITAN was honestly rejected by the 3/client/hour admission limit. Checks remain green
   (92 API tests, 25 web tests). Live push delivery still needs a VAPID keypair in Render.
 - Before-design-pass screenshots: `docs/screens/before/` (10 screens × dark/light, plus contact
   sheets `_sheet_dark.png`, `_sheet_light.png`).
@@ -33,7 +34,8 @@ opener), 3 (results → ledger deep link), 4 (freshness badge), 5 (Who can help 
 section), 6 (compact Research summary), 7 (rules-first command bar), 8a (Web Push code; live
 delivery awaits Render VAPID secrets), 8b (dismissible first-run guide), 8c (cited pre-call card
 with replay fallback), 8d (two-sided filter audit), 8e (mobile design pass plus both screenshot
-follow-ups). **Continue at 9.**
+follow-ups). **Step 9 is partial:** three unseen jobs succeeded; retry TITAN only after the queue's
+legitimate hourly window resets. Do not bypass the client limit.
 
 The critic's verdict: strong technically (architecture 9/10, trust 9/10), weaker on submission
 readiness (6/10), mobile density (7/10) and network actionability (6.5/10). Its most urgent point:

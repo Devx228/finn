@@ -22,7 +22,7 @@
 | Research: Guidance (open, with run-rate) | ✅ | open items show due year; run-rate line for revenue bands ("Needs +8.8% to +12.5% YoY in the remaining 2 quarters"); never for constant-currency bands |
 | Research: Bull vs Bear | 🟡 | computed signals from numbers (`research.py signals()`); not 3+3 cited points each for every company |
 | Every research claim cited | ✅ | quotes are verbatim-verified and link to the NSE transcript |
-| Live pipeline with visible progress for an uncached symbol | ✅ | job queue + GitHub runner; gate passed on POLYCAB (2 min 46 s, runner start 36 s); 'not reviewed' line on live reports |
+| Live pipeline with visible progress for an uncached symbol | ✅ | POLYCAB gate plus 15 Nov generalisation: unseen SJS, AUBANK and DIXON completed on GitHub runners (12 quarters and 8 calls each), all labelled not reviewed. A fourth, TITAN, was honestly rejected by the 3/client/hour limit. `docs/screens/step9_live_sjs_dark.png` |
 | "Who can help?" sheet on Push cards and Research sections | ✅ | every Push card and every Research section (ledger, Business, Financials/Trajectory, Bull-vs-bear) · `docs/screens/status_research_help.png`, `step5_help_sections.png` |
 | Second-degree paths with strength + evidence | ✅ | `network/graph.py` warmth × overlap; PathLine shows the evidence |
 | Direct query "who do I know at / knows about X" | ✅ | free-text search on People over the directory (employer, title, theme, NSE symbol; every word must match; ranked by match then warmth); tested |
