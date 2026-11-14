@@ -767,3 +767,13 @@ worth→buried (a ₹1,000–2,500 cr order is under 1% of L&T's revenue).
 - Evidence: `docs/screens/step8a_web_push_dark.png` and `step8a_web_push_light.png`. Tests cover
   subscription validation, stored-card payload/deep link, automatic delivery deduplication and URL
   construction.
+
+## 2026-11-15 — Dismissible first-run guide (step 8b)
+- A compact **Three things to try** card appears on Today until explicitly dismissed. Its actions
+  are deterministic existing routes, not generated suggestions: the 7-day brief, CREDITACC's
+  reviewed 20-second Research summary, and the existing People search populated for HDFC Bank.
+- Dismissal is stored only in browser local storage. The Alert rules sheet is now titled Settings
+  and includes **Show three things to try**, which clears the dismissal and closes the sheet so the
+  card is immediately reachable again.
+- Used a card instead of a modal so first run never blocks the investor's brief. Phone evidence:
+  `docs/screens/step8b_first_run_dark.png` and `step8b_first_run_light.png`.

@@ -48,6 +48,7 @@
 | Person dossier | ✅ | 'Diligence on a person': career and education as disclosed in the filing, your overlap, second-degree reach, link to the filing · `docs/screens/status_person_dossier.png`. Known flaw: one parsed span is wrong (Anup Bagchi 'ICICI Bank 1992–now' from 'various leadership positions') |
 | Note resurfacing (your meeting notes against a new filing) | ❌ | 40 synthetic meetings with notes exist in the DB; nothing surfaces them on a card |
 | Web Push / swipe feedback | 🟡 | Standards-based Web Push: tap-only permission, device subscription, automatic deduped Now-card delivery, test alert and exact-card deep link; iPhone Home Screen note. Code complete; Render still needs VAPID public/private secrets. `docs/screens/step8a_web_push_dark.png` |
+| First-run guide | ✅ | Dismissible “three things to try” card with deterministic routes to the 7-day brief, reviewed CREDITACC Research and HDFC Bank People search; restorable from Settings. `docs/screens/step8b_first_run_dark.png` |
 | Unexplained-move detection | ✅ | "moved with no disclosure": no material filing that session or the two before |
 | Classifier eval harness with labelled set | ✅ | `push/evaluate.py` over `data/eval/labelled.jsonl` (114 rows), results in docs/evals.md |
 

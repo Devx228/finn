@@ -240,3 +240,11 @@ Next: step 8a, web push reliability and a free fallback decision before implemen
 - Phone evidence: `docs/screens/step8a_web_push_dark.png` and `step8a_web_push_light.png`.
 - Tests now 91 API / 20 web.
 Next: step 8b, the dismissible first-run “three things to try” card, reachable again from settings.
+
+## Checkpoint 2026-11-15 (step 8b: first-run guide)
+- Added a dismissible Today card with three existing product routes: 7-day brief, CREDITACC's
+  reviewed Research summary, and People search for HDFC Bank. No model call or new data.
+- Dismissal stays on the device; Settings can restore the guide immediately.
+- Both-theme phone evidence: `docs/screens/step8b_first_run_dark.png` and
+  `step8b_first_run_light.png`. Tests now 91 API / 22 web.
+Next: step 8c, the cited pre-call card with replay-date fallback when no event is due in 7 days.

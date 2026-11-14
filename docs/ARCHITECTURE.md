@@ -185,7 +185,7 @@ URL without touching existing text; any other table is refused, and the target i
 - **Tests:** 91 API tests (classification rules, text-based severity, grounding of model-written
   lines, XBRL quirks, router fallback, job queue and limits, network scoring and filing-bio spans,
   guidance rules and the live-run regression cases, reported outcomes, two-verdict chains, verbal
-  steers, command-tool validation, command limits and Web Push delivery) and 20 web tests (including the alert
+  steers, command-tool validation, command limits and Web Push delivery) and 22 web tests (including the alert
   evaluator on a fixture shared with Python, "who knows" search and rules-first command routing).
   `bash scripts/verify.sh` runs all of it plus the production build and a
   tracked-secrets check; CI runs the same on every push.

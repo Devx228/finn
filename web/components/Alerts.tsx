@@ -5,6 +5,7 @@ import { type Alert, type AlertInputs, type AlertRules, evaluate } from "@/lib/a
 import { loadWithFallback } from "@/lib/api";
 import { formatWhen } from "@/lib/format";
 import { PushSettings } from "@/components/PushSettings";
+import { restoreFirstRun } from "@/components/FirstRunCard";
 
 const KEY = "finn.alertRules.v2"; // v2: defaults re-chosen by measurement (13 Nov)
 const CATS = ["results", "M&A", "management_change", "litigation", "fund_raise", "capex", "credit_rating",
@@ -91,11 +92,26 @@ function AlertsSheet({
       <button aria-label="Close" className="absolute inset-0 bg-black/40" onClick={onClose} />
       <div className="relative max-h-[90dvh] w-full max-w-[480px] overflow-y-auto rounded-t-2xl border-t border-line bg-surface px-4 pb-[max(env(safe-area-inset-bottom),16px)] pt-4">
         <div className="mb-2 flex items-baseline justify-between">
-          <h2 className="text-[16px] font-semibold">Your alert rules</h2>
+          <h2 className="text-[16px] font-semibold">Settings</h2>
           <button onClick={onClose} className="min-h-11 px-2 text-[14px] text-ink-2">
             Close
           </button>
         </div>
+
+        <div className="mb-3 rounded-md border border-line px-3 py-2">
+          <p className="text-[13px] font-semibold">First-run guide</p>
+          <button
+            onClick={() => {
+              restoreFirstRun();
+              onClose();
+            }}
+            className="min-h-9 text-[12px] text-accent"
+          >
+            Show three things to try
+          </button>
+        </div>
+
+        <h3 className="text-[14px] font-semibold">Alert rules</h3>
 
         <Slider
           label="Unusual volume"
