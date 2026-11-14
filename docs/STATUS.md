@@ -1,4 +1,4 @@
-# Scope status vs SPEC §3 (updated 2026-11-13, night: engine frozen, frontend phase)
+# Scope status vs SPEC §3 (updated 2026-11-14, frontend phase)
 
 ✅ done · 🟡 partial · ❌ missing. Evidence is a file, endpoint or measured output.
 
@@ -18,11 +18,12 @@
 | Research: Financial snapshot | 🟡 | latest-quarter revenue/EBITDA/PAT/margins in the trajectory; no TTM, ROE/ROCE, net debt |
 | Research: Trajectory | 🟡 | 12 quarters revenue bars + margin line (`Research.tsx`); spec asks 5–10 years + CAGRs |
 | Research: Promise Ledger | ✅ | hero CREDITACC (5 resolved, each checked against its quote), KAYNES second; scoreboard + one timeline per outlook; first vs final guidance verdicts; verbal steers; stricter year rule (POLYCAB 4→0, KAYNES 5→3) · `docs/hero_first.png`, `docs/hero_full.png` |
+| Research: compact top summary | ✅ | latest result, ledger pattern + resolved verdict, stored investigation question, top helper and coverage; source/deep links; normal visits keep chains collapsed · `docs/screens/step6_research_summary_dark.png`, `step6_research_summary_light.png` |
 | Research: Guidance (open, with run-rate) | ✅ | open items show due year; run-rate line for revenue bands ("Needs +8.8% to +12.5% YoY in the remaining 2 quarters"); never for constant-currency bands |
 | Research: Bull vs Bear | 🟡 | computed signals from numbers (`research.py signals()`); not 3+3 cited points each for every company |
 | Every research claim cited | ✅ | quotes are verbatim-verified and link to the NSE transcript |
 | Live pipeline with visible progress for an uncached symbol | ✅ | job queue + GitHub runner; gate passed on POLYCAB (2 min 46 s, runner start 36 s); 'not reviewed' line on live reports |
-| "Who can help?" sheet on Push cards and Research sections | 🟡 | on every Push card ✅ and the Promise-ledger section ✅ (`docs/screens/status_research_help.png`); Business, Financials/Trajectory and Bull-vs-bear sections have none (only the page-end 'Who to call') |
+| "Who can help?" sheet on Push cards and Research sections | ✅ | every Push card and every Research section (ledger, Business, Financials/Trajectory, Bull-vs-bear) · `docs/screens/status_research_help.png`, `step5_help_sections.png` |
 | Second-degree paths with strength + evidence | ✅ | `network/graph.py` warmth × overlap; PathLine shows the evidence |
 | Direct query "who do I know at / knows about X" | ✅ | free-text search on People over the directory (employer, title, theme, NSE symbol; every word must match; ranked by match then warmth); tested |
 | Synthetic network ~70 contacts | ✅ | 72 contacts, 40 meetings, every one tagged synthetic in UI |

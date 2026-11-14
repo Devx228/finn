@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { FreshnessBadge } from "./FreshnessBadge";
+import { ResearchSummary } from "./ResearchSummary";
 import { ResearchJobPanel } from "./ResearchJob";
 import { useCallback, useEffect, useState } from "react";
 import { GroupCard, HelpButton, LedgerHead, Legend, Scoreboard } from "@/components/Ledger";
@@ -113,7 +114,7 @@ export function ResearchView() {
           <FreshnessBadge source={cur.source} asOf={cur.data.as_of} />
         </div>
       )}
-      {cur && <Body r={cur.data} fy={params.get("fy")} />}
+      {cur && <Body key={`${cur.data.symbol}-${params.get("fy") ?? ""}`} r={cur.data} fy={params.get("fy")} />}
     </div>
   );
 }
@@ -125,7 +126,7 @@ function Body({ r, fy }: { r: Research; fy?: string | null }) {
   const groups = r.groups ?? [];
   // ?fy=FY27 (from a results card): open that year’s chain first
   const target = fy ? (groups.find((g) => g.period === fy && g.resolved) ?? groups.find((g) => g.period === fy))?.id : null;
-  const firstResolved = target ?? groups.find((g) => g.resolved)?.id ?? null;
+  const firstResolved = target ?? null;
   useEffect(() => {
     if (target) requestAnimationFrame(() => document.getElementById(target)?.scrollIntoView({ block: "start" }));
   }, [target]);
@@ -167,6 +168,8 @@ function Body({ r, fy }: { r: Research; fy?: string | null }) {
           ))}
         </nav>
       </div>
+
+      <ResearchSummary r={r} />
 
       <section id="ledger" className="scroll-mt-4">
         <div className="mb-1 flex items-center justify-between gap-2">

@@ -29,7 +29,7 @@
 
 **Done on 14 Nov:** 1 (submission package), 2 (event-to-action in the Who-can-help sheet + keep-warm
 opener), 3 (results → ledger deep link), 4 (freshness badge), 5 (Who can help on each research
-section). **Start at 6.** Small follow-ups seen in screenshots: CreditAccess's business snapshot says
+section), 6 (compact Research summary). **Start at 7.** Small follow-ups seen in screenshots: CreditAccess's business snapshot says
 "single segment" twice; on cards the first person to call can be a current employee (Research's
 sheet ranks former employees first; the card sheet uses the raw ranking).
 

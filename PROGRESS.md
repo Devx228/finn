@@ -204,3 +204,15 @@ Done today, all pushed, checks green (85 API / 14 web):
 - Results card → "FY27 promises" deep link; Live/Snapshot badge on every tab; Who can help on each
   research section. Screens: `docs/screens/step2_*.png`, `step3_*.png`, `step4_*.png`, `step5_*.png`.
 Next: `docs/HANDOFF.md` step 6 (compact Research summary), then 7 (command bar, confirm first), 8, 9.
+
+## Checkpoint 2026-11-14 (step 6: compact Research summary)
+- Added a source-linked 20-second brief above the Promise Ledger: latest result, existing ledger
+  pattern and top resolved verdict, existing investigation question, top Who-can-help contact,
+  calls read and reviewed/not-reviewed status. Empty states never invent missing data.
+- Normal Research visits now keep chains collapsed; `?fy=` results-card deep links still open the
+  requested chain. No engine, API or stored-data changes.
+- Phone evidence in both themes: `docs/screens/step6_research_summary_dark.png` and
+  `docs/screens/step6_research_summary_light.png`.
+- Baseline shell note: this Windows checkout requires native `api/.venv/Scripts/python.exe` and
+  `npx.cmd`; plain `bash` resolved to WSL. Equivalent API/web/secret checks were run natively.
+Next: step 7, the approved rules-first command bar with typed, cited model fallback.

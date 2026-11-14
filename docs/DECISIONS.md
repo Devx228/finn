@@ -717,3 +717,17 @@ worth→buried (a ₹1,000–2,500 cr order is under 1% of L&T's revenue).
   `network/service.py` `last_note` / `opener`, `for_item(fact=, when=)`.)
 - **"Who can help?" on each research section** (owner item 4): Business, Bull vs bear and Financials
   carry the same button as the Promise ledger.
+
+## 2026-11-14 — Compact Research summary (step 6)
+- A new **20-second brief** sits above the Promise Ledger and uses only fields already present in
+  the stored research report: the latest quarterly result, the ledger's computed pattern, the
+  first resolved verdict in the report's existing order, the first stored ledger question, the
+  top stored Who-can-help contact, calls read and review status. It performs no new scoring and
+  writes no data.
+- Result numbers link to the quarter's XBRL filing; the resolved verdict links to its existing
+  chain. Missing results, verdicts, questions or contacts are stated plainly rather than filled.
+  Synthetic contacts remain labelled synthetic.
+- Promise chains are collapsed on a normal Research visit so the summary stays scannable. A
+  results-card `?fy=` deep link still opens and scrolls to the requested chain.
+- Phone evidence: `docs/screens/step6_research_summary_dark.png` and
+  `docs/screens/step6_research_summary_light.png`.
