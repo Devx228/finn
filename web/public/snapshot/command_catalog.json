@@ -1,0 +1,27 @@
+{
+  "companies": [
+    { "symbol": "AUBANK", "name": "AU Small Finance Bank Limited", "aliases": [] },
+    { "symbol": "BAJFINANCE", "name": "Bajaj Finance Limited", "aliases": [] },
+    { "symbol": "BHARTIARTL", "name": "Bharti Airtel Limited", "aliases": [] },
+    { "symbol": "CGPOWER", "name": "CG Power and Industrial Solutions Limited", "aliases": [] },
+    { "symbol": "CREDITACC", "name": "CREDITACCESS GRAMEEN LIMITED", "aliases": [] },
+    { "symbol": "DEEPAKNTR", "name": "Deepak Nitrite Limited", "aliases": [] },
+    { "symbol": "DIXON", "name": "Dixon Technologies (India) Limited", "aliases": [] },
+    { "symbol": "HDFCBANK", "name": "HDFC Bank Limited", "aliases": [] },
+    { "symbol": "INFY", "name": "Infosys Limited", "aliases": [] },
+    { "symbol": "KAYNES", "name": "Kaynes Technology India Limited", "aliases": [] },
+    { "symbol": "KPITTECH", "name": "KPIT Technologies Limited", "aliases": [] },
+    { "symbol": "LT", "name": "Larsen & Toubro Limited", "aliases": [] },
+    { "symbol": "M&M", "name": "Mahindra & Mahindra Limited", "aliases": [] },
+    { "symbol": "MARUTI", "name": "Maruti Suzuki India Limited", "aliases": [] },
+    { "symbol": "PERSISTENT", "name": "Persistent Systems Limited", "aliases": [] },
+    { "symbol": "PIIND", "name": "PI Industries Limited", "aliases": [] },
+    { "symbol": "POLYCAB", "name": "Polycab India Limited", "aliases": [] },
+    { "symbol": "SUNPHARMA", "name": "Sun Pharmaceutical Industries Limited", "aliases": [] },
+    { "symbol": "TATASTEEL", "name": "Tata Steel Limited", "aliases": [] },
+    { "symbol": "TITAN", "name": "Titan Company Limited", "aliases": [] },
+    { "symbol": "TRENT", "name": "Trent Limited", "aliases": [] },
+    { "symbol": "ULTRACEMCO", "name": "UltraTech Cement Limited", "aliases": [] },
+    { "symbol": "VBL", "name": "Varun Beverages Limited", "aliases": [] }
+  ]
+}

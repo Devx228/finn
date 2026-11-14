@@ -20,7 +20,7 @@
 > 390 px phone screenshot (`node scripts/phone_shot.mjs`), and wait for the owner.
 
 ## State at this handoff
-- Everything in the live app is committed and pushed; checks green (85 API tests, 14 web tests).
+- Everything in the live app is committed and pushed; checks green (88 API tests, 18 web tests).
 - Before-design-pass screenshots: `docs/screens/before/` (10 screens × dark/light, plus contact
   sheets `_sheet_dark.png`, `_sheet_light.png`).
 - Owner secrets already set: Render `GITHUB_DISPATCH_TOKEN`; GitHub Actions `DATABASE_URL`,
@@ -29,7 +29,7 @@
 
 **Done on 14 Nov:** 1 (submission package), 2 (event-to-action in the Who-can-help sheet + keep-warm
 opener), 3 (results → ledger deep link), 4 (freshness badge), 5 (Who can help on each research
-section), 6 (compact Research summary). **Start at 7.** Small follow-ups seen in screenshots: CreditAccess's business snapshot says
+section), 6 (compact Research summary), 7 (rules-first command bar). **Start at 8.** Small follow-ups seen in screenshots: CreditAccess's business snapshot says
 "single segment" twice; on cards the first person to call can be a current employee (Research's
 sheet ranks former employees first; the card sheet uses the raw ranking).
 
@@ -42,7 +42,7 @@ the review. The owner decides between conflicting items (see "Open decisions").
 1. **Submission package (critic; small, urgent).**
    - README: remove "not built" claims for live research and the cost screen; add 3–5 screenshots
      from `docs/screens/`; a 2-minute demo route (below); state deliberate cuts.
-   - ARCHITECTURE.md: update limitations and test counts (85 API, 14 web).
+   - ARCHITECTURE.md: update limitations and test counts (88 API, 18 web).
    - WRITEUP.md: the 500–700-word covering note (currently a stub).
    - Add a LICENSE (owner to choose) and run a secret scan across the whole git history
      (e.g. `gitleaks detect` or `git log -p | grep` for key patterns) before the repo goes public.

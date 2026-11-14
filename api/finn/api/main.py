@@ -132,10 +132,46 @@ class JobRequest(BaseModel):
     symbol: str
 
 
+class CommandRequest(BaseModel):
+    prompt: str
+
+
 def _client_ip(req: Request) -> str | None:
     # Render puts the caller first in X-Forwarded-For; locally there is no proxy
     fwd = req.headers.get("x-forwarded-for", "")
     return fwd.split(",")[0].strip() or (req.client.host if req.client else None)
+
+
+@app.get("/api/command/catalog")
+def get_command_catalog() -> dict:
+    """Listed-company names for deterministic client-side symbol/company routing."""
+    from finn import command
+
+    with db.connection() as conn:
+        return command.catalog(conn)
+
+
+@app.post("/api/command")
+def run_command(body: CommandRequest, req: Request) -> dict:
+    """Rules missed: a model selects typed tools; code returns cited blocks from stored data."""
+    from finn import command
+    from finn.llm.router import LLMUnavailable, Router
+    from finn.llm.store import LLMStore
+
+    with db.connection() as conn:
+        try:
+            return command.answer(conn, body.prompt, _client_ip(req), Router(store=LLMStore()))
+        except command.JobError as e:
+            raise HTTPException(status_code=e.status, detail={"code": e.code, "message": e.message}) from e
+        except LLMUnavailable as e:
+            log.warning("command model unavailable: %s", e)
+            raise HTTPException(
+                status_code=503,
+                detail={
+                    "code": "model_unavailable",
+                    "message": "The command model is unavailable. Symbol and People routes still work.",
+                },
+            ) from e
 
 
 @app.post("/api/research/jobs")

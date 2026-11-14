@@ -9,8 +9,10 @@ FINN is two halves joined by one table:
 - a **read path** — a FastAPI service that returns those views as stored, and a Next.js phone app
   that renders them, falling back to a snapshot bundled into the app when the API is slow or down.
 
-The read path never calls a model and never calls an exchange. Everything a user sees was computed
-before they asked, so the app is fast, cheap, and still works when a source or a model is down.
+The normal read path never calls a model or an exchange. The one explicit exception is the command
+bar fallback: a hosted model may select up to two typed tools, then code reads the same stored data
+and builds cited blocks. The model never receives research facts or writes an answer. Symbol,
+company-name and People routes do not call it, and remain available when it is down.
 
 ## 1. Components
 
@@ -22,9 +24,9 @@ before they asked, so the app is fast, cheap, and still works when a source or a
 | `finn/push/` | worker | Classifies filings (rules, then a model for the remainder), builds results cards from XBRL, scores and tiers items, attaches the network, materialises `brief:<window>` and `alerts:inputs`. |
 | `finn/pull/` | worker | The Promise Ledger: transcript selection, guidance extraction, reported-outcome reading, chains and verdicts, `research:<SYM>` views. |
 | `finn/network/` | worker | People named in filings (verified against the filing text), the synthetic network, warmth and path scores, who-to-call with an insider flag, `network:*` views. |
-| `finn/llm/router.py` | worker | Tiers (`BULK`, `EXTRACT`, `REASON`) mapped to ordered `provider:model` lists from env; per-model throttling; on 429/5xx waits and retries once, then falls to the next provider; strict JSON schema with one repair retry; content-hash cache; every call logged to `llm_calls`. |
-| `finn/api/main.py` | Render | Read-only endpoints over `views`: `/api/brief`, `/api/research/{SYM}`, `/api/network/...`, `/api/alerts/inputs`, `/health`. |
-| `web/` | Vercel | Today, Research and People tabs. `loadWithFallback` tries the API, then `public/snapshot/*.json`. Alert rules are evaluated in the browser by the same pure function the API tests use (shared fixture). |
+| `finn/llm/router.py` | worker / command API | Tiers (`BULK`, `EXTRACT`, `REASON`, `COMMAND`) mapped to ordered `provider:model` lists from env; per-model throttling; on 429/5xx waits and retries once, then falls to the next provider; strict JSON schema with one repair retry; content-hash cache; every call logged to `llm_calls`. |
+| `finn/api/main.py` | Render | Read endpoints over `views`, live-research jobs, and `/api/command`: the model selects typed stored-data tools; code builds cited blocks. The API never calls NSE. |
+| `web/` | Vercel | Today, Research and People tabs plus the docked command bar. `loadWithFallback` tries the API, then `public/snapshot/*.json`. Alert rules are evaluated in the browser by the same pure function the API tests use (shared fixture). |
 
 ## 2. Data model (the parts that matter)
 - `filings`, `filing_class` — every announcement with its NSE link; category, score, how it was
@@ -37,7 +39,10 @@ before they asked, so the app is fast, cheap, and still works when a source or a
   flagged and labelled in the UI).
 - `llm_cache`, `llm_calls` — content-addressed model answers; a ledger of every call (provider,
   model, tokens, latency, cache hit).
-- `views(key, body, as_of)` — the only thing the read path touches.
+- `command_requests` — timestamps plus salted client hashes for fallback limits; no prompts or raw
+  client addresses.
+- `views(key, body, as_of)` — the normal tab read path; command tools also read stored companies
+  and filings directly, never external sources.
 
 ## 3. The Promise Ledger (pull)
 For each company: the last 8 earnings calls (one per quarter; a copy with text beats one without).
@@ -98,6 +103,9 @@ ticker, and every rule that exists was added because a reviewed claim on some co
   never sent twice. Ledger at the time of writing: Gemini 602 calls (433 cache hits), local qwen 324 (107), Groq
   33 (26).
 - **Keyless by default.** With no keys the whole system runs on a local Ollama model.
+- **Command fallback is routing, not chat.** `COMMAND` returns at most two enum-constrained tool
+  calls and zero answer sentences. Code validates them and reads stored views/tables; 10/hour and
+  30/day per salted client, 200/day globally. Direct symbol/company and People routes use no model.
 
 ## 5. Data access: what actually happened
 The brief points candidates to exchange filings. We tried each candidate source, followed each
@@ -174,11 +182,12 @@ URL without touching existing text; any other table is refused, and the target i
   browser.
 
 ## 7. Quality
-- **Tests:** 85 API tests (classification rules, text-based severity, grounding of model-written
+- **Tests:** 88 API tests (classification rules, text-based severity, grounding of model-written
   lines, XBRL quirks, router fallback, job queue and limits, network scoring and filing-bio spans,
   guidance rules and the live-run regression cases, reported outcomes, two-verdict chains, verbal
-  steers) and 14 web tests (including the alert evaluator on a fixture shared with Python and the
-  "who knows" search). `bash scripts/verify.sh` runs all of it plus the production build and a
+  steers, command-tool validation and command rate limits) and 18 web tests (including the alert
+  evaluator on a fixture shared with Python, "who knows" search and rules-first command routing).
+  `bash scripts/verify.sh` runs all of it plus the production build and a
   tracked-secrets check; CI runs the same on every push.
 - **Evals** (docs/evals.md): classifier on 124 labelled filings (rules 85/85; 13 of 14 ranking
   regressions inside their expected range); guidance extraction on 26 hand-listed claims and 25

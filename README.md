@@ -120,7 +120,7 @@ every decision, dated, in [docs/DECISIONS.md](docs/DECISIONS.md).
 Built: Today (ranking from filing text, results / management-change / material-event cards,
 alerts with tunable rules), the Promise Ledger on 8 reviewed companies plus live research for any
 ticker, the network layer (dossiers, paths, who to call, coverage, keep-warm, "who knows" search),
-the cost ledger. Tests: 85 API, 14 web (`bash scripts/verify.sh`).
+the rules-first command bar and the cost ledger. Tests: 88 API, 18 web (`bash scripts/verify.sh`).
 
 **Deliberate cuts** (thin but working beats broad but broken): no free-text chat; no balance-sheet,
 cash-quality or red-flag sections; notifications are in-app (no web push yet); no login (one

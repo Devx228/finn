@@ -77,7 +77,7 @@ changing anything.** `docs/HANDOFF.md` has the prompt to resume work and the ord
 ## Checks (run before every commit): `bash scripts/verify.sh`
 `cd api && .venv/Scripts/ruff check finn tests && .venv/Scripts/mypy finn && .venv/Scripts/python -m pytest -q`
 `cd web && npx eslint . && npx tsc --noEmit && npm test && npm run build`
-(85 API tests and 14 web tests passed at the last checkpoint.)
+(88 API tests and 18 web tests passed at the last checkpoint.)
 
 ## Gotchas
 - Bash heredocs here turn `\b` into a backspace byte in Python/regex files. Use the Edit/Write

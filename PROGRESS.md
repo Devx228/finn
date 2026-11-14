@@ -216,3 +216,15 @@ Next: `docs/HANDOFF.md` step 6 (compact Research summary), then 7 (command bar, 
 - Baseline shell note: this Windows checkout requires native `api/.venv/Scripts/python.exe` and
   `npx.cmd`; plain `bash` resolved to WSL. Equivalent API/web/secret checks were run natively.
 Next: step 7, the approved rules-first command bar with typed, cited model fallback.
+
+## Checkpoint 2026-11-14 (step 7: command bar)
+- Added one docked command input above every tab. Deterministic routes handle symbols/company names
+  and Who-knows queries; the latter opens People with the existing search populated.
+- The hosted fallback is a router, not chat: a Pydantic schema limits Gemini to at most two stored
+  tools (brief, filings, research section, Who can help, paths, price stats). Code builds cited
+  blocks; the model returns no answer prose and receives no research facts.
+- Added per-client/global daily limits without storing prompts or raw IPs, a live NSE-company
+  catalog plus bundled fallback, and friendly model-outage behaviour. Tests now 88 API / 18 web.
+- All four shipped examples were exercised: two deterministic routes and two real hosted-model
+  routes over the local mirror of live data. Phone evidence: `docs/screens/step7_*.png`.
+Next: step 8a, web push reliability and a free fallback decision before implementation.

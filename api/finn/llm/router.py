@@ -38,6 +38,8 @@ PROVIDERS: dict[str, dict[str, Any]] = {
 DEFAULT_TIERS = {
     "BULK": "ollama:qwen2.5-7b-8k",
     "REASON": "ollama:qwen2.5-7b-8k",
+    # Command bar: the model only selects typed tools; code builds the answer from stored data.
+    "COMMAND": "gemini:gemini-3.5-flash-lite",
     # Guidance extraction, ordered by the eval in docs/evals.md (2026-11-13). Providers without a
     # key are skipped, so a keyless clone still runs on the local model.
     # 3-flash scored best alone but timed out on 48 of 57 calls (13 Nov), so it is the fallback.

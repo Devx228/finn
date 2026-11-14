@@ -731,3 +731,23 @@ worth→buried (a ₹1,000–2,500 cr order is under 1% of L&T's revenue).
   results-card `?fy=` deep link still opens and scrolls to the requested chain.
 - Phone evidence: `docs/screens/step6_research_summary_dark.png` and
   `docs/screens/step6_research_summary_light.png`.
+
+## 2026-11-14 — Rules-first command bar with typed stored-data tools (step 7)
+- One input is docked above the tab bar on every screen. Exact NSE symbols/company names route to
+  Research, and "who do I know / who knows / who can help" routes into the existing People search,
+  without a model. The bundled fallback catalog contains the companies already in FINN; the live
+  catalog endpoint contains the stored NSE equity master.
+- Only unmatched natural-language commands call Gemini. The model returns a validated plan of at
+  most two calls from a closed enum: brief, filings, research section, Who can help, paths or price
+  stats. It writes **zero answer sentences**. Code validates the symbol, reads existing stored
+  views/tables, computes price changes, and returns typed blocks with sources. Research facts never
+  enter the model prompt and never come from model knowledge.
+- Limits follow the research-job pattern: salted client hash only (never raw IP or prompt), 10
+  fallback commands/hour and 30/day per client, 200/day globally. Symbol and People rules remain
+  available after a model limit or outage. Hosted calls use the existing free Gemini tier.
+- Verified examples on the local Neon mirror with the configured hosted model: `CREDITACC` →
+  Research; `Who do I know at HDFC Bank?` → populated People search; `Show TITAN's 7-day brief` →
+  three NSE-linked brief items; `Show CREDITACC promises and who can help` → reviewed ledger block
+  plus stored synthetic contacts. Screens: `docs/screens/step7_command_bar_dark.png`,
+  `step7_command_bar_light.png`, `step7_command_result_dark.png`, `step7_rule_creditacc.png`,
+  `step7_rule_people.png`.

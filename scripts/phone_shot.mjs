@@ -48,6 +48,9 @@ await send("Page.navigate", { url });
 await sleep(6000);
 const find = (text) => `(() => {
   const want = ${JSON.stringify(text)}.toLowerCase();
+  const control = [...document.querySelectorAll('input,textarea')].find(e =>
+    e.offsetParent !== null && ((e.placeholder || '') + ' ' + (e.getAttribute('aria-label') || '')).toLowerCase().includes(want));
+  if (control) return control;
   const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   let n;
   while ((n = w.nextNode())) {
@@ -67,7 +70,7 @@ for (const s of steps) {
     await sleep(500);
   }
   if (s.click) {
-    const ok = await evaluate(`(() => { const e = ${find(s.click)}; if (!e) return false; (e.closest('button,a,[role=button]') || e).click(); return true; })()`);
+    const ok = await evaluate(`(() => { const e = ${find(s.click)}; if (!e) return false; e.focus(); e.dispatchEvent(new FocusEvent('focusin', {bubbles: true})); (e.closest('button,a,[role=button]') || e).click(); return true; })()`);
     if (!ok) console.error("not found:", s.click);
     await sleep(s.after ?? 2500);
   }

@@ -41,7 +41,7 @@
 | Cash quality section | ❌ | annual cash flow in `fin_facts`, not surfaced |
 | Red flags section | ❌ | annual reports linked, not read |
 | Results card linked to the Promise Ledger | ✅ | "FY27 promises" link opens that year's chain · `docs/screens/step3_results_link.png`, `step3_ledger_fy27.png` |
-| Ask bar (tool-calling, typed cards) | ❌ | removed; the command bar (frontend item 2) replaces it |
+| Command bar (rules first; typed, cited tool blocks) | ✅ | docked above every tab; symbol/company → Research and who-knows → People without a model; fallback model only selects stored tools; 10/hour and 30/day per salted client · `docs/screens/step7_command_result_dark.png`, `step7_rule_people.png` |
 | People: expertise map | ✅ | People tab |
 | People: coverage gaps (weight vs depth) | ✅ | holding weight vs contacts inside / one step away · `docs/screens/status_coverage_gaps.png` |
 | People: keep-warm nudges with drafted opener | 🟡 | 'Reasons to reconnect' with the filing that makes the call timely and how cold the contact is; **no drafted opener** · `docs/screens/status_keep_warm.png` |

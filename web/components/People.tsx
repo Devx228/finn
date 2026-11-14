@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { CopyButton } from "@/components/ActionBlock";
 import { FreshnessBadge } from "@/components/FreshnessBadge";
 import { CandidateRow, ContactLine, PersonBlock, Strength, SyntheticTag } from "@/components/Network";
@@ -16,6 +17,7 @@ function short(name: string): string {
 }
 
 export function People() {
+  const params = useSearchParams();
   const [home, setHome] = useState<Loaded<NetworkHome> | "error" | null>(null);
   const [person, setPerson] = useState<number | null>(null);
 
@@ -42,18 +44,18 @@ export function People() {
           <FreshnessBadge source={home.source} asOf={home.data.as_of} />
         </div>
       )}
-      {home && home !== "error" && <Home h={home.data} onPerson={setPerson} />}
+      {home && home !== "error" && <Home h={home.data} onPerson={setPerson} initialQuery={params.get("q") ?? ""} />}
       {person !== null && <PersonSheet id={person} onClose={() => setPerson(null)} />}
     </div>
   );
 }
 
-function Home({ h, onPerson }: { h: NetworkHome; onPerson: (id: number) => void }) {
+function Home({ h, onPerson, initialQuery }: { h: NetworkHome; onPerson: (id: number) => void; initialQuery: string }) {
   const gaps = h.coverage.filter((c) => c.direct === 0);
   const figures = h.figures.filter((f) => f.best || f.you.length).slice(0, 6);
   return (
     <div className="space-y-6">
-      {h.directory && <WhoKnows h={h} />}
+      {h.directory && <WhoKnows key={initialQuery} h={h} initialQuery={initialQuery} />}
 
       <p className="rounded-md border border-line px-3 py-2 text-[12px] leading-snug text-ink-3">
         {h.contacts} contacts · {h.synthetic_note}
@@ -159,8 +161,8 @@ function Home({ h, onPerson }: { h: NetworkHome; onPerson: (id: number) => void 
 }
 
 /** Free-text "who do I know at X / who knows about Y" over the directory (no model). */
-function WhoKnows({ h }: { h: NetworkHome }) {
-  const [q, setQ] = useState("");
+function WhoKnows({ h, initialQuery }: { h: NetworkHome; initialQuery: string }) {
+  const [q, setQ] = useState(initialQuery);
   const hits = useMemo(() => (q.trim().length > 1 ? search(h.directory ?? [], q) : []), [h.directory, q]);
   const examples = ["HDFC Bank", "banking", "steel", "credit risk"];
   return (
