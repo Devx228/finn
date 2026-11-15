@@ -294,3 +294,17 @@ report every failure honestly.
   successes and one honest admission failure; retry TITAN after the legitimate window resets.
 - Phone evidence: `docs/screens/step9_live_sjs_dark.png` and `step9_live_aubank_light.png`.
 Next: retry TITAN after the hourly queue window; otherwise all ordered product work is complete.
+
+## Checkpoint 2026-11-15 (submission audit)
+- Re-read the original five-page brief and reconciled the submission against its four deliverables.
+  Added `docs/SUBMISSION.md`; the covering note is 690 words and links the live app, repository and
+  new AI build-history index.
+- Exported five sanitized visible-message transcripts from the local Claude Code/Codex archives.
+  Their index records date, goal, outcome and where the model/tool was wrong; tool outputs, hidden
+  reasoning and account/machine metadata are excluded. Known secret patterns scan clean.
+- Fixed the first-device Web Push activation race by waiting for an active service worker before
+  subscription, with a regression test. VAPID configuration on Render is live.
+- Full gate: 92 API / 26 web, lint, types, production build and tracked-secret scan green. Full
+  history scan: zero hits across 61 commits.
+- Two human release gates remain: make `Devx228/finn` public after the final pushed-history scan,
+  and perform one Android/desktop **Send test alert** check after Vercel deploys this commit.

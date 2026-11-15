@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { API_BASE, postJson } from "@/lib/api";
-import { base64UrlToUint8Array } from "@/lib/push";
+import { activePushRegistration, base64UrlToUint8Array } from "@/lib/push";
 
 const TOKEN_KEY = "finn.pushSubscription.v1";
 
@@ -42,7 +42,9 @@ export function PushSettings() {
         setMessage("Notifications remain off. You can enable them later in browser settings.");
         return;
       }
-      const registration = await navigator.serviceWorker.register("/sw.js");
+      // register() may resolve while a first-time worker is still installing. Push subscription
+      // requires an active worker, so wait for the registration the browser marks ready.
+      const registration = await activePushRegistration(navigator.serviceWorker);
       const subscription =
         (await registration.pushManager.getSubscription()) ??
         (await registration.pushManager.subscribe({

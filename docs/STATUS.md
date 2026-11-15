@@ -1,4 +1,4 @@
-# Scope status vs SPEC §3 (updated 2026-11-14, frontend phase)
+# Scope status vs SPEC §3 (updated 2026-11-15, submission audit)
 
 ✅ done · 🟡 partial · ❌ missing. Evidence is a file, endpoint or measured output.
 
@@ -31,7 +31,7 @@
 | Bundled snapshot fallback | ✅ | `web/lib/api.ts loadWithFallback` → `web/public/snapshot/*.json` |
 | Cost ledger screen | ✅ | `/api/cost` (view `cost:summary`) + `/cost` screen: calls, cache rate, tokens, failures, by model and task, rules vs model; ₹0 actual; list price shown only where verified |
 | README | ✅ | README.md |
-| Architecture doc with diagram | ✅ | docs/ARCHITECTURE.md + docs/architecture.svg (WRITEUP still a stub) |
+| Architecture doc with diagram | ✅ | `docs/ARCHITECTURE.md` + `docs/architecture.svg`; covering note in `docs/WRITEUP.md` |
 
 ## P1
 
@@ -44,10 +44,10 @@
 | Command bar (rules first; typed, cited tool blocks) | ✅ | docked above every tab; symbol/company → Research and who-knows → People without a model; fallback model only selects stored tools; 10/hour and 30/day per salted client · `docs/screens/step7_command_result_dark.png`, `step7_rule_people.png` |
 | People: expertise map | ✅ | People tab |
 | People: coverage gaps (weight vs depth) | ✅ | holding weight vs contacts inside / one step away · `docs/screens/status_coverage_gaps.png` |
-| People: keep-warm nudges with drafted opener | 🟡 | 'Reasons to reconnect' with the filing that makes the call timely and how cold the contact is; **no drafted opener** · `docs/screens/status_keep_warm.png` |
+| People: keep-warm nudges with drafted opener | ✅ | Stored-fact opener with Copy action plus the filing that makes the call timely · `docs/screens/step2_keepwarm_opener.png` |
 | Person dossier | ✅ | 'Diligence on a person': career and education as disclosed in the filing, your overlap, second-degree reach, link to the filing · `docs/screens/status_person_dossier.png`. Known flaw: one parsed span is wrong (Anup Bagchi 'ICICI Bank 1992–now' from 'various leadership positions') |
-| Note resurfacing (your meeting notes against a new filing) | ❌ | 40 synthetic meetings with notes exist in the DB; nothing surfaces them on a card |
-| Web Push / swipe feedback | 🟡 | Standards-based Web Push: tap-only permission, device subscription, automatic deduped Now-card delivery, test alert and exact-card deep link; iPhone Home Screen note. Code complete; Render still needs VAPID public/private secrets. `docs/screens/step8a_web_push_dark.png` |
+| Note resurfacing (your meeting notes against a new filing) | ✅ | Stored synthetic meeting note appears in the event's Who-can-help sheet with date and attendees |
+| Web Push / swipe feedback | 🟡 | VAPID keys are loaded on Render; tap-only permission, device subscription, automatic deduped Now-card delivery, test alert and exact-card deep link are built. First-device activation-race fix is awaiting deploy and final Android/desktop retest. `docs/screens/step8a_web_push_dark.png` |
 | First-run guide | ✅ | Dismissible “three things to try” card with deterministic routes to the 7-day brief, reviewed CREDITACC Research and HDFC Bank People search; restorable from Settings. `docs/screens/step8b_first_run_dark.png` |
 | Pre-call card | ✅ | Reviewed holding only; upcoming-date window with an honest replay fallback. LT replay as of 30 Apr 2026 shows the 5 May Q4 result, 15% FY26 guide, +12% 3Q YTD run-rate, implied +22.3% Q4 need, three directly cited questions and existing Who-can-help contact. `docs/screens/step8c_pre_call_dark.png` |
 | Filter audit | ✅ | Compares buried and Now tiers with the next two stored sessions at the configured ±6% vs-NIFTY threshold; shows one possible miss and three possible over-ranks in the current 30-day view, with filing links and an explicit non-causality warning. `docs/screens/step8d_filter_audit_dark.png` |

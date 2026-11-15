@@ -1,7 +1,8 @@
 # FINN — covering note
 
-**Live app:** https://finn-tawny-nine.vercel.app · **Code:** this repository (README has a
-3-minute walk-through).
+**Live app:** https://finn-tawny-nine.vercel.app · **Code:** https://github.com/Devx228/finn
+(README has a 3-minute walk-through) · **AI build history:**
+https://github.com/Devx228/finn/tree/main/docs/build-log
 
 An investor covering Indian listed companies loses most of the day to two things: wading through
 exchange filings to find the few that matter, and checking whether management did what it said it
@@ -53,8 +54,8 @@ bundled snapshot when the API is asleep. Exchange data is fetched politely and m
 never re-hosted, and linked to its source; NSE refused my campus network, and I stopped until a
 different connection was confirmed to work rather than working around the block.
 
-**Deliberate cuts:** no free-text chat, no balance-sheet or cash-quality sections, in-app
-notifications only, no login. Thin and correct seemed better than broad and wrong.
+**Deliberate cuts:** no open-ended chat, no balance-sheet or cash-quality sections, no native app
+or intraday exchange feed, and no login. Thin and correct seemed better than broad and wrong.
 
 ---
 

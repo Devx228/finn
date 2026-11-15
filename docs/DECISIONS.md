@@ -834,3 +834,23 @@ worth→buried (a ₹1,000–2,500 cr order is under 1% of L&T's revenue).
   successful unseen runs and one admission failure, not four successes.
 - Phone evidence: `docs/screens/step9_live_sjs_dark.png` and
   `docs/screens/step9_live_aubank_light.png`.
+
+## 2026-11-15 — Final submission audit and Push activation fix
+- Re-read the authoritative five-page challenge PDF; `docs/brief.pdf` is byte-identical to the
+  owner's original. The actual deliverables are: deployed mobile prototype, **public** GitHub repo,
+  AI build history and a short covering-email write-up. There is no separate form in the brief.
+- Packaged five sanitized Claude Code/Codex text exports under `docs/build-log/` with an index of
+  date, goal, outcome and a concrete model/tool correction. Tool outputs, hidden reasoning, system
+  instructions and machine/account metadata are omitted. Known secret patterns are redacted and
+  scanned; the reproducible exporter is `scripts/export_build_history.py`.
+- Corrected stale public documentation that still said Web Push was absent. The covering note is
+  690 words before its source notes, within the planned 500–700-word budget. Added
+  `docs/SUBMISSION.md` with the exact recipient, subject, required links and send-time checks.
+- The first Android subscription exposed a real race: `serviceWorker.register()` returned while
+  the worker was installing, so `PushManager.subscribe()` saw no active worker. FINN now awaits
+  `navigator.serviceWorker.ready`; the worker claims clients on activation, and a regression test
+  locks the registration-before-ready order.
+- Full local gate after starting the test database: 92 API and 26 web tests, lint, types, production
+  build and tracked-secret scan all green. Full git-history secret scan: zero hits across 61 commits.
+- Remaining release actions are intentionally human-controlled: make the repository public only
+  after the final committed history scan, and confirm one real-device test alert after Vercel deploys.

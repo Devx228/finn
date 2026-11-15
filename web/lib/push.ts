@@ -11,3 +11,11 @@ export function briefPushUrl(itemId: string): string {
   const id = encodeURIComponent(itemId);
   return `/?w=7d&item=${id}#brief-${id}`;
 }
+
+/** Register the push worker, then wait for the browser to expose an active registration. */
+export async function activePushRegistration(
+  container: Pick<ServiceWorkerContainer, "register" | "ready">,
+): Promise<ServiceWorkerRegistration> {
+  await container.register("/sw.js");
+  return container.ready;
+}

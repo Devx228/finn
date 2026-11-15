@@ -22,17 +22,21 @@
 ## State at this handoff
 - Everything through step 8e is pushed. Step 9 produced three live unseen reports (SJS, AUBANK,
   DIXON); TITAN was honestly rejected by the 3/client/hour admission limit. Checks remain green
-  (92 API tests, 25 web tests). Live push delivery still needs a VAPID keypair in Render.
+  (92 API tests, 26 web tests). VAPID keys are loaded on Render; the first-device service-worker
+  activation race has a local fix awaiting verification/deploy and an end-to-end device retest.
 - Before-design-pass screenshots: `docs/screens/before/` (10 screens × dark/light, plus contact
   sheets `_sheet_dark.png`, `_sheet_light.png`).
+- Submission audit: five sanitized agent-session exports and `docs/SUBMISSION.md` are ready. The
+  GitHub repository is still private and must be made public only after the final pushed-history
+  secret scan. Then retest Web Push once on Android/desktop.
 - Owner secrets already set: Render `GITHUB_DISPATCH_TOKEN`; GitHub Actions `DATABASE_URL`,
   `GEMINI_API_KEY`, `GROQ_API_KEY`. **Set on 14 Nov:** `GEMINI_API_KEY` on Render (the command bar's model fallback can call Gemini from the API).
 ## Next steps (owner's list, with the external critic's review of 14 Nov folded in)
 
 **Done on 14 Nov:** 1 (submission package), 2 (event-to-action in the Who-can-help sheet + keep-warm
 opener), 3 (results → ledger deep link), 4 (freshness badge), 5 (Who can help on each research
-section), 6 (compact Research summary), 7 (rules-first command bar), 8a (Web Push code; live
-delivery awaits Render VAPID secrets), 8b (dismissible first-run guide), 8c (cited pre-call card
+section), 6 (compact Research summary), 7 (rules-first command bar), 8a (Web Push; VAPID configured,
+device retest pending), 8b (dismissible first-run guide), 8c (cited pre-call card
 with replay fallback), 8d (two-sided filter audit), 8e (mobile design pass plus both screenshot
 follow-ups). **Step 9 is partial:** three unseen jobs succeeded; retry TITAN only after the queue's
 legitimate hourly window resets. Do not bypass the client limit.

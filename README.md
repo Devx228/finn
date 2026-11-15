@@ -16,6 +16,8 @@ Built for the ENAM Holdings Founding AI Engineer build challenge.
 
 **Live:** https://finn-tawny-nine.vercel.app (API: https://finn-api-mxni.onrender.com/health)
 
+**AI build history:** [sanitized Claude Code and Codex session exports](docs/build-log/README.md)
+
 ### A 3-minute walk through (on your phone)
 1. **Today → 7d.** Two items in *Now*: CG Power's High Court stay of a pollution-board order that
    had shut its Waluj plant (read from the filing's text, not its generic exchange label; the
@@ -120,11 +122,11 @@ every decision, dated, in [docs/DECISIONS.md](docs/DECISIONS.md).
 Built: Today (ranking from filing text, results / management-change / material-event cards,
 alerts with tunable rules), the Promise Ledger on 8 reviewed companies plus live research for any
 ticker, the network layer (dossiers, paths, who to call, coverage, keep-warm, "who knows" search),
-the rules-first command bar and the cost ledger. Tests: 92 API, 25 web (`bash scripts/verify.sh`).
+the rules-first command bar and the cost ledger. Tests: 92 API, 26 web (`bash scripts/verify.sh`).
 
-**Deliberate cuts** (thin but working beats broad but broken): no free-text chat; no balance-sheet,
-cash-quality or red-flag sections; notifications are in-app (no web push yet); no login (one
-investor); the network is synthetic and labelled so. Next steps: [docs/HANDOFF.md](docs/HANDOFF.md).
+**Deliberate cuts** (thin but working beats broad but broken): no open-ended chat; no balance-sheet,
+cash-quality or red-flag sections; no native app or intraday exchange feed; no login (one investor);
+the network is synthetic and labelled so. Next steps: [docs/HANDOFF.md](docs/HANDOFF.md).
 
 ## Data use
 Exchange data is used for a personal, non-commercial evaluation prototype, at minimal footprint
