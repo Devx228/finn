@@ -852,5 +852,8 @@ worth→buried (a ₹1,000–2,500 cr order is under 1% of L&T's revenue).
   locks the registration-before-ready order.
 - Full local gate after starting the test database: 92 API and 26 web tests, lint, types, production
   build and tracked-secret scan all green. Full git-history secret scan: zero hits across 61 commits.
-- Remaining release actions are intentionally human-controlled: make the repository public only
-  after the final committed history scan, and confirm one real-device test alert after Vercel deploys.
+- The repository is public after a clean final-history secret scan. GitHub CI also checks Ruff
+  formatting beyond the local verifier, so the four files it identified received formatter-only
+  line-wrap changes; the full local gate and the extra CI formatter gate are green.
+- The only device-specific release check is one Android/desktop test alert after Vercel deploys;
+  it is useful confirmation, not a reason to delay the required submission email.

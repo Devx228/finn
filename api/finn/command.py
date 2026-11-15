@@ -47,8 +47,7 @@ def catalog(conn: Connection) -> dict:
     ).fetchall()
     return {
         "companies": [
-            {"symbol": symbol, "name": name, "aliases": list(aliases or [])}
-            for symbol, name, aliases in rows
+            {"symbol": symbol, "name": name, "aliases": list(aliases or [])} for symbol, name, aliases in rows
         ]
     }
 

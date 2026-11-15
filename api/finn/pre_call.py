@@ -26,8 +26,7 @@ def _filing_dates(conn: Connection, urls: list[str]) -> dict[str, date]:
     if not urls:
         return {}
     rows = conn.execute(
-        "SELECT xbrl_url, filed_at::date FROM fin_filings "
-        "WHERE xbrl_url = ANY(%s) AND filed_at IS NOT NULL",
+        "SELECT xbrl_url, filed_at::date FROM fin_filings WHERE xbrl_url = ANY(%s) AND filed_at IS NOT NULL",
         (urls,),
     ).fetchall()
     return {url: filed for url, filed in rows}
@@ -94,8 +93,7 @@ def _run_rate(
     urls = [q["xbrl"] for q in current + prior]
     return {
         "text": (
-            f"{stage} revenue +{_number(ytd)}% YoY; "
-            f"needs +{need_band}% YoY in Q4 to reach {_band(point)}"
+            f"{stage} revenue +{_number(ytd)}% YoY; needs +{need_band}% YoY in Q4 to reach {_band(point)}"
         ),
         "stage": stage,
         "ytd": ytd,
@@ -146,8 +144,7 @@ def _card(report: dict, event: dict, as_of: date, filed: dict[str, date]) -> dic
         },
         {
             "text": (
-                f"What would make management revise the {band} {period} "
-                f"{label.lower()} guidance at results?"
+                f"What would make management revise the {band} {period} {label.lower()} guidance at results?"
             ),
             "sources": [guide_source, run_sources[-1]],
         },

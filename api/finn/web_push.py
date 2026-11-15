@@ -126,10 +126,13 @@ def deliver_new(
     for token, subscription in subscriptions:
         for item in items:
             item_id = str(item.get("id", ""))
-            if not item_id or conn.execute(
-                "SELECT 1 FROM web_push_deliveries WHERE subscription_token = %s AND item_id = %s",
-                (token, item_id),
-            ).fetchone():
+            if (
+                not item_id
+                or conn.execute(
+                    "SELECT 1 FROM web_push_deliveries WHERE subscription_token = %s AND item_id = %s",
+                    (token, item_id),
+                ).fetchone()
+            ):
                 continue
             try:
                 sender(subscription, _payload(item))

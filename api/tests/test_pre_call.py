@@ -36,9 +36,7 @@ def conn():
         ]
         for fy, label, period_end, revenue, filed_at in filings:
             url = f"https://example.test/{label.replace(' ', '-')}.xml"
-            quarters.append(
-                {"fy": fy, "label": label, "end": period_end, "revenue": revenue, "xbrl": url}
-            )
+            quarters.append({"fy": fy, "label": label, "end": period_end, "revenue": revenue, "xbrl": url})
             connection.execute(
                 "INSERT INTO fin_filings "
                 "(company_id, source, basis, period_end, filed_at, xbrl_url) "
@@ -96,8 +94,6 @@ def test_replay_uses_only_results_available_before_event(conn):
     assert card["mode"] == "replay"
     assert card["event"]["date"] == "2026-05-05"
     assert card["promises"][0]["guided"] == "15%"
-    assert card["promises"][0]["run_rate"] == (
-        "3Q YTD revenue +12% YoY; needs +24% YoY in Q4 to reach 15%"
-    )
+    assert card["promises"][0]["run_rate"] == ("3Q YTD revenue +12% YoY; needs +24% YoY in Q4 to reach 15%")
     assert len(card["questions"]) == 3
     assert all(question["sources"] for question in card["questions"])

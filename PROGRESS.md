@@ -306,5 +306,8 @@ Next: retry TITAN after the hourly queue window; otherwise all ordered product w
   subscription, with a regression test. VAPID configuration on Render is live.
 - Full gate: 92 API / 26 web, lint, types, production build and tracked-secret scan green. Full
   history scan: zero hits across 61 commits.
-- Two human release gates remain: make `Devx228/finn` public after the final pushed-history scan,
-  and perform one Android/desktop **Send test alert** check after Vercel deploys this commit.
+- `Devx228/finn` is public after the clean history scan. The CI-only Ruff formatting gate exposed
+  four formatter-only line-wrap differences; those are corrected, and both the full verifier and
+  `ruff format --check finn tests` pass.
+- Remaining device confirmation: after Vercel deploys this commit, try **Send test alert** once on
+  Android or desktop. Submission should not be delayed for this optional device-specific check.
