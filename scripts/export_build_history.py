@@ -23,7 +23,7 @@ SESSION_NOTES = {
         "NSE refused the campus origin; the agent stopped, recorded the refusal and used the documented worker/cache path",
     ),
     "claude-2026-11-12-7395748e.md": (
-        "12–14 Nov",
+        "12–15 Nov",
         "Finish research, network and live generalisation",
         "Promise Ledger, network actions and live job queue shipped",
         "POLYCAB produced four false verdicts; they became general exclusion rules and regression tests",
