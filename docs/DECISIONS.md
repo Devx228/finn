@@ -857,3 +857,11 @@ worth→buried (a ₹1,000–2,500 cr order is under 1% of L&T's revenue).
   line-wrap changes; the full local gate and the extra CI formatter gate are green.
 - The only device-specific release check is one Android/desktop test alert after Vercel deploys;
   it is useful confirmation, not a reason to delay the required submission email.
+
+## 2026-11-15 — Legitimate TITAN retry completes step 9
+- Retried TITAN only after the three-per-client hourly admission window had reset. Live job 7 ran
+  on the free GitHub runner and completed normally: 12 quarters, 8 calls read and 1 guidance item.
+- The first refusal remains documented because it proves the abuse limit worked; the successful
+  retry closes the requested four-company generalisation set without spoofing a client identity.
+- The generated report remains explicitly **not reviewed**. Phone evidence:
+  `docs/screens/step9_live_titan_dark.png`.

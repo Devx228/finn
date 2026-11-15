@@ -20,15 +20,15 @@
 > 390 px phone screenshot (`node scripts/phone_shot.mjs`), and wait for the owner.
 
 ## State at this handoff
-- Everything through step 8e is pushed. Step 9 produced three live unseen reports (SJS, AUBANK,
-  DIXON); TITAN was honestly rejected by the 3/client/hour admission limit. Checks remain green
-  (92 API tests, 26 web tests). VAPID keys are loaded on Render; the first-device service-worker
-  activation race has a local fix awaiting verification/deploy and an end-to-end device retest.
+- Everything through step 9 is complete. Four live unseen reports succeeded on GitHub runners:
+  SJS, AUBANK, DIXON and, after the legitimate hourly window reset, TITAN. Checks remain green
+  (92 API tests, 26 web tests). VAPID keys are loaded on Render and the service-worker activation
+  fix is deployed; one Android/desktop test notification remains optional device confirmation.
 - Before-design-pass screenshots: `docs/screens/before/` (10 screens × dark/light, plus contact
   sheets `_sheet_dark.png`, `_sheet_light.png`).
 - Submission audit: five sanitized agent-session exports and `docs/SUBMISSION.md` are ready. The
-  GitHub repository is still private and must be made public only after the final pushed-history
-  secret scan. Then retest Web Push once on Android/desktop.
+  GitHub repository is public after a zero-hit full-history secret scan. GitHub CI is green on the
+  release commit; retest Web Push once on Android/desktop without delaying the submission email.
 - Owner secrets already set: Render `GITHUB_DISPATCH_TOKEN`; GitHub Actions `DATABASE_URL`,
   `GEMINI_API_KEY`, `GROQ_API_KEY`. **Set on 14 Nov:** `GEMINI_API_KEY` on Render (the command bar's model fallback can call Gemini from the API).
 ## Next steps (owner's list, with the external critic's review of 14 Nov folded in)
@@ -38,8 +38,8 @@ opener), 3 (results → ledger deep link), 4 (freshness badge), 5 (Who can help 
 section), 6 (compact Research summary), 7 (rules-first command bar), 8a (Web Push; VAPID configured,
 device retest pending), 8b (dismissible first-run guide), 8c (cited pre-call card
 with replay fallback), 8d (two-sided filter audit), 8e (mobile design pass plus both screenshot
-follow-ups). **Step 9 is partial:** three unseen jobs succeeded; retry TITAN only after the queue's
-legitimate hourly window resets. Do not bypass the client limit.
+follow-ups), and 9 (four unseen live jobs: SJS, AUBANK, DIXON and TITAN). TITAN was retried only
+after the legitimate hourly window reset; no client limit was bypassed.
 
 The critic's verdict: strong technically (architecture 9/10, trust 9/10), weaker on submission
 readiness (6/10), mobile density (7/10) and network actionability (6.5/10). Its most urgent point:

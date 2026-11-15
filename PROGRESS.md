@@ -311,3 +311,13 @@ Next: retry TITAN after the hourly queue window; otherwise all ordered product w
   `ruff format --check finn tests` pass.
 - Remaining device confirmation: after Vercel deploys this commit, try **Send test alert** once on
   Android or desktop. Submission should not be delayed for this optional device-specific check.
+
+## Checkpoint 2026-11-15 (step 9 complete: TITAN retry)
+- After the legitimate hourly queue window reset, TITAN live job 7 was admitted and completed on
+  the free GitHub runner: 9 transcript links, 26 XBRL filings parsed, 12 quarters, 8 calls read and
+  1 guidance item. The generated report is visibly labelled not reviewed.
+- Step 9 is now 4/4: SJS (small cap), AUBANK (financial), DIXON and TITAN. The earlier 429 remains
+  recorded as an honest rate-limit result; no client identity or queue protection was bypassed.
+- Phone evidence: `docs/screens/step9_live_titan_dark.png`.
+Next: send the submission email immediately using `docs/SUBMISSION.md`; a real-device test alert is
+optional confirmation and should not delay the deadline submission.
